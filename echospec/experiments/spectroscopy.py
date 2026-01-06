@@ -39,6 +39,7 @@ class ResultsSpectroscopy:
     data: xr.DataArray
     rabi_frequency: float
     fwhm: Optional[float] = None
+    snr: Optional[float] = None
 
     def final_z(self) -> xr.DataArray:
         return self.data.sel(observable="z").isel(time=-1)
@@ -135,7 +136,9 @@ class Spectroscopy(BaseExperiment[ResultsSpectroscopy]):
         )
 
         self.fwhm = fwhm
+        self.snr = snr
         self.results.fwhm = fwhm
+        self.results.snr = snr
 
     def _to_xarray(self, results: np.ndarray) -> xr.DataArray:
         return xr.DataArray(

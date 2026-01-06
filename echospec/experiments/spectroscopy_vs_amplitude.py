@@ -59,6 +59,7 @@ class AmplitudeSweepSpectroscopy(BaseExperiment[xr.DataArray]):
         self.amplitudes = np.asarray(amplitudes, dtype=float)
         self.detunings = np.asarray(detunings, dtype=float)
         self.fwhm_values: list[Optional[float]] = []
+        self.snr_values: list[Optional[float]] = []
 
     # -------------------------------------------------------------------------
 
@@ -73,6 +74,7 @@ class AmplitudeSweepSpectroscopy(BaseExperiment[xr.DataArray]):
         """
         spectra = []
         self.fwhm_values = []
+        self.snr_values = []
 
         for amp in tqdm(
             self.amplitudes,
@@ -84,7 +86,7 @@ class AmplitudeSweepSpectroscopy(BaseExperiment[xr.DataArray]):
 
         self.results = xr.concat(spectra, dim="amplitude")
         self.fwhm_values = np.array(self.fwhm_values)
-
+        self.snr_values = np.array(self.snr_values)
         if self.options.plot:
             self.plot_final_z()
 
@@ -115,6 +117,7 @@ class AmplitudeSweepSpectroscopy(BaseExperiment[xr.DataArray]):
 
         # Store FWHM from this spectroscopy run
         self.fwhm_values.append(result.fwhm)
+        self.snr_values.append(result.snr)
 
         return result.data.expand_dims(amplitude=[amplitude])
 
@@ -192,8 +195,8 @@ if __name__ == "__main__":
 
     amplitudes = np.linspace(
         0,
-        50 * u.pi2 * u.MHz,
-        20,
+        10 * u.pi2 * u.MHz,
+        10,
     )
 
     sweep = AmplitudeSweepSpectroscopy(
@@ -204,3 +207,5 @@ if __name__ == "__main__":
     )
 
     data = sweep.run()
+
+    print(sweep.fwhm_values)
