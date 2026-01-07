@@ -85,3 +85,7 @@ class Parameters:
 
 
 params = Parameters()
+
+params.T1 = 100
+
+print(params.T2)
