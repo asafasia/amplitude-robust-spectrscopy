@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from matplotlib import pyplot as plt
 import numpy as np
 from numpy.typing import NDArray
 from qutip import basis, mesolve, destroy
@@ -6,16 +7,18 @@ import qutip as qt
 
 from echospec.utils.parameters import Parameters, N_dim, a, sx, sy, sz
 from echospec.simulation.hamiltonian import Hamiltonian
+from echospec.results.results import ResultsSingleRun
 
 
 @dataclass
 class Options:
-    num_time_points: int = 1000
+    num_time_points: int = 2000
     plot: bool = False
     with_fwhm: bool = False
     non_linear_sweep: bool = False
     plot_population: bool = False
     save: bool = False
+    noise: float = 0.0
 
 
 class Solver:
@@ -23,10 +26,10 @@ class Solver:
         self.config = config
         self.options = options or Options()
 
-    def run(self) -> tuple[NDArray, NDArray, NDArray]:
+    def run(self) -> ResultsSingleRun:
         return self._single_run()
 
-    def _single_run(self) -> tuple[NDArray, NDArray, NDArray]:
+    def _single_run(self) -> ResultsSingleRun:
 
         tlist = np.linspace(
             -self.config.pulse_length / 2,
@@ -51,13 +54,32 @@ class Solver:
         )
 
         sx_t, sy_t, sz_t = result.expect
-        return sx_t, sy_t, sz_t
+        ts = np.array(result.times)
+
+        single_result_raw = np.array([sx_t, sy_t, sz_t])
+        results = ResultsSingleRun(
+            data=single_result_raw,
+            time=ts
+        )
+
+        return results
 
 
 if __name__ == "__main__":
-    config = Parameters()
-    solver = Solver(config)
-    sx_t, sy_t, sz_t = solver.run()
-    print("sx_t:", sx_t)
-    print("sy_t:", sy_t)
-    print("sz_t:", sz_t)
+    params = Parameters()
+    params.eco_pulse = True
+    params.cutoff = 0.0006
+    options = Options(noise=0.1)
+    solver = Solver(params, options)
+    results = solver.run()
+
+    print("Final z:", results.final_z)
+
+    ts = results.time
+    sz_t = results.data[2]
+
+    plt.plot(ts, sz_t)
+    plt.xlabel("Time")
+    plt.ylabel("<Z>")
+    plt.title("Qubit Z Expectation Value Over Time")
+    plt.show()

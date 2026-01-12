@@ -5,7 +5,7 @@ from pathlib import Path
 # Default data directory for saving experiment results
 # Uses absolute path relative to user's home directory
 
-PROJECT_PATH = Path.home() / "Developer" / "amplitude-robust-spectrscopy"
+PROJECT_PATH = Path.home() / "Developer" / "amplitude-robust-spectroscopy"
 
 DATA_PATH = PROJECT_PATH / "data" / "experiments"
 

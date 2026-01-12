@@ -1,12 +1,11 @@
 from __future__ import annotations
+from copy import copy
 
+from matplotlib import pyplot as plt
 import numpy as np
-import xarray as xr
 from dataclasses import dataclass
 from typing import Optional
 from pathlib import Path
-
-from matplotlib import pyplot as plt
 from tqdm.auto import tqdm
 
 from echospec.utils.units import Units as u
@@ -14,29 +13,21 @@ from echospec.utils.parameters import Parameters
 from echospec.experiments.core import BaseExperiment
 from echospec.simulation.pulses import PulseType
 from echospec.experiments.spectroscopy import Spectroscopy
-from echospec.simulation.utils import z_to_populations
-from echospec.simulation.run import Solver, Options
-from echospec.plotting.spectroscopy import plot_amplitude_sweep_spectroscopy
-
+from echospec.simulation.run import Options
+# from echospec.plotting.spectroscopy import plot_spectroscopy_2d
+from echospec.results.results import ResultsSingleRun, ResultsSpectroscopy1D, ResultsSpectroscopy2D
 from numpy.typing import NDArray
 
-
-# -----------------------------------------------------------------------------
-# Options
-# -----------------------------------------------------------------------------
 
 @dataclass(slots=True)
 class OptionsSpectroscopy2d(Options):
     """Configuration flags for amplitude sweep spectroscopy."""
     plot: bool = True
     plot_fwhm: bool = True
+    add_noise: bool = False
 
 
-# -----------------------------------------------------------------------------
-# Main class
-# -----------------------------------------------------------------------------
-
-class AmplitudeSweepSpectroscopy(BaseExperiment[xr.DataArray]):
+class AmplitudeSweepSpectroscopy(BaseExperiment[ResultsSpectroscopy2D]):
     """
     Perform spectroscopy over a sweep of drive amplitudes.
 
@@ -63,7 +54,7 @@ class AmplitudeSweepSpectroscopy(BaseExperiment[xr.DataArray]):
 
     # -------------------------------------------------------------------------
 
-    def run(self) -> xr.DataArray:
+    def run(self) -> ResultsSpectroscopy2D:
         """
         Execute spectroscopy for each drive amplitude.
 
@@ -72,7 +63,7 @@ class AmplitudeSweepSpectroscopy(BaseExperiment[xr.DataArray]):
         xr.DataArray | None
             Concatenated spectroscopy results with dimension `amplitude`, or None if empty.
         """
-        spectra = []
+        raw_results = []
         self.fwhm_values = []
         self.snr_values = []
 
@@ -82,69 +73,52 @@ class AmplitudeSweepSpectroscopy(BaseExperiment[xr.DataArray]):
             unit="Ω",
             colour="cyan",
         ):
-            spectra.append(self._run_single_amplitude(amp))
+            raw_results.append(self._run_single_amplitude(amp))
 
-        self.results = xr.concat(spectra, dim="amplitude")
-        self.fwhm_values = np.array(self.fwhm_values)
-        self.snr_values = np.array(self.snr_values)
+        self.results: ResultsSpectroscopy2D | None = ResultsSpectroscopy2D.from_spectroscopy_1d(
+            spectroscopies=raw_results,
+            amplitudes=self.amplitudes,
+        )
+
         if self.options.plot:
-            self.plot_final_z()
+            self.plot()
 
         if self.options.save:
-            # Always plot before saving to ensure figure exists
-            if not self.options.plot:
-                self.plot_final_z()
             self.save()
 
         return self.results
 
     # -------------------------------------------------------------------------
 
-    def _run_single_amplitude(self, amplitude: float) -> xr.DataArray:
+    def _run_single_amplitude(self, amplitude: float) -> ResultsSpectroscopy1D:
         """
         Run spectroscopy for a single drive amplitude.
         """
         # Mutate explicitly and locally
         self.params.rabi_frequency = amplitude
 
+        opts = copy(self.options)
+        opts.plot = False
+
         spec = Spectroscopy(
             detunings=self.detunings,
             params=self.params,
-            options=Options(plot=False, with_fwhm=True),
+            options=opts,
         )
 
-        result = spec.run()
+        results = spec.run()
 
-        # Store FWHM from this spectroscopy run
-        self.fwhm_values.append(result.fwhm)
-        self.snr_values.append(result.snr)
-
-        return result.data.expand_dims(amplitude=[amplitude])
-
+        return results
     # -------------------------------------------------------------------------
 
     def plot(self) -> None:
         """Plot 2D spectroscopy results."""
-        self.plot_final_z()
-
-    def plot_final_z(self) -> None:
-        """
-        Plot final-time Z population as a function of detuning and amplitude.
-        """
-        self._check_results()
-
-        self.current_figure = plot_amplitude_sweep_spectroscopy(
-            results=self.results,
-            params=self.params,
-            fwhm_values=self.fwhm_values,
-            amplitudes=self.amplitudes,
-            detunings=self.detunings,
-            plot_fwhm=self.options.plot_fwhm,
-        )
+        fig = self.results.plot()
 
     # -------------------------------------------------------------------------
     # Save methods
     # -------------------------------------------------------------------------
+
     def _get_experiment_name(self) -> str:
         """Get experiment name for saving."""
         return "amplitude_sweep_spectroscopy"
@@ -178,10 +152,12 @@ if __name__ == "__main__":
 
     options = OptionsSpectroscopy2d()
     options.plot = True
-    options.save = True
+    options.save = False
+    options.noise = 0.05
+    options.with_fwhm = True
 
     params = Parameters(
-        eco_pulse=True,
+        eco_pulse=False,
         pulse_type=PulseType.LORENTZIAN,
         pulse_length=50 * u.us,
         cutoff=1e-4,
@@ -190,13 +166,13 @@ if __name__ == "__main__":
     detunings = np.linspace(
         -0.1 * u.pi2 * u.MHz,
         +0.1 * u.pi2 * u.MHz,
-        151,
+        51,
     )
 
     amplitudes = np.linspace(
         0,
-        10 * u.pi2 * u.MHz,
-        10,
+        50 * u.pi2 * u.MHz,
+        50,
     )
 
     sweep = AmplitudeSweepSpectroscopy(
@@ -208,4 +184,4 @@ if __name__ == "__main__":
 
     data = sweep.run()
 
-    print(sweep.fwhm_values)
+    plt.show()

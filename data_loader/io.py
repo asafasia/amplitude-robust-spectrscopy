@@ -18,7 +18,7 @@ if __name__ == "__main__":
 
     from echospec.utils.config import PROJECT_PATH
 
-    path = PROJECT_PATH / "data" / "data_old" / "27-1-25"
+    path = PROJECT_PATH / "data" / "data_old" / "17_09_25"
     data = load_directory(path)
 
     print(data)

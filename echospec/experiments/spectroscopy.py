@@ -1,7 +1,8 @@
 from __future__ import annotations
 
+from matplotlib import pyplot as plt
 import numpy as np
-import xarray as xr
+from numpy.typing import NDArray
 from dataclasses import dataclass
 from typing import Optional
 from pathlib import Path
@@ -14,41 +15,20 @@ from echospec.simulation.utils import _non_linear_sweep
 from echospec.simulation.pulses import PulseType
 from echospec.utils.parameters import Parameters
 from echospec.utils.units import Units as u
-from echospec.analysis.fwhm import fwhm_gaussian_fit
-from echospec.plotting.spectroscopy import plot_spectroscopy
+from echospec.results.results import ResultsSingleRun, ResultsSpectroscopy1D
 
 
-# -----------------------------------------------------------------------------
-# Parallel worker
-# -----------------------------------------------------------------------------
-def _run_single(detuning: float, params: Parameters) -> Optional[np.ndarray]:
+def _run_single(detuning: float, params: Parameters, options: OptionsSpectroscopy) -> ResultsSingleRun:
     params.detuning = detuning
-    return Solver(params).run()
+    return Solver(params, options).run()
 
 
-# -----------------------------------------------------------------------------
-# Options / results containers
-# -----------------------------------------------------------------------------
 @dataclass
 class OptionsSpectroscopy(Options):
     pass
 
 
-@dataclass
-class ResultsSpectroscopy:
-    data: xr.DataArray
-    rabi_frequency: float
-    fwhm: Optional[float] = None
-    snr: Optional[float] = None
-
-    def final_z(self) -> xr.DataArray:
-        return self.data.sel(observable="z").isel(time=-1)
-
-
-# -----------------------------------------------------------------------------
-# Main class
-# -----------------------------------------------------------------------------
-class Spectroscopy(BaseExperiment[ResultsSpectroscopy]):
+class Spectroscopy(BaseExperiment[ResultsSpectroscopy1D]):
     """
     1D spectroscopy experiment scanning detuning.
 
@@ -70,29 +50,8 @@ class Spectroscopy(BaseExperiment[ResultsSpectroscopy]):
             self.options.non_linear_sweep,
         )
 
-        self.times = np.linspace(
-            -params.pulse_length / 2,
-            params.pulse_length / 2,
-            1000,
-        )
-
-        self.fwhm: Optional[float] = None
-
-    # ------------------------------------------------------------------
-    # Public API
-    # ------------------------------------------------------------------
-    def run(self) -> ResultsSpectroscopy:
-        raw = self._execute()
-        data = self._to_xarray(raw)
-
-        self.results = ResultsSpectroscopy(
-            data=data,
-            rabi_frequency=self.params.rabi_frequency,
-        )
-
-        if self.options.with_fwhm:
-            self._compute_fwhm()
-
+    def run(self) -> ResultsSpectroscopy1D:
+        self.results = self._execute()
         if self.options.plot:
             self.plot_final_z()
 
@@ -104,82 +63,40 @@ class Spectroscopy(BaseExperiment[ResultsSpectroscopy]):
 
         return self.results
 
-    # ------------------------------------------------------------------
-    # Internal helpers
-    # ------------------------------------------------------------------
-    def _execute(self) -> np.ndarray:
+    def _execute(self) -> ResultsSpectroscopy1D:
         vec = parallel_map(
             _run_single,
             self.detunings,
-            task_args=(self.params,),
+            task_args=(self.params, self.options),
+        )
+        results = ResultsSpectroscopy1D.from_single_runs(
+            runs=vec,
+            detunings=self.detunings,
+            params=self.params,
         )
 
-        results = np.asarray(vec, dtype=float)
-
-        expected_shape = (len(self.detunings), 3, len(self.times))
-        if results.shape != expected_shape:
-            raise ValueError(
-                f"Unexpected results shape {results.shape}, expected {expected_shape}"
+        if self.options.noise > 0:
+            gaussian_noise = self.options.noise * np.random.normal(
+                loc=0.0,
+                scale=1.0,
+                size=results.data.shape
             )
+            results.data += gaussian_noise
 
         return results
 
-    def _compute_fwhm(self) -> None:
-        if self.results is None:
-            raise RuntimeError("run() must be called before computing FWHM.")
-
-        z_final = self.results.final_z()
-
-        _, fwhm, snr, _ = fwhm_gaussian_fit(
-            x=z_final.detuning.values,
-            y=z_final.values,
-        )
-
-        self.fwhm = fwhm
-        self.snr = snr
-        self.results.fwhm = fwhm
-        self.results.snr = snr
-
-    def _to_xarray(self, results: np.ndarray) -> xr.DataArray:
-        return xr.DataArray(
-            results,
-            dims=("detuning", "observable", "time"),
-            coords={
-                "detuning": self.detunings,
-                "observable": ["x", "y", "z"],
-                "time": self.times,
-            },
-            name="expectation_values",
-            attrs={
-                "pulse_type": str(self.params.pulse_type),
-                "eco_pulse": self.params.eco_pulse,
-                "pulse_length": self.params.pulse_length,
-            },
-        )
-
-    # ------------------------------------------------------------------
-    # Plotting
-    # ------------------------------------------------------------------
     def plot(self) -> None:
         """Plot final Z expectation value vs detuning."""
         self.plot_final_z()
 
     def plot_final_z(self) -> None:
+        if self.results is None:
+            raise RuntimeError("No results to plot. Run the experiment first.")
         """Plot final Z expectation value vs detuning with FWHM markers."""
         self._check_results()
 
-        self.current_figure = plot_spectroscopy(
-            z_final=self.results.final_z(),
-            params=self.params,
-            rabi_frequency=self.params.rabi_frequency,
-            fwhm=self.fwhm,
-            plot_population=self.options.plot_population,
-            with_fwhm=self.options.with_fwhm,
-        )
+        self.current_figure = self.results.plot()
 
-    # ------------------------------------------------------------------
-    # Save methods
-    # ------------------------------------------------------------------
     def _get_experiment_name(self) -> str:
         """Get experiment name for saving."""
         return "spectroscopy"
@@ -199,22 +116,31 @@ class Spectroscopy(BaseExperiment[ResultsSpectroscopy]):
             with open(save_dir / "fwhm.json", "w") as f:
                 json.dump(fwhm_data, f, indent=2)
 
+    def add_noise(self, data: NDArray[np.floating]) -> NDArray[np.floating]:
+        """Add Gaussian noise to the data based on options."""
+        if self.options.noise <= 0:
+            return data
+        gaussian_noise = self.options.noise * np.random.normal(
+            loc=0.0,
+            scale=1.0,
+            size=data.shape
+        )
+        return self.results.data + gaussian_noise
 
-# -----------------------------------------------------------------------------
-# Script entry point
-# -----------------------------------------------------------------------------
+
 if __name__ == "__main__":
     options = OptionsSpectroscopy(
         plot=True,
         with_fwhm=True,
         non_linear_sweep=True,
         plot_population=True,
-        save=True
+        save=False,
+        noise=0.02,
     )
 
     params = Parameters(
-        eco_pulse=True,
-        cutoff=0.001,
+        eco_pulse=False,
+        cutoff=0.0005,
         rabi_frequency=60 * np.pi * u.MHz,
         pulse_type=PulseType.LORENTZIAN,
         pulse_length=40 * u.us,
@@ -224,3 +150,5 @@ if __name__ == "__main__":
     detunings = np.linspace(-span / 2, span / 2, 101)
 
     Spectroscopy(detunings, params, options).run()
+
+    plt.show()
