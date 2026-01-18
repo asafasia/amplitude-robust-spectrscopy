@@ -147,7 +147,7 @@ class AmplitudeSweepSpectroscopy(BaseExperiment[ResultsSpectroscopy2D]):
 # -----------------------------------------------------------------------------
 # Script entry point
 # -----------------------------------------------------------------------------
-
+# %%
 if __name__ == "__main__":
 
     options = OptionsSpectroscopy2d()
@@ -157,7 +157,7 @@ if __name__ == "__main__":
     options.with_fwhm = True
 
     params = Parameters(
-        eco_pulse=False,
+        eco_pulse=True,
         pulse_type=PulseType.LORENTZIAN,
         pulse_length=50 * u.us,
         cutoff=1e-4,
@@ -169,19 +169,89 @@ if __name__ == "__main__":
         51,
     )
 
-    amplitudes = np.linspace(
-        0,
-        50 * u.pi2 * u.MHz,
-        50,
+    amplitudes = np.logspace(
+        -3,
+        2,
+        100,
+    ) * 2 * np.pi * u.MHz
+
+    cutoff_vector = np.logspace(
+        -2,
+        -5,
+        30,
     )
+    fwhm_matrix = []
+    snr_matrix = []
 
-    sweep = AmplitudeSweepSpectroscopy(
-        amplitudes=amplitudes,
-        detunings=detunings,
-        params=params,
-        options=options,
-    )
+    for i, cutoff in enumerate(cutoff_vector):
+        print(f"Cutoff {i+1}/{len(cutoff_vector)}: {cutoff:.1e}")
 
-    data = sweep.run()
+        params.cutoff = cutoff
+        sweep = AmplitudeSweepSpectroscopy(
+            amplitudes=amplitudes,
+            detunings=detunings,
+            params=params,
+            options=options,
+        )
+        data = sweep.run()
 
+        fwhm_vector = data.fwhm_map
+        snr_vector = data.snr_map
+        fwhm_matrix.append(fwhm_vector)
+        snr_matrix.append(snr_vector)
+        plt.plot(amplitudes / u.pi2 / u.MHz, fwhm_vector / u.pi2 / u.MHz)
+
+    fwhm_matrix = np.array(fwhm_matrix)
+    snr_matrix = np.array(snr_matrix)
+    plt.xscale("log")
     plt.show()
+
+    # %%
+
+    # %%
+
+    fig, axs = plt.subplots(1, 2, figsize=(8, 3.5))
+    mat1 = np.array(fwhm_matrix).T / params.T2_limit/2/np.pi
+
+    mat2 = mat1/snr_matrix.T
+    c1 = axs[0].pcolormesh(
+        cutoff_vector,
+        amplitudes / u.pi2 / u.MHz,
+        np.array(fwhm_matrix).T / params.T2_limit/2/np.pi,
+        shading="auto",
+        vmin=0,
+        vmax=10,
+        cmap="viridis_r",
+    )
+    axs[0].set_xscale("log")
+    axs[0].set_yscale("log")
+    axs[0].set_xlabel("Cutoff")
+    axs[0].set_ylabel("Drive Amplitude (MHz)")
+    axs[0].set_title("FWHM")
+    fig.colorbar(c1, ax=axs[0], label="FWHM / T2 limit")
+
+    c2 = axs[1].pcolormesh(
+        cutoff_vector,
+        amplitudes / u.pi2 / u.MHz,
+        mat2,
+        shading="auto",
+        vmin=0,
+        vmax=20,
+        cmap="viridis_r",
+    )
+    axs[1].set_xscale("log")
+    axs[1].set_yscale("log")
+    axs[1].set_xlabel("Cutoff")
+    axs[1].set_ylabel("Drive Amplitude (MHz)")
+    axs[1].set_title("FWHM / Signal")
+    fig.colorbar(c2, ax=axs[1], label="FWHM / T2 limit / Signal")
+
+    fig.suptitle("Spectroscopy FWHM and SNR vs Amplitude and Cutoff of Echo Lorentzian Pulse")
+    plt.tight_layout()
+    plt.savefig("spectroscopy_fwhm_snr_vs_amplitude_vs_cutoff.png", dpi=300)
+    plt.show()
+
+# # %%
+
+
+# %%

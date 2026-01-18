@@ -135,13 +135,13 @@ if __name__ == "__main__":
         non_linear_sweep=True,
         plot_population=True,
         save=False,
-        noise=0.02,
+        noise=0.0,
     )
 
     params = Parameters(
-        eco_pulse=False,
-        cutoff=0.0005,
-        rabi_frequency=60 * np.pi * u.MHz,
+        eco_pulse=True,
+        cutoff=1e-4,
+        rabi_frequency=1e-1*2 * np.pi * u.MHz,
         pulse_type=PulseType.LORENTZIAN,
         pulse_length=40 * u.us,
     )
