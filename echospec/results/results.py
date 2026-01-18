@@ -90,6 +90,15 @@ class ResultsSpectroscopy1D(ResultsBase):
         return self.params.rabi_frequency
     # ---------- analysis ----------
 
+    def final_map(self, observable='z') -> NDArray[np.floating]:
+        """
+        Final Z expectation value.
+
+        Shape:
+            (n_detuning,)
+        """
+        return self.data[self.OBS_INDEX[observable], :, -1]
+
     def final_z_vs_detuning(self) -> NDArray[np.floating]:
         return self.z()[:, -1]
 
@@ -138,7 +147,9 @@ class ResultsSpectroscopy1D(ResultsBase):
 class ResultsSpectroscopy2D:
     spectroscopies: Sequence[ResultsSpectroscopy1D]
     amplitudes: NDArray[np.floating]   # (n_amp,)
-    detunings: NDArray[np.floating]    # (n_detuning,)
+    detunings: NDArray[np.floating]
+
+    # (n_detuning,)
 
     def __post_init__(self):
         if len(self.spectroscopies) != len(self.amplitudes):
@@ -153,6 +164,9 @@ class ResultsSpectroscopy2D:
                     "All 1D spectroscopies must share the same detunings."
                 )
 
+    @property
+    def times(self) -> NDArray[np.floating]:
+        return self.spectroscopies[0].time
     # ---------- constructors ----------
 
     @classmethod
@@ -176,6 +190,18 @@ class ResultsSpectroscopy2D:
             detunings=detunings,
         )
 
+    def raw_data(self) -> NDArray[np.floating]:
+        """
+        Raw data array.
+
+        Shape:
+            (n_amp, n_detuning, n_time)
+        """
+        return np.stack(
+            [spec.data for spec in self.spectroscopies],
+            axis=0,
+        )
+
     # ---------- accessors ----------
 
     def spectroscopy_1d(self, i: int) -> ResultsSpectroscopy1D:
@@ -183,7 +209,7 @@ class ResultsSpectroscopy2D:
 
     # ---------- analysis ----------
 
-    def final_z_map(self) -> NDArray[np.floating]:
+    def final_map(self, observable='z') -> NDArray[np.floating]:
         """
         Final Z expectation value.
 
@@ -191,7 +217,8 @@ class ResultsSpectroscopy2D:
             (n_amp, n_detuning)
         """
         return np.stack(
-            [spec.final_z_vs_detuning() for spec in self.spectroscopies],
+            [spec.final_map(observable=observable)
+             for spec in self.spectroscopies],
             axis=0,
         )
 
@@ -216,7 +243,7 @@ class ResultsSpectroscopy2D:
         Shape:
             (n_amp, n_detuning)
         """
-        return (1 - self.final_z_map()) / 2
+        return (1 - self.final_map()) / 2
 
     @property
     def fwhm_map(self) -> NDArray[np.floating]:
