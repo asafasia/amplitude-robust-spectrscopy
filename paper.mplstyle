@@ -1,0 +1,48 @@
+# ===== Figure size =====
+figure.figsize      : 3.4, 2.6      # single-column (inches)
+figure.dpi          : 200
+savefig.dpi         : 300
+savefig.bbox        : tight
+savefig.pad_inches : 0.02
+
+# ===== Fonts =====
+font.family         : serif
+font.serif          : Times New Roman
+mathtext.fontset    : stix
+mathtext.rm         : Times New Roman
+mathtext.it         : Times New Roman:italic
+mathtext.bf         : Times New Roman:bold
+
+# ===== Font sizes =====
+font.size           : 9
+axes.labelsize      : 9
+axes.titlesize      : 9
+legend.fontsize     : 8
+xtick.labelsize     : 8
+ytick.labelsize     : 8
+
+# ===== Axes =====
+axes.linewidth      : 0.8
+
+
+# ===== Ticks =====
+xtick.direction     : in
+ytick.direction     : in
+xtick.major.size    : 3
+ytick.major.size    : 3
+xtick.major.width  : 0.8
+ytick.major.width  : 0.8
+xtick.minor.visible : True
+ytick.minor.visible : True
+
+# ===== Lines =====
+lines.linewidth     : 1.5
+lines.markersize    : 5
+
+# ===== Legend =====
+legend.frameon      : True
+legend.handlelength : 1.5
+
+# ===== Grid =====
+axes.grid           : False
+

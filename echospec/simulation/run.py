@@ -12,7 +12,7 @@ from echospec.results.results import ResultsSingleRun
 
 @dataclass
 class Options:
-    num_time_points: int = 2000
+    num_time_points: int = 1000
     plot: bool = False
     with_fwhm: bool = False
     non_linear_sweep: bool = False

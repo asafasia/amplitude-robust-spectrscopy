@@ -150,12 +150,12 @@ class AmplitudeSweepSpectroscopy(BaseExperiment[ResultsSpectroscopy2D]):
 # %%
 if __name__ == "__main__":
 
-    echo = False
+    echo = True
 
     options = OptionsSpectroscopy2d()
     options.plot = True
     options.save = False
-    options.noise = 00
+    options.noise = 0.0
     options.with_fwhm = True
 
     params = Parameters(
@@ -206,8 +206,10 @@ if __name__ == "__main__":
     fwhm_matrix = np.array(fwhm_matrix)
     snr_matrix = np.array(snr_matrix)
 
+    # %%
+
     np.savez(
-        "spectroscopy_data.npz",
+        "spectroscopy_data_echo.npz",
         detunings=detunings,
         amplitudes=amplitudes,
         cutoff_vector=cutoff_vector,
