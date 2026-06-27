@@ -1,0 +1,36 @@
+figure.figsize: 7.5, 4.2
+figure.dpi: 160
+savefig.dpi: 220
+savefig.bbox: tight
+savefig.pad_inches: 0.04
+
+font.family: sans-serif
+font.sans-serif: Arial, Helvetica, DejaVu Sans
+mathtext.fontset: dejavusans
+
+font.size: 16
+axes.labelsize: 17
+axes.titlesize: 18
+xtick.labelsize: 14
+ytick.labelsize: 14
+legend.fontsize: 13
+
+axes.linewidth: 1.2
+axes.grid: True
+grid.alpha: 0.22
+grid.linewidth: 0.8
+
+xtick.direction: out
+ytick.direction: out
+xtick.major.size: 5
+ytick.major.size: 5
+xtick.major.width: 1.0
+ytick.major.width: 1.0
+xtick.minor.visible: False
+ytick.minor.visible: False
+
+lines.linewidth: 2.4
+lines.markersize: 7
+
+legend.frameon: False
+legend.handlelength: 1.8

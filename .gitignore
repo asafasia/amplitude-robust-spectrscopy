@@ -25,6 +25,4 @@ venv/
 .vscode/
 
 # Project data and large generated arrays
-data/
-*.npy
-*.npz
+/data/

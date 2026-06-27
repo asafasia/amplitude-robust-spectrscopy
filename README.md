@@ -53,13 +53,45 @@ tests/             fast tests for shared behavior
 notebooks/         exploratory and figure-production notebooks
 scripts/           maintained scripts and archived legacy scripts
 figures/           generated and final figures
-graphs_for_poster/ poster-specific plotting assets
+styles/            Matplotlib styles for paper and IPS presentation figures
+assets/poster/     poster-specific plotting assets
+archive/           old scripts, scratch work, and superseded experiments
 docs/              project documentation
 data/              local data, ignored by git by default
 ```
 
 See `docs/PROJECT_ORGANIZATION.md` for the target repository structure and
 cleanup rules.
+
+## Figure Workflows
+
+Paper and IPS presentation figures should be developed in parallel but share
+the same computation code:
+
+```text
+notebooks/paper/             paper-oriented notebooks
+notebooks/presentation_ips/  slide-oriented notebooks
+figures/paper/               paper figure exports
+figures/presentation_ips/    IPS presentation figure exports
+styles/paper.mplstyle        compact publication style
+styles/presentation_ips.mplstyle
+```
+
+Use the shared figure helpers in notebooks:
+
+```python
+from echospec.figures import FigureVariant, apply_figure_style, save_figure
+
+VARIANT = FigureVariant.PRESENTATION_IPS
+apply_figure_style(VARIANT)
+
+# build fig...
+save_figure(fig, "figure_name", variant=VARIANT)
+```
+
+Keep data loading, simulation, and reusable plotting functions in `echospec/`.
+Keep notebooks focused on choosing the figure target, arranging panels, and
+exporting the result.
 
 ## Notes
 

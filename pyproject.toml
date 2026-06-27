@@ -31,7 +31,7 @@ dev = [
 
 [tool.setuptools.packages.find]
 include = ["echospec*", "data_loader*"]
-exclude = ["data*", "figures*", "graphs_for_poster*", "notebooks*", "scripts*"]
+exclude = ["archive*", "assets*", "data*", "figures*", "notebooks*", "scripts*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
