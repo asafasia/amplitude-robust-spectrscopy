@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from enum import Enum
 from pathlib import Path
-from typing import Iterable
+from typing import Any, Iterable
 
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
@@ -51,6 +51,7 @@ def save_figure(
     *,
     variant: FigureVariant | str,
     formats: Iterable[str] = ("png", "svg"),
+    **savefig_kwargs: Any,
 ) -> list[Path]:
     """Save a figure to the correct output folder for its visual target."""
     output_dir = output_dir_for(variant)
@@ -59,7 +60,7 @@ def save_figure(
     saved_paths = []
     for fmt in formats:
         path = output_dir / f"{stem}.{fmt}"
-        fig.savefig(path)
+        fig.savefig(path, **savefig_kwargs)
         saved_paths.append(path)
 
     return saved_paths
