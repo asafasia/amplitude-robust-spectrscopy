@@ -14,30 +14,31 @@ mathtext.it         : Times New Roman:italic
 mathtext.bf         : Times New Roman:bold
 
 # ===== Font sizes =====
-font.size           : 9
-axes.labelsize      : 9
-axes.titlesize      : 9
-legend.fontsize     : 8
-xtick.labelsize     : 8
-ytick.labelsize     : 8
+font.size: 7,
+axes.labelsize: 7,
+xtick.labelsize: 6,
+ytick.labelsize: 6,
+legend.fontsize: 6,
+lines.linewidth: 0.8,
+lines.markersize: 3,
 
 # ===== Axes =====
-axes.linewidth      : 0.8
+axes.linewidth      : 0.4
 
 
 # ===== Ticks =====
 xtick.direction     : in
 ytick.direction     : in
-xtick.major.size    : 3
-ytick.major.size    : 3
-xtick.major.width  : 0.8
-ytick.major.width  : 0.8
+xtick.major.size    : 2
+ytick.major.size    : 2
+xtick.major.width  : 0.5
+ytick.major.width  : 0.5
 xtick.minor.visible : True
 ytick.minor.visible : True
 
 # ===== Lines =====
-lines.linewidth     : 1.5
-lines.markersize    : 5
+lines.linewidth     : 0.5
+lines.markersize    : 4
 
 # ===== Legend =====
 legend.frameon      : True

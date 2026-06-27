@@ -1,11 +1,10 @@
 from dataclasses import dataclass
 from matplotlib import pyplot as plt
 import numpy as np
-from numpy.typing import NDArray
-from qutip import basis, mesolve, destroy
-import qutip as qt
+from qutip import basis, mesolve
 
-from echospec.utils.parameters import Parameters, N_dim, a, sx, sy, sz
+from echospec.simulation.operators import N_dim, a, sx, sy, sz
+from echospec.utils.parameters import Parameters
 from echospec.simulation.hamiltonian import Hamiltonian
 from echospec.results.results import ResultsSingleRun
 

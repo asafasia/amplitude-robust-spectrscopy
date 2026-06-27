@@ -1,6 +1,7 @@
 from traitlets import Any
-from echospec.utils.parameters import *
+from echospec.simulation.operators import a, n, n2
 from echospec.simulation.pulses import PulseArgs, choose_pulse, PulseType
+from echospec.utils.parameters import Parameters
 from numpy.typing import ArrayLike
 import numpy as np
 

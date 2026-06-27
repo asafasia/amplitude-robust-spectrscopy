@@ -160,7 +160,7 @@ if __name__ == "__main__":
         eco_pulse=True,
         pulse_type=PulseType.LORENTZIAN,
         pulse_length=50 * u.us,
-        cutoff=0.999
+        cutoff=0.0001
     )
 
     detunings = np.linspace(
@@ -171,7 +171,7 @@ if __name__ == "__main__":
 
     amplitudes = np.linspace(
         0,
-        0.10 * u.pi2 * u.MHz,
+        80 * u.pi2 * u.MHz,
         50,
     )
 
@@ -185,3 +185,10 @@ if __name__ == "__main__":
     data = sweep.run()
 
     plt.show()
+
+    np.savez(
+        "amplitude_sweep_spectroscopy_results.npz",
+        amplitudes=amplitudes,
+        detunings=detunings,
+        data=data,
+    )

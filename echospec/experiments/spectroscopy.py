@@ -147,7 +147,7 @@ if __name__ == "__main__":
     )
 
     span = 0.2 * u.pi2 * u.MHz
-    detunings = np.linspace(-span / 2, span / 2, 101)
+    detunings = np.linspace(-span / 2, span / 2, 21)
 
     Spectroscopy(detunings, params, options).run()
 

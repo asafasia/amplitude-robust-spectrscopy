@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import numpy as np
 from matplotlib import pyplot as plt, rcParams
 from scipy.optimize import curve_fit
@@ -25,13 +27,16 @@ rcParams.update({
     'grid.linewidth': 0.8  # Width of the grid lines
 })
 
-folder = '/Users/asafsolonnikov/Documents/GitHub/Power-Broadening-2/graphs_for_poster/t1/'
+current_folder = Path.cwd()
+
+
+folder = current_folder / 'graphs_for_poster' / 't1'
 file = 'T1.hdf5'
 
 T1 = 30e-6
 T2 = 10e-6
 
-file_path = folder + file
+file_path = folder / file
 
 data, args, exp_args = get_data_from_file(file_path, dim=1)
 x, y = data
@@ -62,7 +67,7 @@ axes[0].plot(
 
 
 file = 'T2-ramsey__2.hdf5'
-file_path = folder + file
+file_path = folder / file
 data, args, exp_args = get_data_from_file(file_path, dim=1)
 
 x, y = data

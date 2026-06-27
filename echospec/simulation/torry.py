@@ -4,7 +4,7 @@ from echospec.simulation.fwhm import Torreys_solution
 
 import numpy as np
 from scipy.optimize import brentq
-from echospec.utils.parameters import *
+from echospec.utils.parameters import Parameters
 
 from echospec.utils.units import Units as u
 
@@ -42,7 +42,7 @@ def find_fwhm_vs_rabi(T1, T2, w_rabi, plot=False):
 
 def find_fwhm_vec_vs_rabi(T1, T2):
 
-    ws = np.logspace(-3, 3, 500) * 2 * pi * u.kHz * 5
+    ws = np.logspace(-4, 4, 500) * 2 * pi * u.kHz * 5
     fwhms = []
     snrs = []
     for w in ws:
@@ -57,7 +57,7 @@ def find_fwhm_vec_vs_rabi(T1, T2):
     return ws, fwhms, snrs
 
 
-def plot(ax, ws, fwhms, snrs) -> None:
+def plot(ax, ws, fwhms, snrs, params: Parameters) -> None:
 
     T1 = params.T1
     T2 = params.T2
@@ -112,6 +112,6 @@ if __name__ == "__main__":
 
     fig, ax = plt.subplots(1, 1, figsize=(10, 10))
     ws, fwhms, snrs = find_fwhm_vec_vs_rabi(T1=params.T1, T2=params.T2)
-    plot(ax, ws, fwhms, snrs)
+    plot(ax, ws, fwhms, snrs, params)
 
     print(fwhms)

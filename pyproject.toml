@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "amplitude-robust-spectroscopy"
+version = "0.1.0"
+description = "Simulation and analysis tools for amplitude-robust spectroscopy experiments."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "click",
+    "ipympl",
+    "ipywidgets",
+    "jupyter",
+    "matplotlib",
+    "numpy",
+    "pandas",
+    "qutip",
+    "scipy",
+    "seaborn",
+    "tqdm",
+    "xarray",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "ruff",
+]
+
+[tool.setuptools.packages.find]
+include = ["echospec*", "data_loader*"]
+exclude = ["data*", "figures*", "graphs_for_poster*", "notebooks*", "scripts*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+extend-exclude = [
+    "notebooks",
+    "scripts/old",
+    "junk",
+    "graphs_for_poster",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = [
+    "E501",
+]

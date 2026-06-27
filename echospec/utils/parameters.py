@@ -1,22 +1,10 @@
 import numpy as np
-from qutip import destroy
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
-import qutip as qt
 from echospec.utils.units import Units as u
 
 if TYPE_CHECKING:
     from echospec.simulation.pulses import PulseType
-
-N_dim: int = 2  # Number of levels in the qubit model
-
-
-a = destroy(N_dim)
-n = qt.num(N_dim)
-n2 = a.dag() * a.dag() * a * a  # type: ignore
-sx = qt.sigmax()
-sy = qt.sigmay()
-sz = qt.sigmaz()
 
 
 @dataclass
@@ -82,10 +70,3 @@ class Parameters:
             self.rabi_frequency /
             (np.pi * np.sqrt(self.T2 / self.T1)) * self.cutoff
         )
-
-
-params = Parameters()
-
-params.T1 = 100
-
-print(params.T2)
