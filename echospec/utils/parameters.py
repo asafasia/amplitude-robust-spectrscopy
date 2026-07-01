@@ -12,8 +12,8 @@ class Parameters:
     qubit_frequency: float = 5 * u.GHz * 2 * u.pi2
     detuning: float = 0 * 2 * u.pi2 * u.MHz
     anharmonicity: float = 200 * u.MHz * 2 * u.pi2
-    T1: float = 30 * u.us
-    T_dephasing: float = 20 * u.us
+    T1: float = 50 * u.us
+    T_dephasing: float = 7 * u.us
     detuning_span: float = 0.5 * 2 * u.pi2 * u.MHz
     rabi_frequency: float = 50 * 2 * u.pi2 * u.MHz
     pulse_length: float = 40 * u.us
@@ -70,3 +70,15 @@ class Parameters:
             self.rabi_frequency /
             (np.pi * np.sqrt(self.T2 / self.T1)) * self.cutoff
         )
+
+
+if __name__ == "__main__":
+    # Example usage of Parameters class
+    params = Parameters()
+    print(f"Qubit Frequency: {params.qubit_frequency}")
+    print(f"T2: {params.T2}")
+    print(f"Gamma Relaxation: {params.gamma_relaxation}")
+    print(f"Gamma Dephasing: {params.gamma_dephasing}")
+    print(f"Gamma Extinction: {params.gamma_extinction}")
+    print(f"T2 Limit: {params.T2_limit}")
+    print(f"Broadening Condition: {params.broadening_condition}")

@@ -16,6 +16,16 @@ from echospec.experiments.lorentzian_rabi_scan import (
     OptionsLorentzianRabiLengthCutoffScan,
     ResultsLorentzianRabiLengthCutoffScan,
 )
+from echospec.experiments.torrey_resonance import (
+    OptionsTorreyResonance,
+    ResultsTorreyFwhmVsRabi,
+    ResultsTorreyResonance,
+    TorreyFwhmVsRabiExperiment,
+    TorreyResonanceExperiment,
+    torrey_fwhm,
+    torrey_snr,
+    torrey_sigma_z,
+)
 
 __all__ = [
     "Spectroscopy",
@@ -33,4 +43,12 @@ __all__ = [
     "LorentzianRabiLengthCutoffScanExperiment",
     "OptionsLorentzianRabiLengthCutoffScan",
     "ResultsLorentzianRabiLengthCutoffScan",
+    "OptionsTorreyResonance",
+    "ResultsTorreyFwhmVsRabi",
+    "ResultsTorreyResonance",
+    "TorreyFwhmVsRabiExperiment",
+    "TorreyResonanceExperiment",
+    "torrey_fwhm",
+    "torrey_snr",
+    "torrey_sigma_z",
 ]

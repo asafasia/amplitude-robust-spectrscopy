@@ -153,25 +153,25 @@ if __name__ == "__main__":
     options = OptionsSpectroscopy2d()
     options.plot = True
     options.save = False
-    options.noise = 0.01
+    options.noise = 0.0
     options.with_fwhm = False
 
     params = Parameters(
         eco_pulse=True,
         pulse_type=PulseType.LORENTZIAN,
-        pulse_length=50 * u.us,
-        cutoff=0.0001
+        pulse_length=20 * u.us,
+        cutoff=0.005
     )
 
     detunings = np.linspace(
-        -0.1 * u.pi2 * u.MHz,
-        +0.1 * u.pi2 * u.MHz,
-        51,
+        -0.5 * u.pi2 * u.MHz,
+        +0.5* u.pi2 * u.MHz,
+        151,
     )
 
     amplitudes = np.linspace(
         0,
-        80 * u.pi2 * u.MHz,
+        15 * u.pi2 * u.MHz,
         50,
     )
 
@@ -192,3 +192,4 @@ if __name__ == "__main__":
         detunings=detunings,
         data=data,
     )
+
