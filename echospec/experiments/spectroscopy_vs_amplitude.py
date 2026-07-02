@@ -151,7 +151,7 @@ class AmplitudeSweepSpectroscopy(BaseExperiment[ResultsSpectroscopy2D]):
 if __name__ == "__main__":
 
     options = OptionsSpectroscopy2d()
-    options.plot = True
+    options.plot = False
     options.save = False
     options.noise = 0.0
     options.with_fwhm = False
@@ -172,7 +172,7 @@ if __name__ == "__main__":
     amplitudes = np.linspace(
         0,
         15 * u.pi2 * u.MHz,
-        50,
+        200,
     )
 
     sweep = AmplitudeSweepSpectroscopy(
@@ -184,12 +184,9 @@ if __name__ == "__main__":
 
     data = sweep.run()
 
-    plt.show()
-
     np.savez(
         "amplitude_sweep_spectroscopy_results.npz",
         amplitudes=amplitudes,
         detunings=detunings,
         data=data,
     )
-

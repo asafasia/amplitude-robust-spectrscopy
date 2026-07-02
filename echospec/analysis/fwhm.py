@@ -24,6 +24,70 @@ def _lorentzian(x: np.ndarray, A: float, mu: float, gamma: float, d: float) -> n
     return A * (gamma ** 2) / ((x - mu) ** 2 + gamma ** 2) + d
 
 
+def fwhm_half_depth(
+    x: ArrayLike,
+    y: ArrayLike,
+    *,
+    smooth_sigma_pts: float = 1.0,
+) -> tuple[float, float]:
+    """Return FWHM and signal from the central peak or dip using crossings."""
+    x, y = _as_sorted_xy(x, y)
+    if x.size < 3:
+        return np.nan, np.nan
+
+    if smooth_sigma_pts and smooth_sigma_pts > 0:
+        y_s = gaussian_filter1d(y, smooth_sigma_pts)
+    else:
+        y_s = y
+
+    center_idx = int(np.argmin(np.abs(x)))
+    edge_count = max(1, x.size // 10)
+    baseline = float(np.median(np.r_[y_s[:edge_count], y_s[-edge_count:]]))
+    center_value = float(y_s[center_idx])
+    is_dip = center_value < baseline
+
+    if is_dip:
+        feature_idx = int(np.argmin(y_s))
+        signal = float(baseline - y_s[feature_idx])
+        half_level = float(y_s[feature_idx] + signal / 2)
+        crossing_values = y_s - half_level
+    else:
+        feature_idx = int(np.argmax(y_s))
+        signal = float(y_s[feature_idx] - baseline)
+        half_level = float(y_s[feature_idx] - signal / 2)
+        crossing_values = y_s - half_level
+
+    if signal <= 0:
+        return np.nan, np.nan
+
+    left_crossing = _nearest_crossing(x, crossing_values, feature_idx, -1)
+    right_crossing = _nearest_crossing(x, crossing_values, feature_idx, +1)
+
+    if left_crossing is None or right_crossing is None:
+        return np.nan, min(signal, 1.0)
+
+    return float(right_crossing - left_crossing), min(signal, 1.0)
+
+
+def _nearest_crossing(
+    x: np.ndarray,
+    y: np.ndarray,
+    start_idx: int,
+    direction: int,
+) -> float | None:
+    i = start_idx
+    while 0 <= i + direction < x.size:
+        j = i + direction
+        if y[i] == 0:
+            return float(x[i])
+        if y[i] * y[j] <= 0:
+            if y[j] == y[i]:
+                return float(x[i])
+            return float(x[i] + (0 - y[i]) * (x[j] - x[i]) / (y[j] - y[i]))
+        i = j
+    return None
+
+
 def fwhm_gaussian_fit(
     x: ArrayLike,
     y: ArrayLike,
@@ -65,12 +129,13 @@ def fwhm_gaussian_fit(
         y_fit = -y_fit
 
     A0, mu0, sigma0, d0 = _robust_initial_guess(x, y_fit)
+    A0 = float(np.clip(A0, 0.0, 1.0))
 
     # # Bounds: wide + physically meaningful
     # # sigma must be > 0, mu within range, amplitude unconstrained sign is ok but we already made peak positive
     eps = np.finfo(float).eps
-    lower = (-np.inf, x.min(), eps, -np.inf)
-    upper = (np.inf, x.max(), (x.max() - x.min()) * 10 + eps, np.inf)
+    lower = (0.0, x.min(), eps, -np.inf)
+    upper = (1.0, x.max(), (x.max() - x.min()) * 10 + eps, np.inf)
 
     popt, pcov = curve_fit(
         _lorentzian,

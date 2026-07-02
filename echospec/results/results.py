@@ -5,7 +5,7 @@ from numpy.typing import NDArray
 from typing import Sequence
 from matplotlib.figure import Figure
 
-from echospec.analysis.fwhm import fwhm_gaussian_fit
+from echospec.analysis.fwhm import fwhm_half_depth
 from echospec.utils.parameters import Parameters
 from echospec.plotting.spectroscopy import plot_spectroscopy_2d
 
@@ -108,10 +108,9 @@ class ResultsSpectroscopy1D(ResultsBase):
     def _compute_gaussian_fit(self) -> Tuple[float, float]:
         """Run Gaussian fit once and cache (fwhm, snr)."""
         if self._fit_cache is None:
-            z_final = self.final_z_vs_detuning()
-            _, fwhm, snr, _ = fwhm_gaussian_fit(
+            fwhm, snr = fwhm_half_depth(
                 x=self.detunings,
-                y=z_final,
+                y=self.populations,
             )
             self._fit_cache = (fwhm, snr)
         return self._fit_cache
