@@ -1,0 +1,41 @@
+\documentclass[a4paper, amsfonts, amssymb, amsmath, reprint, showkeys, nofootinbib, twoside,aps]{revtex4-1}
+% \addbibresource{my_paper.bib}             % refs.bib with extension
+\usepackage{xcolor} % add this in the preamble
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[colorinlistoftodos, color=green!40, prependcaption]{todonotes}
+\input{preamble}
+\usepackage[pdftex, pdftitle={Article}, pdfauthor={Author}]{hyperref} % For hyperlinks in the PDF
+
+% \addbibresource{my paper.bib}
+
+
+%\setlength{\marginparwidth}{2.5cm}
+\begin{document}
+\title{Amplitude-Robust Qubit Spectroscopy Using Echo-Root-Lorentzian Pulse Shapes}
+
+\author{Asaf A. Solonnikov and Nadav Katz}
+    % \email[Correspondence email address: ]{asaf.solonnikov@mail.huji.ac.il}% Your name
+    \affiliation{The Racah institute of physics, The Hebrew University of Jerusalem, Israel}
+
+\date{\today} % Leave empty to omit a date
+
+\begin{abstract}
+
+We present a qubit spectroscopy method based on Lorentzian-derived drive pulses that enables $T_2$-limited frequency characterization at drive amplitudes exceeding those used in conventional spectroscopy by more than three orders of magnitude, thereby enhancing robustness against amplitude variations. Specifically, we employ a root-Lorentzian envelope with a $\pi$-phase inversion at its peak, which introduces an echo-like symmetry that cancels on-resonant Rabi oscillations while preserving the spectral response. This approach suppresses conventional power broadening and enables high-resolution spectroscopy using pulses shorter than durations required by standard techniques. We experimentally demonstrate this method on a superconducting qubit platform and observe excellent agreement with numerical simulations, highlighting its efficiency and reliability for rapid and calibration-robust qubit frequency characterization.
+
+\end{abstract}
+
+\maketitle
+
+\input{sections/introduction} 
+
+\bibliography{sections/bibliography.bib}
+\clearpage        % or \newpage
+
+
+% \appendix
+\input{sections/appendix1.tex}
+
+\end{document}
