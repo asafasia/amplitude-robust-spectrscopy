@@ -1,0 +1,54 @@
+\documentclass[
+    amsfonts,
+    amssymb,
+    amsmath,
+    preprint,
+    floatfix,
+    nofootinbib,
+    aps,
+    prl
+]{revtex4-2}
+
+\newcommand{\ManuscriptPdfTitle}{Supplemental Material for Amplitude-Robust Qubit Spectroscopy Using Echo-Root-Lorentzian Pulse Shapes}
+\input{preamble}
+\usepackage{float}
+
+\begin{document}
+
+\title{\texorpdfstring{Supplemental Material for\\
+``Amplitude-Robust Qubit Spectroscopy Using Echo-Root-Lorentzian Pulse Shapes''}
+{Supplemental Material for Amplitude-Robust Qubit Spectroscopy Using Echo-Root-Lorentzian Pulse Shapes}}
+
+\author{Asaf A. Solonnikov and Nadav Katz}
+\affiliation{The Racah Institute of Physics, The Hebrew University of Jerusalem, Israel}
+
+\date{\today}
+\maketitle
+
+\setcounter{secnumdepth}{2}
+
+This Supplemental Material provides the experimental setup, the Bloch-equation
+coherence limit, pulse-cutoff and pulse-duration analyses, the adiabatic-basis
+derivation, high-resolution and extended-amplitude scans, the numerical model,
+a comparison of the root-Lorentzian and echo-root-Lorentzian protocols across
+pulse parameters, and a comparison between simulation and experiment.
+
+\renewcommand{\thesection}{S\arabic{section}}
+\renewcommand{\thesubsection}{S\arabic{section}.\arabic{subsection}}
+\renewcommand{\theequation}{S\arabic{equation}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\thetable}{S\arabic{table}}
+
+\input{appendices/A_measurement_setup}
+\input{appendices/B_t2_limit}
+\input{appendices/C_cutoff}
+\input{appendices/D_adiabatic_basis}
+\input{appendices/E_pulse_length}
+\input{appendices/F_high_amplitudes}
+\input{appendices/G_numerical_model}
+\input{appendices/H_lorentzian_echo_comparison}
+\input{appendices/I_simulation_experiment_comparison}
+
+\bibliography{references}
+
+\end{document}

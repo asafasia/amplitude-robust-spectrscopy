@@ -1,0 +1,29 @@
+\section{Robustness and Operating Limits}
+\label{sec:robustness-and-limits}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{figures/spectroscopy_fwhm_snr_vs_amplitude_vs_cutoff_2x2.png}
+    \caption{
+    Numerical simulation of spectroscopy scans using root-Lorentzian $L^{1/2}$ and echo-root-Lorentzian $L^{(1/2)}_{\text{echo}}$ drives with a pulse duration of $50~\mu\mathrm{s}$.
+    (a),(b) Line width $\Delta_{1/2}$ and the linewidth-to-signal ratio $\Delta_{1/2}/A_{\mathrm{peak}}$ obtained using the root-Lorentzian pulse $L^{(1/2)}$ as a function of peak Rabi frequency $\Omega_0$ and temporal cutoff.
+    (c),(d) Corresponding results for the echo-root-Lorentzian pulse $L_{\mathrm{echo}}^{(1/2)}$.
+    While $L^{(1/2)}$ pulse exhibits extended regions of narrow linewidth, the associated linewidth-to-signal ratio displays strong oscillatory behavior, making it difficult to identify robust operating parameters for high-resolution spectroscopy. In contrast, the echo  variant $L_{\mathrm{echo}}^{(1/2)}$ yields both reduced linewidth and a broad parameter region in which the resolution--signal trade-off remains favorable, enabling stable narrowband spectroscopy.
+    }
+    \label{fig:cutoff-parameter-map}
+\end{figure}
+
+
+% An echo-type sequence applied to the root pulse partially mitigates decoherence effects but remains limited by pronounced amplitude-dependent broadening. Conversely, the Lorentzian echo variant demonstrates an amplitude-independent linewidth spanning over three orders of magnitude in drive strength, evidencing remarkable robustness against amplitude-induced dephasing. This insensitivity arises from the adiabatic evolution and the symmetric frequency-splitting intrinsic to the pulse design. The primary limitation lies in the floating offset and amplitude-dependent baseline, resulting in reduced signal-to-noise ratio compared to conventional square and Lorentzian drives.
+
+
+
+At the core of assessing pulse quality and identifying optimal operating regimes lies the spectral response of the driven qubit. We find that the echo pulse yields spectroscopic features with markedly reduced linewidths over a well-defined region of parameter space. In particular, the pulse duration must remain shorter than the qubit lifetime $T_1$, while exceeding approximately $10~\mu s$ in order to suppress Fourier-limited broadening; supporting pulse-duration calculations are provided in the Supplemental Material~\cite{SupplementalMaterial}.
+
+This constitutes an additional advantage of the echo protocol. While both constant and simple Lorentzian pulses exhibit coherent Rabi oscillations that persist even for pulse durations comparable to or exceeding $T_1$, the intrinsic $\pi$-phase inversion of the echo pulse suppresses these coherence-induced oscillations. As a result, the spectral response remains smooth and well-behaved, enabling reliable linewidth extraction in regimes where standard and Lorentzian pulses display pronounced oscillatory distortions; see the additional high-amplitude data in the Supplemental Material~\cite{SupplementalMaterial}.
+
+Second, the use of formally infinite-support pulses necessitates the introduction of a cutoff parameter, as discussed previously. Consequently, the relevant parameter space is effectively three-dimensional: pulse duration, drive amplitude, and cutoff level.
+
+Motivated by the stability observed at fixed pulse duration, we restrict the analysis to constant-length pulses and examine the remaining two parameters. In Fig. 4 we simulate both the root-Lorentzian pulse and its echo-modified counterpart. We extract the full width at half maximum (FWHM) via fitting (as in Fig. 3) and evaluate the normalized metric given by the linewidth divided by the peak signal amplitude. This quantity is strongly correlated with spectral resolution and is directly connected to the inverse Fisher information, i.e., the Cramér–Rao bound.
+
+The results reveal that the root Lorentzian pulse achieves narrow linewidths across a relatively large region of parameter space. However, its performance is not uniform and exhibits oscillatory structure for the chosen pulse duration. In contrast, the echo-root Lorentzian pulse produces even narrower linewidths while maintaining a significantly broader and more uniform high-resolution region. Although the optimal region may appear small at first glance, the logarithmic scale of the parameter axes should be noted. More importantly, the high-resolution region forms a robust and contiguous “island,” indicating strong parameter insensitivity. This robustness makes the echo protocol substantially more stable against parameter variations and therefore highly advantageous for practical spectroscopy.

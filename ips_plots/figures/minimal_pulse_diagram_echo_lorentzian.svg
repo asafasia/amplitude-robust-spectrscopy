@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="220" viewBox="0 0 560 220" role="img" aria-label="Minimal pulse diagram for echo and Lorentzian sequences">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#111"/>
+    </marker>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#fff"/>
+
+  <g font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#111">
+    <text x="36" y="69">Echo</text>
+    <text x="36" y="149">Lorentzian</text>
+  </g>
+
+  <g fill="none" stroke="#111" stroke-width="2" stroke-linecap="round">
+    <line x1="170" y1="74" x2="510" y2="74" marker-end="url(#arrow)"/>
+    <line x1="170" y1="154" x2="510" y2="154" marker-end="url(#arrow)"/>
+  </g>
+
+  <g fill="#111">
+    <rect x="205" y="36" width="15" height="38"/>
+    <rect x="300" y="22" width="20" height="52"/>
+    <rect x="395" y="36" width="15" height="38"/>
+
+    <path d="M212 154
+             C226 153 236 151 244 145
+             C254 137 258 122 264 104
+             C270 122 274 137 284 145
+             C292 151 302 153 316 154
+             Z"/>
+  </g>
+
+  <g fill="#d71920">
+    <rect x="455" y="50" width="24" height="24"/>
+    <rect x="455" y="130" width="24" height="24"/>
+  </g>
+
+  <g font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#111">
+    <text x="519" y="79">t</text>
+    <text x="519" y="159">t</text>
+  </g>
+</svg>

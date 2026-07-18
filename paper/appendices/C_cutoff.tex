@@ -1,0 +1,36 @@
+\section{Pulse Cutoff}
+\label{sec:pulse-cutoff}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{figures/spectroscopy_cutoff_comparison.png}
+    \caption{Spectroscopic response obtained using echo–root–Lorentzian pulses for different relative cutoff amplitudes (indicated in the upper-left corner of each panel). Increasing the cutoff smooths the phase inversion point of the pulse, thereby suppressing derivative discontinuities that otherwise induce residual power broadening. As a result, the spectral line becomes progressively narrower and more robust to drive-amplitude variations. However, for excessively small cutoff values the effective signal-to-noise ratio deteriorates, limiting the attainable spectral contrast despite reduced broadening.}
+    \label{fig:cutoff-comparison}
+\end{figure}
+The spectral linewidths corresponding to the two regimes are given by
+\[
+\Delta_{1/2,T_2} = \frac{1}{\pi T_2}, \qquad \Delta_{1/2,\Omega_0} = \frac{\Omega_c}{\pi \sqrt{T_2/T_1}}.
+\]
+Requiring $\Delta_{1/2,T_2} < \Delta_{1/2,\Omega_0}$ yields
+\[
+\Omega_c < \frac{1}{\sqrt{T_1 T_2}}.
+\]
+If we express the coupling strength as $\Omega_c = c\,\Omega_0$, the condition becomes
+\[
+c < \frac{1}{\Omega_0 \sqrt{T_1 T_2}}.
+\]
+Substituting $T_1 = 30~\mu\text{s}$, $T_2 = 15~\mu\text{s}$, and $\Omega_0 = 50~\text{MHz}$ gives
+\[
+c < 9.4 \times 10^{-4},
+\]
+
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{figures/length_scan.png}
+    \caption{Numerical linewidth $\Delta_{1/2}$
+, normalized to the decoherence-limited scale $T_2^{-1}$
+, obtained from square-pulse spectroscopy as a function of pulse duration. For short interrogation times, the linewidth decreases inversely with pulse length, following the Fourier limit. For longer pulses, the linewidth saturates at the fundamental $T_2$ limit imposed by decoherence, deviating from the Fourier-limited scaling.}
+    \label{fig:fig7}
+\end{figure}

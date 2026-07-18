@@ -58,10 +58,14 @@ assets/poster/     poster-specific plotting assets
 archive/           old scripts, scratch work, and superseded experiments
 docs/              project documentation
 data/              local data, ignored by git by default
+paper/             structured LaTeX manuscript and supporting material
 ```
 
 See `docs/PROJECT_ORGANIZATION.md` for the target repository structure and
 cleanup rules.
+
+The paper source has its own layout and build instructions in
+`paper/README.md`. Build the manuscript with `make paper`.
 
 ## Figure Workflows
 

@@ -1,11 +1,27 @@
+% Encoding and language
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+% Mathematics
 \usepackage{amsthm}
 \usepackage{mathtools}
 \usepackage{physics}
-\usepackage{xcolor}
+
+% Figures and layout
 \usepackage{graphicx}
-% \usepackage[left=23mm,right=13mm,top=35mm,columnsep=15pt]{geometry} 
 \usepackage{adjustbox}
 \usepackage{placeins}
-\usepackage[T1]{fontenc}
-\usepackage{lipsum}
+\usepackage{xcolor}
+
+% Draft notes and quotations
+\usepackage[colorinlistoftodos, color=green!40, prependcaption]{todonotes}
 \usepackage{csquotes}
+
+% Load hyperlinks last so package patches are applied consistently.
+\providecommand{\ManuscriptPdfTitle}{Amplitude-Robust Qubit Spectroscopy Using Echo-Root-Lorentzian Pulse Shapes}
+\usepackage[
+    pdftex,
+    pdftitle={\ManuscriptPdfTitle},
+    pdfauthor={Asaf A. Solonnikov and Nadav Katz}
+]{hyperref}

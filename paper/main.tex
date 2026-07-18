@@ -1,41 +1,40 @@
-\documentclass[a4paper, amsfonts, amssymb, amsmath, reprint, showkeys, nofootinbib, twoside,aps]{revtex4-1}
-% \addbibresource{my_paper.bib}             % refs.bib with extension
-\usepackage{xcolor} % add this in the preamble
+\documentclass[
+    amsfonts,
+    amssymb,
+    amsmath,
+    reprint,
+    floatfix,
+    nofootinbib,
+    aps,
+    prl
+]{revtex4-2}
 
-\usepackage[english]{babel}
-\usepackage[utf8]{inputenc}
-\usepackage[colorinlistoftodos, color=green!40, prependcaption]{todonotes}
+\newcommand{\ManuscriptPdfTitle}{Amplitude-Robust Qubit Spectroscopy Using Echo-Root-Lorentzian Pulse Shapes}
 \input{preamble}
-\usepackage[pdftex, pdftitle={Article}, pdfauthor={Author}]{hyperref} % For hyperlinks in the PDF
 
-% \addbibresource{my paper.bib}
-
-
-%\setlength{\marginparwidth}{2.5cm}
 \begin{document}
+
 \title{Amplitude-Robust Qubit Spectroscopy Using Echo-Root-Lorentzian Pulse Shapes}
 
 \author{Asaf A. Solonnikov and Nadav Katz}
-    % \email[Correspondence email address: ]{asaf.solonnikov@mail.huji.ac.il}% Your name
-    \affiliation{The Racah institute of physics, The Hebrew University of Jerusalem, Israel}
+\affiliation{The Racah Institute of Physics, The Hebrew University of Jerusalem, Israel}
 
-\date{\today} % Leave empty to omit a date
+\date{\today}
 
-\begin{abstract}
-
-We present a qubit spectroscopy method based on Lorentzian-derived drive pulses that enables $T_2$-limited frequency characterization at drive amplitudes exceeding those used in conventional spectroscopy by more than three orders of magnitude, thereby enhancing robustness against amplitude variations. Specifically, we employ a root-Lorentzian envelope with a $\pi$-phase inversion at its peak, which introduces an echo-like symmetry that cancels on-resonant Rabi oscillations while preserving the spectral response. This approach suppresses conventional power broadening and enables high-resolution spectroscopy using pulses shorter than durations required by standard techniques. We experimentally demonstrate this method on a superconducting qubit platform and observe excellent agreement with numerical simulations, highlighting its efficiency and reliability for rapid and calibration-robust qubit frequency characterization.
-
-\end{abstract}
+\input{frontmatter/abstract}
 
 \maketitle
 
-\input{sections/introduction} 
+% Main text: keep this list in the same order as the paper.
+\input{sections/01_introduction}
+\input{sections/02_pulse_protocol}
+\input{sections/03_spectroscopy_results}
+\input{sections/04_robustness_and_limits}
+\input{sections/05_conclusion}
 
-\bibliography{sections/bibliography.bib}
-\clearpage        % or \newpage
+\input{backmatter/acknowledgements}
 
-
-% \appendix
-\input{sections/appendix1.tex}
+% The supporting sections are compiled separately from supplemental.tex.
+\bibliography{references}
 
 \end{document}

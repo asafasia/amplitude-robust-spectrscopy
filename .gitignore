@@ -26,3 +26,14 @@ venv/
 
 # Project data and large generated arrays
 /data/
+
+# LaTeX build output (keep the final PDF available locally)
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*Notes.bib

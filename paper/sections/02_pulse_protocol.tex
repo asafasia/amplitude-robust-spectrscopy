@@ -1,0 +1,45 @@
+\section{Pulse Protocol and Physical Mechanism}
+\label{sec:pulse-protocol}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{figures/2d_spectroscopy_comparison.png}
+    \caption{
+Two-dimensional spectroscopy of the excited-state population as a function of detuning $\Delta$ and drive amplitude $\Omega_0$ for three pulse types: (a) square, (c) root-Lorentzian, and (e) echo- root-Lorentzian pulses. Panels (b), (d), and (f) show detuning line cuts at selected amplitudes $\Omega_0/2\pi$, as indicated in the corespondent colored ticks on the left column plots. Vertical dashed lines denote the $T_2$ limit line width. The square pulse exhibits strong power broadening already at small amplitudes ($\Omega_0/2\pi\sim0.05$~MHz), whereas the root-Lorentzian and echo-type pulse (30~$\mu$s) maintain narrow, $T_2$-limited linewidths. The echo-type pulse further suppresses coherent vertical oscillations, enabling smooth high-resolution spectroscopy all over the the amplitude range, but with an expense of SNR.   
+    }
+    \label{fig:fig2}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{figures/2d_spectroscopy_simulation.png}
+    \caption{  Numerical simulation of qubit spectroscopy under a root-Lorentzian drive and its echo variant. (a) Final excited-state population as a function of detuning $\Delta/2\pi$ for a standard root-Lorentzian pulse. (b) Same for the echo-root-Lorentzian pulse $L^{(1/2)}_{\mathrm{echo}}$. (c),(d) Full time evolution of the excited-state population versus detuning for the corresponding drives. The pulse duration is $30~\mu\mathrm{s}$ with a cutoff of $5\times10^{-4}$. While the standard pulse yields a resonant peak at zero detuning, the echo sequence produces an inversion of the central response, leading to a pronounced dip. This behavior reflects cancellation of coherent oscillations at $\Delta=0$, as highlighted in the insets. 
+    }
+
+    \label{fig:fig3}
+\end{figure}
+
+
+Precise determination of the qubit transition frequency is crucial for implementing high-fidelity quantum gates. The drive frequency must coincide with the qubit resonance, as detuning directly reduces gate fidelity. A rigorous metric for quantifying such calibration errors is the diamond norm, which captures deviations in the implemented quantum operation from the ideal one. Minimizing these detuning-induced errors is essential to meet the fault-tolerance thresholds required for scalable quantum computation. \cite{diamond}
+
+Here, we propose a spectroscopic method for probing the qubit transition frequency using arbitrarily shaped drive pulses, specifically an echo-root-Lorentzian pulse. In previous works by Vitanov \cite{boradjiev_power_2013}, it was shown that Lorentzian pulses exhibit power-narrowing, complementary to the conventional power broadening observed for constant drives, originating from the adiabatic properties of these pulses. In this work, we extend the analysis of Vitanov to longer pulse durations approaching the $T_1$ timescale, thereby entering a regime beyond the Fourier limit. The echo property arises from a $\pi$-phase jump applied at the peak amplitude of the pulse, which  effectively cancels its net area, while preserving the adiabatic properties of the drive. This phase inversion reverses the coherent phase accumulation at resonance, suppressing on-resonant excitation while maintaining an off-resonant spectral response across the frequency domain, and thus making resonance distinguishable.
+
+We define the root-echo-Lorentzian $L_{\text{echo}}^{(1/2)} $ drive envelope base on ordered Lorentzian $L^{(1/2)}$ as
+\begin{align}
+L^{(n)}(t)
+&= \frac{1}{\left[1+\left(\frac{t}{\tau}\right)^2\right]^n},
+\\
+L^{(1/2)}_{\mathrm{echo}}(t)
+&:= L^{(1/2)}(t)\,\mathrm{sgn}(t).
+\label{eq:Ln}
+\end{align}
+where $\tau$ sets the characteristic pulse duration and $n$ controls the temporal sharpness.
+
+Under the adiabatic condition for the plain Lorentzian pulse, the characteristic spectral width obeys the scaling
+\begin{equation}
+\Delta_{1/2}\tau
+\propto
+(\Omega_0 \tau)^{-\frac{1}{2n-1}},
+\label{eq:lorentzian_adiabatic}
+\end{equation}
+where $\Delta_{1/2}$ denotes the typical linewidth and $\Omega_0$ is the peak Rabi frequency. This relation indicates that increasing the drive amplitude suppresses the detuning at which adiabaticity breaks down, resulting in a narrowing of the effective spectral response. In contrast, the square pulse is fully governed by conventional power broadening, for which the linewidth increases approximately linearly with the drive amplitude $\Delta_{1/2}\propto\Omega_0$. This contrast highlights that the spectroscopic response is not determined solely by the drive strength, but depends sensitively on the temporal envelope of the control pulse, motivating the use of tailored pulse shapes \cite{VITANOV2001117,HALFMANN2003353,PhysRevA.70.053407,PhysRevA.57.79,PhysRev.40.502}.
