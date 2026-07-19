@@ -1,6 +1,3 @@
-\section{Robustness and Operating Limits}
-\label{sec:robustness-and-limits}
-
 \begin{figure}
     \centering
     \includegraphics[width=1\linewidth]{figures/spectroscopy_fwhm_snr_vs_amplitude_vs_cutoff_2x2.png}
@@ -18,12 +15,12 @@
 
 
 
-At the core of assessing pulse quality and identifying optimal operating regimes lies the spectral response of the driven qubit. We find that the echo pulse yields spectroscopic features with markedly reduced linewidths over a well-defined region of parameter space. In particular, the pulse duration must remain shorter than the qubit lifetime $T_1$, while exceeding approximately $10~\mu s$ in order to suppress Fourier-limited broadening; supporting pulse-duration calculations are provided in the Supplemental Material~\cite{SupplementalMaterial}.
+At the core of assessing pulse quality and identifying optimal operating regimes lies the spectral response of the driven qubit. We find that the echo pulse yields spectroscopic features with markedly reduced linewidths over a well-defined region of parameter space. We therefore choose pulse durations shorter than the qubit lifetime $T_1$ but long enough that Fourier broadening does not dominate.
 
 This constitutes an additional advantage of the echo protocol. While both constant and simple Lorentzian pulses exhibit coherent Rabi oscillations that persist even for pulse durations comparable to or exceeding $T_1$, the intrinsic $\pi$-phase inversion of the echo pulse suppresses these coherence-induced oscillations. As a result, the spectral response remains smooth and well-behaved, enabling reliable linewidth extraction in regimes where standard and Lorentzian pulses display pronounced oscillatory distortions; see the additional high-amplitude data in the Supplemental Material~\cite{SupplementalMaterial}.
 
 Second, the use of formally infinite-support pulses necessitates the introduction of a cutoff parameter, as discussed previously. Consequently, the relevant parameter space is effectively three-dimensional: pulse duration, drive amplitude, and cutoff level.
 
-Motivated by the stability observed at fixed pulse duration, we restrict the analysis to constant-length pulses and examine the remaining two parameters. In Fig. 4 we simulate both the root-Lorentzian pulse and its echo-modified counterpart. We extract the full width at half maximum (FWHM) via fitting (as in Fig. 3) and evaluate the normalized metric given by the linewidth divided by the peak signal amplitude. This quantity is strongly correlated with spectral resolution and is directly connected to the inverse Fisher information, i.e., the Cramér–Rao bound.
+Motivated by the stability observed at fixed pulse duration, we restrict the analysis to constant-length pulses and examine the remaining two parameters. In Fig. 4 we simulate both the root-Lorentzian pulse and its echo-modified counterpart. We extract the full width at half maximum (FWHM) via fitting (as in Fig. 3) and evaluate the normalized metric given by the linewidth divided by the peak signal amplitude. We use this quantity as a heuristic resolution--signal metric; a direct Fisher-information or Cramér--Rao analysis would additionally require the measurement-noise model and the full frequency dependence of the response.
 
 The results reveal that the root Lorentzian pulse achieves narrow linewidths across a relatively large region of parameter space. However, its performance is not uniform and exhibits oscillatory structure for the chosen pulse duration. In contrast, the echo-root Lorentzian pulse produces even narrower linewidths while maintaining a significantly broader and more uniform high-resolution region. Although the optimal region may appear small at first glance, the logarithmic scale of the parameter axes should be noted. More importantly, the high-resolution region forms a robust and contiguous “island,” indicating strong parameter insensitivity. This robustness makes the echo protocol substantially more stable against parameter variations and therefore highly advantageous for practical spectroscopy.

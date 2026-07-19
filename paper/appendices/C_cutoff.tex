@@ -1,36 +1,67 @@
-\section{Pulse Cutoff}
+\section{Pulse Truncation and Endpoint Amplitude}
 \label{sec:pulse-cutoff}
 
-\begin{figure}
+The ideal Lorentzian tail has infinite support, whereas the implemented pulse
+starts and ends at finite amplitude $\Omega_c=c\Omega_0$.  Abruptly switching
+this residual drive produces an endpoint transient.  A useful estimate of the
+associated population contribution is~\cite{mihov_defying_2024}
+\begin{equation}
+    P_c(\Delta)
+    \simeq
+    \frac{\Omega_c^2}{\Omega_c^2+\Delta^2}
+    \left[1-P_0(\Delta)\right],
+    \qquad \Omega_c=c\Omega_0,
+    \label{eq:cutoff-artifact}
+\end{equation}
+where $P_0$ denotes the response that would be obtained without the endpoint
+jump.  The artifact becomes important when $\Omega_c$ is comparable to the
+linewidth scale of interest.  Thus the cutoff cannot be assessed from $c$
+alone: it must be considered together with the peak drive and the desired
+resolution.
+
+We therefore measured the cutoff dependence over two complementary q1
+echo--root--Lorentzian campaigns.  The broad survey spans $c=0.002$--$0.99$
+with 25 peak-amplitude settings, while the focused sweep resolves
+$c=0.01$--$0.10$ with 200 peak-amplitude settings.  Both use a
+$20~\mu\mathrm{s}$ pulse and the same measured
+$T_2=6.856~\mu\mathrm{s}$.  Figure~\ref{fig:echo-lorentzian-cutoff-sweep}
+reports the dimensionless reciprocal-linewidth metric
+\begin{equation}
+    \mathcal{R}
+    = \frac{1/(\pi T_2)}{\mathrm{FWHM}},
+    \label{eq:cutoff-resolution-metric}
+\end{equation}
+for which $\mathcal{R}=1$ is the $T_2$-limited linewidth and
+$\mathcal{R}<1$ denotes a broader feature.  We also show the
+signal-weighted metric $|A_{\mathrm{fit}}|\mathcal{R}$, which suppresses
+narrow fits with negligible contrast.  These are linewidth-based scores, not
+direct estimates of frequency-estimation uncertainty.
+
+The maps retain only resolved and bounded probability features: the fitted
+contrast is between 0.05 and 1, $R^2\geq0.60$, the fitted center lies inside
+the measured frequency interval, and the FWHM lies between two frequency bins
+and half the sweep span.  Gray cells denote measurements for which the fit did
+not pass this common screen.  The denser focused sweep provides substantially
+more accepted fits than the coarse survey and resolves the loss of reciprocal
+linewidth performance as the cutoff increases across the $0.01$--$0.10$
+interval.
+
+\begin{figure}[t]
     \centering
-    \includegraphics[width=1\linewidth]{figures/spectroscopy_cutoff_comparison.png}
-    \caption{Spectroscopic response obtained using echo–root–Lorentzian pulses for different relative cutoff amplitudes (indicated in the upper-left corner of each panel). Increasing the cutoff smooths the phase inversion point of the pulse, thereby suppressing derivative discontinuities that otherwise induce residual power broadening. As a result, the spectral line becomes progressively narrower and more robust to drive-amplitude variations. However, for excessively small cutoff values the effective signal-to-noise ratio deteriorates, limiting the attainable spectral contrast despite reduced broadening.}
-    \label{fig:cutoff-comparison}
+    \includegraphics[width=\linewidth]{../figures/paper/08_echo_lorentzian_cutoff_sweep.pdf}
+    \caption{Experimental cutoff sweep for q1 echo--root--Lorentzian
+    spectroscopy.  The left column is the broad
+    \texttt{cutoff\_amp\_fwhm\_map} campaign ($c=0.002$--$0.99$, 25
+    amplitudes, 60 repetitions per point); the right column is the denser
+    \texttt{echo\_lorentzian\_cutoff\_sweep} campaign
+    ($c=0.01$--$0.10$, 200 amplitudes, 100 repetitions per point).
+    (a,b) Reciprocal-linewidth metric $\mathcal{R}$ and
+    (c,d) signal-weighted metric $|A_{\mathrm{fit}}|\mathcal{R}$.
+    Both color scales are logarithmic.  On the upper color scale,
+    $\mathcal{R}=1$ is the $T_2$-limited linewidth and values below one
+    correspond to FWHM broader than that limit.  Gray cells are rejected or
+    unresolved fits under the common screen described in the text; no fitted
+    surface or interpolation is shown.}
+    \label{fig:echo-lorentzian-cutoff-sweep}
 \end{figure}
-The spectral linewidths corresponding to the two regimes are given by
-\[
-\Delta_{1/2,T_2} = \frac{1}{\pi T_2}, \qquad \Delta_{1/2,\Omega_0} = \frac{\Omega_c}{\pi \sqrt{T_2/T_1}}.
-\]
-Requiring $\Delta_{1/2,T_2} < \Delta_{1/2,\Omega_0}$ yields
-\[
-\Omega_c < \frac{1}{\sqrt{T_1 T_2}}.
-\]
-If we express the coupling strength as $\Omega_c = c\,\Omega_0$, the condition becomes
-\[
-c < \frac{1}{\Omega_0 \sqrt{T_1 T_2}}.
-\]
-Substituting $T_1 = 30~\mu\text{s}$, $T_2 = 15~\mu\text{s}$, and $\Omega_0 = 50~\text{MHz}$ gives
-\[
-c < 9.4 \times 10^{-4},
-\]
-
-
-
-\begin{figure}
-    \centering
-    \includegraphics[width=1\linewidth]{figures/length_scan.png}
-    \caption{Numerical linewidth $\Delta_{1/2}$
-, normalized to the decoherence-limited scale $T_2^{-1}$
-, obtained from square-pulse spectroscopy as a function of pulse duration. For short interrogation times, the linewidth decreases inversely with pulse length, following the Fourier limit. For longer pulses, the linewidth saturates at the fundamental $T_2$ limit imposed by decoherence, deviating from the Fourier-limited scaling.}
-    \label{fig:fig7}
-\end{figure}
+\FloatBarrier

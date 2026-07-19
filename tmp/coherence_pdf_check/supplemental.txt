@@ -1,0 +1,1009 @@
+Supplemental Material for
+“Amplitude-Robust Qubit Spectroscopy Using
+Echo-Root-Lorentzian Pulse Shapes”
+Asaf A. Solonnikov and Nadav Katz
+The Racah Institute of Physics, The Hebrew University of Jerusalem, Israel
+(Dated: July 19, 2026)
+
+1
+
+This Supplemental Material provides the experimental setup and qubit coherence characterization; a precise definition of the finite echo-root-Lorentzian pulse and its resonant
+cancellation mechanism; the Bloch-equation coherence limit; pulse-cutoff and adiabaticity
+analyses; high-resolution and extended-amplitude scans; the numerical model and dataanalysis procedure; and comparisons between pulse protocols, simulation, and experiment.
+
+S1.
+
+MEASUREMENT SETUP
+
+Experiments were performed on a QPU comprising 11 uncoupled superconducting qubits
+hosted in a dilution refrigerator. Control and readout were implemented with a Quantum
+Machines OPX1000 equipped with a microwave front-end module (MW-FEM), together
+with external cryogenic attenuators, filters, circulators, and amplifiers.
+A schematic of the setup is shown in Fig. S1. The MW-FEM uses direct digital synthesis
+and digital upconversion: a programmed complex pulse envelope is translated to the configured microwave carrier and emitted directly from an RF output, without an external analog
+local oscillator or IQ mixer [1]. For acquisition, the returned microwave signal is digitally
+downconverted to a complex baseband stream. QUA demodulation then applies cosine and
+sine integration weights to the sampled signal and accumulates the result to obtain the
+measured quadratures [2]. Thus, separate MW-FEM outputs provide the qubit-drive and
+resonator-readout tones, while an MW-FEM input acquires the returning readout signal. A
+dedicated DC bias line was available but was not used in these measurements; consequently,
+the qubits were not necessarily operated at their flux sweet spots.
+The microwave signals are routed into the dilution refrigerator through heavily attenuated
+coaxial lines. Attenuators are distributed across multiple temperature stages (300 K to ∼9
+mK) to thermalize the lines and suppress room-temperature noise. Low-pass filters on the
+DC-bias line further suppress high-frequency noise before the signals reach the device.
+The quantum device is mounted at the mixing-chamber stage (∼9 mK). The outgoing
+readout signal is routed through a chain of circulators that isolates the qubit from amplifier
+back-action, followed by cryogenic amplification using a high-electron-mobility-transistor
+(HEMT) amplifier at the 4 K stage. The amplified signal returns directly to an MW-FEM
+RF input for digital downconversion, demodulation, and real-time processing.
+2
+
+ROOM-TEMPERATURE ELECTRONICS
+
+300 K
+
+50 K
+
+10 K
+
+2.7 K
+Still
+
+4K
+
+9 mK
+Mixing Chamber
+
+900 mK
+Cold Plate
+
+CONTROL PC
+QUA program / data
+Ethernet control
+
+Magnetic shield
+
+OPX1000 / MW-FEM
+QUBIT DRIVE · RF OUT
+Qubit drive
+RF OUT
+
+10 dB
+
+10 dB
+
+10 dB
+
+20 dB
+
+20 dB
+
+6 dB
+
+10 dB
+
+6 dB
+
+20 dB
+
+20 dB
+
+READOUT DRIVE · RF OUT
+Readout drive
+RF OUT
+
+QPU
+
+HEMT · 4 K
+
+READOUT ACQUIRE · RF IN
+Readout acquire
+RF IN
+
+↻
+
+↻
+
+↻
+
+11 qubits
+
+HEMT DC POWER
+
+HEMT DC power
+
+FLUX / DC BIAS · NOT USED
+LPF
+7.5 GHz
+
+DC bias supply
+
+SYMBOLS
+
+10 dB
+
+attenuator
+
+LPF
+7.5 GHz
+
+↻
+
+low-pass filter
+
+circulator
+
+LPF
+7.5 GHz
+
+HEMT amplifier
+
+signal direction
+
+Figure S1. Schematic of the experimental setup for qubit control and readout. A control computer
+submits QUA programs and receives data over Ethernet. The OPX1000 MW-FEM directly generates the qubit-drive and resonator-readout RF signals and acquires the returning readout signal.
+Input lines are attenuated across the 300 K, 50 K, 10 K, 4 K, still, cold-plate, and mixing-chamber
+stages. The low-pass-filtered DC-bias line is shown for completeness but was not used. At the
+mixing chamber, the device is isolated by circulators; the returning readout signal is amplified by
+a 4 K HEMT before entering the MW-FEM for digital downconversion and demodulation.
+S1.1.
+
+Qubit coherence characterization
+
+The energy-relaxation and Ramsey-dephasing times of the qubit used for the spectroscopy
+measurements were characterized independently. Figure S2 shows representative measurements for qubit q1. Fitting the excited-state population to an exponential decay with a
+constant offset gives T1 = 51.24 ± 0.73 µs. Fitting the positive-detuning Ramsey trace to
+an exponentially damped sinusoid gives T2∗ = 7.31 ± 0.13 µs. The quoted uncertainties are
+one-standard-deviation estimates obtained from the fit covariance matrices. No associated
+Hahn-echo trace is available, so no measured Hahn-echo T2 is reported. When one transverse
+time is required, we conservatively use T2,eff = T2∗ = 7.31 µs. With the measured T1 , this
+−1
+gives Tϕ = 7.87 µs through T2,eff
+= (2T1 )−1 + Tϕ−1 ; this is not Hahn-echo evidence.
+
+3
+
+Excited-state probability, Pe
+
+1.0
+
+(a)
+T1 = 51.24 ± 0.73 s
+
+1.0
+
+0.8
+
+0.8
+
+0.6
+
+0.6
+
+0.4
+
+0.4
+
+0.2
+
+0.2
+0
+
+50
+
+100
+
+150
+
+Idle time ( s)
+
+200
+
+250
+
+(b)
+T2* = 7.31 ± 0.13 s
+
+0
+
+2
+
+4
+
+6
+
+8
+
+Idle time ( s)
+
+10
+
+12
+
+14
+
+Figure S2. Independent coherence characterization of qubit q1. (a) Energy relaxation following
+state preparation, together with an exponential fit. (b) Ramsey fringes acquired with a positive
+2 MHz programmed detuning, together with an exponentially damped sinusoidal fit.
+
+4
+
+Table S1. Coherence, acquisition, and numerical parameters used in this work. The two coherence
+measurements are the source of the values quoted in both the Letter and Supplemental Material.
+Legacy cached simulations are listed with the inputs actually used to generate them; they have not
+been relabeled as simulations of the later 2026-06-28 measurement.
+Use
+
+Qubit, date, and run
+
+T1 measurement
+
+q1,
+
+2026-06-28;
+
+17-16-39-684672
+
+Coherence inputs (µs)
+05_T1/ T1
+
+=
+
+Pulse and scan parameters
+
+51.24 ± 0.73; 40-ns constant Xπ ; idle 16 ns–250 µs (140
+
+T2∗ and Hahn T2 : not stored points, logarithmic request); 1500 shots
+measured in this run
+2026-06- T2∗ = 7.31±0.13; Hahn Two 40-ns constant Xπ/2 pulses; programmed
+
+Ramsey measure- q1,
+ment
+
+28;
+
+06a_ramsey/ T2 : not measured
+
+detuning ±2 MHz; idle 16 ns–15 µs (250
+points); 2000 shots
+
+14-44-12-672280
+
+Main Fig. 1 simu- Synthetic two-level model; Historical cache: T1 = Echo-root-Lorentzian; L = 10 µs, c = 5 ×
+lation
+
+no qubit/date/run
+
+30, Tϕ = 20, hence 10−3 , Ω0 /2π = 25 MHz; ∆/2π = 0, 0.1, 0.2
+T2 = 12
+
+MHz; 1600 time points
+
+Main Fig. 2 simu- Synthetic two-level model; Historical cache: T1 = Square: L = 30 µs, c = 0.9999, Ω0 /2π = 0–
+lations
+
+no qubit/date/run
+
+30, Tϕ = 20, hence 0.05 MHz. Root/echo-root-Lorentzian cache:
+T2 = 12
+
+Ω0 /2π = 0–50 MHz; the arrays contain no
+complete embedded pulse metadata (sourcenotebook defaults at creation: L = 40 µs,
+c = 10−4 , 1000 time points). All use ∆/2π =
+±0.25 MHz
+
+Main Fig. 3 simu- Synthetic two-level model; Historical cache: T1 = Root- and echo-root-Lorentzian; L = 30 µs,
+lation
+
+no qubit/date/run
+
+30, Tϕ = 20, hence c = 7×10−4 , Ω0 /2π = 10 MHz; ∆/2π = ±0.5
+T2 = 12
+
+MHz; 3000 time points
+
+Main Fig. 4 simu- Synthetic two-level model; Historical cache: T1 = L = 40 µs, c = 10−4 , Ω0 /2π = 0–50 MHz;
+lations
+
+no qubit/date/run
+
+30, Tϕ = 20, hence plain detuning span ±1 MHz and echo span
+±0.5 MHz; 1000 default time points
+
+T2 = 12
+Supplemental
+
+Synthetic two-level model; Historical cache: T1 = L = 50 µs; c = 10−5 –10−2 ; Ω0 /2π = 10−3 –
+
+cutoff map
+
+no qubit/date/run
+
+30, Tϕ = 20, hence 100 MHz; ∆/2π = ±0.1 MHz; 2000 (plain) or
+T2 = 12
+
+1000 (echo) time points
+
+5
+
+S2.
+
+FINITE PULSE DEFINITION AND ECHO CANCELLATION
+
+We define the finite generalized Lorentzian envelope by
+
+
+[1 + (t/τ )2 ]−n , |t| ≤ L/2,
+fn,c,L (t) =
+
+0,
+|t| > L/2,
+
+(S1)
+
+where L is the total pulse duration, n is the shape exponent, and the relative endpoint
+amplitude is c = fn,c,L (L/2). These parameters imply
+τ=√
+
+L/2
+c−1/n − 1
+
+.
+
+(S2)
+
+The root-Lorentzian pulse used here corresponds to n = 1/2. Its echo version has a phase
+inversion at the center,
+ΩE (t) = Ω0 fn,c,L (t)s(t),
+
+s(t) =
+
+
+
++1, t < 0,
+
+(S3)
+
+
+−1, t ≥ 0.
+The value assigned at the single point t = 0 has no effect in the continuum limit. In a
+sampled waveform, the two halves are constructed with equal duration and opposite phase.
+Two cutoff scans must be distinguished. A pure truncation scan keeps τ , n, and Ω0 fixed
+while changing L. A fixed-duration hardware scan instead keeps L fixed and changes the
+endpoint ratio c; in the parametrization of Eq. (S2), this also changes τ . Results from these
+two scans need not coincide.
+In the rotating-wave approximation, the unitary two-level Hamiltonian is
+1
+H(t)
+= [∆σz + ΩE (t)σx ] .
+ℏ
+2
+
+(S4)
+
+At exact resonance, Hamiltonians at different times are proportional to the same operator
+and therefore commute. The propagator is
+"
+
+iσx
+U (∆ = 0) = exp −
+2
+
+Z L/2
+
+#
+ΩE (t) dt = I,
+
+(S5)
+
+−L/2
+
+because the signed areas of the two symmetric halves cancel. For ∆ ̸= 0, the σz and σx terms
+do not commute, so the cancellation is incomplete and a narrow detuning-dependent response
+remains. Equation (S5) is exact only for a symmetric, unitary two-level pulse. Relaxation,
+dephasing, phase or amplitude imbalance, and finite waveform bandwidth prevent exact
+cancellation in the experiment.
+6
+
+S3.
+
+BLOCH-EQUATION COHERENCE LIMIT
+
+For comparison with the shaped-pulse protocol, we first summarize the steady-state
+response of a continuously driven two-level system. We use the Bloch-vector convention
+w = ρ00 − ρ11 , so that the excited-state population is Pe = (1 − w)/2. Solving the optical
+Bloch equations for a drive with angular Rabi frequency Ω0 , angular detuning ∆, relaxation
+time T1 , and transverse coherence time T2 gives [3]
+wss (∆) =
+
+1 + ∆2 T22
+,
+1 + ∆2 T22 + Ω20 T1 T2
+
+Pe,ss =
+
+1 − wss
+.
+2
+
+(S6)
+
+This expression assumes a pulse long enough to approach steady state. It is a reference
+result for conventional saturation spectroscopy, rather than a closed-form description of the
+finite echo pulse.
+The full width at half maximum of Pe,ss (∆) is
+q
+2
+ΓFWHM =
+1 + Ω20 T1 T2 .
+T2
+
+(S7)
+
+All frequencies in Eqs. (S6) and (S7) are angular frequencies. The corresponding linewidth
+in hertz is ΓFWHM /(2π).
+It is useful to introduce the saturation parameter s = Ω20 T1 T2 . In the weak-drive limit
+s ≪ 1,
+ΓFWHM −→
+
+2
+,
+T2
+
+(S8)
+
+which is the coherence-limited angular-frequency linewidth. In the strong-drive limit s ≫ 1,
+r
+T1
+ΓFWHM −→ 2Ω0
+,
+(S9)
+T2
+showing the familiar linear power broadening. These limits are governed by s, not by
+comparing Ω0 with a detuning-dependent quantity.
+
+S4.
+
+PULSE TRUNCATION AND ENDPOINT AMPLITUDE
+
+The ideal Lorentzian tail has infinite support, whereas the implemented pulse starts and
+ends at finite amplitude Ωc = cΩ0 . Abruptly switching this residual drive produces an
+endpoint transient. A useful estimate of the associated population contribution is [4]
+Pc (∆) ≃
+
+Ω2c
+[1 − P0 (∆)] ,
+Ω2c + ∆2
+7
+
+Ωc = cΩ0 ,
+
+(S10)
+
+where P0 denotes the response that would be obtained without the endpoint jump. The
+artifact becomes important when Ωc is comparable to the linewidth scale of interest. Thus
+the cutoff cannot be assessed from c alone: it must be considered together with the peak
+drive and the desired resolution.
+
+S5.
+
+ADIABATIC-BASIS DESCRIPTION
+
+For one half of the pulse, the rotating-frame Hamiltonian can be written
+
+
+1 −∆ Ω(t)
+H(t)
+= 
+.
+ℏ
+2 Ω(t) ∆
+
+(S11)
+
+Define
+ϵ(t) =
+
+p
+∆2 + Ω2 (t),
+
+ϑ(t) =
+
+1
+atan2[Ω(t), ∆].
+2
+
+(S12)
+
+The instantaneous eigenvalues are ±ℏϵ/2. In the corresponding adiabatic basis, with phases
+chosen consistently across the pulse,
+
+
+−ϵ/2
+−i
+ϑ̇
+Ha (t) 
+,
+=
+ℏ
+iϑ̇ ϵ/2
+
+ϑ̇ =
+
+∆Ω̇
+.
+2(∆2 + Ω2 )
+
+(S13)
+
+Adiabatic following requires [5]
+2|ϑ̇| ≪ ϵ.
+
+(S14)
+
+Replacing the inequality by equality provides the local crossover estimate
+q
+|∆b Ω̇(t0 )|
+,
+∆2b + Ω2 (t0 ) = 2
+∆b + Ω2 (t0 )
+
+(S15)
+
+where t0 is the time at which the nonadiabatic coupling is largest for the detuning under
+consideration. This is a scaling criterion, not an exact linewidth formula.
+For an untruncated generalized Lorentzian tail with exponent n > 1/2, the usual adiabatic
+estimate gives
+∆b τ ∝ (Ω0 τ )−1/(2n−1) .
+
+(S16)
+
+The root-Lorentzian case n = 1/2 is marginal and lies outside the domain of Eq. (S16);
+substituting n = 1/2 into that power law is therefore invalid. The linewidth of the finite,
+echo-modulated root-Lorentzian pulse is evaluated numerically and experimentally in this
+work.
+8
+
+S6.
+
+LARGE-DRIVE SPECTROSCOPY
+
+S6.1.
+
+Broad and Narrow Frequency Scans
+
+High-resolution spectroscopy at large drive amplitudes is characterized on two frequency
+scales. A broad scan first locates the qubit transition and reveals the surrounding baseline,
+nearby spectral features, and any strong-drive distortions. A narrow scan centered on the
+transition then samples the sharp echo–root–Lorentzian depletion feature densely enough
+to determine its center and linewidth. Presenting the broad and narrow scans together
+distinguishes a genuinely narrow resonance from a local feature embedded in a wider distorted response and demonstrates that the high resolution persists within the full spectral
+landscape.
+
+S6.2.
+
+Extended-Amplitude Regime and Strong-Drive Distortions
+
+At drive amplitudes above approximately 50 MHz, the Rabi frequency is no longer small
+compared with the transmon anharmonicity and the measured response begins to depart
+from an effective two-level description. Possible mechanisms include coupling to higher
+transmon levels, drive-induced level shifts, leakage, and multiphoton processes. The twolevel calculation in Sec. S7 cannot distinguish among these mechanisms, so the additional
+structure is reported here as a strong-drive distortion rather than assigned to a specific
+transition. Quantitative attribution would require a converged multilevel model and an
+independent calibration of the delivered drive amplitude.
+
+S6.3.
+
+Cutoff Dependence from 50 to 80 MHz
+
+To separate large-drive behavior from changes in pulse duration or sampling, we compare
+three q1 echo–root–Lorentzian scans acquired with the same 10 µs duration, detuning grid,
+amplitude grid, active-reset protocol, and 40 repetitions per point. Only the dimensionless
+cutoff-control setting is changed, from c = 0.001 to 0.005 and 0.010. Using the same-day
+q1 π-pulse calibration retained with the data, the displayed portion of each scan is selected
+from raw peak Rabi frequencies of 50.28 to 76.97 MHz. The centers of the displayed block
+averages span 50.67 to 76.19 MHz. This restricted view exposes the high-amplitude response
+9
+
+c = 0.001
+
+(b)
+
+0.75
+
+(c)
+
+70
+
+0.65
+
+Peak Rabi frequency
+
+0.60
+
+65
+
+0.55
+60
+0.50
+55
+
+Excited-state probability
+
+0.70
+
+0 /2
+
+(MHz)
+
+c = 0.010
+
+c = 0.005
+
+75 (a)
+
+0.45
+0.40
+0.4
+
+0.2
+
+0.0
+
+0.2
+
+0.4
+
+Detuning (MHz)
+
+0.4
+
+0.2
+
+0.0
+
+0.2
+
+0.4
+
+0.4
+
+Detuning (MHz)
+
+0.2
+
+0.0
+
+0.2
+
+0.4
+
+Detuning (MHz)
+
+Figure S3. Measured high-amplitude echo–root–Lorentzian spectroscopy on q1 for dimensionless
+cutoff-control settings (a) c = 0.001, (b) c = 0.005, and (c) c = 0.010. Each panel shows the
+same 50.28–76.97 MHz raw peak-Rabi-frequency interval from a 10 µs scan with 40 repetitions per
+point. The dashed line marks zero detuning, and all panels share the color scale. Displayed cells
+are non-overlapping 3 × 3 block averages of the measured grid; no interpolation or fitted surface is
+shown. The progression from a step-like response in (a) to curved interference fringes in (b) and
+(c) demonstrates that the large-drive structure is cutoff sensitive.
+
+directly instead of allowing the much larger low-amplitude region to dominate the color
+scale. To reduce binomial sampling noise without imposing a fit or interpolated surface,
+each displayed cell is a non-overlapping average of three adjacent detuning points and three
+adjacent amplitude points. Since every raw point contains 40 repetitions, a displayed cell
+averages 360 binary outcomes.
+Figure S3 shows a pronounced reorganization of the large-drive response with cutoff.
+At c = 0.001 the map is dominated by a step-like change across zero detuning, whereas
+the c = 0.005 and 0.010 scans develop curved, amplitude-dependent fringes that cross the
+central-frequency region. Thus these measurements do not support extrapolating the lowamplitude narrow-feature behavior unchanged into the 50–80 MHz regime. Instead, they
+identify a cutoff-sensitive strong-drive regime in which a single-linewidth description is insufficient. Because all panels use one color scale, the differences are not artifacts of independent
+normalization.
+
+10
+
+Figure S4. Two-dimensional spectroscopy map obtained with a 10 µs echo–root–Lorentzian pulse
+at extended drive amplitudes (up to 80 MHz). The left panel shows the full detuning–amplitude
+map, while the right panel presents a line cut at fixed drive strength (blue) together with a smooth
+fit (orange). The observed distortions mark the breakdown of the ideal effective two-level response
+as the drive approaches the multilevel regime.
+S7.
+
+NUMERICAL MODEL
+
+The simulations use an effective driven two-level system coupled to Markovian relaxation and dephasing channels. In the frame rotating at the drive frequency, and within the
+rotating-wave approximation, the Hamiltonian is implemented as
+
+H(t)
+Ω0
+= ∆a† a +
+f (t) a + a† ,
+ℏ
+2
+
+(S17)
+
+where ∆ = ωq −ωd is the qubit–drive detuning, Ω0 is the peak Rabi frequency, and a = |0⟩⟨1|
+is the lowering operator. Up to an irrelevant identity term and the chosen sign convention
+for ∆, Eq. (S17) is equivalent to H/ℏ = (∆/2)σz + (Ω0 f /2)σx .
+The simulations use the finite pulse in Eqs. (S1)–(S3). The overall sign of the echo
+envelope is a phase convention and does not affect the measured populations.
+The density matrix evolves according to the Lindblad master equation
+"s
+#
+r
+
+i
+1
+2 †
+ρ̇ = − [H(t), ρ] + D
+a ρ+D
+a a ρ,
+ℏ
+T1
+Tϕ
+11
+
+(S18)
+
+where D[C]ρ = CρC † − 12 {C † C, ρ} and
+1
+1
+1
+=
++ .
+T2
+2T1 Tϕ
+
+(S19)
+
+The parameter provenance for every simulation appearing in the Letter or this Supplemental Material is collected in Table S1. The archived figure arrays were generated with the
+historical inputs T1 = 30 µs and Tϕ = 20 µs, which imply T2 = 12 µs. These values describe
+the cached numerical data, not the later q1 coherence measurement. A measurement-linked
+calculation instead uses T1 = 51.24 ± 0.73 µs and, in the absence of a Hahn-echo measurement, the conservative choice T2,eff = T2∗ = 7.31 µs, corresponding to Tϕ = 7.87 µs. A
+measured Hahn-echo T2 should replace this effective choice when such a trace is acquired.
+Each calculation starts in |0⟩, integrates Eq. (S18) over the complete pulse, and records the
+final Bloch-vector components. Spectroscopy maps are generated by repeating this evolution
+over the experimental detuning and drive-amplitude grids, using the pulse duration, cutoff,
+T1 , and T2 associated with the corresponding data set. The time-dependent master equation
+is solved with QuTiP. Production calculations use a two-dimensional Hilbert space and a
+uniform temporal sampling of the complete waveform. The default solver grid contains 1000
+points; calculations used for linewidth extraction may override this value with a denser grid.
+The even default grid contains equal numbers of negative- and positive-time samples, with
+the central phase inversion between them.
+The numerical Hilbert space is restricted to two levels. Consequently, this model captures coherent drive dynamics, relaxation, and pure dephasing, but it does not describe
+leakage, AC-Stark shifts produced by higher transmon levels, or multiphoton transitions.
+Comparisons in the extended-amplitude regime are therefore interpreted as tests of where
+the effective two-level description breaks down rather than as a simulation of those multilevel
+effects.
+
+S8.
+
+EXPERIMENTAL SAMPLING AND LINEWIDTH EXTRACTION
+
+The amplitude-robustness data set was acquired on qubit q1 using active reset and statediscriminated readout. Each point contains 40 repetitions. The detuning axis spans −0.5
+to +0.5 MHz in 1 kHz steps, and the data comprise 100 fixed-amplitude slices. The pulse
+record contains a dimensionless cutoff-control setting of 0.005. Because this control value is
+12
+
+not necessarily identical to the physical endpoint-to-peak ratio, the latter is reconstructed
+from the emitted waveform when matching simulation and experiment.
+Each fixed-amplitude trace is analyzed independently. We discard 40 points from each
+frequency edge and apply a Gaussian filter with a standard deviation of one sample to
+suppress single-bin noise. The remaining data are fit to the operational dip estimator
+
+
+(∆ − ∆0 )2
+,
+y(∆) = y0 − A exp −
+2σ 2
+
+(S20)
+
+where A is the contrast, ∆0 is the fitted center, and
+√
+ΓFWHM = 2 2 ln 2 |σ|.
+
+(S21)
+
+The Gaussian is an operational, consistent linewidth estimator; it is not a claim that the
+complete physical response is exactly Gaussian.
+Fits are accepted only when all parameters and covariance-derived uncertainties are finite,
+A ≥ 0.02, ΓFWHM ≤ 0.12 MHz, and |∆0 | ≤ 0.050 MHz. The reported parameter uncertainties are one standard deviation from the fit covariance matrix. Of the 100 amplitude slices,
+62 pass these numerical gates. Thirty are rejected as too broad, seven have centers outside
+the accepted window, and one fails both the contrast and center gates. Rejected or failed
+fits remain missing values; they are never replaced by zero linewidth or zero uncertainty.
+The reference frequency offset for the center plot is 0 MHz.
+
+S9.
+
+ROOT-LORENTZIAN VERSUS ECHO-ROOT-LORENTZIAN PULSES
+
+The two protocols are compared over the principal experimental control parameters:
+pulse duration, relative cutoff, and peak drive amplitude. For each parameter set, we examine the final spectroscopic response, extracted linewidth, signal contrast, and linewidthto-signal ratio. Pulse-length sweeps distinguish the Fourier-limited and decoherence-limited
+regimes, while cutoff sweeps quantify broadening introduced by truncating the formally infinite Lorentzian tail. Drive-amplitude sweeps then test whether the narrow feature remains
+stable as the Rabi frequency is increased. These comparisons show where the phase inversion
+of the echo-root-Lorentzian pulse suppresses coherent oscillations and produces a broader,
+more uniform operating region than the corresponding root-Lorentzian pulse.
+13
+
+S9.1.
+
+Experimental Long-Pulse Comparison
+
+At fixed cutoff and peak Rabi frequency, varying the pulse length separates short-pulse
+Fourier broadening from the long-pulse limit imposed by decoherence. The comparison also
+reveals amplitude-dependent coherent oscillations in the root-Lorentzian response and their
+suppression by the echo phase inversion.
+The OPX1000 data archive contains a controlled pulse-duration series acquired on qubit
+q9 with matched root-Lorentzian and echo-root-Lorentzian scans spanning L = 2 to 250 µs.
+Figure S5 shows three representative durations across the series.
+L = 10 μs
+
+L = 60 μs
+
+(a)
+
+L = 160 μs
+
+(b)
+
+(c)
+0.8
+
+0.6
+
+0.7
+
+0.4
+0.6
+0.2
+0.5
+
+0.0
+
+(d)
+
+(e)
+
+(f)
+0.4
+
+Echo-root-Lorentzian
+Amplitude prefactor
+
+0.8
+
+0.6
+
+Excited-state probability, Pe
+
+Root-Lorentzian
+Amplitude prefactor
+
+0.8
+
+0.3
+
+0.4
+0.2
+0.2
+
+0.0
+
+−2
+
+−1
+
+0
+
+1
+
+Detuning, Δ/2π (MHz)
+
+Figure S5.
+
+2
+
+−2
+
+−1
+
+0
+
+1
+
+2
+
+−2
+
+Detuning, Δ/2π (MHz)
+
+Experimental pulse-duration comparison on qubit q9.
+
+−1
+
+0
+
+1
+
+2
+
+0.1
+
+Detuning, Δ/2π (MHz)
+
+The top row shows root-
+
+Lorentzian spectroscopy and the bottom row shows the matched echo-root-Lorentzian protocol
+for L = 10, 60, and 160 µs. Each panel reports the measured excited-state probability over the
+same detuning and amplitude-prefactor grid; all panels share one color scale. The short rootLorentzian scan exhibits pronounced amplitude-dependent structure, whereas the echo data are
+smoother. By L = 160 µs, both protocols have converged toward essentially the same response: a
+narrow resonance-centered line on a common relaxation-dominated background.
+
+The complete measured series contains L = 2, 5, 10, 30, 60, 90, 130, 160, and 250 µs.
+14
+
+All six scans displayed in Fig. S5 use the same −2.5 to +2.5 MHz detuning grid, amplitudeprefactor range, 100 repetitions per point, relative cutoff c = 5 × 10−4 , and peak waveform
+amplitude. For L = 160 µs, the OPX1000 plays a 60 µs stored template stretched to
+the recorded physical duration. This preserves the normalized envelope while avoiding an
+unnecessarily long arbitrary waveform record.
+The convergence at long duration has a simple physical interpretation. The pulse is
+long enough for the adiabatic passage to be completed for either phase convention, while T1
+relaxation during the drive washes out the protocol-dependent coherent population structure
+away from resonance. The broad off-resonant region is therefore driven toward the same
+saturated background for the root-Lorentzian and echo-root-Lorentzian pulses, leaving only
+an ultranarrow, resonance-centered feature. Once the Fourier width has fallen below the
+coherence scale, increasing L further cannot continue to narrow this feature; its width is
+expected to approach the T2 -limited value 2/T2 in angular-frequency units from Eq. (S8).
+The present q9 archive does not contain an independent T2 characterization, so Fig. S5
+demonstrates convergence and ultranarrowing but does not by itself establish a quantitative
+equality to the T2 limit.
+
+S9.2.
+
+Dependence on Pulse Cutoff
+
+At fixed duration and peak Rabi frequency, varying the relative cutoff tests the sensitivity
+of both protocols to truncation of the Lorentzian tail. The relevant scale is the residual
+endpoint drive, cΩ0 , which must remain small compared with the desired linewidth scale.
+
+S9.3.
+
+Dependence on Drive Amplitude
+
+Finally, amplitude sweeps compare the linewidth and contrast of the two pulse shapes
+over their full useful operating ranges. The echo protocol is assessed by the continuity and
+uniformity of its narrow-linewidth region, in addition to its minimum attainable linewidth.
+15
+
+S10.
+
+COMPARISON BETWEEN SIMULATION AND EXPERIMENT
+
+Simulation and experiment are compared using the same final-state spectroscopic observable and the same linewidth-extraction procedure. The archived curves in the present
+figures use the historical coherence inputs in Table S1, rather than the q1 values measured
+later on 2026-06-28. Their agreement with the data is therefore interpreted qualitatively
+as support for the echo-cancellation mechanism, not as a parameter-matched validation. A
+quantitative comparison requires regenerating the simulations with T1 = 51.24 ± 0.73 µs and
+either the conservative Ramsey reference T2,eff = 7.31 µs or a future measured Hahn-echo
+T2 . Systematic deviations at the largest amplitudes can also reflect physics omitted from
+the effective model, including higher-level coupling and strong-drive calibration effects.
+
+[1] Quantum Machines, OPX1000 front end modules:
+
+Microwave FEM, https://docs.
+
+quantum-machines.co/latest/docs/Guides/opx1000_fems/ (2026), accessed 19 July 2026.
+[2] Quantum Machines, Demodulation and measurement, https://docs.quantum-machines.co/
+latest/docs/Guides/demod/ (2026), accessed 19 July 2026.
+[3] F. Bloch, Nuclear induction, Phys. Rev. 70, 460 (1946).
+[4] I. S. Mihov and N. V. Vitanov, Defying conventional wisdom in spectroscopy: Power narrowing
+on IBM quantum, Physical Review Letters 132, 020802 (2024), arXiv:2308.14187 [quant-ph].
+[5] I. I. Boradjiev and N. V. Vitanov, Power narrowing in coherent atomic excitation by smoothly
+shaped pulsed fields, Optics Communications 288, 91 (2013).
+
+16
+
+

@@ -54,6 +54,37 @@ the PDFs:
 make paper-clean
 ```
 
+The experimental long-pulse comparison is generated from the sibling
+`data_opx1000` repository with:
+
+```bash
+PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_long_pulse_lorentzian_comparison.py
+```
+
+Set `OPX1000_DATA_DIR` when the data repository is not located beside this
+checkout. The script writes PDF, PNG, and SVG versions to `figures/paper/`.
+
+The high-amplitude cutoff comparison is generated from three matched q1 scans
+in the same read-only data repository with:
+
+```bash
+PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_high_amplitude_cutoff_comparison.py
+```
+
+It displays the 50--80 MHz portion available in the selected scans and writes
+PDF, PNG, and SVG versions to `figures/paper/`.
+
+The experimental broad and focused cutoff maps are generated from the
+`cutoff_amp_fwhm_map` and `echo_lorentzian_cutoff_sweep` campaigns with:
+
+```bash
+PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_echo_lorentzian_cutoff_sweep.py
+```
+
+The script accepts `OPX1000_DATA_DIR`, applies the documented fit-quality
+screen, and writes PDF, PNG, SVG, and a provenance JSON file to
+`figures/paper/`.
+
 ## Editing conventions
 
 - Keep one logical section per file.

@@ -1,4 +1,4 @@
-\section{Comparison of Root-Lorentzian and Echo-Root-Lorentzian Pulses}
+\section{Root-Lorentzian Versus Echo-Root-Lorentzian Pulses}
 \label{sec:lorentzian-echo-comparison}
 
 The two protocols are compared over the principal experimental control
@@ -12,8 +12,7 @@ feature remains stable as the Rabi frequency is increased.  These comparisons
 show where the phase inversion of the echo-root-Lorentzian pulse suppresses
 coherent oscillations and produces a broader, more uniform operating region
 than the corresponding root-Lorentzian pulse.
-
-\subsection{Dependence on Pulse Length}
+\subsection{Experimental Long-Pulse Comparison}
 \label{subsec:lorentzian-echo-pulse-length}
 
 At fixed cutoff and peak Rabi frequency, varying the pulse length separates
@@ -21,6 +20,52 @@ short-pulse Fourier broadening from the long-pulse limit imposed by
 decoherence.  The comparison also reveals amplitude-dependent coherent
 oscillations in the root-Lorentzian response and their suppression by the echo
 phase inversion.
+
+The OPX1000 data archive contains a controlled pulse-duration series acquired
+on qubit q9 with matched root-Lorentzian and echo-root-Lorentzian scans spanning
+$L=2$ to $250~\mu\mathrm{s}$.  Figure~\ref{fig:experimental-long-pulse-comparison}
+shows three representative durations across the series.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{../figures/paper/06_long_pulse_lorentzian_comparison.pdf}
+    \caption{Experimental pulse-duration comparison on qubit q9.  The top row
+    shows root-Lorentzian spectroscopy and the bottom row shows the matched
+    echo-root-Lorentzian protocol for $L=10$, 60, and $160~\mu\mathrm{s}$.
+    Each panel reports the measured excited-state probability over the same
+    detuning and amplitude-prefactor grid; all panels share one color scale.
+    The short root-Lorentzian scan exhibits pronounced amplitude-dependent
+    structure, whereas the echo data are smoother.  By $L=160~\mu\mathrm{s}$,
+    both protocols have converged toward essentially the same response: a
+    narrow resonance-centered line on a common relaxation-dominated
+    background.}
+    \label{fig:experimental-long-pulse-comparison}
+\end{figure}
+
+The complete measured series contains $L=2$, 5, 10, 30, 60, 90, 130, 160,
+and $250~\mu\mathrm{s}$.  All six scans displayed in
+Fig.~\ref{fig:experimental-long-pulse-comparison} use the same $-2.5$ to
+$+2.5~\mathrm{MHz}$ detuning grid, amplitude-prefactor range, 100 repetitions
+per point, relative cutoff $c=5\times10^{-4}$, and peak waveform amplitude.
+For $L=160~\mu\mathrm{s}$, the OPX1000 plays a $60~\mu\mathrm{s}$ stored
+template stretched to the recorded physical duration.  This preserves the
+normalized envelope while avoiding an unnecessarily long arbitrary waveform
+record.
+
+The convergence at long duration has a simple physical interpretation.  The
+pulse is long enough for the adiabatic passage to be completed for either
+phase convention, while $T_1$ relaxation during the drive washes out the
+protocol-dependent coherent population structure away from resonance.  The
+broad off-resonant region is therefore driven toward the same saturated
+background for the root-Lorentzian and echo-root-Lorentzian pulses, leaving
+only an ultranarrow, resonance-centered feature.  Once the Fourier width has
+fallen below the coherence scale, increasing $L$ further cannot continue to
+narrow this feature; its width is expected to approach the $T_2$-limited value
+$2/T_2$ in angular-frequency units from
+Eq.~\eqref{eq:t2-limited-angular-linewidth}.  The present q9 archive does not
+contain an independent $T_2$ characterization, so Fig.~\ref{fig:experimental-long-pulse-comparison}
+demonstrates convergence and ultranarrowing but does not by itself establish a
+quantitative equality to the $T_2$ limit.
 
 \subsection{Dependence on Pulse Cutoff}
 \label{subsec:lorentzian-echo-cutoff}

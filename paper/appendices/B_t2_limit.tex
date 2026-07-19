@@ -1,61 +1,50 @@
-\section{The $T_2$ Limit}
+\section{Bloch-Equation Coherence Limit}
 \label{sec:t2-limit}
 
-The Bloch equations \cite{PhysRev.70.460} provide a theoretical framework for describing the dynamics of a two-level system under an external excitation field with strength $\Omega_0$, frequency detuned from natural qubit frequency with detuning $\Delta,$ including presence of  relaxation and dephasing times $T_1$ and $T_2$. Originally developed in the context of NMR, the Bloch equations are equally applicable to superconducting qubits.
-
-The formalism is based on solving a system of differential equations for the expectation values of the qubit's Pauli operators, $\sigma_x$, $\sigma_z$ and $\sigma_z$ , which together give full information of the qubit state. 
-
-A key advantage of the Bloch solution is its validity across a broad range of excitation pulse durations, from short to long, and for both weak and strong driving fields (however, to prevent leakage into higher energy levels, the drive amplitude must remain below the qubit’s anharmonicity).
-
-In our study, we focus on the regime where the solution to the Bloch equations describes long-duration pulses, such that the qubit undergoes complete energy saturation $t\gg T_1$. In this limit, for resonance pulses, the qubit reaches a mixed state, and its evolution is a simple closed-form solution. In particular, we are interested in the expectation value $\left<\sigma_z\right>$, which serves as the measurable observable of our system:
+For comparison with the shaped-pulse protocol, we first summarize the
+steady-state response of a continuously driven two-level system.  We use the
+Bloch-vector convention $w=\rho_{00}-\rho_{11}$, so that the excited-state
+population is $P_e=(1-w)/2$.  Solving the optical Bloch equations for a drive
+with angular Rabi frequency $\Omega_0$, angular detuning $\Delta$, relaxation
+time $T_1$, and transverse coherence time $T_2$ gives~\cite{PhysRev.70.460}
 \begin{equation}
-\left<\sigma_z\right> =\frac{1+(T_2\Delta)^2}{1+(T_2\Delta)^2+\Omega_0^2T_1T_2}
-\label{eq:bloch_solution}
-.\end{equation}
-The solution determines the linewidth at broad range of cases and will be applicable to understand the limits for high resolution spectroscopy.
-
-\subsection{Linewidths and Saturation Spectroscopy}
-\label{subsec:linewidths-and-saturation}
-
-In the strong-driving regime, where the Rabi frequency dominates the detuning term,
-\[
-\Omega_0 \gg \sqrt{\frac{T_2}{T_1}}\,\Delta,
-\]
-Eq.~(\ref{eq:bloch_solution}) simplifies to
-\begin{equation}
-    \langle \sigma_z \rangle
-    \approx
-    1 - 2\frac{1}{1 + \dfrac{\Delta^2}{(T_1/T_2)\Omega_0^2}}.
-\end{equation}
-In this limit, the transition linewidth is broadened to
-\begin{equation}
-    \Delta_{1/2,\Omega_0}
+    w_{\mathrm{ss}}(\Delta)
     =
-    \frac{2\Omega_0}{\sqrt{T_2/T_1}}.
+    \frac{1+\Delta^2T_2^2}
+    {1+\Delta^2T_2^2+\Omega_0^2T_1T_2},
+    \qquad
+    P_{e,\mathrm{ss}}=\frac{1-w_{\mathrm{ss}}}{2}.
+    \label{eq:bloch-steady-state}
 \end{equation}
-This phenomenon, known as \emph{power broadening} (or saturation broadening), is analogous to the linewidth increase observed in Rabi spectroscopy. Here, however, the broadening arises from saturation of the transition and the resulting population redistribution between the qubit states.
+This expression assumes a pulse long enough to approach steady state.  It is a
+reference result for conventional saturation spectroscopy, rather than a
+closed-form description of the finite echo pulse.
 
-In contrast, in the weak-driving regime,
-\[
-\Omega_0 \ll \sqrt{\frac{T_2}{T_1}}\,\Delta,
-\]
-the excitation remains far from saturation, and the linewidth is determined solely by the qubit coherence time. In this case, Eq.~(\ref{eq:bloch_solution}) reduces to
+The full width at half maximum of $P_{e,\mathrm{ss}}(\Delta)$ is
 \begin{equation}
-    \langle \sigma_z \rangle
-    \approx
-    1
-    -
-    2\Omega_0^{2}T_1T_2
-    \frac{1}{1 + T_2^{2}\Delta^{2}},
-\end{equation}
-which has a Lorentzian lineshape with a minimum achievable linewidth set by $T_2$:
-\begin{equation}
-    \Delta_{1/2,T_2}
+    \Gamma_{\mathrm{FWHM}}
     =
-    \frac{2}{T_2}.
-    \label{eq:T2_limit}
+    \frac{2}{T_2}
+    \sqrt{1+\Omega_0^2T_1T_2}.
+    \label{eq:bloch-fwhm}
 \end{equation}
-This represents the coherence-limited linewidth of the qubit transition and constitutes the fundamental resolution limit of conventional continuous-wave spectroscopy.
+All frequencies in Eqs.~\eqref{eq:bloch-steady-state} and
+\eqref{eq:bloch-fwhm} are angular frequencies.  The corresponding linewidth
+in hertz is $\Gamma_{\mathrm{FWHM}}/(2\pi)$.
 
-
-
+It is useful to introduce the saturation parameter
+$s=\Omega_0^2T_1T_2$.  In the weak-drive limit $s\ll1$,
+\begin{equation}
+    \Gamma_{\mathrm{FWHM}}\longrightarrow \frac{2}{T_2},
+    \label{eq:t2-limited-angular-linewidth}
+\end{equation}
+which is the coherence-limited angular-frequency linewidth.  In the
+strong-drive limit $s\gg1$,
+\begin{equation}
+    \Gamma_{\mathrm{FWHM}}
+    \longrightarrow
+    2\Omega_0\sqrt{\frac{T_1}{T_2}},
+    \label{eq:power-broadened-linewidth}
+\end{equation}
+showing the familiar linear power broadening.  These limits are governed by
+$s$, not by comparing $\Omega_0$ with a detuning-dependent quantity.

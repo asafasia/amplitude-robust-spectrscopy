@@ -1,0 +1,66 @@
+\section{Finite Pulse Definition and Echo Cancellation}
+\label{sec:pulse-definition}
+
+We define the finite generalized Lorentzian envelope by
+\begin{equation}
+    f_{n,c,L}(t)
+    =
+    \begin{cases}
+    \left[1+(t/\tau)^2\right]^{-n}, & |t|\le L/2,\\
+    0, & |t|>L/2,
+    \end{cases}
+    \label{eq:finite-generalized-lorentzian}
+\end{equation}
+where $L$ is the total pulse duration, $n$ is the shape exponent, and the
+relative endpoint amplitude is $c=f_{n,c,L}(L/2)$.  These parameters imply
+\begin{equation}
+    \tau
+    =
+    \frac{L/2}{\sqrt{c^{-1/n}-1}}.
+    \label{eq:tau-from-cutoff}
+\end{equation}
+The root-Lorentzian pulse used here corresponds to $n=1/2$.  Its echo version
+has a phase inversion at the center,
+\begin{equation}
+    \Omega_{\mathrm{E}}(t)
+    = \Omega_0 f_{n,c,L}(t)s(t),
+    \qquad
+    s(t)=
+    \begin{cases}
+    +1,&t<0,\\
+    -1,&t\ge0.
+    \end{cases}
+    \label{eq:echo-pulse-definition}
+\end{equation}
+The value assigned at the single point $t=0$ has no effect in the continuum
+limit.  In a sampled waveform, the two halves are constructed with equal
+duration and opposite phase.
+
+Two cutoff scans must be distinguished.  A pure truncation scan keeps
+$\tau$, $n$, and $\Omega_0$ fixed while changing $L$.  A fixed-duration
+hardware scan instead keeps $L$ fixed and changes the endpoint ratio $c$; in
+the parametrization of Eq.~\eqref{eq:tau-from-cutoff}, this also changes
+$\tau$.  Results from these two scans need not coincide.
+
+In the rotating-wave approximation, the unitary two-level Hamiltonian is
+\begin{equation}
+    \frac{H(t)}{\hbar}
+    =\frac{1}{2}\left[\Delta\sigma_z
+    +\Omega_{\mathrm{E}}(t)\sigma_x\right].
+    \label{eq:echo-two-level-hamiltonian}
+\end{equation}
+At exact resonance, Hamiltonians at different times are proportional to the
+same operator and therefore commute.  The propagator is
+\begin{equation}
+    U(\Delta=0)
+    =\exp\!\left[-\frac{i\sigma_x}{2}
+      \int_{-L/2}^{L/2}\Omega_{\mathrm{E}}(t)\,dt\right]
+    =\mathbb{I},
+    \label{eq:resonant-echo-cancellation}
+\end{equation}
+because the signed areas of the two symmetric halves cancel.  For
+$\Delta\ne0$, the $\sigma_z$ and $\sigma_x$ terms do not commute, so the
+cancellation is incomplete and a narrow detuning-dependent response remains.
+Equation~\eqref{eq:resonant-echo-cancellation} is exact only for a symmetric,
+unitary two-level pulse.  Relaxation, dephasing, phase or amplitude imbalance,
+and finite waveform bandwidth prevent exact cancellation in the experiment.

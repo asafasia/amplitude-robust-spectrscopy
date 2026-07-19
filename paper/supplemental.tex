@@ -11,7 +11,7 @@
 
 \newcommand{\ManuscriptPdfTitle}{Supplemental Material for Amplitude-Robust Qubit Spectroscopy Using Echo-Root-Lorentzian Pulse Shapes}
 \input{preamble}
-\usepackage{float}
+\input{coherence_parameters}
 
 \begin{document}
 
@@ -27,11 +27,12 @@
 
 \setcounter{secnumdepth}{2}
 
-This Supplemental Material provides the experimental setup, the Bloch-equation
-coherence limit, pulse-cutoff and pulse-duration analyses, the adiabatic-basis
-derivation, high-resolution and extended-amplitude scans, the numerical model,
-a comparison of the root-Lorentzian and echo-root-Lorentzian protocols across
-pulse parameters, and a comparison between simulation and experiment.
+This Supplemental Material provides the experimental setup and qubit coherence
+characterization; a precise definition of the finite echo-root-Lorentzian
+pulse and its resonant cancellation mechanism; the Bloch-equation coherence
+limit; pulse-cutoff and adiabaticity analyses; high-resolution
+and extended-amplitude scans; the numerical model and data-analysis procedure;
+and comparisons between pulse protocols, simulation, and experiment.
 
 \renewcommand{\thesection}{S\arabic{section}}
 \renewcommand{\thesubsection}{S\arabic{section}.\arabic{subsection}}
@@ -40,12 +41,13 @@ pulse parameters, and a comparison between simulation and experiment.
 \renewcommand{\thetable}{S\arabic{table}}
 
 \input{appendices/A_measurement_setup}
+\input{appendices/B_pulse_definition_and_echo}
 \input{appendices/B_t2_limit}
 \input{appendices/C_cutoff}
 \input{appendices/D_adiabatic_basis}
-\input{appendices/E_pulse_length}
 \input{appendices/F_high_amplitudes}
 \input{appendices/G_numerical_model}
+\input{appendices/H_data_analysis}
 \input{appendices/H_lorentzian_echo_comparison}
 \input{appendices/I_simulation_experiment_comparison}
 

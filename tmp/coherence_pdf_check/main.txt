@@ -1,0 +1,411 @@
+Amplitude-Robust Qubit Spectroscopy Using Echo-Root-Lorentzian Pulse Shapes
+Asaf A. Solonnikov and Nadav Katz
+The Racah Institute of Physics, The Hebrew University of Jerusalem, Israel
+(Dated: July 19, 2026)
+We present a qubit spectroscopy method based on Lorentzian-derived drive pulses that maintains
+narrow spectral features at drive amplitudes exceeding those used in conventional spectroscopy
+by more than three orders of magnitude, thereby enhancing robustness against amplitude variations. Specifically, we employ a root-Lorentzian envelope with a π-phase inversion at its peak,
+which introduces an echo-like symmetry that cancels on-resonant Rabi oscillations while preserving
+the spectral response. This approach suppresses conventional power broadening and enables highresolution spectroscopy using pulses shorter than durations required by standard techniques. We
+experimentally demonstrate this method on a superconducting qubit platform and observe qualitative agreement with numerical simulations, highlighting its potential for rapid and calibration-robust
+qubit frequency characterization.
+
+Accurate frequency characterization of a quantum twolevel system (qubit) is essential for calibrating highfidelity control in fault-tolerant quantum processors. In
+many physical implementations, such as superconducting circuits and semiconductor quantum dots, the qubit
+is realized within an inherently multilevel structure with
+discrete energy levels, allowing two levels to be selected to form an effective computational subspace that
+mimics atomic systems via their quantized energy spectrum [1, 2]. Spectroscopic identification of the transition
+frequency is therefore routinely performed by applying
+resonant control fields and monitoring the resulting population dynamics [3–5]. Spectroscopic resolution in direct
+population spectroscopy of coherently driven two-level
+systems is constrained by decoherence. In the absence of
+technical noise, stochastic phase fluctuations induce homogeneous broadening of the transition frequency, leading to a minimum resolvable linewidth that scales inversely with the coherence time T2 , as described by the
+Bloch equations [6, 7]. This establishes the so-called T2
+limit for conventional direct spectroscopy.
+In practice, however, driven spectroscopy introduces
+an additional trade-off between signal robustness and
+spectral resolution. When finite-amplitude control pulses
+are applied, the system dynamics deviate from the idealized two-level response due to coherent Rabi oscillations
+and coupling to noncomputational levels. Increasing the
+drive amplitude improves signal contrast and robustness
+against state-preparation and measurement errors, but
+simultaneously induces power broadening, resulting in a
+linewidth that scales with the instantaneous Rabi frequency. Consequently, conventional square-pulse and
+continuous-wave spectroscopic techniques must operate
+at low drive amplitudes to maintain resolution approaching the decoherence-limited linewidth set by T2 , creating a severe practical trade-off between precision and robustness. Smooth temporal envelopes can weaken this
+broadening, and powers-of-Lorentzian pulses have been
+shown theoretically and experimentally to exhibit power
+narrowing [8, 9].
+
+Ramsey interferometry provides a standard alternative to direct spectroscopy and, in principle, enables frequency estimation at the T2 limit. Achieving such resolution, however, requires long interrogation times and sufficiently dense temporal sampling to resolve the resulting
+interference fringes. Moreover, Ramsey measurements
+are susceptible to systematic biases: asymmetries in the
+exponential decay envelope—arising, for example, from
+pulse miscalibration—can shift the apparent resonance
+peak in the frequency domain. Additional effects such
+as phase fluctuations or unintended AC Stark shifts during the control pulses introduce further distortions, ultimately biasing the extracted transition frequency [10, 11].
+Alternative protocols can evade a probe-T2 resolution
+bound by using inter-shot phase correlations, external
+clock references, dynamical decoupling, or tailored filter functions [12–17]. These approaches address different
+sensing settings and typically require repeated correlations, extended interrogation times, a stable external reference, or additional control resources. Here, we address
+the resolution–robustness trade-off within direct driven
+population spectroscopy by employing adiabatically engineered Lorentzian-derived drive pulses with a π-phase
+inversion at their peak. Unlike prior Lorentzian-pulse
+power-narrowing demonstrations, this echo-like structure
+suppresses on-resonant Rabi oscillations while preserving
+the off-resonant spectral response, maintaining narrow
+frequency features at drive amplitudes exceeding those
+used in conventional spectroscopy by more than three
+orders of magnitude.
+Precise determination of the qubit transition frequency
+is crucial for implementing high-fidelity quantum gates.
+The drive frequency must coincide with the qubit resonance, as detuning directly reduces gate fidelity. A rigorous metric for quantifying such calibration errors is the
+diamond norm, which captures deviations in the implemented quantum operation from the ideal one. Minimizing these detuning-induced errors is essential to meet the
+fault-tolerance thresholds required for scalable quantum
+computation. [18]
+
+2
+
+Figure 1. Pulse waveform and echo-cancellation mechanism. (a) Signed echo-root-Lorentzian drive envelope with a π phase
+inversion at the pulse midpoint. (b) Normalized magnitude of the waveform Fourier spectrum, showing the spectral null at zero
+frequency produced by the phase inversion. (c) Simulated excited-state population during the pulse for three drive detunings.
+At resonance, the evolution accumulated during the first half is reversed during the second half, whereas finite detuning prevents
+complete cancellation.
+
+Here, we propose a spectroscopic method for probing
+the qubit transition frequency using arbitrarily shaped
+drive pulses, specifically an echo-root-Lorentzian pulse.
+Previous theoretical work showed that Lorentzian pulses
+exhibit power narrowing, complementary to the conventional power broadening observed for constant drives, as
+a consequence of their adiabatic properties [8]. Power
+narrowing with powers-of-Lorentzian pulses was subsequently demonstrated experimentally on IBM Quantum,
+including the cutoff broadening introduced by truncating the pulse wings [9]. In this work, we extend this
+framework to longer pulse durations approaching the T1
+timescale and introduce a π-phase jump at the pulse
+peak. The resulting echo property effectively cancels
+the net pulse area while preserving the adiabatic properties of the drive. This phase inversion reverses the
+coherent phase accumulation at resonance, suppressing
+on-resonant excitation while maintaining an off-resonant
+spectral response across the frequency domain, and thus
+making resonance distinguishable.
+(1/2)
+We define the root-echo-Lorentzian Lecho drive enve(1/2)
+lope base on ordered Lorentzian L
+as
+L(n) (t) = h
+
+1
+1+
+
+ in ,
+t 2
+τ
+
+(1/2)
+Lecho (t) := L(1/2) (t) sgn(t).
+
+(1)
+(2)
+
+where τ sets the characteristic pulse duration and n controls the temporal sharpness.
+Under the adiabatic condition for the plain Lorentzian
+pulse, the characteristic spectral width obeys the scaling
+1
+
+∆1/2 τ ∝ (Ω0 τ )− 2n−1 ,
+
+(3)
+
+where ∆1/2 denotes the typical linewidth and Ω0 is the
+peak Rabi frequency. This relation indicates that increas-
+
+ing the drive amplitude suppresses the detuning at which
+adiabaticity breaks down, resulting in a narrowing of the
+effective spectral response. In contrast, the square pulse
+is fully governed by conventional power broadening, for
+which the linewidth increases approximately linearly with
+the drive amplitude ∆1/2 ∝ Ω0 . This contrast highlights
+that the spectroscopic response is not determined solely
+by the drive strength, but depends sensitively on the temporal envelope and finite-duration boundary behavior of
+the control pulse, motivating the use of tailored pulse
+shapes [19–27].
+Spectroscopy results obtained using
+the echo-root-Lorentzian pulse, together with standard
+square and root-Lorentzian pulses for comparison, are
+shown in Fig. 2. Independent measurements on qubit q1
+on 2026-06-28 give T1 = 51.24 ± 0.73 µs and a Ramsey
+time T2∗ = 7.31 ± 0.13 µs (Supplemental Table S1). No
+Hahn-echo decay was acquired for this data set, so the
+Letter does not assign the Ramsey result to a measured
+Hahn-echo T2 . For a conservative measurement-linked
+transverse reference, we set T2,eff = T2∗ = 7.31 µs, corresponding to 1/(πT2,eff ) = 43.5 kHz. The guide lines in
+the cached spectroscopy panels instead reflect the historical simulation inputs documented in Supplemental Table S1 and are not independent Hahn-echo evidence.
+Square pulses exhibit pronounced power broadening
+even at low drive amplitudes compared to Lorentziantype pulses, with substantial linewidth expansion observed over three orders of magnitude in amplitude. In
+contrast, the root-Lorentzian pulse displays the characteristic power-narrowing behavior and maintains a narrow linewidth. However, for pulse durations comparable to the qubit lifetime T1 , coherent oscillations arise
+for both square and root-Lorentzian pulses, resulting
+in amplitude-dependent linewidth variations that hinder
+precise spectral extraction.
+
+3
+
+Figure 2. Two-dimensional spectroscopy of the excited-state
+population as a function of detuning ∆ and drive amplitude
+Ω0 for three pulse types: (a) square, (c) root-Lorentzian, and
+(e) echo-root-Lorentzian pulses. Panels (b), (d), and (f) show
+detuning line cuts at selected amplitudes Ω0 /2π, as indicated
+by the corresponding colored ticks in the left-column plots.
+Vertical dashed lines show the historical model-coherence reference used when the cached panels were generated; the measured Ramsey reference is reported in the text and Supplemental Table S1. The square pulse exhibits strong power
+broadening already at small amplitudes (Ω0 /2π ∼ 0.05 MHz),
+whereas the root-Lorentzian and echo-type pulses (30 µs)
+maintain narrow linewidths. The echo-type pulse further suppresses coherent vertical oscillations, enabling smooth highresolution spectroscopy across the amplitude range at the expense of signal-to-noise ratio.
+
+Introducing a π phase inversion at the peak of the
+root-Lorentzian envelope partitions the drive into two sequential segments of opposite phase, such that the corresponding forward and backward evolutions cancel exactly at zero detuning. This echo-like structure suppresses resonant Rabi oscillations while preserving the
+off-resonant spectral response, producing a sharp depletion feature centered at the qubit transition frequency.
+In the frequency domain (Fig. 1), this manifests as a
+splitting of the spectral response accompanied by a null
+at resonance, rendering the measured linewidth largely
+insensitive to drive amplitude. This mechanism can be
+viewed as a Loschmidt-echo-like evolution, in which reversibility is achieved only on resonance, while detuning
+or decoherence breaks the cancellation and restores excitation [28, 29]. Combined with the adiabatic following
+
+Figure 3. Numerical simulation of qubit spectroscopy under a root-Lorentzian drive and its echo variant. (a) Final
+excited-state population as a function of detuning ∆/2π for
+a standard root-Lorentzian pulse. (b) Same for the echo(1/2)
+root-Lorentzian pulse Lecho . (c),(d) Full time evolution of
+the excited-state population versus detuning for the corresponding drives. The pulse duration is 30 µs with a cutoff of
+5 × 10−4 . While the standard pulse yields a resonant peak
+at zero detuning, the echo sequence produces an inversion of
+the central response, leading to a pronounced dip. This behavior reflects cancellation of coherent oscillations at ∆ = 0,
+as highlighted in the insets.
+
+ensured by the Lorentzian envelope, this interference effect suppresses both power broadening and coherent Rabi
+oscillations, enabling narrow spectroscopy over a broad
+range of drive strengths and with pulse durations substantially shorter than those required by standard spectroscopy or Ramsey interferometry.
+Fig. 3 shows a numerical simulation of the qubit state
+evolution during the spectroscopy echo-root-Lorentzian
+sequence. At resonance, where the adiabatic condition
+breaks down, coherent Rabi oscillations are induced by
+the drive. However, due to the π phase inversion at the
+pulse maximum, the subsequent segment of the drive reverses the accumulated evolution, resulting in a symmetric cancellation that returns the qubit close to the ground
+state, limited by relaxation. Measurement-linked calculations use T1 = 51.24±0.73 µs and T2,eff = 7.31 µs. The
+archived curve in this figure predates that coherence run
+and used the historical parameters listed in Supplemental Table S1; it has not been relabeled as a simulation of
+the measured qubit.
+For detuned drives, the system remains in the adiabatic regime throughout most of the pulse duration and
+undergoes excitation only in the vicinity of the pulse
+peak, where the phase inversion occurs. In this case,
+the evolution does not cancel and results in a net population transfer followed by relaxation. As a consequence,
+different detunings produce distinguishable final states,
+forming the basis of the spectroscopic response.
+In Fig. 4, we plot the extracted spectroscopic linewidth
+
+4
+
+Figure 4.
+Comparison of spectroscopic linewidth obtained using a constant (square), Lorentzian L(1/2) , and echo(1/2)
+Lorentzian Lecho drive as a function of peak Rabi frequency
+Ω0 . (a) Measured full width at half maximum (FWHM) ∆1/2
+of the qubit spectral response, normalized to the historical
+model-coherence scale, together with numerical simulations.
+Solid lines denote simulation results, while markers represent
+experimental data. The constant drive (red) exhibits conventional power broadening ∆1/2 ∝ Ω0 , whereas the Lorentzian
+(green) and echo-Lorentzian (purple) pulses display power
+narrowing due to adiabatic following. (b) Linewidth-to-signal
+ratio ∆1/2 /Apeak , highlighting the improved resolution–signal
+trade-off enabled by the echo-Lorentzian protocol at increasing drive amplitude.
+
+obtained from Gaussian fits to the measured response.
+Although the spectral lineshape of a driven two-level system is often expected to follow a Lorentzian profile, the
+interference-based structure of the present protocol results in a more complex response. In this regime, Gaussian fitting provides a robust and consistent estimate of
+the linewidth while yielding values comparable to those
+obtained from Lorentzian fits within our resolution requirements.
+We compare the experimentally acquired linewidth
+extracted from two-dimensional frequency–amplitude
+sweeps with archived numerical simulations of an effective two-level system. The square (red), Lorentzian
+(green), and echo-Lorentzian (purple) drives are shown,
+where solid lines denote simulation results and markers represent experimental data. Because the archived
+curves use the historical coherence inputs in Supplemental Table S1 rather than the later measured values,
+the overlay is interpreted qualitatively. For the square
+pulse, only simulated results are displayed. We plot
+both the linewidth ∆1/2 and the linewidth-to-signal ratio
+∆1/2 /Apeak to quantify the resolution–signal trade-off.
+To suppress residual power broadening at large drive
+amplitudes, the pulse envelope must satisfy requirements
+
+Figure 5. Numerical simulation of spectroscopy scans using
+(1/2)
+root-Lorentzian L1/2 and echo-root-Lorentzian Lecho drives
+with a pulse duration of 50 µs. (a),(b) Line width ∆1/2 and
+the linewidth-to-signal ratio ∆1/2 /Apeak obtained using the
+root-Lorentzian pulse L(1/2) as a function of peak Rabi frequency Ω0 and temporal cutoff. (c),(d) Corresponding results
+(1/2)
+for the echo-root-Lorentzian pulse Lecho . While L(1/2) pulse
+exhibits extended regions of narrow linewidth, the associated
+linewidth-to-signal ratio displays strong oscillatory behavior,
+making it difficult to identify robust operating parameters for
+high-resolution spectroscopy. In contrast, the echo variant
+(1/2)
+Lecho yields both reduced linewidth and a broad parameter
+region in which the resolution–signal trade-off remains favorable, enabling stable narrowband spectroscopy.
+
+on its cutoff behavior. Truncation introduces nonanalytic
+boundary behavior and a residual cutoff-broadening contribution that scales with the instantaneous amplitude
+at the cutoff point, denoted Ωc [9, 25, 27]. In the model,
+the condition T2−1 ≤ ∆ 12 constrains the maximum allowable cutoff amplitude to Ωc < T2−1 . Empirically, we
+find that a relative cutoff below 10−3 suppresses excess
+cutoff broadening even under strong driving conditions;
+see the Supplemental Material for the cutoff analysis and
+high-amplitude measurements [30].
+At the core of assessing pulse quality and identifying
+optimal operating regimes lies the spectral response of
+the driven qubit. We find that the echo pulse yields spectroscopic features with markedly reduced linewidths over
+a well-defined region of parameter space. We therefore
+choose pulse durations shorter than the qubit lifetime T1
+but long enough that Fourier broadening does not dominate.
+This constitutes an additional advantage of the echo
+
+5
+protocol. While both constant and simple Lorentzian
+pulses exhibit coherent Rabi oscillations that persist even
+for pulse durations comparable to or exceeding T1 , the
+intrinsic π-phase inversion of the echo pulse suppresses
+these coherence-induced oscillations. As a result, the
+spectral response remains smooth and well-behaved, enabling reliable linewidth extraction in regimes where
+standard and Lorentzian pulses display pronounced oscillatory distortions; see the additional high-amplitude
+data in the Supplemental Material [30].
+Second, the use of formally infinite-support pulses necessitates the introduction of a cutoff parameter, as discussed previously. Consequently, the relevant parameter space is effectively three-dimensional: pulse duration,
+drive amplitude, and cutoff level.
+Motivated by the stability observed at fixed pulse duration, we restrict the analysis to constant-length pulses
+and examine the remaining two parameters. In Fig. 4
+we simulate both the root-Lorentzian pulse and its echomodified counterpart. We extract the full width at half
+maximum (FWHM) via fitting (as in Fig. 3) and evaluate the normalized metric given by the linewidth divided by the peak signal amplitude. We use this quantity
+as a heuristic resolution–signal metric; a direct Fisherinformation or Cramér–Rao analysis would additionally
+require the measurement-noise model and the full frequency dependence of the response.
+The results reveal that the root Lorentzian pulse
+achieves narrow linewidths across a relatively large region of parameter space. However, its performance is
+not uniform and exhibits oscillatory structure for the chosen pulse duration. In contrast, the echo-root Lorentzian
+pulse produces even narrower linewidths while maintaining a significantly broader and more uniform highresolution region. Although the optimal region may appear small at first glance, the logarithmic scale of the
+parameter axes should be noted. More importantly, the
+high-resolution region forms a robust and contiguous “island,” indicating strong parameter insensitivity. This
+robustness makes the echo protocol substantially more
+stable against parameter variations and therefore highly
+advantageous for practical spectroscopy. In conclusion,
+we have demonstrated that the echo–Lorentzian pulse
+constitutes a promising and practical approach for highresolution spectroscopy. By combining adiabatic shaping with an intrinsic echo phase inversion, the protocol
+significantly enhances robustness against drive-amplitude
+variations. Remarkably, it broadens the operational amplitude window by approximately three orders of magnitude, while maintaining high spectral resolution even
+at drive strengths approaching neighboring qubit transitions. These properties make the echo–Lorentzian protocol particularly attractive for precision qubit characterization under realistic experimental constraints.
+This opens the route to coherent spectroscopy based on
+phase-sensitive off-resonant response rather than popula-
+
+tion transfer.
+
+[1] A. Blais, R.-S. Huang, A. Wallraff, S. M. Girvin, and
+R. J. Schoelkopf, Cavity quantum electrodynamics for
+superconducting electrical circuits: An architecture for
+quantum computation, Phys. Rev. A 69, 062320 (2004).
+[2] J. Koch, T. M. Yu, J. Gambetta, A. A. Houck, D. I.
+Schuster, J. Majer, A. Blais, M. H. Devoret, S. M. Girvin,
+and R. J. Schoelkopf, Charge-insensitive qubit design derived from the cooper pair box, Phys. Rev. A 76, 042319
+(2007).
+[3] H. Paik, D. I. Schuster, L. S. Bishop, G. Kirchmair,
+G. Catelani, A. P. Sears, B. R. Johnson, M. J. Reagor,
+L. Frunzio, L. I. Glazman, S. M. Girvin, M. H. Devoret, and R. J. Schoelkopf, Observation of high coherence in josephson junction qubits measured in a threedimensional circuit qed architecture, Phys. Rev. Lett.
+107, 240501 (2011).
+[4] L. B. Nguyen, Y.-H. Lin, A. Somoroff, R. Mencia,
+N. Grabon, and V. E. Manucharyan, High-coherence fluxonium qubit, Phys. Rev. X 9, 041041 (2019).
+[5] S. Kim, H. Terai, T. Yamashita, W. Qiu, T. Fuse,
+F. Yoshihara, S. Ashhab, K. Inomata, and K. Semba,
+Enhanced coherence of all-nitride superconducting qubits
+epitaxially grown on silicon substrate, Communications
+Materials 2, 98 (2021).
+[6] F. Bloch, Nuclear induction, Phys. Rev. 70, 460 (1946).
+[7] S. Zienau, Optical resonance and two level atoms, Physics
+Bulletin 26, 545 (1975).
+[8] I. I. Boradjiev and N. V. Vitanov, Power narrowing in
+coherent atomic excitation by smoothly shaped pulsed
+fields, Optics Communications 288, 91 (2013).
+[9] I. S. Mihov and N. V. Vitanov, Defying conventional
+wisdom in spectroscopy: Power narrowing on IBM
+quantum, Physical Review Letters 132, 020802 (2024),
+arXiv:2308.14187 [quant-ph].
+[10] N. F. Ramsey, A molecular beam resonance method with
+separated oscillating fields, Phys. Rev. 78, 695 (1950).
+[11] J. W. Pollock, V. I. Yudin, M. Shuker, M. Y. Basalaev,
+A. V. Taichenachev, X. Liu, J. Kitching, and E. A. Donley, ac stark shifts of dark resonances probed with ramsey
+spectroscopy, Phys. Rev. A 98, 053424 (2018).
+[12] A. Rotem, T. Gefen, S. Oviedo-Casado, J. Prior,
+S. Schmitt, Y. Burak, L. McGuiness, F. Jelezko, and
+A. Retzker, Limits on spectral resolution measurements
+by quantum probes, Phys. Rev. Lett. 122, 060503 (2019).
+[13] T. Gefen, A. Rotem, and A. Retzker, Overcoming resolution limits with quantum sensing, Nature Communications 10, 4992 (2019).
+[14] Q. Cao, G. T. Genov, Y. Chu, J. Cai, Y. Liu, A. Retzker,
+and F. Jelezko, Overcoming frequency resolution limits
+using a solid-state spin quantum sensor, Physical Review
+Letters 135, 10.1103/llfg-s4rr (2025).
+[15] T. Gefen, M. Khodas, L. P. McGuinness, F. Jelezko,
+and A. Retzker, Quantum spectroscopy of single spins
+assisted by a classical clock (2016), arXiv:1612.07225
+[quant-ph].
+[16] J. Bylander, S. Gustavsson, F. Yan, F. Yoshihara,
+K. Harrabi, G. Fitch, D. G. Cory, Y. Nakamura, J.-S.
+Tsai, and W. D. Oliver, Noise spectroscopy through dy-
+
+6
+namical decoupling with a superconducting flux qubit,
+Nature Physics 7, 565 (2011), arXiv:1101.4707 [condmat.supr-con].
+[17] J. T. Iosue, P. Titum, T. Lin, C. Lau, and L. M. Norris,
+Superresolution in quantum noise spectroscopy via filter
+design (2026), arXiv:2602.11275 [quant-ph].
+[18] R. Blume-Kohout, J. K. Gamble, E. Nielsen,
+K. Rudinger, J. Mizrahi, K. Fortier, and P. Maunz,
+Demonstration of qubit operations below a rigorous fault
+tolerance threshold with gate set tomography, Nature
+Communications 8, 14485 (2017).
+[19] N. Vitanov, B. Shore, L. Yatsenko, K. Böhmer, T. Halfmann, T. Rickes, and K. Bergmann, Power broadening
+revisited: theory and experiment, Optics Communications 199, 117 (2001).
+[20] T. Halfmann, T. Rickes, N. Vitanov, and K. Bergmann,
+Lineshapes in coherent two-photon excitation, Optics
+Communications 220, 353 (2003).
+[21] G. S. Vasilev and N. V. Vitanov, Coherent excitation of
+a two-state system by a gaussian field, Phys. Rev. A 70,
+053407 (2004).
+[22] P. R. Berman, L. Yan, K.-H. Chiam, and R. Sung,
+Nonadiabatic transitions in a two-level quantum system:
+Pulse-shape dependence of the transition probability for
+a two-level atom driven by a pulsed radiation field, Phys.
+Rev. A 57, 79 (1998).
+[23] N. Rosen and C. Zener, Double stern-gerlach experiment and related collision phenomena, Phys. Rev. 40,
+502 (1932).
+
+[24] C. W. S. Conover, Effects of pulse shape on strongly
+driven two-level systems, Physical Review A 84, 063416
+(2011).
+[25] I. I. Boradjiev and N. V. Vitanov, Control of qubits by
+shaped pulses of finite duration, Physical Review A 88,
+013402 (2013).
+[26] I. S. Mihov and N. V. Vitanov, Pulse-shape effects
+in qubit dynamics demonstrated on an IBM quantum computer, Physical Review A 108, 042604 (2023),
+arXiv:2301.10004 [quant-ph].
+[27] I. S. Mihov and N. V. Vitanov, Qubit dynamics driven by
+smooth pulses of finite duration (2024), arXiv:2404.12236
+[quant-ph].
+[28] T. Gorin, T. Prosen, T. H. Seligman, and M. Žnidarič,
+Dynamics of loschmidt echoes and fidelity decay, Physics
+Reports 435, 33–156 (2006).
+[29] A. Peres, Stability of quantum motion in chaotic and
+regular systems, Phys. Rev. A 30, 1610 (1984).
+[30] See Supplemental Material at [URL will be inserted by
+publisher] for the experimental setup, coherence-limit
+and adiabatic-basis derivations, pulse-cutoff analysis, and
+additional high-amplitude data.
+[31] Quantum Machines, OPX1000 front end modules: Microwave FEM, https://docs.quantum-machines.co/
+latest/docs/Guides/opx1000_fems/ (2026), accessed
+19 July 2026.
+[32] Quantum Machines, Demodulation and measurement,
+https://docs.quantum-machines.co/latest/docs/
+Guides/demod/ (2026), accessed 19 July 2026.
+
+

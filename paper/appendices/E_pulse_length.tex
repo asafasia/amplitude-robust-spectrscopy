@@ -1,9 +1,37 @@
-\section{Pulse Length}
+\section{Pulse-Duration Dependence}
 \label{sec:pulse-length}
 
-The pulse duration imposes an additional constraint on spectroscopic resolution, as the spectral width of the drive in the frequency domain scales inversely with the pulse length. Figure 8 presents a numerical calculation of the extracted linewidth obtained using a square pulse, showing that for short pulse durations (  $\leq 20~\mu s$), the measured spectroscopic linewidth is dominantly limited by Fourier broadening rather than decoherence.
+A finite interrogation time introduces Fourier broadening, while decoherence
+sets the long-duration floor.  For a square pulse, the central spectral lobe
+narrows approximately as $1/L$ at short duration.  Once $L$ is comparable to
+the transverse coherence time, extending the pulse yields progressively less
+improvement and the linewidth approaches the Bloch-equation scale in
+Eq.~\eqref{eq:t2-limited-angular-linewidth}.  The precise crossover depends on
+the pulse envelope and on the linewidth estimator; it is therefore obtained
+from the complete simulated response rather than from an order-unity rule.
 
-In contrast, for pulse durations exceeding approximately 20 $\mu s$, the echo-based pulse sequence approaches the decoherence-limited regime, yielding spectroscopy with an $\mathcal{O}(1)$ agreement with the $T_2$-limited linewidth.
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{figures/length_scan.png}
+    \caption{Numerical square-pulse linewidth, normalized to the coherence
+    scale $T_2^{-1}$, as a function of pulse duration.  Short pulses follow
+    the Fourier-limited trend, whereas long pulses approach a
+    decoherence-limited plateau.}
+    \label{fig:square-pulse-length-scan}
+\end{figure}
 
-For longer pulse durations, an additional effect emerges: the off-resonant background signal gradually decays while the resonance feature itself remains approximately constant. This results in the formation of a characteristic narrow peak nested within the broader echo-induced dip, reflecting the onset of adiabatic state evolution in the vicinity of the resonance.
+For the echo-root-Lorentzian sequence, changing $L$ can also alter the
+endpoint amplitude unless $\tau$ and $c$ are controlled independently.
+Relaxation over long pulses reduces contrast and changes the off-resonant
+background even when the central feature continues to narrow.  Consequently,
+the useful duration is chosen by considering linewidth and contrast together.
 
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{figures/spectroscopy_length_comparison.png}
+    \caption{Numerical echo-root-Lorentzian response for the pulse durations
+    indicated in the panels.  Increasing the duration initially narrows the
+    resonance; for durations comparable to the relaxation and coherence
+    times, dissipation changes the baseline and reduces the usable contrast.}
+    \label{fig:echo-pulse-length-comparison}
+\end{figure}

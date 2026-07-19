@@ -1,0 +1,55 @@
+{
+  "output_stem": "08_echo_lorentzian_cutoff_sweep",
+  "t2_s": 6.855588134130561e-06,
+  "quality_screen": {
+    "minimum_fit_r_squared": 0.6,
+    "fit_abs_amplitude_range": [
+      0.05,
+      1.0
+    ],
+    "minimum_fwhm_frequency_bins": 2.0,
+    "maximum_fwhm_fraction_of_sweep_span": 0.5,
+    "fit_center_required_inside_sweep": true
+  },
+  "map_metrics": {
+    "resolution": "[1/(pi*T2)]/FWHM",
+    "signal_weighted_resolution": "fit_abs_amplitude * [1/(pi*T2)]/FWHM",
+    "color_normalization": "logarithmic",
+    "color_limits": [
+      0.1,
+      1.0
+    ]
+  },
+  "campaigns": [
+    {
+      "key": "broad_survey",
+      "source_directory": "/Users/asafsolonnikov/Developer/data_opx1000/cutoff_amp_fwhm_map/20260712_171809_single_cutoff_full",
+      "source_results": "/Users/asafsolonnikov/Developer/data_opx1000/cutoff_amp_fwhm_map/20260712_171809_single_cutoff_full/cutoff_amp_fwhm_map_fit_results.csv",
+      "run_started_at": "2026-07-12T17:18:09.947968+03:00",
+      "run_finished_at": "2026-07-12T18:48:35.052801+03:00",
+      "shots_per_point": 60,
+      "frequency_span_mhz": 5.0,
+      "frequency_step_mhz": 0.005,
+      "cutoff_count": 20,
+      "amplitude_count": 25,
+      "fit_count": 500,
+      "accepted_fit_count": 84,
+      "accepted_fit_fraction": 0.168
+    },
+    {
+      "key": "focused_sweep",
+      "source_directory": "/Users/asafsolonnikov/Developer/data_opx1000/echo_lorentzian_cutoff_sweep/medium_cutoff/20260711_mid_001_to_01_10cutoffs_10mhz_400freq/domain_10mhz",
+      "source_results": "/Users/asafsolonnikov/Developer/data_opx1000/echo_lorentzian_cutoff_sweep/medium_cutoff/20260711_mid_001_to_01_10cutoffs_10mhz_400freq/domain_10mhz/cutoff_sweep_fit_results.csv",
+      "run_started_at": "2026-07-11T14:30:30.312569+03:00",
+      "run_finished_at": "2026-07-11T18:00:20.462800+03:00",
+      "shots_per_point": 100,
+      "frequency_span_mhz": 10.0,
+      "frequency_step_mhz": 0.02506265664160401,
+      "cutoff_count": 10,
+      "amplitude_count": 200,
+      "fit_count": 2000,
+      "accepted_fit_count": 1004,
+      "accepted_fit_fraction": 0.502
+    }
+  ]
+}
