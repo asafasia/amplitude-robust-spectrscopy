@@ -19,6 +19,25 @@ linewidth scale of interest.  Thus the cutoff cannot be assessed from $c$
 alone: it must be considered together with the peak drive and the desired
 resolution.
 
+The Bloch-equation reference gives the dimensionless endpoint saturation
+parameter
+\begin{equation}
+    s_c=\Omega_c^2T_1T_2.
+    \label{eq:cutoff-saturation}
+\end{equation}
+Keeping the endpoint contribution in the weak-saturation regime requires
+\begin{equation}
+    s_c\ll1
+    \quad\Longleftrightarrow\quad
+    \Omega_c\ll\frac{1}{\sqrt{T_1T_2}}
+    \quad\Longleftrightarrow\quad
+    c\ll\frac{1}{\Omega_0\sqrt{T_1T_2}}.
+    \label{eq:cutoff-inequality}
+\end{equation}
+The inequality therefore bounds the endpoint amplitude from above.  It is a
+perturbative design criterion, not a claim that the cutoff artifact has the
+steady-state Lorentzian lineshape.
+
 We therefore measured the cutoff dependence over two complementary q1
 echo--root--Lorentzian campaigns.  The broad survey spans $c=0.002$--$0.99$
 with 25 peak-amplitude settings, while the focused sweep resolves
@@ -28,10 +47,12 @@ $T_2=6.856~\mu\mathrm{s}$.  Figure~\ref{fig:echo-lorentzian-cutoff-sweep}
 reports the dimensionless reciprocal-linewidth metric
 \begin{equation}
     \mathcal{R}
-    = \frac{1/(\pi T_2)}{\mathrm{FWHM}},
+    = \frac{\Gamma_{f,T_2}}{\Gamma_f}
+    = \frac{1/(\pi T_2)}{\Gamma_f},
     \label{eq:cutoff-resolution-metric}
 \end{equation}
-for which $\mathcal{R}=1$ is the $T_2$-limited linewidth and
+where every linewidth is a cyclic-frequency FWHM in hertz.  Thus
+$\mathcal{R}=1$ is the $T_2$-limited linewidth and
 $\mathcal{R}<1$ denotes a broader feature.  We also show the
 signal-weighted metric $|A_{\mathrm{fit}}|\mathcal{R}$, which suppresses
 narrow fits with negligible contrast.  These are linewidth-based scores, not

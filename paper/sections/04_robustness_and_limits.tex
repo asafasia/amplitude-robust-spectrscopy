@@ -1,9 +1,13 @@
 \begin{figure}
     \centering
-    \includegraphics[width=1\linewidth]{figures/spectroscopy_fwhm_snr_vs_amplitude_vs_cutoff_2x2.png}
+    \includegraphics[width=1\linewidth]{../figures/paper/spectroscopy_fwhm_snr_vs_amplitude_vs_cutoff_2x2.png}
     \caption{
     Numerical simulation of spectroscopy scans using root-Lorentzian $L^{1/2}$ and echo-root-Lorentzian $L^{(1/2)}_{\text{echo}}$ drives with a pulse duration of $50~\mu\mathrm{s}$.
-    (a),(b) Line width $\Delta_{1/2}$ and the linewidth-to-signal ratio $\Delta_{1/2}/A_{\mathrm{peak}}$ obtained using the root-Lorentzian pulse $L^{(1/2)}$ as a function of peak Rabi frequency $\Omega_0$ and temporal cutoff.
+    (a),(b) Cyclic-frequency FWHM $\Gamma_f$, normalized by the
+    coherence-limited FWHM $\Gamma_{f,T_2}=1/(\pi T_2)$, and the corresponding
+    contrast-weighted width $\Gamma_f/(A_{\mathrm{peak}}\Gamma_{f,T_2})$
+    obtained using the root-Lorentzian pulse $L^{(1/2)}$ as a function of peak
+    angular Rabi frequency $\Omega_0$ and temporal cutoff.
     (c),(d) Corresponding results for the echo-root-Lorentzian pulse $L_{\mathrm{echo}}^{(1/2)}$.
     While $L^{(1/2)}$ pulse exhibits extended regions of narrow linewidth, the associated linewidth-to-signal ratio displays strong oscillatory behavior, making it difficult to identify robust operating parameters for high-resolution spectroscopy. In contrast, the echo  variant $L_{\mathrm{echo}}^{(1/2)}$ yields both reduced linewidth and a broad parameter region in which the resolution--signal trade-off remains favorable, enabling stable narrowband spectroscopy.
     }
@@ -21,6 +25,6 @@ This constitutes an additional advantage of the echo protocol. While both consta
 
 Second, the use of formally infinite-support pulses necessitates the introduction of a cutoff parameter, as discussed previously. Consequently, the relevant parameter space is effectively three-dimensional: pulse duration, drive amplitude, and cutoff level.
 
-Motivated by the stability observed at fixed pulse duration, we restrict the analysis to constant-length pulses and examine the remaining two parameters. In Fig. 4 we simulate both the root-Lorentzian pulse and its echo-modified counterpart. We extract the full width at half maximum (FWHM) via fitting (as in Fig. 3) and evaluate the normalized metric given by the linewidth divided by the peak signal amplitude. We use this quantity as a heuristic resolution--signal metric; a direct Fisher-information or Cramér--Rao analysis would additionally require the measurement-noise model and the full frequency dependence of the response.
+Motivated by the stability observed at fixed pulse duration, we restrict the analysis to constant-length pulses and examine the remaining two parameters. In Fig.~\ref{fig:cutoff-parameter-map} we simulate both the root-Lorentzian pulse and its echo-modified counterpart. We extract the cyclic-frequency full width at half maximum $\Gamma_f$ via fitting and evaluate $\Gamma_f/(A_{\mathrm{peak}}\Gamma_{f,T_2})$. We use this quantity as a heuristic resolution--signal metric; a direct Fisher-information or Cramér--Rao analysis would additionally require the measurement-noise model and the full frequency dependence of the response.
 
 The results reveal that the root Lorentzian pulse achieves narrow linewidths across a relatively large region of parameter space. However, its performance is not uniform and exhibits oscillatory structure for the chosen pulse duration. In contrast, the echo-root Lorentzian pulse produces even narrower linewidths while maintaining a significantly broader and more uniform high-resolution region. Although the optimal region may appear small at first glance, the logarithmic scale of the parameter axes should be noted. More importantly, the high-resolution region forms a robust and contiguous “island,” indicating strong parameter insensitivity. This robustness makes the echo protocol substantially more stable against parameter variations and therefore highly advantageous for practical spectroscopy.

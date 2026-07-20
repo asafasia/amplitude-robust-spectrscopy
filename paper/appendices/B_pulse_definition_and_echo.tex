@@ -64,3 +64,41 @@ cancellation is incomplete and a narrow detuning-dependent response remains.
 Equation~\eqref{eq:resonant-echo-cancellation} is exact only for a symmetric,
 unitary two-level pulse.  Relaxation, dephasing, phase or amplitude imbalance,
 and finite waveform bandwidth prevent exact cancellation in the experiment.
+
+\subsection{Numerical illustration of the echo mechanism}
+
+Figure~\ref{fig:echo-mechanism-simulation} shows the numerical qubit-state
+evolution for the root-Lorentzian pulse and its echo variant.  At resonance,
+the drive produces coherent evolution during the first half of the echo pulse.
+The $\pi$ phase inversion reverses this evolution during the second half, so
+the ideal symmetric sequence returns the qubit to its initial state.  In the
+open-system simulation the return is incomplete because relaxation and
+dephasing act throughout the pulse, consistent with the limitations of
+Eq.~\eqref{eq:resonant-echo-cancellation}.
+
+For nonzero detuning, the $\Delta\sigma_z$ term does not reverse at the pulse
+midpoint and does not commute with the driven evolution.  The two pulse halves
+therefore fail to cancel, leaving a detuning-dependent final population.  The
+contrast between the resonant return and the off-resonant response produces
+the central depletion feature used to identify the qubit transition.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{figures/2d_spectroscopy_simulation.png}
+    \caption{Numerical illustration of the echo-cancellation mechanism.
+    (a) Final excited-state population versus detuning $\Delta/2\pi$ for a
+    root-Lorentzian pulse.  (b) Corresponding response for the
+    echo-root-Lorentzian pulse $L^{(1/2)}_{\mathrm{echo}}$.
+    (c,d) Full excited-state evolution versus time and detuning for the two
+    protocols.  The pulse duration is $30~\mu\mathrm{s}$ and the relative
+    endpoint amplitude is $5\times10^{-4}$.  The ordinary root-Lorentzian
+    pulse produces a resonant peak, whereas the phase inversion in the echo
+    pulse reverses the resonant evolution and produces a central dip.  At
+    nonzero detuning the two halves do not cancel, leaving the off-resonant
+    population that forms the spectroscopic response.  These archived arrays
+    use the historical coherence parameters documented in
+    Sec.~\ref{sec:numerical-model}, rather than the later measurement-linked
+    values.}
+    \label{fig:echo-mechanism-simulation}
+\end{figure}
+\FloatBarrier

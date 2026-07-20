@@ -17,8 +17,19 @@ Define
     \qquad
     \vartheta(t)=\frac{1}{2}\operatorname{atan2}[\Omega(t),\Delta].
 \end{equation}
-The instantaneous eigenvalues are $\pm\hbar\epsilon/2$.  In the corresponding
-adiabatic basis, with phases chosen consistently across the pulse,
+Both $\epsilon$ and $\dot{\vartheta}$ have units of inverse seconds, whereas
+$\vartheta$ is dimensionless.  The instantaneous eigenvalues are
+$E_\mp=\mp\hbar\epsilon/2$.  Taking the instantaneous eigenvectors as the
+columns of
+\begin{equation}
+    R(t)=
+    \begin{bmatrix}
+        \cos\vartheta & \sin\vartheta\\
+        -\sin\vartheta & \cos\vartheta
+    \end{bmatrix},
+\end{equation}
+the transformed Hamiltonian is
+$H_a=R^{\mathsf T}HR-i\hbar R^{\mathsf T}\dot R$.  Therefore
 \begin{equation}
     \frac{H_a(t)}{\hbar}
     =
@@ -32,9 +43,11 @@ adiabatic basis, with phases chosen consistently across the pulse,
     {2(\Delta^2+\Omega^2)}.
     \label{eq:adiabatic-hamiltonian}
 \end{equation}
-Adiabatic following requires~\cite{boradjiev_power_2013}
+The nonadiabatic coupling is $|\dot{\vartheta}|$, while the instantaneous
+angular-frequency gap is $\epsilon$.  Adiabatic following therefore
+requires~\cite{boradjiev_power_2013}
 \begin{equation}
-    2|\dot{\vartheta}|\ll\epsilon.
+    |\dot{\vartheta}|\ll\epsilon.
     \label{eq:adiabatic-condition}
 \end{equation}
 Replacing the inequality by equality provides the local crossover estimate
@@ -42,23 +55,31 @@ Replacing the inequality by equality provides the local crossover estimate
     \sqrt{\Delta_b^2+\Omega^2(t_0)}
     =
     \frac{|\Delta_b\dot{\Omega}(t_0)|}
-    {\Delta_b^2+\Omega^2(t_0)},
+    {2[\Delta_b^2+\Omega^2(t_0)]},
     \label{eq:adiabatic-boundary}
 \end{equation}
 where $t_0$ is the time at which the nonadiabatic coupling is largest for the
 detuning under consideration.  This is a scaling criterion, not an exact
 linewidth formula.
 
-For an untruncated generalized Lorentzian tail with exponent $n>1/2$, the
-usual adiabatic estimate gives
+This smooth-basis construction applies separately to each half of the echo
+pulse; the imposed phase jump at $t=0$ is a control discontinuity and is not
+represented by $\dot\vartheta$ in this local adiabatic estimate.
+
+For $L^{(n)}(t)\sim|t|^{-2n}$, the inverse-power-tail derivation of
+Boradjiev and Vitanov requires $2n>1$.  For an untruncated generalized
+Lorentzian with $n>1/2$, it gives
 \begin{equation}
     \Delta_b\tau
     \propto
     (\Omega_0\tau)^{-1/(2n-1)}.
     \label{eq:generalized-lorentzian-scaling}
 \end{equation}
-The root-Lorentzian case $n=1/2$ is marginal and lies outside the domain of
-Eq.~\eqref{eq:generalized-lorentzian-scaling}; substituting $n=1/2$ into that
-power law is therefore invalid.  The linewidth of the finite, echo-modulated
-root-Lorentzian pulse is evaluated numerically and experimentally in this
-work.
+As $n\to1/2^+$, the exponent $1/(2n-1)$ diverges, indicating the strongest
+power-narrowing trend within the asymptotic family.  The exact
+root-Lorentzian case $n=1/2$ is nevertheless marginal and lies outside the
+domain of Eq.~\eqref{eq:generalized-lorentzian-scaling}; substituting
+$n=1/2$ into that power law is invalid.  In particular, the singularity does
+not imply zero FWHM.  The finite pulse length, nonzero endpoint amplitude,
+decoherence, and echo phase inversion set the observed $\Gamma_f$, which is
+evaluated from the complete simulated and experimental response in this work.

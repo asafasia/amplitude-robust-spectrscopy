@@ -1,16 +1,68 @@
-\section{Experimental Sampling and Linewidth Extraction}
+\section{Experimental--Simulation Comparison}
 \label{sec:data-analysis}
 
 The amplitude-robustness data set was acquired on qubit q1 using active reset
 and state-discriminated readout.  Each point contains 40 repetitions.  The
 detuning axis spans $-0.5$ to $+0.5~\mathrm{MHz}$ in $1~\mathrm{kHz}$ steps,
 and the data comprise 100 fixed-amplitude slices.  The pulse record contains a
-dimensionless cutoff-control setting of $0.005$.  Because this control value
-is not necessarily identical to the physical endpoint-to-peak ratio, the
-latter is reconstructed from the emitted waveform when matching simulation
-and experiment.
+root--Lorentzian edge-to-peak ratio $c=0.005$, a pulse length
+$L=10~\mu\mathrm{s}$, and an unscaled peak output amplitude of $0.2$.  The
+peak Rabi frequency is reconstructed from the saved q1 square-pulse
+calibration, including this peak output amplitude; the resulting experimental
+range is $0$ to $15.32~\mathrm{MHz}$.
 
-Each fixed-amplitude trace is analyzed independently.  We discard 40 points
+For the matched comparisons in
+Figs.~\ref{fig:amplitude-robustness-2d}--\ref{fig:amplitude-resolution-metrics},
+we integrate the two-level Lindblad model of
+Eq.~\eqref{eq:numerical-master-equation} on the complete experimental
+detuning and calibrated peak-Rabi grids.  The calculation uses the recorded
+echo--root--Lorentzian pulse parameters $L=10~\mu\mathrm{s}$ and $c=0.005$
+together with the measurement-linked values
+$T_1=\MeasuredTOne~\mu\mathrm{s}$ and
+$T_\phi=\EffectiveTPhi~\mu\mathrm{s}$.  No affine readout calibration or
+fitted frequency offset is applied.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{../figures/paper/03_amplitude_robustness_2d.pdf}
+    \caption{Complete amplitude--detuning sweeps for the q1
+    echo--root--Lorentzian sequence.  (a) Measured excited-state probability
+    from 40 repetitions per point.  (b) Parameter-matched two-level Lindblad
+    simulation on the identical calibrated peak-Rabi and detuning grids.  The
+    two panels use the same probability color scale.  Both show the narrow
+    resonance-centered cancellation channel, while the deterministic model
+    is smoother and predicts a higher off-resonant excitation probability at
+    intermediate and high drive.  The paired black-edged white dashed lines at
+    $\Delta/2\pi=\pm\Gamma_{T_2}/2=\pm21.75~\mathrm{kHz}$ enclose the
+    conservative $T_2$-limited FWHM, $\Gamma_{T_2}=43.5~\mathrm{kHz}$.}
+    \label{fig:amplitude-robustness-2d}
+\end{figure}
+\FloatBarrier
+
+Figure~\ref{fig:amplitude-robustness-linecuts} resolves this comparison at
+three representative amplitudes spanning the accepted operating range.  The
+central dip and its drive-dependent broadening are reproduced by the model.
+The remaining disagreement is primarily in the off-resonant background and
+side-lobe structure, and therefore appears most directly in the extracted
+contrast rather than in the central linewidth.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{../figures/paper/03_amplitude_robustness_linecuts.pdf}
+    \caption{Measured (colored markers) and simulated (black curves)
+    fixed-amplitude spectra at calibrated peak Rabi frequencies
+    $\Omega_0/2\pi=2.011$, $4.951$, and $8.973~\mathrm{MHz}$.  The vertical
+    dotted line denotes zero detuning.  For visual clarity, every fourth
+    measured detuning point is displayed; all 1001 points enter the linewidth
+    analysis.  The simulation uses the parameters of
+    Fig.~\ref{fig:amplitude-robustness-2d} without a readout rescaling or
+    fitted frequency shift.}
+    \label{fig:amplitude-robustness-linecuts}
+\end{figure}
+\FloatBarrier
+
+To quantify the comparison across the complete sweep, each fixed-amplitude
+trace is analyzed independently.  We discard 40 points
 from each frequency edge and apply a Gaussian filter with a standard deviation
 of one sample to suppress single-bin noise.  The remaining data are fit to the
 operational dip estimator
@@ -27,6 +79,33 @@ where $A$ is the contrast, $\Delta_0$ is the fitted center, and
 The Gaussian is an operational, consistent linewidth estimator; it is not a
 claim that the complete physical response is exactly Gaussian.
 
+We normalize the fitted linewidth to the conservative measurement-linked
+coherence reference
+\begin{equation}
+    \Gamma_{T_2}
+    =\frac{1}{\pi T_{2,\mathrm{eff}}}
+    =\EffectiveCoherenceFwhm~\mathrm{kHz},
+    \qquad T_{2,\mathrm{eff}}=\EffectiveTTwo~\mu\mathrm{s}.
+\end{equation}
+The corresponding dimensionless linewidth, normalized resolution, and
+contrast-weighted resolution are
+\begin{equation}
+    W=\frac{\Gamma_{\mathrm{FWHM}}}{\Gamma_{T_2}},
+    \qquad
+    R=\frac{\Gamma_{T_2}}{\Gamma_{\mathrm{FWHM}}},
+    \qquad
+    Q=A R.
+    \label{eq:normalized-resolution-metrics}
+\end{equation}
+Thus, $W=1$ and $R=1$ denote the coherence-reference linewidth and its
+reciprocal resolution, respectively.  The metric $Q$ additionally penalizes
+a narrow feature when its measured dip contrast is small.
+
+The simulated traces are smoothed, fit, normalized, and quality-gated by
+exactly the same procedure as the experimental traces.  Because this is a
+deterministic model curve, its local least-squares uncertainties are not
+displayed as sampling-error bars.
+
 Fits are accepted only when all parameters and covariance-derived
 uncertainties are finite, $A\ge0.02$,
 $\Gamma_{\mathrm{FWHM}}\le0.12~\mathrm{MHz}$, and
@@ -35,5 +114,84 @@ one standard deviation from the fit covariance matrix.  Of the 100 amplitude
 slices, 62 pass these numerical gates.  Thirty are rejected as too broad,
 seven have centers outside the accepted window, and one fails both the
 contrast and center gates.  Rejected or failed fits remain missing values;
-they are never replaced by zero linewidth or zero uncertainty.  The reference
-frequency offset for the center plot is $0~\mathrm{MHz}$.
+they are never replaced by zero linewidth or zero uncertainty.  Of the 100
+matched simulation slices, 54 pass the same gates; 41 are too broad, four have
+contrast below threshold, and the zero-drive slice fails both the contrast and
+center gates.
+
+For direct visual comparison with the constant-drive reference below, we use
+the same operational threshold $Q\geq0.10$.  On the sampled matched-simulation
+grid this selects $\Omega_0/2\pi=2.475$--$8.973~\mathrm{MHz}$; the maximum
+simulated value, $Q=0.219$, occurs at $6.034~\mathrm{MHz}$.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{../figures/paper/03_amplitude_robustness.pdf}
+    \caption{Amplitude dependence of the measured q1 echo--root--Lorentzian
+    response (colored markers) and the parameter-matched two-level Lindblad
+    simulation (same-colored curves).  The experimental markers are circles,
+    squares, triangles, and diamonds in panels (a)--(d), respectively.
+    (a) Fitted FWHM in units of the conservative coherence
+    reference $\Gamma_{T_2}$.  (b) Normalized resolution
+    $R=\Gamma_{T_2}/\Gamma_{\mathrm{FWHM}}$.  (c) Fitted dip contrast $A$.
+    (d) Contrast-weighted resolution $Q=A R$.  Experimental vertical error
+    bars are propagated from the fit covariance matrix; panel (d) includes the fitted
+    contrast--width covariance.  Gray crosses along the lower edge mark
+    experimental amplitude slices rejected by the stated quality gates and
+    are not plotted as zero-valued measurements.  Simulation slices that fail
+    the same gates appear as gaps in the corresponding colored curves.  As in
+    Fig.~\ref{fig:constant-pulse-resolution-metrics}, the gray band marks the
+    matched-simulation interval with $Q\geq0.10$; the dotted vertical line and
+    circular curve markers identify the maximum simulated $Q$.  The dashed
+    horizontal line in panel (d) is the same $Q=0.10$ operational threshold.}
+    \label{fig:amplitude-resolution-metrics}
+\end{figure}
+\FloatBarrier
+
+\subsection{Constant-pulse reference window}
+
+For comparison, we use the analytic steady-state Torrey constant-drive tool
+employed by the IPS FWHM plots.  With saturation parameter
+$s=\Omega_0^2 T_1T_2$, the power-broadened linewidth and population contrast
+are
+\begin{equation}
+    W \equiv \frac{\Gamma_{\mathrm{FWHM}}}{\Gamma_{T_2}}
+      = \sqrt{1+s},
+    \qquad
+    A = \frac{s}{2(1+s)}.
+\end{equation}
+Here $T_1=\MeasuredTOne~\mu\mathrm{s}$ and
+$T_2=\EffectiveTTwo~\mu\mathrm{s}$, consistent with the normalization used
+above.  We also report the normalized resolution $R=1/W$ and the
+contrast-weighted resolution $Q=AR$ over the displayed constant-drive range
+$\Omega_0/2\pi=10^{-3}$--$10^{0}~\mathrm{MHz}$.  A logarithmic amplitude axis
+resolves the low-drive trade-off while retaining the power-broadened regime.
+
+Figure~\ref{fig:constant-pulse-resolution-metrics} exposes the expected
+trade-off: contrast rises toward its saturation value while power broadening
+reduces resolution.  In the low-drive limit, $W\rightarrow1$, so the FWHM
+approaches the $T_2$-limited value
+$\Gamma_{T_2}=1/(\pi T_2)=43.5~\mathrm{kHz}$.  Using $Q\geq0.10$ as an operational visualization
+threshold gives one interval,
+$\Omega_0/2\pi=0.0045$--$0.0385~\mathrm{MHz}$.  The analytic maximum occurs at
+$\Omega_0/2\pi=0.0116~\mathrm{MHz}$, where $W=1.732$, $R=0.577$,
+$A=0.333$, and $Q=0.192$.  The threshold is used only to highlight the small
+amplitude window that preserves both signal and resolution; it is not a
+universal physical boundary.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{../figures/paper/03_constant_pulse_metrics.pdf}
+    \caption{Analytic steady-state Torrey metrics for a constant drive.
+    (a) FWHM in units of
+    $\Gamma_{T_2}$; the curve explicitly approaches $W=1$ in the low-drive
+    limit.  (b) Normalized resolution
+    $R=\Gamma_{T_2}/\Gamma_{\mathrm{FWHM}}$.  (c) Peak population contrast $A$.
+    (d) Contrast-weighted resolution $Q=A R$.  The shaded vertical band marks
+    the interval $Q\geq0.10$, and the dotted vertical line and circular markers
+    identify the maximum of $Q$.  Dashed horizontal lines indicate the $T_2$
+    reference in panels (a) and (b) and the operational $Q$ threshold in
+    panel (d).  The constant-drive amplitude is shown on a logarithmic axis.}
+    \label{fig:constant-pulse-resolution-metrics}
+\end{figure}
+\FloatBarrier

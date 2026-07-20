@@ -2,9 +2,10 @@
 \label{sec:t2-limit}
 
 For comparison with the shaped-pulse protocol, we first summarize the
-steady-state response of a continuously driven two-level system.  We use the
-Bloch-vector convention $w=\rho_{00}-\rho_{11}$, so that the excited-state
-population is $P_e=(1-w)/2$.  Solving the optical Bloch equations for a drive
+steady-state response of a continuously driven two-level system.  We define
+$w\equiv\rho_{00}-\rho_{11}$, with $\lvert0\rangle$ the ground state and
+$\lvert1\rangle$ the excited state.  Hence $P_e=\rho_{11}=(1-w)/2$; no Pauli
+matrix sign convention is left implicit.  Solving the optical Bloch equations for a drive
 with angular Rabi frequency $\Omega_0$, angular detuning $\Delta$, relaxation
 time $T_1$, and transverse coherence time $T_2$ gives~\cite{PhysRev.70.460}
 \begin{equation}
@@ -13,38 +14,60 @@ time $T_1$, and transverse coherence time $T_2$ gives~\cite{PhysRev.70.460}
     \frac{1+\Delta^2T_2^2}
     {1+\Delta^2T_2^2+\Omega_0^2T_1T_2},
     \qquad
-    P_{e,\mathrm{ss}}=\frac{1-w_{\mathrm{ss}}}{2}.
+    P_{e,\mathrm{ss}}(\Delta)
+    =\frac{1}{2}
+    \frac{s}{1+s+\Delta^2T_2^2},
+    \quad s\equiv\Omega_0^2T_1T_2.
     \label{eq:bloch-steady-state}
 \end{equation}
 This expression assumes a pulse long enough to approach steady state.  It is a
 reference result for conventional saturation spectroscopy, rather than a
 closed-form description of the finite echo pulse.
 
-The full width at half maximum of $P_{e,\mathrm{ss}}(\Delta)$ is
+At resonance, $P_{e,\mathrm{ss}}(0)=s/[2(1+s)]$, which approaches the
+saturated value $1/2$ only for $s\gg1$.  The positive half-maximum detuning is
+the angular-frequency HWHM
 \begin{equation}
-    \Gamma_{\mathrm{FWHM}}
+    \Delta_{\mathrm{HWHM}}
+    =\frac{1}{T_2}\sqrt{1+s}.
+    \label{eq:bloch-hwhm}
+\end{equation}
+The angular-frequency FWHM is therefore
+\begin{equation}
+    \Gamma_\omega
+    \equiv 2\Delta_{\mathrm{HWHM}}
     =
     \frac{2}{T_2}
-    \sqrt{1+\Omega_0^2T_1T_2}.
+    \sqrt{1+s}.
     \label{eq:bloch-fwhm}
 \end{equation}
-All frequencies in Eqs.~\eqref{eq:bloch-steady-state} and
-\eqref{eq:bloch-fwhm} are angular frequencies.  The corresponding linewidth
-in hertz is $\Gamma_{\mathrm{FWHM}}/(2\pi)$.
-
-It is useful to introduce the saturation parameter
-$s=\Omega_0^2T_1T_2$.  In the weak-drive limit $s\ll1$,
+The corresponding cyclic-frequency FWHM plotted in the Letter is
 \begin{equation}
-    \Gamma_{\mathrm{FWHM}}\longrightarrow \frac{2}{T_2},
+    \Gamma_f\equiv\frac{\Gamma_\omega}{2\pi}
+    =\frac{1}{\pi T_2}\sqrt{1+s}.
+    \label{eq:bloch-fwhm-hz}
+\end{equation}
+Thus $\Delta_{\mathrm{HWHM}}$, $\Gamma_\omega$, and $\Gamma_f$ are distinct
+quantities and are not denoted by a common symbol.
+
+In the weak-drive limit $s\ll1$,
+\begin{equation}
+    \Gamma_{\omega,T_2}=\frac{2}{T_2},
+    \qquad
+    \Gamma_{f,T_2}=\frac{1}{\pi T_2},
     \label{eq:t2-limited-angular-linewidth}
 \end{equation}
-which is the coherence-limited angular-frequency linewidth.  In the
-strong-drive limit $s\gg1$,
+which are the same coherence-limited FWHM expressed in angular frequency and
+hertz, respectively.  In the strong-drive limit $s\gg1$,
 \begin{equation}
-    \Gamma_{\mathrm{FWHM}}
+    \Gamma_\omega
     \longrightarrow
     2\Omega_0\sqrt{\frac{T_1}{T_2}},
+    \qquad
+    \Gamma_f
+    \longrightarrow
+    2f_R\sqrt{\frac{T_1}{T_2}},
     \label{eq:power-broadened-linewidth}
 \end{equation}
-showing the familiar linear power broadening.  These limits are governed by
-$s$, not by comparing $\Omega_0$ with a detuning-dependent quantity.
+where $f_R=\Omega_0/(2\pi)$.  These limits are governed by $s$, not by
+comparing $\Omega_0$ with an ambiguously defined linewidth.

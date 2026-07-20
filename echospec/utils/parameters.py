@@ -60,7 +60,7 @@ class Parameters:
 
     @property
     def T2_limit(self) -> float:
-        """Calculate the T2 limit based on T1."""
+        """Return the coherence-limited cyclic-frequency FWHM, 1/(pi*T2)."""
         return 1 / self.T2/np.pi
 
     @property
