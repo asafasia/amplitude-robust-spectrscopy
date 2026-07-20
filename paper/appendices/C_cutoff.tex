@@ -86,3 +86,38 @@ interval.
     \label{fig:echo-lorentzian-cutoff-sweep}
 \end{figure}
 \FloatBarrier
+
+\subsection{Simulated cutoff--amplitude operating map}
+
+The finite-duration pulse is specified by its duration, peak drive amplitude,
+and cutoff level.  To isolate the latter two parameters, we fix the pulse
+duration at $50~\mu\mathrm{s}$ and simulate the root-Lorentzian and
+echo-root-Lorentzian protocols over matched amplitude--cutoff grids.  For each
+simulated spectrum, we extract the cyclic-frequency FWHM $\Gamma_f$ and the
+contrast-weighted width
+$\Gamma_f/(A_{\mathrm{peak}}\Gamma_{f,T_2})$.  This is a heuristic
+resolution--signal metric; a direct Fisher-information or Cram\'er--Rao
+analysis would additionally require a measurement-noise model and the full
+frequency dependence of the response.
+
+Figure~\ref{fig:cutoff-parameter-map} shows that the root-Lorentzian pulse
+contains extended narrow-linewidth regions, but its useful operating structure
+is strongly oscillatory.  The echo protocol instead produces a broader,
+contiguous region in which both the linewidth and the resolution--signal
+trade-off remain favorable.  The logarithmic parameter axes should be kept in
+mind when comparing the apparent area of these regions.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.72\textwidth]{../figures/paper/spectroscopy_fwhm_snr_vs_amplitude_vs_cutoff_2x2.png}
+    \caption{Numerical cutoff--amplitude maps for root-Lorentzian $L^{(1/2)}$
+    and echo-root-Lorentzian $L^{(1/2)}_{\mathrm{echo}}$ pulses of duration
+    $50~\mu\mathrm{s}$.  (a,c) Normalized cyclic-frequency FWHM
+    $\Gamma_f/\Gamma_{f,T_2}$ for the root and echo protocols, respectively;
+    (b,d) corresponding contrast-weighted widths
+    $\Gamma_f/(A_{\mathrm{peak}}\Gamma_{f,T_2})$.  The ordinary root-Lorentzian
+    response is strongly oscillatory, whereas the echo variant retains a
+    broader contiguous region with a favorable resolution--signal trade-off.}
+    \label{fig:cutoff-parameter-map}
+\end{figure}
+\FloatBarrier

@@ -1,16 +1,13 @@
 \begin{figure*}[t]
-    \begin{minipage}[t]{0.48\textwidth}
-    \vspace{0pt}
     \centering
-    \includegraphics[width=\linewidth]{../figures/paper/02_central_spectroscopy.pdf}
+    \includegraphics[width=0.90\textwidth]{../figures/paper/02_central_spectroscopy.pdf}
     \caption{
-Numerical spectroscopy at two frequency scales for $20~\mu\mathrm{s}$ pulses.  The rows show the constant, root-Lorentzian, and echo-root-Lorentzian protocols from top to bottom; the shaped pulses use relative endpoint amplitude $c=0.002$.  The left column spans $50~\mathrm{MHz}$ ($-25$ to $+25~\mathrm{MHz}$), while the right column spans $1~\mathrm{MHz}$ ($-0.5$ to $+0.5~\mathrm{MHz}$).  All six panels use the same coherence parameters, peak-Rabi grid, and probability scale.  The comparison exposes conventional power broadening for the constant pulse, amplitude-dependent coherent structure for the ordinary root-Lorentzian pulse, and the narrow resonance-centered depletion feature preserved by the echo phase inversion.
+Numerical spectroscopy at two frequency scales for $20~\mu\mathrm{s}$ pulses.  The upper row shows the broad $50~\mathrm{MHz}$ domain ($-25$ to $+25~\mathrm{MHz}$), and the lower row shows the narrow $1~\mathrm{MHz}$ domain ($-0.5$ to $+0.5~\mathrm{MHz}$).  From left to right, the columns show the constant, root-Lorentzian, and echo-root-Lorentzian protocols; the shaped pulses use relative endpoint amplitude $c=0.002$.  All six panels use the same coherence parameters, peak-Rabi grid, and probability scale.  The comparison exposes conventional power broadening for the constant pulse, amplitude-dependent coherent structure for the ordinary root-Lorentzian pulse, and the narrow resonance-centered depletion feature preserved by the echo phase inversion.
     }
     \label{fig:robust-echo-spectroscopy}
-    \end{minipage}
-    \hfill
-    \begin{minipage}[t]{0.48\textwidth}
-    \vspace{0pt}
+\end{figure*}
+
+\begin{figure}[t]
     \centering
     \includegraphics[width=\linewidth]{../figures/paper/03_lorentzian_echo_slices.pdf}
     \caption{
@@ -25,8 +22,7 @@ Numerical spectroscopy at two frequency scales for $20~\mu\mathrm{s}$ pulses.  T
     detuning.
     }
     \label{fig:lorentzian-echo-slices}
-    \end{minipage}
-\end{figure*}
+\end{figure}
 
 Precise determination of the qubit transition frequency is crucial for implementing high-fidelity quantum gates. The drive frequency must coincide with the qubit resonance, as detuning directly reduces gate fidelity. A rigorous metric for quantifying such calibration errors is the diamond norm, which captures deviations in the implemented quantum operation from the ideal one. Minimizing these detuning-induced errors is essential to meet the fault-tolerance thresholds required for scalable quantum computation. \cite{diamond}
 
