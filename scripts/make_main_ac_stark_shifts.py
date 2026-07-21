@@ -20,7 +20,12 @@ from echospec.figures import FigureVariant, apply_figure_style, save_figure
 from echospec.simulation.qutrit import simulate_qutrit_map
 
 RABI_MHZ = np.linspace(0.0, 60.0, 31)
-CENTER_DETUNING_MHZ = np.linspace(-10.0, 10.0, 401)
+# A sub-kilohertz central grid is required to resolve the shaped-pulse centers
+# over the experimental 0--15.32 MHz sweep.  The former 50-kHz grid made the
+# weak-drive extrema numerically ill-defined and forced a 20-MHz plotting cut.
+CENTER_DETUNING_MHZ = np.linspace(-0.25, 0.25, 1001)
+FEATURE_HALF_WINDOW_MHZ = 0.12
+EXPERIMENTAL_RABI_MAX_MHZ = 15.316126673091269
 SHAPED_DURATION_US = 10.0
 T1_US = 51.24
 T_PHI_US = 7.87
@@ -33,15 +38,16 @@ LORENTZIAN_COLOR = "#00838f"
 ECHO_COLOR = "#6a1b9a"
 
 
-def gaussian_peak(
+def gaussian_feature(
     detuning_mhz: np.ndarray,
     offset: float,
     amplitude: float,
     center_mhz: float,
     sigma_mhz: float,
+    polarity: float,
 ) -> np.ndarray:
-    """Smooth envelope used to locate the central root-Lorentzian ridge."""
-    return offset + amplitude * np.exp(
+    """Smooth peak or dip used to locate a central shaped-pulse feature."""
+    return offset + polarity * amplitude * np.exp(
         -0.5 * ((detuning_mhz - center_mhz) / sigma_mhz) ** 2
     )
 
@@ -66,12 +72,9 @@ def dressed_resonance_center_mhz(rabi_mhz: np.ndarray) -> np.ndarray:
 def shaped_feature_centers(*, echo: bool, minimum: bool) -> np.ndarray:
     """Extract a central feature position for one shaped protocol.
 
-    The ordinary root-Lorentzian trace contains coherent sub-fringes, so a
-    bounded scalar maximizer can jump between local peaks.  Its center is
-    instead obtained from a Gaussian fit to the central spectral envelope,
-    matching the center estimator used for the measured amplitude sweep.  The
-    echo-root trace has a unique central depletion and retains spline-refined
-    minimum extraction.
+    Both protocols are fit on a fine central-frequency grid.  Using the same
+    smooth local estimator for the peak and dip prevents a scalar optimizer
+    from jumping to neighboring coherent fringes at weak drive.
     """
     result = simulate_qutrit_map(
         duration_us=SHAPED_DURATION_US,
@@ -87,41 +90,36 @@ def shaped_feature_centers(*, echo: bool, minimum: bool) -> np.ndarray:
     )
     excitation = result.excited + result.second_excited
     centers = np.zeros_like(RABI_MHZ)
-    central = np.abs(CENTER_DETUNING_MHZ) <= 0.5
+    central = np.abs(CENTER_DETUNING_MHZ) <= FEATURE_HALF_WINDOW_MHZ
     x = CENTER_DETUNING_MHZ[central]
     step = float(np.median(np.diff(x)))
+    polarity = -1.0 if minimum else 1.0
     for index, row in enumerate(excitation):
         if index == 0:
             continue
-        if not minimum:
-            y = row[central]
-            edge_count = max(3, x.size // 5)
-            offset0 = float(np.median(np.r_[y[:edge_count], y[-edge_count:]]))
-            amplitude0 = max(float(y.max()) - offset0, 1e-3)
-            try:
-                values, _ = curve_fit(
-                    gaussian_peak,
-                    x,
-                    y,
-                    p0=[offset0, amplitude0, 0.0, 0.12],
-                    bounds=(
-                        [-0.2, 0.0, -0.2, step / 2.0],
-                        [1.2, 1.2, 0.2, 0.5],
-                    ),
-                    maxfev=20_000,
-                )
-            except (RuntimeError, ValueError):
-                centers[index] = np.nan
-            else:
-                centers[index] = values[2]
-            continue
-        spline = CubicSpline(CENTER_DETUNING_MHZ, row)
-        centers[index] = minimize_scalar(
-            lambda value, curve=spline: float(curve(value)),
-            bounds=(-0.5, 0.5),
-            method="bounded",
-            options={"xatol": 1e-9},
-        ).x
+        y = row[central]
+        edge_count = max(5, x.size // 8)
+        offset0 = float(np.median(np.r_[y[:edge_count], y[-edge_count:]]))
+        extremum_index = int(np.argmin(y) if minimum else np.argmax(y))
+        amplitude0 = max(polarity * (float(y[extremum_index]) - offset0), 1e-8)
+        try:
+            values, _ = curve_fit(
+                lambda detuning, offset, amplitude, center, sigma: gaussian_feature(
+                    detuning, offset, amplitude, center, sigma, polarity
+                ),
+                x,
+                y,
+                p0=[offset0, amplitude0, float(x[extremum_index]), 0.04],
+                bounds=(
+                    [-0.2, 0.0, -FEATURE_HALF_WINDOW_MHZ, step],
+                    [1.2, 1.2, FEATURE_HALF_WINDOW_MHZ, FEATURE_HALF_WINDOW_MHZ],
+                ),
+                maxfev=50_000,
+            )
+        except (RuntimeError, ValueError):
+            centers[index] = np.nan
+        else:
+            centers[index] = values[2]
     return centers
 
 
@@ -131,7 +129,6 @@ def main() -> None:
     dressed_center = dressed_resonance_center_mhz(RABI_MHZ)
     root_center = shaped_feature_centers(echo=False, minimum=False)
     echo_center = shaped_feature_centers(echo=True, minimum=True)
-    stable_shaped = RABI_MHZ >= 20.0
 
     figure, axis = plt.subplots(figsize=(3.35, 3.35), constrained_layout=True)
     axis.plot(
@@ -143,22 +140,29 @@ def main() -> None:
         label=r"constant: dressed $f_{01}$",
     )
     root_line, = axis.plot(
-        RABI_MHZ[stable_shaped],
-        root_center[stable_shaped],
+        RABI_MHZ,
+        root_center,
         "s-",
         color=LORENTZIAN_COLOR,
         ms=2.8,
         label="root: fitted center",
     )
     echo_line, = axis.plot(
-        RABI_MHZ[stable_shaped],
-        echo_center[stable_shaped],
+        RABI_MHZ,
+        echo_center,
         "^-",
         color=ECHO_COLOR,
         ms=2.8,
         label="echo-root: minimum",
     )
     axis.axhline(0.0, color="0.5", lw=0.7)
+    axis.axvspan(
+        0.0,
+        EXPERIMENTAL_RABI_MAX_MHZ,
+        color="0.92",
+        zorder=0,
+        label="measured sweep",
+    )
     axis.set_xlabel(r"$\Omega_0/2\pi$ (MHz)")
     axis.set_ylabel(r"$f_{01}$ shift (MHz)")
     axis.set_xlim(-1.0, 61.0)
@@ -167,24 +171,24 @@ def main() -> None:
 
     inset = axis.inset_axes([0.42, 0.39, 0.55, 0.39])
     inset.plot(
-        RABI_MHZ[stable_shaped],
-        1e3 * root_center[stable_shaped],
+        RABI_MHZ,
+        1e3 * root_center,
         "s-",
         color=root_line.get_color(),
         ms=1.8,
     )
     inset.plot(
-        RABI_MHZ[stable_shaped],
-        1e3 * echo_center[stable_shaped],
+        RABI_MHZ,
+        1e3 * echo_center,
         "^-",
         color=echo_line.get_color(),
         ms=1.8,
     )
     inset.axhline(0.0, color="0.5", lw=0.6)
-    inset.set_xlim(20.0, 60.0)
-    inset.set_ylim(-25.0, 25.0)
+    inset.set_xlim(0.0, EXPERIMENTAL_RABI_MAX_MHZ)
+    inset.set_ylim(-5.0, 5.0)
     inset.set_ylabel(r"$f_{01}$ shift (kHz)", fontsize=5.2)
-    inset.set_title("shaped-pulse zoom", fontsize=5.5)
+    inset.set_title("measured-range zoom", fontsize=5.5)
     inset.tick_params(labelsize=4.8)
     inset.grid(alpha=0.2)
 
