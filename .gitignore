@@ -26,6 +26,7 @@ venv/
 
 # Project data and large generated arrays
 /data/
+/amplitude_sweep_spectroscopy_results.npz
 
 # LaTeX build output (keep the final PDF available locally)
 *.aux
