@@ -42,6 +42,10 @@ MAX_FWHM_MHZ = 0.12
 # Independently selected in the matched simulation by Q >= 0.10; see Fig. S8.
 OPERATING_RABI_MIN_MHZ = 2.475
 OPERATING_RABI_MAX_MHZ = 8.973
+ANHARMONICITY_MHZ = -200.0
+SHAPED_DURATION_US = 10.0
+SHAPED_CUTOFF = 0.002
+SHAPED_ORDER = 0.5
 
 
 def dip_gaussian(
@@ -170,7 +174,15 @@ def main() -> None:
     statistics = constant_center_statistics(centers, center_errors)
     residuals_khz = 1e3 * (centers - statistics["mean_mhz"])
 
-    fig, ax = plt.subplots(figsize=(7.0, 3.0), constrained_layout=True)
+    fig, ax = plt.subplots(figsize=(7.2, 3.1), constrained_layout=True)
+    rms_khz = 1e3 * statistics["rms_mhz"]
+    ax.axhspan(
+        -rms_khz,
+        rms_khz,
+        color="0.90",
+        zorder=0,
+        label="Empirical RMS band",
+    )
     ax.errorbar(
         rabi_mhz[accepted],
         residuals_khz,
@@ -184,18 +196,18 @@ def main() -> None:
         label="Experiment",
         zorder=3,
     )
-    ax.axhline(0, color="0.20", lw=0.9, ls="--", label="Constant-center fit")
-    ax.set_xscale("log")
+    ax.axhline(0, color="0.20", lw=0.9, ls="--", label="Weighted mean")
     ax.set_xlabel(r"$\Omega_0/2\pi$ (MHz)")
     ax.set_ylabel(r"$\delta_0-\overline{\delta_0}$ (kHz)")
-    ax.legend(loc="upper right")
+    ax.set_xlim(OPERATING_RABI_MIN_MHZ - 0.15, OPERATING_RABI_MAX_MHZ + 0.15)
+    ax.legend(loc="lower left", ncol=3, fontsize=7.5)
     ax.text(
         0.02,
         0.97,
         "\n".join(
             [
                 rf"$\overline{{\delta_0}}={1e3 * statistics['mean_mhz']:.2f}"
-                rf"\pm{1e3 * statistics['mean_error_mhz']:.2f}\,\mathrm{{kHz}}$",
+                rf"\pm{1e3 * statistics['mean_error_mhz']:.2f}\,\mathrm{{kHz}}$ (fit)",
                 rf"$\mathrm{{RMS}}={1e3 * statistics['rms_mhz']:.2f}\,\mathrm{{kHz}}$",
                 rf"$\max|\delta_0-\overline{{\delta_0}}|="
                 rf"{1e3 * statistics['max_abs_mhz']:.2f}\,\mathrm{{kHz}}$",
@@ -205,12 +217,116 @@ def main() -> None:
         transform=ax.transAxes,
         ha="left",
         va="top",
-        fontsize=8.5,
+        fontsize=8.2,
     )
 
     saved = save_figure(
         fig,
         "03_amplitude_center_stability",
+        variant=FigureVariant.PAPER,
+        formats=("pdf", "png", "svg"),
+        dpi=300,
+    )
+
+    # Main-text comparison: measured center motion and the corresponding
+    # constant-versus-shaped weak-drive AC-Stark scales over the same window.
+    theory_rabi_mhz = np.linspace(
+        OPERATING_RABI_MIN_MHZ, OPERATING_RABI_MAX_MHZ, 400
+    )
+    constant_stark_khz = 1e3 * (
+        -theory_rabi_mhz**2 / (2 * ANHARMONICITY_MHZ)
+    )
+    sigma_us = (SHAPED_DURATION_US / 2) / np.sqrt(
+        SHAPED_CUTOFF ** (-1 / SHAPED_ORDER) - 1
+    )
+    mean_square_envelope = (
+        2
+        * sigma_us
+        / SHAPED_DURATION_US
+        * np.arctan(SHAPED_DURATION_US / (2 * sigma_us))
+    )
+    shaped_stark_khz = mean_square_envelope * constant_stark_khz
+
+    main_fig, (center_ax, stark_ax) = plt.subplots(
+        1, 2, figsize=(7.2, 3.15), constrained_layout=True
+    )
+    center_ax.axhspan(-rms_khz, rms_khz, color="0.90", zorder=0)
+    center_ax.errorbar(
+        rabi_mhz[accepted],
+        residuals_khz,
+        yerr=1e3 * center_errors,
+        fmt="o",
+        ms=3.0,
+        color="#00838f",
+        ecolor="0.58",
+        elinewidth=0.7,
+        capsize=1.3,
+        zorder=3,
+    )
+    center_ax.axhline(0, color="0.20", lw=0.9, ls="--")
+    center_ax.set_xlim(
+        OPERATING_RABI_MIN_MHZ - 0.15, OPERATING_RABI_MAX_MHZ + 0.15
+    )
+    center_ax.set_xlabel(r"$\Omega_0/2\pi$ (MHz)")
+    center_ax.set_ylabel(r"$\delta_0-\overline{\delta_0}$ (kHz)")
+    center_ax.set_title("(a) Measured resonance center", fontsize=8.5)
+    center_ax.text(
+        0.03,
+        0.97,
+        "\n".join(
+            [
+                rf"RMS $={rms_khz:.2f}\,\mathrm{{kHz}}$",
+                rf"max. excursion $={1e3 * statistics['max_abs_mhz']:.2f}"
+                r"\,\mathrm{kHz}$",
+            ]
+        ),
+        transform=center_ax.transAxes,
+        ha="left",
+        va="top",
+        fontsize=7.8,
+    )
+
+    stark_ax.plot(
+        theory_rabi_mhz,
+        constant_stark_khz,
+        color="#d55e00",
+        lw=1.6,
+        label="Constant drive",
+    )
+    stark_ax.plot(
+        theory_rabi_mhz,
+        shaped_stark_khz,
+        color="#0072b2",
+        lw=1.6,
+        label="Shaped-pulse average",
+    )
+    stark_ax.axhline(
+        rms_khz,
+        color="0.35",
+        lw=0.9,
+        ls="--",
+        label="Measured RMS excursion",
+    )
+    stark_ax.axhline(
+        1e3 * statistics["max_abs_mhz"],
+        color="0.35",
+        lw=0.9,
+        ls=":",
+        label="Measured max. excursion",
+    )
+    stark_ax.set_yscale("log")
+    stark_ax.set_xlim(
+        OPERATING_RABI_MIN_MHZ - 0.15, OPERATING_RABI_MAX_MHZ + 0.15
+    )
+    stark_ax.set_xlabel(r"$\Omega_0/2\pi$ (MHz)")
+    stark_ax.set_ylabel("Shift or excursion (kHz)")
+    stark_ax.set_title("(b) AC-Stark shift scale", fontsize=8.5)
+    stark_ax.legend(loc="upper left", fontsize=6.8)
+    stark_ax.grid(which="both", alpha=0.18)
+
+    main_saved = save_figure(
+        main_fig,
+        "04_main_center_ac_stark_comparison",
         variant=FigureVariant.PAPER,
         formats=("pdf", "png", "svg"),
         dpi=300,
@@ -228,6 +344,7 @@ def main() -> None:
     print(f"max |residual| = {1e3 * statistics['max_abs_mhz']:.6f} kHz")
     print(f"reduced chi^2 = {statistics['reduced_chi_squared']:.6f}")
     print("Saved:", ", ".join(str(path) for path in saved))
+    print("Saved:", ", ".join(str(path) for path in main_saved))
 
 
 if __name__ == "__main__":

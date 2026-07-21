@@ -22,7 +22,7 @@ expansion observed over three orders of magnitude in amplitude.  In contrast, th
 resulting in amplitude-dependent linewidth variations that hinder precise
 spectral extraction.
 
-Introducing a $\pi$ phase inversion at the peak of the root-Lorentzian envelope partitions the drive into two sequential segments of opposite phase, such that the corresponding forward and backward evolutions cancel exactly at zero detuning. This echo-like structure suppresses resonant Rabi oscillations while preserving the off-resonant spectral response, producing a sharp depletion feature centered at the qubit transition frequency. In the frequency domain (Fig.~\ref{fig:fig1}), this manifests as a splitting of the spectral response accompanied by a null at resonance, rendering the measured linewidth largely insensitive to drive amplitude. This mechanism can be viewed as a Loschmidt-echo-like evolution, in which reversibility is achieved only on resonance, while detuning or decoherence breaks the cancellation and restores excitation~\cite{Gorin_2006,PhysRevA.30.1610}. Combined with the adiabatic following ensured by the Lorentzian envelope, this interference effect suppresses both power broadening and coherent Rabi oscillations, enabling narrow spectroscopy over a broad range of drive strengths with driven-spectroscopy pulses shorter than $T_1$. This sub-$T_1$ operating regime remains useful as qubit lifetimes increase because square and ordinary root-Lorentzian pulses can still exhibit coherent oscillatory distortions. Numerical state-evolution maps illustrating the resonant cancellation and detuned response are presented in the Supplemental Material~\cite{SupplementalMaterial}.
+Introducing a $\pi$ phase inversion at the peak of the root-Lorentzian envelope partitions the drive into two sequential segments of opposite phase.  For an ideal symmetric unitary two-level pulse, the corresponding forward and backward evolutions cancel exactly at zero detuning; relaxation, dephasing, waveform imbalance, and finite bandwidth make the cancellation incomplete in experiment.  This echo-like structure suppresses resonant Rabi oscillations while preserving the off-resonant spectral response, producing a sharp depletion feature centered at the qubit transition frequency.  The waveform Fourier spectrum in Fig.~\ref{fig:fig1} has a null at zero baseband frequency, consistent with its vanishing signed area, but this linear waveform property is not itself the nonlinear qubit response.  The resonance-centered depletion instead follows from the driven dynamics and is supported by the state-evolution simulations and measurements.  This mechanism can be viewed as a Loschmidt-echo-like evolution, in which ideal reversibility occurs only on resonance, while detuning, decoherence, and experimental imperfections break the cancellation and restore excitation~\cite{Gorin_2006,PhysRevA.30.1610}. Combined with the adiabatic following ensured by the Lorentzian envelope, this interference effect suppresses both power broadening and coherent Rabi oscillations, enabling narrow spectroscopy over a broad range of drive strengths with driven-spectroscopy pulses shorter than $T_1$. This sub-$T_1$ operating regime remains useful as qubit lifetimes increase because square and ordinary root-Lorentzian pulses can still exhibit coherent oscillatory distortions. Numerical state-evolution maps illustrating the resonant cancellation and detuned response are presented in the Supplemental Material~\cite{SupplementalMaterial}.
 
 % Introducing a sign inversion in the root-Lorentzian envelope produces
 % an effective $\pi$ phase shift in the drive, leading to a splitting of the
@@ -39,43 +39,9 @@ Introducing a $\pi$ phase inversion at the peak of the root-Lorentzian envelope 
   
 
 
-% Second, the echo property, implemented via a $\pi$ phase inversion at the peak of the pulse, acts as a coherent refocusing mechanism. Whereas a standard Lorentzian pulse ultimately suffers from power broadening with increasing drive strength, the phase jump reverses the accumulated phase at resonance and splits the spectral response. As a result, a destructive interference condition emerges at the carrier frequency: only at zero detuning does the forward and backward evolution cancel exactly, giving rise to a sharp and amplitude-robust null—a spectroscopic dark state. 
+% Second, the echo property, implemented via a $\pi$ phase inversion at the peak of the pulse, acts as a coherent refocusing mechanism. Whereas a standard Lorentzian pulse ultimately suffers from power broadening with increasing drive strength, the phase jump reverses the accumulated phase at resonance and splits the spectral response. As a result, a destructive interference condition emerges at the carrier frequency: for an ideal symmetric unitary two-level pulse, the forward and backward evolution cancels exactly only at zero detuning, giving rise to a sharp and amplitude-robust null—a spectroscopic dark state. 
 
 % The effectiveness of the echo-type Lorentzian pulse arises from two complementary mechanisms. First, the adiabatic nature of the Lorentzian envelope ensures that over a broad range of drive amplitudes the qubit state follows the instantaneous dressed eigenstate of the driven Hamiltonian. In contrast to square pulses—which introduce abrupt non-adiabatic transitions and induce oscillatory Rabi dynamics—the smooth Lorentzian profile suppresses spectral leakage and mitigates the sidebands typically associated with high-power drives.
-
-\begin{figure*}[t]
-    \centering
-    \begin{minipage}[t]{0.38\textwidth}
-        \vspace{0pt}
-        \centering
-        \includegraphics[width=\linewidth]{../figures/paper/03_lorentzian_echo_slices.pdf}
-    \end{minipage}\hfill
-    \begin{minipage}[t]{0.59\textwidth}
-        \vspace{0pt}
-        \centering
-        \includegraphics[width=\linewidth]{%
-            ../figures/paper/10_simulated_duration_resolution_comparison.pdf}
-    \end{minipage}
-    \caption{Simulated spectra and resolution--contrast performance.
-    (a)--(f) Final excited-state probability $P_e$ versus detuning for
-    $20~\mu\mathrm{s}$ root-Lorentzian (left) and echo-root-Lorentzian (right)
-    pulses with $c=0.002$.  From top to bottom,
-    $\Omega_0/2\pi=2.5$, $10$, and $40~\mathrm{MHz}$.  Solid curves are
-    simulations; markers are deterministic noisy placeholders without
-    uncertainty bars.  (g) FWHM in coherence-limit units
-    $\Gamma_f/\Gamma_{f,T_2}$, (h) normalized resolution
-    $R=\Gamma_{f,T_2}/\Gamma_f$, and (i) contrast-weighted resolution $Q=AR$
-    versus peak Rabi frequency for echo-root-Lorentzian pulses with $L=10$,
-    20, 30, and $40~\mu\mathrm{s}$.  Colored continuous lines are fits to
-    noise-free simulations; colored markers are fits to simulations after
-    adding Gaussian noise with $\sigma_P=0.002$ (seed 4103), included as
-    data-like placeholders rather than measured points.  The red curve is the
-    noise-free constant-drive Torrey result; dashed lines mark
-    $\Gamma_f/\Gamma_{f,T_2}=1$, $R=1$, and $Q=0.10$.  Accepted noisy fits
-    require $A/\sigma_P\geq3$, $\Gamma_f/2\pi\leq0.12~\mathrm{MHz}$, and
-    $|\Delta_c|/2\pi\leq0.05~\mathrm{MHz}$.}
-    \label{fig:simulation-results}
-\end{figure*}
 
 Figure~\ref{fig:simulation-results}(a)--(f) resolves the two-dimensional maps
 into fixed-amplitude spectra.  The three rows compare the same peak Rabi

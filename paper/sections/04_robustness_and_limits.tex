@@ -1,3 +1,25 @@
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\linewidth]{../figures/paper/04_main_center_ac_stark_comparison.pdf}
+    \caption{Direct test of resonance-center robustness against drive
+    amplitude.  (a) Measured q1 center displacement relative to the
+    inverse-variance weighted mean over the independently selected
+    $Q\geq0.10$ operating window.  Vertical bars are one-standard-deviation
+    covariance uncertainties, the dashed line is the weighted mean, and the
+    gray band spans the empirical RMS displacement of
+    $\pm3.02~\mathrm{kHz}$.  The maximum absolute displacement is
+    $7.47~\mathrm{kHz}$; no center-position gate is used.  (b) Weak-drive
+    AC-Stark scales over the same amplitude interval.  The constant-drive curve
+    uses the three-level transmon estimate with
+    $\alpha/(2\pi)=-200~\mathrm{MHz}$; the shaped-pulse curve includes the
+    root-Lorentzian phase-average factor $\langle f^2\rangle_t=0.003138$.
+    Horizontal lines mark the measured RMS and maximum excursions.  The
+    shaped pulse strongly separates peak drive amplitude from the expected
+    Stark displacement, consistent with the absence of a monotonic quadratic
+    shift in panel (a).}
+    \label{fig:main-center-ac-stark}
+\end{figure*}
+
 % An echo-type sequence applied to the root pulse partially mitigates decoherence effects but remains limited by pronounced amplitude-dependent broadening. Conversely, the Lorentzian echo variant demonstrates an amplitude-independent linewidth spanning over three orders of magnitude in drive strength, evidencing remarkable robustness against amplitude-induced dephasing. This insensitivity arises from the adiabatic evolution and the symmetric frequency-splitting intrinsic to the pulse design. The primary limitation lies in the floating offset and amplitude-dependent baseline, resulting in reduced contrast compared to conventional square and Lorentzian drives.
 
 
@@ -27,3 +49,34 @@ three-dimensional design space comprising pulse duration, drive amplitude, and
 cutoff level.  The corresponding cutoff--amplitude simulations and their
 resolution--signal analysis are reported in the Supplemental
 Material~\cite{SupplementalMaterial}.
+
+Amplitude robustness also requires that increasing the drive not displace the
+inferred resonance center.  We therefore fit the measured q1 center
+$\delta_0(\Omega_0)$ over the independently selected matched-simulation
+operating window $Q\geq0.10$, corresponding to
+$\Omega_0/(2\pi)=2.475$--$8.973~\mathrm{MHz}$.  The selection uses finite-fit,
+contrast, and linewidth criteria but deliberately omits the usual center gate,
+so center stability is not enforced circularly.  All 42 slices in this window
+pass the center-independent criteria.
+
+Figure~\ref{fig:main-center-ac-stark}(a) shows the fitted centers relative to
+their inverse-variance weighted mean.  Their empirical RMS displacement is
+$3.02~\mathrm{kHz}$ and their maximum absolute displacement is
+$7.47~\mathrm{kHz}$.  A constant fit gives $\chi_\nu^2=9.94$, so the local
+covariance errors do not provide a complete noise model and the data do not
+establish strict statistical constancy.  Instead, these two empirical values
+bound the practical center excursion, including fitting variation, slow drift,
+and residual finite-pulse effects.
+
+For comparison, the weak-drive three-level AC-Stark shift of a constant drive
+is $\delta f_{01}\simeq-\left(\Omega_0/2\pi\right)^2/
+[2(\alpha/2\pi)]$.  With $\alpha/(2\pi)=-200~\mathrm{MHz}$, it reaches
+$0.20~\mathrm{MHz}$ at the upper edge of the measured window.  For the
+$10~\mu\mathrm{s}$ root-Lorentzian envelope with $c=0.002$, the phase-average
+shift is smaller by $\langle f^2\rangle_t=0.003138$ and reaches only
+$0.63~\mathrm{kHz}$; the echo sign change does not cancel this quadratic term.
+Figure~\ref{fig:main-center-ac-stark}(b) displays this scale separation, while
+the full three-level calculation is given in the Supplemental
+Material~\cite{SupplementalMaterial}.  The measured few-kilohertz variations
+are nonmonotonic and show none of the approximately quadratic, hundreds-of-
+kilohertz displacement expected for a constant drive.

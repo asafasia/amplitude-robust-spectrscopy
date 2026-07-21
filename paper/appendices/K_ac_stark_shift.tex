@@ -133,5 +133,66 @@ counter-rotating Bloch--Siegert shift.
     expands the shaped-pulse shifts to $\pm0.25~\mathrm{MHz}$.}
     \label{fig:ac-stark-f01-zoom}
 \end{figure}
+\FloatBarrier
+
+\subsection{Measured resonance-center stability}
+
+The AC-Stark calculation above predicts a clear separation between the
+instantaneous shift produced by a constant drive and that produced by the
+Lorentzian-derived envelopes.  At the upper edge of the experimentally
+selected operating window,
+$\Omega_0/(2\pi)=8.973~\mathrm{MHz}$, the weak-drive constant-pulse estimate
+from Eq.~\eqref{eq:qutrit-ac-stark-shift} is approximately
+$0.20~\mathrm{MHz}$.  Multiplication by the shaped-pulse factor
+$\langle f^2\rangle_t=0.003138$ reduces the phase-average estimate to
+$0.63~\mathrm{kHz}$.  The wider-range three-level calculation in
+Fig.~\ref{fig:ac-stark-f01-zoom}(c) confirms this separation.  The echo phase
+inversion does not cancel the quadratic Stark term; rather, the small
+time-averaged squared envelope suppresses it, while finite-pulse interference
+determines the experimentally visible central minimum.
+
+We test the corresponding center stability directly in the q1
+amplitude-sweep data used in
+Figs.~\ref{fig:amplitude-robustness-2d}--\ref{fig:amplitude-resolution-metrics}.
+Each amplitude slice is fit with the same Gaussian dip estimator and
+preprocessing described in Sec.~\ref{sec:data-analysis}.  To avoid selecting
+the result being tested, the center-quality mask uses only finite fit
+parameters, contrast $A\geq0.02$, and FWHM
+$\Gamma_f\leq0.12~\mathrm{MHz}$; it does not impose the usual
+$|\delta_0|\leq0.050~\mathrm{MHz}$ center gate.  We then restrict the summary
+to the independently selected matched-simulation operating window
+$\Omega_0/(2\pi)=2.475$--$8.973~\mathrm{MHz}$, defined by $Q\geq0.10$.
+
+The inverse-variance weighted center is
+$\overline{\delta_0}=-0.47\pm0.15~\mathrm{kHz}$, where the stated uncertainty
+uses the fit covariance only.  Relative to this center, the 42 retained
+amplitude slices have an empirical RMS displacement of $3.02~\mathrm{kHz}$
+and a maximum absolute displacement of $7.47~\mathrm{kHz}$.  The constant-fit
+value $\chi_\nu^2=9.94$ shows that the slice-to-slice scatter is larger than the
+local covariance errors; the measurements therefore do not establish strict
+statistical constancy.  Instead, the RMS and maximum excursion quantify the
+practical center stability, including fit variation, slow experimental drift,
+and any residual finite-pulse or AC-Stark contribution.  The observed
+few-kilohertz, nonmonotonic excursions are nevertheless far smaller than the
+approximately $0.20~\mathrm{MHz}$ constant-drive Stark displacement expected
+at the same upper peak Rabi frequency.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.98\textwidth]{../figures/paper/03_amplitude_center_stability.pdf}
+    \caption{Measured resonance-center stability across the independently
+    selected q1 echo--root--Lorentzian operating window.  Points show the
+    fitted center displacement relative to the inverse-variance weighted mean;
+    vertical bars are one-standard-deviation covariance uncertainties.  The
+    dashed line is the weighted mean and the gray band spans the empirical RMS
+    displacement of $\pm3.02~\mathrm{kHz}$.  The maximum absolute displacement
+    is $7.47~\mathrm{kHz}$.  No center-position gate is used to select the
+    displayed points.  Although $\chi_\nu^2=9.94$ rules out interpreting the
+    covariance errors as a complete noise model, the bounded center excursion
+    directly quantifies amplitude robustness and is strongly separated from
+    the constant-drive AC-Stark displacement in
+    Fig.~\ref{fig:ac-stark-f01-zoom}(c).}
+    \label{fig:measured-center-stability}
+\end{figure}
 
 \FloatBarrier
