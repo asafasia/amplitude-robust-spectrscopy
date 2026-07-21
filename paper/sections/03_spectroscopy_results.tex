@@ -43,58 +43,45 @@ Introducing a $\pi$ phase inversion at the peak of the root-Lorentzian envelope 
 
 % The effectiveness of the echo-type Lorentzian pulse arises from two complementary mechanisms. First, the adiabatic nature of the Lorentzian envelope ensures that over a broad range of drive amplitudes the qubit state follows the instantaneous dressed eigenstate of the driven Hamiltonian. In contrast to square pulses—which introduce abrupt non-adiabatic transitions and induce oscillatory Rabi dynamics—the smooth Lorentzian profile suppresses spectral leakage and mitigates the sidebands typically associated with high-power drives.
 
-Figure~\ref{fig:lorentzian-echo-slices} resolves the two-dimensional maps into
-fixed-amplitude spectra.  The three rows compare the same peak Rabi frequencies
-for the ordinary and echo protocols, making the echo-induced central depletion
-and its persistence with increasing drive amplitude explicit.
-
-\begin{figure}
+\begin{figure*}[t]
     \centering
-    \includegraphics[width=\linewidth]{../figures/paper/04_main_resolution_comparison.pdf}
-    \caption{
-    Resolution--contrast comparison for constant, root-Lorentzian, and
-    echo--root--Lorentzian spectroscopy versus peak Rabi frequency $\Omega_0$.
-    (a) Normalized resolution
-    $R=\Gamma_{f,T_2}/\Gamma_f$, where both quantities are FWHM values in
-    hertz and $\Gamma_{f,T_2}=1/(\pi T_{2,\mathrm{eff}})$.  The red curve is the analytic
-    steady-state Torrey result for a constant drive.  The teal curve is the
-    ordinary root-Lorentzian simulation, while purple markers are the measured
-    echo--root--Lorentzian values and the same-colored curve is its
-    parameter-matched two-level Lindblad simulation.  Both shaped-pulse models
-    use the recorded $10~\mu\mathrm{s}$ duration and $c=0.005$.  The dashed line
-    marks the $T_2$-limited reference $R=1$.  Additional model-only points extend
-    the simulations below the first nonzero experimental amplitude, and finite
-    model fits continue above the accepted experimental-fit range; the
-    experimental quality gates are unchanged.
-    (b) Contrast-weighted resolution $Q=A R$.  Here $A$ is the fitted peak
-    contrast for the ordinary root-Lorentzian pulse, the fitted dip contrast
-    for the echo protocol, and the steady-state population contrast for the
-    constant drive.  The dashed line marks the operational threshold
-    $Q=0.10$; circular curve markers identify each protocol's maximum accepted
-    $Q$.
-    Experimental error bars are propagated from the local fit covariance,
-    including the contrast--linewidth covariance in panel (b).
-    }
-    \label{fig:linewidth-amplitude}
-\end{figure}
+    \begin{minipage}[t]{0.38\textwidth}
+        \vspace{0pt}
+        \centering
+        \includegraphics[width=\linewidth]{../figures/paper/03_lorentzian_echo_slices.pdf}
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.59\textwidth}
+        \vspace{0pt}
+        \centering
+        \includegraphics[width=\linewidth]{%
+            ../figures/paper/10_simulated_duration_resolution_comparison.pdf}
+    \end{minipage}
+    \caption{Simulated spectra and resolution--contrast performance.
+    (a)--(f) Final excited-state probability $P_e$ versus detuning for
+    $20~\mu\mathrm{s}$ root-Lorentzian (left) and echo-root-Lorentzian (right)
+    pulses with $c=0.002$.  From top to bottom,
+    $\Omega_0/2\pi=2.5$, $10$, and $40~\mathrm{MHz}$.  Solid curves are
+    simulations; markers are deterministic noisy placeholders without
+    uncertainty bars.  (g) FWHM in coherence-limit units
+    $\Gamma_f/\Gamma_{f,T_2}$, (h) normalized resolution
+    $R=\Gamma_{f,T_2}/\Gamma_f$, and (i) contrast-weighted resolution $Q=AR$
+    versus peak Rabi frequency for echo-root-Lorentzian pulses with $L=10$,
+    20, 30, and $40~\mu\mathrm{s}$.  Colored continuous lines are fits to
+    noise-free simulations; colored markers are fits to simulations after
+    adding Gaussian noise with $\sigma_P=0.002$ (seed 4103), included as
+    data-like placeholders rather than measured points.  The red curve is the
+    noise-free constant-drive Torrey result; dashed lines mark
+    $\Gamma_f/\Gamma_{f,T_2}=1$, $R=1$, and $Q=0.10$.  Accepted noisy fits
+    require $A/\sigma_P\geq3$, $\Gamma_f/2\pi\leq0.12~\mathrm{MHz}$, and
+    $|\Delta_c|/2\pi\leq0.05~\mathrm{MHz}$.}
+    \label{fig:simulation-results}
+\end{figure*}
 
-In Fig.~\ref{fig:linewidth-amplitude}, we plot the reciprocal linewidth as the
-normalized resolution $R=\Gamma_{f,T_2}/\Gamma_f$.  The linewidth
-of the measured echo response is extracted from Gaussian fits.  Although the
-spectral lineshape of a driven two-level system is often expected to follow a
-Lorentzian profile, the interference-based structure of the present protocol
-produces a more complex response.  In this regime, Gaussian fitting provides a
-robust and consistent linewidth estimate within our resolution requirements.
-
-We compare the measured echo--root--Lorentzian metrics from the
-two-dimensional frequency--amplitude sweep with parameter-matched simulations
-of both the ordinary and echo root-Lorentzian pulses.  The constant-drive
-reference is the analytic steady-state Torrey solution evaluated using the
-same measurement-linked $T_1$ and effective $T_2$.  Panel (b) reports $Q=A R$,
-which penalizes a narrow response when its contrast is too small.  The three
-curves therefore expose the useful amplitude window of each protocol directly,
-including the oscillatory operating structure of the ordinary root-Lorentzian
-pulse and the broader high-amplitude window retained by the echo protocol.
+Figure~\ref{fig:simulation-results}(a)--(f) resolves the two-dimensional maps
+into fixed-amplitude spectra.  The three rows compare the same peak Rabi
+frequencies for the ordinary and echo protocols, making the echo-induced
+central depletion and its persistence with increasing drive amplitude
+explicit.
 
 To suppress residual power broadening at large drive amplitudes, the pulse
 envelope must satisfy requirements on its cutoff behavior.  Truncation

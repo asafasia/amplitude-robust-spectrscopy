@@ -1,32 +1,13 @@
+Here, we propose a spectroscopic method for probing the qubit transition frequency using arbitrarily shaped drive pulses, specifically an echo-root-Lorentzian pulse. Previous theoretical work showed that Lorentzian pulses exhibit power narrowing, complementary to the conventional power broadening observed for constant drives, as a consequence of their adiabatic properties~\cite{boradjiev_power_2013}. Power narrowing with powers-of-Lorentzian pulses was subsequently demonstrated experimentally on IBM Quantum, including the cutoff broadening introduced by truncating the pulse wings~\cite{mihov_defying_2024}. In this work, we extend this framework to longer pulse durations approaching the $T_1$ timescale and introduce a $\pi$-phase jump at the pulse peak. The resulting echo property effectively cancels the net pulse area while preserving the adiabatic properties of the drive. This phase inversion reverses the coherent phase accumulation at resonance, suppressing on-resonant excitation while maintaining an off-resonant spectral response across the frequency domain, and thus making resonance distinguishable.
+
 \begin{figure*}[t]
     \centering
     \includegraphics[width=0.90\textwidth]{../figures/paper/02_central_spectroscopy.pdf}
     \caption{
-Numerical spectroscopy at two frequency scales for $20~\mu\mathrm{s}$ pulses.  The upper row shows the broad $50~\mathrm{MHz}$ domain ($-25$ to $+25~\mathrm{MHz}$), and the lower row shows the narrow $1~\mathrm{MHz}$ domain ($-0.5$ to $+0.5~\mathrm{MHz}$).  From left to right, the columns show the constant, root-Lorentzian, and echo-root-Lorentzian protocols; the shaped pulses use relative endpoint amplitude $c=0.002$.  All six panels use the same coherence parameters, peak-Rabi grid, and probability scale.  The comparison exposes conventional power broadening for the constant pulse, amplitude-dependent coherent structure for the ordinary root-Lorentzian pulse, and the narrow resonance-centered depletion feature preserved by the echo phase inversion.
+Three-state transmon simulation at two frequency scales for $20~\mu\mathrm{s}$ pulses.  The color scale is the final $|e\rangle$ population; the $|f\rangle$ population is evolved independently but is not added to $P_e$.  The model uses anharmonicity $\alpha/2\pi=-200~\mathrm{MHz}$.  The upper row shows the broad $50~\mathrm{MHz}$ domain ($-25$ to $+25~\mathrm{MHz}$), and the lower row shows the narrow $1~\mathrm{MHz}$ domain ($-0.5$ to $+0.5~\mathrm{MHz}$).  In the narrow panels, the paired black-edged white dashed lines at $\Delta/(2\pi)=\pm\Gamma_{f,T_2}/2$ enclose the coherence-limited FWHM; no reference line is drawn in the broad panels.  From left to right, the columns show the constant, root-Lorentzian, and echo-root-Lorentzian protocols; the shaped pulses use relative endpoint amplitude $c=0.002$.  All six panels use the same coherence parameters, peak-Rabi grid, and probability scale.  The comparison exposes conventional power broadening for the constant pulse, amplitude-dependent coherent structure for the ordinary root-Lorentzian pulse, and the narrow resonance-centered depletion feature preserved by the echo phase inversion.
     }
     \label{fig:robust-echo-spectroscopy}
 \end{figure*}
-
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=\linewidth]{../figures/paper/03_lorentzian_echo_slices.pdf}
-    \caption{
-    Simulated final excited-state probability $P_e$ versus detuning for
-    $20~\mu\mathrm{s}$ root-Lorentzian (left) and echo-root-Lorentzian (right)
-    pulses with $c=0.002$.  From top to bottom, the matched peak Rabi
-    frequencies are $\Omega_0/2\pi=2.5$, $10$, and $40~\mathrm{MHz}$.
-    The ordinary root-Lorentzian spectra develop amplitude-dependent coherent
-    structure, whereas the echo spectra retain a resonance-centered depletion
-    feature over the same drive range.  All panels use identical coherence
-    parameters, detuning grids, and vertical scales; dashed lines mark zero
-    detuning.
-    }
-    \label{fig:lorentzian-echo-slices}
-\end{figure}
-
-Precise determination of the qubit transition frequency is crucial for implementing high-fidelity quantum gates. The drive frequency must coincide with the qubit resonance, as detuning directly reduces gate fidelity. A rigorous metric for quantifying such calibration errors is the diamond norm, which captures deviations in the implemented quantum operation from the ideal one. Minimizing these detuning-induced errors is essential to meet the fault-tolerance thresholds required for scalable quantum computation. \cite{diamond}
-
-Here, we propose a spectroscopic method for probing the qubit transition frequency using arbitrarily shaped drive pulses, specifically an echo-root-Lorentzian pulse. Previous theoretical work showed that Lorentzian pulses exhibit power narrowing, complementary to the conventional power broadening observed for constant drives, as a consequence of their adiabatic properties~\cite{boradjiev_power_2013}. Power narrowing with powers-of-Lorentzian pulses was subsequently demonstrated experimentally on IBM Quantum, including the cutoff broadening introduced by truncating the pulse wings~\cite{mihov_defying_2024}. In this work, we extend this framework to longer pulse durations approaching the $T_1$ timescale and introduce a $\pi$-phase jump at the pulse peak. The resulting echo property effectively cancels the net pulse area while preserving the adiabatic properties of the drive. This phase inversion reverses the coherent phase accumulation at resonance, suppressing on-resonant excitation while maintaining an off-resonant spectral response across the frequency domain, and thus making resonance distinguishable.
 
 We define the echo-root-Lorentzian drive from the order-$n$ generalized
 Lorentzian envelope as
@@ -40,8 +21,8 @@ L^{(1/2)}_{\mathrm{echo}}(t)
 \end{align}
 where $\tau$ sets the characteristic pulse duration and $n$ controls the
 algebraic decay of the wings.  Throughout the theory, $\Delta$ and $\Omega$
-are angular frequencies.  Plotted axes show the corresponding cyclic
-frequencies $\delta=\Delta/(2\pi)$ and $f_R=\Omega/(2\pi)$.  We denote an
+are angular frequencies.  Plotted axes are labeled $\Delta/(2\pi)$ and
+$\Omega_0/(2\pi)$.  We denote an
 angular-frequency full width at half maximum by $\Gamma_\omega$ and its value
 in hertz by $\Gamma_f=\Gamma_\omega/(2\pi)$.
 

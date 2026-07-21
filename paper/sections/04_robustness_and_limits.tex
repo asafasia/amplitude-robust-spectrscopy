@@ -1,8 +1,24 @@
-% An echo-type sequence applied to the root pulse partially mitigates decoherence effects but remains limited by pronounced amplitude-dependent broadening. Conversely, the Lorentzian echo variant demonstrates an amplitude-independent linewidth spanning over three orders of magnitude in drive strength, evidencing remarkable robustness against amplitude-induced dephasing. This insensitivity arises from the adiabatic evolution and the symmetric frequency-splitting intrinsic to the pulse design. The primary limitation lies in the floating offset and amplitude-dependent baseline, resulting in reduced signal-to-noise ratio compared to conventional square and Lorentzian drives.
+% An echo-type sequence applied to the root pulse partially mitigates decoherence effects but remains limited by pronounced amplitude-dependent broadening. Conversely, the Lorentzian echo variant demonstrates an amplitude-independent linewidth spanning over three orders of magnitude in drive strength, evidencing remarkable robustness against amplitude-induced dephasing. This insensitivity arises from the adiabatic evolution and the symmetric frequency-splitting intrinsic to the pulse design. The primary limitation lies in the floating offset and amplitude-dependent baseline, resulting in reduced contrast compared to conventional square and Lorentzian drives.
 
 
 
 At the core of assessing pulse quality and identifying optimal operating regimes lies the spectral response of the driven qubit. We find that the echo pulse yields spectroscopic features with markedly reduced linewidths over a well-defined region of parameter space. We therefore choose pulse durations shorter than the qubit lifetime $T_1$ but long enough that Fourier broadening does not dominate.
+
+Figure~\ref{fig:simulation-results}(g)--(i) quantifies this duration
+tradeoff at fixed cutoff $c=0.002$.  For each $L$, independent Gaussian noise
+with standard deviation $\sigma_P=0.002$ is added to every simulated
+population sample before fitting.  We retain a fitted feature only when its
+contrast satisfies $A/\sigma_P\geq3$, in addition to the centered-line width
+and position gates.  Consequently, the noisy marker series disappear at low
+drive when the spectroscopic signal is not distinguishable from the imposed
+noise, while the continuous noise-free simulation curves remain visible.
+
+The longer pulses yield larger normalized resolution after the signal becomes
+resolvable, but their contrast-weighted operating windows contract.  In this
+noise model, the 30- and $40~\mu\mathrm{s}$ curves remain below $Q=0.10$,
+whereas the 10- and $20~\mu\mathrm{s}$ pulses retain accepted high-drive
+regions above threshold.  Pulse duration must therefore be selected jointly
+with contrast and experimental noise, rather than by linewidth alone.
 
 This constitutes an additional advantage of the echo protocol. While both constant and simple Lorentzian pulses exhibit coherent Rabi oscillations that persist even for pulse durations comparable to or exceeding $T_1$, the intrinsic $\pi$-phase inversion of the echo pulse suppresses these coherence-induced oscillations. As a result, the spectral response remains smooth and well-behaved, enabling reliable linewidth extraction in regimes where standard and Lorentzian pulses display pronounced oscillatory distortions; see the additional high-amplitude data in the Supplemental Material~\cite{SupplementalMaterial}.
 

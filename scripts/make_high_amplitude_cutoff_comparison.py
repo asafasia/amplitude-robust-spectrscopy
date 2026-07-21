@@ -223,7 +223,7 @@ def main() -> None:
         )
         ax.axvline(0.0, color="white", lw=0.55, ls="--", alpha=0.8)
         ax.set_title(rf"$c={provenance['cutoff']:.3f}$")
-        ax.set_xlabel("Detuning (MHz)")
+        ax.set_xlabel(r"$\Delta/2\pi$ (MHz)")
         ax.text(
             0.03,
             0.97,
@@ -234,11 +234,11 @@ def main() -> None:
             color="white",
             fontweight="bold",
         )
-    axes[0].set_ylabel(r"Peak Rabi frequency $\Omega_0/2\pi$ (MHz)")
+    axes[0].set_ylabel(r"$\Omega_0/2\pi$ (MHz)")
     if mesh is None:
         raise RuntimeError("No scans were plotted")
     colorbar = fig.colorbar(mesh, ax=axes, pad=0.02, aspect=24)
-    colorbar.set_label("Excited-state probability")
+    colorbar.set_label(r"$P_e$")
 
     saved = save_figure(
         fig,

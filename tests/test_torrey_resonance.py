@@ -218,7 +218,7 @@ class TestTorreyResonance(unittest.TestCase):
         labels = [line.get_label() for line in fig.axes[0].lines]
 
         self.assertTrue(result.plot_product)
-        self.assertIn("(1/FWHM) x SNR", labels)
+        self.assertIn("(1/FWHM) × contrast", labels)
         self.assertIsNone(fig.axes[0].get_legend())
         plt.close(fig)
 
@@ -234,7 +234,7 @@ class TestTorreyResonance(unittest.TestCase):
         fwhm_fig = result.plot(include_snr=False, include_product=False)
         self.assertEqual(len(fwhm_fig.axes), 1)
         self.assertNotIn(
-            "SNR",
+            "Contrast",
             [line.get_label() for line in fwhm_fig.axes[0].lines],
         )
         fwhm_ylim = fwhm_fig.axes[0].get_ylim()
@@ -243,7 +243,7 @@ class TestTorreyResonance(unittest.TestCase):
         snr_fig = result.plot(include_snr=True, include_product=False)
         self.assertEqual(len(snr_fig.axes), 2)
         self.assertNotIn(
-            "(1/FWHM) x SNR",
+            "(1/FWHM) × contrast",
             [line.get_label() for line in snr_fig.axes[0].lines],
         )
         snr_ylim = snr_fig.axes[0].get_ylim()
@@ -253,7 +253,7 @@ class TestTorreyResonance(unittest.TestCase):
         product_fig = result.plot(include_snr=True, include_product=True)
         self.assertEqual(len(product_fig.axes), 2)
         self.assertIn(
-            "(1/FWHM) x SNR",
+            "(1/FWHM) × contrast",
             [line.get_label() for line in product_fig.axes[0].lines],
         )
         self.assertEqual(fwhm_ylim, snr_ylim)

@@ -68,7 +68,7 @@ def plot(ax, ws, fwhms, snrs, params: Parameters) -> None:
 
     x = ws / 2 / pi / u.MHz
     y = fwhms / T2_limit / snrs
-    ax.plot(ws / 2 / pi / u.    MHz, fwhms / T2_limit / snrs, label='FWHM/SNR')
+    ax.plot(ws / 2 / pi / u.    MHz, fwhms / T2_limit / snrs, label='FWHM/contrast')
 
     ws_min = x[np.argmin(y)]
     s_min = y[np.argmin(y)]
@@ -77,7 +77,7 @@ def plot(ax, ws, fwhms, snrs, params: Parameters) -> None:
 
     plt.xlabel("Rabi amplitude [MHz]")
     plt.ylabel("FWHM [T2 limit units]")
-    plt.colorbar(scatter, ax=ax, label='SNR', pad=0.04)
+    plt.colorbar(scatter, ax=ax, label='Contrast', pad=0.04)
 
     # ax2 = ax.twinx()
     # ax2.plot(ws / 2 / pi / MHz, sigma,color='r')

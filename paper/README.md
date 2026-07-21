@@ -85,6 +85,17 @@ The script accepts `OPX1000_DATA_DIR`, applies the documented fit-quality
 screen, and writes PDF, PNG, SVG, and a provenance JSON file to
 `figures/paper/`.
 
+The main-text noisy echo-root-Lorentzian resolution and contrast comparison for
+$L=10$, 20, 30, and $40~\mu\mathrm{s}$ is generated with:
+
+```bash
+PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_duration_resolution_comparison.py
+```
+
+It uses fixed cutoff $c=0.002$, adds deterministic observation noise before
+fitting, and writes PDF, PNG, SVG, and compressed source arrays to
+`figures/paper/`.
+
 ## Editing conventions
 
 - Keep one logical section per file.

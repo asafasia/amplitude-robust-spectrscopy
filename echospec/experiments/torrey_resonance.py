@@ -169,14 +169,14 @@ class ResultsTorreyResonance:
             lw=1.8,
             alpha=0.9,
         )
-        ax.set_xlabel("Detuning (MHz)")
+        ax.set_xlabel(r"$\Delta/2\pi$ (MHz)")
         ax.set_ylabel(r"$\langle\sigma_z\rangle$")
         ax.set_ylim(0.0, 1.04)
         ax.spines["top"].set_visible(False)
         ax.spines["right"].set_visible(False)
         ax.grid(True, alpha=0.22)
         ax.legend(
-            title=f"SNR = {self.snr:.4g}",
+            title=f"Contrast = {self.snr:.4g}",
             loc="lower right",
             frameon=True,
             facecolor="white",
@@ -255,7 +255,7 @@ class ResultsTorreyFwhmVsRabi:
         if include_product is None:
             include_product = self.plot_product
         if include_product and not include_snr:
-            raise ValueError("Product plot requires the SNR axis.")
+            raise ValueError("Product plot requires the contrast axis.")
 
         fig, ax = plt.subplots(figsize=(8.8, 4.8))
         rabi_mhz = self.rabi_frequencies_mhz
@@ -275,7 +275,7 @@ class ResultsTorreyFwhmVsRabi:
             lw=1.8,
             label="T2 limit",
         )
-        ax.set_xlabel("Rabi amplitude (MHz)")
+        ax.set_xlabel(r"$\Omega_0/2\pi$ (MHz)")
         ax.set_ylabel("1/FWHM (T2-limit units)")
         ax.tick_params(axis="x", labelsize=17)
         ax.tick_params(axis="y", colors="#1f77b4", labelsize=17)
@@ -294,9 +294,9 @@ class ResultsTorreyFwhmVsRabi:
                 "--",
                 color="#c44e52",
                 lw=2.8,
-                label="SNR",
+                label="Contrast",
             )
-            ax_snr.set_ylabel("SNR")
+            ax_snr.set_ylabel("Contrast")
             ax_snr.tick_params(axis="y", colors="#c44e52", labelsize=17)
             ax_snr.yaxis.label.set_size(19)
             ax_snr.spines["top"].set_visible(False)
@@ -309,7 +309,7 @@ class ResultsTorreyFwhmVsRabi:
                 "-.",
                 color="#2ca02c",
                 lw=2.6,
-                label="(1/FWHM) x SNR",
+                label="(1/FWHM) × contrast",
             )
 
         if self.plot_thresholds:

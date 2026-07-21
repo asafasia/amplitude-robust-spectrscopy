@@ -298,7 +298,7 @@ def main() -> None:
                 ax.set_xlabel(r"Cutoff $c$")
             if column == 0:
                 ax.set_ylabel(
-                    r"Peak Rabi frequency $\Omega_0/2\pi$ (MHz)"
+                    r"$\Omega_0/2\pi$ (MHz)"
                 )
             add_panel_label(ax, f"({chr(ord('a') + panel)})")
             panel += 1

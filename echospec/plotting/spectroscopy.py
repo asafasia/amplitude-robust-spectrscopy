@@ -19,7 +19,7 @@ def plot_spectroscopy(
     fwhm: Optional[float] = None,
     with_fwhm: bool = False,
 ) -> Figure:
-    """Plot 1D spectroscopy (final Z vs detuning)."""
+    """Plot 1D excited-state probability versus detuning."""
 
     det_mhz = detunings / u.pi2 / u.MHz
 
@@ -51,8 +51,8 @@ def plot_spectroscopy(
     ax.axvline(-t2_half, color="gray", ls="--")
 
     ax.axhline(0, color="gray", ls="--", lw=0.8)
-    ax.set_xlabel("Detuning (MHz)")
-    ax.set_ylabel("Final ⟨Z⟩")
+    ax.set_xlabel(r"$\Delta/2\pi$ (MHz)")
+    ax.set_ylabel(r"$P_e$")
     ax.set_title("Spectroscopy")
     ax.legend()
     ax.grid()
@@ -105,11 +105,11 @@ def plot_spectroscopy_2d(
     ax.axvline(-t2_half, color="gray", ls="--")
 
     # ---------- labels ----------
-    ax.set_xlabel("Detuning (MHz)")
-    ax.set_ylabel("Drive amplitude (MHz)")
-    ax.set_title("Spectroscopy (final population)")
+    ax.set_xlabel(r"$\Delta/2\pi$ (MHz)")
+    ax.set_ylabel(r"$\Omega_0/2\pi$ (MHz)")
+    ax.set_title("Spectroscopy")
 
-    fig.colorbar(pcm, ax=ax, label="Final population")
+    fig.colorbar(pcm, ax=ax, label=r"$P_e$")
 
     if with_fwhm or params.T2_limit is not None:
         ax.legend()

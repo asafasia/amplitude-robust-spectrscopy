@@ -191,21 +191,14 @@ def build_figure(duration_us: float) -> tuple[plt.Figure, dict[str, np.ndarray]]
             if row == 0:
                 ax.set_title(rf"$c={cutoff:.3f}$")
             if row == 1:
-                ax.set_xlabel(r"Detuning, $\Delta/2\pi$ (MHz)")
+                ax.set_xlabel(r"$\Delta/2\pi$ (MHz)")
             if column == 0:
-                row_label = (
-                    "Echo-root-Lorentzian"
-                    if protocol == "echo"
-                    else "Root-Lorentzian"
-                )
-                ax.set_ylabel(
-                    row_label + "\n" + r"Peak Rabi rate, $\Omega_0/2\pi$ (MHz)"
-                )
+                ax.set_ylabel(r"$\Omega_0/2\pi$ (MHz)")
 
     if image is None:
         raise RuntimeError("No panels were generated")
     colorbar = fig.colorbar(image, ax=axes, pad=0.015, fraction=0.035)
-    colorbar.set_label(r"Final excited-state probability, $P_e$")
+    colorbar.set_label(r"$P_e$")
     colorbar.ax.tick_params(labelsize=6)
     return fig, maps
 

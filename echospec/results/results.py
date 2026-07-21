@@ -106,7 +106,7 @@ class ResultsSpectroscopy1D(ResultsBase):
         return self.z()[i_detuning]
 
     def _compute_gaussian_fit(self) -> Tuple[float, float]:
-        """Run Gaussian fit once and cache (fwhm, snr)."""
+        """Run the fit once and cache its FWHM and contrast."""
         if self._fit_cache is None:
             fwhm, snr = fwhm_half_depth(
                 x=self.detunings,
@@ -259,7 +259,7 @@ class ResultsSpectroscopy2D:
     @property
     def snr_map(self) -> NDArray[np.floating]:
         """
-        SNR values for each amplitude.
+        Contrast values for each amplitude.
 
         Shape:
             (n_amp,)

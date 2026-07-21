@@ -51,11 +51,11 @@ def main() -> None:
     t2_half = results.spectroscopies[0].params.T2_limit / u.MHz / 2
     ax.axvline(+t2_half, color="white", ls="--", lw=1.4, label="T2 limit")
     ax.axvline(-t2_half, color="white", ls="--", lw=1.4)
-    ax.set_xlabel("Detuning (MHz)")
-    ax.set_ylabel("Rabi amplitude (MHz)")
+    ax.set_xlabel(r"$\Delta/2\pi$ (MHz)")
+    ax.set_ylabel(r"$\Omega_0/2\pi$ (MHz)")
     ax.set_title("2D spectroscopy sweep with fitted FWHM")
     ax.legend(loc="upper right")
-    fig.colorbar(mesh, ax=ax, label="Final population")
+    fig.colorbar(mesh, ax=ax, label=r"$P_e$")
     fig.tight_layout()
     fig.savefig(SWEEP_OUTPUT)
     plt.close(fig)
@@ -78,9 +78,9 @@ def main() -> None:
         )
         ax.grid(True, alpha=0.22)
     for ax in axes[-1]:
-        ax.set_xlabel("Detuning (MHz)")
+        ax.set_xlabel(r"$\Delta/2\pi$ (MHz)")
     for ax in axes[:, 0]:
-        ax.set_ylabel("Final population")
+        ax.set_ylabel(r"$P_e$")
     fig.tight_layout()
     fig.savefig(CUTS_OUTPUT)
     plt.close(fig)

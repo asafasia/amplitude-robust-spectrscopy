@@ -115,7 +115,7 @@ def main() -> None:
         ax_inverse_fwhm.axvspan(left, right, color="#7fc97f", alpha=0.2, zorder=0)
     ax_inverse_fwhm.set_xscale("log")
     ax_inverse_fwhm.set_yscale("log")
-    ax_inverse_fwhm.set_xlabel("Rabi amplitude (MHz)")
+    ax_inverse_fwhm.set_xlabel(r"$\Omega_0/2\pi$ (MHz)")
     ax_inverse_fwhm.set_ylabel("1/FWHM (T2-limit units)")
     ax_inverse_fwhm.tick_params(axis="x", labelsize=17)
     ax_inverse_fwhm.tick_params(axis="y", colors="#1f77b4", labelsize=17)
