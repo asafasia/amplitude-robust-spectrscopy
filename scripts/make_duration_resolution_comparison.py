@@ -102,8 +102,8 @@ def _simulate_echo(duration_us: float) -> np.ndarray:
         omega_rad_s: np.ndarray,
     ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
         return (
-            detuning_rad_s * y_value - x_value / t2_s,
-            -detuning_rad_s * x_value - omega_rad_s * z_value - y_value / t2_s,
+            -detuning_rad_s * y_value - x_value / t2_s,
+            detuning_rad_s * x_value - omega_rad_s * z_value - y_value / t2_s,
             omega_rad_s * y_value + (1.0 - z_value) / t1_s,
         )
 
@@ -488,6 +488,7 @@ def main() -> None:
         data_path,
         durations_us=np.asarray(DURATIONS_US),
         cutoff=CUTOFF,
+        detuning_convention="drive_minus_qubit",
         detuning_mhz=DETUNING_MHZ,
         rabi_mhz=RABI_MHZ,
         t1_us=T1_US,

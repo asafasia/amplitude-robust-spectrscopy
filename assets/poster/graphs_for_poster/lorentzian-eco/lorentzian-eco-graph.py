@@ -53,8 +53,8 @@ for i in range(1, 3):
     axes[i, 1].axhline(y=y[index], linestyle='--', color='b', label='slice')
 
     # axes[i, 1].set_title(f'cutoff = {exp_args["cutoff"] * 100} \%')
-    axes[2, 1].set_xlabel('Detuning [kHz]')
-    axes[2, 0].set_xlabel('Detuning [kHz]')
+    axes[2, 1].set_xlabel(r'Drive detuning $f_d-f_{01}$ [kHz]')
+    axes[2, 0].set_xlabel(r'Drive detuning $f_d-f_{01}$ [kHz]')
 
     axes[1, 1].set_ylabel('Amplitude [MHz]')
     axes[i, 1].linewidth = 5

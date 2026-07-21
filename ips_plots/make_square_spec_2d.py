@@ -87,7 +87,7 @@ def draw_sweep(ax, sweep, vmin, vmax, t2_limit_half_width_mhz=None):
         ax.axvline(-t2_limit_half_width_mhz, color="white", linestyle="--", linewidth=1.1, alpha=0.9, zorder=6)
         ax.axvline(t2_limit_half_width_mhz, color="white", linestyle="--", linewidth=1.1, alpha=0.9, zorder=6)
         ax.axvspan(-t2_limit_half_width_mhz, t2_limit_half_width_mhz, color="white", alpha=0.08, zorder=4)
-    ax.set_xlabel("Detuning (MHz)")
+    ax.set_xlabel(r"Drive detuning $(f_d-f_{01})$ (MHz)")
     ax.set_ylabel("Effective Rabi amplitude (MHz)")
     ax.set_xlim(float(np.min(detuning_mhz)), float(np.max(detuning_mhz)))
     ax.set_ylim(float(np.min(sweep["rabi_amp_mhz"])), float(np.max(sweep["rabi_amp_mhz"])))

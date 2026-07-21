@@ -67,7 +67,7 @@ def plot_cutoff_dashboard(
     ax_map.set(
         title=f"Raw 2D sweep | cutoff = {float(raw.parameters['cutoff']):.4g}",
         xlabel="peak Rabi frequency (MHz)",
-        ylabel="detuning (MHz)",
+        ylabel=r"drive detuning $f_d-f_{01}$ (MHz)",
     )
 
     y = raw.state[:, amplitude_index]
@@ -86,7 +86,7 @@ def plot_cutoff_dashboard(
     width_label = f"{width:.4g} MHz" if np.isfinite(width) else "screened"
     ax_trace.set(
         title=f"OPX1000 fit | Rabi = {raw.rabi_mhz[amplitude_index]:.3g} MHz | FWHM = {width_label}",
-        xlabel="detuning (MHz)",
+        xlabel=r"drive detuning $f_d-f_{01}$ (MHz)",
         ylabel="state",
     )
     ax_trace.legend(fontsize=8)

@@ -65,6 +65,7 @@ def extract_qubit_variables(path, qubit_index=0):
 
 
 def detuning_to_drive_frequency_ghz(detuning_hz, qubit_f01_hz):
+    """Convert conventional drive detuning, ``f_d - f_01``, to GHz."""
     return (qubit_f01_hz + detuning_hz) / 1e9
 
 

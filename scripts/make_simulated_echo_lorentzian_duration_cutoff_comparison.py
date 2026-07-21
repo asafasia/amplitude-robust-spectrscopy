@@ -24,7 +24,7 @@ sys.path.insert(0, str(ROOT))
 from echospec.figures import FigureVariant, apply_figure_style, save_figure
 
 
-DURATIONS_US = (10.0, 20.0, 30.0)
+DURATIONS_US = (5.0, 20.0, 60.0)
 CUTOFFS = (0.010, 0.007, 0.002)
 DETUNING_MHZ = np.linspace(-1.0, 1.0, 101)
 RABI_MHZ = np.linspace(0.0, 50.0, 81)
@@ -49,8 +49,8 @@ def _rhs(
     x, y, z = bloch
     return np.stack(
         (
-            detuning * y - inv_t2 * x,
-            -detuning * x - drive * z - inv_t2 * y,
+            -detuning * y - inv_t2 * x,
+            detuning * x - drive * z - inv_t2 * y,
             drive * y + inv_t1 * (1.0 - z),
         )
     )
@@ -191,7 +191,7 @@ def build_figure(duration_us: float) -> tuple[plt.Figure, dict[str, np.ndarray]]
             if row == 0:
                 ax.set_title(rf"$c={cutoff:.3f}$")
             if row == 1:
-                ax.set_xlabel(r"$\Delta/2\pi$ (MHz)")
+                ax.set_xlabel(r"Drive detuning $(f_d-f_{01})$ (MHz)")
             if column == 0:
                 ax.set_ylabel(r"$\Omega_0/2\pi$ (MHz)")
 
@@ -230,6 +230,7 @@ def main() -> None:
             data_path,
             duration_us=duration_us,
             cutoffs=np.asarray(CUTOFFS),
+            detuning_convention="drive_minus_qubit",
             detuning_mhz=DETUNING_MHZ,
             rabi_mhz=RABI_MHZ,
             t1_us=T1_US,

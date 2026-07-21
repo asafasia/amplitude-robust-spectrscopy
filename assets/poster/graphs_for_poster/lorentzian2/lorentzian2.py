@@ -34,7 +34,7 @@ axes[0, 0].plot(d / 2 / np.pi / 1e6, m[index[0]])
 axes[1, 0].pcolor(d / 2 / np.pi / 1e6, a / 2 / np.pi / MHz, m, cmap='plasma')
 axes[1, 0].axhline(y=a[index[0]] / 2 / np.pi / 1e6, linestyle='--', color='y', label='slice')
 axes[0, 0].set_title(f'pulse length = 10 us', fontsize=12)
-axes[1, 0].set_xlabel('Detuning [MHz]')
+axes[1, 0].set_xlabel(r'Drive detuning $f_d-f_{01}$ [MHz]')
 
 for i in range(1, 3):
     file_path = list_of_files[i - 1]
@@ -52,7 +52,7 @@ for i in range(1, 3):
     axes[1, i].axhline(y=y[index[i]], linestyle='--', color='y', label='slice')
 
     axes[0, i].set_title(f'pulse length = {exp_args["pulse_length"] / 1e3} us', fontsize=12)
-    axes[1, i].set_xlabel('Detuning [MHz]')
+    axes[1, i].set_xlabel(r'Drive detuning $f_d-f_{01}$ [MHz]')
     axes[1, 0].set_ylabel('Drive \nAmplitude [MHz]')
     axes[0, 0].set_ylabel('Excited State \nProbability')
     axes[0, 2].set_xlim([-0.3, 0.3])

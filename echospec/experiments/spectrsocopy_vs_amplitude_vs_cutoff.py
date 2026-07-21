@@ -210,6 +210,7 @@ if __name__ == "__main__":
 
     np.savez(
         "spectroscopy_data_echo.npz",
+        detuning_convention="drive_minus_qubit",
         detunings=detunings,
         amplitudes=amplitudes,
         cutoff_vector=cutoff_vector,

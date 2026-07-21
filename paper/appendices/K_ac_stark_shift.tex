@@ -1,0 +1,137 @@
+\section{Three-Level AC-Stark Shift of the \texorpdfstring{$f_{01}$}{f01} Resonance}
+\label{sec:ac-stark-shift}
+
+We calculate the change of the central $f_{01}$ resonance for a
+$40~\mu\mathrm{s}$ constant square pulse and for $10~\mu\mathrm{s}$
+root-Lorentzian and echo-root-Lorentzian spectroscopy pulses.  All calculations
+use the conventional drive--qubit detuning
+$\Delta=\omega_d-\omega_{01}$.  The simulation retains
+$\{|g\rangle,|e\rangle,|f\rangle\}$, but $|f\rangle$ is used here as the
+virtual transmon level that shifts $f_{01}$; the plotted observable is the
+central excitation response $P_e+P_f$, not the position of the
+$g\leftrightarrow f$ transition.  In this basis, the rotating-frame
+Hamiltonian of Eq.~\eqref{eq:numerical-hamiltonian} is
+\begin{equation}
+    \frac{H(t)}{\hbar}=
+    \begin{pmatrix}
+        0 & \Omega(t)/2 & 0 \\
+        \Omega(t)/2 & -\Delta & \Omega(t)/\sqrt{2} \\
+        0 & \Omega(t)/\sqrt{2} & -2\Delta+\alpha
+    \end{pmatrix},
+    \label{eq:qutrit-ac-stark-hamiltonian}
+\end{equation}
+where $\alpha=\omega_{12}-\omega_{01}<0$.  For a constant drive, virtual
+coupling between $|e\rangle$ and $|f\rangle$ gives the weak-drive result
+\begin{equation}
+    \delta f_{01}^{(\mathrm{const})}
+    \equiv \frac{\Delta_{\mathrm{res}}}{2\pi}
+    \simeq
+    -\frac{(\Omega_0/2\pi)^2}
+    {2(\alpha/2\pi)}.
+    \label{eq:qutrit-ac-stark-shift}
+\end{equation}
+Because $\alpha<0$, the constant-pulse dressed $f_{01}$ resonance moves to
+positive detuning.  The exact values reported below are obtained by
+diagonalizing Eq.~\eqref{eq:qutrit-ac-stark-hamiltonian} at constant
+$\Omega(t)=\Omega_0$ and minimizing the dressed $g$--$e$ gap.
+
+For the shaped pulses, $\Omega(t)=\Omega_0 f(t)$ with the root-Lorentzian
+envelope of Eq.~\eqref{eq:finite-generalized-lorentzian}, order $n=1/2$, and
+endpoint amplitude $c=0.002$.  A useful weak-drive phase-average estimate is
+\begin{equation}
+    \delta f_{01}^{(\mathrm{shape})}
+    \simeq
+    -\frac{(\Omega_0/2\pi)^2}{2(\alpha/2\pi)}
+    \left\langle f^2\right\rangle_t,
+    \qquad
+    \left\langle f^2\right\rangle_t
+    =\frac{2\sigma}{L}\tan^{-1}\!\left(\frac{L}{2\sigma}\right),
+    \label{eq:shaped-ac-stark-average}
+\end{equation}
+where
+$\sigma=(L/2)/\sqrt{c^{-2}-1}=0.010000~\mu\mathrm{s}$ and
+$\langle f^2\rangle_t=0.003138$.  The echo phase inversion changes
+$f(t)\rightarrow-f(t)$ in the second half and therefore does not reverse this
+quadratic Stark term.  Consequently, the root-Lorentzian and
+echo-root-Lorentzian pulses have the same leading phase-average estimate.
+
+The experimentally visible feature of a finite pulse need not coincide with
+Eq.~\eqref{eq:shaped-ac-stark-average}, because the final population also
+contains coherent finite-pulse interference.  We therefore report both
+quantities.  For the ordinary root-Lorentzian pulse, the operational center is
+the local maximum of $P_e+P_f$ within
+$|\Delta|/(2\pi)\leq0.5~\mathrm{MHz}$.  For the echo-root-Lorentzian pulse it
+is the corresponding central minimum.  The spectra are evaluated on a
+$0.05~\mathrm{MHz}$ grid and the extrema are refined with cubic interpolation.
+The central-feature extraction is shown for
+$\Omega_0/(2\pi)\geq20~\mathrm{MHz}$, where the feature has sufficient
+contrast.
+
+\begin{table}[b]
+    \caption{Calculated displacement of the $f_{01}$ resonance or central
+    finite-pulse feature, in MHz.  The shaped phase average is common to the
+    two Lorentzian-derived envelopes.}
+    \label{tab:ac-stark-f01-shifts}
+    \begin{ruledtabular}
+    \begin{tabular}{ccccc}
+        $\Omega_0/(2\pi)$ &
+        \multicolumn{1}{c}{Constant dressed} &
+        \multicolumn{1}{c}{Root maximum} &
+        \multicolumn{1}{c}{Echo-root minimum} &
+        \multicolumn{1}{c}{Shaped phase average} \\
+        \colrule
+        20 & 0.980 & 0.002 & 0.003 & 0.003 \\
+        40 & 3.685 & -0.001 & -0.002 & 0.013 \\
+        60 & 7.605 & 0.079 & -0.013 & 0.028
+    \end{tabular}
+    \end{ruledtabular}
+\end{table}
+
+The small negative position of the echo-root minimum at the largest drive is
+an operational finite-pulse feature position, not a negative instantaneous
+AC-Stark shift.  It results from the interference defining the echo spectrum.
+The phase-average Stark term remains positive for both shaped protocols.
+
+The time-domain maps solve the three-level Lindblad equation with
+$T_1=51.24~\mu\mathrm{s}$, $T_\phi=7.87~\mu\mathrm{s}$, an initial
+$|g\rangle$ state, 31 peak Rabi frequencies from 0 to $60~\mathrm{MHz}$, and
+101 detuning points over the full $100~\mathrm{MHz}$ domain, from
+$-50$ to $50~\mathrm{MHz}$.  Additional 401-point scans resolve the central
+$20~\mathrm{MHz}$ span and the $1~\mathrm{MHz}$ Lorentzian zooms in
+Figs.~\ref{fig:ac-stark-domains} and \ref{fig:ac-stark-f01-zoom}.  The model
+uses the rotating-wave approximation, so it does not include a
+counter-rotating Bloch--Siegert shift.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.98\textwidth]{../figures/paper/11_ac_stark_qutrit_10us.pdf}
+    \caption{Full-domain and central-zoom three-level calculations of the
+    $f_{01}$ response for a
+    $40~\mu\mathrm{s}$ constant pulse and $10~\mu\mathrm{s}$ shaped pulses.
+    (a)--(c) Final excitation $P_e+P_f$ over the full
+    $-50$ to $50~\mathrm{MHz}$ domain for constant, root-Lorentzian, and
+    echo-root-Lorentzian drives.  (d)--(f) Corresponding $20~\mathrm{MHz}$
+    zooms from $-10$ to $10~\mathrm{MHz}$.  The dotted line is the bare
+    $f_{01}$ frequency.  In the zooms, the solid lines show the
+    exact constant-drive dressed center, the root-Lorentzian local maximum,
+    and the echo-root-Lorentzian central minimum, respectively; shaped-pulse
+    centers are omitted below $20~\mathrm{MHz}$ peak Rabi frequency where the
+    local-extremum definition is not robust.}
+    \label{fig:ac-stark-domains}
+\end{figure}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.98\textwidth]{../figures/paper/12_ac_stark_f01_zoom_shift.pdf}
+    \caption{Fine $f_{01}$ comparison for the Lorentzian-derived pulses and
+    all three resonance shifts.  (a),(b) One-megahertz central zooms of the
+    root-Lorentzian and echo-root-Lorentzian final excitation, respectively.
+    The dotted line marks the bare $f_{01}$ frequency and the solid lines mark
+    the extracted maximum or central minimum.  (c) Constant-pulse exact
+    dressed shift, root-Lorentzian maximum, echo-root-Lorentzian central
+    minimum, and the common shaped-pulse phase-average estimate.  The inset
+    expands the shaped-pulse shifts to $\pm0.25~\mathrm{MHz}$.}
+    \label{fig:ac-stark-f01-zoom}
+\end{figure}
+
+\FloatBarrier

@@ -33,7 +33,10 @@ def _rhs(
     Hermiticity supplies the other three density-matrix elements.  The
     Hamiltonian is
 
-    ``H = detuning*n + anharmonicity*n*(n-1)/2 + drive*(a+a.dag())/2``.
+    ``H = -detuning*n + anharmonicity*n*(n-1)/2 + drive*(a+a.dag())/2``,
+    where ``detuning = drive frequency - bare 0-1 frequency``.  This is the
+    conventional spectroscopy sign: a negative transmon anharmonicity places
+    the 0-2 two-photon resonance at negative detuning.
 
     Relaxation uses ``sqrt(1/T1)*a`` and pure dephasing uses
     ``sqrt(2/T_phi)*n``, matching the repository's QuTiP model.
@@ -41,8 +44,8 @@ def _rhs(
     p0, p1, p2, rho01, rho02, rho12 = state
     coupling01 = 0.5 * drive
     coupling12 = drive / np.sqrt(2.0)
-    energy1 = detuning
-    energy2 = 2.0 * detuning + anharmonicity
+    energy1 = -detuning
+    energy2 = -2.0 * detuning + anharmonicity
 
     derivative = np.empty_like(state)
     derivative[0] = -2.0 * coupling01 * rho01.imag + inv_t1 * p1
@@ -151,7 +154,8 @@ def simulate_qutrit_map(
 
     Supplying ``cutoff=None`` selects a constant pulse.  Otherwise the pulse
     is a finite generalized Lorentzian; ``echo=True`` reverses its phase at
-    the midpoint.  Frequencies are cyclic MHz and times are microseconds.
+    the midpoint.  Detuning is ``drive frequency - bare 0-1 frequency``;
+    frequencies are cyclic MHz and times are microseconds.
     """
     if duration_us <= 0:
         raise ValueError("duration_us must be positive")

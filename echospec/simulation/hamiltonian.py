@@ -23,7 +23,7 @@ class Hamiltonian:
 
     def get_hamiltonian(self) -> Any | list[Any]:
         qubit_Hamiltonian = (
-            self.params.detuning * n
+            -self.params.detuning * n
             + (self.params.anharmonicity / 2.0) * n2
         )
 

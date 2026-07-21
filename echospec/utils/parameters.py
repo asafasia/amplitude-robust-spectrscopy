@@ -9,6 +9,12 @@ if TYPE_CHECKING:
 
 @dataclass
 class Parameters:
+    """Simulation settings.
+
+    ``detuning`` is the angular drive detuning ``omega_d - omega_01``.  The
+    rotating-frame number term is consequently ``-detuning * n``.
+    """
+
     qubit_frequency: float = 5 * u.GHz * 2 * u.pi2
     detuning: float = 0 * 2 * u.pi2 * u.MHz
     anharmonicity: float = 200 * u.MHz * 2 * u.pi2

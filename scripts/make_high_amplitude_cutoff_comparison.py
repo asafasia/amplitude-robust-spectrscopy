@@ -223,7 +223,7 @@ def main() -> None:
         )
         ax.axvline(0.0, color="white", lw=0.55, ls="--", alpha=0.8)
         ax.set_title(rf"$c={provenance['cutoff']:.3f}$")
-        ax.set_xlabel(r"$\Delta/2\pi$ (MHz)")
+        ax.set_xlabel(r"Drive detuning $(f_d-f_{01})$ (MHz)")
         ax.text(
             0.03,
             0.97,

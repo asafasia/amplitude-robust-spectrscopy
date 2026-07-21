@@ -150,6 +150,51 @@ simulated value, $Q=0.219$, occurs at $6.034~\mathrm{MHz}$.
 \end{figure}
 \FloatBarrier
 
+The resonance center provides a direct test of amplitude robustness that is
+independent of linewidth broadening.  We evaluate it over the independently
+selected matched-simulation operating window $Q\geq0.10$, corresponding to
+$\Omega_0/(2\pi)=2.475$--$8.973~\mathrm{MHz}$.  To avoid circularly enforcing
+center stability, this analysis retains the finite-uncertainty, contrast, and
+linewidth gates above but does not apply the $|\delta_0|\leq0.050~\mathrm{MHz}$
+center gate.  All 42 measured slices in the operating window pass these
+center-independent quality criteria.
+
+We fit the accepted centers to a constant using inverse-variance weights from
+their covariance-derived one-standard-deviation uncertainties.  The result is
+$\overline{\delta_0}=-0.474\pm0.149~\mathrm{kHz}$, where the quoted uncertainty
+is the formal covariance-only standard error.  The residual statistics are
+\begin{equation}
+    \operatorname{RMS}\!\left[\delta_0-\overline{\delta_0}\right]
+      =3.02~\mathrm{kHz},
+    \qquad
+    \max\left|\delta_0-\overline{\delta_0}\right|
+      =7.47~\mathrm{kHz}.
+    \label{eq:center-stability-statistics}
+\end{equation}
+The constant model has reduced $\chi^2=9.94$, indicating reproducible residual
+structure beyond the local fit uncertainties.  Thus the data do not establish
+an exactly amplitude-independent center; rather, they bound its variation to a
+few kilohertz across a $3.6$-fold drive-amplitude interval.  The RMS variation
+is $0.069\,\Gamma_{f,T_2}$, small compared with the
+$43.5~\mathrm{kHz}$ coherence-reference linewidth.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{../figures/paper/03_amplitude_center_stability.pdf}
+    \caption{Direct amplitude-robustness test from the fitted resonance center.
+    Markers show $\delta_0(\Omega_0)-\overline{\delta_0}$ for the 42 measured
+    slices in the independently selected $Q\geq0.10$ operating window; vertical
+    bars are one-standard-deviation center uncertainties from the Gaussian-fit
+    covariance.  The dashed zero line is the inverse-variance-weighted
+    constant-center fit.  Center itself is not used as a quality gate for this
+    panel.  The residual RMS is $3.02~\mathrm{kHz}$ and the maximum absolute
+    deviation is $7.47~\mathrm{kHz}$; reduced $\chi^2=9.94$ shows that the small
+    residual structure is nevertheless resolved relative to the local fit
+    uncertainties.}
+    \label{fig:amplitude-center-stability}
+\end{figure}
+\FloatBarrier
+
 \subsection{Constant-pulse reference window}
 
 For comparison, we use the analytic steady-state Torrey constant-drive tool

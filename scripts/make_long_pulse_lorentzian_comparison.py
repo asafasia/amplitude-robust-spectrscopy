@@ -179,7 +179,7 @@ def build_figure(data_root: Path) -> plt.Figure:
             if row == 0:
                 ax.set_title(rf"$L={selection.duration_us}\,\mu\mathrm{{s}}$")
             if row == 1:
-                ax.set_xlabel(r"$\Delta/2\pi$ (MHz)")
+                ax.set_xlabel(r"Drive detuning $(f_d-f_{01})$ (MHz)")
             if column == 0:
                 protocol = "Echo-root-Lorentzian" if echo else "Root-Lorentzian"
                 ax.set_ylabel(f"{protocol}\nAmplitude prefactor")

@@ -51,7 +51,7 @@ def main() -> None:
     t2_half = results.spectroscopies[0].params.T2_limit / u.MHz / 2
     ax.axvline(+t2_half, color="white", ls="--", lw=1.4, label="T2 limit")
     ax.axvline(-t2_half, color="white", ls="--", lw=1.4)
-    ax.set_xlabel(r"$\Delta/2\pi$ (MHz)")
+    ax.set_xlabel(r"Drive detuning $(f_d-f_{01})$ (MHz)")
     ax.set_ylabel(r"$\Omega_0/2\pi$ (MHz)")
     ax.set_title("2D spectroscopy sweep with fitted FWHM")
     ax.legend(loc="upper right")
@@ -78,7 +78,7 @@ def main() -> None:
         )
         ax.grid(True, alpha=0.22)
     for ax in axes[-1]:
-        ax.set_xlabel(r"$\Delta/2\pi$ (MHz)")
+        ax.set_xlabel(r"Drive detuning $(f_d-f_{01})$ (MHz)")
     for ax in axes[:, 0]:
         ax.set_ylabel(r"$P_e$")
     fig.tight_layout()

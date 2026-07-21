@@ -96,6 +96,16 @@ It uses fixed cutoff $c=0.002$, adds deterministic observation noise before
 fitting, and writes PDF, PNG, SVG, and compressed source arrays to
 `figures/paper/`.
 
+The fitted-center stability panel for the measured amplitude operating window
+is generated with:
+
+```bash
+PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_amplitude_center_stability.py
+```
+
+It applies the Supplemental Gaussian estimator and center-independent quality
+criteria, then writes PDF, PNG, and SVG versions to `figures/paper/`.
+
 ## Editing conventions
 
 - Keep one logical section per file.

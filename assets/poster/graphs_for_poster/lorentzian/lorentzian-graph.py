@@ -37,7 +37,7 @@ for i in range(3):
 
     c1 = axes[i].pcolormesh(X / MHz, Y, matrix, shading='auto')
     axes[i].set_title(f'cutoff = {exp_args["cutoff"] * 100} \%')
-    axes[i].set_xlabel('Detuning [MHz]')
+    axes[i].set_xlabel(r'Drive detuning $f_d-f_{01}$ [MHz]')
     axes[0].set_ylabel('Amplitude [MHz]')
     axes[i].linewidth = 5
 

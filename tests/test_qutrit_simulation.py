@@ -42,6 +42,23 @@ class TestQutritSimulation(unittest.TestCase):
         self.assertGreaterEqual(float(np.min(result.second_excited)), 0.0)
         self.assertGreater(float(np.max(result.second_excited)), 0.0)
 
+    def test_negative_anharmonicity_places_two_photon_feature_on_left(self):
+        result = simulate_qutrit_map(
+            duration_us=0.1,
+            detuning_mhz=np.asarray([-100.0, 100.0]),
+            rabi_mhz=np.asarray([20.0]),
+            t1_us=50.0,
+            t_phi_us=8.0,
+            anharmonicity_mhz=-200.0,
+            num_steps_per_half=300,
+            cutoff=None,
+        )
+
+        self.assertGreater(
+            float(result.second_excited[0, 0]),
+            100.0 * float(result.second_excited[0, 1]),
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

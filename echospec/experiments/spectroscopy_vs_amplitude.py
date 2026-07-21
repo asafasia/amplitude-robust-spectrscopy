@@ -186,6 +186,7 @@ if __name__ == "__main__":
 
     np.savez(
         "amplitude_sweep_spectroscopy_results.npz",
+        detuning_convention="drive_minus_qubit",
         amplitudes=amplitudes,
         detunings=detunings,
         data=data,

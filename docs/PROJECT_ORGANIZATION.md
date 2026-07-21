@@ -34,6 +34,8 @@ amplitude-robust-spectroscopy/
 ## Repository rules
 
 - Put reusable simulation, analysis, plotting, and result code in `echospec/`.
+- Use the project-wide drive-detuning sign defined in
+  [`DETUNING_CONVENTION.md`](DETUNING_CONVENTION.md).
 - Put new tests in `tests/` before changing shared behavior.
 - Keep notebooks focused on exploration or figure production; move old notebooks
   into an archive folder instead of leaving copies beside active work.
