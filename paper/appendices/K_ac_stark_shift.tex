@@ -122,15 +122,16 @@ counter-rotating Bloch--Siegert shift.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.98\textwidth]{../figures/paper/12_ac_stark_f01_zoom_shift.pdf}
-    \caption{Fine $f_{01}$ comparison for the Lorentzian-derived pulses and
-    all three resonance shifts.  (a),(b) One-megahertz central zooms of the
+    \includegraphics[
+        width=0.98\textwidth,
+        trim=0 176bp 0 0,
+        clip
+    ]{../figures/paper/12_ac_stark_f01_zoom_shift.pdf}
+    \caption{Fine $f_{01}$ comparison for the Lorentzian-derived pulses.
+    (a),(b) One-megahertz central zooms of the
     root-Lorentzian and echo-root-Lorentzian final excitation, respectively.
     The dotted line marks the bare $f_{01}$ frequency and the solid lines mark
-    the extracted maximum or central minimum.  (c) Constant-pulse exact
-    dressed shift, root-Lorentzian maximum, echo-root-Lorentzian central
-    minimum, and the common shaped-pulse phase-average estimate.  The inset
-    expands the shaped-pulse shifts to $\pm0.25~\mathrm{MHz}$.}
+    the extracted maximum or central minimum.}
     \label{fig:ac-stark-f01-zoom}
 \end{figure}
 \FloatBarrier
@@ -146,7 +147,8 @@ from Eq.~\eqref{eq:qutrit-ac-stark-shift} is approximately
 $0.20~\mathrm{MHz}$.  Multiplication by the shaped-pulse factor
 $\langle f^2\rangle_t=0.003138$ reduces the phase-average estimate to
 $0.63~\mathrm{kHz}$.  The wider-range three-level calculation in
-Fig.~\ref{fig:ac-stark-f01-zoom}(c) confirms this separation.  The echo phase
+Figure~4 of the Letter confirms this separation over the wider calculated
+drive range.  The echo phase
 inversion does not cancel the quadratic Stark term; rather, the small
 time-averaged squared envelope suppresses it, while finite-pulse interference
 determines the experimentally visible central minimum.
@@ -191,8 +193,95 @@ at the same upper peak Rabi frequency.
     covariance errors as a complete noise model, the bounded center excursion
     directly quantifies amplitude robustness and is strongly separated from
     the constant-drive AC-Stark displacement in
-    Fig.~\ref{fig:ac-stark-f01-zoom}(c).}
+    Fig.~4 of the Letter.}
     \label{fig:measured-center-stability}
+\end{figure}
+
+\subsection{Three-level optimization of resonance-center stability}
+\label{subsec:drag-stark-optimization}
+
+We further test whether a derivative quadrature and a dynamic frequency
+correction can stabilize the central echo-root-Lorentzian feature in the
+three-level model.  The reproducible calculation is contained in
+\path{notebooks/paper/34_drag_echo_lorentzian_qutrit.ipynb}.  It uses a
+$10~\mu\mathrm{s}$ pulse with $c=0.002$, echo inversion enabled,
+$\alpha/(2\pi)=-200~\mathrm{MHz}$,
+$T_1=51.24~\mu\mathrm{s}$, and $T_\phi=7.87~\mu\mathrm{s}$.  The final
+populations $P_g$, $P_e$, and $P_f$ are calculated over peak Rabi frequencies
+from 0 to $80~\mathrm{MHz}$ and detunings from $-1$ to $1~\mathrm{MHz}$.
+
+The complex drive is written as $\Omega_I-i\Omega_Q$.  Its derivative
+quadrature is
+\begin{equation}
+    \Omega_Q(t)
+    =-\frac{\beta}{\alpha}\frac{d\Omega_I(t)}{dt},
+    \label{eq:echo-drag-quadrature}
+\end{equation}
+where the derivative acts on the smooth positive envelope within each half
+of the pulse and the same $0/\pi$ echo phase is applied to both quadratures.
+The ideal instantaneous phase jump itself is not differentiated.  We use the
+moderate value $\beta=2$, for which the peak quadrature is $6.11\%$ of the
+peak in-phase drive.  In addition, the instantaneous drive detuning is
+corrected according to
+\begin{equation}
+    \frac{\Delta_{\mathrm{corr}}(t)}{2\pi}
+    =\kappa
+      \left[\frac{\Omega_I(t)}{2\pi}\right]^2,
+    \label{eq:optimized-stark-compensation}
+\end{equation}
+with $\kappa$ expressed in $\mathrm{MHz}^{-1}$.  This is equivalent to a phase
+chirp satisfying $\dot{\phi}(t)=-\Delta_{\mathrm{corr}}(t)$, up to the stated
+detuning convention.
+
+For each candidate $\kappa$, the notebook calculates a compact map over
+$\Omega_0/(2\pi)=20$--$80~\mathrm{MHz}$.  The central minimum of $P_e$ is
+identified within $|\Delta|/(2\pi)\leq0.35~\mathrm{MHz}$ and refined with a
+local quadratic fit.  The optimization target is its RMS displacement from
+the bare transition,
+\begin{equation}
+    \mathcal{L}
+    =\sqrt{\left\langle\delta_0^2(\Omega_0)\right\rangle_{\Omega_0}},
+    \label{eq:stark-optimization-cost}
+\end{equation}
+while the maximum $P_f$ is retained as an independent leakage diagnostic.  A
+coarse scan over $\kappa=-0.005$ to $0.005~\mathrm{MHz}^{-1}$ is followed by a
+fine scan around the best coarse value.  As shown in
+Fig.~\ref{fig:drag-stark-optimization}(a), the optimum for this model is
+\begin{equation}
+    \kappa=+0.001750~\mathrm{MHz}^{-1}.
+\end{equation}
+The fitted central minimum then has an RMS displacement of $3.54~\mathrm{kHz}$
+from the bare transition and a maximum absolute displacement of
+$6.60~\mathrm{kHz}$ over the optimization amplitudes.  These values are
+simulation results, not experimentally calibrated correction parameters.
+
+The full-resolution comparison is shown in
+Fig.~\ref{fig:drag-stark-optimization}(b).  Relative to the uncorrected
+echo-root-Lorentzian calculation, the combined DRAG and Stark-corrected pulse
+reduces the maximum $P_f$ from $0.1781$ to $0.1598$.  Over
+$\Omega_0/(2\pi)=40$--$80~\mathrm{MHz}$, the mean $P_f$ decreases from
+$0.0669$ to $0.0614$.  The low-amplitude population response retains some
+coherent oscillatory structure: the optimization in
+Eq.~\eqref{eq:stark-optimization-cost} constrains the resonance position and
+does not explicitly minimize population ripple.  Thus the result demonstrates
+improved center stability and leakage within the model, but not complete
+removal of all finite-pulse oscillations.
+
+\begin{figure}[p]
+    \centering
+    \includegraphics[width=0.98\textwidth]{../figures/paper/15_stark_kappa_optimization_80mhz.pdf}
+    \par\vspace{0.8em}
+    \includegraphics[width=0.98\textwidth]{../figures/paper/13_drag_echo_lorentzian_qutrit_80mhz.pdf}
+    \caption{Three-level optimization of the echo-root-Lorentzian response.
+    (a) Quadratic Stark-correction scan.  The left panel shows the RMS
+    fitted-center displacement from the bare transition versus $\kappa$; the
+    dashed line marks the selected coefficient.  The right panel compares the
+    fitted central minimum without the correction and at the optimized value.
+    (b) Full $-1$ to $1~\mathrm{MHz}$ detuning maps.  The upper row is the
+    original echo pulse and the lower row includes the $\beta=2$ derivative
+    quadrature and optimized quadratic Stark correction.  Columns show
+    $P_g$, $P_e$, and $P_f$; dashed lines mark the bare transition.}
+    \label{fig:drag-stark-optimization}
 \end{figure}
 
 \FloatBarrier

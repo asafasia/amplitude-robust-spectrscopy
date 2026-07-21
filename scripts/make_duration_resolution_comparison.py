@@ -241,6 +241,7 @@ def _extract_metrics(
         contrast[index] = physical_contrast
 
     return {
+        "fwhm_khz": fwhm_t2_units * T2_LIMIT_FWHM_MHZ * 1e3,
         "fwhm_t2_units": fwhm_t2_units,
         "resolution": resolution,
         "contrast": contrast,
@@ -251,7 +252,8 @@ def _extract_metrics(
 def _build_figure(
     clean_metrics_by_duration: dict[float, dict[str, np.ndarray]],
     noisy_metrics_by_duration: dict[float, dict[str, np.ndarray]],
-    constant_resolution: np.ndarray,
+    constant_fwhm_khz: np.ndarray,
+    constant_contrast: np.ndarray,
     constant_product: np.ndarray,
 ) -> plt.Figure:
     apply_figure_style(FigureVariant.PAPER)
@@ -272,15 +274,9 @@ def _build_figure(
     colors = ("#0072b2", "#6a1b9a", "#d55e00", "#009e73")
     markers = ("o", "s", "^", "D")
     constant_color = "#c62828"
-    constant_fwhm = np.divide(
-        1.0,
-        constant_resolution,
-        out=np.full_like(constant_resolution, np.nan),
-        where=constant_resolution > 0.0,
-    )
     axes[0].plot(
         CONSTANT_RABI_MHZ,
-        constant_fwhm,
+        constant_fwhm_khz,
         color=constant_color,
         lw=1.25,
         label="Constant (Torrey)",
@@ -288,7 +284,7 @@ def _build_figure(
     )
     axes[1].plot(
         CONSTANT_RABI_MHZ,
-        constant_resolution,
+        constant_contrast,
         color=constant_color,
         lw=1.25,
         zorder=1,
@@ -324,7 +320,7 @@ def _build_figure(
         )
         for ax, metric_name in zip(
             axes,
-            ("fwhm_t2_units", "resolution", "product"),
+            ("fwhm_khz", "contrast", "product"),
         ):
             ax.plot(
                 RABI_MHZ,
@@ -346,11 +342,15 @@ def _build_figure(
                 zorder=3,
             )
 
-    axes[0].axhline(1.0, color="0.35", ls="--", lw=0.65)
-    axes[1].axhline(1.0, color="0.35", ls="--", lw=0.65)
+    axes[0].axhline(
+        T2_LIMIT_FWHM_MHZ * 1e3,
+        color="0.35",
+        ls="--",
+        lw=0.65,
+    )
     axes[2].axhline(Q_THRESHOLD, color="0.35", ls="--", lw=0.65)
-    axes[0].set_ylabel(r"$\Gamma_f/\Gamma_{f,T_2}$")
-    axes[1].set_ylabel(r"$R=\Gamma_{f,T_2}/\Gamma_f$")
+    axes[0].set_ylabel(r"FWHM $\Gamma_f$ (kHz)")
+    axes[1].set_ylabel(r"Fitted contrast $A$")
     axes[2].set_ylabel(r"$Q=A\,\Gamma_{f,T_2}/\Gamma_f$")
     axes[2].set_xlabel(r"$\Omega_0/2\pi$ (MHz)")
     for panel, ax in zip(("(g)", "(h)", "(i)"), axes):
@@ -366,23 +366,26 @@ def _build_figure(
             fontweight="bold",
         )
     fwhm_max = max(
-        float(np.nanmax(metrics["fwhm_t2_units"]))
+        float(np.nanmax(metrics["fwhm_khz"]))
         for collection in (
             clean_metrics_by_duration,
             noisy_metrics_by_duration,
         )
         for metrics in collection.values()
     )
-    axes[0].set_ylim(0.0, max(1.2, 1.06 * fwhm_max))
-    resolution_max = max(
-        float(np.nanmax(metrics["resolution"]))
+    axes[0].set_ylim(
+        0.0,
+        max(1.2 * T2_LIMIT_FWHM_MHZ * 1e3, 1.06 * fwhm_max),
+    )
+    contrast_max = max(
+        float(np.nanmax(metrics["contrast"]))
         for collection in (
             clean_metrics_by_duration,
             noisy_metrics_by_duration,
         )
         for metrics in collection.values()
     )
-    axes[1].set_ylim(0.0, max(1.05, 1.06 * resolution_max))
+    axes[1].set_ylim(0.0, max(0.1, 1.06 * contrast_max))
     product_max = max(
         float(np.nanmax(metrics["product"]))
         for collection in (
@@ -464,11 +467,19 @@ def main() -> None:
         ),
     ).run()
     constant_resolution = constant_result.inverse_fwhm_t2_units
+    constant_fwhm_khz = np.divide(
+        T2_LIMIT_FWHM_MHZ * 1e3,
+        constant_resolution,
+        out=np.full_like(constant_resolution, np.nan),
+        where=constant_resolution > 0.0,
+    )
+    constant_contrast = constant_result.snr
     constant_product = constant_result.inverse_fwhm_snr_product
     fig = _build_figure(
         clean_metrics_by_duration,
         noisy_metrics_by_duration,
-        constant_resolution,
+        constant_fwhm_khz,
+        constant_contrast,
         constant_product,
     )
     stem = "10_simulated_duration_resolution_comparison"
@@ -498,6 +509,8 @@ def main() -> None:
         min_signal_to_noise=MIN_SIGNAL_TO_NOISE,
         noise_seed=NOISE_SEED,
         constant_rabi_mhz=CONSTANT_RABI_MHZ,
+        constant_fwhm_khz=constant_fwhm_khz,
+        constant_contrast=constant_contrast,
         constant_resolution=constant_resolution,
         constant_product=constant_product,
         **{

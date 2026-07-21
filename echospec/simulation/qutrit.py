@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
+from collections.abc import Callable
 from dataclasses import dataclass
-from typing import Callable
 
 import numpy as np
 from numpy.typing import NDArray
@@ -22,7 +22,7 @@ def _rhs(
     state: NDArray[np.complex128],
     *,
     detuning: NDArray[np.float64],
-    drive: NDArray[np.float64],
+    drive: NDArray[np.complex128],
     anharmonicity: float,
     inv_t1: float,
     inv_t_phi: float,
@@ -48,18 +48,20 @@ def _rhs(
     energy2 = -2.0 * detuning + anharmonicity
 
     derivative = np.empty_like(state)
-    derivative[0] = -2.0 * coupling01 * rho01.imag + inv_t1 * p1
+    derivative[0] = 2.0 * np.imag(coupling01 * np.conj(rho01)) + inv_t1 * p1
     derivative[1] = (
-        2.0 * coupling01 * rho01.imag
-        - 2.0 * coupling12 * rho12.imag
+        2.0 * np.imag(np.conj(coupling01) * rho01)
+        - 2.0 * np.imag(np.conj(coupling12) * rho12)
         - inv_t1 * p1
         + 2.0 * inv_t1 * p2
     )
-    derivative[2] = 2.0 * coupling12 * rho12.imag - 2.0 * inv_t1 * p2
+    derivative[2] = (
+        2.0 * np.imag(np.conj(coupling12) * rho12) - 2.0 * inv_t1 * p2
+    )
     derivative[3] = (
         -1j * coupling01 * (p1 - p0)
         + 1j * energy1 * rho01
-        + 1j * coupling12 * rho02
+        + 1j * np.conj(coupling12) * rho02
         + np.sqrt(2.0) * inv_t1 * rho12
         - (0.5 * inv_t1 + inv_t_phi) * rho01
     )
@@ -70,7 +72,7 @@ def _rhs(
         - (inv_t1 + 4.0 * inv_t_phi) * rho02
     )
     derivative[5] = (
-        -1j * coupling01 * rho02
+        -1j * np.conj(coupling01) * rho02
         - 1j * coupling12 * (p2 - p1)
         + 1j * (energy2 - energy1) * rho12
         - (1.5 * inv_t1 + inv_t_phi) * rho12
@@ -89,8 +91,9 @@ def _integrate(
     anharmonicity: float,
     inv_t1: float,
     inv_t_phi: float,
-    drive_scale: Callable[[float], float],
+    drive_scale: Callable[[float], complex],
     time_jacobian: Callable[[float], float],
+    stark_kappa_mhz_inv: float,
 ) -> NDArray[np.complex128]:
     """Integrate one segment with vectorized fourth-order Runge--Kutta."""
     step = (coordinate_stop - coordinate_start) / num_steps
@@ -98,10 +101,16 @@ def _integrate(
     def derivative(
         current_state: NDArray[np.complex128], coordinate: float
     ) -> NDArray[np.complex128]:
+        scale = drive_scale(coordinate)
+        instantaneous_detuning = detuning + (
+            stark_kappa_mhz_inv
+            * (rabi * np.real(scale)) ** 2
+            / (2.0 * np.pi)
+        )
         return time_jacobian(coordinate) * _rhs(
             current_state,
-            detuning=detuning,
-            drive=rabi * drive_scale(coordinate),
+            detuning=instantaneous_detuning,
+            drive=rabi * scale,
             anharmonicity=anharmonicity,
             inv_t1=inv_t1,
             inv_t_phi=inv_t_phi,
@@ -149,13 +158,32 @@ def simulate_qutrit_map(
     cutoff: float | None = None,
     echo: bool = False,
     order: float = 0.5,
+    drag_beta: float = 0.0,
+    stark_kappa_mhz_inv: float = 0.0,
 ) -> QutritSimulationResult:
-    """Simulate a constant or Lorentzian-derived pulse in three levels.
+    """Simulate a constant or Lorentzian-derived I/Q pulse in three levels.
 
     Supplying ``cutoff=None`` selects a constant pulse.  Otherwise the pulse
     is a finite generalized Lorentzian; ``echo=True`` reverses its phase at
     the midpoint.  Detuning is ``drive frequency - bare 0-1 frequency``;
     frequencies are cyclic MHz and times are microseconds.
+
+    ``drag_beta`` adds a segmentwise DRAG quadrature to a shaped pulse,
+
+    ``Omega_Q(t) = -drag_beta * d(Omega_I)/dt / alpha``.
+
+    ``stark_kappa_mhz_inv`` adds an instantaneous frequency correction
+
+    ``Delta_corr(t)/(2*pi) = kappa * (Omega_I(t)/(2*pi))**2``.
+
+    Thus ``kappa`` is expressed in inverse MHz.  Its sign is the sign added to
+    ``drive frequency - bare transition frequency``.
+
+    The derivative acts on the smooth positive Lorentzian envelope inside each
+    half.  For an echo pulse, the same 0/pi phase is then applied to both I and
+    Q.  This intentionally excludes the distribution-valued derivative of the
+    ideal instantaneous phase jump.  The complex coupling convention is
+    ``drive = Omega_I - 1j * Omega_Q``.
     """
     if duration_us <= 0:
         raise ValueError("duration_us must be positive")
@@ -165,6 +193,14 @@ def simulate_qutrit_map(
         raise ValueError("num_steps_per_half must be positive")
     if cutoff is not None and not 0.0 < cutoff < 1.0:
         raise ValueError("cutoff must lie strictly between zero and one")
+    if not np.isfinite(drag_beta):
+        raise ValueError("drag_beta must be finite")
+    if not np.isfinite(stark_kappa_mhz_inv):
+        raise ValueError("stark_kappa_mhz_inv must be finite")
+    if cutoff is None and drag_beta != 0.0:
+        raise ValueError("drag_beta requires a shaped pulse with cutoff")
+    if anharmonicity_mhz == 0.0 and drag_beta != 0.0:
+        raise ValueError("drag_beta requires nonzero anharmonicity")
 
     detuning, rabi = np.meshgrid(
         2.0 * np.pi * np.asarray(detuning_mhz, dtype=float),
@@ -179,6 +215,7 @@ def simulate_qutrit_map(
         "anharmonicity": 2.0 * np.pi * anharmonicity_mhz,
         "inv_t1": 1.0 / t1_us,
         "inv_t_phi": 1.0 / t_phi_us,
+        "stark_kappa_mhz_inv": stark_kappa_mhz_inv,
     }
 
     if cutoff is None:
@@ -196,6 +233,23 @@ def simulate_qutrit_map(
 
     sigma_us = (duration_us / 2.0) / np.sqrt(cutoff ** (-1.0 / order) - 1.0)
     half_duration = duration_us / 2.0
+    alpha_angular_per_us = 2.0 * np.pi * anharmonicity_mhz
+
+    def shaped_drive_scale(time: float, phase_sign: float) -> complex:
+        scaled_time = time / sigma_us
+        base = (1.0 + scaled_time**2) ** (-order)
+        base_derivative = (
+            -2.0
+            * order
+            * time
+            / sigma_us**2
+            * (1.0 + scaled_time**2) ** (-order - 1.0)
+        )
+        quadrature = 0.0
+        if drag_beta != 0.0:
+            quadrature = -drag_beta * base_derivative / alpha_angular_per_us
+        return phase_sign * (base - 1j * quadrature)
+
     for time_start, time_stop, drive_sign in (
         (-half_duration, 0.0, 1.0),
         (0.0, half_duration, -1.0 if echo else 1.0),
@@ -204,10 +258,9 @@ def simulate_qutrit_map(
             state,
             coordinate_start=time_start,
             coordinate_stop=time_stop,
-            drive_scale=lambda time, sign=drive_sign: sign / (
-                1.0 + (time / sigma_us) ** 2
-            )
-            ** order,
+            drive_scale=lambda time, sign=drive_sign: shaped_drive_scale(
+                time, sign
+            ),
             time_jacobian=lambda _time: 1.0,
             **common,
         )

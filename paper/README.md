@@ -106,6 +106,17 @@ PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_amplitude_center_stabi
 It applies the Supplemental Gaussian estimator and center-independent quality
 criteria, then writes PDF, PNG, and SVG versions to `figures/paper/`.
 
+The square, one-column main-text three-level AC-Stark shift comparison is
+generated with:
+
+```bash
+PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_main_ac_stark_shifts.py
+```
+
+It reproduces the constant-drive dressed center and the finite-pulse root- and
+echo-root-Lorentzian feature positions, and writes PDF, PNG, and SVG versions
+to `figures/paper/`.
+
 ## Editing conventions
 
 - Keep one logical section per file.

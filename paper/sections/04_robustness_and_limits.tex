@@ -1,25 +1,3 @@
-\begin{figure*}[t]
-    \centering
-    \includegraphics[width=\linewidth]{../figures/paper/04_main_center_ac_stark_comparison.pdf}
-    \caption{Direct test of resonance-center robustness against drive
-    amplitude.  (a) Measured q1 center displacement relative to the
-    inverse-variance weighted mean over the independently selected
-    $Q\geq0.10$ operating window.  Vertical bars are one-standard-deviation
-    covariance uncertainties, the dashed line is the weighted mean, and the
-    gray band spans the empirical RMS displacement of
-    $\pm3.02~\mathrm{kHz}$.  The maximum absolute displacement is
-    $7.47~\mathrm{kHz}$; no center-position gate is used.  (b) Weak-drive
-    AC-Stark scales over the same amplitude interval.  The constant-drive curve
-    uses the three-level transmon estimate with
-    $\alpha/(2\pi)=-200~\mathrm{MHz}$; the shaped-pulse curve includes the
-    root-Lorentzian phase-average factor $\langle f^2\rangle_t=0.003138$.
-    Horizontal lines mark the measured RMS and maximum excursions.  The
-    shaped pulse strongly separates peak drive amplitude from the expected
-    Stark displacement, consistent with the absence of a monotonic quadratic
-    shift in panel (a).}
-    \label{fig:main-center-ac-stark}
-\end{figure*}
-
 % An echo-type sequence applied to the root pulse partially mitigates decoherence effects but remains limited by pronounced amplitude-dependent broadening. Conversely, the Lorentzian echo variant demonstrates an amplitude-independent linewidth spanning over three orders of magnitude in drive strength, evidencing remarkable robustness against amplitude-induced dephasing. This insensitivity arises from the adiabatic evolution and the symmetric frequency-splitting intrinsic to the pulse design. The primary limitation lies in the floating offset and amplitude-dependent baseline, resulting in reduced contrast compared to conventional square and Lorentzian drives.
 
 
@@ -27,20 +5,15 @@
 At the core of assessing pulse quality and identifying optimal operating regimes lies the spectral response of the driven qubit. We find that the echo pulse yields spectroscopic features with markedly reduced linewidths over a well-defined region of parameter space. We therefore choose pulse durations shorter than the qubit lifetime $T_1$ but long enough that Fourier broadening does not dominate.
 
 Figure~\ref{fig:simulation-results}(g)--(i) quantifies this duration
-tradeoff at fixed cutoff $c=0.002$.  For each $L$, independent Gaussian noise
-with standard deviation $\sigma_P=0.002$ is added to every simulated
-population sample before fitting.  We retain a fitted feature only when its
-contrast satisfies $A/\sigma_P\geq3$, in addition to the centered-line width
-and position gates.  Consequently, the noisy marker series disappear at low
-drive when the spectroscopic signal is not distinguishable from the imposed
-noise, while the continuous noise-free simulation curves remain visible.
+tradeoff at fixed cutoff $c=0.002$.  The continuous curves show the simulated
+response, while the markers show the experimental data.
 
-The longer pulses yield larger normalized resolution after the signal becomes
-resolvable, but their contrast-weighted operating windows contract.  In this
-noise model, the 30- and $40~\mu\mathrm{s}$ curves remain below $Q=0.10$,
-whereas the 10- and $20~\mu\mathrm{s}$ pulses retain accepted high-drive
-regions above threshold.  Pulse duration must therefore be selected jointly
-with contrast and experimental noise, rather than by linewidth alone.
+Panels (g) and (h) separate spectral narrowing from signal loss: the longer
+pulses reach smaller absolute FWHM, but their fitted contrast remains lower
+over the usable drive range.  Their contrast-weighted operating windows in
+panel (i) therefore contract despite the high resolution.  Pulse duration must
+therefore be selected jointly with contrast and experimental signal quality,
+rather than by linewidth alone.
 
 This constitutes an additional advantage of the echo protocol. While both constant and simple Lorentzian pulses exhibit coherent Rabi oscillations that persist even for pulse durations comparable to or exceeding $T_1$, the intrinsic $\pi$-phase inversion of the echo pulse suppresses these coherence-induced oscillations. As a result, the spectral response remains smooth and well-behaved, enabling reliable linewidth extraction in regimes where standard and Lorentzian pulses display pronounced oscillatory distortions; see the additional high-amplitude data in the Supplemental Material~\cite{SupplementalMaterial}.
 
@@ -59,8 +32,8 @@ contrast, and linewidth criteria but deliberately omits the usual center gate,
 so center stability is not enforced circularly.  All 42 slices in this window
 pass the center-independent criteria.
 
-Figure~\ref{fig:main-center-ac-stark}(a) shows the fitted centers relative to
-their inverse-variance weighted mean.  Their empirical RMS displacement is
+Relative to their inverse-variance weighted mean, the fitted centers have an
+empirical RMS displacement of
 $3.02~\mathrm{kHz}$ and their maximum absolute displacement is
 $7.47~\mathrm{kHz}$.  A constant fit gives $\chi_\nu^2=9.94$, so the local
 covariance errors do not provide a complete noise model and the data do not
@@ -75,8 +48,24 @@ $0.20~\mathrm{MHz}$ at the upper edge of the measured window.  For the
 $10~\mu\mathrm{s}$ root-Lorentzian envelope with $c=0.002$, the phase-average
 shift is smaller by $\langle f^2\rangle_t=0.003138$ and reaches only
 $0.63~\mathrm{kHz}$; the echo sign change does not cancel this quadratic term.
-Figure~\ref{fig:main-center-ac-stark}(b) displays this scale separation, while
-the full three-level calculation is given in the Supplemental
+Figure~\ref{fig:main-ac-stark-shifts} displays this three-level scale
+separation through $60~\mathrm{MHz}$ peak Rabi frequency.  The full response maps and fine
+central-frequency scans are given in the Supplemental
 Material~\cite{SupplementalMaterial}.  The measured few-kilohertz variations
 are nonmonotonic and show none of the approximately quadratic, hundreds-of-
 kilohertz displacement expected for a constant drive.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\columnwidth]{%
+        ../figures/paper/04_main_ac_stark_shifts_square.pdf}
+    \caption{Drive-induced $f_{01}$ displacement in the three-level model
+    over an extended peak-Rabi-frequency range.  The curves show the exact
+    constant-pulse dressed shift, the fitted center of the root-Lorentzian
+    central spectral envelope, and the echo-root-Lorentzian central minimum.
+    The inset expands the shaped-pulse
+    shifts to $\pm25~\mathrm{kHz}$.  The finite shaped-pulse positions
+    include coherent interference and are operational spectral centers rather
+    than instantaneous dressed-state shifts.}
+    \label{fig:main-ac-stark-shifts}
+\end{figure}
