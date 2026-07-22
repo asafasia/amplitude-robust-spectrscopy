@@ -24,13 +24,11 @@ resolution--signal analysis are reported in the Supplemental
 Material~\cite{SupplementalMaterial}.
 
 Amplitude robustness also requires that increasing the drive not displace the
-inferred resonance center.  We therefore fit the measured q1 center
-$\delta_0(\Omega_0)$ over the independently selected matched-simulation
-operating window $Q\geq0.10$, corresponding to
-$\Omega_0/(2\pi)=2.475$--$8.973~\mathrm{MHz}$.  The selection uses finite-fit,
-contrast, and linewidth criteria but deliberately omits the usual center gate,
-so center stability is not enforced circularly.  All 42 slices in this window
-pass the center-independent criteria.
+inferred resonance center.  The measured plots span the full calibrated q1
+sweep, $\Omega_0/(2\pi)=0$--$15.32~\mathrm{MHz}$.  For the quantitative center
+summary, we use a predefined 42-slice high-$Q$ subset.  The selection uses
+finite-fit, contrast, and linewidth criteria but deliberately omits the usual
+center gate, so center stability is not enforced circularly.
 
 Relative to their inverse-variance weighted mean, the fitted centers have an
 empirical RMS displacement of
@@ -43,8 +41,9 @@ and residual finite-pulse effects.
 
 For comparison, the weak-drive three-level AC-Stark shift of a constant drive
 is $\delta f_{01}\simeq-\left(\Omega_0/2\pi\right)^2/
-[2(\alpha/2\pi)]$.  With $\alpha/(2\pi)=-200~\mathrm{MHz}$, it reaches
-$0.20~\mathrm{MHz}$ at the upper edge of the measured window.  For the
+[2(\alpha/2\pi)]$~\cite{PhysRevA.76.042319,schneider_multilevel_2018}.
+With $\alpha/(2\pi)=-200~\mathrm{MHz}$, it reaches
+$0.20~\mathrm{MHz}$ at the upper edge of the center-analysis subset.  For the
 $10~\mu\mathrm{s}$ root-Lorentzian envelope with $c=0.002$, the phase-average
 shift is smaller by $\langle f^2\rangle_t=0.003138$ and reaches only
 $0.63~\mathrm{kHz}$; the echo sign change does not cancel this quadratic term.
@@ -61,11 +60,14 @@ kilohertz displacement expected for a constant drive.
         ../figures/paper/04_main_ac_stark_shifts_square.pdf}
     \caption{Drive-induced $f_{01}$ displacement in the three-level model
     over an extended peak-Rabi-frequency range.  The curves show the exact
-    constant-pulse dressed shift, the fitted center of the root-Lorentzian
-    central spectral envelope, and the echo-root-Lorentzian central minimum.
-    The inset expands the shaped-pulse
-    shifts to $\pm25~\mathrm{kHz}$.  The finite shaped-pulse positions
-    include coherent interference and are operational spectral centers rather
-    than instantaneous dressed-state shifts.}
+    constant-pulse dressed shift and the spectral symmetry centers of the
+    root-Lorentzian and echo-root-Lorentzian responses.  The inset expands the
+    shaped-pulse shifts over the complete $0$--$60~\mathrm{MHz}$ simulated
+    range; the gray band marks the measured $0$--$15.32~\mathrm{MHz}$ sweep.
+    One ambiguous root-pulse center outside the $\pm25~\mathrm{kHz}$ display
+    window is omitted.
+    The finite shaped-pulse positions include coherent interference and are
+    operational spectral centers rather than instantaneous dressed-state
+    shifts.}
     \label{fig:main-ac-stark-shifts}
 \end{figure}

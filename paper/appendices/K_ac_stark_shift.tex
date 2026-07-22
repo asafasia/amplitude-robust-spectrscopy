@@ -22,6 +22,7 @@ Hamiltonian of Eq.~\eqref{eq:numerical-hamiltonian} is
 \end{equation}
 where $\alpha=\omega_{12}-\omega_{01}<0$.  For a constant drive, virtual
 coupling between $|e\rangle$ and $|f\rangle$ gives the weak-drive result
+for a weakly anharmonic transmon~\cite{PhysRevA.76.042319,schneider_multilevel_2018}:
 \begin{equation}
     \delta f_{01}^{(\mathrm{const})}
     \equiv \frac{\Delta_{\mathrm{res}}}{2\pi}
@@ -76,19 +77,19 @@ contrast.
     \begin{tabular}{ccccc}
         $\Omega_0/(2\pi)$ &
         \multicolumn{1}{c}{Constant dressed} &
-        \multicolumn{1}{c}{Root maximum} &
-        \multicolumn{1}{c}{Echo-root minimum} &
+        \multicolumn{1}{c}{Root center} &
+        \multicolumn{1}{c}{Echo-root center} &
         \multicolumn{1}{c}{Shaped phase average} \\
         \colrule
-        20 & 0.980 & 0.002 & 0.003 & 0.003 \\
-        40 & 3.685 & -0.001 & -0.002 & 0.013 \\
-        60 & 7.605 & 0.079 & -0.013 & 0.028
+        20 & 0.980 & 0.003 & 0.004 & 0.003 \\
+        40 & 3.685 & -0.001 & -0.005 & 0.013 \\
+        60 & 7.605 & 0.001 & -0.010 & 0.028
     \end{tabular}
     \end{ruledtabular}
 \end{table}
 
-The small negative position of the echo-root minimum at the largest drive is
-an operational finite-pulse feature position, not a negative instantaneous
+The small negative position of the echo-root symmetry center at the largest
+drive is an operational finite-pulse feature position, not a negative instantaneous
 AC-Stark shift.  It results from the interference defining the echo spectrum.
 The phase-average Stark term remains positive for both shaped protocols.
 
@@ -100,7 +101,7 @@ $-50$ to $50~\mathrm{MHz}$.  Additional 401-point scans resolve the central
 $20~\mathrm{MHz}$ span and the $1~\mathrm{MHz}$ Lorentzian zooms in
 Figs.~\ref{fig:ac-stark-domains} and \ref{fig:ac-stark-f01-zoom}.  The model
 uses the rotating-wave approximation, so it does not include a
-counter-rotating Bloch--Siegert shift.
+counter-rotating Bloch--Siegert shift~\cite{tuorila_stark_2010}.
 
 \begin{figure}[t]
     \centering
@@ -113,10 +114,8 @@ counter-rotating Bloch--Siegert shift.
     echo-root-Lorentzian drives.  (d)--(f) Corresponding $20~\mathrm{MHz}$
     zooms from $-10$ to $10~\mathrm{MHz}$.  The dotted line is the bare
     $f_{01}$ frequency.  In the zooms, the solid lines show the
-    exact constant-drive dressed center, the root-Lorentzian local maximum,
-    and the echo-root-Lorentzian central minimum, respectively; shaped-pulse
-    centers are omitted below $20~\mathrm{MHz}$ peak Rabi frequency where the
-    local-extremum definition is not robust.}
+    exact constant-drive dressed center and the spectral symmetry centers of
+    the root-Lorentzian and echo-root-Lorentzian responses, respectively.}
     \label{fig:ac-stark-domains}
 \end{figure}
 
@@ -211,7 +210,8 @@ populations $P_g$, $P_e$, and $P_f$ are calculated over peak Rabi frequencies
 from 0 to $80~\mathrm{MHz}$ and detunings from $-1$ to $1~\mathrm{MHz}$.
 
 The complex drive is written as $\Omega_I-i\Omega_Q$.  Its derivative
-quadrature is
+quadrature follows the DRAG construction for weakly anharmonic
+qubits~\cite{motzoi_drag_2009,gambetta_analytic_2011}:
 \begin{equation}
     \Omega_Q(t)
     =-\frac{\beta}{\alpha}\frac{d\Omega_I(t)}{dt},
@@ -231,7 +231,8 @@ corrected according to
 \end{equation}
 with $\kappa$ expressed in $\mathrm{MHz}^{-1}$.  This is equivalent to a phase
 chirp satisfying $\dot{\phi}(t)=-\Delta_{\mathrm{corr}}(t)$, up to the stated
-detuning convention.
+detuning convention; such drive-dependent detuning corrections arise in the
+same adiabatic-control framework~\cite{gambetta_analytic_2011}.
 
 For each candidate $\kappa$, the notebook calculates a compact map over
 $\Omega_0/(2\pi)=20$--$80~\mathrm{MHz}$.  The central minimum of $P_e$ is

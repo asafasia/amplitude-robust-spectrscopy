@@ -32,7 +32,7 @@ Outputs go to `figures/paper/`.
 - `11_nine_plot_2.ipynb` - length comparison and spectroscopy comparison variants.
 - `12_nine_plot.ipynb` - cutoff comparison and spectroscopy comparison variants.
 - `13_three_states_T1.ipynb` - three-state T1 figures.
-- `14_q1_t1_t2.ipynb` - q1 energy-relaxation and Ramsey-dephasing fits for the Supplemental Material.
+- `14_q1_t1_t2.ipynb` - q1 energy-relaxation, Ramsey-dephasing, and Hahn-echo fits for the Supplemental Material.
 - `echo_lorentzian_cutoff/echo_lorentzian_cutoff_explorer.ipynb` - raw OPX1000 cutoff sweeper with independently recalculated FWHM values.
 - `20_DRAG.ipynb` - DRAG exploration.
 - `21_Ramsey.ipynb` - Ramsey/FFT analysis.

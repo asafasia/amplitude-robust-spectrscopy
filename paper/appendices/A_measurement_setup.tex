@@ -51,16 +51,14 @@ shows representative measurements for qubit q1.  Fitting the excited-state
 population to an exponential decay with a constant offset gives
 $T_1=\MeasuredTOne~\mu\mathrm{s}$.  Fitting the positive-detuning Ramsey trace
 to an exponentially damped sinusoid gives
-$T_2^*=\MeasuredTTwoStar~\mu\mathrm{s}$.  The quoted uncertainties are
-one-standard-deviation estimates obtained from the fit covariance matrices.
-No associated Hahn-echo trace is available, so no measured Hahn-echo $T_2$ is
-reported.  When one transverse time is required, we conservatively use
-$T_{2,\mathrm{eff}}=T_2^*=\EffectiveTTwo~\mu\mathrm{s}$.  With the measured
-$T_1$, this gives $T_\phi=\EffectiveTPhi~\mu\mathrm{s}$ through
-$T_{2,\mathrm{eff}}^{-1}=(2T_1)^{-1}+T_\phi^{-1}$; this is not Hahn-echo
-evidence.
+$T_2^*=\MeasuredTTwoStar~\mu\mathrm{s}$.  A Hahn-echo measurement acquired in
+a later calibration session gives $T_2=\MeasuredTTwoEcho~\mu\mathrm{s}$ from
+an exponential fit with a constant offset.  The quoted uncertainties are
+one-standard-deviation estimates from the fit covariance matrices.  Because
+the Hahn-echo trace was acquired later, comparisons tied to the June 28 data
+retain the conservative value
+$T_{2,\mathrm{eff}}=T_2^*=\EffectiveTTwo~\mu\mathrm{s}$.
 
-\clearpage
 \begin{figure}[t]
     \centering
     \includegraphics[width=\linewidth]{../figures/paper/05_q1_t1_t2.pdf}
@@ -68,7 +66,8 @@ evidence.
     (a) Energy relaxation following state preparation, together with an
     exponential fit. (b) Ramsey fringes acquired with a positive
     $2~\mathrm{MHz}$ programmed detuning, together with an exponentially damped
-    sinusoidal fit.}
+    sinusoidal fit. (c) Hahn-echo decay acquired in a later calibration session,
+    together with an exponential fit.}
     \label{fig:q1-t1-t2}
 \end{figure}
 
