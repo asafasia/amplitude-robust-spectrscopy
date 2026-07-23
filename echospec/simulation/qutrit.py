@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from dataclasses import dataclass
+from typing import Literal
 
 import numpy as np
 from numpy.typing import NDArray
@@ -94,37 +95,74 @@ def _integrate(
     drive_scale: Callable[[float], complex],
     time_jacobian: Callable[[float], float],
     stark_kappa_mhz_inv: float,
-) -> NDArray[np.complex128]:
+    stark_correction_mode: str,
+    accumulated_phase: NDArray[np.float64],
+    phase_time_origin: float,
+) -> tuple[NDArray[np.complex128], NDArray[np.float64]]:
     """Integrate one segment with vectorized fourth-order Runge--Kutta."""
     step = (coordinate_stop - coordinate_start) / num_steps
 
     def derivative(
-        current_state: NDArray[np.complex128], coordinate: float
-    ) -> NDArray[np.complex128]:
+        current_state: NDArray[np.complex128],
+        coordinate: float,
+        current_phase: NDArray[np.float64],
+    ) -> tuple[NDArray[np.complex128], NDArray[np.float64]]:
         scale = drive_scale(coordinate)
-        instantaneous_detuning = detuning + (
+        correction = (
             stark_kappa_mhz_inv
             * (rabi * np.real(scale)) ** 2
             / (2.0 * np.pi)
         )
-        return time_jacobian(coordinate) * _rhs(
-            current_state,
-            detuning=instantaneous_detuning,
-            drive=rabi * scale,
-            anharmonicity=anharmonicity,
-            inv_t1=inv_t1,
-            inv_t_phi=inv_t_phi,
+        instantaneous_detuning = detuning
+        drive = rabi * scale
+        phase_derivative = np.zeros_like(accumulated_phase)
+        if stark_correction_mode == "detuning":
+            instantaneous_detuning = detuning + correction
+        elif stark_correction_mode == "accumulated_phase":
+            drive = drive * np.exp(1j * current_phase)
+            phase_derivative = correction
+        else:
+            drive = drive * np.exp(
+                1j * correction * (coordinate - phase_time_origin)
+            )
+        jacobian = time_jacobian(coordinate)
+        return (
+            jacobian
+            * _rhs(
+                current_state,
+                detuning=instantaneous_detuning,
+                drive=drive,
+                anharmonicity=anharmonicity,
+                inv_t1=inv_t1,
+                inv_t_phi=inv_t_phi,
+            ),
+            jacobian * phase_derivative,
         )
 
     coordinate = coordinate_start
     for _ in range(num_steps):
-        k1 = derivative(state, coordinate)
-        k2 = derivative(state + 0.5 * step * k1, coordinate + 0.5 * step)
-        k3 = derivative(state + 0.5 * step * k2, coordinate + 0.5 * step)
-        k4 = derivative(state + step * k3, coordinate + step)
+        k1, p1 = derivative(state, coordinate, accumulated_phase)
+        k2, p2 = derivative(
+            state + 0.5 * step * k1,
+            coordinate + 0.5 * step,
+            accumulated_phase + 0.5 * step * p1,
+        )
+        k3, p3 = derivative(
+            state + 0.5 * step * k2,
+            coordinate + 0.5 * step,
+            accumulated_phase + 0.5 * step * p2,
+        )
+        k4, p4 = derivative(
+            state + step * k3,
+            coordinate + step,
+            accumulated_phase + step * p3,
+        )
         state += (step / 6.0) * (k1 + 2.0 * k2 + 2.0 * k3 + k4)
+        accumulated_phase += (step / 6.0) * (
+            p1 + 2.0 * p2 + 2.0 * p3 + p4
+        )
         coordinate += step
-    return state
+    return state, accumulated_phase
 
 
 def _finalize(state: NDArray[np.complex128]) -> QutritSimulationResult:
@@ -160,6 +198,9 @@ def simulate_qutrit_map(
     order: float = 0.5,
     drag_beta: float = 0.0,
     stark_kappa_mhz_inv: float = 0.0,
+    stark_correction_mode: Literal[
+        "detuning", "accumulated_phase", "instantaneous_phase"
+    ] = "detuning",
 ) -> QutritSimulationResult:
     """Simulate a constant or Lorentzian-derived I/Q pulse in three levels.
 
@@ -179,6 +220,14 @@ def simulate_qutrit_map(
     Thus ``kappa`` is expressed in inverse MHz.  Its sign is the sign added to
     ``drive frequency - bare transition frequency``.
 
+    ``stark_correction_mode="detuning"`` applies that correction directly to
+    the rotating-frame detuning.  ``"accumulated_phase"`` instead rotates the
+    internal complex drive by ``exp(+1j * integral Delta_corr dt)``; because
+    the hardware-style envelope is its complex conjugate ``I + 1j*Q``, this
+    corresponds to multiplying the played envelope by ``exp(-1j * phase)``.
+    ``"instantaneous_phase"`` is a diagnostic implementation of the generally
+    incorrect ``exp(-1j * Delta_corr(t) * elapsed_time)`` prescription.
+
     The derivative acts on the smooth positive Lorentzian envelope inside each
     half.  For an echo pulse, the same 0/pi phase is then applied to both I and
     Q.  This intentionally excludes the distribution-valued derivative of the
@@ -197,6 +246,15 @@ def simulate_qutrit_map(
         raise ValueError("drag_beta must be finite")
     if not np.isfinite(stark_kappa_mhz_inv):
         raise ValueError("stark_kappa_mhz_inv must be finite")
+    if stark_correction_mode not in {
+        "detuning",
+        "accumulated_phase",
+        "instantaneous_phase",
+    }:
+        raise ValueError(
+            "stark_correction_mode must be 'detuning', "
+            "'accumulated_phase', or 'instantaneous_phase'"
+        )
     if cutoff is None and drag_beta != 0.0:
         raise ValueError("drag_beta requires a shaped pulse with cutoff")
     if anharmonicity_mhz == 0.0 and drag_beta != 0.0:
@@ -208,6 +266,7 @@ def simulate_qutrit_map(
     )
     state = np.zeros((6, *detuning.shape), dtype=np.complex128)
     state[0] = 1.0
+    accumulated_phase = np.zeros_like(detuning)
     common = {
         "num_steps": num_steps_per_half,
         "detuning": detuning,
@@ -216,17 +275,22 @@ def simulate_qutrit_map(
         "inv_t1": 1.0 / t1_us,
         "inv_t_phi": 1.0 / t_phi_us,
         "stark_kappa_mhz_inv": stark_kappa_mhz_inv,
+        "stark_correction_mode": stark_correction_mode,
     }
 
     if cutoff is None:
         half_duration = duration_us / 2.0
-        for drive_sign in (1.0, -1.0 if echo else 1.0):
-            state = _integrate(
+        for segment_index, drive_sign in enumerate(
+            (1.0, -1.0 if echo else 1.0)
+        ):
+            state, accumulated_phase = _integrate(
                 state,
                 coordinate_start=0.0,
                 coordinate_stop=half_duration,
                 drive_scale=lambda _time, sign=drive_sign: sign,
                 time_jacobian=lambda _time: 1.0,
+                accumulated_phase=accumulated_phase,
+                phase_time_origin=-segment_index * half_duration,
                 **common,
             )
         return _finalize(state)
@@ -254,7 +318,7 @@ def simulate_qutrit_map(
         (-half_duration, 0.0, 1.0),
         (0.0, half_duration, -1.0 if echo else 1.0),
     ):
-        state = _integrate(
+        state, accumulated_phase = _integrate(
             state,
             coordinate_start=time_start,
             coordinate_stop=time_stop,
@@ -262,6 +326,8 @@ def simulate_qutrit_map(
                 time, sign
             ),
             time_jacobian=lambda _time: 1.0,
+            accumulated_phase=accumulated_phase,
+            phase_time_origin=-half_duration,
             **common,
         )
     return _finalize(state)

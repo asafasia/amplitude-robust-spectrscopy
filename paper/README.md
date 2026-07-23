@@ -28,7 +28,6 @@ paper/
     C_cutoff.tex
     D_adiabatic_basis.tex
     E_pulse_length.tex
-    F_high_amplitudes.tex
     G_numerical_model.tex
     H_lorentzian_echo_comparison.tex
     I_simulation_experiment_comparison.tex
@@ -63,16 +62,6 @@ PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_long_pulse_lorentzian_
 
 Set `OPX1000_DATA_DIR` when the data repository is not located beside this
 checkout. The script writes PDF, PNG, and SVG versions to `figures/paper/`.
-
-The high-amplitude cutoff comparison is generated from three matched q1 scans
-in the same read-only data repository with:
-
-```bash
-PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_high_amplitude_cutoff_comparison.py
-```
-
-It displays the 50--80 MHz portion available in the selected scans and writes
-PDF, PNG, and SVG versions to `figures/paper/`.
 
 The experimental broad and focused cutoff maps are generated from the
 `cutoff_amp_fwhm_map` and `echo_lorentzian_cutoff_sweep` campaigns with:

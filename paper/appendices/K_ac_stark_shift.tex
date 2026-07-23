@@ -6,10 +6,13 @@ $40~\mu\mathrm{s}$ constant square pulse and for $10~\mu\mathrm{s}$
 root-Lorentzian and echo-root-Lorentzian spectroscopy pulses.  All calculations
 use the conventional drive--qubit detuning
 $\Delta=\omega_d-\omega_{01}$.  The simulation retains
-$\{|g\rangle,|e\rangle,|f\rangle\}$, but $|f\rangle$ is used here as the
-virtual transmon level that shifts $f_{01}$; the plotted observable is the
-central excitation response $P_e+P_f$, not the position of the
-$g\leftrightarrow f$ transition.  In this basis, the rotating-frame
+$\{|g\rangle,|e\rangle,|f\rangle\}$ as dynamical levels, so population can
+occupy $|f\rangle$ during the pulse.  In the weak-drive interpretation,
+virtual $|e\rangle\leftrightarrow|f\rangle$ coupling produces the leading
+shift of $f_{01}$; this does not make $|f\rangle$ merely a virtual level in
+the numerical calculation.  The plotted observable is the central excitation
+response $P_e+P_f$, not the position of the $g\leftrightarrow f$ transition.
+In this basis, the rotating-frame
 Hamiltonian of Eq.~\eqref{eq:numerical-hamiltonian} is
 \begin{equation}
     \frac{H(t)}{\hbar}=
@@ -81,9 +84,9 @@ contrast.
         \multicolumn{1}{c}{Echo-root center} &
         \multicolumn{1}{c}{Shaped phase average} \\
         \colrule
-        20 & 0.980 & 0.003 & 0.004 & 0.003 \\
-        40 & 3.685 & -0.001 & -0.005 & 0.013 \\
-        60 & 7.605 & 0.001 & -0.010 & 0.028
+        20 & 0.910 & 0.002 & 0.003 & 0.003 \\
+        40 & 3.450 & -0.001 & -0.001 & 0.012 \\
+        60 & 7.190 & 0.078 & -0.012 & 0.026
     \end{tabular}
     \end{ruledtabular}
 \end{table}
@@ -135,104 +138,117 @@ counter-rotating Bloch--Siegert shift~\cite{tuorila_stark_2010}.
 \end{figure}
 \FloatBarrier
 
-\subsection{Measured resonance-center stability}
+\subsection{AC-Stark scale over the common drive span}
 
 The AC-Stark calculation above predicts a clear separation between the
 instantaneous shift produced by a constant drive and that produced by the
-Lorentzian-derived envelopes.  At the upper edge of the experimentally
-selected operating window,
-$\Omega_0/(2\pi)=8.973~\mathrm{MHz}$, the weak-drive constant-pulse estimate
+Lorentzian-derived envelopes.  At the common upper drive
+$\Omega_0/(2\pi)=50~\mathrm{MHz}$, the weak-drive constant-pulse estimate
 from Eq.~\eqref{eq:qutrit-ac-stark-shift} is approximately
-$0.20~\mathrm{MHz}$.  Multiplication by the shaped-pulse factor
-$\langle f^2\rangle_t=0.003138$ reduces the phase-average estimate to
-$0.63~\mathrm{kHz}$.  The wider-range three-level calculation in
-Figure~4 of the Letter confirms this separation over the wider calculated
-drive range.  The echo phase
+$5.8~\mathrm{MHz}$.  For the $20~\mu\mathrm{s}$ root-Lorentzian envelope
+with $c=0.001$, multiplication by
+$\langle f^2\rangle_t=0.001570$ reduces the phase-average estimate to
+$9.1~\mathrm{kHz}$.  Fig.~5 of the Letter shows this separation over the
+full calculated drive range.  The echo phase
 inversion does not cancel the quadratic Stark term; rather, the small
 time-averaged squared envelope suppresses it, while finite-pulse interference
 determines the experimentally visible central minimum.
 
-We test the corresponding center stability directly in the q1
-amplitude-sweep data used in
-Figs.~\ref{fig:amplitude-robustness-2d}--\ref{fig:amplitude-resolution-metrics}.
-Each amplitude slice is fit with the same Gaussian dip estimator and
-preprocessing described in Sec.~\ref{sec:data-analysis}.  To avoid selecting
-the result being tested, the center-quality mask uses only finite fit
-parameters, contrast $A\geq0.02$, and FWHM
-$\Gamma_f\leq0.12~\mathrm{MHz}$; it does not impose the usual
-$|\delta_0|\leq0.050~\mathrm{MHz}$ center gate.  We then restrict the summary
-to the independently selected matched-simulation operating window
-$\Omega_0/(2\pi)=2.475$--$8.973~\mathrm{MHz}$, defined by $Q\geq0.10$.
-
-The inverse-variance weighted center is
-$\overline{\delta_0}=-0.47\pm0.15~\mathrm{kHz}$, where the stated uncertainty
-uses the fit covariance only.  Relative to this center, the 42 retained
-amplitude slices have an empirical RMS displacement of $3.02~\mathrm{kHz}$
-and a maximum absolute displacement of $7.47~\mathrm{kHz}$.  The constant-fit
-value $\chi_\nu^2=9.94$ shows that the slice-to-slice scatter is larger than the
-local covariance errors; the measurements therefore do not establish strict
-statistical constancy.  Instead, the RMS and maximum excursion quantify the
-practical center stability, including fit variation, slow experimental drift,
-and any residual finite-pulse or AC-Stark contribution.  The observed
-few-kilohertz, nonmonotonic excursions are nevertheless far smaller than the
-approximately $0.20~\mathrm{MHz}$ constant-drive Stark displacement expected
-at the same upper peak Rabi frequency.
-
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=0.98\textwidth]{../figures/paper/03_amplitude_center_stability.pdf}
-    \caption{Measured resonance-center stability across the independently
-    selected q1 echo--root--Lorentzian operating window.  Points show the
-    fitted center displacement relative to the inverse-variance weighted mean;
-    vertical bars are one-standard-deviation covariance uncertainties.  The
-    dashed line is the weighted mean and the gray band spans the empirical RMS
-    displacement of $\pm3.02~\mathrm{kHz}$.  The maximum absolute displacement
-    is $7.47~\mathrm{kHz}$.  No center-position gate is used to select the
-    displayed points.  Although $\chi_\nu^2=9.94$ rules out interpreting the
-    covariance errors as a complete noise model, the bounded center excursion
-    directly quantifies amplitude robustness and is strongly separated from
-    the constant-drive AC-Stark displacement in
-    Fig.~4 of the Letter.}
-    \label{fig:measured-center-stability}
-\end{figure}
-
-\subsection{Three-level optimization of resonance-center stability}
+\subsection{Accumulated-phase compensation of drive-induced center motion}
 \label{subsec:drag-stark-optimization}
 
-We further test whether a derivative quadrature and a dynamic frequency
-correction can stabilize the central echo-root-Lorentzian feature in the
-three-level model.  The reproducible calculation is contained in
-\path{notebooks/paper/34_drag_echo_lorentzian_qutrit.ipynb}.  It uses a
-$10~\mu\mathrm{s}$ pulse with $c=0.002$, echo inversion enabled,
-$\alpha/(2\pi)=-200~\mathrm{MHz}$,
-$T_1=51.24~\mu\mathrm{s}$, and $T_\phi=7.87~\mu\mathrm{s}$.  The final
-populations $P_g$, $P_e$, and $P_f$ are calculated over peak Rabi frequencies
-from 0 to $80~\mathrm{MHz}$ and detunings from $-1$ to $1~\mathrm{MHz}$.
-
-The complex drive is written as $\Omega_I-i\Omega_Q$.  Its derivative
-quadrature follows the DRAG construction for weakly anharmonic
-qubits~\cite{motzoi_drag_2009,gambetta_analytic_2011}:
-\begin{equation}
-    \Omega_Q(t)
-    =-\frac{\beta}{\alpha}\frac{d\Omega_I(t)}{dt},
-    \label{eq:echo-drag-quadrature}
-\end{equation}
-where the derivative acts on the smooth positive envelope within each half
-of the pulse and the same $0/\pi$ echo phase is applied to both quadratures.
-The ideal instantaneous phase jump itself is not differentiated.  We use the
-moderate value $\beta=2$, for which the peak quadrature is $6.11\%$ of the
-peak in-phase drive.  In addition, the instantaneous drive detuning is
-corrected according to
+The phase inversion at the pulse midpoint suppresses the resonant pulse area,
+but it does not cancel the AC-Stark shift.  The reason is that the leading
+shift is proportional to the drive intensity, $\Omega_I^2(t)$, which is
+unchanged by $\Omega_I\rightarrow-\Omega_I$.  To compensate this
+even-in-amplitude contribution, we add an opposing quadratic correction to
+the instantaneous drive detuning,
 \begin{equation}
     \frac{\Delta_{\mathrm{corr}}(t)}{2\pi}
     =\kappa
       \left[\frac{\Omega_I(t)}{2\pi}\right]^2,
     \label{eq:optimized-stark-compensation}
 \end{equation}
-with $\kappa$ expressed in $\mathrm{MHz}^{-1}$.  This is equivalent to a phase
-chirp satisfying $\dot{\phi}(t)=-\Delta_{\mathrm{corr}}(t)$, up to the stated
-detuning convention; such drive-dependent detuning corrections arise in the
-same adiabatic-control framework~\cite{gambetta_analytic_2011}.
+where $\kappa$ has units of $\mathrm{MHz}^{-1}$.  With all cyclic frequencies
+expressed in MHz, weak-drive perturbation theory gives the natural starting
+value
+\begin{equation}
+    \kappa_{\mathrm{theory}}
+    \simeq-\frac{1}{2(\alpha/2\pi)}
+    =+0.00231~\mathrm{MHz}^{-1}
+    \qquad
+    \left[\frac{\alpha}{2\pi}=\MeasuredAnharmonicity~\mathrm{MHz}\right].
+    \label{eq:stark-kappa-theory}
+\end{equation}
+The coefficient is then refined numerically because finite pulse duration,
+strong driving, decoherence, and three-level dynamics are not fully described
+by the weak-drive estimate.  For a fixed duration, a single value of $\kappa$
+is used for the whole amplitude--detuning map.  It is not recomputed from the
+fitted $f_{10}$ at each amplitude and does not depend on the trial spectroscopy
+detuning.  The optimum can depend on pulse duration and other waveform
+details, however; the duration comparison below therefore optimizes
+$\kappa$ separately for each duration rather than asserting one universal
+coefficient.  Once calibrated for a specified device and waveform, the
+coefficient can be applied while the carrier frequency is being searched.
+
+On hardware, a separate sample-by-sample detuning control is not required.
+We integrate Eq.~\eqref{eq:optimized-stark-compensation} into the accumulated
+phase
+\begin{equation}
+    \phi(t)
+    =\int_{t_0}^{t}\Delta_{\mathrm{corr}}(t')\,dt'
+    =2\pi\kappa\int_{t_0}^{t}
+      \left[\frac{\Omega_I(t')}{2\pi}\right]^2dt',
+    \label{eq:accumulated-stark-phase}
+\end{equation}
+and rotate the programmed complex envelope according to
+\begin{equation}
+    s_{\mathrm{corr}}(t)
+    =s_0(t)\exp[-i\phi(t)].
+    \label{eq:accumulated-stark-envelope}
+\end{equation}
+With the complex-envelope and detuning conventions used here,
+$d\phi/dt=\Delta_{\mathrm{corr}}(t)$ produces precisely the additional
+instantaneous detuning in Eq.~\eqref{eq:optimized-stark-compensation}.  Using
+$\exp[-i\Delta_{\mathrm{corr}}(t)t]$ instead would not be equivalent: its
+instantaneous frequency contains the unwanted term
+$t\,d\Delta_{\mathrm{corr}}/dt$.  The phase must therefore be the time integral
+of the desired frequency correction.
+
+This construction has the same physical intuition as the phase correction in
+DRAG~\cite{motzoi_drag_2009,gambetta_analytic_2011}.  In DRAG, a derivative
+quadrature suppresses leakage and a drive-dependent phase or frequency update
+compensates the accompanying dynamical phase.  Here we deliberately set the
+DRAG coefficient to $\beta=0$: no derivative quadrature is added, and the only
+change to the echo-root-Lorentzian waveform is the accumulated phase
+proportional to $\int\Omega_I^2dt$.  Because the midpoint echo changes the sign
+of $\Omega_I$ but not $\Omega_I^2$, the phase accumulator remains continuous
+through the $0/\pi$ inversion.  Fig.~\ref{fig:accumulated-stark-waveform}
+shows the original and corrected envelopes and the relation between the
+localized frequency correction and its accumulated phase.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.90\textwidth]{../figures/paper/accumulated_phase_duration_sweep/20us/00_pulse_waveform_comparison.pdf}
+    \caption{Hardware-realizable accumulated-phase correction for a
+    $20~\mu\mathrm{s}$ echo-root-Lorentzian pulse at
+    $\Omega_0/(2\pi)=40~\mathrm{MHz}$.  From left to right: the original
+    real-valued echo pulse, the $I$ and $Q$ components after multiplication by
+    $\exp[-i\phi(t)]$, and the quadratic frequency addition together with its
+    accumulated phase.  The pulse magnitude is unchanged.}
+    \label{fig:accumulated-stark-waveform}
+\end{figure}
+
+The reproducible three-level calculation is generated by a source-controlled
+workflow for accumulated-phase duration reports.  Numerical arrays are
+retained alongside the generated analysis data.  The calculation uses a
+$20~\mu\mathrm{s}$ pulse with cutoff $c=0.001$, echo inversion enabled,
+$\beta=0$, $\alpha/(2\pi)=\MeasuredAnharmonicity~\mathrm{MHz}$,
+$T_1=51.24~\mu\mathrm{s}$,
+$T_{2,\mathrm{eff}}=7.31~\mu\mathrm{s}$; the corresponding pure-dephasing
+time is $T_\phi=7.87~\mu\mathrm{s}$.  The final populations
+$P_g$, $P_e$, and $P_f$ are calculated over peak Rabi frequencies from 0 to
+$80~\mathrm{MHz}$ and detunings from $-1$ to $1~\mathrm{MHz}$.
 
 For each candidate $\kappa$, the notebook calculates a compact map over
 $\Omega_0/(2\pi)=20$--$80~\mathrm{MHz}$.  The central minimum of $P_e$ is
@@ -249,40 +265,56 @@ coarse scan over $\kappa=-0.005$ to $0.005~\mathrm{MHz}^{-1}$ is followed by a
 fine scan around the best coarse value.  As shown in
 Fig.~\ref{fig:drag-stark-optimization}(a), the optimum for this model is
 \begin{equation}
-    \kappa=+0.001750~\mathrm{MHz}^{-1}.
+    \kappa=+0.00225~\mathrm{MHz}^{-1}.
 \end{equation}
-The fitted central minimum then has an RMS displacement of $3.54~\mathrm{kHz}$
-from the bare transition and a maximum absolute displacement of
-$6.60~\mathrm{kHz}$ over the optimization amplitudes.  These values are
-simulation results, not experimentally calibrated correction parameters.
-
-The full-resolution comparison is shown in
-Fig.~\ref{fig:drag-stark-optimization}(b).  Relative to the uncorrected
-echo-root-Lorentzian calculation, the combined DRAG and Stark-corrected pulse
-reduces the maximum $P_f$ from $0.1781$ to $0.1598$.  Over
-$\Omega_0/(2\pi)=40$--$80~\mathrm{MHz}$, the mean $P_f$ decreases from
-$0.0669$ to $0.0614$.  The low-amplitude population response retains some
-coherent oscillatory structure: the optimization in
-Eq.~\eqref{eq:stark-optimization-cost} constrains the resonance position and
-does not explicitly minimize population ripple.  Thus the result demonstrates
-improved center stability and leakage within the model, but not complete
-removal of all finite-pulse oscillations.
+The displayed digits identify the selected point of the numerical scan; they
+do not imply corresponding experimental or model accuracy.  This value is of
+the same order as the weak-drive estimate in
+Eq.~\eqref{eq:stark-kappa-theory}.  Within this three-level rotating-wave model,
+the fitted operational central minimum then has an RMS displacement of
+$0.14~\mathrm{kHz}$ from the bare transition on the optimization grid and a
+maximum absolute displacement of $0.41~\mathrm{kHz}$ over the dense simulated
+map, compared with a $13.52~\mathrm{kHz}$ maximum offset without correction.
+These are
+numerical residuals of the optimized operational spectral center, rather than
+a claim of sub-kilohertz physical accuracy or a direct determination of the
+instantaneous AC-Stark shift.  Quantitative validation would require
+time-step and Hilbert-space convergence, inclusion or bounding of
+counter-rotating (Bloch--Siegert) contributions, and comparison with
+device-specific calibration and control-bandwidth limitations.  Thus,
+$\kappa$ is not yet an experimentally calibrated correction parameter.
 
 \begin{figure}[p]
     \centering
-    \includegraphics[width=0.98\textwidth]{../figures/paper/15_stark_kappa_optimization_80mhz.pdf}
+    \includegraphics[width=0.98\textwidth]{../figures/paper/accumulated_phase_duration_sweep/20us/01_kappa_optimization.pdf}
     \par\vspace{0.8em}
-    \includegraphics[width=0.98\textwidth]{../figures/paper/13_drag_echo_lorentzian_qutrit_80mhz.pdf}
+    \includegraphics[width=0.98\textwidth]{../figures/paper/19_accumulated_phase_pe_durations.pdf}
     \caption{Three-level optimization of the echo-root-Lorentzian response.
     (a) Quadratic Stark-correction scan.  The left panel shows the RMS
     fitted-center displacement from the bare transition versus $\kappa$; the
     dashed line marks the selected coefficient.  The right panel compares the
     fitted central minimum without the correction and at the optimized value.
-    (b) Full $-1$ to $1~\mathrm{MHz}$ detuning maps.  The upper row is the
-    original echo pulse and the lower row includes the $\beta=2$ derivative
-    quadrature and optimized quadratic Stark correction.  Columns show
-    $P_g$, $P_e$, and $P_f$; dashed lines mark the bare transition.}
+    (b) Excited-state population $P_e$ over the full $-1$ to
+    $1~\mathrm{MHz}$ detuning range for pulse lengths $L=5$, $10$, and
+    $20~\mu\mathrm{s}$.  The upper row is uncorrected and the lower row uses
+    the optimized accumulated phase for each duration, always with $\beta=0$.
+    The common color scale is clipped at $P_e=0.5$ for visibility.  Dashed
+    lines mark the bare transition and paired dotted lines mark the
+    $T_{2,\mathrm{eff}}$-limited FWHM bounds.}
     \label{fig:drag-stark-optimization}
 \end{figure}
+
+The duration comparison is shown in
+Fig.~\ref{fig:drag-stark-optimization}(b).  In all three columns, the
+accumulated-phase correction straightens the central $P_e$ feature without
+changing the coherence parameters or amplitude and detuning grids.  For the
+$20~\mu\mathrm{s}$ calculation, the maximum $P_f$ over the full map decreases
+from $0.0974$ to $0.0861$.
+The FWHM remains finite.  In units of
+$\Gamma_{f,T_{2,\mathrm{eff}}}=1/(\pi T_{2,\mathrm{eff}})$, its simulated
+range changes from $1.09$--$5.87$ without correction to $1.09$--$5.32$ with
+correction.  The cost in
+Eq.~\eqref{eq:stark-optimization-cost} constrains the resonance position, not
+population ripple, so residual coherent oscillations remain.
 
 \FloatBarrier

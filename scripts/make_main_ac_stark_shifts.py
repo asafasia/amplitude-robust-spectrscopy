@@ -11,6 +11,9 @@ os.environ.setdefault("MPLCONFIGDIR", str(PROJECT_ROOT / ".codex_tmp" / "mpl"))
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
+import matplotlib
+
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.interpolate import CubicSpline
@@ -20,67 +23,75 @@ from echospec.figures import FigureVariant, apply_figure_style, save_figure
 from echospec.simulation.qutrit import simulate_qutrit_map
 
 RABI_MHZ = np.linspace(0.0, 60.0, 31)
-# A sub-kilohertz central grid is required to resolve the shaped-pulse centers
-# over the experimental 0--15.32 MHz sweep.  The former 50-kHz grid made the
-# weak-drive extrema numerically ill-defined and forced a 20-MHz plotting cut.
-CENTER_DETUNING_MHZ = np.linspace(-0.25, 0.25, 1001)
-FEATURE_HALF_WINDOW_MHZ = 0.22
-SYMMETRY_OFFSET_MAX_MHZ = 0.10
-SYMMETRY_CENTER_BOUND_MHZ = FEATURE_HALF_WINDOW_MHZ - SYMMETRY_OFFSET_MAX_MHZ
-EXPERIMENTAL_RABI_MAX_MHZ = 15.316126673091269
-MAX_DISPLAYED_SHAPED_CENTER_MHZ = 0.025
-SHAPED_DURATION_US = 10.0
-T1_US = 51.24
-T_PHI_US = 7.87
-ANHARMONICITY_MHZ = -200.0
-SHAPED_STEPS_PER_HALF = 7000
-SHAPED_CUTOFF = 0.002
-SHAPED_ORDER = 0.5
+# q1 OPX1000 two-photon spectroscopy:
+# alpha/(2*pi) = 2*(f02/2-f01) = 2*(4.159106667-4.267106667) GHz.
+ANHARMONICITY_MHZ = -216.0
+ROOT_DETUNING_MHZ = np.linspace(-0.25, 0.25, 1001)
+ROOT_FEATURE_HALF_WINDOW_MHZ = 0.22
+ROOT_SYMMETRY_OFFSET_MAX_MHZ = 0.10
+ROOT_SYMMETRY_CENTER_BOUND_MHZ = (
+    ROOT_FEATURE_HALF_WINDOW_MHZ - ROOT_SYMMETRY_OFFSET_MAX_MHZ
+)
+ROOT_MAX_DISPLAYED_CENTER_MHZ = 0.025
+ROOT_DURATION_US = 10.0
+ROOT_CUTOFF = 0.002
+ROOT_ORDER = 0.5
+ROOT_T1_US = 51.24
+ROOT_T_PHI_US = 7.87
+ROOT_STEPS_PER_HALF = 7000
+ROOT_DATA_PATH = (
+    PROJECT_ROOT / "figures/paper/04_main_ac_stark_center_map_root.npz"
+)
+ECHO_DATA_PATH = (
+    PROJECT_ROOT
+    / "data/generated/accumulated_phase_duration_sweep/20us/results.npz"
+)
 CONSTANT_COLOR = "#c62828"
 LORENTZIAN_COLOR = "#00838f"
 ECHO_COLOR = "#6a1b9a"
+CORRECTED_ECHO_COLOR = "#ef6c00"
 
 
-def shaped_phase_average_center_mhz(rabi_mhz: float) -> float:
-    """Leading-order center prior from the time-averaged squared envelope."""
-    sigma_us = (SHAPED_DURATION_US / 2) / np.sqrt(
-        SHAPED_CUTOFF ** (-1 / SHAPED_ORDER) - 1
+def root_phase_average_center_mhz(rabi_mhz: float) -> float:
+    """Leading-order center prior for the root-Lorentzian reference."""
+    sigma_us = (ROOT_DURATION_US / 2) / np.sqrt(
+        ROOT_CUTOFF ** (-1 / ROOT_ORDER) - 1
     )
     mean_square_envelope = (
         2
         * sigma_us
-        / SHAPED_DURATION_US
-        * np.arctan(SHAPED_DURATION_US / (2 * sigma_us))
+        / ROOT_DURATION_US
+        * np.arctan(ROOT_DURATION_US / (2 * sigma_us))
     )
     return float(
         mean_square_envelope * (-rabi_mhz**2 / (2 * ANHARMONICITY_MHZ))
     )
 
 
-def symmetry_center_mhz(
+def root_symmetry_center_mhz(
     detuning_mhz: np.ndarray,
     trace: np.ndarray,
     expected_center_mhz: float,
 ) -> float:
-    """Locate the spectral symmetry axis without selecting a local fringe."""
+    """Locate the root-pulse spectral symmetry axis."""
     spline = CubicSpline(detuning_mhz, trace)
-    offsets = np.linspace(0.002, SYMMETRY_OFFSET_MAX_MHZ, 197)
+    offsets = np.linspace(0.002, ROOT_SYMMETRY_OFFSET_MAX_MHZ, 197)
     scale = max(float(np.ptp(trace)), 1e-12)
 
     def objective(center_mhz: float) -> float:
-        odd_component = spline(center_mhz + offsets) - spline(center_mhz - offsets)
+        odd_component = spline(center_mhz + offsets) - spline(
+            center_mhz - offsets
+        )
         asymmetry = float(np.mean((odd_component / scale) ** 2))
-        # The very weak-drive trace is nearly flat.  A small perturbative prior
-        # resolves only numerical ties; spectral asymmetry dominates once a
-        # feature is visible.
         prior = 1e-3 * (
-            (center_mhz - expected_center_mhz) / SYMMETRY_CENTER_BOUND_MHZ
+            (center_mhz - expected_center_mhz)
+            / ROOT_SYMMETRY_CENTER_BOUND_MHZ
         ) ** 2
         return asymmetry + prior
 
     grid = np.linspace(
-        -SYMMETRY_CENTER_BOUND_MHZ,
-        SYMMETRY_CENTER_BOUND_MHZ,
+        -ROOT_SYMMETRY_CENTER_BOUND_MHZ,
+        ROOT_SYMMETRY_CENTER_BOUND_MHZ,
         481,
     )
     costs = np.asarray([objective(center) for center in grid])
@@ -97,6 +108,65 @@ def symmetry_center_mhz(
             options={"xatol": 1e-10},
         ).x
     )
+
+
+def root_reference_centers() -> np.ndarray:
+    """Extract the original root-Lorentzian reference from its paper cache."""
+    cache_is_current = False
+    if ROOT_DATA_PATH.exists():
+        with np.load(ROOT_DATA_PATH, allow_pickle=False) as data:
+            cache_is_current = (
+                "anharmonicity_mhz" in data
+                and float(data["anharmonicity_mhz"]) == ANHARMONICITY_MHZ
+                and float(data["duration_us"]) == ROOT_DURATION_US
+                and float(data["cutoff"]) == ROOT_CUTOFF
+                and np.array_equal(data["detuning_mhz"], ROOT_DETUNING_MHZ)
+                and np.array_equal(data["rabi_mhz"], RABI_MHZ)
+            )
+            if cache_is_current:
+                excitation = np.asarray(data["excitation"], dtype=float)
+
+    if not cache_is_current:
+        result = simulate_qutrit_map(
+            duration_us=ROOT_DURATION_US,
+            detuning_mhz=ROOT_DETUNING_MHZ,
+            rabi_mhz=RABI_MHZ,
+            t1_us=ROOT_T1_US,
+            t_phi_us=ROOT_T_PHI_US,
+            anharmonicity_mhz=ANHARMONICITY_MHZ,
+            num_steps_per_half=ROOT_STEPS_PER_HALF,
+            cutoff=ROOT_CUTOFF,
+            echo=False,
+            order=ROOT_ORDER,
+        )
+        excitation = result.excited + result.second_excited
+        np.savez_compressed(
+            ROOT_DATA_PATH,
+            detuning_mhz=ROOT_DETUNING_MHZ,
+            rabi_mhz=RABI_MHZ,
+            excitation=excitation,
+            duration_us=ROOT_DURATION_US,
+            cutoff=ROOT_CUTOFF,
+            order=ROOT_ORDER,
+            t1_us=ROOT_T1_US,
+            t_phi_us=ROOT_T_PHI_US,
+            anharmonicity_mhz=ANHARMONICITY_MHZ,
+            steps_per_half=ROOT_STEPS_PER_HALF,
+        )
+
+    centers = np.zeros_like(RABI_MHZ)
+    central = np.abs(ROOT_DETUNING_MHZ) <= ROOT_FEATURE_HALF_WINDOW_MHZ
+    x = ROOT_DETUNING_MHZ[central]
+    for index, row in enumerate(excitation):
+        if index == 0:
+            continue
+        centers[index] = root_symmetry_center_mhz(
+            x,
+            row[central],
+            root_phase_average_center_mhz(float(RABI_MHZ[index])),
+        )
+    centers[np.abs(centers) > ROOT_MAX_DISPLAYED_CENTER_MHZ] = np.nan
+    return centers
 
 
 def dressed_resonance_center_mhz(rabi_mhz: np.ndarray) -> np.ndarray:
@@ -116,73 +186,46 @@ def dressed_resonance_center_mhz(rabi_mhz: np.ndarray) -> np.ndarray:
     return centers
 
 
-def shaped_feature_centers(*, echo: bool) -> np.ndarray:
-    """Extract a central feature position for one shaped protocol.
+def accumulated_phase_echo_centers() -> tuple[np.ndarray, np.ndarray]:
+    """Load matched uncorrected and corrected echo-root spectral centers."""
+    if not ECHO_DATA_PATH.exists():
+        raise FileNotFoundError(
+            "Run scripts/make_accumulated_phase_duration_report.py first: "
+            f"{ECHO_DATA_PATH} is missing."
+        )
+    with np.load(ECHO_DATA_PATH, allow_pickle=False) as data:
+        if float(data["duration_us"]) != 20.0:
+            raise ValueError("Figure 5 requires the 20 us duration cache.")
+        if float(data["cutoff"]) != 0.001:
+            raise ValueError("Figure 5 requires cutoff c=0.001.")
+        if float(data["drag_beta"]) != 0.0:
+            raise ValueError("Figure 5 requires beta=0.")
+        if float(data["anharmonicity_mhz"]) != ANHARMONICITY_MHZ:
+            raise ValueError(
+                "Figure 5 accumulated-phase data use the wrong anharmonicity."
+            )
+        fit_rabi_mhz = np.asarray(data["fit_rabi_mhz"], dtype=float)
+        plain_centers_mhz = np.asarray(data["plain_centers_mhz"], dtype=float)
+        corrected_centers_mhz = np.asarray(
+            data["corrected_centers_mhz"], dtype=float
+        )
 
-    Both protocols use the symmetry axis of a fine central-frequency scan.
-    This definition remains stable when coherent sub-fringes make a single
-    local maximum or minimum ambiguous.
-    """
-    protocol = "echo_root" if echo else "root"
-    cache_path = (
-        PROJECT_ROOT
-        / "figures/paper"
-        / f"04_main_ac_stark_center_map_{protocol}.npz"
+    display = fit_rabi_mhz <= RABI_MHZ[-1]
+    matched_rabi_mhz = np.concatenate(([0.0], fit_rabi_mhz[display]))
+    if not np.array_equal(matched_rabi_mhz, RABI_MHZ):
+        raise ValueError("The accumulated-phase cache does not match the Figure 5 grid.")
+    return (
+        np.concatenate(([0.0], plain_centers_mhz[display])),
+        np.concatenate(([0.0], corrected_centers_mhz[display])),
     )
-    if cache_path.exists():
-        with np.load(cache_path) as cached:
-            cached_detuning = np.asarray(cached["detuning_mhz"], dtype=float)
-            cached_rabi = np.asarray(cached["rabi_mhz"], dtype=float)
-            if np.array_equal(cached_detuning, CENTER_DETUNING_MHZ) and np.array_equal(
-                cached_rabi, RABI_MHZ
-            ):
-                excitation = np.asarray(cached["excitation"], dtype=float)
-            else:
-                cache_path.unlink()
-                return shaped_feature_centers(echo=echo)
-    else:
-        result = simulate_qutrit_map(
-            duration_us=SHAPED_DURATION_US,
-            detuning_mhz=CENTER_DETUNING_MHZ,
-            rabi_mhz=RABI_MHZ,
-            t1_us=T1_US,
-            t_phi_us=T_PHI_US,
-            anharmonicity_mhz=ANHARMONICITY_MHZ,
-            num_steps_per_half=SHAPED_STEPS_PER_HALF,
-            cutoff=SHAPED_CUTOFF,
-            echo=echo,
-            order=SHAPED_ORDER,
-        )
-        excitation = result.excited + result.second_excited
-        np.savez_compressed(
-            cache_path,
-            detuning_mhz=CENTER_DETUNING_MHZ,
-            rabi_mhz=RABI_MHZ,
-            excitation=excitation,
-        )
-    centers = np.zeros_like(RABI_MHZ)
-    central = np.abs(CENTER_DETUNING_MHZ) <= FEATURE_HALF_WINDOW_MHZ
-    x = CENTER_DETUNING_MHZ[central]
-    for index, row in enumerate(excitation):
-        if index == 0:
-            continue
-        y = row[central]
-        centers[index] = symmetry_center_mhz(
-            x,
-            y,
-            shaped_phase_average_center_mhz(float(RABI_MHZ[index])),
-        )
-    return centers
 
 
 def main() -> None:
     apply_figure_style(FigureVariant.PAPER)
 
     dressed_center = dressed_resonance_center_mhz(RABI_MHZ)
-    root_center = shaped_feature_centers(echo=False)
-    echo_center = shaped_feature_centers(echo=True)
-    root_center[np.abs(root_center) > MAX_DISPLAYED_SHAPED_CENTER_MHZ] = np.nan
-    echo_center[np.abs(echo_center) > MAX_DISPLAYED_SHAPED_CENTER_MHZ] = np.nan
+    root_center = root_reference_centers()
+    echo_center, corrected_echo_center = accumulated_phase_echo_centers()
 
     figure, axis = plt.subplots(figsize=(3.35, 3.35), constrained_layout=True)
     axis.plot(
@@ -190,7 +233,8 @@ def main() -> None:
         dressed_center,
         "o-",
         color=CONSTANT_COLOR,
-        ms=2.5,
+        ms=2.6,
+        zorder=2,
         label="constant",
     )
     root_line, = axis.plot(
@@ -198,7 +242,8 @@ def main() -> None:
         root_center,
         "s-",
         color=LORENTZIAN_COLOR,
-        ms=2.8,
+        ms=4.2,
+        zorder=3,
         label="root",
     )
     echo_line, = axis.plot(
@@ -206,22 +251,25 @@ def main() -> None:
         echo_center,
         "^-",
         color=ECHO_COLOR,
-        ms=2.8,
+        ms=3.4,
+        zorder=4,
         label="echo-root",
     )
-    axis.axhline(0.0, color="0.5", lw=0.7)
-    axis.axvspan(
-        0.0,
-        EXPERIMENTAL_RABI_MAX_MHZ,
-        color="0.92",
-        zorder=0,
-        label="measured sweep",
+    corrected_echo_line, = axis.plot(
+        RABI_MHZ,
+        corrected_echo_center,
+        "s-",
+        color=CORRECTED_ECHO_COLOR,
+        ms=2.0,
+        zorder=5,
+        label="corrected echo-root",
     )
+    axis.axhline(0.0, color="0.5", lw=0.7)
     axis.set_xlabel(r"$\Omega_0/2\pi$ (MHz)")
     axis.set_ylabel(r"$f_{01}$ shift (MHz)")
     axis.set_xlim(-1.0, 61.0)
     axis.grid(alpha=0.25)
-    axis.legend(fontsize=5.2, ncol=2, loc="upper left")
+    axis.legend(fontsize=4.8, ncol=2, loc="upper left")
 
     inset = axis.inset_axes([0.42, 0.39, 0.55, 0.39])
     inset.plot(
@@ -238,15 +286,18 @@ def main() -> None:
         color=echo_line.get_color(),
         ms=1.8,
     )
+    inset.plot(
+        RABI_MHZ,
+        1e3 * corrected_echo_center,
+        "s-",
+        color=corrected_echo_line.get_color(),
+        ms=1.8,
+    )
     inset.axhline(0.0, color="0.5", lw=0.6)
-    inset.axvspan(0.0, EXPERIMENTAL_RABI_MAX_MHZ, color="0.92", zorder=0)
-    shaped_centers_khz = 1e3 * np.concatenate([root_center, echo_center])
-    inset_lower = min(-25.0, 5.0 * np.floor(np.nanmin(shaped_centers_khz) / 5.0) - 5.0)
-    inset_upper = max(25.0, 5.0 * np.ceil(np.nanmax(shaped_centers_khz) / 5.0) + 5.0)
     inset.set_xlim(0.0, float(RABI_MHZ[-1]))
-    inset.set_ylim(inset_lower, inset_upper)
+    inset.set_ylim(-10.0, 10.0)
     inset.set_ylabel(r"$f_{01}$ shift (kHz)", fontsize=5.2)
-    inset.set_title("full shaped-pulse range", fontsize=5.5)
+    inset.set_title(r"central $\pm10$ kHz zoom", fontsize=5.5)
     inset.tick_params(labelsize=4.8)
     inset.grid(alpha=0.2)
 

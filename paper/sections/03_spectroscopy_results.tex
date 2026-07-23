@@ -1,27 +1,30 @@
-Numerical spectroscopy maps for matched root-Lorentzian and
-echo-root-Lorentzian pulses are shown at broad and narrow detuning scales in
-Fig.~\ref{fig:robust-echo-spectroscopy}.  All three rows use
-$L=20~\mu\mathrm{s}$; the Lorentzian-derived pulses use $c=0.002$, and the
-columns span 50 and $1~\mathrm{MHz}$, respectively, with matched model
-parameters.
-Independent measurements on qubit \CoherenceQubit{} give
-$T_1=\MeasuredTOne~\mu\mathrm{s}$ and a Ramsey time
-$T_2^*=\MeasuredTTwoStar~\mu\mathrm{s}$.  A later calibration session gives
-a Hahn-echo time $T_2=\MeasuredTTwoEcho~\mu\mathrm{s}$ (Supplemental
-coherence-characterization section).  Because the echo trace was acquired
-later, for a conservative transverse reference tied to the June 28 data we set
-$T_{2,\mathrm{eff}}=T_2^*=\EffectiveTTwo~\mu\mathrm{s}$, corresponding to
-$\Gamma_{f,T_2}=1/(\pi T_{2,\mathrm{eff}})=\EffectiveCoherenceFwhm~\mathrm{kHz}$.  The
-calculation in Fig.~\ref{fig:robust-echo-spectroscopy} uses these
-measurement-linked coherence parameters.
-
+\par
 Square pulses exhibit pronounced power broadening even at low drive
 amplitudes compared to Lorentzian-type pulses, with substantial linewidth
 expansion observed over three orders of magnitude in amplitude.  In contrast, the root-Lorentzian pulse displays the characteristic power-narrowing behavior and maintains a narrow linewidth. However, even for pulse durations shorter than the qubit lifetime $T_1$, coherent oscillations arise for both square and root-Lorentzian pulses,
 resulting in amplitude-dependent linewidth variations that hinder precise
 spectral extraction.
 
-Introducing a $\pi$ phase inversion at the peak of the root-Lorentzian envelope partitions the drive into two sequential segments of opposite phase.  For an ideal symmetric unitary two-level pulse, the corresponding forward and backward evolutions cancel exactly at zero detuning; relaxation, dephasing, waveform imbalance, and finite bandwidth make the cancellation incomplete in experiment.  This echo-like structure suppresses resonant Rabi oscillations while preserving the off-resonant spectral response, producing a sharp depletion feature centered at the qubit transition frequency.  The waveform Fourier spectrum in Fig.~\ref{fig:fig1} has a null at zero baseband frequency, consistent with its vanishing signed area, but this linear waveform property is not itself the nonlinear qubit response.  The resonance-centered depletion instead follows from the driven dynamics and is supported by the state-evolution simulations and measurements.  This mechanism can be viewed as a Loschmidt-echo-like evolution, in which ideal reversibility occurs only on resonance, while detuning, decoherence, and experimental imperfections break the cancellation and restore excitation~\cite{Gorin_2006,PhysRevA.30.1610}. Combined with the adiabatic following of the Lorentzian envelope~\cite{boradjiev_power_2013,mihov_defying_2024}, this interference effect suppresses both power broadening and coherent Rabi oscillations, enabling narrow spectroscopy over a broad range of drive strengths with driven-spectroscopy pulses shorter than $T_1$. This sub-$T_1$ operating regime remains useful as qubit lifetimes increase because square and ordinary root-Lorentzian pulses can still exhibit coherent oscillatory distortions. Numerical state-evolution maps illustrating the resonant cancellation and detuned response are presented in the Supplemental Material~\cite{SupplementalMaterial}.
+Introducing a $\pi$ phase inversion at the peak of the root-Lorentzian envelope partitions the drive into two sequential segments of opposite phase.  For an ideal symmetric unitary two-level pulse, the corresponding forward and backward evolutions cancel exactly at zero detuning; relaxation, dephasing, waveform imbalance, and finite bandwidth make the cancellation incomplete in experiment.  This echo-like structure suppresses resonant Rabi oscillations while preserving the off-resonant spectral response, producing a sharp depletion feature centered at the qubit transition frequency.  The waveform Fourier spectrum in Fig.~\ref{fig:fig1} has a null at zero baseband frequency, consistent with its vanishing signed area, but this linear waveform property is not itself the nonlinear qubit response.  The resonance-centered depletion instead follows from the driven dynamics and is observed in the experimental spectroscopy maps.
+
+This mechanism can be viewed as a Loschmidt-echo-like evolution, in which ideal reversibility occurs only on resonance, while detuning, decoherence, and experimental imperfections break the cancellation and restore excitation~\cite{Gorin_2006,PhysRevA.30.1610}. Combined with the adiabatic following of the Lorentzian envelope~\cite{boradjiev_power_2013,mihov_defying_2024}, this interference effect suppresses both power broadening and coherent Rabi oscillations, enabling narrow spectroscopy over a broad range of drive strengths with driven-spectroscopy pulses shorter than $T_1$. This sub-$T_1$ operating regime remains useful as qubit lifetimes increase because square and ordinary root-Lorentzian pulses can still exhibit coherent oscillatory distortions. The numerical model used for the experiment--theory comparison in Fig.~\ref{fig:simulation-results} is detailed in the Supplemental Material~\cite{SupplementalMaterial}.
+
+Fig.~\ref{fig:robust-echo-spectroscopy} compares experimental spectroscopy maps for
+constant, root-Lorentzian, and echo-root-Lorentzian pulses using matched
+parameters.  All protocols use $L=20~\mu\mathrm{s}$, and the shaped pulses use
+$c=0.002$.  The upper and lower rows span broad
+$50~\mathrm{MHz}$ and narrow $1~\mathrm{MHz}$ detuning domains,
+respectively.
+Independent measurements on qubit \CoherenceQubit{} give
+$T_1=\MeasuredTOne~\mu\mathrm{s}$, a Ramsey time
+$T_2^*=\MeasuredTTwoStar~\mu\mathrm{s}$, and a Hahn-echo time
+$T_2=\MeasuredTTwoEcho~\mu\mathrm{s}$ (Supplemental coherence-characterization
+section).  The Ramsey value corresponds to a
+coherence-limited FWHM
+$\Gamma_{f,T_2^*}=1/(\pi T_2^*)=\EffectiveCoherenceFwhm~\mathrm{kHz}$.
+The coherence-limit reference lines in
+Fig.~\ref{fig:robust-echo-spectroscopy} use these independently measured
+coherence parameters.
 
 % Introducing a sign inversion in the root-Lorentzian envelope produces
 % an effective $\pi$ phase shift in the drive, leading to a splitting of the
@@ -42,20 +45,10 @@ Introducing a $\pi$ phase inversion at the peak of the root-Lorentzian envelope 
 
 % The effectiveness of the echo-type Lorentzian pulse arises from two complementary mechanisms. First, the adiabatic nature of the Lorentzian envelope ensures that over a broad range of drive amplitudes the qubit state follows the instantaneous dressed eigenstate of the driven Hamiltonian. In contrast to square pulses—which introduce abrupt non-adiabatic transitions and induce oscillatory Rabi dynamics—the smooth Lorentzian profile suppresses spectral leakage and mitigates the sidebands typically associated with high-power drives.
 
-Figure~\ref{fig:simulation-results}(a)--(f) resolves the two-dimensional maps
-into fixed-amplitude spectra.  The three rows compare the same peak Rabi
-frequencies for the ordinary and echo protocols, making the echo-induced
+Fig.~\ref{fig:simulation-results}(a)--(f) resolves the two-dimensional maps
+into fixed-amplitude spectra, comparing the measured response (markers) with
+the simulations (continuous curves).  All traces use $L=20~\mu\mathrm{s}$ and
+$c=0.002$.  The three rows compare the ordinary and echo protocols at
+$\Omega_0/(2\pi)=2.5$, $10$, and $40~\mathrm{MHz}$, making the echo-induced
 central depletion and its persistence with increasing drive amplitude
 explicit.
-
-To suppress residual power broadening at large drive amplitudes, the pulse
-envelope must satisfy requirements on its cutoff behavior.  Truncation
-introduces a residual endpoint drive $\Omega_c=c\Omega_0$ and a corresponding
-cutoff-broadening contribution~\cite{boradjiev_qubit_2013,mihov_defying_2024,mihov_qubit_2024}.
-The relevant weak-saturation condition is
-$s_c=\Omega_c^2T_1T_2\ll1$, or
-$\Omega_c\ll1/\sqrt{T_1T_2}$; the inequality therefore points toward
-\emph{smaller}, not larger, endpoint amplitudes.  The relative cutoff $c$
-cannot be specified independently of $\Omega_0$, $T_1$, and $T_2$.  Our
-cutoff sweeps and high-amplitude measurements are reported in the Supplemental
-Material~\cite{SupplementalMaterial}.

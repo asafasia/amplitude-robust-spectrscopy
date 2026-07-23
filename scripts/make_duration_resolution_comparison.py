@@ -17,6 +17,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
+from matplotlib.ticker import FixedFormatter, FixedLocator
 import numpy as np
 from scipy.ndimage import gaussian_filter1d
 from scipy.optimize import curve_fit
@@ -38,7 +39,7 @@ from echospec.utils.units import Units as u
 DURATIONS_US = (10.0, 20.0, 30.0, 40.0)
 CUTOFF = 0.002
 DETUNING_MHZ = np.linspace(-1.0, 1.0, 501)
-RABI_MHZ = np.geomspace(1e-3, 15.5, 100)
+RABI_MHZ = np.geomspace(1e-3, 50.0, 120)
 EDGE_POINTS = 20
 SMOOTH_SIGMA_POINTS = 0.5
 MAX_FWHM_MHZ = 0.12
@@ -49,6 +50,7 @@ Q_THRESHOLD = 0.10
 NOISE_STD = 0.002
 MIN_SIGNAL_TO_NOISE = 3.0
 NOISE_SEED = 4103
+STEPS_PER_US = 1000
 CONSTANT_RABI_MHZ = np.geomspace(RABI_MHZ.min(), RABI_MHZ.max(), 20_001)
 
 
@@ -78,9 +80,8 @@ def _simulate_echo(duration_us: float) -> np.ndarray:
     y = np.zeros_like(x)
     z = np.ones_like(x)
 
-    # Keep the physical time step at or below 10 ns and retain the 2000-step
-    # resolution used for the 20-us main-text simulation.
-    num_steps = max(2000, int(np.ceil(duration_us * 100.0)))
+    # Resolve the fastest 50-MHz drive with a 1-ns physical time step.
+    num_steps = max(2000, int(np.ceil(duration_us * STEPS_PER_US)))
     dt = duration_s / num_steps
     time_midpoints = (
         -duration_s / 2.0
@@ -252,7 +253,7 @@ def _extract_metrics(
 def _build_figure(
     clean_metrics_by_duration: dict[float, dict[str, np.ndarray]],
     noisy_metrics_by_duration: dict[float, dict[str, np.ndarray]],
-    constant_fwhm_khz: np.ndarray,
+    constant_fwhm_t2_units: np.ndarray,
     constant_contrast: np.ndarray,
     constant_product: np.ndarray,
 ) -> plt.Figure:
@@ -276,10 +277,10 @@ def _build_figure(
     constant_color = "#c62828"
     axes[0].plot(
         CONSTANT_RABI_MHZ,
-        constant_fwhm_khz,
+        constant_fwhm_t2_units,
         color=constant_color,
         lw=1.25,
-        label="Constant (Torrey)",
+        label="Constant (Bloch)",
         zorder=1,
     )
     axes[1].plot(
@@ -320,7 +321,7 @@ def _build_figure(
         )
         for ax, metric_name in zip(
             axes,
-            ("fwhm_khz", "contrast", "product"),
+            ("fwhm_t2_units", "contrast", "product"),
         ):
             ax.plot(
                 RABI_MHZ,
@@ -343,19 +344,23 @@ def _build_figure(
             )
 
     axes[0].axhline(
-        T2_LIMIT_FWHM_MHZ * 1e3,
+        1.0,
         color="0.35",
         ls="--",
         lw=0.65,
     )
     axes[2].axhline(Q_THRESHOLD, color="0.35", ls="--", lw=0.65)
-    axes[0].set_ylabel(r"FWHM $\Gamma_f$ (kHz)")
+    axes[0].set_ylabel(r"FWHM $\Gamma_f/\Gamma_{f,T_2}$")
     axes[1].set_ylabel(r"Fitted contrast $A$")
     axes[2].set_ylabel(r"$Q=A\,\Gamma_{f,T_2}/\Gamma_f$")
     axes[2].set_xlabel(r"$\Omega_0/2\pi$ (MHz)")
+    rabi_ticks = (1e-3, 1e-2, 1e-1, 1.0, 10.0, 100.0)
+    rabi_tick_labels = ("0.001", "0.01", "0.1", "1", "10", "100")
     for panel, ax in zip(("(g)", "(h)", "(i)"), axes):
         ax.set_xscale("log")
-        ax.set_xlim(RABI_MHZ.min(), RABI_MHZ.max())
+        ax.set_xlim(RABI_MHZ.min(), 100.0)
+        ax.xaxis.set_major_locator(FixedLocator(rabi_ticks))
+        ax.xaxis.set_major_formatter(FixedFormatter(rabi_tick_labels))
         ax.text(
             0.015,
             0.96,
@@ -365,18 +370,7 @@ def _build_figure(
             va="top",
             fontweight="bold",
         )
-    fwhm_max = max(
-        float(np.nanmax(metrics["fwhm_khz"]))
-        for collection in (
-            clean_metrics_by_duration,
-            noisy_metrics_by_duration,
-        )
-        for metrics in collection.values()
-    )
-    axes[0].set_ylim(
-        0.0,
-        max(1.2 * T2_LIMIT_FWHM_MHZ * 1e3, 1.06 * fwhm_max),
-    )
+    axes[0].set_ylim(0.0, 100.0 / (T2_LIMIT_FWHM_MHZ * 1e3))
     contrast_max = max(
         float(np.nanmax(metrics["contrast"]))
         for collection in (
@@ -402,7 +396,7 @@ def _build_figure(
                 [0],
                 color=constant_color,
                 lw=1.25,
-                label="Constant (Torrey)",
+                label="Constant (Bloch)",
             ),
             *duration_handles,
         ],
@@ -467,8 +461,8 @@ def main() -> None:
         ),
     ).run()
     constant_resolution = constant_result.inverse_fwhm_t2_units
-    constant_fwhm_khz = np.divide(
-        T2_LIMIT_FWHM_MHZ * 1e3,
+    constant_fwhm_t2_units = np.divide(
+        1.0,
         constant_resolution,
         out=np.full_like(constant_resolution, np.nan),
         where=constant_resolution > 0.0,
@@ -478,7 +472,7 @@ def main() -> None:
     fig = _build_figure(
         clean_metrics_by_duration,
         noisy_metrics_by_duration,
-        constant_fwhm_khz,
+        constant_fwhm_t2_units,
         constant_contrast,
         constant_product,
     )
@@ -509,7 +503,7 @@ def main() -> None:
         min_signal_to_noise=MIN_SIGNAL_TO_NOISE,
         noise_seed=NOISE_SEED,
         constant_rabi_mhz=CONSTANT_RABI_MHZ,
-        constant_fwhm_khz=constant_fwhm_khz,
+        constant_fwhm_t2_units=constant_fwhm_t2_units,
         constant_contrast=constant_contrast,
         constant_resolution=constant_resolution,
         constant_product=constant_product,

@@ -126,6 +126,61 @@ class TestQutritSimulation(unittest.TestCase):
             1e-6,
         )
 
+    def test_accumulated_phase_matches_direct_detuning_correction(self):
+        common = {
+            "duration_us": 0.4,
+            "detuning_mhz": np.linspace(-1.0, 1.0, 9),
+            "rabi_mhz": np.asarray([5.0, 20.0]),
+            "t1_us": 51.24,
+            "t_phi_us": 7.871481,
+            "anharmonicity_mhz": -200.0,
+            "num_steps_per_half": 1000,
+            "cutoff": 0.02,
+            "echo": True,
+            "drag_beta": 2.0,
+            "stark_kappa_mhz_inv": 0.00225,
+        }
+        detuning = simulate_qutrit_map(
+            **common, stark_correction_mode="detuning"
+        )
+        accumulated_phase = simulate_qutrit_map(
+            **common, stark_correction_mode="accumulated_phase"
+        )
+
+        for attribute in ("ground", "excited", "second_excited"):
+            np.testing.assert_allclose(
+                getattr(accumulated_phase, attribute),
+                getattr(detuning, attribute),
+                atol=3e-9,
+                rtol=0.0,
+            )
+
+    def test_instantaneous_phase_is_not_accumulated_phase(self):
+        common = {
+            "duration_us": 0.4,
+            "detuning_mhz": np.linspace(-1.0, 1.0, 9),
+            "rabi_mhz": np.asarray([20.0]),
+            "t1_us": 51.24,
+            "t_phi_us": 7.871481,
+            "anharmonicity_mhz": -200.0,
+            "num_steps_per_half": 1000,
+            "cutoff": 0.02,
+            "echo": True,
+            "drag_beta": 2.0,
+            "stark_kappa_mhz_inv": 0.00225,
+        }
+        accumulated = simulate_qutrit_map(
+            **common, stark_correction_mode="accumulated_phase"
+        )
+        instantaneous = simulate_qutrit_map(
+            **common, stark_correction_mode="instantaneous_phase"
+        )
+
+        self.assertGreater(
+            float(np.max(np.abs(instantaneous.excited - accumulated.excited))),
+            1e-4,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

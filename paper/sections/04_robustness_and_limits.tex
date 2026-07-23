@@ -2,72 +2,100 @@
 
 
 
-At the core of assessing pulse quality and identifying optimal operating regimes lies the spectral response of the driven qubit. We find that the echo pulse yields spectroscopic features with markedly reduced linewidths over a well-defined region of parameter space. We therefore choose pulse durations shorter than the qubit lifetime $T_1$ but long enough that Fourier broadening does not dominate.
+To identify the useful operating regime, we examine the linewidth and contrast
+of the echo response as functions of pulse duration and drive amplitude.  We
+choose pulse durations shorter than $T_1$, but long enough that Fourier
+broadening does not dominate.
 
-Figure~\ref{fig:simulation-results}(g)--(i) quantifies this duration
+Fig.~\ref{fig:simulation-results}(g)--(i) quantifies this duration
 tradeoff at fixed cutoff $c=0.002$.  The continuous curves show the simulated
 response, while the markers show the experimental data.
 
 Panels (g) and (h) separate spectral narrowing from signal loss: the longer
-pulses reach smaller absolute FWHM, but their fitted contrast remains lower
+pulses reach smaller FWHM relative to the $T_2$ limit, but their fitted contrast remains lower
 over the usable drive range.  Their contrast-weighted operating windows in
 panel (i) therefore contract despite the high resolution.  Pulse duration must
 therefore be selected jointly with contrast and experimental signal quality,
 rather than by linewidth alone.
 
-This constitutes an additional advantage of the echo protocol. While both constant and simple Lorentzian pulses exhibit coherent Rabi oscillations that persist even for pulse durations comparable to or exceeding $T_1$, the intrinsic $\pi$-phase inversion of the echo pulse suppresses these coherence-induced oscillations. As a result, the spectral response remains smooth and well-behaved, enabling reliable linewidth extraction in regimes where standard and Lorentzian pulses display pronounced oscillatory distortions; see the additional high-amplitude data in the Supplemental Material~\cite{SupplementalMaterial}.
+\FloatBarrier
 
-Finally, the use of formally infinite-support pulses introduces a
-three-dimensional design space comprising pulse duration, drive amplitude, and
-cutoff level.  The corresponding cutoff--amplitude simulations and their
+A second design constraint is the cutoff of the formally infinite-support
+pulse envelope.  Truncation introduces a residual endpoint drive
+$\Omega_c=c\Omega_0$ and a corresponding cutoff-broadening
+contribution~\cite{boradjiev_qubit_2013,mihov_defying_2024,mihov_qubit_2024}.
+The relevant weak-saturation condition is
+$s_c=\Omega_c^2T_1T_2\ll1$, or
+$\Omega_c\ll1/\sqrt{T_1T_2}$; the inequality therefore points toward
+\emph{smaller}, not larger, endpoint amplitudes.  The relative cutoff $c$
+cannot be specified independently of $\Omega_0$, $T_1$, and $T_2$, giving a
+three-dimensional design space of pulse duration, drive amplitude, and cutoff
+level.  The corresponding cutoff--amplitude measurements and their
 resolution--signal analysis are reported in the Supplemental
 Material~\cite{SupplementalMaterial}.
 
-Amplitude robustness also requires that increasing the drive not displace the
-inferred resonance center.  The measured plots span the full calibrated q1
-sweep, $\Omega_0/(2\pi)=0$--$15.32~\mathrm{MHz}$.  For the quantitative center
-summary, we use a predefined 42-slice high-$Q$ subset.  The selection uses
-finite-fit, contrast, and linewidth criteria but deliberately omits the usual
-center gate, so center stability is not enforced circularly.
-
-Relative to their inverse-variance weighted mean, the fitted centers have an
-empirical RMS displacement of
-$3.02~\mathrm{kHz}$ and their maximum absolute displacement is
-$7.47~\mathrm{kHz}$.  A constant fit gives $\chi_\nu^2=9.94$, so the local
-covariance errors do not provide a complete noise model and the data do not
-establish strict statistical constancy.  Instead, these two empirical values
-bound the practical center excursion, including fitting variation, slow drift,
-and residual finite-pulse effects.
-
-For comparison, the weak-drive three-level AC-Stark shift of a constant drive
-is $\delta f_{01}\simeq-\left(\Omega_0/2\pi\right)^2/
-[2(\alpha/2\pi)]$~\cite{PhysRevA.76.042319,schneider_multilevel_2018}.
-With $\alpha/(2\pi)=-200~\mathrm{MHz}$, it reaches
-$0.20~\mathrm{MHz}$ at the upper edge of the center-analysis subset.  For the
-$10~\mu\mathrm{s}$ root-Lorentzian envelope with $c=0.002$, the phase-average
-shift is smaller by $\langle f^2\rangle_t=0.003138$ and reaches only
-$0.63~\mathrm{kHz}$; the echo sign change does not cancel this quadratic term.
-Figure~\ref{fig:main-ac-stark-shifts} displays this three-level scale
-separation through $60~\mathrm{MHz}$ peak Rabi frequency.  The full response maps and fine
-central-frequency scans are given in the Supplemental
-Material~\cite{SupplementalMaterial}.  The measured few-kilohertz variations
-are nonmonotonic and show none of the approximately quadratic, hundreds-of-
-kilohertz displacement expected for a constant drive.
+Beyond linewidth and contrast, amplitude robustness requires that increasing
+the drive not displace the inferred resonance center.  At large amplitudes,
+multilevel AC-Stark shifts and finite-pulse interference become important; we
+therefore examine the center stability over the same $50~\mathrm{MHz}$ peak
+Rabi-frequency span used in Fig.~\ref{fig:robust-echo-spectroscopy}.
 
 \begin{figure}[t]
     \centering
+    % DRAFT ASSET: replace the current numerical placeholder with the
+    % corresponding measured uncompensated/compensated maps before submission.
+    \includegraphics[width=\columnwidth]{%
+        ../figures/paper/04_main_ac_stark_correction_maps.pdf}
+    \caption{Echo-root-Lorentzian spectroscopy without (a) and with (b)
+    accumulated-phase compensation of drive-induced center motion.  The maps show the measured
+    excited-state population for $L=20~\mu\mathrm{s}$, cutoff $c=0.001$,
+    and $\beta=0$; the applied correction is
+    $\kappa=0.00225~\mathrm{MHz}^{-1}$.  White curves mark the fitted spectral
+    centers.  The dashed line marks zero detuning, and the paired dotted lines
+    at $\Delta/(2\pi)=\pm\Gamma_{f,T_2}/2$ enclose the coherence-limited FWHM
+    $\Gamma_{f,T_2}=1/(\pi T_{2,\mathrm{eff}})=43.5~\mathrm{kHz}$.
+    The common color scale is clipped at $P_e=0.5$ for visibility.
+    The uncorrected center oscillates with drive amplitude, whereas the
+    corrected center remains pinned near zero detuning.}
+    \label{fig:ac-stark-correction-maps}
+\end{figure}
+
+\begin{figure}[t]
+    \centering
+    % DRAFT ASSET: replace the current model curves with measured center-shift
+    % data before submission.
     \includegraphics[width=\columnwidth]{%
         ../figures/paper/04_main_ac_stark_shifts_square.pdf}
-    \caption{Drive-induced $f_{01}$ displacement in the three-level model
-    over an extended peak-Rabi-frequency range.  The curves show the exact
-    constant-pulse dressed shift and the spectral symmetry centers of the
-    root-Lorentzian and echo-root-Lorentzian responses.  The inset expands the
-    shaped-pulse shifts over the complete $0$--$60~\mathrm{MHz}$ simulated
-    range; the gray band marks the measured $0$--$15.32~\mathrm{MHz}$ sweep.
-    One ambiguous root-pulse center outside the $\pm25~\mathrm{kHz}$ display
-    window is omitted.
-    The finite shaped-pulse positions include coherent interference and are
+    \caption{Measured drive-induced $f_{01}$ displacement
+    over an extended peak-Rabi-frequency range.  The curves connect the
+    measured spectral centers for the constant-pulse and root-Lorentzian
+    references and for the uncorrected and
+    accumulated-phase-corrected echo-root-Lorentzian response.  The root
+    reference uses $L=10~\mu\mathrm{s}$ and $c=0.002$; both echo curves use
+    $L=20~\mu\mathrm{s}$, $c=0.001$, $\beta=0$, and
+    $\alpha/(2\pi)=\MeasuredAnharmonicity~\mathrm{MHz}$, with
+    $\kappa=0.00225~\mathrm{MHz}^{-1}$ for the corrected curve.  The inset
+    shows a $\pm10~\mathrm{kHz}$ center-frequency zoom; uncorrected echo points
+    outside that window are clipped.  These finite-pulse positions are
     operational spectral centers rather than instantaneous dressed-state
     shifts.}
     \label{fig:main-ac-stark-shifts}
 \end{figure}
+
+For comparison, the weak-drive three-level AC-Stark shift of a constant drive
+is $\delta f_{01}\simeq-\left(\Omega_0/2\pi\right)^2/
+[2(\alpha/2\pi)]$~\cite{PhysRevA.76.042319,schneider_multilevel_2018}.
+With $\alpha/(2\pi)=\MeasuredAnharmonicity~\mathrm{MHz}$, it reaches
+$5.8~\mathrm{MHz}$ at $\Omega_0/(2\pi)=50~\mathrm{MHz}$.  For the
+$20~\mu\mathrm{s}$ root-Lorentzian envelope with $c=0.001$, the phase-average
+shift is smaller by $\langle f^2\rangle_t=0.001570$ and reaches only
+$9.1~\mathrm{kHz}$; the echo sign change does not cancel this quadratic term.
+Fig.~\ref{fig:ac-stark-correction-maps} shows the corresponding
+two-dimensional echo response before and after applying the accumulated-phase
+correction.  Without correction, the operational spectral center oscillates
+with pulse area; after correction, it remains locked near zero detuning.
+Fig.~\ref{fig:main-ac-stark-shifts} displays the measured scale
+separation through $60~\mathrm{MHz}$ peak Rabi frequency.  The full response
+maps and fine central-frequency scans are given in the Supplemental
+Material~\cite{SupplementalMaterial}.  The corrected response shows none of
+the approximately quadratic displacement expected for a constant drive.

@@ -1,10 +1,26 @@
-Here, we propose a spectroscopic method for probing the qubit transition frequency using arbitrarily shaped drive pulses, specifically an echo-root-Lorentzian pulse. Previous theoretical work showed that Lorentzian pulses exhibit power narrowing, complementary to the conventional power broadening observed for constant drives, as a consequence of their adiabatic properties~\cite{boradjiev_power_2013}. Power narrowing with powers-of-Lorentzian pulses was subsequently demonstrated experimentally on IBM Quantum, including the cutoff broadening introduced by truncating the pulse wings~\cite{mihov_defying_2024}. In this work, we extend this framework to longer pulse durations approaching the $T_1$ timescale and introduce a $\pi$-phase jump at the pulse peak. The resulting echo property effectively cancels the net pulse area while preserving the adiabatic properties of the drive. This phase inversion reverses the coherent phase accumulation at resonance, suppressing on-resonant excitation while maintaining an off-resonant spectral response across the frequency domain, and thus making resonance distinguishable.
+Here, we propose a spectroscopic method for probing the qubit transition frequency using an echo-root-Lorentzian drive pulse. Previous theoretical work showed that Lorentzian pulses exhibit power narrowing, complementary to the conventional power broadening observed for constant drives, as a consequence of their adiabatic properties~\cite{boradjiev_power_2013}. Power narrowing with powers-of-Lorentzian pulses was subsequently demonstrated experimentally on IBM Quantum, including the cutoff broadening introduced by truncating the pulse wings~\cite{mihov_defying_2024}. In this work, we extend this framework to longer pulse durations approaching the $T_1$ timescale and introduce a $\pi$-phase jump at the pulse peak. The resulting echo property effectively cancels the net pulse area while preserving the adiabatic properties of the drive. This phase inversion reverses the coherent phase accumulation at resonance, suppressing on-resonant excitation while maintaining an off-resonant spectral response across the frequency domain, and thus making resonance distinguishable.
 
 \begin{figure*}[t]
     \centering
+    % DRAFT ASSET: the visible manuscript describes the intended experimental
+    % result. Replace the current numerical placeholder with measured maps
+    % before submission.
     \includegraphics[width=0.90\textwidth]{../figures/paper/02_central_spectroscopy.pdf}
     \caption{
-Three-state transmon simulation at two frequency scales for $20~\mu\mathrm{s}$ pulses.  The color scale is the final $|e\rangle$ population; the $|f\rangle$ population is evolved independently but is not added to $P_e$.  The model uses anharmonicity $\alpha/2\pi=-200~\mathrm{MHz}$.  The upper row shows the broad $50~\mathrm{MHz}$ domain ($-25$ to $+25~\mathrm{MHz}$), and the lower row shows the narrow $1~\mathrm{MHz}$ domain ($-0.5$ to $+0.5~\mathrm{MHz}$).  In the narrow panels, the paired black-edged white dashed lines at $\Delta/(2\pi)=\pm\Gamma_{f,T_2}/2$ enclose the coherence-limited FWHM; no reference line is drawn in the broad panels.  From left to right, the columns show the constant, root-Lorentzian, and echo-root-Lorentzian protocols; the shaped pulses use relative endpoint amplitude $c=0.002$.  All six panels use the same coherence parameters, peak-Rabi grid, and probability scale.  The comparison exposes conventional power broadening for the constant pulse, amplitude-dependent coherent structure for the ordinary root-Lorentzian pulse, and the narrow resonance-centered depletion feature preserved by the echo phase inversion.
+Experimental spectroscopy maps at two frequency scales for $20~\mu\mathrm{s}$
+pulses.  The color scale is the measured excited-state population $P_e$.  The
+upper row shows the broad $50~\mathrm{MHz}$ domain
+($-25$ to $+25~\mathrm{MHz}$), and the lower row shows the narrow
+$1~\mathrm{MHz}$ domain ($-0.5$ to $+0.5~\mathrm{MHz}$).  In the narrow
+panels, the paired black-edged white dashed lines at
+$\Delta/(2\pi)=\pm\Gamma_{f,T_2}/2$ enclose the coherence-limited FWHM; no
+reference line is drawn in the broad panels.  From left to right, the columns
+show the constant, root-Lorentzian, and echo-root-Lorentzian protocols; the
+shaped pulses use relative endpoint amplitude $c=0.002$.  All six panels use
+the same peak-Rabi grid and probability scale.  The comparison exposes
+conventional power broadening for the constant pulse, amplitude-dependent
+coherent structure for the ordinary root-Lorentzian pulse, and the narrow
+resonance-centered depletion feature preserved by the echo phase inversion.
     }
     \label{fig:robust-echo-spectroscopy}
 \end{figure*}
@@ -22,15 +38,11 @@ L^{(1/2)}_{\mathrm{echo}}(t)
 \label{eq:Ln}
 \end{align}
 where $\tau$ sets the characteristic pulse duration and $n$ controls the
-algebraic decay of the wings.  Throughout the theory,
-$\Delta=\omega_d-\omega_{01}$ is the drive--qubit detuning, and $\Delta$ and $\Omega$
-are angular frequencies.  Plotted axes are labeled $\Delta/(2\pi)$ and
-$\Omega_0/(2\pi)$.  We denote an
-angular-frequency full width at half maximum by $\Gamma_\omega$ and its value
-in hertz by $\Gamma_f=\Gamma_\omega/(2\pi)$.
+algebraic decay of the wings.
 
-For the untruncated, plain generalized Lorentzian and $n>1/2$, the usual
-adiabatic-breakdown estimate gives~\cite{boradjiev_power_2013}
+For the untruncated, plain generalized Lorentzian with $n>1/2$, the boundary of
+adiabatic following provides an estimate of the characteristic spectral width.
+Applying the usual adiabatic condition to this envelope gives~\cite{boradjiev_power_2013}
 \begin{equation}
 \Delta_b\tau
 \propto
@@ -38,14 +50,15 @@ adiabatic-breakdown estimate gives~\cite{boradjiev_power_2013}
 \label{eq:lorentzian_adiabatic}
 \end{equation}
 where $\Delta_b$ is the angular detuning at which adiabatic following ceases
-and $\Omega_0$ is the peak angular Rabi frequency.  The exponent grows without
-bound as $n\to1/2^+$, so within its domain this asymptotic result predicts the
-steepest power-narrowing trend at the root-Lorentzian boundary.  Exactly at
-$n=1/2$, however, Eq.~\eqref{eq:lorentzian_adiabatic} is singular and cannot be
-evaluated: it does not predict a zero linewidth or an infinite resolution.
-Finite truncation, decoherence, and the echo phase inversion regularize the
-response, and the FWHM $\Gamma_f$ used below is therefore obtained from the
-complete simulated or measured spectrum.  This interpretation is consistent
+and $\Omega_0$ is the peak angular Rabi frequency.  Because the exponent is
+negative, this characteristic detuning decreases as the drive strength
+increases, producing power narrowing rather than conventional power broadening.
+The exponent grows without bound as $n\to1/2^+$, so within its domain this
+asymptotic result predicts the steepest narrowing trend at the root-Lorentzian
+boundary.  At $n=1/2$, finite truncation, decoherence, and the echo phase
+inversion regularize the response, and the FWHM $\Gamma_f$ used below is
+therefore obtained from the complete experimental spectrum.  This
+interpretation is consistent
 with the power narrowing and cutoff broadening observed for powers of
 Lorentzian pulses by Mihov and Vitanov~\cite{mihov_defying_2024}.  In contrast,
 a square pulse exhibits conventional power broadening, with

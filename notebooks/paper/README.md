@@ -44,6 +44,8 @@ Outputs go to `figures/paper/`.
 - `31_main_central_spectroscopy.ipynb` - main Figures 2 and 3: three-state 20-us spectroscopy maps at 50-MHz and 1-MHz spans, plus archived two-level root-Lorentzian/echo spectral slices at three peak Rabi frequencies.
 - `32_main_amplitude_robustness.ipynb` - main Figure 4 plus Supplemental comparisons: experimental/simulated sweeps, representative spectra, matched echo metrics, and the analytic Torrey constant-drive resolution--contrast window.
 - `33_main_operating_window.ipynb` - cutoff--amplitude linewidth and width-to-signal operating maps.
+- `34_drag_echo_lorentzian_qutrit.ipynb` - phase-only accumulated-phase quadratic Stark-correction exploration in the qutrit model.
+- `35_accumulated_phase_duration_sweep.ipynb` - complete 3--30-us accumulated-phase duration sweep with cached raw maps and a self-contained tabbed report.
 - `state_.ipynb` - placeholder notebook.
 
 ## Cleanup Notes

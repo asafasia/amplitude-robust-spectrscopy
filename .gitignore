@@ -38,4 +38,17 @@ venv/
 *.out
 *.synctex.gz
 *Notes.bib
-tmp/pdfs/*.pdf
+
+# Local paper-review renders
+/tmp/
+
+# Generated analysis reports and intermediate figure exports
+/outputs/ac_stark.html
+/figures/paper/16_drag_stark_*
+/figures/paper/17_drag_stark_*
+/figures/paper/18_drag_stark_*
+/figures/paper/accumulated_phase_duration_sweep/*
+!/figures/paper/accumulated_phase_duration_sweep/20us/
+/figures/paper/accumulated_phase_duration_sweep/20us/*
+!/figures/paper/accumulated_phase_duration_sweep/20us/00_pulse_waveform_comparison.pdf
+!/figures/paper/accumulated_phase_duration_sweep/20us/01_kappa_optimization.pdf

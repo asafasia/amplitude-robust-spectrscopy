@@ -310,7 +310,6 @@ def build_figure() -> plt.Figure:
             radius=0.018,
             zorder=7,
         )
-        ax.add_patch(Circle((2.52, y), 0.064, facecolor=color, edgecolor="white", linewidth=0.7, zorder=10))
 
     # The control computer is deliberately separate from the signal-chain
     # blocks: it submits QUA programs and receives results over the control
@@ -344,14 +343,27 @@ def build_figure() -> plt.Figure:
 
     rounded_box(ax, 0.985, y_bias - 0.23, 0.98, 0.46, "DC bias supply", facecolor="#EDF3EA", edgecolor=BIAS, fontsize=6.8)
 
-    drive_attenuators = [(5.10, "10 dB"), (8.20, "10 dB"), (9.75, "10 dB"), (11.30, "20 dB"), (12.85, "20 dB")]
-    read_attenuators = [(5.10, "6 dB"), (8.20, "10 dB"), (9.75, "6 dB"), (11.30, "20 dB"), (12.85, "20 dB")]
+    # Mount each attenuator on the right-hand side of its temperature-stage
+    # shield, leaving the same small visual gap after every boundary.
+    attenuator_offset = 0.38
+    attenuator_stage_x = [5.10, 8.20, 9.75, 11.30, 12.85]
+    drive_attenuators = [
+        (x + attenuator_offset, value)
+        for x, value in zip(attenuator_stage_x, ["10 dB", "10 dB", "10 dB", "20 dB", "20 dB"], strict=True)
+    ]
+    read_attenuators = [
+        (x + attenuator_offset, value)
+        for x, value in zip(attenuator_stage_x, ["6 dB", "10 dB", "6 dB", "20 dB", "20 dB"], strict=True)
+    ]
     for x, value in drive_attenuators:
         attenuator(ax, x, y_drive, value)
     for x, value in read_attenuators:
         attenuator(ax, x, y_readout_tx, value)
-    low_pass_filter(ax, 8.20, y_bias)
-    low_pass_filter(ax, 12.85, y_bias)
+    # LPF symbols are wider than attenuators, so use a larger center offset to
+    # preserve the same edge-to-shield gap.
+    low_pass_filter_offset = 0.44
+    low_pass_filter(ax, 8.20 + low_pass_filter_offset, y_bias)
+    low_pass_filter(ax, 12.85 + low_pass_filter_offset, y_bias)
 
     hemt(ax, 8.20, y_readout_rx, label=False)
     ax.text(8.20, y_readout_rx + 0.38, "HEMT · 4 K", ha="center", va="bottom", fontsize=6.4 * FONT_SCALE, color=MUTED)
@@ -408,9 +420,6 @@ def build_figure() -> plt.Figure:
     for qx, qy in qubit_points[:11]:
         ax.add_patch(Circle((qx, qy), 0.035, facecolor="white", edgecolor=DEVICE_EDGE, linewidth=0.65, zorder=8))
     ax.text(14.64, 3.34, "11 qubits", ha="center", va="center", fontsize=6.0 * FONT_SCALE, color=MUTED, zorder=8)
-
-    for y, color in ((y_drive, DRIVE), (y_readout_tx, READ_IN), (y_readout_rx, READ_OUT), (y_bias, BIAS)):
-        ax.add_patch(Circle((14.05, y), 0.060, facecolor=color, edgecolor="white", linewidth=0.7, zorder=10))
 
     ax.text(3.10, 0.56, "SYMBOLS", ha="left", va="center", fontsize=6.8 * FONT_SCALE, fontweight="bold", color=MUTED)
     attenuator(ax, 4.18, 0.56, "10 dB")
