@@ -243,7 +243,7 @@ Combine the existing “Pulse length” and “Higher amplitudes” sections int
 - reduced contrast and relaxation for long pulses;
 - cutoff-induced broadening;
 - phase-jump bandwidth and waveform distortion;
-- AC Stark shifts and multilevel leakage at high drive;
+- AC-Stark shifts and multilevel leakage at high drive;
 - the range in which a two-level model remains valid.
 
 The current claim of a two-photon transition should be removed or softened unless a multilevel calculation reproduces the feature. The two-level production model cannot test that interpretation.

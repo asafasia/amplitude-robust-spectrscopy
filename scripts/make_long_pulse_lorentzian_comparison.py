@@ -2,18 +2,27 @@
 
 from __future__ import annotations
 
+# Backend and cache setup must precede pyplot import.
+# ruff: noqa: E402, I001
+
 import argparse
 import json
 import os
 from dataclasses import dataclass
 from pathlib import Path
 
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+os.environ.setdefault("MPLCONFIGDIR", "/private/tmp/ars-matplotlib-cache")
+
+import matplotlib
+
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 
 from echospec.figures import FigureVariant, apply_figure_style, save_figure
+from echospec.paper_data import save_paper_dataset
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_DATA_ROOT = Path(
     os.environ.get("OPX1000_DATA_DIR", PROJECT_ROOT.parent / "data_opx1000")
 )
@@ -115,7 +124,12 @@ def load_scan(
     return detuning_mhz, amplitude_prefactor, state[0].T
 
 
-def build_figure(data_root: Path) -> plt.Figure:
+def build_figure(
+    data_root: Path,
+) -> tuple[
+    plt.Figure,
+    dict[tuple[int, bool], tuple[np.ndarray, np.ndarray, np.ndarray]],
+]:
     apply_figure_style(FigureVariant.PAPER)
     plt.rcParams.update(
         {
@@ -188,12 +202,13 @@ def build_figure(data_root: Path) -> plt.Figure:
     colorbar = fig.colorbar(image, ax=axes, pad=0.015, fraction=0.035)
     colorbar.set_label(r"$P_e$")
     colorbar.ax.tick_params(labelsize=6)
-    return fig
+    return fig, loaded
 
 
 def main() -> None:
     args = parse_args()
-    fig = build_figure(args.data_root.expanduser().resolve())
+    data_root = args.data_root.expanduser().resolve()
+    fig, loaded = build_figure(data_root)
     paths = save_figure(
         fig,
         "06_long_pulse_lorentzian_comparison",
@@ -204,7 +219,69 @@ def main() -> None:
         pad_inches=0.06,
     )
     plt.close(fig)
-    for path in paths:
+    reference_detuning, reference_amplitude, _ = loaded[
+        (SELECTIONS[0].duration_us, False)
+    ]
+    arrays = {
+        "detuning_mhz": reference_detuning,
+        "amplitude_prefactor": reference_amplitude,
+        "duration_us": np.asarray(
+            [selection.duration_us for selection in SELECTIONS],
+            dtype=float,
+        ),
+    }
+    for selection in SELECTIONS:
+        arrays[f"root_lorentzian_state_{selection.duration_us}us"] = loaded[
+            (selection.duration_us, False)
+        ][2]
+        arrays[f"echo_root_lorentzian_state_{selection.duration_us}us"] = loaded[
+            (selection.duration_us, True)
+        ][2]
+    paper_data_paths = save_paper_dataset(
+        "06_long_pulse_lorentzian_comparison",
+        category="experimental",
+        arrays=arrays,
+        provenance={
+            "figure_asset": (
+                "figures/paper/06_long_pulse_lorentzian_comparison.pdf"
+            ),
+            "manuscript_scope": "supplemental",
+            "generator": "scripts/make_long_pulse_lorentzian_comparison.py",
+            "reproduction_command": (
+                "PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python "
+                "scripts/make_long_pulse_lorentzian_comparison.py"
+            ),
+            "source_root_environment": "OPX1000_DATA_DIR",
+            "measurement": {
+                "qubit": "q9",
+                "date": "2026-06-23",
+                "shots_per_point": 100,
+                "cutoff": 0.0005,
+                "lorentzian_tau_ns": 8.0,
+                "peak_waveform_amplitude": 0.5,
+            },
+            "source_runs": [
+                {
+                    "duration_us": selection.duration_us,
+                    "root_lorentzian": (
+                        "calibrations/2026-06-23/echo_lorentzian/"
+                        f"{selection.no_echo_run}"
+                    ),
+                    "echo_root_lorentzian": (
+                        "calibrations/2026-06-23/echo_lorentzian/"
+                        f"{selection.echo_run}"
+                    ),
+                }
+                for selection in SELECTIONS
+            ],
+            "state_definition": "measured excited-state classification fraction",
+            "detuning_convention": "drive_minus_qubit",
+            "array_dimensions": {
+                "*_state_*us": ["amplitude_prefactor", "detuning_mhz"],
+            },
+        },
+    )
+    for path in (*paths, *paper_data_paths):
         print(path)
 
 

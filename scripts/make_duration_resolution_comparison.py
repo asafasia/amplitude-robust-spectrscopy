@@ -27,6 +27,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from echospec.figures import FigureVariant, apply_figure_style, save_figure
+from echospec.paper_data import save_paper_dataset
 from echospec.experiments.torrey_resonance import (
     OptionsTorreyResonance,
     TorreyFwhmVsRabiExperiment,
@@ -302,6 +303,7 @@ def _build_figure(
         DURATIONS_US,
         colors,
         markers,
+        strict=True,
     ):
         clean_metrics = clean_metrics_by_duration[duration_us]
         noisy_metrics = noisy_metrics_by_duration[duration_us]
@@ -322,6 +324,7 @@ def _build_figure(
         for ax, metric_name in zip(
             axes,
             ("fwhm_t2_units", "contrast", "product"),
+            strict=True,
         ):
             ax.plot(
                 RABI_MHZ,
@@ -356,7 +359,7 @@ def _build_figure(
     axes[2].set_xlabel(r"$\Omega_0/2\pi$ (MHz)")
     rabi_ticks = (1e-3, 1e-2, 1e-1, 1.0, 10.0, 100.0)
     rabi_tick_labels = ("0.001", "0.01", "0.1", "1", "10", "100")
-    for panel, ax in zip(("(g)", "(h)", "(i)"), axes):
+    for panel, ax in zip(("(g)", "(h)", "(i)"), axes, strict=True):
         ax.set_xscale("log")
         ax.set_xlim(RABI_MHZ.min(), 100.0)
         ax.xaxis.set_major_locator(FixedLocator(rabi_ticks))
@@ -489,24 +492,22 @@ def main() -> None:
     plt.close(fig)
 
     data_path = output_dir / f"{stem}.npz"
-    np.savez_compressed(
-        data_path,
-        durations_us=np.asarray(DURATIONS_US),
-        cutoff=CUTOFF,
-        detuning_convention="drive_minus_qubit",
-        detuning_mhz=DETUNING_MHZ,
-        rabi_mhz=RABI_MHZ,
-        t1_us=T1_US,
-        t_phi_us=T_PHI_US,
-        t2_limit_fwhm_mhz=T2_LIMIT_FWHM_MHZ,
-        noise_std=NOISE_STD,
-        min_signal_to_noise=MIN_SIGNAL_TO_NOISE,
-        noise_seed=NOISE_SEED,
-        constant_rabi_mhz=CONSTANT_RABI_MHZ,
-        constant_fwhm_t2_units=constant_fwhm_t2_units,
-        constant_contrast=constant_contrast,
-        constant_resolution=constant_resolution,
-        constant_product=constant_product,
+    paper_arrays = {
+        "durations_us": np.asarray(DURATIONS_US),
+        "cutoff": np.asarray(CUTOFF),
+        "detuning_mhz": DETUNING_MHZ,
+        "rabi_mhz": RABI_MHZ,
+        "t1_us": np.asarray(T1_US),
+        "t_phi_us": np.asarray(T_PHI_US),
+        "t2_limit_fwhm_mhz": np.asarray(T2_LIMIT_FWHM_MHZ),
+        "noise_std": np.asarray(NOISE_STD),
+        "min_signal_to_noise": np.asarray(MIN_SIGNAL_TO_NOISE),
+        "noise_seed": np.asarray(NOISE_SEED),
+        "constant_rabi_mhz": CONSTANT_RABI_MHZ,
+        "constant_fwhm_t2_units": constant_fwhm_t2_units,
+        "constant_contrast": constant_contrast,
+        "constant_resolution": constant_resolution,
+        "constant_product": constant_product,
         **{
             f"clean_echo_state_{int(duration_us)}us": (
                 clean_traces_by_duration[duration_us]
@@ -529,8 +530,49 @@ def main() -> None:
             for duration_us, metrics in clean_metrics_by_duration.items()
             for metric_name, metric_values in metrics.items()
         },
+    }
+    np.savez_compressed(
+        data_path,
+        detuning_convention="drive_minus_qubit",
+        **paper_arrays,
     )
-    for path in (*saved, data_path):
+    paper_data_paths = save_paper_dataset(
+        stem,
+        category="numerical",
+        arrays=paper_arrays,
+        provenance={
+            "figure_asset": f"figures/paper/{stem}.pdf",
+            "manuscript_scope": "letter_and_supplemental",
+            "generator": "scripts/make_duration_resolution_comparison.py",
+            "reproduction_command": (
+                "PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python "
+                "scripts/make_duration_resolution_comparison.py"
+            ),
+            "model": (
+                "two-level dissipative Bloch-equation RK4 simulation plus "
+                "analytic constant-drive Bloch reference"
+            ),
+            "detuning_convention": "drive_minus_qubit",
+            "population_definition": "P_e",
+            "pulse_shape": "echo-root-Lorentzian",
+            "fit_model": "Gaussian depletion feature",
+            "array_dimensions": {
+                "*_echo_state_*us": ["detuning_mhz", "rabi_mhz"],
+                "*_fwhm_*us": ["rabi_mhz"],
+                "*_contrast_*us": ["rabi_mhz"],
+                "*_resolution_*us": ["rabi_mhz"],
+                "*_product_*us": ["rabi_mhz"],
+                "constant_*": ["constant_rabi_mhz"],
+            },
+            "observation_noise": {
+                "distribution": "normal",
+                "standard_deviation": NOISE_STD,
+                "seed": NOISE_SEED,
+                "minimum_signal_to_noise": MIN_SIGNAL_TO_NOISE,
+            },
+        },
+    )
+    for path in (*saved, data_path, *paper_data_paths):
         print(path)
 
 

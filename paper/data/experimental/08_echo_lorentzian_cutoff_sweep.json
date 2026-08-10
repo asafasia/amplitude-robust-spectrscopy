@@ -1,0 +1,251 @@
+{
+  "arrays": {
+    "broad_survey_accepted": {
+      "dtype": "bool",
+      "shape": [
+        500
+      ]
+    },
+    "broad_survey_cutoff": {
+      "dtype": "float64",
+      "shape": [
+        500
+      ]
+    },
+    "broad_survey_fit_abs_amplitude": {
+      "dtype": "float64",
+      "shape": [
+        500
+      ]
+    },
+    "broad_survey_fit_r_squared": {
+      "dtype": "float64",
+      "shape": [
+        500
+      ]
+    },
+    "broad_survey_fwhm_hz": {
+      "dtype": "float64",
+      "shape": [
+        500
+      ]
+    },
+    "broad_survey_fwhm_t2_units": {
+      "dtype": "float64",
+      "shape": [
+        500
+      ]
+    },
+    "broad_survey_gaussian_center_hz": {
+      "dtype": "float64",
+      "shape": [
+        500
+      ]
+    },
+    "broad_survey_rabi_frequency_mhz": {
+      "dtype": "float64",
+      "shape": [
+        500
+      ]
+    },
+    "broad_survey_resolution": {
+      "dtype": "float64",
+      "shape": [
+        25,
+        20
+      ]
+    },
+    "broad_survey_resolution_cutoff": {
+      "dtype": "float64",
+      "shape": [
+        20
+      ]
+    },
+    "broad_survey_resolution_rabi_mhz": {
+      "dtype": "float64",
+      "shape": [
+        25
+      ]
+    },
+    "broad_survey_signal_weighted_resolution": {
+      "dtype": "float64",
+      "shape": [
+        25,
+        20
+      ]
+    },
+    "broad_survey_signal_weighted_resolution_cutoff": {
+      "dtype": "float64",
+      "shape": [
+        20
+      ]
+    },
+    "broad_survey_signal_weighted_resolution_rabi_mhz": {
+      "dtype": "float64",
+      "shape": [
+        25
+      ]
+    },
+    "focused_sweep_accepted": {
+      "dtype": "bool",
+      "shape": [
+        2000
+      ]
+    },
+    "focused_sweep_cutoff": {
+      "dtype": "float64",
+      "shape": [
+        2000
+      ]
+    },
+    "focused_sweep_fit_abs_amplitude": {
+      "dtype": "float64",
+      "shape": [
+        2000
+      ]
+    },
+    "focused_sweep_fit_r_squared": {
+      "dtype": "float64",
+      "shape": [
+        2000
+      ]
+    },
+    "focused_sweep_fwhm_hz": {
+      "dtype": "float64",
+      "shape": [
+        2000
+      ]
+    },
+    "focused_sweep_fwhm_t2_units": {
+      "dtype": "float64",
+      "shape": [
+        2000
+      ]
+    },
+    "focused_sweep_gaussian_center_hz": {
+      "dtype": "float64",
+      "shape": [
+        2000
+      ]
+    },
+    "focused_sweep_rabi_frequency_mhz": {
+      "dtype": "float64",
+      "shape": [
+        2000
+      ]
+    },
+    "focused_sweep_resolution": {
+      "dtype": "float64",
+      "shape": [
+        200,
+        10
+      ]
+    },
+    "focused_sweep_resolution_cutoff": {
+      "dtype": "float64",
+      "shape": [
+        10
+      ]
+    },
+    "focused_sweep_resolution_rabi_mhz": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "focused_sweep_signal_weighted_resolution": {
+      "dtype": "float64",
+      "shape": [
+        200,
+        10
+      ]
+    },
+    "focused_sweep_signal_weighted_resolution_cutoff": {
+      "dtype": "float64",
+      "shape": [
+        10
+      ]
+    },
+    "focused_sweep_signal_weighted_resolution_rabi_mhz": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "t2_s": {
+      "dtype": "float64",
+      "shape": []
+    }
+  },
+  "category": "experimental",
+  "data_file": "08_echo_lorentzian_cutoff_sweep.npz",
+  "dataset": "08_echo_lorentzian_cutoff_sweep",
+  "provenance": {
+    "campaigns": [
+      {
+        "accepted_fit_count": 84,
+        "amplitude_count": 25,
+        "cutoff_count": 20,
+        "fit_count": 500,
+        "frequency_span_mhz": 5.0,
+        "frequency_step_mhz": 0.005,
+        "key": "broad_survey",
+        "run_finished_at": "2026-07-12T18:48:35.052801+03:00",
+        "run_started_at": "2026-07-12T17:18:09.947968+03:00",
+        "shots_per_point": 60,
+        "source_directory": "cutoff_amp_fwhm_map/20260712_171809_single_cutoff_full",
+        "source_results": "cutoff_amp_fwhm_map_fit_results.csv"
+      },
+      {
+        "accepted_fit_count": 1004,
+        "amplitude_count": 200,
+        "cutoff_count": 10,
+        "fit_count": 2000,
+        "frequency_span_mhz": 10.0,
+        "frequency_step_mhz": 0.02506265664160401,
+        "key": "focused_sweep",
+        "run_finished_at": "2026-07-11T18:00:20.462800+03:00",
+        "run_started_at": "2026-07-11T14:30:30.312569+03:00",
+        "shots_per_point": 100,
+        "source_directory": "echo_lorentzian_cutoff_sweep/medium_cutoff/20260711_mid_001_to_01_10cutoffs_10mhz_400freq/domain_10mhz",
+        "source_results": "cutoff_sweep_fit_results.csv"
+      }
+    ],
+    "dimension_conventions": {
+      "map_coordinates": "the matching *_rabi_mhz and *_cutoff arrays are the map axis coordinates",
+      "map_values": "campaign-prefixed resolution maps have axes [rabi_mhz, cutoff]",
+      "raw_fit_columns": "campaign-prefixed fit columns and accepted masks share the fit_row axis"
+    },
+    "figure_asset": "figures/paper/08_echo_lorentzian_cutoff_sweep.pdf",
+    "generator": "scripts/make_echo_lorentzian_cutoff_sweep.py",
+    "manuscript_scope": "supplemental",
+    "map_metrics": {
+      "color_limits": [
+        0.1,
+        1.0
+      ],
+      "color_normalization": "logarithmic",
+      "resolution": "[1/(pi*T2)]/FWHM",
+      "signal_weighted_resolution": "fit_abs_amplitude * [1/(pi*T2)]/FWHM"
+    },
+    "measurement": {
+      "duration_us": 20.0,
+      "peak_waveform_amplitude": 0.2,
+      "pulse_shape": "echo-root-Lorentzian",
+      "qubit": "q1"
+    },
+    "quality_screen": {
+      "fit_abs_amplitude_range": [
+        0.05,
+        1.0
+      ],
+      "fit_center_required_inside_sweep": true,
+      "maximum_fwhm_fraction_of_sweep_span": 0.5,
+      "minimum_fit_r_squared": 0.6,
+      "minimum_fwhm_frequency_bins": 2.0
+    },
+    "reproduction_command": "PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_echo_lorentzian_cutoff_sweep.py",
+    "source_root_environment": "OPX1000_DATA_DIR"
+  },
+  "schema_version": 1
+}

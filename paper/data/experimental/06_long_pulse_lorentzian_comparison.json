@@ -1,0 +1,108 @@
+{
+  "arrays": {
+    "amplitude_prefactor": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "detuning_mhz": {
+      "dtype": "float64",
+      "shape": [
+        501
+      ]
+    },
+    "duration_us": {
+      "dtype": "float64",
+      "shape": [
+        3
+      ]
+    },
+    "echo_root_lorentzian_state_10us": {
+      "dtype": "float64",
+      "shape": [
+        200,
+        501
+      ]
+    },
+    "echo_root_lorentzian_state_160us": {
+      "dtype": "float64",
+      "shape": [
+        200,
+        501
+      ]
+    },
+    "echo_root_lorentzian_state_60us": {
+      "dtype": "float64",
+      "shape": [
+        200,
+        501
+      ]
+    },
+    "root_lorentzian_state_10us": {
+      "dtype": "float64",
+      "shape": [
+        200,
+        501
+      ]
+    },
+    "root_lorentzian_state_160us": {
+      "dtype": "float64",
+      "shape": [
+        200,
+        501
+      ]
+    },
+    "root_lorentzian_state_60us": {
+      "dtype": "float64",
+      "shape": [
+        200,
+        501
+      ]
+    }
+  },
+  "category": "experimental",
+  "data_file": "06_long_pulse_lorentzian_comparison.npz",
+  "dataset": "06_long_pulse_lorentzian_comparison",
+  "provenance": {
+    "array_dimensions": {
+      "*_state_*us": [
+        "amplitude_prefactor",
+        "detuning_mhz"
+      ]
+    },
+    "detuning_convention": "drive_minus_qubit",
+    "figure_asset": "figures/paper/06_long_pulse_lorentzian_comparison.pdf",
+    "generator": "scripts/make_long_pulse_lorentzian_comparison.py",
+    "manuscript_scope": "supplemental",
+    "measurement": {
+      "cutoff": 0.0005,
+      "date": "2026-06-23",
+      "lorentzian_tau_ns": 8.0,
+      "peak_waveform_amplitude": 0.5,
+      "qubit": "q9",
+      "shots_per_point": 100
+    },
+    "reproduction_command": "PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_long_pulse_lorentzian_comparison.py",
+    "source_root_environment": "OPX1000_DATA_DIR",
+    "source_runs": [
+      {
+        "duration_us": 10,
+        "echo_root_lorentzian": "calibrations/2026-06-23/echo_lorentzian/13-11-08-347658",
+        "root_lorentzian": "calibrations/2026-06-23/echo_lorentzian/08-21-04-530458"
+      },
+      {
+        "duration_us": 60,
+        "echo_root_lorentzian": "calibrations/2026-06-23/echo_lorentzian/13-35-23-672149",
+        "root_lorentzian": "calibrations/2026-06-23/echo_lorentzian/08-44-25-321864"
+      },
+      {
+        "duration_us": 160,
+        "echo_root_lorentzian": "calibrations/2026-06-23/echo_lorentzian/14-50-56-162603",
+        "root_lorentzian": "calibrations/2026-06-23/echo_lorentzian/10-00-01-972580"
+      }
+    ],
+    "state_definition": "measured excited-state classification fraction"
+  },
+  "schema_version": 1
+}

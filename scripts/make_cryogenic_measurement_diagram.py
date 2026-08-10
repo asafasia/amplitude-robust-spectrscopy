@@ -1,8 +1,9 @@
-"""Generate the dilution-refrigerator measurement-chain schematic.
+"""Generate the paper's dilution-refrigerator wiring schematic.
 
-The figure is intentionally drawn from explicit geometry rather than an
-automatic graph layout.  This keeps temperature stages, signal directions,
-and microwave components aligned and makes the SVG/PDF output reproducible.
+The diagram is built entirely from explicit Matplotlib vector geometry.  Its
+vertical signal lines and horizontal temperature boundaries deliberately echo
+the visual language of a conventional cryogenic wiring diagram while keeping
+the actual measurement chain used in this work.
 """
 
 from __future__ import annotations
@@ -11,427 +12,355 @@ from pathlib import Path
 
 import matplotlib as mpl
 import matplotlib.pyplot as plt
-from matplotlib.patches import Circle, FancyArrowPatch, FancyBboxPatch, Polygon, Rectangle
-
+from matplotlib.patches import (
+    Circle,
+    FancyArrowPatch,
+    FancyBboxPatch,
+    Polygon,
+    Rectangle,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_DIR = ROOT / "paper" / "figures"
 OUTPUT_STEM = OUTPUT_DIR / "cryogenic_measurement_chain"
 
-# Restrained, publication-oriented palette.  Signal families are distinguished
-# primarily by labels and direction rather than decorative color.
-INK = "#20262D"
-MUTED = "#5F6871"
-STRUCTURE = "#A7B3BD"
-STAGE_FILL = "#E8EEF2"
-DRIVE = "#316AA3"
-READ_IN = "#387B79"
-READ_OUT = "#4D89AC"
-BIAS = "#6D8A50"
-HEMT_POWER = "#957144"
-ATTEN_FILL = "#F6E8C8"
-ATTEN_EDGE = "#B6914D"
-FILTER_FILL = "#DFEBF3"
-FILTER_EDGE = "#6E96B1"
-ROOM_FILL = "#F3F7FA"
-FRIDGE_FILL = "#FCFCFB"
-DEVICE_FILL = "#F1ECF4"
-DEVICE_EDGE = "#8D7C94"
-HEMT = "#586F9B"
-FONT_SCALE = 1.15
-
-
-def rounded_box(
-    ax: plt.Axes,
-    x: float,
-    y: float,
-    width: float,
-    height: float,
-    text: str,
-    *,
-    facecolor: str,
-    edgecolor: str,
-    fontsize: float = 8.0,
-    linewidth: float = 0.9,
-    radius: float = 0.025,
-    zorder: int = 5,
-) -> FancyBboxPatch:
-    patch = FancyBboxPatch(
-        (x, y),
-        width,
-        height,
-        boxstyle=f"round,pad=0.025,rounding_size={radius}",
-        facecolor=facecolor,
-        edgecolor=edgecolor,
-        linewidth=linewidth,
-        zorder=zorder,
-    )
-    ax.add_patch(patch)
-    ax.text(
-        x + width / 2,
-        y + height / 2,
-        text,
-        ha="center",
-        va="center",
-        color=INK,
-        fontsize=fontsize * FONT_SCALE,
-        zorder=zorder + 1,
-    )
-    return patch
-
-
-def arrow(
-    ax: plt.Axes,
-    start: tuple[float, float],
-    end: tuple[float, float],
-    *,
-    color: str = INK,
-    linewidth: float = 1.15,
-    mutation_scale: float = 8.0,
-    zorder: int = 3,
-    connectionstyle: str = "arc3",
-) -> FancyArrowPatch:
-    patch = FancyArrowPatch(
-        start,
-        end,
-        arrowstyle="-|>",
-        mutation_scale=mutation_scale,
-        linewidth=linewidth,
-        color=color,
-        shrinkA=0,
-        shrinkB=0,
-        connectionstyle=connectionstyle,
-        zorder=zorder,
-    )
-    ax.add_patch(patch)
-    return patch
+INK = "#202020"
+GRAY = "#686868"
+LIGHT_GRAY = "#B8B8B8"
+BLUE = "#254BDB"
+GREEN = "#16824B"
+RED = "#EF3B38"
+HEMT_FILL = "#F1F1F1"
+SHIELD_FILL = "#FAFAFA"
 
 
 def line(
     ax: plt.Axes,
-    xs: list[float],
-    ys: list[float],
+    x: list[float],
+    y: list[float],
     *,
     color: str = INK,
-    linewidth: float = 1.0,
-    zorder: int = 2,
+    linewidth: float = 1.25,
     linestyle: str = "-",
+    zorder: int = 3,
 ) -> None:
     ax.plot(
-        xs,
-        ys,
+        x,
+        y,
         color=color,
         linewidth=linewidth,
         linestyle=linestyle,
-        solid_capstyle="round",
-        solid_joinstyle="round",
+        solid_capstyle="butt",
+        solid_joinstyle="miter",
         zorder=zorder,
     )
 
 
+def connector(ax: plt.Axes, x: float, y: float) -> None:
+    """Draw a compact feedthrough/connector symbol centered on ``(x, y)``."""
+    ax.add_patch(
+        Rectangle(
+            (x - 0.065, y - 0.16),
+            0.13,
+            0.32,
+            facecolor="white",
+            edgecolor=GRAY,
+            linewidth=0.8,
+            zorder=8,
+        )
+    )
+    line(ax, [x - 0.13, x + 0.13], [y, y], color=GRAY, linewidth=0.7, zorder=9)
+
+
 def attenuator(ax: plt.Axes, x: float, y: float, value: str) -> None:
-    rounded_box(
-        ax,
-        x - 0.25,
-        y - 0.15,
-        0.50,
-        0.30,
+    """Draw a narrow inline attenuator and put its value beside the line."""
+    ax.add_patch(
+        Rectangle(
+            (x - 0.105, y - 0.20),
+            0.21,
+            0.40,
+            facecolor="white",
+            edgecolor=BLUE,
+            linewidth=1.0,
+            zorder=8,
+        )
+    )
+    ax.text(
+        x + 0.16,
+        y,
         value,
-        facecolor=ATTEN_FILL,
-        edgecolor=ATTEN_EDGE,
-        fontsize=6.6,
-        linewidth=0.75,
-        radius=0.012,
-        zorder=8,
+        ha="left",
+        va="center",
+        fontsize=7.4,
+        color=BLUE,
+        zorder=9,
     )
 
 
 def low_pass_filter(ax: plt.Axes, x: float, y: float) -> None:
-    rounded_box(
-        ax,
-        x - 0.31,
-        y - 0.19,
-        0.62,
-        0.38,
-        "LPF\n7.5 GHz",
-        facecolor=FILTER_FILL,
-        edgecolor=FILTER_EDGE,
-        fontsize=6.0,
-        linewidth=0.75,
-        radius=0.015,
-        zorder=8,
+    ax.add_patch(
+        Rectangle(
+            (x - 0.22, y - 0.15),
+            0.44,
+            0.30,
+            facecolor="white",
+            edgecolor=BLUE,
+            linewidth=0.95,
+            zorder=8,
+        )
+    )
+    ax.text(
+        x + 0.30,
+        y,
+        "LP 7.5 GHz",
+        ha="left",
+        va="center",
+        fontsize=6.7,
+        color=GRAY,
+        zorder=9,
     )
 
 
 def circulator(ax: plt.Axes, x: float, y: float) -> None:
-    radius = 0.17
+    size = 0.50
+    ax.add_patch(
+        Rectangle(
+            (x - size / 2, y - size / 2),
+            size,
+            size,
+            facecolor="white",
+            edgecolor=LIGHT_GRAY,
+            linewidth=1.0,
+            zorder=7,
+        )
+    )
     ax.add_patch(
         Circle(
             (x, y),
-            radius,
-            facecolor=ATTEN_FILL,
-            edgecolor=ATTEN_EDGE,
+            0.17,
+            facecolor="white",
+            edgecolor=GRAY,
             linewidth=0.85,
             zorder=8,
         )
     )
-    # Use a math glyph so the symbol remains available with publication fonts
-    # that do not include the Unicode clockwise-arrow character.
-    ax.text(x, y - 0.005, r"$\circlearrowright$", ha="center", va="center", fontsize=8.5 * FONT_SCALE, color=INK, zorder=9)
-
-
-def hemt(ax: plt.Axes, x: float, y: float, *, label: bool = True) -> None:
-    width, height = 0.47, 0.48
-    triangle = Polygon(
-        [(x - width / 2, y), (x + width / 2, y + height / 2), (x + width / 2, y - height / 2)],
-        closed=True,
-        facecolor=HEMT,
-        edgecolor="#354452",
-        linewidth=0.8,
-        zorder=8,
+    ax.text(
+        x,
+        y - 0.005,
+        r"$\circlearrowright$",
+        ha="center",
+        va="center",
+        fontsize=10.0,
+        color=INK,
+        zorder=9,
     )
-    ax.add_patch(triangle)
-    if label:
-        ax.text(x, y - 0.36, "HEMT", ha="center", va="top", fontsize=6.4 * FONT_SCALE, color=MUTED)
+
+
+def hemt(ax: plt.Axes, x: float, y: float) -> None:
+    ax.add_patch(
+        Polygon(
+            [(x - 0.25, y - 0.29), (x, y + 0.29), (x + 0.25, y - 0.29)],
+            closed=True,
+            facecolor=HEMT_FILL,
+            edgecolor=INK,
+            linewidth=1.1,
+            zorder=8,
+        )
+    )
+
+
+def direction_marker(
+    ax: plt.Axes,
+    x: float,
+    y: float,
+    *,
+    direction: str,
+    color: str,
+) -> None:
+    dy = 0.12 if direction == "up" else -0.12
+    ax.add_patch(
+        FancyArrowPatch(
+            (x, y - dy),
+            (x, y + dy),
+            arrowstyle="-|>",
+            mutation_scale=8,
+            linewidth=0.9,
+            color=color,
+            zorder=10,
+        )
+    )
 
 
 def build_figure() -> plt.Figure:
     mpl.rcParams.update(
         {
             "font.family": "sans-serif",
-            "font.sans-serif": [
-                "Helvetica Neue",
-                "Helvetica",
-                "Arial",
-                "Liberation Sans",
-            ],
-            "font.size": 8 * FONT_SCALE,
+            "font.sans-serif": ["Arial", "Helvetica", "Liberation Sans"],
+            "font.size": 8,
             "svg.fonttype": "none",
             "pdf.fonttype": 42,
             "axes.linewidth": 0,
         }
     )
-    fig, ax = plt.subplots(figsize=(15.6, 8.2), constrained_layout=False)
+
+    fig, ax = plt.subplots(figsize=(8.8, 7.4), constrained_layout=False)
     fig.patch.set_facecolor("white")
     ax.set_facecolor("white")
-    ax.set_xlim(0, 15.8)
-    ax.set_ylim(0, 8.35)
+    ax.set_xlim(0, 10.2)
+    ax.set_ylim(0, 10.7)
     ax.set_aspect("equal")
     ax.axis("off")
 
-    room = FancyBboxPatch(
-        (0.25, 0.95),
-        2.45,
-        7.15,
-        boxstyle="round,pad=0.02,rounding_size=0.055",
-        facecolor=ROOM_FILL,
-        edgecolor="#9FA8AF",
-        linewidth=0.9,
-        zorder=0,
-    )
-    fridge = FancyBboxPatch(
-        (2.95, 0.95),
-        12.55,
-        7.15,
-        boxstyle="round,pad=0.02,rounding_size=0.065",
-        facecolor=FRIDGE_FILL,
-        edgecolor=STRUCTURE,
-        linewidth=0.95,
-        zorder=0,
-    )
-    ax.add_patch(room)
-    ax.add_patch(fridge)
-    ax.text(
-        1.475,
-        7.82,
-        "ROOM-TEMPERATURE ELECTRONICS",
-        ha="center",
-        va="center",
-        fontsize=6.3 * FONT_SCALE,
-        fontweight="bold",
-        color=MUTED,
-    )
-
-    stage_x = [3.55, 5.10, 6.65, 8.20, 9.75, 11.30, 12.85]
-    stage_labels = ["300 K", "50 K", "10 K", "4 K", "2.7 K\nStill", "900 mK\nCold Plate", "9 mK\nMixing Chamber"]
-    for x, label in zip(stage_x, stage_labels, strict=True):
-        ax.add_patch(Rectangle((x - 0.055, 1.05), 0.11, 6.48, facecolor=STAGE_FILL, edgecolor="none", zorder=1))
-        line(ax, [x, x], [1.00, 7.58], color=STRUCTURE, linewidth=0.65, linestyle=(0, (2.4, 3.4)), zorder=2)
-        ax.text(x, 7.70, label, ha="center", va="bottom", fontsize=7.2 * FONT_SCALE, fontweight="bold", color=INK)
-
-    y_drive, y_readout_tx, y_readout_rx = 6.20, 4.80, 3.40
-    y_hemt_power, y_bias = 2.20, 1.25
-    x_line_start, x_device = 2.58, 14.05
-
-    row_specs = [
-        ("QUBIT DRIVE · RF OUT", y_drive, DRIVE),
-        ("READOUT DRIVE · RF OUT", y_readout_tx, READ_IN),
-        ("READOUT ACQUIRE · RF IN", y_readout_rx, READ_OUT),
-        ("HEMT DC POWER", y_hemt_power, HEMT_POWER),
-        ("FLUX / DC BIAS · NOT USED", y_bias, BIAS),
+    # Temperature boundaries: sparse dashed rules are the main organizing
+    # structure, matching standard cryogenic wiring schematics.
+    stages = [
+        (9.25, "300 K"),
+        (8.10, "50 K"),
+        (7.20, "10 K"),
+        (6.20, "4 K"),
+        (5.20, "Still, 2.7 K"),
+        (4.20, "Cold plate, 900 mK"),
+        (3.20, "M/C, 9 mK"),
     ]
-    for label, y, color in row_specs:
-        ax.text(3.05, y + 0.22, label, ha="left", va="bottom", fontsize=6.6 * FONT_SCALE, fontweight="bold", color=color)
-
-    arrow(ax, (x_line_start, y_drive), (x_device, y_drive), color=DRIVE, linewidth=1.55, mutation_scale=9)
-    arrow(ax, (x_line_start, y_readout_tx), (x_device, y_readout_tx), color=READ_IN, linewidth=1.55, mutation_scale=9)
-    arrow(ax, (x_device, y_readout_rx), (x_line_start, y_readout_rx), color=READ_OUT, linewidth=1.55, mutation_scale=9)
-    arrow(ax, (1.965, y_bias), (x_device, y_bias), color=BIAS, linewidth=1.45, mutation_scale=9)
-
-    opx = FancyBboxPatch(
-        (0.48, 3.02),
-        2.04,
-        3.92,
-        boxstyle="round,pad=0.025,rounding_size=0.045",
-        facecolor="#E7EFF7",
-        edgecolor="#5F7C96",
-        linewidth=1.1,
-        zorder=5,
-    )
-    ax.add_patch(opx)
-    ax.text(1.50, 6.72, "OPX1000 / MW-FEM", ha="center", va="center", fontsize=8.8 * FONT_SCALE, fontweight="bold", color=INK, zorder=7)
-    opx_ports = [
-        (y_drive, "Qubit drive\nRF OUT", DRIVE, "#EAF2FA"),
-        (y_readout_tx, "Readout drive\nRF OUT", READ_IN, "#E9F4F2"),
-        (y_readout_rx, "Readout acquire\nRF IN", READ_OUT, "#EAF3F8"),
-    ]
-    for y, label, color, fill in opx_ports:
-        rounded_box(
+    for y, label in stages:
+        line(
             ax,
-            0.72,
-            y - 0.22,
-            1.45,
-            0.44,
+            [1.55, 9.92],
+            [y, y],
+            color=INK,
+            linewidth=0.85,
+            linestyle=(0, (3.0, 2.8)),
+            zorder=1,
+        )
+        ax.text(
+            1.42,
+            y,
             label,
-            facecolor=fill,
-            edgecolor=color,
-            fontsize=6.5,
-            linewidth=0.8,
-            radius=0.018,
-            zorder=7,
+            ha="right",
+            va="center",
+            fontsize=7.6,
+            color=INK,
         )
 
-    # The control computer is deliberately separate from the signal-chain
-    # blocks: it submits QUA programs and receives results over the control
-    # network, while the MW-FEM performs the real-time RF processing.
-    pc = FancyBboxPatch(
-        (0.72, 7.23),
-        1.56,
-        0.45,
-        boxstyle="round,pad=0.02,rounding_size=0.018",
-        facecolor="#EEF4F8",
-        edgecolor="#6C8496",
-        linewidth=0.85,
-        zorder=6,
-    )
-    ax.add_patch(pc)
-    ax.text(1.50, 7.51, "CONTROL PC", ha="center", va="center", fontsize=6.8 * FONT_SCALE, fontweight="bold", color=INK, zorder=7)
-    ax.text(1.50, 7.36, "QUA program / data", ha="center", va="center", fontsize=5.5 * FONT_SCALE, color=MUTED, zorder=7)
-    control_link = FancyArrowPatch(
-        (1.50, 7.23),
-        (1.50, 6.94),
-        arrowstyle="<->",
-        mutation_scale=6.5,
-        linewidth=0.75,
-        color=MUTED,
-        shrinkA=0,
-        shrinkB=0,
-        zorder=7,
-    )
-    ax.add_patch(control_link)
-    ax.text(1.62, 7.08, "Ethernet control", ha="left", va="center", fontsize=5.2 * FONT_SCALE, color=MUTED, zorder=7)
+    x_qubit = 2.55
+    x_readout = 4.10
+    x_bias = 5.65
+    x_hemt_power = 7.15
+    x_return = 8.75
 
-    rounded_box(ax, 0.985, y_bias - 0.23, 0.98, 0.46, "DC bias supply", facecolor="#EDF3EA", edgecolor=BIAS, fontsize=6.8)
-
-    # Mount each attenuator on the right-hand side of its temperature-stage
-    # shield, leaving the same small visual gap after every boundary.
-    attenuator_offset = 0.38
-    attenuator_stage_x = [5.10, 8.20, 9.75, 11.30, 12.85]
-    drive_attenuators = [
-        (x + attenuator_offset, value)
-        for x, value in zip(attenuator_stage_x, ["10 dB", "10 dB", "10 dB", "20 dB", "20 dB"], strict=True)
+    # Room-temperature equipment and feedthroughs.
+    ax.text(3.33, 10.43, "Input", ha="center", va="bottom", fontsize=8.8, color=INK)
+    ax.text(x_return, 10.43, "Output", ha="center", va="bottom", fontsize=8.8, color=INK)
+    ax.text(
+        6.05,
+        10.67,
+        "Control PC  ↔  OPX1000 / MW-FEM",
+        ha="center",
+        va="top",
+        fontsize=8.6,
+        color=INK,
+    )
+    top_labels = [
+        (x_qubit, "Qubit drive\nRF OUT"),
+        (x_readout, "Readout drive\nRF OUT"),
+        (x_bias, "DC bias\nnot used"),
+        (x_hemt_power, "HEMT\nDC power"),
+        (x_return, "Readout acquire\nRF IN"),
     ]
-    read_attenuators = [
-        (x + attenuator_offset, value)
-        for x, value in zip(attenuator_stage_x, ["6 dB", "10 dB", "6 dB", "20 dB", "20 dB"], strict=True)
-    ]
-    for x, value in drive_attenuators:
-        attenuator(ax, x, y_drive, value)
-    for x, value in read_attenuators:
-        attenuator(ax, x, y_readout_tx, value)
-    # LPF symbols are wider than attenuators, so use a larger center offset to
-    # preserve the same edge-to-shield gap.
-    low_pass_filter_offset = 0.44
-    low_pass_filter(ax, 8.20 + low_pass_filter_offset, y_bias)
-    low_pass_filter(ax, 12.85 + low_pass_filter_offset, y_bias)
+    for x, label in top_labels:
+        ax.text(x, 9.68, label, ha="center", va="bottom", fontsize=6.7, color=INK)
+        connector(ax, x, 9.25)
 
-    hemt(ax, 8.20, y_readout_rx, label=False)
-    ax.text(8.20, y_readout_rx + 0.38, "HEMT · 4 K", ha="center", va="bottom", fontsize=6.4 * FONT_SCALE, color=MUTED)
-    for x in (12.10, 12.48, 12.86):
-        circulator(ax, x, y_readout_rx)
+    # The two driven microwave lines and the optional DC line descend through
+    # the refrigerator.  Values match the measurement setup in the manuscript.
+    line(ax, [x_qubit, x_qubit], [9.25, 1.36], linewidth=1.25)
+    line(ax, [x_readout, x_readout], [9.25, 1.05], linewidth=1.25)
+    line(ax, [x_bias, x_bias], [9.25, 2.07], color=GREEN, linewidth=1.2)
+    direction_marker(ax, x_qubit, 8.72, direction="down", color=BLUE)
+    direction_marker(ax, x_readout, 8.72, direction="down", color=BLUE)
+    direction_marker(ax, x_bias, 8.72, direction="down", color=GREEN)
 
-    rounded_box(
-        ax,
-        0.90,
-        y_hemt_power - 0.21,
-        1.15,
-        0.42,
-        "HEMT DC power",
-        facecolor="#F3EDE3",
-        edgecolor=HEMT_POWER,
-        fontsize=6.7,
+    attenuation_y = [7.83, 5.93, 4.93, 3.93, 2.93]
+    for y, value in zip(attenuation_y, ["10 dB", "10 dB", "10 dB", "20 dB", "20 dB"], strict=True):
+        attenuator(ax, x_qubit, y, value)
+    for y, value in zip(attenuation_y, ["6 dB", "10 dB", "6 dB", "20 dB", "20 dB"], strict=True):
+        attenuator(ax, x_readout, y, value)
+
+    low_pass_filter(ax, x_bias, 5.93)
+    low_pass_filter(ax, x_bias, 2.93)
+
+    # The acquisition path rises from the device through three circulators and
+    # the 4 K HEMT.  Its DC supply is kept visually distinct from the RF path.
+    line(ax, [x_return, x_return], [2.72, 9.25], linewidth=1.3)
+    direction_marker(ax, x_return, 8.72, direction="up", color=RED)
+    hemt(ax, x_return, 6.45)
+    line(ax, [x_hemt_power, x_hemt_power, x_return - 0.25], [9.25, 6.45, 6.45], color=GRAY, linewidth=0.9)
+    ax.add_patch(Rectangle((x_hemt_power - 0.08, 6.34), 0.16, 0.22, facecolor=RED, edgecolor=RED, zorder=9))
+    ax.text(
+        x_return - 0.38,
+        6.45,
+        "HEMT, 4 K",
+        ha="right",
+        va="center",
+        fontsize=7.0,
+        color=INK,
+        bbox={"facecolor": "white", "edgecolor": "none", "pad": 0.5},
+        zorder=10,
     )
-    line(ax, [2.05, 8.20], [y_hemt_power, y_hemt_power], color=HEMT_POWER, linewidth=0.9, zorder=2)
-    arrow(
-        ax,
-        (8.20, y_hemt_power),
-        (8.20, y_readout_rx - 0.24),
-        color=HEMT_POWER,
-        linewidth=0.9,
-        mutation_scale=6,
-        zorder=7,
+
+    circulator_y = 2.72
+    line(ax, [6.20, x_return], [circulator_y, circulator_y], linewidth=1.25)
+    for x in (7.15, 7.72, 8.29):
+        circulator(ax, x, circulator_y)
+    ax.text(
+        7.72,
+        3.28,
+        "Circulators ×3",
+        ha="center",
+        va="bottom",
+        fontsize=7.1,
+        color=INK,
+        bbox={"facecolor": "white", "edgecolor": "none", "pad": 0.6},
+        zorder=10,
     )
 
-    shield = FancyBboxPatch(
-        (14.05, 1.05),
-        1.18,
-        6.20,
-        boxstyle="round,pad=0.025,rounding_size=0.045",
-        facecolor=DEVICE_FILL,
-        edgecolor=DEVICE_EDGE,
-        linewidth=1.0,
-        zorder=6,
+    # Mixing-chamber package.  The two generated tones enter the QPU and the
+    # returning readout signal exits through the isolated chain.
+    shield = Rectangle(
+        (1.95, 0.34),
+        7.25,
+        2.00,
+        facecolor=SHIELD_FILL,
+        edgecolor=INK,
+        linewidth=1.15,
+        zorder=2,
     )
     ax.add_patch(shield)
-    ax.text(14.64, 7.02, "Magnetic shield", ha="center", va="top", fontsize=7.2 * FONT_SCALE, fontweight="bold", color=INK, zorder=7)
-    sample = FancyBboxPatch(
-        (14.28, 3.02),
-        0.72,
-        2.25,
-        boxstyle="round,pad=0.02,rounding_size=0.025",
-        facecolor="#FAFAF9",
-        edgecolor="#929A9F",
-        linewidth=0.8,
+    ax.text(8.98, 0.56, "Magnetic shield", ha="right", va="bottom", fontsize=7.2, color=INK, zorder=7)
+
+    qpu = FancyBboxPatch(
+        (4.62, 0.60),
+        1.36,
+        0.96,
+        boxstyle="round,pad=0.015,rounding_size=0.035",
+        facecolor="white",
+        edgecolor=INK,
+        linewidth=1.0,
         zorder=7,
     )
-    ax.add_patch(sample)
-    ax.text(14.64, 4.92, "QPU", ha="center", va="center", fontsize=8.0 * FONT_SCALE, fontweight="bold", color=INK, zorder=8)
-    qubit_points = [(14.45 + 0.19 * col, 4.55 - 0.26 * row) for row in range(4) for col in range(3)]
-    for qx, qy in qubit_points[:11]:
-        ax.add_patch(Circle((qx, qy), 0.035, facecolor="white", edgecolor=DEVICE_EDGE, linewidth=0.65, zorder=8))
-    ax.text(14.64, 3.34, "11 qubits", ha="center", va="center", fontsize=6.0 * FONT_SCALE, color=MUTED, zorder=8)
+    ax.add_patch(qpu)
+    ax.add_patch(Rectangle((4.83, 0.86), 0.32, 0.42, facecolor=RED, edgecolor=RED, zorder=8))
+    qubit_points = [(5.35 + 0.18 * col, 1.31 - 0.19 * row) for row in range(3) for col in range(3)]
+    qubit_points += [(5.35 + 0.18 * col, 0.72) for col in range(2)]
+    for qx, qy in qubit_points:
+        ax.add_patch(Circle((qx, qy), 0.035, facecolor="white", edgecolor=GRAY, linewidth=0.7, zorder=8))
+    ax.text(5.30, 1.70, "QPU · 11 qubits", ha="center", va="bottom", fontsize=7.4, color=INK)
 
-    ax.text(3.10, 0.56, "SYMBOLS", ha="left", va="center", fontsize=6.8 * FONT_SCALE, fontweight="bold", color=MUTED)
-    attenuator(ax, 4.18, 0.56, "10 dB")
-    ax.text(4.52, 0.56, "attenuator", ha="left", va="center", fontsize=6.4 * FONT_SCALE, color=INK)
-    low_pass_filter(ax, 6.10, 0.56)
-    ax.text(6.50, 0.56, "low-pass filter", ha="left", va="center", fontsize=6.4 * FONT_SCALE, color=INK)
-    circulator(ax, 8.10, 0.56)
-    ax.text(8.38, 0.56, "circulator", ha="left", va="center", fontsize=6.4 * FONT_SCALE, color=INK)
-    hemt(ax, 9.85, 0.56, label=False)
-    ax.text(10.18, 0.56, "HEMT amplifier", ha="left", va="center", fontsize=6.4 * FONT_SCALE, color=INK)
-    arrow(ax, (12.10, 0.56), (12.85, 0.56), color=INK, linewidth=0.9, mutation_scale=6)
-    ax.text(12.98, 0.56, "signal direction", ha="left", va="center", fontsize=6.4 * FONT_SCALE, color=INK)
+    line(ax, [x_qubit, 4.62], [1.36, 1.36], linewidth=1.25)
+    line(ax, [x_readout, x_readout, 4.62], [1.05, 1.05, 1.05], linewidth=1.25)
+    line(ax, [5.98, 6.20, 6.20], [1.18, 1.18, circulator_y], linewidth=1.25)
+    line(ax, [x_bias, x_bias, 5.72], [2.07, 1.54, 1.54], color=GREEN, linewidth=1.1, linestyle=(0, (2.5, 2.0)))
+    ax.text(5.78, 2.03, "available, not connected", ha="left", va="center", fontsize=6.3, color=GREEN)
 
     return fig
 

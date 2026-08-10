@@ -1,0 +1,99 @@
+{
+  "arrays": {
+    "anharmonicity_mhz": {
+      "dtype": "float64",
+      "shape": []
+    },
+    "corrected_centers_mhz": {
+      "dtype": "float64",
+      "shape": [
+        40
+      ]
+    },
+    "corrected_pe": {
+      "dtype": "float64",
+      "shape": [
+        41,
+        201
+      ]
+    },
+    "cutoff": {
+      "dtype": "float64",
+      "shape": []
+    },
+    "detuning_mhz": {
+      "dtype": "float64",
+      "shape": [
+        201
+      ]
+    },
+    "drag_beta": {
+      "dtype": "float64",
+      "shape": []
+    },
+    "duration_us": {
+      "dtype": "float64",
+      "shape": []
+    },
+    "fit_rabi_mhz": {
+      "dtype": "float64",
+      "shape": [
+        40
+      ]
+    },
+    "plain_centers_mhz": {
+      "dtype": "float64",
+      "shape": [
+        40
+      ]
+    },
+    "plain_pe": {
+      "dtype": "float64",
+      "shape": [
+        41,
+        201
+      ]
+    },
+    "rabi_mhz": {
+      "dtype": "float64",
+      "shape": [
+        41
+      ]
+    },
+    "selected_kappa_mhz_inv": {
+      "dtype": "float64",
+      "shape": []
+    }
+  },
+  "category": "numerical",
+  "data_file": "04_main_ac_stark_correction_maps.npz",
+  "dataset": "04_main_ac_stark_correction_maps",
+  "provenance": {
+    "array_dimensions": {
+      "corrected_centers_mhz": [
+        "fit_rabi_mhz"
+      ],
+      "corrected_pe": [
+        "rabi_mhz",
+        "detuning_mhz"
+      ],
+      "plain_centers_mhz": [
+        "fit_rabi_mhz"
+      ],
+      "plain_pe": [
+        "rabi_mhz",
+        "detuning_mhz"
+      ]
+    },
+    "detuning_convention": "drive_minus_qubit",
+    "figure_asset": "figures/paper/04_main_ac_stark_correction_maps.pdf",
+    "generator": "scripts/make_main_ac_stark_correction_maps.py",
+    "manuscript_scope": "letter",
+    "model": "three-level transmon Lindblad/RK4 simulation",
+    "population_definition": "P_e",
+    "reproduction_command": "PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_main_ac_stark_correction_maps.py",
+    "source_cache": "data/generated/accumulated_phase_duration_sweep/20us/results.npz",
+    "source_generator": "scripts/make_accumulated_phase_duration_report.py"
+  },
+  "schema_version": 1
+}

@@ -23,6 +23,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from echospec.figures import FigureVariant, apply_figure_style, save_figure
+from echospec.paper_data import save_paper_dataset
 
 
 SOURCE_PATH = (
@@ -107,6 +108,36 @@ def load_map_data() -> dict[str, np.ndarray]:
 def main() -> None:
     apply_figure_style(FigureVariant.PAPER)
     data = load_map_data()
+    paper_data_paths = save_paper_dataset(
+        OUTPUT_STEM,
+        category="numerical",
+        arrays=data,
+        provenance={
+            "figure_asset": f"figures/paper/{OUTPUT_STEM}.pdf",
+            "manuscript_scope": "letter",
+            "generator": "scripts/make_main_ac_stark_correction_maps.py",
+            "reproduction_command": (
+                "PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python "
+                "scripts/make_main_ac_stark_correction_maps.py"
+            ),
+            "source_generator": (
+                "scripts/make_accumulated_phase_duration_report.py"
+            ),
+            "source_cache": (
+                "data/generated/accumulated_phase_duration_sweep/20us/"
+                "results.npz"
+            ),
+            "model": "three-level transmon Lindblad/RK4 simulation",
+            "detuning_convention": "drive_minus_qubit",
+            "population_definition": "P_e",
+            "array_dimensions": {
+                "plain_pe": ["rabi_mhz", "detuning_mhz"],
+                "corrected_pe": ["rabi_mhz", "detuning_mhz"],
+                "plain_centers_mhz": ["fit_rabi_mhz"],
+                "corrected_centers_mhz": ["fit_rabi_mhz"],
+            },
+        },
+    )
     detuning_mhz = data["detuning_mhz"]
     rabi_mhz = data["rabi_mhz"]
     fit_rabi_mhz = data["fit_rabi_mhz"]
@@ -169,7 +200,7 @@ def main() -> None:
     colorbar = fig.colorbar(image, cax=color_axis)
     colorbar.set_label(r"$P_e$")
 
-    save_figure(
+    figure_paths = save_figure(
         fig,
         OUTPUT_STEM,
         variant=FigureVariant.PAPER,
@@ -179,6 +210,8 @@ def main() -> None:
         pad_inches=0.02,
     )
     plt.close(fig)
+    for path in (*figure_paths, *paper_data_paths):
+        print(path)
 
 
 if __name__ == "__main__":

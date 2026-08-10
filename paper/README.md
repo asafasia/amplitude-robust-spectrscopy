@@ -32,6 +32,7 @@ paper/
     H_lorentzian_echo_comparison.tex
     I_simulation_experiment_comparison.tex
   figures/                 manuscript figures
+  data/                    documented numerical and experimental paper data
   notes/                   review and revision notes
   archive/                 preserved legacy source material
 ```
@@ -53,6 +54,19 @@ the PDFs:
 make paper-clean
 ```
 
+## Reviewer data package
+
+Migrated figure workflows write the arrays used in the Letter and Supplemental
+Material to `paper/data/numerical/` and `paper/data/experimental/`. Every NPZ
+archive has a JSON provenance sidecar. See `paper/data/README.md` for the data
+contract and current migration status.
+
+Figure generators refresh their rendered assets and documented data together;
+do not copy build caches from `figures/paper/` into the reviewer package by
+hand. Refresh the populated core package with
+`make PYTHON=.venv/bin/python paper-data-core`; use the `paper-data` target to
+also run the longer migrated simulations.
+
 The experimental long-pulse comparison is generated from the sibling
 `data_opx1000` repository with:
 
@@ -61,7 +75,8 @@ PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_long_pulse_lorentzian_
 ```
 
 Set `OPX1000_DATA_DIR` when the data repository is not located beside this
-checkout. The script writes PDF, PNG, and SVG versions to `figures/paper/`.
+checkout. The script writes PDF, PNG, and SVG versions to `figures/paper/` and
+the plotted arrays to `paper/data/experimental/`.
 
 The experimental broad and focused cutoff maps are generated from the
 `cutoff_amp_fwhm_map` and `echo_lorentzian_cutoff_sweep` campaigns with:
@@ -72,7 +87,8 @@ PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_echo_lorentzian_cutoff
 
 The script accepts `OPX1000_DATA_DIR`, applies the documented fit-quality
 screen, and writes PDF, PNG, SVG, and a provenance JSON file to
-`figures/paper/`.
+`figures/paper/`, together with a portable data/provenance pair in
+`paper/data/experimental/`.
 
 The main-text noisy echo-root-Lorentzian resolution and contrast comparison for
 $L=10$, 20, 30, and $40~\mu\mathrm{s}$ is generated with:
@@ -83,7 +99,8 @@ PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_duration_resolution_co
 
 It uses fixed cutoff $c=0.002$, adds deterministic observation noise before
 fitting, and writes PDF, PNG, SVG, and compressed source arrays to
-`figures/paper/`.
+`figures/paper/`. The documented reviewer copy is written to
+`paper/data/numerical/`.
 
 The fitted-center stability panel for the measured amplitude operating window
 is generated with:

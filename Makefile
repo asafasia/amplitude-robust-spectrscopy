@@ -1,4 +1,5 @@
-.PHONY: install install-dev test lint paper paper-main paper-supplemental paper-clean
+.PHONY: install install-dev test lint paper paper-main paper-supplemental \
+	paper-clean paper-data paper-data-core
 
 PYTHON ?= python
 
@@ -29,3 +30,12 @@ paper-clean:
 	$(RM) paper/mainNotes.bib
 	$(RM) paper/supplemental.bbl
 	$(RM) paper/supplementalNotes.bib
+
+paper-data-core:
+	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_main_ac_stark_correction_maps.py
+	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_long_pulse_lorentzian_comparison.py
+	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_echo_lorentzian_cutoff_sweep.py
+
+paper-data: paper-data-core
+	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_simulated_echo_lorentzian_duration_cutoff_comparison.py
+	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_duration_resolution_comparison.py

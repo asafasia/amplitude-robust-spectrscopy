@@ -24,6 +24,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from echospec.figures import FigureVariant, apply_figure_style, save_figure
+from echospec.paper_data import save_paper_dataset
 
 
 DATA_ROOT = Path(
@@ -369,13 +370,94 @@ def main() -> None:
     provenance_path = ROOT / "figures" / "paper" / f"{OUTPUT_STEM}_provenance.json"
     provenance_path.write_text(json.dumps(provenance, indent=2) + "\n")
 
+    paper_arrays: dict[str, np.ndarray] = {
+        "t2_s": np.asarray(float(t2_values[0])),
+    }
+    portable_campaigns = []
+    exported_columns = (
+        "cutoff",
+        "rabi_frequency_mhz",
+        "gaussian_center_hz",
+        "fwhm_hz",
+        "fwhm_t2_units",
+        "fit_abs_amplitude",
+        "fit_r_squared",
+    )
+    for campaign, data, accepted, manifest in datasets:
+        for column in exported_columns:
+            paper_arrays[f"{campaign.key}_{column}"] = data[column].to_numpy(
+                dtype=float
+            )
+        paper_arrays[f"{campaign.key}_accepted"] = accepted.to_numpy(
+            dtype=bool
+        )
+        for metric in ("resolution", "signal_weighted_resolution"):
+            cutoffs, rabi_mhz, values = map_matrix(data, accepted, metric)
+            paper_arrays[f"{campaign.key}_{metric}_cutoff"] = cutoffs
+            paper_arrays[f"{campaign.key}_{metric}_rabi_mhz"] = rabi_mhz
+            paper_arrays[f"{campaign.key}_{metric}"] = values
+        portable_campaigns.append(
+            {
+                "key": campaign.key,
+                "source_directory": str(campaign.relative_directory),
+                "source_results": campaign.results_filename,
+                "run_started_at": manifest.get("run_started_at"),
+                "run_finished_at": manifest.get("run_finished_at"),
+                "shots_per_point": campaign.expected_shots,
+                "frequency_span_mhz": campaign.frequency_span_mhz,
+                "frequency_step_mhz": campaign.frequency_step_mhz,
+                "cutoff_count": int(data["cutoff"].nunique()),
+                "amplitude_count": int(data["rabi_frequency_mhz"].nunique()),
+                "fit_count": int(len(data)),
+                "accepted_fit_count": int(accepted.sum()),
+            }
+        )
+    paper_data_paths = save_paper_dataset(
+        OUTPUT_STEM,
+        category="experimental",
+        arrays=paper_arrays,
+        provenance={
+            "figure_asset": f"figures/paper/{OUTPUT_STEM}.pdf",
+            "manuscript_scope": "supplemental",
+            "generator": "scripts/make_echo_lorentzian_cutoff_sweep.py",
+            "reproduction_command": (
+                "PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python "
+                "scripts/make_echo_lorentzian_cutoff_sweep.py"
+            ),
+            "source_root_environment": "OPX1000_DATA_DIR",
+            "measurement": {
+                "qubit": "q1",
+                "pulse_shape": "echo-root-Lorentzian",
+                "duration_us": 20.0,
+                "peak_waveform_amplitude": 0.2,
+            },
+            "quality_screen": provenance["quality_screen"],
+            "map_metrics": provenance["map_metrics"],
+            "campaigns": portable_campaigns,
+            "dimension_conventions": {
+                "raw_fit_columns": (
+                    "campaign-prefixed fit columns and accepted masks share "
+                    "the fit_row axis"
+                ),
+                "map_values": (
+                    "campaign-prefixed resolution maps have axes "
+                    "[rabi_mhz, cutoff]"
+                ),
+                "map_coordinates": (
+                    "the matching *_rabi_mhz and *_cutoff arrays are the map "
+                    "axis coordinates"
+                ),
+            },
+        },
+    )
+
     print(f"T2 reference: {t2_values[0] * 1e6:.6f} us")
     for campaign, data, accepted, _ in datasets:
         print(
             f"{campaign.title}: retained {accepted.sum()}/{len(data)} fits "
             f"({accepted.mean():.1%})"
         )
-    for path in (*saved, provenance_path):
+    for path in (*saved, provenance_path, *paper_data_paths):
         print(path)
 
 

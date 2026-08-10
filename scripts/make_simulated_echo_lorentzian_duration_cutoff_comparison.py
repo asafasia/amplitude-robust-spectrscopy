@@ -22,6 +22,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from echospec.figures import FigureVariant, apply_figure_style, save_figure
+from echospec.paper_data import save_paper_dataset
 
 
 DURATIONS_US = (5.0, 20.0, 60.0)
@@ -239,7 +240,42 @@ def main() -> None:
             u_steps_per_half=U_STEPS_PER_HALF,
             **maps,
         )
-        for path in (*saved, data_path):
+        paper_data_paths = save_paper_dataset(
+            stem,
+            category="numerical",
+            arrays={
+                "duration_us": np.asarray(duration_us),
+                "cutoffs": np.asarray(CUTOFFS),
+                "detuning_mhz": DETUNING_MHZ,
+                "rabi_mhz": RABI_MHZ,
+                "t1_us": np.asarray(T1_US),
+                "t_phi_us": np.asarray(T_PHI_US),
+                "order": np.asarray(ORDER),
+                "u_steps_per_half": np.asarray(U_STEPS_PER_HALF),
+                **maps,
+            },
+            provenance={
+                "figure_asset": f"figures/paper/{stem}.pdf",
+                "manuscript_scope": "supplemental",
+                "generator": (
+                    "scripts/"
+                    "make_simulated_echo_lorentzian_duration_cutoff_comparison.py"
+                ),
+                "reproduction_command": (
+                    "PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python "
+                    "scripts/"
+                    "make_simulated_echo_lorentzian_duration_cutoff_comparison.py"
+                ),
+                "model": "two-level dissipative Bloch-equation RK4 simulation",
+                "detuning_convention": "drive_minus_qubit",
+                "population_definition": "P_e",
+                "pulse_shape": "root-Lorentzian with and without phase inversion",
+                "array_dimensions": {
+                    "*_cutoff_*": ["rabi_mhz", "detuning_mhz"],
+                },
+            },
+        )
+        for path in (*saved, data_path, *paper_data_paths):
             print(path)
 
 
