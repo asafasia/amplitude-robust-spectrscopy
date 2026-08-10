@@ -1,0 +1,39 @@
+{
+  "experiment_name": "echo_lorentzian",
+  "profile_name": "single_qubit",
+  "timestamp": "2026-08-10T14:16:19.887278+03:00",
+  "sweep": {
+    "qubit": {
+      "shape": [
+        1
+      ],
+      "dtype": "<U2"
+    },
+    "detuning": {
+      "shape": [
+        201
+      ],
+      "dtype": "int64"
+    },
+    "amp_prefactor": {
+      "shape": [
+        200
+      ],
+      "dtype": "float64"
+    }
+  },
+  "results": {
+    "state": {
+      "shape": [
+        1,
+        201,
+        200
+      ],
+      "dtype": "float64"
+    }
+  },
+  "parameters": "parameters.json",
+  "run_started_at": "2026-08-10T14:11:40.076888+03:00",
+  "run_finished_at": "2026-08-10T14:16:49.683847+03:00",
+  "run_duration_s": 309.6063684001565
+}

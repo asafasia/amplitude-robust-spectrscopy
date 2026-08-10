@@ -24,8 +24,14 @@ venv/
 # Local IDE settings
 .vscode/
 
-# Project data and large generated arrays
-/data/
+# Project data and large generated arrays. Keep the four source runs used by
+# main-text Figure 2 reproducible in the repository.
+/data/*
+!/data/experimental/
+/data/experimental/*
+!/data/experimental/2026-08-10/
+/data/experimental/2026-08-10/*
+!/data/experimental/2026-08-10/echo_lorentzian/
 /amplitude_sweep_spectroscopy_results.npz
 
 # LaTeX build output (keep the final PDF available locally)
