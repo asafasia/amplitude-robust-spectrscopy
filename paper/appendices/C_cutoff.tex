@@ -44,8 +44,7 @@ with 25 peak-amplitude settings, while the focused sweep resolves
 $c=0.01$--$0.10$ with 200 peak-amplitude settings.  Both use a
 $20~\mu\mathrm{s}$ pulse and the same measured transverse-coherence
 reference, $T_2=6.856~\mu\mathrm{s}$.
-Fig.~\ref{fig:echo-lorentzian-cutoff-sweep}
-reports the dimensionless reciprocal-linewidth metric
+We characterize the scans using the dimensionless reciprocal-linewidth metric
 \begin{equation}
     \mathcal{R}
     = \frac{\Gamma_{f,T_2}}{\Gamma_f}
@@ -54,20 +53,21 @@ reports the dimensionless reciprocal-linewidth metric
 \end{equation}
 where every linewidth is a cyclic-frequency FWHM in hertz.  Thus
 $\mathcal{R}=1$ is the $T_2$-limited linewidth and
-$\mathcal{R}<1$ denotes a broader feature.  We also show the
+$\mathcal{R}<1$ denotes a broader feature.  We also use the
 signal-weighted metric $|A_{\mathrm{fit}}|\mathcal{R}$, which suppresses
 narrow fits with negligible contrast.  These are linewidth-based scores, not
 direct estimates of frequency-estimation uncertainty.
 
-The maps retain only resolved and bounded probability features: the fitted
+The analysis retains only resolved and bounded probability features: the fitted
 contrast is between 0.05 and 1, $R^2\geq0.60$, the fitted center lies inside
 the measured frequency interval, and the FWHM lies between two frequency bins
-and half the sweep span.  Gray cells denote measurements for which the fit did
-not pass this common screen.  The denser focused sweep provides substantially
-more accepted fits than the coarse survey and resolves the loss of reciprocal
-linewidth performance as the cutoff increases across the $0.01$--$0.10$
-interval.
+and half the sweep span.  Measurements that do not pass this common screen are
+omitted.  The denser focused sweep provides substantially more accepted fits
+than the coarse survey and resolves the loss of reciprocal-linewidth
+performance as the cutoff increases across the $0.01$--$0.10$ interval.
 
+% Experimental cutoff-sweep figure omitted from the supplement.
+\iffalse
 \begin{figure}[t]
     \centering
     \includegraphics[width=\linewidth]{../figures/paper/08_echo_lorentzian_cutoff_sweep.pdf}
@@ -86,7 +86,10 @@ interval.
     \label{fig:echo-lorentzian-cutoff-sweep}
 \end{figure}
 \FloatBarrier
+\fi
 
+% Simulated cutoff--amplitude operating map omitted from the supplement.
+\iffalse
 \subsection{Simulated cutoff--amplitude operating map}
 
 The finite-duration pulse is specified by its duration, peak drive amplitude,
@@ -100,24 +103,10 @@ resolution--signal metric; a direct Fisher-information or Cram\'er--Rao
 analysis would additionally require a measurement-noise model and the full
 frequency dependence of the response.
 
-Fig.~\ref{fig:cutoff-parameter-map} shows that the root-Lorentzian pulse
-contains extended narrow-linewidth regions, but its useful operating structure
-is strongly oscillatory.  The echo protocol instead produces a broader,
-contiguous region in which both the linewidth and the resolution--signal
-trade-off remain favorable.  The logarithmic parameter axes should be kept in
-mind when comparing the apparent area of these regions.
-
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=0.72\textwidth]{../figures/paper/spectroscopy_fwhm_snr_vs_amplitude_vs_cutoff_2x2.png}
-    \caption{Numerical cutoff--amplitude maps for root-Lorentzian $L^{(1/2)}$
-    and echo-root-Lorentzian $L^{(1/2)}_{\mathrm{echo}}$ pulses of duration
-    $50~\mu\mathrm{s}$.  (a,c) Normalized cyclic-frequency FWHM
-    $\Gamma_f/\Gamma_{f,T_2}$ for the root and echo protocols, respectively;
-    (b,d) corresponding contrast-weighted widths
-    $\Gamma_f/(A_{\mathrm{peak}}\Gamma_{f,T_2})$.  The ordinary root-Lorentzian
-    response is strongly oscillatory, whereas the echo variant retains a
-    broader contiguous region with a favorable resolution--signal trade-off.}
-    \label{fig:cutoff-parameter-map}
-\end{figure}
-\FloatBarrier
+The simulated maps show that the root-Lorentzian pulse contains extended
+narrow-linewidth regions, but its useful operating structure is strongly
+oscillatory.  The echo protocol instead produces a broader, contiguous region
+in which both the linewidth and the resolution--signal trade-off remain
+favorable.  Because the amplitude and cutoff grids are logarithmic, apparent
+region sizes should not be interpreted as linear parameter tolerances.
+\fi

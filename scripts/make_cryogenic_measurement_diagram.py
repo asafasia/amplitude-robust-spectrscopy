@@ -273,8 +273,8 @@ def build_figure() -> plt.Figure:
 
     # The two driven microwave lines and the optional DC line descend through
     # the refrigerator.  Values match the measurement setup in the manuscript.
-    line(ax, [x_qubit, x_qubit], [9.25, 1.36], linewidth=1.25)
-    line(ax, [x_readout, x_readout], [9.25, 1.05], linewidth=1.25)
+    line(ax, [x_qubit, x_qubit], [9.25, 1.05], linewidth=1.25)
+    line(ax, [x_readout, x_readout], [9.25, 1.36], linewidth=1.25)
     line(ax, [x_bias, x_bias], [9.25, 2.07], color=GREEN, linewidth=1.2)
     direction_marker(ax, x_qubit, 8.72, direction="down", color=BLUE)
     direction_marker(ax, x_readout, 8.72, direction="down", color=BLUE)
@@ -350,17 +350,16 @@ def build_figure() -> plt.Figure:
     )
     ax.add_patch(qpu)
     ax.add_patch(Rectangle((4.83, 0.86), 0.32, 0.42, facecolor=RED, edgecolor=RED, zorder=8))
-    qubit_points = [(5.35 + 0.18 * col, 1.31 - 0.19 * row) for row in range(3) for col in range(3)]
-    qubit_points += [(5.35 + 0.18 * col, 0.72) for col in range(2)]
+    qubit_points = [(5.35 + 0.18 * col, 1.37 - 0.19 * row) for row in range(3) for col in range(3)]
+    qubit_points += [(5.35 + 0.18 * col, 0.78) for col in range(2)]
     for qx, qy in qubit_points:
         ax.add_patch(Circle((qx, qy), 0.035, facecolor="white", edgecolor=GRAY, linewidth=0.7, zorder=8))
     ax.text(5.30, 1.70, "QPU · 11 qubits", ha="center", va="bottom", fontsize=7.4, color=INK)
 
-    line(ax, [x_qubit, 4.62], [1.36, 1.36], linewidth=1.25)
-    line(ax, [x_readout, x_readout, 4.62], [1.05, 1.05, 1.05], linewidth=1.25)
+    line(ax, [x_qubit, 4.62], [1.05, 1.05], linewidth=1.25)
+    line(ax, [x_readout, 4.62], [1.36, 1.36], linewidth=1.25)
     line(ax, [5.98, 6.20, 6.20], [1.18, 1.18, circulator_y], linewidth=1.25)
     line(ax, [x_bias, x_bias, 5.72], [2.07, 1.54, 1.54], color=GREEN, linewidth=1.1, linestyle=(0, (2.5, 2.0)))
-    ax.text(5.78, 2.03, "available, not connected", ha="left", va="center", fontsize=6.3, color=GREEN)
 
     return fig
 

@@ -35,7 +35,7 @@ for a weakly anharmonic transmon~\cite{PhysRevA.76.042319,schneider_multilevel_2
     \label{eq:qutrit-ac-stark-shift}
 \end{equation}
 Because $\alpha<0$, the constant-pulse dressed $f_{01}$ resonance moves to
-positive detuning.  The exact values reported below are obtained by
+positive detuning.  The exact values used here are obtained by
 diagonalizing Eq.~\eqref{eq:qutrit-ac-stark-hamiltonian} at constant
 $\Omega(t)=\Omega_0$ and minimizing the dressed $g$--$e$ gap.
 
@@ -61,35 +61,15 @@ echo-root-Lorentzian pulses have the same leading phase-average estimate.
 
 The experimentally visible feature of a finite pulse need not coincide with
 Eq.~\eqref{eq:shaped-ac-stark-average}, because the final population also
-contains coherent finite-pulse interference.  We therefore report both
+contains coherent finite-pulse interference.  We therefore distinguish both
 quantities.  For the ordinary root-Lorentzian pulse, the operational center is
 the local maximum of $P_e+P_f$ within
 $|\Delta|/(2\pi)\leq0.5~\mathrm{MHz}$.  For the echo-root-Lorentzian pulse it
 is the corresponding central minimum.  The spectra are evaluated on a
 $0.05~\mathrm{MHz}$ grid and the extrema are refined with cubic interpolation.
-The central-feature extraction is shown for
+The central-feature extraction is evaluated for
 $\Omega_0/(2\pi)\geq20~\mathrm{MHz}$, where the feature has sufficient
 contrast.
-
-\begin{table}[b]
-    \caption{Calculated displacement of the $f_{01}$ resonance or central
-    finite-pulse feature, in MHz.  The shaped phase average is common to the
-    two Lorentzian-derived envelopes.}
-    \label{tab:ac-stark-f01-shifts}
-    \begin{ruledtabular}
-    \begin{tabular}{ccccc}
-        $\Omega_0/(2\pi)$ &
-        \multicolumn{1}{c}{Constant dressed} &
-        \multicolumn{1}{c}{Root center} &
-        \multicolumn{1}{c}{Echo-root center} &
-        \multicolumn{1}{c}{Shaped phase average} \\
-        \colrule
-        20 & 0.910 & 0.002 & 0.003 & 0.003 \\
-        40 & 3.450 & -0.001 & -0.001 & 0.012 \\
-        60 & 7.190 & 0.078 & -0.012 & 0.026
-    \end{tabular}
-    \end{ruledtabular}
-\end{table}
 
 The small negative position of the echo-root symmetry center at the largest
 drive is an operational finite-pulse feature position, not a negative instantaneous
@@ -101,11 +81,12 @@ $T_1=51.24~\mu\mathrm{s}$, $T_\phi=7.87~\mu\mathrm{s}$, an initial
 $|g\rangle$ state, 31 peak Rabi frequencies from 0 to $60~\mathrm{MHz}$, and
 101 detuning points over the full $100~\mathrm{MHz}$ domain, from
 $-50$ to $50~\mathrm{MHz}$.  Additional 401-point scans resolve the central
-$20~\mathrm{MHz}$ span and the $1~\mathrm{MHz}$ Lorentzian zooms in
-Figs.~\ref{fig:ac-stark-domains} and \ref{fig:ac-stark-f01-zoom}.  The model
+$20~\mathrm{MHz}$ span and the $1~\mathrm{MHz}$ Lorentzian zooms.  The model
 uses the rotating-wave approximation, so it does not include a
 counter-rotating Bloch--Siegert shift~\cite{tuorila_stark_2010}.
 
+% Full-domain and fine-zoom AC-Stark figures omitted from the supplement.
+\iffalse
 \begin{figure}[t]
     \centering
     \includegraphics[width=0.98\textwidth]{../figures/paper/11_ac_stark_qutrit_10us.pdf}
@@ -137,6 +118,7 @@ counter-rotating Bloch--Siegert shift~\cite{tuorila_stark_2010}.
     \label{fig:ac-stark-f01-zoom}
 \end{figure}
 \FloatBarrier
+\fi
 
 \subsection{AC-Stark scale over the common drive span}
 
