@@ -235,9 +235,9 @@ def main() -> None:
             if row == 0:
                 ax.set_title(protocol_label)
             if row == 1:
-                ax.set_xlabel(r"Drive detuning $(f_d-f_{01})$ (MHz)")
+                ax.set_xlabel(r"$\Delta/2\pi$ (MHz)")
             if column == 0:
-                ax.set_ylabel(r"Peak Rabi frequency $\Omega_0/2\pi$ (MHz)")
+                ax.set_ylabel(r"$\Omega_0/2\pi$ (MHz)")
                 ax.text(
                     -0.26,
                     0.5,

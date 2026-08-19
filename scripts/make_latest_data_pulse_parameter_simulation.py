@@ -245,7 +245,7 @@ def main() -> None:
             rasterized=True,
         )
         axes[0, column].set_title("Root-Lorentzian" if name == "root" else "Echo root-Lorentzian")
-        axes[1, column].set_xlabel(r"Drive detuning $(f_d-f_{01})$ (MHz)")
+        axes[1, column].set_xlabel(r"$\Delta/2\pi$ (MHz)")
         for row in range(2):
             axes[row, column].axvline(0.0, color="white", lw=0.5, ls="--", alpha=0.8)
 

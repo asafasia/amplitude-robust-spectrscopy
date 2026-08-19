@@ -51,7 +51,7 @@ def plot_spectroscopy(
     ax.axvline(-t2_half, color="gray", ls="--")
 
     ax.axhline(0, color="gray", ls="--", lw=0.8)
-    ax.set_xlabel(r"Drive detuning $(f_d-f_{01})$ (MHz)")
+    ax.set_xlabel(r"$\Delta/2\pi$ (MHz)")
     ax.set_ylabel(r"$P_e$")
     ax.set_title("Spectroscopy")
     ax.legend()
@@ -105,7 +105,7 @@ def plot_spectroscopy_2d(
     ax.axvline(-t2_half, color="gray", ls="--")
 
     # ---------- labels ----------
-    ax.set_xlabel(r"Drive detuning $(f_d-f_{01})$ (MHz)")
+    ax.set_xlabel(r"$\Delta/2\pi$ (MHz)")
     ax.set_ylabel(r"$\Omega_0/2\pi$ (MHz)")
     ax.set_title("Spectroscopy")
 

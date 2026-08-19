@@ -42,29 +42,50 @@ downconversion and demodulation.}
     \label{fig:diagram}
 \end{figure}
 
-\subsection{Qubit coherence characterization}
+\subsection{Qubit parameters}
 \label{subsec:q1-coherence-characterization}
 
-The energy-relaxation and Ramsey-dephasing times of the qubit used for the
-spectroscopy measurements were characterized independently.  Fig.~\ref{fig:q1-t1-t2}
-shows representative measurements for qubit q1.  Fitting the excited-state
-population to an exponential decay with a constant offset gives
-$T_1=\MeasuredTOne~\mu\mathrm{s}$.  Fitting the positive-detuning Ramsey trace
-to an exponentially damped sinusoid gives
-$T_2^*=\MeasuredTTwoStar~\mu\mathrm{s}$.  A Hahn-echo measurement gives
-$T_2=\MeasuredTTwoEcho~\mu\mathrm{s}$ from
-an exponential fit with a constant offset.  The quoted uncertainties are
-one-standard-deviation estimates from the fit covariance matrices.
+Table~\ref{tab:q1-device-parameters} summarizes the transition frequencies and
+coherence parameters used in this work.  The $T_1$ and Ramsey $T_2^*$ values
+were obtained from exponential and exponentially damped sinusoidal fits,
+respectively.  The Hahn-echo $T_2$ was measured in a later calibration session,
+so calculations tied to the original spectroscopy data conservatively use
+$T_{2,\mathrm{eff}}=T_2^*=\EffectiveTTwo~\mu\mathrm{s}$.  The quoted coherence
+uncertainties are one-standard-deviation estimates from the fit covariance
+matrices.
 
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=\linewidth]{../figures/paper/05_q1_t1_t2.pdf}
-    \caption{Independent coherence characterization of qubit q1.
-    (a) Energy relaxation following state preparation, together with an
-    exponential fit. (b) Ramsey fringes acquired with a positive
-    $2~\mathrm{MHz}$ programmed detuning, together with an exponentially damped
-    sinusoidal fit. (c) Hahn-echo decay with an exponential fit.}
-    \label{fig:q1-t1-t2}
-\end{figure}
+\begin{table}[h]
+    \caption{Parameters of qubit q1 used in the experiment and numerical
+    analysis.  The approximately $1~\mathrm{MHz}$ anharmonicity uncertainty is
+    set by the finest two-photon spectroscopy grid.}
+    \label{tab:q1-device-parameters}
+    \begin{ruledtabular}
+        \begin{tabular}{lcl}
+            Parameter & Value & Determination \\
+            $f_{01}$ & $\MeasuredFZeroOne~\mathrm{GHz}$ & Qubit spectroscopy \\
+            $f_{02}/2$ & $\MeasuredFTwoPhotonHalf~\mathrm{GHz}$ & Two-photon spectroscopy \\
+            $f_{12}$ & $\DerivedFOneTwo~\mathrm{GHz}$ & $2(f_{02}/2)-f_{01}$ \\
+            $\alpha/(2\pi)$ & $(\MeasuredAnharmonicity\pm\MeasuredAnharmonicityUncertainty)~\mathrm{MHz}$ & $f_{12}-f_{01}$ \\
+            $T_1$ & $\MeasuredTOneFit~\mu\mathrm{s}$ & Energy-relaxation fit \\
+            $T_2^*$ & $\MeasuredTTwoStarFit~\mu\mathrm{s}$ & Ramsey fit \\
+            $T_2$ & $\MeasuredTTwoEchoFit~\mu\mathrm{s}$ & Hahn-echo fit (later session) \\
+            $T_\phi^*$ & $\EffectiveTPhi~\mu\mathrm{s}$ & $[1/T_2^*-1/(2T_1)]^{-1}$ \\
+            $\Gamma_{f,T_2^*}$ & $\EffectiveCoherenceFwhm~\mathrm{kHz}$ & $1/(\pi T_2^*)$ \\
+        \end{tabular}
+    \end{ruledtabular}
+\end{table}
+
+% Coherence-data figure retained for possible future use but intentionally
+% omitted from the Supplemental Material in favor of Table~\ref{tab:q1-device-parameters}.
+% \begin{figure}[t]
+%     \centering
+%     \includegraphics[width=\linewidth]{../figures/paper/05_q1_t1_t2.pdf}
+%     \caption{Independent coherence characterization of qubit q1.
+%     (a) Energy relaxation following state preparation, together with an
+%     exponential fit. (b) Ramsey fringes acquired with a positive
+%     $2~\mathrm{MHz}$ programmed detuning, together with an exponentially damped
+%     sinusoidal fit. (c) Hahn-echo decay with an exponential fit.}
+%     \label{fig:q1-t1-t2}
+% \end{figure}
 
 \FloatBarrier

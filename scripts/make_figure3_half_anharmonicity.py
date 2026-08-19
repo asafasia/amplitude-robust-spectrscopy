@@ -122,7 +122,7 @@ def main() -> None:
                 if column == 0:
                     axis.legend(loc="upper right", bbox_to_anchor=(1.0, 0.76), fontsize=5.2, frameon=False, handlelength=1.8)
             if row == 2:
-                axis.set_xlabel(r"Drive detuning $(f_d-f_{01})$ (MHz)")
+                axis.set_xlabel(r"$\Delta/2\pi$ (MHz)")
             if column == 0:
                 axis.set_ylabel(r"$P_e$")
                 axis.text(0.96, 0.94, rf"$\Omega_0/2\pi={target_rabi:g}$ MHz", transform=axis.transAxes, ha="right", va="top", fontsize=6.0)

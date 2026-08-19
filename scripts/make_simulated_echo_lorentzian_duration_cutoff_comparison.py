@@ -192,7 +192,7 @@ def build_figure(duration_us: float) -> tuple[plt.Figure, dict[str, np.ndarray]]
             if row == 0:
                 ax.set_title(rf"$c={cutoff:.3f}$")
             if row == 1:
-                ax.set_xlabel(r"Drive detuning $(f_d-f_{01})$ (MHz)")
+                ax.set_xlabel(r"$\Delta/2\pi$ (MHz)")
             if column == 0:
                 ax.set_ylabel(r"$\Omega_0/2\pi$ (MHz)")
 

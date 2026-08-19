@@ -118,7 +118,7 @@ def main() -> None:
             if row == 0:
                 axis.set_title(title)
             if row == 2:
-                axis.set_xlabel(r"Drive detuning $(f_d-f_{01})$ (MHz)")
+                axis.set_xlabel(r"$\Delta/2\pi$ (MHz)")
             if column == 0:
                 axis.set_ylabel(r"$P_e$")
                 axis.text(

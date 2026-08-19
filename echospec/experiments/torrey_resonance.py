@@ -169,7 +169,7 @@ class ResultsTorreyResonance:
             lw=1.8,
             alpha=0.9,
         )
-        ax.set_xlabel(r"Drive detuning $(f_d-f_{01})$ (MHz)")
+        ax.set_xlabel(r"$\Delta/2\pi$ (MHz)")
         ax.set_ylabel(r"$\langle\sigma_z\rangle$")
         ax.set_ylim(0.0, 1.04)
         ax.spines["top"].set_visible(False)
