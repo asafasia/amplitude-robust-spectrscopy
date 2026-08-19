@@ -74,6 +74,33 @@ temporal sampling of the complete waveform.  The default solver grid contains
 contain equal numbers of negative- and positive-time samples, with the central
 phase inversion between them.
 
+Figure~\ref{fig:duration-resolution-comparison} quantifies the tradeoff between
+pulse duration, linewidth, and signal contrast at fixed cutoff $c=0.005$.
+The continuous curves show the simulated response, while the markers show the
+experimental data.  Panels (a) and (b) separate spectral narrowing from signal
+loss: longer pulses reach smaller FWHM relative to the $T_2$ limit, but their
+fitted contrast remains lower over the usable drive range.  Their
+contrast-weighted operating windows in panel (c) therefore contract despite
+the high resolution.  Pulse duration must consequently be selected jointly
+with contrast and experimental signal quality, rather than by linewidth alone.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.68\textwidth]{%
+        ../figures/paper/03_echo_duration_resolution_comparison.pdf}
+    \caption{Resolution--contrast performance versus peak Rabi frequency up
+    to $25~\mathrm{MHz}$ for echo-root-Lorentzian pulses with $c=0.005$ and
+    $L=5$, 10, 15, 20, and $30~\mu\mathrm{s}$.  Colored continuous lines show
+    two-level simulations, and colored markers show OPX1000 data.  (a) Fitted
+    FWHM in units of the coherence-limited reference,
+    $\Gamma_f/\Gamma_{f,T_2}$, with the dashed line marking
+    $\Gamma_f/\Gamma_{f,T_2}=1$; (b) fitted contrast $A$; and (c)
+    contrast-weighted resolution
+    $Q=AR=A\Gamma_{f,T_2}/\Gamma_f$.  The red curve is the constant-drive
+    Bloch result, and the dashed line in (c) marks $Q=0.10$.}
+    \label{fig:duration-resolution-comparison}
+\end{figure}
+
 Except for main-text Fig.~2, the numerical Hilbert
 space remains restricted to two levels.  Those two-level calculations capture
 coherent drive dynamics, relaxation, and pure dephasing, but do not describe

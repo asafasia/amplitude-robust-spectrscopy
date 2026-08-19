@@ -1,4 +1,4 @@
-"""Generate the main-text noisy pulse-duration resolution comparison."""
+"""Generate the supplemental pulse-duration resolution comparison."""
 
 from __future__ import annotations
 
@@ -445,7 +445,7 @@ def _build_figure(
     axes[2].set_xlabel(r"$\Omega_0/2\pi$ (MHz)")
     rabi_ticks = (1e-3, 1e-2, 1e-1, 1.0, 10.0, 100.0)
     rabi_tick_labels = ("0.001", "0.01", "0.1", "1", "10", "100")
-    for panel, ax in zip(("(g)", "(h)", "(i)"), axes, strict=True):
+    for panel, ax in zip(("(a)", "(b)", "(c)"), axes, strict=True):
         ax.set_xscale("log")
         ax.set_xlim(RABI_MHZ.min(), 25.0)
         ax.xaxis.set_major_locator(FixedLocator(rabi_ticks))
@@ -663,7 +663,7 @@ def main() -> None:
         arrays=paper_arrays,
         provenance={
             "figure_asset": f"figures/paper/{stem}.pdf",
-            "manuscript_scope": "letter_and_supplemental",
+            "manuscript_scope": "supplemental",
             "generator": "scripts/make_duration_resolution_comparison.py",
             "reproduction_command": (
                 "PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python "
