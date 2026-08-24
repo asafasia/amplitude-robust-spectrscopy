@@ -1,0 +1,26 @@
+{
+  "description": "Figure 3 experiment versus three-level 15 MHz line cut",
+  "experiment_run_id": "14-02-28-518579",
+  "target_rabi_mhz": 15.0,
+  "experimental_rabi_mhz": 14.99550046184999,
+  "experimental_rabi_error_mhz": -0.004499538150010807,
+  "experimental_points": 201,
+  "simulation_observable": "p_e + p_f",
+  "rmse": 0.10526724211210667,
+  "mae": 0.10076226908329358,
+  "pearson_correlation": 0.8815953725828513,
+  "experimental_minimum": {
+    "detuning_mhz": -0.015,
+    "excited_probability": 0.413
+  },
+  "simulation_minimum": {
+    "detuning_mhz": 0.010204081632653073,
+    "excited_probability": 0.41114762291740675
+  },
+  "experiment_parameters": {
+    "duration_us": 20.0,
+    "cutoff": 0.005,
+    "echo": true,
+    "shots": 1000
+  }
+}

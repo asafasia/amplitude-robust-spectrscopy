@@ -1,0 +1,87 @@
+{
+  "config": {
+    "levels": 4,
+    "amplitude_mhz": [
+      0.0,
+      12.5,
+      25.0
+    ],
+    "detuning_mhz": [
+      -0.5,
+      0.0,
+      0.5
+    ],
+    "num_steps_per_half": 400,
+    "duration_us": 0.1,
+    "pulse_type": "lorentzian",
+    "cutoff": 0.005,
+    "width_us": null,
+    "order": 0.5,
+    "zeroed_pulse": false,
+    "echo": true,
+    "anharmonicity_mhz": -217.106667324065,
+    "t1_us": 27.1558023040541,
+    "t2_us": 6.49786215784872,
+    "drag_beta": 0.0,
+    "stark_kappa_mhz_inv": 0.0,
+    "chunk_size": null
+  },
+  "qutip_scope": "full grid",
+  "timings_seconds": {
+    "qutip_cpu": 3.6799589580041356,
+    "pytorch_cpu": 0.14332020800793543,
+    "mps_warmup": 0.3214998749899678,
+    "mps_gpu": 1.0446596249821596
+  },
+  "speedups": {
+    "mps_over_qutip_measured_full_grid": 3.522639211855231,
+    "mps_over_qutip_projected_from_representative_points": null,
+    "mps_over_pytorch_cpu": 0.13719321066934412
+  },
+  "projected_qutip_full_grid_seconds": null,
+  "validation_pytorch_cpu_vs_qutip": {
+    "maximum_population_difference": 1.1920928955078125e-07,
+    "maximum_density_matrix_difference": 2.5454584829276428e-05
+  },
+  "selected_timestep_vs_half_timestep": {
+    "maximum_population_difference": 5.960464477539063e-08,
+    "maximum_density_matrix_difference": 2.388144457654562e-05
+  },
+  "physical_validity": {
+    "pytorch_cpu": {
+      "maximum_raw_trace_drift": 1.1920928955078125e-07,
+      "maximum_trace_error": 1.1920928955078125e-07,
+      "maximum_hermiticity_error": 3.754281330259346e-09,
+      "minimum_density_matrix_eigenvalue": -1.78221064572881e-08,
+      "maximum_leakage": 3.7477759178727865e-05
+    },
+    "mps": {
+      "maximum_raw_trace_drift": 1.1920928955078125e-07,
+      "maximum_trace_error": 1.1920928955078125e-07,
+      "maximum_hermiticity_error": 1.862645149230957e-09,
+      "minimum_density_matrix_eigenvalue": -1.7821292885855655e-08,
+      "maximum_leakage": 3.7477759178727865e-05,
+      "maximum_population_difference": 3.208697307854891e-09,
+      "maximum_density_matrix_difference": 1.69950418182907e-08
+    }
+  },
+  "devices": {
+    "pytorch_cpu": "cpu",
+    "mps": "mps:0",
+    "mps_available": true
+  },
+  "complex_representation": "explicit float32 real/imaginary",
+  "tolerances": {
+    "maximum_population_difference": 2e-05,
+    "maximum_density_matrix_difference": 0.01,
+    "maximum_trace_error": 2e-05,
+    "maximum_hermiticity_error": 2e-05,
+    "minimum_density_matrix_eigenvalue": -2e-05,
+    "pytorch_cpu_vs_mps_density_matrix_difference": 5e-05
+  },
+  "validation_passed": true,
+  "full_grid_pytorch_cpu_vs_qutip": {
+    "maximum_population_difference": 1.1920928955078125e-07,
+    "maximum_density_matrix_difference": 2.5454584829276428e-05
+  }
+}

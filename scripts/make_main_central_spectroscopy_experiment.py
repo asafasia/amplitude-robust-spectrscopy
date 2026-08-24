@@ -18,8 +18,6 @@ from echospec.figures import FigureVariant, apply_figure_style, save_figure
 ROOT = Path(__file__).resolve().parents[1]
 DATA_ROOT = ROOT / "data/experimental/2026-08-10/echo_lorentzian"
 OUTPUT_STEM = "02_central_spectroscopy"
-VMIN = 0.0
-VMAX = 0.6
 
 RUNS = {
     ("broad", "constant_echo"): "14-46-06-038411",
@@ -177,6 +175,12 @@ def main() -> None:
     measurements = {key: load_measurement(run_id) for key, run_id in RUNS.items()}
     validate(measurements)
     reference = measurements[("broad", "constant_echo")]
+    color_min = min(
+        float(measurement.excited.min()) for measurement in measurements.values()
+    )
+    color_max = max(
+        float(measurement.excited.max()) for measurement in measurements.values()
+    )
 
     apply_figure_style(FigureVariant.PAPER)
     plt.rcParams.update(
@@ -210,12 +214,11 @@ def main() -> None:
                 measurement.rabi_mhz,
                 measurement.excited,
                 cmap="magma",
-                vmin=VMIN,
-                vmax=VMAX,
+                vmin=color_min,
+                vmax=color_max,
                 shading="auto",
                 rasterized=True,
             )
-            ax.axvline(0.0, color="white", lw=0.45, ls="--", alpha=0.65)
             ax.set_xlim(measurement.detuning_mhz[0], measurement.detuning_mhz[-1])
             ax.set_ylim(reference.rabi_mhz[0], reference.rabi_mhz[-1])
             ax.set_box_aspect(1.0)
