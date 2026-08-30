@@ -1,4 +1,4 @@
-"""Build Figure 3(a-f) from the 2026-08-10 q1 data and qutrit simulations."""
+"""Build Figure 3(a-f) from the 2026-08-30 q6 data and qutrit simulations."""
 
 from __future__ import annotations
 
@@ -27,7 +27,7 @@ DATA_PATH = Path(
 )
 OUTPUT_DIR = Path(os.environ.get("FIG3_OUTPUT_DIR", ROOT / "figures/paper"))
 OUTPUT_STEM = "03_lorentzian_echo_slices"
-TARGET_RABI_MHZ = (2.5, 10.0, 25.0)
+TARGET_RABI_MHZ = (3.0, 20.0, 40.0)
 
 PROTOCOLS = (
     (
@@ -35,12 +35,14 @@ PROTOCOLS = (
         "current_noecho_three_level_simulation",
         "Root-Lorentzian",
         "#00838f",
+        "#00474e",
     ),
     (
         "current_echo_experiment",
         "current_echo_three_level_simulation",
         "Echo-root-Lorentzian",
         "#6a1b9a",
+        "#350b4e",
     ),
 )
 
@@ -86,16 +88,22 @@ def main() -> None:
     panel_labels = iter("abcdef")
 
     for row, target_rabi in enumerate(TARGET_RABI_MHZ):
-        for column, (experiment_key, simulation_key, title, color) in enumerate(PROTOCOLS):
+        for column, (
+            experiment_key,
+            simulation_key,
+            title,
+            marker_color,
+            simulation_color,
+        ) in enumerate(PROTOCOLS):
             axis = axes[row, column]
             sim_x, sim_y = traces[(simulation_key, target_rabi)]
             exp_x, exp_y = traces[(experiment_key, target_rabi)]
-            axis.plot(sim_x, sim_y, color=color, lw=1.25, zorder=2)
+            axis.plot(sim_x, sim_y, color=simulation_color, lw=0.8, zorder=2)
             axis.scatter(
                 exp_x,
                 exp_y,
-                s=5.5,
-                color=color,
+                s=1.0,
+                color=marker_color,
                 edgecolors="none",
                 linewidths=0.0,
                 alpha=1.0,

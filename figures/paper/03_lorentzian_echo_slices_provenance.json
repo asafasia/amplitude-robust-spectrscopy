@@ -1,29 +1,64 @@
 {
   "figure": "03_lorentzian_echo_slices",
-  "description": "Figure 3(a-f): 2026-08-10 q1 experiment versus matched three-level root-Lorentzian simulations",
+  "description": "Figure 3(a-f): 2026-08-30 q6 fixed-amplitude experiment versus matched three-level root-Lorentzian simulations",
   "trace_data": "figures/paper/03_lorentzian_echo_slices_data.csv",
-  "experimental_sources": {
-    "echo_false": "data/experimental/2026-08-10/echo_lorentzian/14-09-56-777281",
-    "echo_true": "data/experimental/2026-08-10/echo_lorentzian/14-02-28-518579"
-  },
-  "simulation_sources": {
-    "echo_false": "figures/paper/03_lorentzian_echo_slices_sim_echo_false_t3000.nc",
-    "echo_true": "figures/paper/03_lorentzian_echo_slices_sim_echo_true_t3000.nc"
-  },
-  "target_rabi_mhz": [2.5, 10.0, 25.0],
+  "source_campaign": "C:\\Users\\owner\\Developer\\opx1000-codes\\data\\paper_figure3_fixed_slices\\20260830_002519",
+  "target_rabi_mhz": [
+    3.0,
+    20.0,
+    40.0
+  ],
   "parameters": {
-    "qubit": "q1",
+    "created_at": "2026-08-30T00:26:21.621226+03:00",
+    "qubit": "q6",
+    "rf_frequency_hz": 3945142098.1517005,
+    "anharmonicity_hz": 237950000.0,
+    "t1_s": 1.2099890789040832e-05,
+    "t2_star_s": 1.3191201540603743e-05,
+    "x180_operation": "x180",
+    "x180_type": "SquarePulse",
+    "x180_amplitude_v": 0.20480950068703116,
+    "x180_length_ns": 40.0,
+    "rabi_mhz": [
+      3.0,
+      20.0,
+      40.0
+    ],
+    "full_amplitude_v": [
+      0.04915428016488747,
+      0.3276952010992499,
+      0.6553904021984998
+    ],
+    "amp_prefactor": [
+      0.07022040023555354,
+      0.468136001570357,
+      0.936272003140714
+    ],
+    "echo_modes": [
+      false,
+      true
+    ],
+    "num_shots": 10000,
+    "frequency_span_mhz": 1.0,
+    "frequency_points": 501,
     "pulse_shape": "root_lorentzian",
-    "duration_us": 20.0,
+    "pulse_length_us": 20.0,
+    "waveform_template_length_us": 20.0,
     "cutoff": 0.005,
-    "detuning_span_mhz": 1.0,
-    "simulation_detuning_points": 50,
-    "simulation_amplitude_points": 50,
-    "simulation_time_points": 3000,
-    "simulation_levels": 3,
-    "t1_us": 27.1558023040541,
-    "t2_star_us": 6.49786215784872,
-    "anharmonicity_hz": 217106667.324065
+    "waveform_peak_v": 0.7,
+    "num_levels": 3,
+    "simulation_steps_per_half": 8000,
+    "reset_type": "active",
+    "use_state_discrimination": true,
+    "use_readout_mitigation": 1.0,
+    "ac_stark_correction": false
+  },
+  "empirical_display_alignment": {
+    "model": "gain * raw + offset",
+    "gain": 1.0294537206738585,
+    "offset": -0.19487616638824537,
+    "rmse": 0.05366150661068283,
+    "warning": "Applied uniformly for line-shape comparison; not a calibrated readout-assignment correction."
   },
   "builder": "scripts/make_figure3_left_exp_sim.py"
 }

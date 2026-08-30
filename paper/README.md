@@ -67,16 +67,27 @@ hand. Refresh the populated core package with
 `make PYTHON=.venv/bin/python paper-data-core`; use the `paper-data` target to
 also run the longer migrated simulations.
 
-The measured main-text Figure 2 maps are generated from the four imported q1
-OPX1000 runs under `data/experimental/2026-08-10/echo_lorentzian/` with:
+The measured main-text Figure 2 maps are generated from the six imported q1
+OPX1000 runs and batch provenance under
+`data/experimental/2026-08-25/six_detuning_amplitude_sweeps/` with:
 
 ```bash
 PYTHONPATH=. MPLBACKEND=Agg python scripts/make_main_central_spectroscopy_experiment.py
 ```
 
-The script validates the broad/narrow grids, shot counts, pulse parameters,
-array orientation, and saved square-pulse calibration before writing PDF, PNG,
-and SVG assets to `figures/paper/`.
+The script validates the broad/narrow grids, 2000-shot counts, pulse parameters,
+array orientation, and saved active-$x180$ calibrations before writing PDF,
+PNG, and SVG assets to `figures/paper/`.
+
+The experiment--simulation slice figure uses the q6 fixed-amplitude campaign
+at 3, 20, and 40 MHz from the sibling `opx1000-codes` checkout.  Its documented
+CSV and provenance record the common empirical display alignment applied only
+for line-shape comparison.  After refreshing those imported arrays, render the
+paper-styled figure with:
+
+```bash
+PYTHONPATH=. MPLBACKEND=Agg python scripts/make_figure3_left_exp_sim.py
+```
 
 The experimental long-pulse comparison is generated from the sibling
 `data_opx1000` repository with:
