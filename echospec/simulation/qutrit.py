@@ -184,6 +184,49 @@ def _finalize(state: NDArray[np.complex128]) -> QutritSimulationResult:
     return QutritSimulationResult(*populations)
 
 
+def _smooth_echo_peak(
+    *,
+    half_duration_us: float,
+    sigma_us: float,
+    order: float,
+    transition_us: float,
+) -> float:
+    """Return the peak of ``tanh(t/tau) * envelope(t)`` for ``t >= 0``."""
+
+    def value(time_us: float) -> float:
+        envelope = (1.0 + (time_us / sigma_us) ** 2) ** (-order)
+        return float(np.tanh(time_us / transition_us) * envelope)
+
+    # The product is unimodal for the positive generalized-Lorentzian envelope.
+    # Golden-section search avoids tying the normalization accuracy to the RK4
+    # time grid, which can be coarse compared with a short midpoint transition.
+    left = 0.0
+    right = half_duration_us
+    ratio = (np.sqrt(5.0) - 1.0) / 2.0
+    inner_left = right - ratio * (right - left)
+    inner_right = left + ratio * (right - left)
+    value_left = value(inner_left)
+    value_right = value(inner_right)
+    for _ in range(80):
+        if value_left < value_right:
+            left = inner_left
+            inner_left = inner_right
+            value_left = value_right
+            inner_right = left + ratio * (right - left)
+            value_right = value(inner_right)
+        else:
+            right = inner_right
+            inner_right = inner_left
+            value_right = value_left
+            inner_left = right - ratio * (right - left)
+            value_left = value(inner_left)
+
+    peak = max(value_left, value_right, value(half_duration_us))
+    if not np.isfinite(peak) or peak <= 0.0:
+        raise RuntimeError("Could not normalize the smooth echo transition")
+    return peak
+
+
 def simulate_qutrit_map(
     *,
     duration_us: float,
@@ -195,6 +238,7 @@ def simulate_qutrit_map(
     num_steps_per_half: int,
     cutoff: float | None = None,
     echo: bool = False,
+    echo_transition_us: float = 0.0,
     order: float = 0.5,
     drag_beta: float = 0.0,
     stark_kappa_mhz_inv: float = 0.0,
@@ -209,7 +253,13 @@ def simulate_qutrit_map(
     the midpoint.  Detuning is ``drive frequency - bare 0-1 frequency``;
     frequencies are cyclic MHz and times are microseconds.
 
-    ``drag_beta`` adds a segmentwise DRAG quadrature to a shaped pulse,
+    A positive ``echo_transition_us`` replaces the instantaneous sign change
+    by a normalized smooth odd transition ``-tanh(t/echo_transition_us)``.
+    The peak in-phase amplitude remains equal to ``rabi_mhz``.  When DRAG is
+    enabled, its derivative is taken from this complete signed waveform, so it
+    includes the finite midpoint transition as well as the smooth envelope.
+
+    ``drag_beta`` adds a DRAG quadrature to a shaped pulse,
 
     ``Omega_Q(t) = -drag_beta * d(Omega_I)/dt / alpha``.
 
@@ -228,11 +278,12 @@ def simulate_qutrit_map(
     ``"instantaneous_phase"`` is a diagnostic implementation of the generally
     incorrect ``exp(-1j * Delta_corr(t) * elapsed_time)`` prescription.
 
-    The derivative acts on the smooth positive Lorentzian envelope inside each
-    half.  For an echo pulse, the same 0/pi phase is then applied to both I and
-    Q.  This intentionally excludes the distribution-valued derivative of the
-    ideal instantaneous phase jump.  The complex coupling convention is
-    ``drive = Omega_I - 1j * Omega_Q``.
+    For the default instantaneous echo, the derivative acts on the smooth
+    positive Lorentzian envelope inside each half.  The same 0/pi phase is then
+    applied to both I and Q, intentionally excluding the distribution-valued
+    derivative of the ideal jump.  For a positive ``echo_transition_us``, the
+    derivative instead acts on the complete smooth signed waveform.  The
+    complex coupling convention is ``drive = Omega_I - 1j * Omega_Q``.
     """
     if duration_us <= 0:
         raise ValueError("duration_us must be positive")
@@ -242,6 +293,12 @@ def simulate_qutrit_map(
         raise ValueError("num_steps_per_half must be positive")
     if cutoff is not None and not 0.0 < cutoff < 1.0:
         raise ValueError("cutoff must lie strictly between zero and one")
+    if not np.isfinite(echo_transition_us) or echo_transition_us < 0.0:
+        raise ValueError("echo_transition_us must be finite and nonnegative")
+    if echo_transition_us > 0.0 and (cutoff is None or not echo):
+        raise ValueError(
+            "echo_transition_us requires a shaped pulse with echo=True"
+        )
     if not np.isfinite(drag_beta):
         raise ValueError("drag_beta must be finite")
     if not np.isfinite(stark_kappa_mhz_inv):
@@ -298,6 +355,17 @@ def simulate_qutrit_map(
     sigma_us = (duration_us / 2.0) / np.sqrt(cutoff ** (-1.0 / order) - 1.0)
     half_duration = duration_us / 2.0
     alpha_angular_per_us = 2.0 * np.pi * anharmonicity_mhz
+    smooth_echo = echo and echo_transition_us > 0.0
+    smooth_echo_peak = (
+        _smooth_echo_peak(
+            half_duration_us=half_duration,
+            sigma_us=sigma_us,
+            order=order,
+            transition_us=echo_transition_us,
+        )
+        if smooth_echo
+        else 1.0
+    )
 
     def shaped_drive_scale(time: float, phase_sign: float) -> complex:
         scaled_time = time / sigma_us
@@ -309,14 +377,31 @@ def simulate_qutrit_map(
             / sigma_us**2
             * (1.0 + scaled_time**2) ** (-order - 1.0)
         )
+        in_phase = phase_sign * base
+        in_phase_derivative = phase_sign * base_derivative
+        if smooth_echo:
+            midpoint_sign = -np.tanh(time / echo_transition_us)
+            midpoint_derivative = -(
+                1.0 - midpoint_sign**2
+            ) / echo_transition_us
+            in_phase = midpoint_sign * base / smooth_echo_peak
+            in_phase_derivative = (
+                midpoint_derivative * base + midpoint_sign * base_derivative
+            ) / smooth_echo_peak
         quadrature = 0.0
         if drag_beta != 0.0:
-            quadrature = -drag_beta * base_derivative / alpha_angular_per_us
-        return phase_sign * (base - 1j * quadrature)
+            quadrature = (
+                -drag_beta * in_phase_derivative / alpha_angular_per_us
+            )
+        return in_phase - 1j * quadrature
 
     for time_start, time_stop, drive_sign in (
         (-half_duration, 0.0, 1.0),
-        (0.0, half_duration, -1.0 if echo else 1.0),
+        (
+            0.0,
+            half_duration,
+            -1.0 if echo and not smooth_echo else 1.0,
+        ),
     ):
         state, accumulated_phase = _integrate(
             state,
