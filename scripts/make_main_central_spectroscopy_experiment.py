@@ -1,4 +1,4 @@
-"""Build main-text Fig. 2 from the 2026-08-10 q1 measurements."""
+"""Build main-text Fig. 2 from the 25--29 August 2026 q1 sweep set."""
 
 from __future__ import annotations
 
@@ -16,16 +16,34 @@ from echospec.figures import FigureVariant, apply_figure_style, save_figure
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA_ROOT = ROOT / "data/experimental/2026-08-10/echo_lorentzian"
+DATA_ROOT = ROOT / "data/experimental"
 OUTPUT_STEM = "02_central_spectroscopy"
 
 RUNS = {
-    ("broad", "constant_echo"): "14-46-06-038411",
-    ("broad", "root"): "14-16-19-887278",
-    ("broad", "echo"): "14-22-03-566753",
-    ("narrow", "constant_echo"): "14-52-31-810398",
-    ("narrow", "root"): "14-09-56-777281",
-    ("narrow", "echo"): "14-02-28-518579",
+    ("broad", "constant"): (
+        "2026-08-25/six_detuning_amplitude_sweeps/"
+        "01_broad_50mhz_cutoff_0p999_no_echo"
+    ),
+    ("broad", "root"): (
+        "2026-08-25/six_detuning_amplitude_sweeps/"
+        "02_broad_50mhz_cutoff_0p005_no_echo"
+    ),
+    ("broad", "echo"): (
+        "2026-08-25/six_detuning_amplitude_sweeps/"
+        "03_broad_50mhz_cutoff_0p005_echo"
+    ),
+    ("narrow", "constant"): (
+        "2026-08-25/six_detuning_amplitude_sweeps/"
+        "04_narrow_1mhz_cutoff_0p999_no_echo"
+    ),
+    ("narrow", "root"): (
+        "2026-08-25/six_detuning_amplitude_sweeps/"
+        "05_narrow_1mhz_cutoff_0p005_no_echo"
+    ),
+    ("narrow", "echo"): (
+        "2026-08-25/six_detuning_amplitude_sweeps/"
+        "06_narrow_1mhz_cutoff_0p005_echo"
+    ),
 }
 
 
@@ -45,8 +63,9 @@ class Measurement:
     f01_ghz: float
 
 
-def load_measurement(run_id: str) -> Measurement:
-    run_dir = DATA_ROOT / run_id
+def load_measurement(relative_run_path: str) -> Measurement:
+    run_dir = DATA_ROOT / relative_run_path
+    run_id = run_dir.name
     parameters = json.loads((run_dir / "parameters.json").read_text())
     metadata = json.loads((run_dir / "metadata.json").read_text())
     qubits = json.loads((run_dir / "profile/qubits.json").read_text())
@@ -72,7 +91,9 @@ def load_measurement(run_id: str) -> Measurement:
         raise ValueError(f"{run_id}: metadata and result shapes disagree")
 
     peak_amplitude_v = float(parameters["lorentzian_peak_amplitude"])
-    pi_pulse = pulses["pulses"][qubit]["x180_const"]
+    qubit_profile = qubits["qubits"][qubit]
+    x180_operation = qubit_profile["operations"]["x180"]
+    pi_pulse = pulses["pulses"][qubit][x180_operation]
     pi_amplitude_v = float(pi_pulse["amplitude"])
     pi_length_ns = float(pi_pulse["length_ns"])
     pi_rabi_hz = 1.0 / (2.0 * pi_length_ns * 1e-9)
@@ -80,7 +101,6 @@ def load_measurement(run_id: str) -> Measurement:
         amp_prefactor * peak_amplitude_v / pi_amplitude_v * pi_rabi_hz / 1e6
     )
 
-    qubit_profile = qubits["qubits"][qubit]
     denominators = {
         Fraction(float(value)).limit_denominator(10_000).denominator
         for value in np.unique(state)
@@ -114,8 +134,6 @@ def validate(measurements: dict[tuple[str, str], Measurement]) -> None:
             raise ValueError(f"{key}: qubit mismatch")
         if not np.isclose(measurement.duration_us, reference.duration_us):
             raise ValueError(f"{key}: duration mismatch")
-        if not np.array_equal(measurement.rabi_mhz, reference.rabi_mhz):
-            raise ValueError(f"{key}: calibrated Rabi grid mismatch")
         if measurement.excited.shape != (
             measurement.rabi_mhz.size,
             measurement.detuning_mhz.size,
@@ -125,26 +143,29 @@ def validate(measurements: dict[tuple[str, str], Measurement]) -> None:
             raise ValueError(f"{key}: nonfinite measured populations")
 
     expected_grids = {
-        "broad": (-50.0, 50.0, 0.5),
-        "narrow": (-0.5, 0.5, 0.005),
+        ("broad", "constant"): (-25.0, 25.0, 0.1),
+        ("broad", "root"): (-25.0, 25.0, 0.1),
+        ("broad", "echo"): (-25.0, 25.0, 0.1),
+        ("narrow", "constant"): (-0.5, 0.5, 0.002),
+        ("narrow", "root"): (-0.5, 0.5, 0.002),
+        ("narrow", "echo"): (-0.5, 0.5, 0.002),
     }
-    for domain, (start, stop, step) in expected_grids.items():
-        for protocol in ("constant_echo", "root", "echo"):
-            measurement = measurements[(domain, protocol)]
-            if not np.isclose(measurement.detuning_mhz[0], start):
-                raise ValueError(f"{domain}/{protocol}: wrong detuning start")
-            if not np.isclose(measurement.detuning_mhz[-1], stop):
-                raise ValueError(f"{domain}/{protocol}: wrong detuning stop")
-            if not np.allclose(np.diff(measurement.detuning_mhz), step):
-                raise ValueError(f"{domain}/{protocol}: wrong detuning step")
+    for key, (start, stop, step) in expected_grids.items():
+        measurement = measurements[key]
+        if not np.isclose(measurement.detuning_mhz[0], start):
+            raise ValueError(f"{key}: wrong detuning start")
+        if not np.isclose(measurement.detuning_mhz[-1], stop):
+            raise ValueError(f"{key}: wrong detuning stop")
+        if not np.allclose(np.diff(measurement.detuning_mhz), step):
+            raise ValueError(f"{key}: wrong detuning step")
 
     expected_parameters = {
-        ("broad", "constant_echo"): (0.99, True, 200),
-        ("broad", "root"): (0.005, False, 200),
-        ("broad", "echo"): (0.005, True, 200),
-        ("narrow", "constant_echo"): (0.99, True, 200),
-        ("narrow", "root"): (0.005, False, 1000),
-        ("narrow", "echo"): (0.005, True, 1000),
+        ("broad", "constant"): (0.999, False, 2000),
+        ("broad", "root"): (0.005, False, 2000),
+        ("broad", "echo"): (0.005, True, 2000),
+        ("narrow", "constant"): (0.999, False, 2000),
+        ("narrow", "root"): (0.005, False, 2000),
+        ("narrow", "echo"): (0.005, True, 2000),
     }
     for key, (cutoff, echo, requested_shots) in expected_parameters.items():
         measurement = measurements[key]
@@ -156,12 +177,12 @@ def validate(measurements: dict[tuple[str, str], Measurement]) -> None:
             raise ValueError(f"{key}: wrong requested shot count")
 
     expected_effective_shots = {
-        ("broad", "constant_echo"): 200,
-        ("broad", "root"): 200,
-        ("broad", "echo"): 200,
-        ("narrow", "constant_echo"): 200,
-        ("narrow", "root"): 216,
-        ("narrow", "echo"): 1000,
+        ("broad", "constant"): 2000,
+        ("broad", "root"): 2000,
+        ("broad", "echo"): 2000,
+        ("narrow", "constant"): 2000,
+        ("narrow", "root"): 2000,
+        ("narrow", "echo"): 2000,
     }
     for key, expected_shots in expected_effective_shots.items():
         if measurements[key].effective_shots != expected_shots:
@@ -174,7 +195,13 @@ def validate(measurements: dict[tuple[str, str], Measurement]) -> None:
 def main() -> None:
     measurements = {key: load_measurement(run_id) for key, run_id in RUNS.items()}
     validate(measurements)
-    reference = measurements[("broad", "constant_echo")]
+    reference = measurements[("broad", "constant")]
+    rabi_min = max(
+        float(measurement.rabi_mhz[0]) for measurement in measurements.values()
+    )
+    rabi_max = min(
+        float(measurement.rabi_mhz[-1]) for measurement in measurements.values()
+    )
     color_min = min(
         float(measurement.excited.min()) for measurement in measurements.values()
     )
@@ -197,7 +224,7 @@ def main() -> None:
 
     fig, axes = plt.subplots(2, 3, sharey=True, constrained_layout=True)
     protocols = (
-        ("constant_echo", "Constant (echo)"),
+        ("constant", "Constant"),
         ("root", "Root-Lorentzian"),
         ("echo", "Echo-root-Lorentzian"),
     )
@@ -220,7 +247,7 @@ def main() -> None:
                 rasterized=True,
             )
             ax.set_xlim(measurement.detuning_mhz[0], measurement.detuning_mhz[-1])
-            ax.set_ylim(reference.rabi_mhz[0], reference.rabi_mhz[-1])
+            ax.set_ylim(rabi_min, rabi_max)
             ax.set_box_aspect(1.0)
             panel_text = ax.text(
                 0.035,
@@ -271,9 +298,9 @@ def main() -> None:
         print(path)
     print(
         f"q1 f01={reference.f01_ghz:.9f} GHz; "
-        f"Rabi grid={reference.rabi_mhz[0]:.6g}--{reference.rabi_mhz[-1]:.6g} MHz; "
+        f"displayed Rabi range={rabi_min:.6g}--{rabi_max:.6g} MHz; "
         f"L={reference.duration_us:g} us; "
-        "cutoffs=0.99 (constant echo), 0.005 (root/echo)"
+        "cutoffs=0.999 (constant), 0.005 (root/echo)"
     )
 
 

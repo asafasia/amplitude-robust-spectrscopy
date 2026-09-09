@@ -1,0 +1,72 @@
+{
+  "experiment_name": "narrow_1mhz_cutoff_0p005_echo",
+  "profile_name": "single_qubit",
+  "timestamp": "2026-08-29T21:54:18.194475+03:00",
+  "sweep": {
+    "qubit": {
+      "shape": [
+        1
+      ],
+      "dtype": "<U2"
+    },
+    "detuning": {
+      "shape": [
+        501
+      ],
+      "dtype": "int64"
+    },
+    "amp_prefactor": {
+      "shape": [
+        250
+      ],
+      "dtype": "float64"
+    }
+  },
+  "results": {
+    "state": {
+      "shape": [
+        1,
+        501,
+        250
+      ],
+      "dtype": "float64"
+    }
+  },
+  "parameters": "parameters.json",
+  "run_started_at": "2026-08-29T17:59:08.728229+03:00",
+  "execution_duration_s": 14107.316926199943,
+  "runtime_estimate": {
+    "sweep_points": 125250,
+    "repetitions": 2000,
+    "workload_units": 250500000,
+    "estimated_seconds": 13095.003656300018,
+    "historical_runs": 3,
+    "source": "historical_workload_scaling"
+  },
+  "readout_mitigation": {
+    "method": "inverse_assignment_matrix",
+    "strength": 1.0,
+    "unmitigated_results": "results.npz",
+    "mitigated_results": "results_mitigated.npz",
+    "mitigated_arrays": {
+      "state": {
+        "shape": [
+          1,
+          501,
+          250
+        ],
+        "dtype": "float64"
+      },
+      "state_unmitigated": {
+        "shape": [
+          1,
+          501,
+          250
+        ],
+        "dtype": "float64"
+      }
+    }
+  },
+  "run_finished_at": "2026-08-29T21:54:18.331147+03:00",
+  "run_duration_s": 14107.583017199999
+}

@@ -1,0 +1,48 @@
+{
+  "experiment_name": "narrow_1mhz_cutoff_0p999_no_echo",
+  "profile_name": "single_qubit",
+  "timestamp": "2026-08-26T07:55:37.032580+03:00",
+  "sweep": {
+    "qubit": {
+      "shape": [
+        1
+      ],
+      "dtype": "<U2"
+    },
+    "detuning": {
+      "shape": [
+        501
+      ],
+      "dtype": "int64"
+    },
+    "amp_prefactor": {
+      "shape": [
+        250
+      ],
+      "dtype": "float64"
+    }
+  },
+  "results": {
+    "state": {
+      "shape": [
+        1,
+        501,
+        250
+      ],
+      "dtype": "float64"
+    }
+  },
+  "parameters": "parameters.json",
+  "run_started_at": "2026-08-26T04:28:15.839294+03:00",
+  "execution_duration_s": 12441.047702400014,
+  "runtime_estimate": {
+    "sweep_points": 125250,
+    "repetitions": 2000,
+    "workload_units": 250500000,
+    "estimated_seconds": 12392.503360615927,
+    "historical_runs": 5,
+    "source": "historical_workload_scaling"
+  },
+  "run_finished_at": "2026-08-26T07:55:37.099108+03:00",
+  "run_duration_s": 12441.259479200002
+}

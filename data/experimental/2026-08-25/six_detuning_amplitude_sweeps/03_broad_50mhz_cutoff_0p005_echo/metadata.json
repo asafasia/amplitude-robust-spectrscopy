@@ -1,0 +1,48 @@
+{
+  "experiment_name": "broad_50mhz_cutoff_0p005_echo",
+  "profile_name": "single_qubit",
+  "timestamp": "2026-08-26T04:28:15.455126+03:00",
+  "sweep": {
+    "qubit": {
+      "shape": [
+        1
+      ],
+      "dtype": "<U2"
+    },
+    "detuning": {
+      "shape": [
+        501
+      ],
+      "dtype": "int64"
+    },
+    "amp_prefactor": {
+      "shape": [
+        250
+      ],
+      "dtype": "float64"
+    }
+  },
+  "results": {
+    "state": {
+      "shape": [
+        1,
+        501,
+        250
+      ],
+      "dtype": "float64"
+    }
+  },
+  "parameters": "parameters.json",
+  "run_started_at": "2026-08-26T01:11:43.882516+03:00",
+  "execution_duration_s": 11791.451834300067,
+  "runtime_estimate": {
+    "sweep_points": 125250,
+    "repetitions": 2000,
+    "workload_units": 250500000,
+    "estimated_seconds": 11349.576445212064,
+    "historical_runs": 2,
+    "source": "historical_workload_scaling"
+  },
+  "run_finished_at": "2026-08-26T04:28:15.578096+03:00",
+  "run_duration_s": 11791.695637000026
+}
