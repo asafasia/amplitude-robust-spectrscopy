@@ -1,0 +1,52 @@
+{
+  "description": "Three-level smooth-echo and DRAG duration/cutoff sweep",
+  "report": "/Users/asafsolonnikov/Developer/amplitude-robust-spectroscopy/outputs/smooth_echo_drag_sweep_report.html",
+  "durations_us": [
+    3.0,
+    5.0,
+    7.0,
+    10.0,
+    20.0,
+    30.0
+  ],
+  "cutoffs": [
+    0.001,
+    0.005,
+    0.02
+  ],
+  "configuration_count": 18,
+  "protocol_count": 4,
+  "focused_comparison": {
+    "duration_us": 20.0,
+    "cutoff": 0.0025,
+    "retuned_kappa_mhz_inv": -0.0025,
+    "leakage_reduction": 5.34896651163128,
+    "data_path": "/Users/asafsolonnikov/Developer/amplitude-robust-spectroscopy/outputs/smooth_echo_drag_sweep/data/focused_duration_20us_cutoff_0p0025.npz"
+  },
+  "limitations": [
+    "Final P_f is reported; maximum transient leakage is not retained.",
+    "The model has three levels and uses the rotating-wave approximation.",
+    "No measured transfer function or waveform predistortion is applied.",
+    "Simulation coefficients are not hardware calibrations.",
+    "FFT curves diagnose the played waveform, not the nonlinear qutrit response."
+  ],
+  "fft": {
+    "rabi_mhz": 80.0,
+    "time_step_ns": 0.25,
+    "frequency_limit_mhz": 350.0,
+    "display_floor_db": -100.0,
+    "window": null,
+    "normalization": "shared maximum across protocols in each panel"
+  },
+  "individual_scan_explorer": {
+    "map_count": 72,
+    "populations": [
+      "P_e",
+      "P_f"
+    ],
+    "encoding": "uint16 display values; full precision remains in NPZ",
+    "pf_scale": "shared logarithmic scale",
+    "pf_floor": 1e-06
+  },
+  "reproduction_command": "PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_smooth_echo_drag_sweep_report.py"
+}

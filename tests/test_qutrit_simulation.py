@@ -80,6 +80,27 @@ class TestQutritSimulation(unittest.TestCase):
             explicit_zero.second_excited, reference.second_excited
         )
 
+    def test_zero_echo_transition_preserves_instantaneous_echo(self):
+        common = {
+            "duration_us": 0.4,
+            "detuning_mhz": np.linspace(-1.0, 1.0, 7),
+            "rabi_mhz": np.asarray([2.0, 5.0]),
+            "t1_us": 50.0,
+            "t_phi_us": 8.0,
+            "anharmonicity_mhz": -200.0,
+            "num_steps_per_half": 200,
+            "cutoff": 0.02,
+            "echo": True,
+            "drag_beta": 1.0,
+        }
+        reference = simulate_qutrit_map(**common)
+        explicit_zero = simulate_qutrit_map(**common, echo_transition_us=0.0)
+
+        for attribute in ("ground", "excited", "second_excited"):
+            np.testing.assert_allclose(
+                getattr(explicit_zero, attribute), getattr(reference, attribute)
+            )
+
     def test_drag_quadrature_is_physical_and_changes_high_drive_result(self):
         common = {
             "duration_us": 0.4,
@@ -101,6 +122,45 @@ class TestQutritSimulation(unittest.TestCase):
             float(np.max(np.abs(drag.second_excited - plain.second_excited))),
             1e-8,
         )
+
+    def test_smooth_echo_transition_supports_full_waveform_drag(self):
+        common = {
+            "duration_us": 0.4,
+            "detuning_mhz": np.linspace(-2.0, 2.0, 9),
+            "rabi_mhz": np.asarray([20.0]),
+            "t1_us": 50.0,
+            "t_phi_us": 8.0,
+            "anharmonicity_mhz": -200.0,
+            "num_steps_per_half": 1000,
+            "cutoff": 0.02,
+            "echo": True,
+            "echo_transition_us": 0.01,
+        }
+        no_drag = simulate_qutrit_map(**common)
+        drag = simulate_qutrit_map(**common, drag_beta=1.0)
+
+        total = drag.ground + drag.excited + drag.second_excited
+        np.testing.assert_allclose(total, 1.0, atol=1e-10)
+        self.assertGreater(
+            float(np.max(np.abs(drag.second_excited - no_drag.second_excited))),
+            1e-8,
+        )
+
+    def test_smooth_echo_transition_requires_shaped_echo(self):
+        common = {
+            "duration_us": 0.4,
+            "detuning_mhz": np.asarray([0.0]),
+            "rabi_mhz": np.asarray([2.0]),
+            "t1_us": 50.0,
+            "t_phi_us": 8.0,
+            "anharmonicity_mhz": -200.0,
+            "num_steps_per_half": 20,
+            "echo_transition_us": 0.01,
+        }
+        with self.assertRaisesRegex(ValueError, "shaped pulse with echo=True"):
+            simulate_qutrit_map(**common, cutoff=None, echo=True)
+        with self.assertRaisesRegex(ValueError, "shaped pulse with echo=True"):
+            simulate_qutrit_map(**common, cutoff=0.02, echo=False)
 
     def test_quadratic_stark_correction_changes_driven_response(self):
         common = {
