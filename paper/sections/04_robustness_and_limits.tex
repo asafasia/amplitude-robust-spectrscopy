@@ -9,8 +9,6 @@ broadening does not dominate.  The duration-dependent linewidth, contrast,
 and contrast-weighted resolution are reported in the Supplemental
 Material~\cite{SupplementalMaterial}.
 
-\FloatBarrier
-
 A second design constraint is the cutoff of the formally infinite-support
 pulse envelope.  Truncation introduces a residual endpoint drive
 $\Omega_c=c\Omega_0$ and a corresponding cutoff-broadening
@@ -28,48 +26,42 @@ Material~\cite{SupplementalMaterial}.
 Beyond linewidth and contrast, amplitude robustness requires that increasing
 the drive not displace the inferred resonance center.  At large amplitudes,
 multilevel AC-Stark shifts and finite-pulse interference become important; we
-therefore examine the center stability over the same $50~\mathrm{MHz}$ peak
-Rabi-frequency span used in Fig.~\ref{fig:robust-echo-spectroscopy}.
+therefore examine the center stability in an additional q6 measurement
+over a calibrated nominal Rabi-frequency range of $10$--$60~\mathrm{MHz}$.
 
 \begin{figure}[t]
     \centering
-    % DRAFT ASSET: replace the current numerical placeholder with the
-    % corresponding measured uncompensated/compensated maps before submission.
     \includegraphics[width=\columnwidth]{%
         ../figures/paper/04_main_ac_stark_correction_maps.pdf}
-    \caption{Echo-root-Lorentzian spectroscopy without (a) and with (b)
-    accumulated-phase compensation of drive-induced center motion.  The maps show the measured
-    excited-state population for $L=20~\mu\mathrm{s}$, cutoff $c=0.001$,
-    and $\beta=0$; the applied correction is
-    $\kappa=0.00225~\mathrm{MHz}^{-1}$.  White curves mark the fitted spectral
-    centers.  The dashed line marks zero detuning, and the paired dotted lines
-    at $\Delta/(2\pi)=\pm\Gamma_{f,T_2}/2$ enclose the coherence-limited FWHM
-    $\Gamma_{f,T_2}=1/(\pi T_{2,\mathrm{eff}})=43.5~\mathrm{kHz}$.
-    The common color scale is clipped at $P_e=0.5$ for visibility.
-    The uncorrected center oscillates with drive amplitude, whereas the
-    corrected center remains pinned near zero detuning.}
+    \caption{Measured q6 echo-root-Lorentzian spectroscopy for (a) $\beta=0$
+    and (b) $\beta=-0.22$, with $L=50~\mu\mathrm{s}$ and cutoff $c=0.00075$.
+    White curves trace the fitted resonance centers. Over the
+    $10$--$60~\mathrm{MHz}$ drive range, the $\beta=-0.22$ waveform shows
+    smaller amplitude-dependent fluctuations of the resonance center,
+    while preserving the narrow depletion feature. This waveform combines
+    a DRAG quadrature with a smoothed midpoint inversion.}
     \label{fig:ac-stark-correction-maps}
 \end{figure}
 
 \begin{figure}[t]
     \centering
-    % DRAFT ASSET: replace the current model curves with measured center-shift
-    % data before submission.
     \includegraphics[width=\columnwidth]{%
         ../figures/paper/04_main_ac_stark_shifts_square.pdf}
-    \caption{Measured drive-induced $f_{01}$ displacement
-    over an extended peak-Rabi-frequency range.  The curves connect the
-    measured spectral centers for the constant-pulse and root-Lorentzian
-    references and for the uncorrected and
-    accumulated-phase-corrected echo-root-Lorentzian response.  The root
-    reference uses $L=10~\mu\mathrm{s}$ and $c=0.002$; both echo curves use
-    $L=20~\mu\mathrm{s}$, $c=0.001$, $\beta=0$, and
-    $\alpha/(2\pi)=\MeasuredAnharmonicity~\mathrm{MHz}$, with
-    $\kappa=0.00225~\mathrm{MHz}^{-1}$ for the corrected curve.  The inset
-    shows a $\pm10~\mathrm{kHz}$ center-frequency zoom; uncorrected echo points
-    outside that window are clipped.  These finite-pulse positions are
-    operational spectral centers rather than instantaneous dressed-state
-    shifts.}
+    \caption{Resonance-center stability and linewidth of the measured
+    echo-root-Lorentzian response. (a) Measured center variations
+    compared with the simulated constant-drive AC-Stark shift. The measured
+    curves use the same fitted centers as Fig.~\ref{fig:ac-stark-correction-maps}
+    for $\beta=0$ and $-0.22$. The inset resolves their amplitude-dependent
+    fluctuations over $10$--$60~\mathrm{MHz}$: the $\beta=-0.22$ waveform
+    exhibits smaller center variations. The constant-drive curve retains
+    the three-level simulation with
+    $\alpha/(2\pi)=\MeasuredAnharmonicity~\mathrm{MHz}$.
+    (b) Gaussian-fit FWHM of the same measured spectra and the red
+    constant-drive power-broadening reference, on a logarithmic scale.
+    The right axis expresses linewidths in units of the paper's q1
+    reference $\Gamma_{T_2}=\EffectiveCoherenceFwhm~\mathrm{kHz}$ (dotted line).
+    Both measured waveforms broaden with drive, while the $\beta=0$
+    response exhibits larger linewidth excursions at high amplitudes.}
     \label{fig:main-ac-stark-shifts}
 \end{figure}
 
@@ -81,12 +73,38 @@ $5.8~\mathrm{MHz}$ at $\Omega_0/(2\pi)=50~\mathrm{MHz}$.  For the
 $20~\mu\mathrm{s}$ root-Lorentzian envelope with $c=0.001$, the phase-average
 shift is smaller by $\langle f^2\rangle_t=0.001570$ and reaches only
 $9.1~\mathrm{kHz}$; the echo sign change does not cancel this quadratic term.
-Fig.~\ref{fig:ac-stark-correction-maps} shows the corresponding
-two-dimensional echo response before and after applying the accumulated-phase
-correction.  Without correction, the operational spectral center oscillates
-with pulse area; after correction, it remains locked near zero detuning.
-Fig.~\ref{fig:main-ac-stark-shifts} displays the measured scale
-separation through $60~\mathrm{MHz}$ peak Rabi frequency.  The full response
-maps and fine central-frequency scans are given in the Supplemental
-Material~\cite{SupplementalMaterial}.  The corrected response shows none of
-the approximately quadratic displacement expected for a constant drive.
+Fig.~\ref{fig:ac-stark-correction-maps} instead tests a derivative-quadrature
+waveform on q6 in the September 5--6 calibration campaign. The acquisition
+uses $I+iQ$ with $Q=-\beta\dot I/(2\pi\alpha_{\rm cal})$, where
+$\alpha_{\rm cal}=237.95~\mathrm{MHz}$ is the signed value supplied to the
+waveform generator and time is in microseconds. Both the derivative
+quadrature and the midpoint smoothing change between these sequential runs;
+no accumulated-phase correction is applied. The depletion feature persists
+across the displayed $10$--$60~\mathrm{MHz}$ range in both maps. For display,
+we subtract each run's arithmetic mean accepted fitted center over this
+range, $20.85$ and $36.68~\mathrm{kHz}$ relative to the acquisition reference
+for $\beta=0$ and $-0.22$, respectively. The RMS residual center motion is
+$6.78$ and $2.64~\mathrm{kHz}$ about these respective means. This lower
+scatter characterizes the combined smoothed-midpoint and DRAG waveform;
+the comparison does not isolate the derivative-quadrature contribution.
+The absence of resolved three-state readout precludes a measured
+leakage-suppression claim.
+
+Fig.~\ref{fig:main-ac-stark-shifts}(a) compares these measured center
+variations with the original three-level constant-drive simulation. The
+experimental curves retain the centering used in
+Fig.~\ref{fig:ac-stark-correction-maps}; the simulated curve is referenced
+to the bare transition and retains the q1 anharmonicity
+$\alpha/(2\pi)=\MeasuredAnharmonicity~\mathrm{MHz}$ as an illustrative scale
+comparison. Its megahertz-scale displacement contrasts with the kilohertz-scale
+residual motion of the measured echo resonances. The inset magnifies the
+$\pm16~\mathrm{kHz}$ region around the mean centers.
+Panel (b) compares FWHM values extracted
+from the same Gaussian dip estimator with the steady-state Bloch reference
+$\Gamma=\Gamma_{T_2}\sqrt{1+\Omega^2T_1T_2}$, using the paper's q1 values
+$T_1=\MeasuredTOne~\mu\mathrm{s}$ and $T_2=\EffectiveTTwo~\mu\mathrm{s}$.
+The right axis uses the same q1 coherence reference, rather than a separate
+q6 coherence calibration. Both measured linewidths increase with drive;
+the smaller center fluctuations for $\beta=-0.22$ therefore do not imply
+a uniformly narrower resonance. Numerical accumulated-phase compensation
+is discussed separately in the Supplemental Material~\cite{SupplementalMaterial}.

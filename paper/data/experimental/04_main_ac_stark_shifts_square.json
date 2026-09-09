@@ -1,0 +1,169 @@
+{
+  "arrays": {
+    "drag_acquisition_centers_mhz": {
+      "dtype": "float64",
+      "shape": [
+        162
+      ]
+    },
+    "drag_centers_mhz": {
+      "dtype": "float64",
+      "shape": [
+        162
+      ]
+    },
+    "drag_linewidth_fit_accepted": {
+      "dtype": "bool",
+      "shape": [
+        162
+      ]
+    },
+    "drag_linewidth_fit_center_error_hz": {
+      "dtype": "float64",
+      "shape": [
+        162
+      ]
+    },
+    "drag_linewidth_fit_center_hz": {
+      "dtype": "float64",
+      "shape": [
+        162
+      ]
+    },
+    "drag_linewidth_fit_contrast": {
+      "dtype": "float64",
+      "shape": [
+        162
+      ]
+    },
+    "drag_linewidth_fit_fwhm_error_hz": {
+      "dtype": "float64",
+      "shape": [
+        162
+      ]
+    },
+    "drag_linewidth_fit_fwhm_hz": {
+      "dtype": "float64",
+      "shape": [
+        162
+      ]
+    },
+    "drag_linewidth_fit_r_squared": {
+      "dtype": "float64",
+      "shape": [
+        162
+      ]
+    },
+    "drag_rabi_mhz": {
+      "dtype": "float64",
+      "shape": [
+        162
+      ]
+    },
+    "drag_source_row_indices": {
+      "dtype": "int64",
+      "shape": [
+        162
+      ]
+    },
+    "drag_subtracted_mean_mhz": {
+      "dtype": "float64",
+      "shape": []
+    },
+    "plain_acquisition_centers_mhz": {
+      "dtype": "float64",
+      "shape": [
+        162
+      ]
+    },
+    "plain_centers_mhz": {
+      "dtype": "float64",
+      "shape": [
+        162
+      ]
+    },
+    "plain_linewidth_fit_accepted": {
+      "dtype": "bool",
+      "shape": [
+        162
+      ]
+    },
+    "plain_linewidth_fit_center_error_hz": {
+      "dtype": "float64",
+      "shape": [
+        162
+      ]
+    },
+    "plain_linewidth_fit_center_hz": {
+      "dtype": "float64",
+      "shape": [
+        162
+      ]
+    },
+    "plain_linewidth_fit_contrast": {
+      "dtype": "float64",
+      "shape": [
+        162
+      ]
+    },
+    "plain_linewidth_fit_fwhm_error_hz": {
+      "dtype": "float64",
+      "shape": [
+        162
+      ]
+    },
+    "plain_linewidth_fit_fwhm_hz": {
+      "dtype": "float64",
+      "shape": [
+        162
+      ]
+    },
+    "plain_linewidth_fit_r_squared": {
+      "dtype": "float64",
+      "shape": [
+        162
+      ]
+    },
+    "plain_rabi_mhz": {
+      "dtype": "float64",
+      "shape": [
+        162
+      ]
+    },
+    "plain_source_row_indices": {
+      "dtype": "int64",
+      "shape": [
+        162
+      ]
+    },
+    "plain_subtracted_mean_mhz": {
+      "dtype": "float64",
+      "shape": []
+    }
+  },
+  "category": "experimental",
+  "data_file": "04_main_ac_stark_shifts_square.npz",
+  "dataset": "04_main_ac_stark_shifts_square",
+  "provenance": {
+    "center_inset_ylim_khz": [
+      -16.0,
+      16.0
+    ],
+    "center_processing": "Original Figure 4 centers retained without refitting",
+    "centering": "Exact Figure 4 display_centers_mhz; each run's arithmetic mean removed",
+    "figure_asset": "figures/paper/04_main_ac_stark_shifts_square.pdf",
+    "figure_number": 5,
+    "generator": "scripts/make_main_ac_stark_shifts.py",
+    "linewidth_acceptance": "Figure 4 selected rows, finite positive center error and depth, R squared >= 0.1; no linewidth-based exclusion",
+    "linewidth_estimator": "Offset minus Gaussian dip; trim 40 edge points, Gaussian smoothing sigma=1 sample, bounded curve_fit maxfev=800; FWHM=2*sqrt(2*ln(2))*sigma",
+    "linewidth_processing": "Refit original measured spectra with echospec.analysis.calibration_gaussian.fit_calibration_dip, matching the campaign estimator; centers verified within 1 Hz",
+    "manuscript_scope": "letter",
+    "reproduction_command": "python scripts/make_main_ac_stark_shifts.py",
+    "selection": "Exact Figure 4 display_center_mask; all accepted points at 10--60 MHz",
+    "source_campaign": "drag_beta_kappa_calibration/2026-09-05_20-37-12",
+    "source_dataset": "paper/data/experimental/04_main_ac_stark_correction_maps.npz",
+    "source_sha256": "0bb6d0df6c7025a90f7296584e9c5a75c34bb4d576037aeb6bce3aefefd2dd35",
+    "uncertainties": "Exported linewidth covariance errors are nominal errors of the smoothed fit; no uncertainty bands plotted"
+  },
+  "schema_version": 1
+}

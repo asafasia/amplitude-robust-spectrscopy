@@ -135,16 +135,20 @@ PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_amplitude_center_stabi
 It applies the Supplemental Gaussian estimator and center-independent quality
 criteria, then writes PDF, PNG, and SVG versions to `figures/paper/`.
 
-The square, one-column main-text three-level AC-Stark shift comparison is
+The stacked, one-column Figure 5 center-shift and FWHM comparison is
 generated with:
 
 ```bash
 PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_main_ac_stark_shifts.py
 ```
 
-It reproduces the constant-drive dressed center and the finite-pulse root- and
-echo-root-Lorentzian feature positions, and writes PDF, PNG, and SVG versions
-to `figures/paper/`.
+It uses the exact measured beta=0 and beta=-0.22 centers displayed in Figure 4
+and retains the original simulated constant-drive dressed center. It writes
+PDF, PNG, and SVG assets, plus separate experimental and numerical datasets
+and provenance under `paper/data/`. Regenerate Figure 4 first when its
+source data or center selection changes.
+The lower panel fits Gaussian-dip linewidths from the same stored measured
+spectra, using the source campaign's fitting procedure.
 
 ## Editing conventions
 
@@ -157,3 +161,8 @@ to `figures/paper/`.
 - Keep all references cited by the Supplemental Material in the main Letter's
   reference list, as required by APS.
 - Keep temporary or superseded figures under `figures/archive/`.
+
+The measured Figure 4 compares q6 beta=0 and beta=-0.22 from the September
+5--6, 2026 calibration campaign. Regenerate its figure and experimental data
+package with `python scripts/make_main_ac_stark_correction_maps.py`.
+See `data/README.md` for raw-source import and fit provenance.

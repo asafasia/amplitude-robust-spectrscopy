@@ -1,172 +1,61 @@
-"""Generate the square, one-column AC-Stark shift figure for the Letter."""
+"""Figure 5: measured Figure 4 centers and the constant-drive simulation."""
 
-# ruff: noqa: E402
+from __future__ import annotations
 
-import os
+# Backend and local-source setup precede package imports.
+# ruff: noqa: E402, I001
+import hashlib
+import json
+import re
 import sys
 from pathlib import Path
-
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-os.environ.setdefault("MPLCONFIGDIR", str(PROJECT_ROOT / ".codex_tmp" / "mpl"))
-if str(PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_ROOT))
 
 import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy.interpolate import CubicSpline
-from scipy.optimize import minimize_scalar
 
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(PROJECT_ROOT))
 from echospec.figures import FigureVariant, apply_figure_style, save_figure
-from echospec.simulation.qutrit import simulate_qutrit_map
+from echospec.paper_data import save_paper_dataset
+from echospec.analysis.calibration_gaussian import fit_calibration_dip
 
-RABI_MHZ = np.linspace(0.0, 60.0, 31)
-# q1 OPX1000 two-photon spectroscopy:
-# alpha/(2*pi) = 2*(f02/2-f01) = 2*(4.159106667-4.267106667) GHz.
+# Dense linear sampling plus extra points near zero resolves the steep onset
+# of the constant-drive linewidth on the logarithmic axis.
+RABI_MHZ = np.unique(
+    np.concatenate((np.linspace(0.0, 60.0, 1201), np.geomspace(1e-5, 1.0, 201)))
+)
+# Preserve the original q1 three-level constant-drive reference.
 ANHARMONICITY_MHZ = -216.0
-ROOT_DETUNING_MHZ = np.linspace(-0.25, 0.25, 1001)
-ROOT_FEATURE_HALF_WINDOW_MHZ = 0.22
-ROOT_SYMMETRY_OFFSET_MAX_MHZ = 0.10
-ROOT_SYMMETRY_CENTER_BOUND_MHZ = (
-    ROOT_FEATURE_HALF_WINDOW_MHZ - ROOT_SYMMETRY_OFFSET_MAX_MHZ
+SOURCE_PATH = (
+    PROJECT_ROOT / "paper/data/experimental/04_main_ac_stark_correction_maps.npz"
 )
-ROOT_MAX_DISPLAYED_CENTER_MHZ = 0.025
-ROOT_DURATION_US = 10.0
-ROOT_CUTOFF = 0.002
-ROOT_ORDER = 0.5
-ROOT_T1_US = 51.24
-ROOT_T_PHI_US = 7.87
-ROOT_STEPS_PER_HALF = 7000
-ROOT_DATA_PATH = (
-    PROJECT_ROOT / "figures/paper/04_main_ac_stark_center_map_root.npz"
+OUTPUT_STEM = "04_main_ac_stark_shifts_square"
+CONSTANT_COLOR = "#C65D4B"
+ECHO_SERIES = (
+    ("plain", r"$\beta=0$ (measured)", "#6a1b9a"),
+    ("drag", r"$\beta=-0.22$ (measured)", "#21918C"),
 )
-ECHO_DATA_PATH = (
-    PROJECT_ROOT
-    / "data/generated/accumulated_phase_duration_sweep/20us/results.npz"
-)
-CONSTANT_COLOR = "#c62828"
-LORENTZIAN_COLOR = "#00838f"
-ECHO_COLOR = "#6a1b9a"
-CORRECTED_ECHO_COLOR = "#ef6c00"
 
 
-def root_phase_average_center_mhz(rabi_mhz: float) -> float:
-    """Leading-order center prior for the root-Lorentzian reference."""
-    sigma_us = (ROOT_DURATION_US / 2) / np.sqrt(
-        ROOT_CUTOFF ** (-1 / ROOT_ORDER) - 1
-    )
-    mean_square_envelope = (
-        2
-        * sigma_us
-        / ROOT_DURATION_US
-        * np.arctan(ROOT_DURATION_US / (2 * sigma_us))
-    )
-    return float(
-        mean_square_envelope * (-rabi_mhz**2 / (2 * ANHARMONICITY_MHZ))
-    )
+def coherence_reference() -> tuple[float, float, float]:
+    """Read the paper's q1 reference: T1 and T2 in us, linewidth in kHz."""
+    text = (PROJECT_ROOT / "paper/coherence_parameters.tex").read_text()
+    values = []
+    for name in ("MeasuredTOne", "EffectiveTTwo", "EffectiveCoherenceFwhm"):
+        match = re.search(rf"\\newcommand\{{\\{name}\}}\{{([0-9.]+)\}}", text)
+        if match is None:
+            raise ValueError(f"Missing coherence parameter {name}")
+        values.append(float(match.group(1)))
+    return tuple(values)
 
 
-def root_symmetry_center_mhz(
-    detuning_mhz: np.ndarray,
-    trace: np.ndarray,
-    expected_center_mhz: float,
-) -> float:
-    """Locate the root-pulse spectral symmetry axis."""
-    spline = CubicSpline(detuning_mhz, trace)
-    offsets = np.linspace(0.002, ROOT_SYMMETRY_OFFSET_MAX_MHZ, 197)
-    scale = max(float(np.ptp(trace)), 1e-12)
-
-    def objective(center_mhz: float) -> float:
-        odd_component = spline(center_mhz + offsets) - spline(
-            center_mhz - offsets
-        )
-        asymmetry = float(np.mean((odd_component / scale) ** 2))
-        prior = 1e-3 * (
-            (center_mhz - expected_center_mhz)
-            / ROOT_SYMMETRY_CENTER_BOUND_MHZ
-        ) ** 2
-        return asymmetry + prior
-
-    grid = np.linspace(
-        -ROOT_SYMMETRY_CENTER_BOUND_MHZ,
-        ROOT_SYMMETRY_CENTER_BOUND_MHZ,
-        481,
-    )
-    costs = np.asarray([objective(center) for center in grid])
-    best = int(np.argmin(costs))
-    lower = grid[max(0, best - 1)]
-    upper = grid[min(grid.size - 1, best + 1)]
-    if lower == upper:
-        return float(grid[best])
-    return float(
-        minimize_scalar(
-            objective,
-            bounds=(float(lower), float(upper)),
-            method="bounded",
-            options={"xatol": 1e-10},
-        ).x
-    )
-
-
-def root_reference_centers() -> np.ndarray:
-    """Extract the original root-Lorentzian reference from its paper cache."""
-    cache_is_current = False
-    if ROOT_DATA_PATH.exists():
-        with np.load(ROOT_DATA_PATH, allow_pickle=False) as data:
-            cache_is_current = (
-                "anharmonicity_mhz" in data
-                and float(data["anharmonicity_mhz"]) == ANHARMONICITY_MHZ
-                and float(data["duration_us"]) == ROOT_DURATION_US
-                and float(data["cutoff"]) == ROOT_CUTOFF
-                and np.array_equal(data["detuning_mhz"], ROOT_DETUNING_MHZ)
-                and np.array_equal(data["rabi_mhz"], RABI_MHZ)
-            )
-            if cache_is_current:
-                excitation = np.asarray(data["excitation"], dtype=float)
-
-    if not cache_is_current:
-        result = simulate_qutrit_map(
-            duration_us=ROOT_DURATION_US,
-            detuning_mhz=ROOT_DETUNING_MHZ,
-            rabi_mhz=RABI_MHZ,
-            t1_us=ROOT_T1_US,
-            t_phi_us=ROOT_T_PHI_US,
-            anharmonicity_mhz=ANHARMONICITY_MHZ,
-            num_steps_per_half=ROOT_STEPS_PER_HALF,
-            cutoff=ROOT_CUTOFF,
-            echo=False,
-            order=ROOT_ORDER,
-        )
-        excitation = result.excited + result.second_excited
-        np.savez_compressed(
-            ROOT_DATA_PATH,
-            detuning_mhz=ROOT_DETUNING_MHZ,
-            rabi_mhz=RABI_MHZ,
-            excitation=excitation,
-            duration_us=ROOT_DURATION_US,
-            cutoff=ROOT_CUTOFF,
-            order=ROOT_ORDER,
-            t1_us=ROOT_T1_US,
-            t_phi_us=ROOT_T_PHI_US,
-            anharmonicity_mhz=ANHARMONICITY_MHZ,
-            steps_per_half=ROOT_STEPS_PER_HALF,
-        )
-
-    centers = np.zeros_like(RABI_MHZ)
-    central = np.abs(ROOT_DETUNING_MHZ) <= ROOT_FEATURE_HALF_WINDOW_MHZ
-    x = ROOT_DETUNING_MHZ[central]
-    for index, row in enumerate(excitation):
-        if index == 0:
-            continue
-        centers[index] = root_symmetry_center_mhz(
-            x,
-            row[central],
-            root_phase_average_center_mhz(float(RABI_MHZ[index])),
-        )
-    centers[np.abs(centers) > ROOT_MAX_DISPLAYED_CENTER_MHZ] = np.nan
-    return centers
+def constant_drive_fwhm_khz(rabi_mhz, t1_us, t2_us, t2_fwhm_khz):
+    """Steady-state Bloch linewidth, Gamma_T2*sqrt(1+Omega^2*T1*T2)."""
+    saturation = (2 * np.pi * np.asarray(rabi_mhz)) ** 2 * t1_us * t2_us
+    return t2_fwhm_khz * np.sqrt(1 + saturation)
 
 
 def dressed_resonance_center_mhz(rabi_mhz: np.ndarray) -> np.ndarray:
@@ -186,131 +75,229 @@ def dressed_resonance_center_mhz(rabi_mhz: np.ndarray) -> np.ndarray:
     return centers
 
 
-def accumulated_phase_echo_centers() -> tuple[np.ndarray, np.ndarray]:
-    """Load matched uncorrected and corrected echo-root spectral centers."""
-    if not ECHO_DATA_PATH.exists():
-        raise FileNotFoundError(
-            "Run scripts/make_accumulated_phase_duration_report.py first: "
-            f"{ECHO_DATA_PATH} is missing."
-        )
-    with np.load(ECHO_DATA_PATH, allow_pickle=False) as data:
-        if float(data["duration_us"]) != 20.0:
-            raise ValueError("Figure 5 requires the 20 us duration cache.")
-        if float(data["cutoff"]) != 0.001:
-            raise ValueError("Figure 5 requires cutoff c=0.001.")
-        if float(data["drag_beta"]) != 0.0:
-            raise ValueError("Figure 5 requires beta=0.")
-        if float(data["anharmonicity_mhz"]) != ANHARMONICITY_MHZ:
-            raise ValueError(
-                "Figure 5 accumulated-phase data use the wrong anharmonicity."
-            )
-        fit_rabi_mhz = np.asarray(data["fit_rabi_mhz"], dtype=float)
-        plain_centers_mhz = np.asarray(data["plain_centers_mhz"], dtype=float)
-        corrected_centers_mhz = np.asarray(
-            data["corrected_centers_mhz"], dtype=float
-        )
-
-    display = fit_rabi_mhz <= RABI_MHZ[-1]
-    matched_rabi_mhz = np.concatenate(([0.0], fit_rabi_mhz[display]))
-    if not np.array_equal(matched_rabi_mhz, RABI_MHZ):
-        raise ValueError("The accumulated-phase cache does not match the Figure 5 grid.")
-    return (
-        np.concatenate(([0.0], plain_centers_mhz[display])),
-        np.concatenate(([0.0], corrected_centers_mhz[display])),
-    )
+def measured_centers(source: dict) -> dict:
+    """Select the exact accepted and mean-centered points shown in Figure 4."""
+    arrays = {}
+    for prefix, _, _ in ECHO_SERIES:
+        mask = source[f"{prefix}_display_center_mask"]
+        rabi = source["rabi_mhz"][mask]
+        centers = source[f"{prefix}_display_centers_mhz"][mask]
+        if rabi.size < 2 or not np.all(np.isfinite(centers)):
+            raise ValueError(f"Invalid measured {prefix} centers")
+        if np.any((rabi < 10) | (rabi > 60)):
+            raise ValueError("Measured centers must be within 10--60 MHz")
+        if not np.isclose(np.mean(centers), 0, atol=1e-12):
+            raise ValueError("Regenerate Figure 4 to obtain mean-centered data")
+        arrays[f"{prefix}_rabi_mhz"] = rabi
+        arrays[f"{prefix}_centers_mhz"] = centers
+        arrays[f"{prefix}_acquisition_centers_mhz"] = source[f"{prefix}_centers_mhz"][
+            mask
+        ]
+        arrays[f"{prefix}_subtracted_mean_mhz"] = source[
+            f"{prefix}_display_mean_center_mhz"
+        ]
+        arrays[f"{prefix}_source_row_indices"] = np.flatnonzero(mask)
+    return arrays
 
 
 def main() -> None:
-    apply_figure_style(FigureVariant.PAPER)
-
+    with np.load(SOURCE_PATH, allow_pickle=False) as source:
+        measured = measured_centers(source)
+        for prefix, _, _ in ECHO_SERIES:
+            rows = measured[f"{prefix}_source_row_indices"]
+            fits = [
+                fit_calibration_dip(
+                    source["detuning_mhz"] * 1e6, source[f"{prefix}_pe"][row]
+                )
+                for row in rows
+            ]
+            for key in fits[0]:
+                measured[f"{prefix}_linewidth_fit_{key}"] = np.asarray(
+                    [fit[key] for fit in fits]
+                )
+            accepted = measured[f"{prefix}_linewidth_fit_accepted"]
+            # Widths must come from the same estimator as the published centers.
+            np.testing.assert_allclose(
+                measured[f"{prefix}_linewidth_fit_center_hz"][accepted],
+                1e6 * measured[f"{prefix}_acquisition_centers_mhz"][accepted],
+                atol=1.0,
+                rtol=0,
+            )
+    source_metadata = json.loads(SOURCE_PATH.with_suffix(".json").read_text())
+    common_provenance = {
+        "figure_asset": f"figures/paper/{OUTPUT_STEM}.pdf",
+        "manuscript_scope": "letter",
+        "figure_number": 5,
+        "center_inset_ylim_khz": [-16.0, 16.0],
+        "generator": "scripts/make_main_ac_stark_shifts.py",
+        "reproduction_command": "python scripts/make_main_ac_stark_shifts.py",
+    }
+    measured_paths = save_paper_dataset(
+        OUTPUT_STEM,
+        category="experimental",
+        arrays=measured,
+        provenance={
+            **common_provenance,
+            "source_dataset": SOURCE_PATH.relative_to(PROJECT_ROOT).as_posix(),
+            "source_sha256": hashlib.sha256(SOURCE_PATH.read_bytes()).hexdigest(),
+            "source_campaign": source_metadata["provenance"]["source_campaign"],
+            "selection": "Exact Figure 4 display_center_mask; all accepted points at 10--60 MHz",
+            "centering": "Exact Figure 4 display_centers_mhz; each run's arithmetic mean removed",
+            "center_processing": "Original Figure 4 centers retained without refitting",
+            "linewidth_processing": "Refit original measured spectra with echospec.analysis.calibration_gaussian.fit_calibration_dip, matching the campaign estimator; centers verified within 1 Hz",
+            "linewidth_estimator": "Offset minus Gaussian dip; trim 40 edge points, Gaussian smoothing sigma=1 sample, bounded curve_fit maxfev=800; FWHM=2*sqrt(2*ln(2))*sigma",
+            "linewidth_acceptance": "Figure 4 selected rows, finite positive center error and depth, R squared >= 0.1; no linewidth-based exclusion",
+            "uncertainties": "Exported linewidth covariance errors are nominal errors of the smoothed fit; no uncertainty bands plotted",
+        },
+    )
     dressed_center = dressed_resonance_center_mhz(RABI_MHZ)
-    root_center = root_reference_centers()
-    echo_center, corrected_echo_center = accumulated_phase_echo_centers()
-
-    figure, axis = plt.subplots(figsize=(3.35, 3.35), constrained_layout=True)
+    t1_us, t2_us, t2_fwhm_khz = coherence_reference()
+    constant_fwhm = constant_drive_fwhm_khz(RABI_MHZ, t1_us, t2_us, t2_fwhm_khz)
+    numerical_paths = save_paper_dataset(
+        OUTPUT_STEM,
+        category="numerical",
+        arrays={
+            "rabi_mhz": RABI_MHZ,
+            "constant_center_mhz": dressed_center,
+            "anharmonicity_mhz": np.asarray(ANHARMONICITY_MHZ),
+            "constant_fwhm_khz": constant_fwhm,
+            "constant_fwhm_t2_units": constant_fwhm / t2_fwhm_khz,
+            "reference_t1_us": np.asarray(t1_us),
+            "reference_t2_us": np.asarray(t2_us),
+            "reference_t2_fwhm_khz": np.asarray(t2_fwhm_khz),
+        },
+        provenance={
+            **common_provenance,
+            "model": "Original three-level constant-drive Hamiltonian; center minimizes upper dressed eigenvalue gap",
+            "detuning_search_mhz": [-30.0, 15.0],
+            "detuning_search_points": 9001,
+            "reference": "Unchanged q1 anharmonicity -216 MHz; illustrative reference, not a q6 fit",
+            "centering": "No empirical mean subtraction; detuning relative to bare transition",
+            "linewidth_model": "Steady-state two-level Bloch power broadening: Gamma=Gamma_T2*sqrt(1+(2*pi*rabi_MHz)^2*T1_us*T2_us)",
+            "coherence_source": "paper/coherence_parameters.tex; existing q1 reference, not a q6 coherence measurement",
+            "linewidth_axis": "Logarithmic kHz on the left; FWHM/Gamma_T2 on the right",
+            "rabi_sampling": "Union of 1201 linear points over 0--60 MHz and 201 logarithmic points over 1e-5--1 MHz; both red curves evaluated directly on this grid",
+        },
+    )
+    apply_figure_style(FigureVariant.PAPER)
+    figure, (axis, width_axis) = plt.subplots(
+        2,
+        1,
+        sharex=True,
+        figsize=(3.35, 4.4),
+        constrained_layout=True,
+        gridspec_kw={"height_ratios": [1.35, 1.0]},
+    )
+    axis.set_title("(a)", loc="left")
     axis.plot(
         RABI_MHZ,
         dressed_center,
-        "o-",
+        "-",
         color=CONSTANT_COLOR,
-        ms=2.6,
-        zorder=2,
-        label="constant",
+        label="Constant drive (simulation)",
     )
-    root_line, = axis.plot(
-        RABI_MHZ,
-        root_center,
-        "s-",
-        color=LORENTZIAN_COLOR,
-        ms=4.2,
-        zorder=3,
-        label="root",
+    for prefix, label, color in ECHO_SERIES:
+        axis.plot(
+            measured[f"{prefix}_rabi_mhz"],
+            measured[f"{prefix}_centers_mhz"],
+            ".-",
+            color=color,
+            ms=1.8,
+            lw=0.6,
+            label=label,
+        )
+    axis.axhline(0, color="0.5", lw=0.6)
+    axis.set(
+        ylabel="Resonance-center shift (MHz)",
+        xlim=(0, 60),
+        xticks=[0, 10, 20, 30, 40, 50, 60],
     )
-    echo_line, = axis.plot(
-        RABI_MHZ,
-        echo_center,
-        "^-",
-        color=ECHO_COLOR,
-        ms=3.4,
-        zorder=4,
-        label="echo-root",
-    )
-    corrected_echo_line, = axis.plot(
-        RABI_MHZ,
-        corrected_echo_center,
-        "s-",
-        color=CORRECTED_ECHO_COLOR,
-        ms=2.0,
-        zorder=5,
-        label="corrected echo-root",
-    )
-    axis.axhline(0.0, color="0.5", lw=0.7)
-    axis.set_xlabel(r"$\Omega_0/2\pi$ (MHz)")
-    axis.set_ylabel(r"$f_{01}$ shift (MHz)")
-    axis.set_xlim(-1.0, 61.0)
     axis.grid(alpha=0.25)
-    axis.legend(fontsize=4.8, ncol=2, loc="upper left")
+    axis.legend(fontsize=5.0, loc="upper left")
 
-    inset = axis.inset_axes([0.42, 0.39, 0.55, 0.39])
-    inset.plot(
-        RABI_MHZ,
-        1e3 * root_center,
-        "s-",
-        color=root_line.get_color(),
-        ms=1.8,
+    # Symmetric display zoom; preserve all points in the data and main panel.
+    inset = axis.inset_axes([0.35, 0.27, 0.62, 0.40])
+    for prefix, _, color in ECHO_SERIES:
+        inset.plot(
+            measured[f"{prefix}_rabi_mhz"],
+            1e3 * measured[f"{prefix}_centers_mhz"],
+            ".-",
+            color=color,
+            ms=1.3,
+            lw=0.6,
+        )
+    inset.axhline(0, color="0.5", lw=0.6)
+    inset.set(
+        xlim=(10, 60),
+        ylim=(-16, 16),
+        xticks=[10, 20, 30, 40, 50, 60],
+        yticks=[-16, -8, 0, 8, 16],
     )
-    inset.plot(
-        RABI_MHZ,
-        1e3 * echo_center,
-        "^-",
-        color=echo_line.get_color(),
-        ms=1.8,
-    )
-    inset.plot(
-        RABI_MHZ,
-        1e3 * corrected_echo_center,
-        "s-",
-        color=corrected_echo_line.get_color(),
-        ms=1.8,
-    )
-    inset.axhline(0.0, color="0.5", lw=0.6)
-    inset.set_xlim(0.0, float(RABI_MHZ[-1]))
-    inset.set_ylim(-10.0, 10.0)
-    inset.set_ylabel(r"$f_{01}$ shift (kHz)", fontsize=5.2)
-    inset.set_title(r"central $\pm10$ kHz zoom", fontsize=5.5)
+    inset.set_ylabel("Center variation (kHz)", fontsize=5.2)
+    inset.set_title("Measured resonance centers", fontsize=5.5)
     inset.tick_params(labelsize=4.8)
     inset.grid(alpha=0.2)
-
-    saved = save_figure(
+    width_axis.plot(
+        RABI_MHZ,
+        constant_fwhm,
+        "-",
+        color=CONSTANT_COLOR,
+        lw=0.8,
+        label="Constant drive (model)",
+    )
+    for prefix, label, color in ECHO_SERIES:
+        widths = np.where(
+            measured[f"{prefix}_linewidth_fit_accepted"],
+            measured[f"{prefix}_linewidth_fit_fwhm_hz"] / 1e3,
+            np.nan,
+        )
+        width_axis.plot(
+            measured[f"{prefix}_rabi_mhz"],
+            widths,
+            ".-",
+            color=color,
+            ms=1.8,
+            lw=0.6,
+            label=label,
+        )
+    width_axis.set(
+        title="",
+        xlabel=r"$\Omega_{\mathrm{cal}}/2\pi$ (MHz)",
+        ylabel="FWHM (kHz)",
+        xlim=(0, 60),
+        yscale="log",
+        ylim=(10, 1e6),
+    )
+    width_axis.axhline(t2_fwhm_khz, color="0.5", ls=":", lw=0.6)
+    secondary = width_axis.secondary_yaxis(
+        "right",
+        functions=(
+            lambda width: width / t2_fwhm_khz,
+            lambda units: units * t2_fwhm_khz,
+        ),
+    )
+    secondary.set_ylabel(r"FWHM / $\Gamma_{T_2}$")
+    width_axis.set_title("(b)", loc="left")
+    width_axis.grid(alpha=0.2)
+    width_axis.legend(fontsize=5.5, loc="best")
+    paths = save_figure(
         figure,
-        "04_main_ac_stark_shifts_square",
+        OUTPUT_STEM,
         variant=FigureVariant.PAPER,
         formats=("pdf", "png", "svg"),
         dpi=300,
         bbox_inches="tight",
         pad_inches=0.04,
     )
-    print("Saved:", *(path.relative_to(PROJECT_ROOT) for path in saved), sep="\n  ")
+    plt.close(figure)
+    for path in paths:
+        if path.suffix == ".svg":
+            path.write_text(
+                "\n".join(line.rstrip() for line in path.read_text().splitlines())
+                + "\n"
+            )
+    for path in (*paths, *measured_paths, *numerical_paths):
+        print(path)
 
 
 if __name__ == "__main__":

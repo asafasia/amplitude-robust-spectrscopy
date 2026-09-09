@@ -33,6 +33,7 @@ paper-clean:
 
 paper-data-core:
 	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_main_ac_stark_correction_maps.py
+	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_main_ac_stark_shifts.py
 	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_long_pulse_lorentzian_comparison.py
 	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_echo_lorentzian_cutoff_sweep.py
 

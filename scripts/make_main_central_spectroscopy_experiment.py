@@ -14,7 +14,6 @@ import numpy as np
 
 from echospec.figures import FigureVariant, apply_figure_style, save_figure
 
-
 ROOT = Path(__file__).resolve().parents[1]
 DATA_ROOT = ROOT / "data/experimental"
 OUTPUT_STEM = "02_central_spectroscopy"
@@ -228,11 +227,11 @@ def main() -> None:
         ("root", "Root-Lorentzian"),
         ("echo", "Echo-root-Lorentzian"),
     )
-    domains = (("broad", "Broad domain"), ("narrow", "Narrow domain"))
+    domains = ("broad", "narrow")
     panel_labels = iter("abcdef")
     image = None
 
-    for row, (domain, domain_label) in enumerate(domains):
+    for row, domain in enumerate(domains):
         for column, (protocol, protocol_label) in enumerate(protocols):
             measurement = measurements[(domain, protocol)]
             ax = axes[row, column]
@@ -268,16 +267,6 @@ def main() -> None:
                 ax.set_xlabel(r"$\Delta/2\pi$ (MHz)")
             if column == 0:
                 ax.set_ylabel(r"$\Omega_0/2\pi$ (MHz)")
-                ax.text(
-                    -0.26,
-                    0.5,
-                    domain_label,
-                    transform=ax.transAxes,
-                    rotation=90,
-                    ha="center",
-                    va="center",
-                    fontsize=6.2,
-                )
 
     if image is None:
         raise RuntimeError("No panels were generated")

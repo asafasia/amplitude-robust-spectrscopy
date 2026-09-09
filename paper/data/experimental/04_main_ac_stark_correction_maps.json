@@ -1,0 +1,369 @@
+{
+  "arrays": {
+    "amplitude_v": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "applied_echo_transition_ns": {
+      "dtype": "float64",
+      "shape": [
+        2
+      ]
+    },
+    "cutoff": {
+      "dtype": "float64",
+      "shape": []
+    },
+    "detuning_mhz": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "display_population_limits": {
+      "dtype": "float64",
+      "shape": [
+        2
+      ]
+    },
+    "display_rabi_mask": {
+      "dtype": "bool",
+      "shape": [
+        200
+      ]
+    },
+    "drag_beta": {
+      "dtype": "float64",
+      "shape": [
+        2
+      ]
+    },
+    "drag_center_rms_hz": {
+      "dtype": "float64",
+      "shape": []
+    },
+    "drag_centers_mhz": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "drag_display_center_mask": {
+      "dtype": "bool",
+      "shape": [
+        200
+      ]
+    },
+    "drag_display_center_rms_hz": {
+      "dtype": "float64",
+      "shape": []
+    },
+    "drag_display_centers_mhz": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "drag_display_detuning_mhz": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "drag_display_mean_center_mhz": {
+      "dtype": "float64",
+      "shape": []
+    },
+    "drag_fit_accepted": {
+      "dtype": "bool",
+      "shape": [
+        200
+      ]
+    },
+    "drag_pe": {
+      "dtype": "float64",
+      "shape": [
+        200,
+        200
+      ]
+    },
+    "drag_spectroscopy_contrast": {
+      "dtype": "float64",
+      "shape": []
+    },
+    "drag_weighted_center_hz": {
+      "dtype": "float64",
+      "shape": []
+    },
+    "duration_us": {
+      "dtype": "float64",
+      "shape": []
+    },
+    "kappa_mhz_inv": {
+      "dtype": "float64",
+      "shape": [
+        2
+      ]
+    },
+    "num_shots": {
+      "dtype": "int32",
+      "shape": []
+    },
+    "plain_center_rms_hz": {
+      "dtype": "float64",
+      "shape": []
+    },
+    "plain_centers_mhz": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "plain_display_center_mask": {
+      "dtype": "bool",
+      "shape": [
+        200
+      ]
+    },
+    "plain_display_center_rms_hz": {
+      "dtype": "float64",
+      "shape": []
+    },
+    "plain_display_centers_mhz": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "plain_display_detuning_mhz": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "plain_display_mean_center_mhz": {
+      "dtype": "float64",
+      "shape": []
+    },
+    "plain_fit_accepted": {
+      "dtype": "bool",
+      "shape": [
+        200
+      ]
+    },
+    "plain_pe": {
+      "dtype": "float64",
+      "shape": [
+        200,
+        200
+      ]
+    },
+    "plain_spectroscopy_contrast": {
+      "dtype": "float64",
+      "shape": []
+    },
+    "plain_weighted_center_hz": {
+      "dtype": "float64",
+      "shape": []
+    },
+    "rabi_mhz": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    }
+  },
+  "category": "experimental",
+  "data_file": "04_main_ac_stark_correction_maps.npz",
+  "dataset": "04_main_ac_stark_correction_maps",
+  "provenance": {
+    "applied_pulse_metadata": {
+      "drag": {
+        "ac_stark_correction": false,
+        "amp_factor_points": 200,
+        "amp_factor_spacing": "linear",
+        "amp_factor_step": 0.03,
+        "applied_echo_transition_time_ns": 16.0,
+        "complex_envelope_sign": "I+iQ",
+        "complex_waveform_headroom_v": 0.07599656264550103,
+        "cutoff": 0.00075,
+        "drag_anharmonicity_hz_by_qubit": "{\"q6\": 237950000.0}",
+        "drag_beta": -0.22,
+        "drag_derivative_convention": "physical time in microseconds; centered finite difference",
+        "echo": true,
+        "echo_transition_time_ns": 16.0,
+        "fit_fwhm": false,
+        "frequency_points": 200,
+        "frequency_span_in_mhz": 0.4,
+        "frequency_step_in_mhz": 2,
+        "lorentzian_length_in_ns": 50000,
+        "lorentzian_peak_amplitude": 1.0,
+        "lorentzian_play_duration_cycles": null,
+        "lorentzian_tau_in_ns": null,
+        "max_abs_complex_waveform_v": 0.924003437354499,
+        "max_abs_i_v": 0.9240033086388871,
+        "max_abs_q_v": 0.02849851482161385,
+        "max_amp_factor": 1.0,
+        "min_amp_factor": 0.0,
+        "operation": "lorentzian",
+        "project_ceiling_headroom_v": 0.07599656264550103,
+        "project_pulse_amplitude_ceiling_v": 1,
+        "pulse_shape": "root_lorentzian",
+        "stark_chirp_max_error_hz": 100.0,
+        "stark_correction_convention": "real-time detuning via QUA chirp",
+        "stark_kappa_mhz_inv": 0.0,
+        "three_state_discrimination_available": false,
+        "use_three_state_discrimination": true,
+        "waveform_hardware_limit_v": 1.0,
+        "waveform_template_length_in_ns": 50000
+      },
+      "plain": {
+        "ac_stark_correction": false,
+        "amp_factor_points": 200,
+        "amp_factor_spacing": "linear",
+        "amp_factor_step": 0.03,
+        "applied_echo_transition_time_ns": 0.0,
+        "complex_envelope_sign": "I+iQ",
+        "complex_waveform_headroom_v": 0.0003553800459255019,
+        "cutoff": 0.00075,
+        "drag_anharmonicity_hz_by_qubit": "{\"q6\": 237950000.0}",
+        "drag_beta": 0.0,
+        "drag_derivative_convention": "physical time in microseconds; centered finite difference",
+        "echo": true,
+        "echo_transition_time_ns": 16.0,
+        "fit_fwhm": false,
+        "frequency_points": 200,
+        "frequency_span_in_mhz": 0.4,
+        "frequency_step_in_mhz": 2,
+        "lorentzian_length_in_ns": 50000,
+        "lorentzian_peak_amplitude": 1.0,
+        "lorentzian_play_duration_cycles": null,
+        "lorentzian_tau_in_ns": null,
+        "max_abs_complex_waveform_v": 0.9996446199540745,
+        "max_abs_i_v": 0.9996446199540745,
+        "max_abs_q_v": 0.0,
+        "max_amp_factor": 1.0,
+        "min_amp_factor": 0.0,
+        "operation": "lorentzian",
+        "project_ceiling_headroom_v": 0.0003553800459255019,
+        "project_pulse_amplitude_ceiling_v": 1,
+        "pulse_shape": "root_lorentzian",
+        "stark_chirp_max_error_hz": 100.0,
+        "stark_correction_convention": "real-time detuning via QUA chirp",
+        "stark_kappa_mhz_inv": 0.0,
+        "three_state_discrimination_available": false,
+        "use_three_state_discrimination": true,
+        "waveform_hardware_limit_v": 1.0,
+        "waveform_template_length_in_ns": 50000
+      }
+    },
+    "approved_plan": {
+      "acceptable_center_rms_hz": 50000.0,
+      "grid": {
+        "amplitude_points": 200,
+        "amplitude_spacing": "linear",
+        "detuning_points": 200,
+        "detuning_span_mhz": 0.4,
+        "max_amp_factor": 1.0,
+        "min_amp_factor": 0.0,
+        "num_shots": 2000
+      },
+      "minimum_contrast": 0.02,
+      "plan_sha256": "4c992af4d3aafc037731a7dc5330177ffc02e7094236049b357b47c368e0c067",
+      "points": [
+        {
+          "ac_stark_correction": false,
+          "category": "no_correction",
+          "drag_beta": 0.0,
+          "label": "beta_0",
+          "stark_kappa_mhz_inv": 0.0
+        },
+        {
+          "ac_stark_correction": false,
+          "category": "drag_same_kappa",
+          "drag_beta": -0.22,
+          "label": "drag_beta_-0.22",
+          "stark_kappa_mhz_inv": 0.0
+        }
+      ],
+      "stage": "joint",
+      "target_qubit": "q6",
+      "waveform": {
+        "complex_envelope_sign": "I+iQ",
+        "cutoff": 0.00075,
+        "derivative_convention": "Q=-beta*dI/dt/(2*pi*alpha_MHz), physical t in microseconds",
+        "duration_ns": 50000,
+        "echo_transition_time_ns": 16.0,
+        "kappa_convention": "real-time detuning via QUA chirp",
+        "peak_amplitude_v": 1.0,
+        "pulse_shape": "root_lorentzian",
+        "template_length_ns": 50000
+      }
+    },
+    "array_dimensions": {
+      "drag_pe": [
+        "rabi_mhz",
+        "detuning_mhz"
+      ],
+      "plain_pe": [
+        "rabi_mhz",
+        "detuning_mhz"
+      ]
+    },
+    "center_rms_definition": "Unweighted RMS of accepted centers about their inverse-variance-weighted mean; not RMS about zero",
+    "detuning_convention": "Unshifted acquisition detuning relative to the configured q6 reference",
+    "display": {
+      "alignment": "One constant per run: arithmetic mean of finite accepted fitted centers over 10 <= calibrated Rabi frequency <= 60 MHz",
+      "detuning_limits_mhz": [
+        -0.15,
+        0.15
+      ],
+      "measured_population_extrema": [
+        0.429,
+        0.5985
+      ],
+      "population_limit_rule": "Shared extrema of both maps within the displayed Rabi and centered-detuning ranges; round minimum down and maximum up to multiples of 0.1",
+      "population_limits": [
+        0.4,
+        0.6
+      ],
+      "population_processing": "No interpolation or rescaling; original populations retained",
+      "rabi_limits_mhz": [
+        10.0,
+        60.0
+      ],
+      "subtracted_mean_center_mhz": {
+        "drag": 0.036680873601733624,
+        "plain": 0.020851106679928646
+      }
+    },
+    "figure_asset": "figures/paper/04_main_ac_stark_correction_maps.pdf",
+    "figure_number": 4,
+    "fit_acceptance": "Finite center and positive finite error and contrast; R squared >= 0.1",
+    "fit_source": "Campaign records.json; no refitting or extra amplitude selection",
+    "generator": "scripts/make_main_ac_stark_correction_maps.py",
+    "limitations": "Sequential runs; midpoint smoothing and beta both change; no resolved P_f measurement",
+    "manuscript_scope": "letter",
+    "population_definition": "Saved two-state discriminated state average; no readout rescaling",
+    "rabi_axis": "Saved calibrated nominal Rabi frequency; no waveform-peak renormalization",
+    "reproduction_command": "python scripts/make_main_ac_stark_correction_maps.py",
+    "source_campaign": "drag_beta_kappa_calibration/2026-09-05_20-37-12",
+    "source_import_command": "python scripts/make_main_ac_stark_correction_maps.py --source-data-dir /path/to/opx1000-codes/data",
+    "source_root": "OPX1000_DATA_DIR (default sibling opx1000-codes/data)",
+    "source_sha256": {
+      "calibrations/2026-09-05/drag_kappa_joint_01/22-25-01-799230/metadata.json": "bf3227ba059d156b973d900df46e9c530b97e009540d5467fbd651b668f9f6a5",
+      "calibrations/2026-09-05/drag_kappa_joint_01/22-25-01-799230/parameters.json": "40d62aa61c38fa5ede050df14664c8f28e06e6188d2d1e019f7f248f24377ec1",
+      "calibrations/2026-09-05/drag_kappa_joint_01/22-25-01-799230/results.npz": "fe68a65ce1cf4d88991e7dbc610ab524cbcbabe6d7ce500762f3df01702f28da",
+      "calibrations/2026-09-05/drag_kappa_joint_01/22-25-01-799230/sweep.npz": "60c8a7709972054ecbcf17bf08e4560902b2ba2b5cec4a09806703737afdfe6a",
+      "calibrations/2026-09-06/drag_kappa_joint_02/00-12-36-749691/metadata.json": "ea8f463a0c1aebf92332f29bb85e1d1fa56ffe81bbc7a7991baf628d181c40b7",
+      "calibrations/2026-09-06/drag_kappa_joint_02/00-12-36-749691/parameters.json": "6d16fb0fbc61720ba8ac06ed3d629148d2bb31cb67850a208f33f798cb471819",
+      "calibrations/2026-09-06/drag_kappa_joint_02/00-12-36-749691/results.npz": "5d448a269c948ea18af47f0d9c40447c52a3dc14b8c4b634aa89fa0ec9267e97",
+      "calibrations/2026-09-06/drag_kappa_joint_02/00-12-36-749691/sweep.npz": "60c8a7709972054ecbcf17bf08e4560902b2ba2b5cec4a09806703737afdfe6a",
+      "drag_beta_kappa_calibration/2026-09-05_20-37-12/approved_plan.json": "b72fcb43d3d21f2da8ad55d36486e3084ec11ef0319e5018d3839484bc7f1d5e",
+      "drag_beta_kappa_calibration/2026-09-05_20-37-12/records.json": "c93f14c71bb00b4bce45f79c0495e401188fea1e5d59600bbe5e27b7bc33fe26"
+    }
+  },
+  "schema_version": 1
+}

@@ -1,0 +1,71 @@
+{
+  "arrays": {
+    "anharmonicity_mhz": {
+      "dtype": "float64",
+      "shape": []
+    },
+    "constant_center_mhz": {
+      "dtype": "float64",
+      "shape": [
+        1400
+      ]
+    },
+    "constant_fwhm_khz": {
+      "dtype": "float64",
+      "shape": [
+        1400
+      ]
+    },
+    "constant_fwhm_t2_units": {
+      "dtype": "float64",
+      "shape": [
+        1400
+      ]
+    },
+    "rabi_mhz": {
+      "dtype": "float64",
+      "shape": [
+        1400
+      ]
+    },
+    "reference_t1_us": {
+      "dtype": "float64",
+      "shape": []
+    },
+    "reference_t2_fwhm_khz": {
+      "dtype": "float64",
+      "shape": []
+    },
+    "reference_t2_us": {
+      "dtype": "float64",
+      "shape": []
+    }
+  },
+  "category": "numerical",
+  "data_file": "04_main_ac_stark_shifts_square.npz",
+  "dataset": "04_main_ac_stark_shifts_square",
+  "provenance": {
+    "center_inset_ylim_khz": [
+      -16.0,
+      16.0
+    ],
+    "centering": "No empirical mean subtraction; detuning relative to bare transition",
+    "coherence_source": "paper/coherence_parameters.tex; existing q1 reference, not a q6 coherence measurement",
+    "detuning_search_mhz": [
+      -30.0,
+      15.0
+    ],
+    "detuning_search_points": 9001,
+    "figure_asset": "figures/paper/04_main_ac_stark_shifts_square.pdf",
+    "figure_number": 5,
+    "generator": "scripts/make_main_ac_stark_shifts.py",
+    "linewidth_axis": "Logarithmic kHz on the left; FWHM/Gamma_T2 on the right",
+    "linewidth_model": "Steady-state two-level Bloch power broadening: Gamma=Gamma_T2*sqrt(1+(2*pi*rabi_MHz)^2*T1_us*T2_us)",
+    "manuscript_scope": "letter",
+    "model": "Original three-level constant-drive Hamiltonian; center minimizes upper dressed eigenvalue gap",
+    "rabi_sampling": "Union of 1201 linear points over 0--60 MHz and 201 logarithmic points over 1e-5--1 MHz; both red curves evaluated directly on this grid",
+    "reference": "Unchanged q1 anharmonicity -216 MHz; illustrative reference, not a q6 fit",
+    "reproduction_command": "python scripts/make_main_ac_stark_shifts.py"
+  },
+  "schema_version": 1
+}

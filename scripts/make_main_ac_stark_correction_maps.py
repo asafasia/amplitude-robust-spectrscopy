@@ -1,16 +1,18 @@
-"""Generate the compact two-panel AC-Stark correction map for the Letter."""
+"""Render measured Figure 4, retaining the historical asset filename.
+
+Render from the experimental paper cache by default. To reimport measurements,
+pass --source-data-dir /path/to/opx1000-codes/data or set OPX1000_DATA_DIR.
+"""
 
 from __future__ import annotations
 
-# Backend and local-source setup must precede pyplot and echospec imports.
 # ruff: noqa: E402, I001
-
+import argparse
+import hashlib
+import json
 import os
-import re
 import sys
 from pathlib import Path
-
-os.environ.setdefault("MPLCONFIGDIR", "/private/tmp/ars-matplotlib-cache")
 
 import matplotlib
 
@@ -21,186 +23,273 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-
 from echospec.figures import FigureVariant, apply_figure_style, save_figure
 from echospec.paper_data import save_paper_dataset
 
-
-SOURCE_PATH = (
-    ROOT
-    / "data/generated/accumulated_phase_duration_sweep/20us/results.npz"
-)
-CACHE_PATH = ROOT / "figures/paper/04_main_ac_stark_correction_maps.npz"
 OUTPUT_STEM = "04_main_ac_stark_correction_maps"
-DISPLAY_HALF_WIDTH_MHZ = 0.20
-COLOR_MIN = 0.0
-COLOR_MAX = 0.5
+CACHE_PATH = ROOT / "paper/data/experimental" / f"{OUTPUT_STEM}.npz"
+DISPLAY_RABI_LIMITS_MHZ = (10.0, 60.0)
+DISPLAY_DETUNING_HALF_WIDTH_MHZ = 0.15
+CAMPAIGN = Path("drag_beta_kappa_calibration/2026-09-05_20-37-12")
+RUNS = (
+    ("plain", "beta_0", "calibrations/2026-09-05/drag_kappa_joint_01/22-25-01-799230"),
+    (
+        "drag",
+        "drag_beta_-0.22",
+        "calibrations/2026-09-06/drag_kappa_joint_02/00-12-36-749691",
+    ),
+)
 
 
-def latex_macro_float(name: str) -> float:
-    """Read a numeric value from the paper's shared coherence parameters."""
-    text = (ROOT / "paper/coherence_parameters.tex").read_text()
-    match = re.search(rf"\\newcommand\{{\\{name}\}}\{{(-?[0-9.]+)", text)
-    if match is None:
-        raise ValueError(f"Missing numeric macro {name}")
-    return float(match.group(1))
+def load_source(data_dir: Path) -> tuple[dict, dict]:
+    """Read selected populations and saved fits, recording source checksums."""
+    source_hashes = {}
 
+    def source_path(relative: Path) -> Path:
+        path = data_dir / relative
+        source_hashes[relative.as_posix()] = hashlib.sha256(
+            path.read_bytes()
+        ).hexdigest()
+        return path
 
-T2_LIMIT_FWHM_MHZ = latex_macro_float("EffectiveCoherenceFwhm") / 1e3
-T2_LIMIT_HALF_WIDTH_MHZ = 0.5 * T2_LIMIT_FWHM_MHZ
-ANHARMONICITY_MHZ = latex_macro_float("MeasuredAnharmonicity")
-
-
-def load_map_data() -> dict[str, np.ndarray]:
-    """Load the duration-sweep result and preserve a paper-local compact cache."""
-    path = SOURCE_PATH if SOURCE_PATH.exists() else CACHE_PATH
-    if not path.exists():
-        raise FileNotFoundError(
-            "Run scripts/make_accumulated_phase_duration_report.py first "
-            f"or restore {CACHE_PATH}."
-        )
-
-    with np.load(path, allow_pickle=False) as data:
-        arrays = {
-            "duration_us": np.asarray(data["duration_us"]),
-            "cutoff": np.asarray(data["cutoff"]),
-            "drag_beta": np.asarray(data["drag_beta"]),
-            "anharmonicity_mhz": np.asarray(data["anharmonicity_mhz"]),
-            "selected_kappa_mhz_inv": np.asarray(
-                data["selected_kappa_mhz_inv"]
-            ),
-            "detuning_mhz": np.asarray(data["detuning_mhz"], dtype=float),
-            "rabi_mhz": np.asarray(data["rabi_mhz"], dtype=float),
-            "fit_rabi_mhz": np.asarray(data["fit_rabi_mhz"], dtype=float),
-            "plain_pe": np.asarray(data["plain_pe"], dtype=float),
-            "corrected_pe": np.asarray(data["corrected_pe"], dtype=float),
-            "plain_centers_mhz": np.asarray(
-                data["plain_centers_mhz"], dtype=float
-            ),
-            "corrected_centers_mhz": np.asarray(
-                data["corrected_centers_mhz"], dtype=float
-            ),
+    plan = json.loads(source_path(CAMPAIGN / "approved_plan.json").read_text())
+    records = {
+        row["label"]: row
+        for row in json.loads(source_path(CAMPAIGN / "records.json").read_text())
+    }
+    arrays = {}
+    pulses = {}
+    for prefix, label, relative in RUNS:
+        run = Path(relative)
+        metadata = json.loads(source_path(run / "metadata.json").read_text())
+        parameters = json.loads(source_path(run / "parameters.json").read_text())
+        pulse = metadata["pulse"]
+        record = records[label]
+        expected_beta = 0.0 if prefix == "plain" else -0.22
+        expected_transition = 0.0 if prefix == "plain" else 16.0
+        expected = {
+            "pulse_shape": "root_lorentzian",
+            "echo": True,
+            "lorentzian_length_in_ns": 50000,
+            "cutoff": 0.00075,
+            "drag_beta": expected_beta,
+            "stark_kappa_mhz_inv": 0.0,
+            "ac_stark_correction": False,
+            "applied_echo_transition_time_ns": expected_transition,
+            "three_state_discrimination_available": False,
         }
-
-    if float(arrays["duration_us"]) != 20.0:
-        raise ValueError("The paper map must use the 20 us simulation.")
-    if float(arrays["cutoff"]) != 0.001:
-        raise ValueError("The paper map must use cutoff c=0.001.")
-    if float(arrays["drag_beta"]) != 0.0:
-        raise ValueError("The paper map must use beta=0.")
-    if float(arrays["anharmonicity_mhz"]) != ANHARMONICITY_MHZ:
-        raise ValueError(
-            "The paper map must use the measured q1 anharmonicity."
+        for key, value in expected.items():
+            if pulse[key] != value:
+                raise ValueError(f"{label}: unexpected {key}: {pulse[key]}")
+        if parameters["num_shots"] != 2000 or record["drag_beta"] != expected_beta:
+            raise ValueError(f"{label}: shot count or record beta mismatch")
+        with np.load(source_path(run / "sweep.npz"), allow_pickle=False) as sweep:
+            if sweep["qubit"].tolist() != ["q6"]:
+                raise ValueError("Figure 4 requires the q6 measurement")
+            detuning = np.asarray(sweep["detuning"], dtype=float) / 1e6
+            amplitude = np.asarray(sweep["amp_prefactor"], dtype=float)
+        with np.load(source_path(run / "results.npz"), allow_pickle=False) as result:
+            # Source plotter specifies qubit, detuning, amplitude order.
+            state = np.asarray(result["state"], dtype=float)
+            if state.shape != (1, detuning.size, amplitude.size):
+                raise ValueError(f"Unexpected state shape: {state.shape}")
+            arrays[f"{prefix}_pe"] = state[0].T
+        rabi = np.asarray(record["rabi_frequency_mhz"], dtype=float)
+        if prefix == "plain":
+            arrays.update(
+                detuning_mhz=detuning,
+                rabi_mhz=rabi,
+                amplitude_v=amplitude * pulse["lorentzian_peak_amplitude"],
+            )
+        else:
+            np.testing.assert_array_equal(detuning, arrays["detuning_mhz"])
+            np.testing.assert_array_equal(rabi, arrays["rabi_mhz"])
+            np.testing.assert_array_equal(
+                amplitude * pulse["lorentzian_peak_amplitude"], arrays["amplitude_v"]
+            )
+        arrays[f"{prefix}_centers_mhz"] = (
+            np.asarray(record["center_hz_vs_amplitude"]) / 1e6
         )
-    expected_shape = (
-        arrays["rabi_mhz"].size,
-        arrays["detuning_mhz"].size,
+        arrays[f"{prefix}_fit_accepted"] = np.asarray(
+            record["center_fit_accepted"], dtype=bool
+        )
+        for key in ("center_rms_hz", "weighted_center_hz", "spectroscopy_contrast"):
+            arrays[f"{prefix}_{key}"] = np.asarray(record[key])
+        pulses[prefix] = pulse
+    arrays.update(
+        duration_us=np.asarray(50.0),
+        cutoff=np.asarray(0.00075),
+        drag_beta=np.asarray([0.0, -0.22]),
+        kappa_mhz_inv=np.zeros(2),
+        applied_echo_transition_ns=np.asarray([0.0, 16.0]),
+        num_shots=np.asarray(2000),
     )
-    for key in ("plain_pe", "corrected_pe"):
-        if arrays[key].shape != expected_shape:
-            raise ValueError(f"{key} has shape {arrays[key].shape}, not {expected_shape}.")
+    provenance = {
+        "figure_asset": f"figures/paper/{OUTPUT_STEM}.pdf",
+        "manuscript_scope": "letter",
+        "figure_number": 4,
+        "generator": "scripts/make_main_ac_stark_correction_maps.py",
+        "reproduction_command": "python scripts/make_main_ac_stark_correction_maps.py",
+        "source_import_command": "python scripts/make_main_ac_stark_correction_maps.py --source-data-dir /path/to/opx1000-codes/data",
+        "source_root": "OPX1000_DATA_DIR (default sibling opx1000-codes/data)",
+        "source_campaign": CAMPAIGN.as_posix(),
+        "source_sha256": source_hashes,
+        "approved_plan": plan,
+        "applied_pulse_metadata": pulses,
+        "population_definition": "Saved two-state discriminated state average; no readout rescaling",
+        "detuning_convention": "Unshifted acquisition detuning relative to the configured q6 reference",
+        "rabi_axis": "Saved calibrated nominal Rabi frequency; no waveform-peak renormalization",
+        "fit_source": "Campaign records.json; no refitting or extra amplitude selection",
+        "fit_acceptance": "Finite center and positive finite error and contrast; R squared >= 0.1",
+        "center_rms_definition": "Unweighted RMS of accepted centers about their inverse-variance-weighted mean; not RMS about zero",
+        "limitations": "Sequential runs; midpoint smoothing and beta both change; no resolved P_f measurement",
+        "display": {"population_limits": [0.0, 0.6], "frequency_alignment_mhz": 0.0},
+        "array_dimensions": {
+            "plain_pe": ["rabi_mhz", "detuning_mhz"],
+            "drag_pe": ["rabi_mhz", "detuning_mhz"],
+        },
+    }
+    return arrays, provenance
 
-    if path == SOURCE_PATH:
-        np.savez_compressed(CACHE_PATH, **arrays)
-    return arrays
+
+def validate_arrays(data: dict) -> None:
+    """Reject mismatched grids, invalid populations, or fit array lengths."""
+    for key in ("detuning_mhz", "rabi_mhz"):
+        if data[key].shape != (200,) or not np.all(np.diff(data[key]) > 0):
+            raise ValueError(f"Invalid {key} grid")
+    for prefix, _, _ in RUNS:
+        pe = data[f"{prefix}_pe"]
+        if pe.shape != (200, 200) or not np.all(np.isfinite(pe)):
+            raise ValueError(f"Invalid {prefix} population map")
+        if np.any((pe < 0) | (pe > 1)):
+            raise ValueError("Measured state average lies outside [0, 1]")
+        for suffix in ("centers_mhz", "fit_accepted"):
+            if data[f"{prefix}_{suffix}"].shape != (200,):
+                raise ValueError(f"Invalid {prefix} fit array")
+
+
+def center_display_data(data: dict, provenance: dict) -> None:
+    """Subtract each run's arithmetic mean accepted center over the shown range.
+
+    Always derive display coordinates from acquisition coordinates, so repeated
+    cache renders cannot accumulate shifts. Retain the original arrays intact.
+    """
+    rabi = data["rabi_mhz"]
+    selected = (rabi >= DISPLAY_RABI_LIMITS_MHZ[0]) & (
+        rabi <= DISPLAY_RABI_LIMITS_MHZ[1]
+    )
+    data["display_rabi_mask"] = selected
+    offsets = {}
+    for prefix, _, _ in RUNS:
+        centers = data[f"{prefix}_centers_mhz"]
+        accepted = selected & data[f"{prefix}_fit_accepted"] & np.isfinite(centers)
+        if not np.any(accepted):
+            raise ValueError(f"No accepted {prefix} centers in the display range")
+        mean = float(np.mean(centers[accepted]))
+        offsets[prefix] = mean
+        data[f"{prefix}_display_center_mask"] = accepted
+        data[f"{prefix}_display_mean_center_mhz"] = np.asarray(mean)
+        data[f"{prefix}_display_detuning_mhz"] = data["detuning_mhz"] - mean
+        data[f"{prefix}_display_centers_mhz"] = centers - mean
+        data[f"{prefix}_display_center_rms_hz"] = np.asarray(
+            1e6 * np.sqrt(np.mean((centers[accepted] - mean) ** 2))
+        )
+    provenance["display"] = {
+        "population_limits": [0.0, 0.6],
+        "rabi_limits_mhz": list(DISPLAY_RABI_LIMITS_MHZ),
+        "detuning_limits_mhz": [
+            -DISPLAY_DETUNING_HALF_WIDTH_MHZ,
+            DISPLAY_DETUNING_HALF_WIDTH_MHZ,
+        ],
+        "subtracted_mean_center_mhz": offsets,
+        "alignment": "One constant per run: arithmetic mean of finite accepted fitted centers over 10 <= calibrated Rabi frequency <= 60 MHz",
+        "population_processing": "No interpolation or rescaling; original populations retained",
+    }
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--source-data-dir", type=Path)
+    args = parser.parse_args()
+    source = args.source_data_dir or os.environ.get("OPX1000_DATA_DIR")
+    if source or not CACHE_PATH.exists():
+        data_dir = Path(source) if source else ROOT.parent / "opx1000-codes/data"
+        data, provenance = load_source(data_dir)
+    else:
+        with np.load(CACHE_PATH, allow_pickle=False) as saved:
+            data = {key: saved[key] for key in saved.files}
+        provenance = json.loads(CACHE_PATH.with_suffix(".json").read_text())[
+            "provenance"
+        ]
+    validate_arrays(data)
+    center_display_data(data, provenance)
+    displayed_populations = [
+        data[f"{prefix}_pe"][
+            np.ix_(
+                data["display_rabi_mask"],
+                np.abs(data[f"{prefix}_display_detuning_mhz"])
+                <= DISPLAY_DETUNING_HALF_WIDTH_MHZ,
+            )
+        ]
+        for prefix, _, _ in RUNS
+    ]
+    population_min = min(float(values.min()) for values in displayed_populations)
+    population_max = max(float(values.max()) for values in displayed_populations)
+    vmin = float(np.floor(population_min * 10) / 10)
+    vmax = float(np.ceil(population_max * 10) / 10)
+    if vmax <= vmin:
+        vmax = vmin + 0.1
+    data["display_population_limits"] = np.asarray([vmin, vmax])
+    provenance["display"].update(
+        population_limits=[vmin, vmax],
+        measured_population_extrema=[population_min, population_max],
+        population_limit_rule="Shared extrema of both maps within the displayed Rabi and centered-detuning ranges; round minimum down and maximum up to multiples of 0.1",
+    )
+    paper_paths = save_paper_dataset(
+        OUTPUT_STEM, category="experimental", arrays=data, provenance=provenance
+    )
     apply_figure_style(FigureVariant.PAPER)
-    data = load_map_data()
-    paper_data_paths = save_paper_dataset(
-        OUTPUT_STEM,
-        category="numerical",
-        arrays=data,
-        provenance={
-            "figure_asset": f"figures/paper/{OUTPUT_STEM}.pdf",
-            "manuscript_scope": "letter",
-            "generator": "scripts/make_main_ac_stark_correction_maps.py",
-            "reproduction_command": (
-                "PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python "
-                "scripts/make_main_ac_stark_correction_maps.py"
-            ),
-            "source_generator": (
-                "scripts/make_accumulated_phase_duration_report.py"
-            ),
-            "source_cache": (
-                "data/generated/accumulated_phase_duration_sweep/20us/"
-                "results.npz"
-            ),
-            "model": "three-level transmon Lindblad/RK4 simulation",
-            "detuning_convention": "drive_minus_qubit",
-            "population_definition": "P_e",
-            "array_dimensions": {
-                "plain_pe": ["rabi_mhz", "detuning_mhz"],
-                "corrected_pe": ["rabi_mhz", "detuning_mhz"],
-                "plain_centers_mhz": ["fit_rabi_mhz"],
-                "corrected_centers_mhz": ["fit_rabi_mhz"],
-            },
-        },
-    )
-    detuning_mhz = data["detuning_mhz"]
-    rabi_mhz = data["rabi_mhz"]
-    fit_rabi_mhz = data["fit_rabi_mhz"]
-    display = np.abs(detuning_mhz) <= DISPLAY_HALF_WIDTH_MHZ
-
-    fig = plt.figure(figsize=(3.35, 1.72), constrained_layout=True)
-    grid = fig.add_gridspec(1, 3, width_ratios=(1.0, 1.0, 0.045), wspace=0.08)
-    axes = [fig.add_subplot(grid[0, 0]), fig.add_subplot(grid[0, 1])]
-    color_axis = fig.add_subplot(grid[0, 2])
-    image = None
-
-    comparisons = (
-        (
-            axes[0],
-            data["plain_pe"][:, display],
-            data["plain_centers_mhz"],
-            "(a) Uncorrected",
-        ),
-        (
-            axes[1],
-            data["corrected_pe"][:, display],
-            data["corrected_centers_mhz"],
-            "(b) AC-Stark corrected",
-        ),
-    )
-    for axis, population, centers_mhz, title in comparisons:
-        image = axis.pcolormesh(
-            detuning_mhz[display],
-            rabi_mhz,
-            population,
+    fig = plt.figure(figsize=(3.35, 1.85), constrained_layout=True)
+    grid = fig.add_gridspec(1, 3, width_ratios=(1, 1, 0.045), wspace=0.08)
+    axes = [fig.add_subplot(grid[0, i]) for i in range(2)]
+    for axis, prefix, title in zip(
+        axes, ("plain", "drag"), (r"(a) $\beta=0$", r"(b) $\beta=-0.22$"), strict=True
+    ):
+        plot = axis.pcolormesh(
+            data[f"{prefix}_display_detuning_mhz"],
+            data["rabi_mhz"],
+            data[f"{prefix}_pe"],
             shading="auto",
             cmap="magma",
-            vmin=COLOR_MIN,
-            vmax=COLOR_MAX,
+            vmin=vmin,
+            vmax=vmax,
             rasterized=True,
         )
-        axis.axvline(0.0, color="white", lw=0.55, ls="--", alpha=0.9)
-        for bound in (-T2_LIMIT_HALF_WIDTH_MHZ, T2_LIMIT_HALF_WIDTH_MHZ):
-            axis.axvline(bound, color="white", lw=0.65, ls=":", alpha=0.95)
-        center_line = axis.plot(
-            centers_mhz,
-            fit_rabi_mhz,
-            color="white",
-            lw=0.9,
-        )[0]
-        center_line.set_path_effects(
-            [path_effects.Stroke(linewidth=1.6, foreground="black"), path_effects.Normal()]
+        centers = np.where(
+            data[f"{prefix}_display_center_mask"],
+            data[f"{prefix}_display_centers_mhz"],
+            np.nan,
         )
+        (line,) = axis.plot(centers, data["rabi_mhz"], color="white", lw=0.65)
+        line.set_path_effects(
+            [
+                path_effects.Stroke(linewidth=1.1, foreground="black"),
+                path_effects.Normal(),
+            ]
+        )
+        axis.axvline(0, color="white", ls="--", lw=0.55)
         axis.set(
             title=title,
-            xlabel=r"$\Delta/2\pi$ (MHz)",
-            xlim=(-DISPLAY_HALF_WIDTH_MHZ, DISPLAY_HALF_WIDTH_MHZ),
-            ylim=(0.0, float(rabi_mhz.max())),
+            xlabel="Centered detuning (MHz)",
+            xlim=(-DISPLAY_DETUNING_HALF_WIDTH_MHZ, DISPLAY_DETUNING_HALF_WIDTH_MHZ),
+            ylim=DISPLAY_RABI_LIMITS_MHZ,
+            xticks=[-0.1, 0, 0.1],
+            yticks=[10, 20, 30, 40, 50, 60],
         )
-
-    axes[0].set_ylabel(r"$\Omega_0/2\pi$ (MHz)")
+    axes[0].set_ylabel(r"$\Omega_{\mathrm{cal}}/2\pi$ (MHz)")
     axes[1].tick_params(labelleft=False)
-    if image is None:
-        raise RuntimeError("No map was rendered.")
-    colorbar = fig.colorbar(image, cax=color_axis)
-    colorbar.set_label(r"$P_e$")
-
-    figure_paths = save_figure(
+    fig.colorbar(plot, cax=fig.add_subplot(grid[0, 2]), label=r"$P_e$")
+    paths = save_figure(
         fig,
         OUTPUT_STEM,
         variant=FigureVariant.PAPER,
@@ -210,7 +299,13 @@ def main() -> None:
         pad_inches=0.02,
     )
     plt.close(fig)
-    for path in (*figure_paths, *paper_data_paths):
+    for path in paths:
+        if path.suffix == ".svg":
+            path.write_text(
+                "\n".join(line.rstrip() for line in path.read_text().splitlines())
+                + "\n"
+            )
+    for path in (*paths, *paper_paths):
         print(path)
 
 
