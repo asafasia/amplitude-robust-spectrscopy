@@ -53,9 +53,8 @@ over a calibrated nominal Rabi-frequency range of $10$--$60~\mathrm{MHz}$.
     curves use the same fitted centers as Fig.~\ref{fig:ac-stark-correction-maps}
     for $\beta=0$ and $-0.22$. The inset resolves their amplitude-dependent
     fluctuations over $10$--$60~\mathrm{MHz}$: the $\beta=-0.22$ waveform
-    exhibits smaller center variations. The constant-drive curve retains
-    the three-level simulation with
-    $\alpha/(2\pi)=\MeasuredAnharmonicity~\mathrm{MHz}$.
+    exhibits smaller center variations. The constant-drive curve uses
+    the q6 anharmonicity in the three-level simulation.
     (b) Gaussian-fit FWHM of the same measured spectra and the red
     constant-drive power-broadening reference, on a logarithmic scale.
     The right axis expresses linewidths in units of the paper's q1
@@ -68,35 +67,31 @@ over a calibrated nominal Rabi-frequency range of $10$--$60~\mathrm{MHz}$.
 For comparison, the weak-drive three-level AC-Stark shift of a constant drive
 is $\delta f_{01}\simeq-\left(\Omega_0/2\pi\right)^2/
 [2(\alpha/2\pi)]$~\cite{PhysRevA.76.042319,schneider_multilevel_2018}.
-With $\alpha/(2\pi)=\MeasuredAnharmonicity~\mathrm{MHz}$, it reaches
-$5.8~\mathrm{MHz}$ at $\Omega_0/(2\pi)=50~\mathrm{MHz}$.  For the
+With the q6 anharmonicity $\alpha/(2\pi)=-237~\mathrm{MHz}$, it reaches
+$5.3~\mathrm{MHz}$ at $\Omega_0/(2\pi)=50~\mathrm{MHz}$.  For the
 $20~\mu\mathrm{s}$ root-Lorentzian envelope with $c=0.001$, the phase-average
 shift is smaller by $\langle f^2\rangle_t=0.001570$ and reaches only
-$9.1~\mathrm{kHz}$; the echo sign change does not cancel this quadratic term.
+$8.2~\mathrm{kHz}$; the echo sign change does not cancel this quadratic term.
 Fig.~\ref{fig:ac-stark-correction-maps} instead tests a derivative-quadrature
 waveform on q6 in the September 5--6 calibration campaign. The acquisition
-uses $I+iQ$ with $Q=-\beta\dot I/(2\pi\alpha_{\rm cal})$, where
-$\alpha_{\rm cal}=237.95~\mathrm{MHz}$ is the signed value supplied to the
+uses $I+iQ$ with $Q=-\beta\dot I/(2\pi\alpha)$, where
+$\alpha=237~\mathrm{MHz}$ is the signed value supplied to the
 waveform generator and time is in microseconds. Both the derivative
 quadrature and the midpoint smoothing change between these sequential runs;
 no accumulated-phase correction is applied. The depletion feature persists
-across the displayed $10$--$60~\mathrm{MHz}$ range in both maps. For display,
-we subtract each run's arithmetic mean accepted fitted center over this
-range, $20.85$ and $36.68~\mathrm{kHz}$ relative to the acquisition reference
-for $\beta=0$ and $-0.22$, respectively. The RMS residual center motion is
-$6.78$ and $2.64~\mathrm{kHz}$ about these respective means. This lower
+across the displayed $10$--$60~\mathrm{MHz}$ range in both maps.
+The RMS center motion about each run's mean is $6.78$ and
+$2.64~\mathrm{kHz}$ for $\beta=0$ and $-0.22$, respectively. This lower
 scatter characterizes the combined smoothed-midpoint and DRAG waveform;
 the comparison does not isolate the derivative-quadrature contribution.
 The absence of resolved three-state readout precludes a measured
 leakage-suppression claim.
 
 Fig.~\ref{fig:main-ac-stark-shifts}(a) compares these measured center
-variations with the original three-level constant-drive simulation. The
+variations with the three-level constant-drive simulation for q6. The
 experimental curves retain the centering used in
-Fig.~\ref{fig:ac-stark-correction-maps}; the simulated curve is referenced
-to the bare transition and retains the q1 anharmonicity
-$\alpha/(2\pi)=\MeasuredAnharmonicity~\mathrm{MHz}$ as an illustrative scale
-comparison. Its megahertz-scale displacement contrasts with the kilohertz-scale
+Fig.~\ref{fig:ac-stark-correction-maps}. The simulated megahertz-scale
+displacement contrasts with the kilohertz-scale
 residual motion of the measured echo resonances. The inset magnifies the
 $\pm16~\mathrm{kHz}$ region around the mean centers.
 Panel (b) compares FWHM values extracted

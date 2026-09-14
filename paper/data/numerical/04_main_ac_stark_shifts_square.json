@@ -45,6 +45,7 @@
   "data_file": "04_main_ac_stark_shifts_square.npz",
   "dataset": "04_main_ac_stark_shifts_square",
   "provenance": {
+    "anharmonicity_source": "paper/data/experimental/04_main_ac_stark_correction_maps.json: applied_pulse_metadata.drag.drag_anharmonicity_hz_by_qubit; recorded magnitude 237950000 Hz",
     "center_inset_ylim_khz": [
       -16.0,
       16.0
@@ -64,7 +65,7 @@
     "manuscript_scope": "letter",
     "model": "Original three-level constant-drive Hamiltonian; center minimizes upper dressed eigenvalue gap",
     "rabi_sampling": "Union of 1201 linear points over 0--60 MHz and 201 logarithmic points over 1e-5--1 MHz; both red curves evaluated directly on this grid",
-    "reference": "Unchanged q1 anharmonicity -216 MHz; illustrative reference, not a q6 fit",
+    "reference": "q6 anharmonicity -237.95 MHz (f12-f01 convention)",
     "reproduction_command": "python scripts/make_main_ac_stark_shifts.py"
   },
   "schema_version": 1

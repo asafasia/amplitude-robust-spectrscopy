@@ -1,0 +1,230 @@
+{
+  "arrays": {
+    "accepted": {
+      "dtype": "bool",
+      "shape": [
+        10,
+        400
+      ]
+    },
+    "amplitude_v": {
+      "dtype": "float64",
+      "shape": [
+        10,
+        400
+      ]
+    },
+    "contrast": {
+      "dtype": "float64",
+      "shape": [
+        10,
+        400
+      ]
+    },
+    "feature_is_peak": {
+      "dtype": "bool",
+      "shape": [
+        10,
+        400
+      ]
+    },
+    "fwhm_khz": {
+      "dtype": "float64",
+      "shape": [
+        10,
+        400
+      ]
+    },
+    "left_khz": {
+      "dtype": "float64",
+      "shape": [
+        10,
+        400
+      ]
+    },
+    "pulse_length_us": {
+      "dtype": "float64",
+      "shape": [
+        10
+      ]
+    },
+    "rabi_frequency_mhz": {
+      "dtype": "float64",
+      "shape": [
+        10,
+        400
+      ]
+    },
+    "right_khz": {
+      "dtype": "float64",
+      "shape": [
+        10,
+        400
+      ]
+    }
+  },
+  "category": "numerical",
+  "data_file": "12_dense_pulse_length.npz",
+  "dataset": "12_dense_pulse_length",
+  "provenance": {
+    "acquisition": {
+      "ac_stark_correction": false,
+      "amplitude_points": 400,
+      "cutoff": 0.005,
+      "echo": true,
+      "frequency_points": 400,
+      "frequency_span_mhz": 2.0,
+      "max_amplitude_v": 0.7,
+      "min_amplitude_v": 0.01,
+      "num_shots": 380,
+      "pulse_shape": "root_lorentzian",
+      "qubit": "q6",
+      "stark_kappa_mhz_inv": 0.005
+    },
+    "coherence_note": "1/(pi*T2_star) from this q6 campaign; not the paper's q1 normalization",
+    "coherence_reference_khz": 51.99626004225378,
+    "device": {
+      "anharmonicity_hz": 237950000.0,
+      "rf_frequency_hz": 3945155920.3165746,
+      "t1_s": 4.171194395819269e-05,
+      "t2_star_s": 6.121784257658573e-06,
+      "x180_amplitude_v": 0.20377604886330902,
+      "x180_length_ns": 40.0
+    },
+    "display": "lengths <=25 us; accepted experimental points and simulated curves; no new fit or alignment",
+    "drag_beta": 0.0,
+    "experimental_acceptance": "SNR >= 5; both crossings; FWHM >= 3 bins and <= 80% scan",
+    "generator": "scripts/make_dense_pulse_length_comparison.py",
+    "kappa_note": "Stored 0.005 MHz^-1 is inactive; no AC-Stark compensation applied.",
+    "linewidth_method": "9-point order-2 Savitzky-Golay; linear baseline from outer 10% edges; strongest residual peak/dip; nearest half-height crossings",
+    "pairing": "same pulse length and original amplitude index; intersection of acceptance masks",
+    "pulse_template_mode": "template length equals pulse length; no duration stretching",
+    "rabi_conversion": {
+      "definition": "f_R=Omega/(2*pi)=A/(2*A_pi*t_pi)",
+      "mhz_per_v": 61.341850868768574
+    },
+    "raw_run_directories": [
+      "calibrations/2026-09-10/pulse_length_1us_echo_dense/00-17-59-544768",
+      "calibrations/2026-09-10/pulse_length_2us_echo_dense/00-46-55-441651",
+      "calibrations/2026-09-10/pulse_length_5us_echo_dense/01-22-56-094865",
+      "calibrations/2026-09-10/pulse_length_10us_echo_dense/02-07-23-753368",
+      "calibrations/2026-09-10/pulse_length_15us_echo_dense/02-57-13-023499",
+      "calibrations/2026-09-10/pulse_length_20us_echo_dense/03-52-05-370729",
+      "calibrations/2026-09-10/pulse_length_25us_echo_dense/04-51-10-586299",
+      "calibrations/2026-09-10/pulse_length_30us_echo_dense/05-56-41-274811",
+      "calibrations/2026-09-10/pulse_length_35us_echo_dense/07-08-26-761979",
+      "calibrations/2026-09-10/pulse_length_40us_echo_dense/08-22-27-491515"
+    ],
+    "scope": "Supplemental: dense pulse-length dependence, q6, September 9-10 2026",
+    "simulation_acceptance": "contrast >= 0.001; both crossings; FWHM 15.038-1600 kHz; no SNR gate",
+    "simulation_detuning_convention": "model detuning = -experimental detuning; cached columns reversed before all comparisons",
+    "simulation_validation": {
+      "benchmark_4000_points_1us_seconds": 0.016879700124263763,
+      "checks": [
+        {
+          "length_us": 1.0,
+          "reference_max_abs_error": 2.9483360197701813e-14
+        },
+        {
+          "length_us": 10.0,
+          "reference_max_abs_error": 2.084998840246044e-13
+        },
+        {
+          "length_us": 40.0,
+          "reference_max_abs_error": 3.4715286201247864e-14
+        },
+        {
+          "length_us": 1.0,
+          "sampled_1ns_vs_05ns_max_abs_probability_error": 0.0005762418169347194
+        },
+        {
+          "length_us": 2.0,
+          "sampled_1ns_vs_05ns_max_abs_probability_error": 0.00012318949019907155
+        },
+        {
+          "length_us": 5.0,
+          "sampled_1ns_vs_05ns_max_abs_probability_error": 2.0198070807109225e-05
+        },
+        {
+          "length_us": 10.0,
+          "sampled_1ns_vs_05ns_max_abs_probability_error": 1.663212532243552e-05
+        },
+        {
+          "length_us": 15.0,
+          "sampled_1ns_vs_05ns_max_abs_probability_error": 1.916437654958525e-05
+        },
+        {
+          "length_us": 20.0,
+          "sampled_1ns_vs_05ns_max_abs_probability_error": 1.5480235010523202e-05
+        },
+        {
+          "length_us": 25.0,
+          "sampled_1ns_vs_05ns_max_abs_probability_error": 9.119587100148152e-06
+        },
+        {
+          "length_us": 30.0,
+          "sampled_1ns_vs_05ns_max_abs_probability_error": 6.6668404156144945e-06
+        },
+        {
+          "length_us": 35.0,
+          "sampled_1ns_vs_05ns_max_abs_probability_error": 6.489790738362089e-06
+        },
+        {
+          "length_us": 40.0,
+          "sampled_1ns_vs_05ns_max_abs_probability_error": 5.949535676119666e-06
+        }
+      ],
+      "full_campaign_estimated_minutes": 2.059323415160179,
+      "initial_state": "ground",
+      "model": {
+        "anharmonicity_mhz": -237.95,
+        "cutoff": 0.005,
+        "t1_us": 41.71194395819269,
+        "t2_star_us": 6.121784257658573
+      },
+      "readout_assumption": "P1 + P2",
+      "sampling": "held 1 ns waveform samples",
+      "solver": "RK4, 1 ns, double precision, 12 CPU threads"
+    },
+    "source_files": [
+      {
+        "path": "pulse_length_spectroscopy/overnight_dense_20260909/measured_analysis/analysis.json",
+        "sha256": "c9bf194632f2dc195dabe39086ced526199c813c4a41d9501de1b83df08f6b35"
+      },
+      {
+        "path": "pulse_length_spectroscopy/overnight_dense_20260909/simulation_comparison/comparison.json",
+        "sha256": "30897ad21745f76566835ae74161be49e7688d1800243128dd3770dd9033425a"
+      },
+      {
+        "path": "pulse_length_spectroscopy/overnight_dense_20260909/status.json",
+        "sha256": "f70a011341f4cdab31f1bfa27493866ae443d80b444a46cd8c285882406137e7"
+      },
+      {
+        "path": "pulse_length_spectroscopy/overnight_dense_20260909/validation.json",
+        "sha256": "e0b207e9a24e58b5dd7cfc49b5ad05b13e41cca6c7d7db9e87a43bf1512d8f92"
+      },
+      {
+        "path": "pulse_length_spectroscopy/overnight_dense_20260909/build_analysis_report.py",
+        "sha256": "b18bbea966a521e3625eed91c39c20cab203f82e0041bf60b4cbb093b9e5ee61"
+      },
+      {
+        "path": "pulse_length_spectroscopy/overnight_dense_20260909/simulation_comparison/analyze_comparison.py",
+        "sha256": "37617fa346c88ed5cc896ae2109d51176be4927bb64b6694e5b3236382a89b6f"
+      },
+      {
+        "path": "pulse_length_spectroscopy/overnight_dense_20260909/simulation_comparison/run_simulations.py",
+        "sha256": "9ccf925f946ed316cdc411b1fdb9ceb3242ba38418174ec45391cf718bd1dfe9"
+      },
+      {
+        "path": "pulse_length_spectroscopy/overnight_dense_20260909/simulation_comparison/qutrit_fast.cpp",
+        "sha256": "49e0201f276da584518826b967c707b9fea936e0a37d9cddca0887faa3f9861d"
+      },
+      {
+        "path": "pulse_length_spectroscopy/overnight_dense_20260909/simulation_comparison/validation.json",
+        "sha256": "5f4991c994fba589ea5978146a2b64e897da84b90dec4cbd7db76269d4e40288"
+      }
+    ],
+    "source_root": "OPX1000_DATA_DIR (default sibling opx1000-codes/data)"
+  },
+  "schema_version": 1
+}

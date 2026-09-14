@@ -166,3 +166,24 @@ The measured Figure 4 compares q6 beta=0 and beta=-0.22 from the September
 5--6, 2026 calibration campaign. Regenerate its figure and experimental data
 package with `python scripts/make_main_ac_stark_correction_maps.py`.
 See `data/README.md` for raw-source import and fit provenance.
+
+
+## Dense q6 pulse-length comparison
+
+The added Supplemental section uses the September 9--10, 2026 q6 campaign
+from `opx1000-codes/data/pulse_length_spectroscopy/overnight_dense_20260909`.
+It includes combined linewidth-versus-Rabi-frequency curves through 25 us
+and a standalone paired-linewidth plot, with a campaign-specific T2* reference
+of 51.996 kHz (not the paper's q1 normalization).
+
+```bash
+python scripts/make_dense_pulse_length_comparison.py
+```
+
+The default uses the portable paper data package once available. To reimport
+saved source analysis, use `--source-data-dir /path/to/opx1000-codes/data`
+or `OPX1000_DATA_DIR`. The generator writes PDF, PNG and SVG figures and
+refreshes `12_dense_pulse_length.npz` plus JSON provenance separately under
+`paper/data/experimental/` and `paper/data/numerical/`. It preserves the
+source half-height widths and quality masks; it does not refit spectra.
+Build the supplement with `make paper-supplemental`.

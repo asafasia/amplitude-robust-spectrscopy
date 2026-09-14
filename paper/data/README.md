@@ -105,9 +105,10 @@ arithmetic-mean centering, and 10--60 MHz range, with original acquisition
 centers and source row indices for traceability. No zero-amplitude point or
 interpolated data are added. The inset uses a symmetric -16 to +16 kHz
 display window; excursions outside it remain in the main panel and exported data.
-The numerical export contains only the unchanged constant-drive three-level
-reference at anharmonicity -216 MHz. This illustrative reference retains its
-bare-transition zero; it is not a fit to the q6 measurement. The prior simulated
+The numerical export contains the constant-drive three-level simulation
+at the q6 anharmonicity -237.95 MHz (f12-f01 convention), using the
+237950000 Hz magnitude recorded in Figure 4's pulse metadata. It retains its
+bare-transition zero. The prior simulated
 root and echo curves are no longer included in Figure 5.
 
 The lower panel shows measured FWHM for the same selected rows. The reusable
@@ -120,7 +121,7 @@ no width-based filtering is applied. The experimental export includes widths,
 fit centers, contrast, R-squared, acceptance flags, and nominal covariance
 errors. Those errors describe smoothed fits and are not plotted as independent
 measurement uncertainties. The top panel retains the previous measured
-centers and unchanged constant-drive simulation.
+centers and the constant-drive simulation with q6 anharmonicity.
 
 Panel (b) also contains a constant-drive Bloch-model reference
 `Gamma_T2*sqrt(1+(2*pi*rabi_MHz)^2*T1_us*T2_us)`, using the existing q1
@@ -129,3 +130,24 @@ without markers. The logarithmic linewidth axes show kHz on the left and
 `FWHM/Gamma_T2` on the right, with `Gamma_T2=43.5 kHz`; this is the paper's
 q1 normalization reference, not a new q6 coherence measurement. The numerical
 export records the linewidth curve, coherence parameters, and normalized widths.
+
+
+## Dense q6 pulse-length series
+
+`12_dense_pulse_length` is exported separately for experiment and simulation
+by `scripts/make_dense_pulse_length_comparison.py`. The ten-length, 400-amplitude
+arrays retain original amplitude indices, nominal amplitudes, calibrated Rabi
+frequencies, half-height widths and crossings, contrast, and acceptance and
+peak/dip masks. The experimental package additionally contains estimated SNR.
+The figures select lengths through 25 us; the paired plot intersects acceptance
+masks at identical length/amplitude indices (1278 pairs). The 30--40 us measured
+rows have no accepted widths. Unresolved widths are NaN, not zero.
+
+The source is the q6 September 9--10 campaign in `opx1000-codes/data`, not the
+older q1 datasets. Sidecars record source-relative paths, SHA-256 hashes,
+acquisition/device settings, numerical validation and the simulation detuning
+mapping. This campaign uses beta=0 and disabled AC-Stark compensation; the stored
+kappa value is inactive. The right linewidth axis uses its saved T2*=6.121784 us,
+with reference 1/(pi*T2*)=51.996 kHz. The simulation arrays contain precomputed
+qutrit predictions, not a refit; this generator reproduces the displayed figures
+from the documented package without requiring the original hardware or solver.

@@ -27,8 +27,8 @@ from echospec.analysis.calibration_gaussian import fit_calibration_dip
 RABI_MHZ = np.unique(
     np.concatenate((np.linspace(0.0, 60.0, 1201), np.geomspace(1e-5, 1.0, 201)))
 )
-# Preserve the original q1 three-level constant-drive reference.
-ANHARMONICITY_MHZ = -216.0
+# q6 calibration magnitude; the Hamiltonian uses alpha = f12 - f01.
+ANHARMONICITY_MHZ = -237.95
 SOURCE_PATH = (
     PROJECT_ROOT / "paper/data/experimental/04_main_ac_stark_correction_maps.npz"
 )
@@ -171,7 +171,8 @@ def main() -> None:
             "model": "Original three-level constant-drive Hamiltonian; center minimizes upper dressed eigenvalue gap",
             "detuning_search_mhz": [-30.0, 15.0],
             "detuning_search_points": 9001,
-            "reference": "Unchanged q1 anharmonicity -216 MHz; illustrative reference, not a q6 fit",
+            "reference": "q6 anharmonicity -237.95 MHz (f12-f01 convention)",
+            "anharmonicity_source": "paper/data/experimental/04_main_ac_stark_correction_maps.json: applied_pulse_metadata.drag.drag_anharmonicity_hz_by_qubit; recorded magnitude 237950000 Hz",
             "centering": "No empirical mean subtraction; detuning relative to bare transition",
             "linewidth_model": "Steady-state two-level Bloch power broadening: Gamma=Gamma_T2*sqrt(1+(2*pi*rabi_MHz)^2*T1_us*T2_us)",
             "coherence_source": "paper/coherence_parameters.tex; existing q1 reference, not a q6 coherence measurement",
