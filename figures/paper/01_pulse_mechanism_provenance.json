@@ -1,0 +1,56 @@
+{
+  "generator": "scripts/make_main_pulse_mechanism.py",
+  "original_workflow": "notebooks/paper/30_main_pulse_mechanism.ipynb",
+  "model": "Unitary two-level; no relaxation or dephasing",
+  "pulse_length_us": 10.0,
+  "cutoff": 0.005,
+  "order": 0.5,
+  "rabi_mhz": 15.0,
+  "detunings_mhz": [
+    0.0,
+    0.1,
+    2.0
+  ],
+  "final_populations": [
+    9.240887055561586e-09,
+    0.6870269030472003,
+    0.9637696235782404
+  ],
+  "main_figure_size_inches": [
+    3.38,
+    3.05
+  ],
+  "main_panel_titles": false,
+  "main_figure_style": {
+    "font.family": "DejaVu Sans",
+    "mathtext.fontset": "dejavusans",
+    "font.size": 7,
+    "axes.labelsize": 7,
+    "axes.titlesize": 7,
+    "xtick.labelsize": 6,
+    "ytick.labelsize": 6,
+    "axes.linewidth": 0.6,
+    "lines.linewidth": 1.0,
+    "axes.grid": false,
+    "pdf.fonttype": 42,
+    "svg.fonttype": "none",
+    "savefig.bbox": null
+  },
+  "population_colors": [
+    "#555555",
+    "#d55e00",
+    "#0072b2"
+  ],
+  "population_linestyles": [
+    "-",
+    "--",
+    "-."
+  ],
+  "spectrum_color": "#009e73",
+  "schematic_variant": {
+    "included_in_paper": false,
+    "energy_levels": "Illustrative weakly anharmonic ladder, not to scale",
+    "pulse": "Ideal root-Lorentzian, displayed over -6 <= t/tau <= 6",
+    "cancellation": "Ideal symmetric unitary two-level pulse at resonance"
+  }
+}

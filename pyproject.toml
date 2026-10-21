@@ -31,6 +31,9 @@ dev = [
 mps = [
     "torch>=2.2",
 ]
+reports = [
+    "plotly>=5",
+]
 
 [tool.setuptools.packages.find]
 include = ["echospec*", "data_loader*"]
@@ -39,6 +42,9 @@ exclude = ["archive*", "assets*", "data*", "figures*", "notebooks*", "scripts*"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["."]
+
+[tool.setuptools.package-data]
+"echospec.simulation" = ["qutrit_rk4.cpp"]
 
 [tool.ruff]
 line-length = 88

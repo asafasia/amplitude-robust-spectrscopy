@@ -234,13 +234,13 @@ def generate(source: Path | None = None) -> None:
     right = ax.secondary_yaxis(
         "right", functions=(lambda w: w / reference, lambda r: r * reference)
     )
-    right.set_ylabel(r"FWHM / $\Gamma_{T_2^*,q6}$")
+    right.set_ylabel(r"FWHM / $\Gamma_{T_2^*}$")
     right.set_yticks([0.2, 0.5, 1, 2, 5, 10, 20])
     right.yaxis.set_major_formatter(fmt)
     right.yaxis.set_minor_formatter(NullFormatter())
     ax.axhline(reference, color=".4", ls=":", lw=1.1)
     ax.annotate(
-        rf"$\Gamma_{{T_2^*,q6}}={reference:.1f}$ kHz",
+        rf"$\Gamma_{{T_2^*}}={reference:.1f}$ kHz",
         xy=(0.98, reference),
         xycoords=ax.get_yaxis_transform(),
         xytext=(0, 5),

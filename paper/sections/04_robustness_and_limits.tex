@@ -19,87 +19,112 @@ $\Omega_c\ll1/\sqrt{T_1T_2}$; the inequality therefore points toward
 \emph{smaller}, not larger, endpoint amplitudes.  The relative cutoff $c$
 cannot be specified independently of $\Omega_0$, $T_1$, and $T_2$, giving a
 three-dimensional design space of pulse duration, drive amplitude, and cutoff
-level.  The corresponding cutoff--amplitude measurements and their
-resolution--signal analysis are reported in the Supplemental
+level.
+
+The waveform itself offers a further control of the linewidth--contrast
+tradeoff. A derivative removal by adiabatic gate (DRAG) pulse adds a
+quadrature component proportional to the time derivative of the in-phase
+waveform to suppress leakage and drive-induced phase
+errors~\cite{motzoi_drag_2009,gambetta_analytic_2011}.
+Figure~\ref{fig:pulse-improvement} compares three-level simulations
+for a $30~\mu\mathrm{s}$ echo-root-Lorentzian pulse with $c=0.001$: an uncorrected outer
+envelope, the same envelope with DRAG, and DRAG with a polynomial edge
+correction. All three retain the same $16~\mathrm{ns}$ sine midpoint
+transition. Thus, panels (a) and (b) isolate the derivative quadrature,
+while (b) and (c) isolate the outer-envelope modification.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\columnwidth]{../figures/paper/03_pulse_improvement.pdf}
+    \caption{Simulated improvement through pulse shaping.
+    (a)--(c) Final $P_e$ for an echo-root-Lorentzian pulse (echo),
+    echo with DRAG, and echo with DRAG plus
+    cutoff subtraction and a $p=5$ polynomial window, respectively.
+    All use $L=30~\mu\mathrm{s}$, $c=0.001$, a $16~\mathrm{ns}$ sine
+    inversion, $T_1=51.24~\mu\mathrm{s}$, $T_2=7.31~\mu\mathrm{s}$,
+    and $\alpha/(2\pi)=-216~\mathrm{MHz}$. The shared scale saturates
+    above $P_e=0.6$.
+    Thin white dashed lines in (a)--(c) mark
+    $\Delta/(2\pi)=\pm1/(2\pi T_2)$.
+    (d) Contrast $C$, the dip depth in excited-state probability, on a
+    scale from 0 to 1. (e) Dip FWHM. Both use a linear background fitted at
+    $0.4\leq|\Delta/(2\pi)|\leq0.5~\mathrm{MHz}$.
+    The right axis uses $\Gamma_{T_2}=1/(\pi T_2)=43.5~\mathrm{kHz}$
+    as its unit (dotted line).
+    Zero-drive metrics are undefined and omitted.}
+    \label{fig:pulse-improvement}
+\end{figure}
+
+Writing $f(t)=[1+(t/\sigma)^2]^{-1/2}$ with time relative to the midpoint,
+the corrected unsigned envelope is
+\begin{equation}
+    g(t)=\frac{f(t)-c}{1-c}
+    \left[1-\left(\frac{2t}{L}\right)^2\right]^5,
+    \qquad |t|<L/2,
+\end{equation}
+with zero drive outside the pulse and
+$\sigma=(L/2)/\sqrt{c^{-2}-1}$. The sine sign factor $s(t)$ changes
+from $+1$ to $-1$ over $16~\mathrm{ns}$, giving $I(t)=\Omega_0g(t)s(t)$.
+The added DRAG quadrature is
+\begin{equation}
+    Q(t)=-\frac{\beta}{|\alpha|}\frac{dI(t)}{dt},
+    \label{eq:drag-quadrature}
+\end{equation}
+where $\alpha=\omega_{12}-\omega_{01}$ is the qubit anharmonicity.
+We use DRAG with $\beta=-0.5$ for near-optimal compensation of
+AC-Stark-induced detuning~\cite{motzoi_drag_2009,gambetta_analytic_2011},
+as supported by the coefficient scan in the Supplemental
 Material~\cite{SupplementalMaterial}.
 
-Beyond linewidth and contrast, amplitude robustness requires that increasing
-the drive not displace the inferred resonance center.  At large amplitudes,
-multilevel AC-Stark shifts and finite-pulse interference become important; we
-therefore examine the center stability in an additional q6 measurement
-over a calibrated nominal Rabi-frequency range of $10$--$60~\mathrm{MHz}$.
+DRAG suppresses amplitude-dependent spectral structure but does not, by
+itself, prevent the high-drive linewidth increase in this comparison.
+Adding the polynomial correction changes the FWHM at
+$\Omega_0/(2\pi)=100~\mathrm{MHz}$ from $506$ to $162~\mathrm{kHz}$,
+while the probability contrast increases from $0.079$ to $0.315$.
+The corrected pulse maintains contrast above $0.31$ across the sampled
+$10$--$100~\mathrm{MHz}$ range. This improvement comes at the cost of a
+broader low-drive line, and the high-drive width remains above
+$1/(\pi T_2)$. Here contrast is the dip depth relative to the local
+background, expressed as a probability difference rather than normalized
+by measurement noise.
+These simulations establish a pulse-shaping tradeoff rather than an
+experimental sensitivity gain or a globally optimized waveform.
+
+Figure~\ref{fig:duration-cutoff-scan} extends this comparison to five pulse
+lengths, using the same polynomial correction, midpoint smoothing, and DRAG.
+The upper panels vary $c$ at a common nominal drive of
+$\Omega_0/(2\pi)=49.5~\mathrm{MHz}$; the lower panels vary drive at
+$c=1.05\times10^{-3}$. Both values are the nearest saved samples to
+$50~\mathrm{MHz}$ and $10^{-3}$, respectively. At the common operating
+point, increasing $L$ from $10$ to $30~\mu\mathrm{s}$ reduces the local
+FWHM from $309$ to $150~\mathrm{kHz}$, but lowers contrast from $0.723$
+to $0.388$. Extending to $45~\mu\mathrm{s}$ yields $139~\mathrm{kHz}$
+and contrast $0.220$; at $60~\mu\mathrm{s}$, the width increases to
+$188~\mathrm{kHz}$ while contrast falls to $0.114$.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\columnwidth]{%
-        ../figures/paper/04_main_ac_stark_correction_maps.pdf}
-    \caption{Measured q6 echo-root-Lorentzian spectroscopy for (a) $\beta=0$
-    and (b) $\beta=-0.22$, with $L=50~\mu\mathrm{s}$ and cutoff $c=0.00075$.
-    White curves trace the fitted resonance centers. Over the
-    $10$--$60~\mathrm{MHz}$ drive range, the $\beta=-0.22$ waveform shows
-    smaller amplitude-dependent fluctuations of the resonance center,
-    while preserving the narrow depletion feature. This waveform combines
-    a DRAG quadrature with a smoothed midpoint inversion.}
-    \label{fig:ac-stark-correction-maps}
+    \includegraphics[width=\columnwidth]{../figures/paper/04_duration_cutoff_scan.pdf}
+    \caption{Duration--cutoff tradeoff for the polynomial-corrected DRAG echo.
+    Colors denote $L=10$, 20, 30, 45, and $60~\mu\mathrm{s}$.
+    (a),(b) Local dip FWHM and probability contrast versus cutoff at
+    $\Omega_0/(2\pi)=49.5~\mathrm{MHz}$, showing the
+    $10^{-5}\leq c\leq10^{-2}$ portion of the scan.
+    (c),(d) The same metrics versus drive at $c=1.05\times10^{-3}$,
+    marked vertically above. Right-hand FWHM axes use $\Gamma_{T_2}$
+    as their unit (horizontal dotted lines).
+    Pulse corrections, coherence parameters, and the contrast definition
+    match Fig.~\ref{fig:pulse-improvement}; only $L$, $c$, and drive vary.
+    Rejected or unresolved dips are omitted. Curves connect saved samples
+    without fitting or optimizing cutoff separately for each duration.}
+    \label{fig:duration-cutoff-scan}
 \end{figure}
 
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=\columnwidth]{%
-        ../figures/paper/04_main_ac_stark_shifts_square.pdf}
-    \caption{Resonance-center stability and linewidth of the measured
-    echo-root-Lorentzian response. (a) Measured center variations
-    compared with the simulated constant-drive AC-Stark shift. The measured
-    curves use the same fitted centers as Fig.~\ref{fig:ac-stark-correction-maps}
-    for $\beta=0$ and $-0.22$. The inset resolves their amplitude-dependent
-    fluctuations over $10$--$60~\mathrm{MHz}$: the $\beta=-0.22$ waveform
-    exhibits smaller center variations. The constant-drive curve uses
-    the q6 anharmonicity in the three-level simulation.
-    (b) Gaussian-fit FWHM of the same measured spectra and the red
-    constant-drive power-broadening reference, on a logarithmic scale.
-    The right axis expresses linewidths in units of the paper's q1
-    reference $\Gamma_{T_2}=\EffectiveCoherenceFwhm~\mathrm{kHz}$ (dotted line).
-    Both measured waveforms broaden with drive, while the $\beta=0$
-    response exhibits larger linewidth excursions at high amplitudes.}
-    \label{fig:main-ac-stark-shifts}
-\end{figure}
-
-For comparison, the weak-drive three-level AC-Stark shift of a constant drive
-is $\delta f_{01}\simeq-\left(\Omega_0/2\pi\right)^2/
-[2(\alpha/2\pi)]$~\cite{PhysRevA.76.042319,schneider_multilevel_2018}.
-With the q6 anharmonicity $\alpha/(2\pi)=-237~\mathrm{MHz}$, it reaches
-$5.3~\mathrm{MHz}$ at $\Omega_0/(2\pi)=50~\mathrm{MHz}$.  For the
-$20~\mu\mathrm{s}$ root-Lorentzian envelope with $c=0.001$, the phase-average
-shift is smaller by $\langle f^2\rangle_t=0.001570$ and reaches only
-$8.2~\mathrm{kHz}$; the echo sign change does not cancel this quadratic term.
-Fig.~\ref{fig:ac-stark-correction-maps} instead tests a derivative-quadrature
-waveform on q6 in the September 5--6 calibration campaign. The acquisition
-uses $I+iQ$ with $Q=-\beta\dot I/(2\pi\alpha)$, where
-$\alpha=237~\mathrm{MHz}$ is the signed value supplied to the
-waveform generator and time is in microseconds. Both the derivative
-quadrature and the midpoint smoothing change between these sequential runs;
-no accumulated-phase correction is applied. The depletion feature persists
-across the displayed $10$--$60~\mathrm{MHz}$ range in both maps.
-The RMS center motion about each run's mean is $6.78$ and
-$2.64~\mathrm{kHz}$ for $\beta=0$ and $-0.22$, respectively. This lower
-scatter characterizes the combined smoothed-midpoint and DRAG waveform;
-the comparison does not isolate the derivative-quadrature contribution.
-The absence of resolved three-state readout precludes a measured
-leakage-suppression claim.
-
-Fig.~\ref{fig:main-ac-stark-shifts}(a) compares these measured center
-variations with the three-level constant-drive simulation for q6. The
-experimental curves retain the centering used in
-Fig.~\ref{fig:ac-stark-correction-maps}. The simulated megahertz-scale
-displacement contrasts with the kilohertz-scale
-residual motion of the measured echo resonances. The inset magnifies the
-$\pm16~\mathrm{kHz}$ region around the mean centers.
-Panel (b) compares FWHM values extracted
-from the same Gaussian dip estimator with the steady-state Bloch reference
-$\Gamma=\Gamma_{T_2}\sqrt{1+\Omega^2T_1T_2}$, using the paper's q1 values
-$T_1=\MeasuredTOne~\mu\mathrm{s}$ and $T_2=\EffectiveTTwo~\mu\mathrm{s}$.
-The right axis uses the same q1 coherence reference, rather than a separate
-q6 coherence calibration. Both measured linewidths increase with drive;
-the smaller center fluctuations for $\beta=-0.22$ therefore do not imply
-a uniformly narrower resonance. Numerical accumulated-phase compensation
-is discussed separately in the Supplemental Material~\cite{SupplementalMaterial}.
+The contrast maximum moves toward smaller cutoff as duration increases.
+Consequently, pulse length and cutoff must be chosen jointly with the
+available drive range and contrast requirement. Here $c$ sets the original
+root-Lorentzian core width even though the corrected envelope vanishes at
+its endpoints: changing $L$ or $c$ also changes $\sigma$.
+The displayed FWHM is a local, finite-window dip metric; a small width with
+vanishing contrast does not establish useful spectral resolution. Contrast
+describes the probability response and does not assume a measurement shot budget.

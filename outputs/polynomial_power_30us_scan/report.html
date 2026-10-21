@@ -1,0 +1,68 @@
+<!doctype html><html lang="en"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Polynomial window exponent · 30 µs echo</title>
+<style>body{font:16px/1.55 system-ui;color:#172636;background:#f6f8fb;
+max-width:1400px;margin:auto;padding:28px}h1,h2{line-height:1.2}
+.card,figure{background:white;padding:22px;border-radius:12px;margin:22px 0}
+img{width:100%;height:auto}figcaption{color:#566477;font-size:14px}
+table{border-collapse:collapse;width:100%;font-size:14px}td,th{padding:8px;
+border-bottom:1px solid #ddd;text-align:right}th{background:#eaf0f7}
+.scroll{overflow:auto}a{color:#146aa2}code{background:#eaf0f7;padding:2px 5px}</style>
+<h1>Change the exponent, preserve smooth endpoints</h1>
+<p>Three-level Lindblad simulation · 30 µs · β = −0.5 · 16 ns sine echo transition
+· 100 amplitudes from 0 to 100 MHz.</p>
+<div class="card"><p>The screenshot shows the existing cubic window. This scan tests
+<b>w<sub>p</sub>(t) = [1 − (2t/L)²]<sup>p</sup></b> inside |t| &lt; L/2 and zero outside,
+with p = 3, 4, 6, 8, 12, 16, 24. Each tested window has zero value,
+first derivative, and second derivative at the endpoints.</p>
+<ul><li>Cutoff 0.001: best sampled minimum SNR/width score is <b>p = 16</b>. Worst width 209.2 kHz and minimum ideal SNR 13.47; the original p = 3 gives 152.9 kHz and 7.30.</li><li>Cutoff 0.003: best sampled minimum SNR/width score is <b>p = 24</b> (at the tested upper boundary). Worst width 267.3 kHz and minimum ideal SNR 12.11; the original p = 3 gives 160.6 kHz and 4.16.</li><li>Cutoff 0.005: best sampled minimum SNR/width score is <b>p = 24</b> (at the tested upper boundary). Worst width 280.0 kHz and minimum ideal SNR 11.03; the original p = 3 gives 167.0 kHz and 3.33.</li></ul><p>“Best” maximizes the minimum ideal SNR/FWHM across
+the 50 sampled amplitudes from 50.505–100 MHz. It is a heuristic sharpness score,
+not a frequency uncertainty or a global optimum over possible window functions.
+The table separately reports width and SNR, so a tradeoff is visible.</p>
+<p>At cutoff 0.001, p = 8 is a useful tested compromise: all 50 high-amplitude
+points satisfy the illustrative targets width ≤ 200 kHz and ideal SNR ≥ 10.
+The cubic window keeps a narrower dip under the previous ±0.5 MHz linewidth
+definition. Larger powers improve visibility while broadening that measured width.
+The targets are examples, not experimental requirements.</p></div>
+<figure><img src="linewidth_snr.png" alt="Linewidth and ideal SNR versus amplitude, with all tested exponents"><figcaption>Linewidth and ideal SNR versus amplitude, with all tested exponents · <a href="linewidth_snr.pdf">PDF</a></figcaption></figure>
+<figure><img src="power_tradeoff.png" alt="High-amplitude worst cases, rather than a favorable single amplitude"><figcaption>High-amplitude worst cases, rather than a favorable single amplitude · <a href="power_tradeoff.pdf">PDF</a></figcaption></figure>
+<figure><img src="windows.png" alt="Window shapes and unsigned in-phase envelope; no area or peak renormalization"><figcaption>Window shapes and unsigned in-phase envelope; no area or peak renormalization · <a href="windows.pdf">PDF</a></figcaption></figure>
+<figure><img src="shoulder_sensitivity.png" alt="Shoulder sensitivity"><figcaption>These dips are not flat-background Lorentzians. At ±1 MHz shoulders, p = 8 is narrower than p = 3 (199.94 vs 212.10 kHz), while retaining higher SNR (12.61 vs 9.41). The primary table consistently uses the previous ±0.5 MHz analysis window. <a href="shoulder_sensitivity.pdf">PDF</a></figcaption></figure>
+<div class="card"><h2>Numbers</h2><div class="scroll"><table><thead><tr>
+<th>Cutoff</th><th>Window</th><th>FWHM at 100<br>kHz</th><th>SNR at 100</th>
+<th>Center at 100<br>kHz</th><th>Worst FWHM<br>50–100 MHz, kHz</th>
+<th>Min SNR<br>50–100 MHz</th><th>Min SNR/width<br>MHz⁻¹</th>
+<th>Width ≤ 200 kHz<br>SNR ≥ 10</th><th>Pareto</th>
+</tr></thead><tbody><tr><td>0.001</td><td>Hard edges</td><td>506.02</td><td>2.50</td><td>+1.009</td><td>506.02</td><td>2.50</td><td>4.94</td><td>0/50</td><td></td></tr><tr><td>0.001</td><td>p = 3</td><td>152.85</td><td>7.30</td><td>-0.758</td><td>152.85</td><td>7.30</td><td>47.75</td><td>3/50</td><td>yes</td></tr><tr><td>0.001</td><td>p = 4</td><td>155.00</td><td>8.21</td><td>-0.321</td><td>155.00</td><td>8.21</td><td>52.94</td><td>14/50</td><td>yes</td></tr><tr><td>0.001</td><td>p = 6</td><td>163.47</td><td>9.61</td><td>+0.910</td><td>163.54</td><td>9.61</td><td>58.76</td><td>40/50</td><td>yes</td></tr><tr><td>0.001</td><td>p = 8</td><td>173.53</td><td>10.68</td><td>+0.591</td><td>173.53</td><td>10.68</td><td>61.57</td><td>50/50</td><td>yes</td></tr><tr><td>0.001</td><td>p = 12</td><td>192.48</td><td>12.28</td><td>-1.105</td><td>192.48</td><td>12.28</td><td>63.79</td><td>50/50</td><td>yes</td></tr><tr><td>0.001</td><td>p = 16</td><td>209.17</td><td>13.47</td><td>-0.793</td><td>209.17</td><td>13.47</td><td>64.40</td><td>15/50</td><td>yes</td></tr><tr><td>0.001</td><td>p = 24</td><td>239.67</td><td>15.18</td><td>+1.502</td><td>239.98</td><td>15.18</td><td>63.35</td><td>0/50</td><td>yes</td></tr><tr><td>0.003</td><td>Hard edges</td><td>357.94</td><td>0.63</td><td>-1.291</td><td>483.91</td><td>0.63</td><td>1.76</td><td>0/50</td><td></td></tr><tr><td>0.003</td><td>p = 3</td><td>160.57</td><td>4.16</td><td>-1.000</td><td>160.57</td><td>4.16</td><td>25.90</td><td>0/50</td><td>yes</td></tr><tr><td>0.003</td><td>p = 4</td><td>165.99</td><td>5.01</td><td>+1.081</td><td>166.37</td><td>5.01</td><td>30.19</td><td>0/50</td><td>yes</td></tr><tr><td>0.003</td><td>p = 6</td><td>178.22</td><td>6.38</td><td>+0.816</td><td>178.71</td><td>6.38</td><td>35.77</td><td>0/50</td><td>yes</td></tr><tr><td>0.003</td><td>p = 8</td><td>191.01</td><td>7.45</td><td>-1.231</td><td>191.01</td><td>7.45</td><td>38.99</td><td>0/50</td><td>yes</td></tr><tr><td>0.003</td><td>p = 12</td><td>213.28</td><td>9.08</td><td>-0.695</td><td>213.28</td><td>9.08</td><td>42.60</td><td>1/50</td><td>yes</td></tr><tr><td>0.003</td><td>p = 16</td><td>232.00</td><td>10.32</td><td>+1.603</td><td>232.76</td><td>10.32</td><td>44.47</td><td>0/50</td><td>yes</td></tr><tr><td>0.003</td><td>p = 24</td><td>266.28</td><td>12.11</td><td>+1.068</td><td>267.31</td><td>12.11</td><td>45.48</td><td>0/50</td><td>yes</td></tr><tr><td>0.005</td><td>Hard edges</td><td>468.22</td><td>0.45</td><td>+1.616</td><td>468.22</td><td>0.45</td><td>0.96</td><td>0/50</td><td></td></tr><tr><td>0.005</td><td>p = 3</td><td>167.03</td><td>3.33</td><td>-0.776</td><td>167.03</td><td>3.33</td><td>19.94</td><td>0/50</td><td>yes</td></tr><tr><td>0.005</td><td>p = 4</td><td>173.30</td><td>4.11</td><td>-1.057</td><td>173.30</td><td>4.11</td><td>23.71</td><td>0/50</td><td>yes</td></tr><tr><td>0.005</td><td>p = 6</td><td>186.14</td><td>5.40</td><td>+1.223</td><td>186.68</td><td>5.40</td><td>28.99</td><td>0/50</td><td>yes</td></tr><tr><td>0.005</td><td>p = 8</td><td>198.95</td><td>6.43</td><td>+1.320</td><td>199.54</td><td>6.43</td><td>32.31</td><td>0/50</td><td>yes</td></tr><tr><td>0.005</td><td>p = 12</td><td>223.34</td><td>8.02</td><td>-1.099</td><td>223.34</td><td>8.02</td><td>35.93</td><td>0/50</td><td>yes</td></tr><tr><td>0.005</td><td>p = 16</td><td>244.26</td><td>9.24</td><td>-1.474</td><td>244.26</td><td>9.24</td><td>37.81</td><td>0/50</td><td>yes</td></tr><tr><td>0.005</td><td>p = 24</td><td>279.02</td><td>11.03</td><td>+1.648</td><td>280.02</td><td>11.03</td><td>39.45</td><td>0/50</td><td>yes</td></tr></tbody></table></div></div>
+<h2>Cutoff 0.001</h2><figure><img src="details_c0.001.png" alt="Resonance shift, contrast, final Pf, and all three state populations at 100 MHz"><figcaption>Resonance shift, contrast, final Pf, and all three state populations at 100 MHz · <a href="details_c0.001.pdf">PDF</a></figcaption></figure><figure><img src="populations_c0.001.png" alt="Hard edges, original cubic, p = 8, and best score: full population maps"><figcaption>Hard edges, original cubic, p = 8, and best score: full population maps · <a href="populations_c0.001.pdf">PDF</a></figcaption></figure><h2>Cutoff 0.003</h2><figure><img src="details_c0.003.png" alt="Resonance shift, contrast, final Pf, and all three state populations at 100 MHz"><figcaption>Resonance shift, contrast, final Pf, and all three state populations at 100 MHz · <a href="details_c0.003.pdf">PDF</a></figcaption></figure><figure><img src="populations_c0.003.png" alt="Hard edges, original cubic, p = 8, and best score: full population maps"><figcaption>Hard edges, original cubic, p = 8, and best score: full population maps · <a href="populations_c0.003.pdf">PDF</a></figcaption></figure><h2>Cutoff 0.005</h2><figure><img src="details_c0.005.png" alt="Resonance shift, contrast, final Pf, and all three state populations at 100 MHz"><figcaption>Resonance shift, contrast, final Pf, and all three state populations at 100 MHz · <a href="details_c0.005.pdf">PDF</a></figcaption></figure><figure><img src="populations_c0.005.png" alt="Hard edges, original cubic, p = 8, and best score: full population maps"><figcaption>Hard edges, original cubic, p = 8, and best score: full population maps · <a href="populations_c0.005.pdf">PDF</a></figcaption></figure><div class="card"><h2>Model and interpretation</h2>
+<p>The base envelope is [1+(t/σ)²]<sup>−1/2</sup>, with
+σ = 15 µs / √(cutoff<sup>−2</sup>−1). T₁ = 51.24 µs, T₂ = 7.31 µs,
+α = −216 MHz, no added Stark correction. I = A f(t)s(t)w(t) and
+Q = −β(dI/dt)/(2π|α|). DRAG differentiates the complete windowed envelope.
+The 30 µs duration, nominal amplitude and base σ remain fixed.</p>
+<p>FWHM is measured at half depth relative to a linear background from |detuning|
+≥ 0.4 MHz. Ideal SNR assumes perfect binary Pe readout with 500 shots at the
+center and 250 at each of ±0.45 MHz. Readout errors, drift, technical noise,
+and the cost of locating the center are omitted. Zero amplitude has no dip.
+The 43.5 kHz CW value 1/(πT₂) is a reference, not a lower bound on an echo notch.</p>
+<p>Changing p changes the effective duration and unsigned pulse area. The base
+cutoff still sets σ: this modification does not eliminate cutoff dependence.
+Equal-area controls rescale the p = 3 amplitude and are a separate diagnostic.</p>
+<p>At cutoff 0.001, p = 8 at nominal 100 MHz has the same unsigned I area as p = 3 at 93.19 MHz. On the refined grid these give 173.49 vs 151.90 kHz, and ideal SNR 10.69 vs 7.58. The width–visibility tradeoff survives area matching. Smooth endpoints alone do not guarantee a narrower dip.</p>
+<h2>Validation</h2><p>5 selected cases checked at 50.505, 74.747, 100 MHz: halving dt to 0.25 ns changes widths by at most 8.06 Hz; halving detuning spacing to 2.5 kHz adds at most 64.37 Hz. See validation.json for equal unsigned-I-area controls. Case c0.005_p24 has a maximum population change of 0.00017 between 0.5 and 0.25 ns, exceeding the stricter 1e−4 population threshold. Refining from 0.25 to 0.125 ns reduces that change to 5.2e-06 (a factor of 31.8); the additional width change is 0.26 Hz. Primary maps retain 0.5 ns sampling.</p>
+<p>All main arrays have shape 3 × 100 × 201. The original hard and p = 3 cases
+were rerun and compared numerically with the previous study.
+The main solver uses 0.5 ns RK4 steps.</p>
+<p><a href="metrics.csv">All metrics CSV</a> · <a href="summary.json">Summary</a> ·
+<a href="provenance.json">Parameters and reproducible commands</a> ·
+<a href="array_checks.json">Array and baseline checks</a> ·
+<a href="validation.json">Convergence and area controls</a> ·
+<a href="shoulder_checks.json">Shoulder sensitivity</a> ·
+<a href="waveform_metrics.json">Pulse areas</a> ·
+<a href="software_checks.json">Software checks</a></p>
+<p>54 focused regression tests passed, including product-rule DRAG and native/NumPy
+agreement. Scoped Ruff checks passed. The full suite is blocked at collection by
+missing PyTorch in the test environment; repository-wide lint reports 692 existing
+findings outside the changed files.</p>
+<details><summary>Raw populations and axes</summary><ul>
+<li><a href="c0.001_hard.npz">c0.001_hard.npz</a></li><li><a href="c0.001_p3.npz">c0.001_p3.npz</a></li><li><a href="c0.001_p4.npz">c0.001_p4.npz</a></li><li><a href="c0.001_p6.npz">c0.001_p6.npz</a></li><li><a href="c0.001_p8.npz">c0.001_p8.npz</a></li><li><a href="c0.001_p12.npz">c0.001_p12.npz</a></li><li><a href="c0.001_p16.npz">c0.001_p16.npz</a></li><li><a href="c0.001_p24.npz">c0.001_p24.npz</a></li><li><a href="c0.003_hard.npz">c0.003_hard.npz</a></li><li><a href="c0.003_p3.npz">c0.003_p3.npz</a></li><li><a href="c0.003_p4.npz">c0.003_p4.npz</a></li><li><a href="c0.003_p6.npz">c0.003_p6.npz</a></li><li><a href="c0.003_p8.npz">c0.003_p8.npz</a></li><li><a href="c0.003_p12.npz">c0.003_p12.npz</a></li><li><a href="c0.003_p16.npz">c0.003_p16.npz</a></li><li><a href="c0.003_p24.npz">c0.003_p24.npz</a></li><li><a href="c0.005_hard.npz">c0.005_hard.npz</a></li><li><a href="c0.005_p3.npz">c0.005_p3.npz</a></li><li><a href="c0.005_p4.npz">c0.005_p4.npz</a></li><li><a href="c0.005_p6.npz">c0.005_p6.npz</a></li><li><a href="c0.005_p8.npz">c0.005_p8.npz</a></li><li><a href="c0.005_p12.npz">c0.005_p12.npz</a></li><li><a href="c0.005_p16.npz">c0.005_p16.npz</a></li><li><a href="c0.005_p24.npz">c0.005_p24.npz</a></li></ul></details></div></html>

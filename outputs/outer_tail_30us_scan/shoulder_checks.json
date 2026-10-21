@@ -1,0 +1,1202 @@
+[
+  {
+    "case": "c0.003_ramp15_beta-0.5",
+    "cutoff": 0.003,
+    "window": "ramp15",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.3,
+    "fwhm_khz": 143.03443078340678,
+    "contrast": 0.14812723517974463,
+    "snr": 4.784734777037298
+  },
+  {
+    "case": "c0.003_ramp15_beta-0.5",
+    "cutoff": 0.003,
+    "window": "ramp15",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.45,
+    "fwhm_khz": 160.4525521752862,
+    "contrast": 0.16906469790152073,
+    "snr": 5.464499623753558
+  },
+  {
+    "case": "c0.003_ramp15_beta-0.5",
+    "cutoff": 0.003,
+    "window": "ramp15",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.6,
+    "fwhm_khz": 178.37983208556784,
+    "contrast": 0.18778325151711223,
+    "snr": 6.077675062391611
+  },
+  {
+    "case": "c0.003_ramp15_beta-0.5",
+    "cutoff": 0.003,
+    "window": "ramp15",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.8,
+    "fwhm_khz": 203.4488723086365,
+    "contrast": 0.20905573424235363,
+    "snr": 6.782594989970592
+  },
+  {
+    "case": "c0.003_ramp15_beta-0.5",
+    "cutoff": 0.003,
+    "window": "ramp15",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 1.0,
+    "fwhm_khz": 231.5350370713565,
+    "contrast": 0.22664693721617174,
+    "snr": 7.373479432628914
+  },
+  {
+    "case": "c0.003_ramp15_beta-0.5",
+    "cutoff": 0.003,
+    "window": "ramp15",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.3,
+    "fwhm_khz": 152.53303105430348,
+    "contrast": 0.10953051398895669,
+    "snr": 3.5212439645716738
+  },
+  {
+    "case": "c0.003_ramp15_beta-0.5",
+    "cutoff": 0.003,
+    "window": "ramp15",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.45,
+    "fwhm_khz": 163.4706946285404,
+    "contrast": 0.11973299268349091,
+    "snr": 3.848295599197487
+  },
+  {
+    "case": "c0.003_ramp15_beta-0.5",
+    "cutoff": 0.003,
+    "window": "ramp15",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.6,
+    "fwhm_khz": 175.65580651150776,
+    "contrast": 0.13050562850097613,
+    "snr": 4.194429299090205
+  },
+  {
+    "case": "c0.003_ramp15_beta-0.5",
+    "cutoff": 0.003,
+    "window": "ramp15",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.8,
+    "fwhm_khz": 193.04267503509718,
+    "contrast": 0.14459531394937175,
+    "snr": 4.64879862013693
+  },
+  {
+    "case": "c0.003_ramp15_beta-0.5",
+    "cutoff": 0.003,
+    "window": "ramp15",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 1.0,
+    "fwhm_khz": 211.66703359849092,
+    "contrast": 0.15781116334955825,
+    "snr": 5.077155886784745
+  },
+  {
+    "case": "c0.001_ramp15_beta-0.5",
+    "cutoff": 0.001,
+    "window": "ramp15",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.3,
+    "fwhm_khz": 129.29702569786866,
+    "contrast": 0.25944340877773786,
+    "snr": 8.55152407486699
+  },
+  {
+    "case": "c0.001_ramp15_beta-0.5",
+    "cutoff": 0.001,
+    "window": "ramp15",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.45,
+    "fwhm_khz": 146.42409767523924,
+    "contrast": 0.29242529897534364,
+    "snr": 9.702042921243082
+  },
+  {
+    "case": "c0.001_ramp15_beta-0.5",
+    "cutoff": 0.001,
+    "window": "ramp15",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.6,
+    "fwhm_khz": 160.3335993749785,
+    "contrast": 0.31508211192851543,
+    "snr": 10.516200428888093
+  },
+  {
+    "case": "c0.001_ramp15_beta-0.5",
+    "cutoff": 0.001,
+    "window": "ramp15",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.8,
+    "fwhm_khz": 176.11605938467372,
+    "contrast": 0.3359034329173538,
+    "snr": 11.284897339744282
+  },
+  {
+    "case": "c0.001_ramp15_beta-0.5",
+    "cutoff": 0.001,
+    "window": "ramp15",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 1.0,
+    "fwhm_khz": 189.18817722573095,
+    "contrast": 0.35029882215603003,
+    "snr": 11.829433247560699
+  },
+  {
+    "case": "c0.001_ramp15_beta-0.5",
+    "cutoff": 0.001,
+    "window": "ramp15",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.3,
+    "fwhm_khz": 138.6309200286776,
+    "contrast": 0.1827610298332054,
+    "snr": 5.932326805758895
+  },
+  {
+    "case": "c0.001_ramp15_beta-0.5",
+    "cutoff": 0.001,
+    "window": "ramp15",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.45,
+    "fwhm_khz": 158.30509343547396,
+    "contrast": 0.21026774313354035,
+    "snr": 6.840667288422241
+  },
+  {
+    "case": "c0.001_ramp15_beta-0.5",
+    "cutoff": 0.001,
+    "window": "ramp15",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.6,
+    "fwhm_khz": 177.45732420658774,
+    "contrast": 0.23249417908649628,
+    "snr": 7.586599050339393
+  },
+  {
+    "case": "c0.001_ramp15_beta-0.5",
+    "cutoff": 0.001,
+    "window": "ramp15",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.8,
+    "fwhm_khz": 203.34824762834847,
+    "contrast": 0.25570114626362184,
+    "snr": 8.379814903198122
+  },
+  {
+    "case": "c0.001_ramp15_beta-0.5",
+    "cutoff": 0.001,
+    "window": "ramp15",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 1.0,
+    "fwhm_khz": 231.46308399450183,
+    "contrast": 0.27355356801770836,
+    "snr": 9.001929129694854
+  },
+  {
+    "case": "c0.005_ramp15_beta-0.5",
+    "cutoff": 0.005,
+    "window": "ramp15",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.3,
+    "fwhm_khz": 149.41926641360877,
+    "contrast": 0.11756916483382068,
+    "snr": 3.7833961465836983
+  },
+  {
+    "case": "c0.005_ramp15_beta-0.5",
+    "cutoff": 0.005,
+    "window": "ramp15",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.45,
+    "fwhm_khz": 162.14023180111036,
+    "contrast": 0.13023162512302872,
+    "snr": 4.1901614481886575
+  },
+  {
+    "case": "c0.005_ramp15_beta-0.5",
+    "cutoff": 0.005,
+    "window": "ramp15",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.6,
+    "fwhm_khz": 175.93481645500526,
+    "contrast": 0.14302416457810813,
+    "snr": 4.602515911103517
+  },
+  {
+    "case": "c0.005_ramp15_beta-0.5",
+    "cutoff": 0.005,
+    "window": "ramp15",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.8,
+    "fwhm_khz": 195.4329167305779,
+    "contrast": 0.159167602615587,
+    "snr": 5.125558545955866
+  },
+  {
+    "case": "c0.005_ramp15_beta-0.5",
+    "cutoff": 0.005,
+    "window": "ramp15",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 1.0,
+    "fwhm_khz": 216.48962529410088,
+    "contrast": 0.17383027987300087,
+    "snr": 5.603884387449629
+  },
+  {
+    "case": "c0.005_ramp15_beta-0.5",
+    "cutoff": 0.005,
+    "window": "ramp15",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.3,
+    "fwhm_khz": 165.44069295975484,
+    "contrast": 0.09223871552235591,
+    "snr": 2.95816224151842
+  },
+  {
+    "case": "c0.005_ramp15_beta-0.5",
+    "cutoff": 0.005,
+    "window": "ramp15",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.45,
+    "fwhm_khz": 171.42148493547938,
+    "contrast": 0.09677557911310652,
+    "snr": 3.103056189589798
+  },
+  {
+    "case": "c0.005_ramp15_beta-0.5",
+    "cutoff": 0.005,
+    "window": "ramp15",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.6,
+    "fwhm_khz": 179.07298249618492,
+    "contrast": 0.10245408713312487,
+    "snr": 3.2845270521102186
+  },
+  {
+    "case": "c0.005_ramp15_beta-0.5",
+    "cutoff": 0.005,
+    "window": "ramp15",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.8,
+    "fwhm_khz": 190.69429932145792,
+    "contrast": 0.11076876185331597,
+    "snr": 3.550546766982683
+  },
+  {
+    "case": "c0.005_ramp15_beta-0.5",
+    "cutoff": 0.005,
+    "window": "ramp15",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 1.0,
+    "fwhm_khz": 203.3270935601928,
+    "contrast": 0.11932323555668867,
+    "snr": 3.824721806952284
+  },
+  {
+    "case": "c0.003_ramp14.75_beta-0.5",
+    "cutoff": 0.003,
+    "window": "ramp14.75",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.3,
+    "fwhm_khz": 143.6146895560834,
+    "contrast": 0.14597023821597777,
+    "snr": 4.713290819572024
+  },
+  {
+    "case": "c0.003_ramp14.75_beta-0.5",
+    "cutoff": 0.003,
+    "window": "ramp14.75",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.45,
+    "fwhm_khz": 161.20651355533022,
+    "contrast": 0.16675476137061285,
+    "snr": 5.387553286533794
+  },
+  {
+    "case": "c0.003_ramp14.75_beta-0.5",
+    "cutoff": 0.003,
+    "window": "ramp14.75",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.6,
+    "fwhm_khz": 179.35413427867985,
+    "contrast": 0.1854563956010059,
+    "snr": 5.999551680359202
+  },
+  {
+    "case": "c0.003_ramp14.75_beta-0.5",
+    "cutoff": 0.003,
+    "window": "ramp14.75",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.8,
+    "fwhm_khz": 205.04189108158928,
+    "contrast": 0.20679484873938092,
+    "snr": 6.70581311904818
+  },
+  {
+    "case": "c0.003_ramp14.75_beta-0.5",
+    "cutoff": 0.003,
+    "window": "ramp14.75",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 1.0,
+    "fwhm_khz": 234.13405891480366,
+    "contrast": 0.2244853813508565,
+    "snr": 7.2992492824878275
+  },
+  {
+    "case": "c0.003_ramp14.75_beta-0.5",
+    "cutoff": 0.003,
+    "window": "ramp14.75",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.3,
+    "fwhm_khz": 153.35988860102233,
+    "contrast": 0.10802534139696413,
+    "snr": 3.4720190848568837
+  },
+  {
+    "case": "c0.003_ramp14.75_beta-0.5",
+    "cutoff": 0.003,
+    "window": "ramp14.75",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.45,
+    "fwhm_khz": 164.2128204190789,
+    "contrast": 0.11797229155999583,
+    "snr": 3.7907670032797722
+  },
+  {
+    "case": "c0.003_ramp14.75_beta-0.5",
+    "cutoff": 0.003,
+    "window": "ramp14.75",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.6,
+    "fwhm_khz": 176.40671899862016,
+    "contrast": 0.1285804238793941,
+    "snr": 4.131455560362902
+  },
+  {
+    "case": "c0.003_ramp14.75_beta-0.5",
+    "cutoff": 0.003,
+    "window": "ramp14.75",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.8,
+    "fwhm_khz": 193.94209178298334,
+    "contrast": 0.14255220974670518,
+    "snr": 4.581750060691738
+  },
+  {
+    "case": "c0.003_ramp14.75_beta-0.5",
+    "cutoff": 0.003,
+    "window": "ramp14.75",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 1.0,
+    "fwhm_khz": 212.81654283676815,
+    "contrast": 0.15572447243489645,
+    "snr": 5.008374039976414
+  },
+  {
+    "case": "c0.001_ramp14.75_beta-0.5",
+    "cutoff": 0.001,
+    "window": "ramp14.75",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.3,
+    "fwhm_khz": 129.96455548240948,
+    "contrast": 0.25668017779241736,
+    "snr": 8.453085398773574
+  },
+  {
+    "case": "c0.001_ramp14.75_beta-0.5",
+    "cutoff": 0.001,
+    "window": "ramp14.75",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.45,
+    "fwhm_khz": 147.59750377023744,
+    "contrast": 0.2898878590216165,
+    "snr": 9.609204909887726
+  },
+  {
+    "case": "c0.001_ramp14.75_beta-0.5",
+    "cutoff": 0.001,
+    "window": "ramp14.75",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.6,
+    "fwhm_khz": 162.16300165141783,
+    "contrast": 0.31272177533410495,
+    "snr": 10.42805622938674
+  },
+  {
+    "case": "c0.001_ramp14.75_beta-0.5",
+    "cutoff": 0.001,
+    "window": "ramp14.75",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.8,
+    "fwhm_khz": 178.53490224269487,
+    "contrast": 0.33370430992060096,
+    "snr": 11.201132891918052
+  },
+  {
+    "case": "c0.001_ramp14.75_beta-0.5",
+    "cutoff": 0.001,
+    "window": "ramp14.75",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 1.0,
+    "fwhm_khz": 192.51305460556856,
+    "contrast": 0.3482046968278807,
+    "snr": 11.748544960348038
+  },
+  {
+    "case": "c0.001_ramp14.75_beta-0.5",
+    "cutoff": 0.001,
+    "window": "ramp14.75",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.3,
+    "fwhm_khz": 139.1843241611997,
+    "contrast": 0.1802739779691177,
+    "snr": 5.848550128421481
+  },
+  {
+    "case": "c0.001_ramp14.75_beta-0.5",
+    "cutoff": 0.001,
+    "window": "ramp14.75",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.45,
+    "fwhm_khz": 159.2062463983813,
+    "contrast": 0.2077844118190727,
+    "snr": 6.75591794861343
+  },
+  {
+    "case": "c0.001_ramp14.75_beta-0.5",
+    "cutoff": 0.001,
+    "window": "ramp14.75",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.6,
+    "fwhm_khz": 178.84992400188406,
+    "contrast": 0.23010962429115656,
+    "snr": 7.504098861504008
+  },
+  {
+    "case": "c0.001_ramp14.75_beta-0.5",
+    "cutoff": 0.001,
+    "window": "ramp14.75",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.8,
+    "fwhm_khz": 205.78896622290637,
+    "contrast": 0.2534709156980327,
+    "snr": 8.301357713160792
+  },
+  {
+    "case": "c0.001_ramp14.75_beta-0.5",
+    "cutoff": 0.001,
+    "window": "ramp14.75",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 1.0,
+    "fwhm_khz": 235.52796374712142,
+    "contrast": 0.2714606321321825,
+    "snr": 8.927257411261287
+  },
+  {
+    "case": "c0.001_hard_beta-0.5",
+    "cutoff": 0.001,
+    "window": "hard",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.3,
+    "fwhm_khz": 293.4639622802316,
+    "contrast": 0.1176515849808501,
+    "snr": 3.7467728206277484
+  },
+  {
+    "case": "c0.001_hard_beta-0.5",
+    "cutoff": 0.001,
+    "window": "hard",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.45,
+    "fwhm_khz": 391.7240049149352,
+    "contrast": 0.15783218190689335,
+    "snr": 5.05647305225208
+  },
+  {
+    "case": "c0.001_hard_beta-0.5",
+    "cutoff": 0.001,
+    "window": "hard",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.6,
+    "fwhm_khz": 459.4337760921805,
+    "contrast": 0.1849272454621041,
+    "snr": 5.95990899352078
+  },
+  {
+    "case": "c0.001_hard_beta-0.5",
+    "cutoff": 0.001,
+    "window": "hard",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.8,
+    "fwhm_khz": 526.4069392614346,
+    "contrast": 0.20915464888320018,
+    "snr": 6.785989536365621
+  },
+  {
+    "case": "c0.001_hard_beta-0.5",
+    "cutoff": 0.001,
+    "window": "hard",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 1.0,
+    "fwhm_khz": 570.5514540510412,
+    "contrast": 0.2252746439078534,
+    "snr": 7.347069792644789
+  },
+  {
+    "case": "c0.001_hard_beta-0.5",
+    "cutoff": 0.001,
+    "window": "hard",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.3,
+    "fwhm_khz": 300.08690585600806,
+    "contrast": 0.048860494660386444,
+    "snr": 1.549511074557557
+  },
+  {
+    "case": "c0.001_hard_beta-0.5",
+    "cutoff": 0.001,
+    "window": "hard",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.45,
+    "fwhm_khz": 504.6001677593844,
+    "contrast": 0.07879407363880364,
+    "snr": 2.500405712675853
+  },
+  {
+    "case": "c0.001_hard_beta-0.5",
+    "cutoff": 0.001,
+    "window": "hard",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.6,
+    "fwhm_khz": 637.7897925194096,
+    "contrast": 0.10567712129503981,
+    "snr": 3.360622335535645
+  },
+  {
+    "case": "c0.001_hard_beta-0.5",
+    "cutoff": 0.001,
+    "window": "hard",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.8,
+    "fwhm_khz": 781.0097175696918,
+    "contrast": 0.134887362317327,
+    "snr": 4.306657221102387
+  },
+  {
+    "case": "c0.001_hard_beta-0.5",
+    "cutoff": 0.001,
+    "window": "hard",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 1.0,
+    "fwhm_khz": 893.0332792838111,
+    "contrast": 0.15614489010753285,
+    "snr": 5.005449489430551
+  },
+  {
+    "case": "c0.001_polynomial_beta-0.5",
+    "cutoff": 0.001,
+    "window": "polynomial",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.3,
+    "fwhm_khz": 125.91755565652943,
+    "contrast": 0.27442233861629656,
+    "snr": 9.089446049457177
+  },
+  {
+    "case": "c0.001_polynomial_beta-0.5",
+    "cutoff": 0.001,
+    "window": "polynomial",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.45,
+    "fwhm_khz": 140.40582793495383,
+    "contrast": 0.3061781523220041,
+    "snr": 10.209568117982926
+  },
+  {
+    "case": "c0.001_polynomial_beta-0.5",
+    "cutoff": 0.001,
+    "window": "polynomial",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.6,
+    "fwhm_khz": 152.05066840897365,
+    "contrast": 0.32787870496747057,
+    "snr": 10.998346585340823
+  },
+  {
+    "case": "c0.001_polynomial_beta-0.5",
+    "cutoff": 0.001,
+    "window": "polynomial",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.8,
+    "fwhm_khz": 164.50793569579895,
+    "contrast": 0.34782285184205514,
+    "snr": 11.743094311502885
+  },
+  {
+    "case": "c0.001_polynomial_beta-0.5",
+    "cutoff": 0.001,
+    "window": "polynomial",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 1.0,
+    "fwhm_khz": 174.52385041948642,
+    "contrast": 0.3616401156888979,
+    "snr": 12.271641946879232
+  },
+  {
+    "case": "c0.001_polynomial_beta-0.5",
+    "cutoff": 0.001,
+    "window": "polynomial",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.3,
+    "fwhm_khz": 135.21423110342982,
+    "contrast": 0.19627872858784268,
+    "snr": 6.389689633398359
+  },
+  {
+    "case": "c0.001_polynomial_beta-0.5",
+    "cutoff": 0.001,
+    "window": "polynomial",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.45,
+    "fwhm_khz": 152.93633120138315,
+    "contrast": 0.22371253163937999,
+    "snr": 7.3019075097362105
+  },
+  {
+    "case": "c0.001_polynomial_beta-0.5",
+    "cutoff": 0.001,
+    "window": "polynomial",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.6,
+    "fwhm_khz": 169.476949164445,
+    "contrast": 0.24538803020097755,
+    "snr": 8.035244054282252
+  },
+  {
+    "case": "c0.001_polynomial_beta-0.5",
+    "cutoff": 0.001,
+    "window": "polynomial",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.8,
+    "fwhm_khz": 190.71023596858538,
+    "contrast": 0.26775742665638,
+    "snr": 8.806505534486712
+  },
+  {
+    "case": "c0.001_polynomial_beta-0.5",
+    "cutoff": 0.001,
+    "window": "polynomial",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 1.0,
+    "fwhm_khz": 212.10147045511164,
+    "contrast": 0.2848685194633058,
+    "snr": 9.408139099773413
+  },
+  {
+    "case": "c0.003_hard_beta-0.5",
+    "cutoff": 0.003,
+    "window": "hard",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.3,
+    "fwhm_khz": 238.09200119564133,
+    "contrast": 0.02815234076276435,
+    "snr": 0.8929564719065028
+  },
+  {
+    "case": "c0.003_hard_beta-0.5",
+    "cutoff": 0.003,
+    "window": "hard",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.45,
+    "fwhm_khz": 473.23125352623055,
+    "contrast": 0.04481653135228153,
+    "snr": 1.4208653540632872
+  },
+  {
+    "case": "c0.003_hard_beta-0.5",
+    "cutoff": 0.003,
+    "window": "hard",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.6,
+    "fwhm_khz": 708.5541950173634,
+    "contrast": 0.0660209490563502,
+    "snr": 2.0935881645992502
+  },
+  {
+    "case": "c0.003_hard_beta-0.5",
+    "cutoff": 0.003,
+    "window": "hard",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.8,
+    "fwhm_khz": 903.9705909049516,
+    "contrast": 0.09006072811561877,
+    "snr": 2.8597514325834905
+  },
+  {
+    "case": "c0.003_hard_beta-0.5",
+    "cutoff": 0.003,
+    "window": "hard",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 1.0,
+    "fwhm_khz": 1074.6001782478781,
+    "contrast": 0.11312929024692348,
+    "snr": 3.6008639045750566
+  },
+  {
+    "case": "c0.003_hard_beta-0.5",
+    "cutoff": 0.003,
+    "window": "hard",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.3,
+    "fwhm_khz": 295.1072099460037,
+    "contrast": 0.015565510373121205,
+    "snr": 0.4939493812266101
+  },
+  {
+    "case": "c0.003_hard_beta-0.5",
+    "cutoff": 0.003,
+    "window": "hard",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.45,
+    "fwhm_khz": 353.34518613471903,
+    "contrast": 0.019969449684828222,
+    "snr": 0.6335278178057236
+  },
+  {
+    "case": "c0.003_hard_beta-0.5",
+    "cutoff": 0.003,
+    "window": "hard",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.6,
+    "fwhm_khz": 474.5783723341929,
+    "contrast": 0.026761182331077826,
+    "snr": 0.8487003282421468
+  },
+  {
+    "case": "c0.003_hard_beta-0.5",
+    "cutoff": 0.003,
+    "window": "hard",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.8,
+    "fwhm_khz": 825.6956132237215,
+    "contrast": 0.03797912656018487,
+    "snr": 1.2040187164832474
+  },
+  {
+    "case": "c0.003_hard_beta-0.5",
+    "cutoff": 0.003,
+    "window": "hard",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 1.0,
+    "fwhm_khz": 1175.2492137355773,
+    "contrast": 0.051367133220337924,
+    "snr": 1.628264575445963
+  },
+  {
+    "case": "c0.003_polynomial_beta-0.5",
+    "cutoff": 0.003,
+    "window": "polynomial",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.3,
+    "fwhm_khz": 139.22691502670165,
+    "contrast": 0.159961790371146,
+    "snr": 5.177873295115775
+  },
+  {
+    "case": "c0.003_polynomial_beta-0.5",
+    "cutoff": 0.003,
+    "window": "polynomial",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.45,
+    "fwhm_khz": 155.75028711742485,
+    "contrast": 0.18166352024981391,
+    "snr": 5.885727998395825
+  },
+  {
+    "case": "c0.003_polynomial_beta-0.5",
+    "cutoff": 0.003,
+    "window": "polynomial",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.6,
+    "fwhm_khz": 171.94715567987464,
+    "contrast": 0.20043528246818543,
+    "snr": 6.504262653867995
+  },
+  {
+    "case": "c0.003_polynomial_beta-0.5",
+    "cutoff": 0.003,
+    "window": "polynomial",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.8,
+    "fwhm_khz": 193.83272452296987,
+    "contrast": 0.2213268996402401,
+    "snr": 7.201299315501248
+  },
+  {
+    "case": "c0.003_polynomial_beta-0.5",
+    "cutoff": 0.003,
+    "window": "polynomial",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 1.0,
+    "fwhm_khz": 217.07883796712864,
+    "contrast": 0.23837354760258944,
+    "snr": 7.778193237249741
+  },
+  {
+    "case": "c0.003_polynomial_beta-0.5",
+    "cutoff": 0.003,
+    "window": "polynomial",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.3,
+    "fwhm_khz": 149.0787172719881,
+    "contrast": 0.11767188855541955,
+    "snr": 3.7877890877658293
+  },
+  {
+    "case": "c0.003_polynomial_beta-0.5",
+    "cutoff": 0.003,
+    "window": "polynomial",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.45,
+    "fwhm_khz": 160.57172499467976,
+    "contrast": 0.12926491702412818,
+    "snr": 4.160171493595812
+  },
+  {
+    "case": "c0.003_polynomial_beta-0.5",
+    "cutoff": 0.003,
+    "window": "polynomial",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.6,
+    "fwhm_khz": 172.8205352384524,
+    "contrast": 0.14090179996027297,
+    "snr": 4.535090018607649
+  },
+  {
+    "case": "c0.003_polynomial_beta-0.5",
+    "cutoff": 0.003,
+    "window": "polynomial",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.8,
+    "fwhm_khz": 189.8535926094788,
+    "contrast": 0.15558992818394146,
+    "snr": 5.010417573137665
+  },
+  {
+    "case": "c0.003_polynomial_beta-0.5",
+    "cutoff": 0.003,
+    "window": "polynomial",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 1.0,
+    "fwhm_khz": 207.70428630365035,
+    "contrast": 0.16900902506074644,
+    "snr": 5.447239028959809
+  },
+  {
+    "case": "c0.005_hard_beta-0.5",
+    "cutoff": 0.005,
+    "window": "hard",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.3,
+    "fwhm_khz": 271.8349909038658,
+    "contrast": 0.017748719857873074,
+    "snr": 0.5631612107603102
+  },
+  {
+    "case": "c0.005_hard_beta-0.5",
+    "cutoff": 0.005,
+    "window": "hard",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.45,
+    "fwhm_khz": 343.60347969028584,
+    "contrast": 0.023052202821437606,
+    "snr": 0.731216453240036
+  },
+  {
+    "case": "c0.005_hard_beta-0.5",
+    "cutoff": 0.005,
+    "window": "hard",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.6,
+    "fwhm_khz": 512.1171884538998,
+    "contrast": 0.03330906345283341,
+    "snr": 1.0561127050136976
+  },
+  {
+    "case": "c0.005_hard_beta-0.5",
+    "cutoff": 0.005,
+    "window": "hard",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.8,
+    "fwhm_khz": 941.0114512395098,
+    "contrast": 0.048739281391104394,
+    "snr": 1.5449722910993742
+  },
+  {
+    "case": "c0.005_hard_beta-0.5",
+    "cutoff": 0.005,
+    "window": "hard",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 1.0,
+    "fwhm_khz": 1174.4908686449116,
+    "contrast": 0.06371505012225487,
+    "snr": 2.020129318457955
+  },
+  {
+    "case": "c0.005_hard_beta-0.5",
+    "cutoff": 0.005,
+    "window": "hard",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.3,
+    "fwhm_khz": 367.9701134869565,
+    "contrast": 0.009966652125014741,
+    "snr": 0.31639647488947625
+  },
+  {
+    "case": "c0.005_hard_beta-0.5",
+    "cutoff": 0.005,
+    "window": "hard",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.45,
+    "fwhm_khz": 465.19472977540664,
+    "contrast": 0.014134638968686553,
+    "snr": 0.44857334331964704
+  },
+  {
+    "case": "c0.005_hard_beta-0.5",
+    "cutoff": 0.005,
+    "window": "hard",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.6,
+    "fwhm_khz": 533.3850947096957,
+    "contrast": 0.016823913258686207,
+    "snr": 0.5338236892985286
+  },
+  {
+    "case": "c0.005_hard_beta-0.5",
+    "cutoff": 0.005,
+    "window": "hard",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.8,
+    "fwhm_khz": 638.7123192613209,
+    "contrast": 0.021508891424535437,
+    "snr": 0.6822890094616276
+  },
+  {
+    "case": "c0.005_hard_beta-0.5",
+    "cutoff": 0.005,
+    "window": "hard",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 1.0,
+    "fwhm_khz": 804.3764183374607,
+    "contrast": 0.026014824406676185,
+    "snr": 0.825038625176658
+  },
+  {
+    "case": "c0.005_polynomial_beta-0.5",
+    "cutoff": 0.005,
+    "window": "polynomial",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.3,
+    "fwhm_khz": 146.22343514621969,
+    "contrast": 0.12673436784122405,
+    "snr": 4.084235845234406
+  },
+  {
+    "case": "c0.005_polynomial_beta-0.5",
+    "cutoff": 0.005,
+    "window": "polynomial",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.45,
+    "fwhm_khz": 159.08661887975188,
+    "contrast": 0.14072863178153727,
+    "snr": 4.534933994313339
+  },
+  {
+    "case": "c0.005_polynomial_beta-0.5",
+    "cutoff": 0.005,
+    "window": "polynomial",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.6,
+    "fwhm_khz": 172.56304890342318,
+    "contrast": 0.15424485855183656,
+    "snr": 4.9721016181389235
+  },
+  {
+    "case": "c0.005_polynomial_beta-0.5",
+    "cutoff": 0.005,
+    "window": "polynomial",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.8,
+    "fwhm_khz": 190.98271718417163,
+    "contrast": 0.1707689279059944,
+    "snr": 5.50978574291271
+  },
+  {
+    "case": "c0.005_polynomial_beta-0.5",
+    "cutoff": 0.005,
+    "window": "polynomial",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 1.0,
+    "fwhm_khz": 210.38880747462295,
+    "contrast": 0.18543151948733105,
+    "snr": 5.990582958925583
+  },
+  {
+    "case": "c0.005_polynomial_beta-0.5",
+    "cutoff": 0.005,
+    "window": "polynomial",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.3,
+    "fwhm_khz": 159.9829934418127,
+    "contrast": 0.0980148482681269,
+    "snr": 3.146528323950473
+  },
+  {
+    "case": "c0.005_polynomial_beta-0.5",
+    "cutoff": 0.005,
+    "window": "polynomial",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.45,
+    "fwhm_khz": 167.00348707891646,
+    "contrast": 0.10380822808580781,
+    "snr": 3.3317584535811697
+  },
+  {
+    "case": "c0.005_polynomial_beta-0.5",
+    "cutoff": 0.005,
+    "window": "polynomial",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.6,
+    "fwhm_khz": 175.306904963542,
+    "contrast": 0.11046838767718425,
+    "snr": 3.5449015444093606
+  },
+  {
+    "case": "c0.005_polynomial_beta-0.5",
+    "cutoff": 0.005,
+    "window": "polynomial",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.8,
+    "fwhm_khz": 187.36605993051865,
+    "contrast": 0.11974320524561499,
+    "snr": 3.842181976168365
+  },
+  {
+    "case": "c0.005_polynomial_beta-0.5",
+    "cutoff": 0.005,
+    "window": "polynomial",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 1.0,
+    "fwhm_khz": 200.17668039917558,
+    "contrast": 0.12894580191540728,
+    "snr": 4.1378190566431305
+  },
+  {
+    "case": "c0.005_ramp14.75_beta-0.5",
+    "cutoff": 0.005,
+    "window": "ramp14.75",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.3,
+    "fwhm_khz": 150.32209929392042,
+    "contrast": 0.1158679283099584,
+    "snr": 3.7276239974962913
+  },
+  {
+    "case": "c0.005_ramp14.75_beta-0.5",
+    "cutoff": 0.005,
+    "window": "ramp14.75",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.45,
+    "fwhm_khz": 163.0409080341374,
+    "contrast": 0.128275163821086,
+    "snr": 4.12601303977291
+  },
+  {
+    "case": "c0.005_ramp14.75_beta-0.5",
+    "cutoff": 0.005,
+    "window": "ramp14.75",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.6,
+    "fwhm_khz": 176.91590319857804,
+    "contrast": 0.14092768575539377,
+    "snr": 4.533612505960888
+  },
+  {
+    "case": "c0.005_ramp14.75_beta-0.5",
+    "cutoff": 0.005,
+    "window": "ramp14.75",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 0.8,
+    "fwhm_khz": 196.67310988327046,
+    "contrast": 0.15699295499240334,
+    "snr": 5.0537302859927244
+  },
+  {
+    "case": "c0.005_ramp14.75_beta-0.5",
+    "cutoff": 0.005,
+    "window": "ramp14.75",
+    "amplitude_mhz": 50.505050505050505,
+    "shoulder_mhz": 1.0,
+    "fwhm_khz": 218.09970909656516,
+    "contrast": 0.17165041036998113,
+    "snr": 5.531450319548816
+  },
+  {
+    "case": "c0.005_ramp14.75_beta-0.5",
+    "cutoff": 0.005,
+    "window": "ramp14.75",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.3,
+    "fwhm_khz": 166.76405080311784,
+    "contrast": 0.09112270608443596,
+    "snr": 2.921770636936678
+  },
+  {
+    "case": "c0.005_ramp14.75_beta-0.5",
+    "cutoff": 0.005,
+    "window": "ramp14.75",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.45,
+    "fwhm_khz": 172.532771190856,
+    "contrast": 0.09542196496387134,
+    "snr": 3.059047438988524
+  },
+  {
+    "case": "c0.005_ramp14.75_beta-0.5",
+    "cutoff": 0.005,
+    "window": "ramp14.75",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.6,
+    "fwhm_khz": 180.0698314590854,
+    "contrast": 0.100918992182424,
+    "snr": 3.2346733739796174
+  },
+  {
+    "case": "c0.005_ramp14.75_beta-0.5",
+    "cutoff": 0.005,
+    "window": "ramp14.75",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 0.8,
+    "fwhm_khz": 191.61304578501287,
+    "contrast": 0.10905444207053205,
+    "snr": 3.494874034813033
+  },
+  {
+    "case": "c0.005_ramp14.75_beta-0.5",
+    "cutoff": 0.005,
+    "window": "ramp14.75",
+    "amplitude_mhz": 100.0,
+    "shoulder_mhz": 1.0,
+    "fwhm_khz": 204.27408476782776,
+    "contrast": 0.11748530826121639,
+    "snr": 3.7649755398048295
+  }
+]

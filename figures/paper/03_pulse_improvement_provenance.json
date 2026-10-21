@@ -1,0 +1,167 @@
+{
+  "generator": "scripts/make_main_pulse_improvement.py",
+  "included_in_manuscript": true,
+  "source_configs": {
+    "echo": {
+      "anharmonicity_mhz": -216.0,
+      "cutoff": 0.001,
+      "drag_beta": 0.0,
+      "duration_us": 30.0,
+      "echo": true,
+      "echo_transition_shape": "sine",
+      "echo_transition_us": 0.016,
+      "edge_ramp_us": 0.0,
+      "edge_window_kind": "none",
+      "num_steps_per_half": 30000,
+      "order": 0.5,
+      "stark_kappa_mhz_inv": 0.0,
+      "t1_us": 51.24,
+      "t_phi_us": 7.871480508563624
+    },
+    "drag": {
+      "anharmonicity_mhz": -216.0,
+      "cutoff": 0.001,
+      "drag_beta": -0.5,
+      "duration_us": 30.0,
+      "echo": true,
+      "echo_transition_shape": "sine",
+      "echo_transition_us": 0.016,
+      "edge_ramp_us": 0.0,
+      "edge_window_kind": "none",
+      "edge_window_power": 3.0,
+      "num_steps_per_half": 30000,
+      "order": 0.5,
+      "stark_kappa_mhz_inv": 0.0,
+      "t1_us": 51.24,
+      "t_phi_us": 7.871480508563624
+    },
+    "polynomial": {
+      "anharmonicity_mhz": -216.0,
+      "computation_sha256": {
+        "drive": "8c2eb45e85d5b0df096eb6ca3bd0c577bfd682e6843b1bfe1577d85f7a9cff29",
+        "echospec/simulation/edge_window.py": "13653bdeb1ba393dd8d969152143380328a791080f598cfd00bee31cb1dabc2b",
+        "echospec/simulation/qutrit.py": "58891d88564eb9d3b5ed592fa69b52c3fb5cec9e7178471c5039e5b8c07c6b15",
+        "echospec/simulation/qutrit_native.py": "e26a097b8d803b1c2da8f0ad56222fff59456e02a445f33d22629a0f639a6dd9",
+        "echospec/simulation/qutrit_rk4.cpp": "493150abcad473a10ff4128c3b42a5f0ddfd0cdd8fe4c1cf09a936858068bab6",
+        "envelope": "54e0554b68be3436232d8d7d50db1fb691f1555356222297686c0b71de3331dc",
+        "objective": "457352460d393e93b2153532b2bb06634746080f7bf90a1809c14de15017b0b4",
+        "quality": "c4e2c797ca952e3214985a764e8652ea8d5f83d197f373596204622cf302c471",
+        "simulate": "42c020becd97f23c1353ea73b48a491034c4aeab3300d212f5f419eaf73858ba"
+      },
+      "cutoff_core": 0.001,
+      "drag_beta": -0.5,
+      "dt_ns": 0.5,
+      "duration_us": 30.0,
+      "echo": true,
+      "echo_transition_shape": "sine",
+      "echo_transition_us": 0.016,
+      "family": "polynomial5",
+      "knots_us": [
+        0.05,
+        0.15,
+        0.5,
+        1.5,
+        4.0,
+        9.0,
+        15.0
+      ],
+      "order": 0.5,
+      "outer_ramp_us": 2.0,
+      "parameters": null,
+      "sigma_us": 0.015000007500005626,
+      "stark_kappa_mhz_inv": 0.0,
+      "t1_us": 51.24,
+      "t_phi_us": 7.871480508563624
+    }
+  },
+  "source_sha256": {
+    "outputs/polynomial_echo_note_2d/c0.001_hard_beta0.npz": "9fb2cacdbd7ab8c1b0c23edbdc3f459ce790064cd75730f2d44bc9ba656f8c79",
+    "outputs/polynomial_power_30us_scan/c0.001_hard.npz": "cc5b7a1be1fbe2b564676d758cce2583642c4c852efafa948aaf982bf83980cd",
+    "outputs/optimized_echo_tail/polynomial5_full.npz": "d1de475d3cb71f4d857ee76cb6422f497a3da863fc18cf64e5e95bd5a7ec8e54",
+    "scripts/make_main_pulse_improvement.py": "f3b5b1a16dcbc6dbf00e9c0a7c5c5388eff88cfb98f2de0c2cd21981ead055df",
+    "echospec/analysis/dip_metrics.py": "851f4571da5dc275890f42eaf7393f1818fffe69043f4fff703272dddf9290ca",
+    "figures/paper/polynomial_echo_note/sweeps_2d_provenance.json": "063d0064748c5324b712af0745b2f89c62c46f409dcf20f43e3932e8e302d2e8"
+  },
+  "figure_size_inches": [
+    3.38,
+    3.55
+  ],
+  "color_limits": [
+    0,
+    0.6
+  ],
+  "row_normalization": false,
+  "population_order": [
+    "ground",
+    "excited",
+    "second_excited"
+  ],
+  "summaries": {
+    "echo": {
+      "at_100_mhz": {
+        "case": "echo",
+        "amplitude_mhz": 100.0,
+        "center_hz": -18706.99614408118,
+        "fwhm_hz": 484834.57263713324,
+        "contrast": 0.07064041111258967,
+        "accepted": true
+      },
+      "minimum_contrast_10_to_100_mhz": 0.07064041111258967,
+      "maximum_fwhm_khz_10_to_100_mhz": 485.44965800696076
+    },
+    "drag": {
+      "at_100_mhz": {
+        "case": "drag",
+        "amplitude_mhz": 100.0,
+        "center_hz": 1008.8435131313319,
+        "fwhm_hz": 506015.6491655306,
+        "contrast": 0.07906447250951154,
+        "accepted": true
+      },
+      "minimum_contrast_10_to_100_mhz": 0.07906447250951154,
+      "maximum_fwhm_khz_10_to_100_mhz": 506.0156491655306
+    },
+    "polynomial": {
+      "at_100_mhz": {
+        "case": "polynomial",
+        "amplitude_mhz": 100.0,
+        "center_hz": -659.1417566026637,
+        "fwhm_hz": 161849.78239155462,
+        "contrast": 0.3152047884841248,
+        "accepted": true
+      },
+      "minimum_contrast_10_to_100_mhz": 0.3152047884841248,
+      "maximum_fwhm_khz_10_to_100_mhz": 161.8497823915546
+    }
+  },
+  "coherence_reference": {
+    "panels": [
+      "a",
+      "b",
+      "c"
+    ],
+    "t2_us": 7.3100000000000005,
+    "detuning_mhz": [
+      -0.021772222037194987,
+      0.021772222037194987
+    ],
+    "fwhm_khz": 43.54444407438997,
+    "definition": "Vertical lines at +/-1/(2*pi*T2); separation is the coherence-limited FWHM 1/(pi*T2)",
+    "color": "white",
+    "linewidth_pt": 0.45,
+    "linestyle": "dashed",
+    "dash_pattern": [
+      3,
+      15
+    ]
+  },
+  "secondary_fwhm_axis": {
+    "t2_us": 7.3100000000000005,
+    "reference_fwhm_khz": 43.54444407438997,
+    "definition": "FWHM / [1/(pi*T2)]"
+  },
+  "contrast": "Dip depth in excited-state probability relative to the fitted linear background at the dip; dimensionless, plotted on [0, 1]",
+  "fwhm": "Nearest half-depth crossings relative to a linear background at 0.4 <= |detuning| <= 0.5 MHz; zero-drive metrics omitted",
+  "comparison": "All cases have a 16 ns sine midpoint transition. (a) to (b) isolates DRAG; (b) to (c) adds cutoff subtraction and the p=5 polynomial window. No area or peak rematching.",
+  "validation": "Source NPZ hashes match the existing note's provenance; parameters, grids, normalization, and metric validity checked."
+}

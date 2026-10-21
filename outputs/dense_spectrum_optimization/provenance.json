@@ -1,0 +1,35 @@
+{
+  "source_sha256": {
+    "scripts/optimize_echo_dense.py": "7ae92812f84b9002417da89d4a7bb84e9ca62a021060cac1dd50627f65d37659",
+    "scripts/report_echo_dense.py": "6f0b04389425dc81001372d10332c2baab890edc7ad85274e7bf682b4d954ed4",
+    "scripts/optimize_echo_tail.py": "0dfa62650241fa13305a676c62aa17aae95cf68ce375beaa7fa30cf47d0c3519",
+    "scripts/report_optimized_echo_tail.py": "8eb12a497475ad1c04025e2230ef32b4a2de940979e0a1c5e7763e228a7af23c",
+    "tests/analysis/test_echo_dense_objective.py": "4d22cc50df1a54c27cdb599c147e18a0017ca3328c357ba00a73646b43e39a18",
+    "echospec/analysis/dip_metrics.py": "851f4571da5dc275890f42eaf7393f1818fffe69043f4fff703272dddf9290ca",
+    "echospec/analysis/spectroscopy_quality.py": "1e898a6b550e0c46119f66a268e0397a997de59135406b50a55fe6735c212f44",
+    "echospec/simulation/qutrit.py": "58891d88564eb9d3b5ed592fa69b52c3fb5cec9e7178471c5039e5b8c07c6b15",
+    "echospec/simulation/edge_window.py": "13653bdeb1ba393dd8d969152143380328a791080f598cfd00bee31cb1dabc2b",
+    "echospec/simulation/qutrit_native.py": "e26a097b8d803b1c2da8f0ad56222fff59456e02a445f33d22629a0f639a6dd9",
+    "echospec/simulation/qutrit_rk4.cpp": "493150abcad473a10ff4128c3b42a5f0ddfd0cdd8fe4c1cf09a936858068bab6"
+  },
+  "computation_sha256": {
+    "echospec/simulation/qutrit.py": "58891d88564eb9d3b5ed592fa69b52c3fb5cec9e7178471c5039e5b8c07c6b15",
+    "echospec/simulation/edge_window.py": "13653bdeb1ba393dd8d969152143380328a791080f598cfd00bee31cb1dabc2b",
+    "echospec/simulation/qutrit_native.py": "e26a097b8d803b1c2da8f0ad56222fff59456e02a445f33d22629a0f639a6dd9",
+    "echospec/simulation/qutrit_rk4.cpp": "493150abcad473a10ff4128c3b42a5f0ddfd0cdd8fe4c1cf09a936858068bab6",
+    "envelope": "54e0554b68be3436232d8d7d50db1fb691f1555356222297686c0b71de3331dc",
+    "drive": "8c2eb45e85d5b0df096eb6ca3bd0c577bfd682e6843b1bfe1577d85f7a9cff29",
+    "simulate": "42c020becd97f23c1353ea73b48a491034c4aeab3300d212f5f419eaf73858ba",
+    "quality": "c4e2c797ca952e3214985a764e8652ea8d5f83d197f373596204622cf302c471",
+    "objective": "ce07565d54349459f80f0fab527043eddf671c69994ebbb7043b9a3a569966aa",
+    "spectrum_metrics": "3312fb5a386c92af51ec5795ecd401eb5b309cde30ef963e96f4e9de93419792",
+    "loss_from_metrics": "c017db3d6b03c74df058596b812ce5c24bceb3c8ac334c4741f4a846dcdb92e4"
+  },
+  "reproduction": [
+    ".venv/bin/python scripts/optimize_echo_dense.py --iterations 12 --workers 4",
+    ".venv/bin/python scripts/optimize_echo_dense.py --stage validate",
+    ".venv/bin/python scripts/optimize_echo_dense.py --stage narrow-refine --workers 4",
+    ".venv/bin/python scripts/optimize_echo_dense.py --stage validate-narrow",
+    ".venv/bin/python scripts/report_echo_dense.py"
+  ]
+}

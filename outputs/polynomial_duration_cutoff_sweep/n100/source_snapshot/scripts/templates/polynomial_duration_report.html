@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Polynomial echo — pulse length comparison</title>
+<style>
+:root{--ink:#183242;--muted:#526974;--paper:#f3f6f4;--line:#dbe5e3;--accent:#007c91}
+*{box-sizing:border-box}body{margin:0;color:var(--ink);background:var(--paper);font:16px/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+main{max-width:1440px;margin:auto;padding:42px 40px 80px}header{border-bottom:1px solid var(--line);padding-bottom:30px;margin-bottom:30px}
+.eyebrow{text-transform:uppercase;letter-spacing:.16em;color:var(--accent);font-size:12px;font-weight:750}
+h1{font-size:clamp(30px,4vw,52px);line-height:1.12;letter-spacing:-.04em;margin:14px 0 20px;max-width:900px}h2{font-size:25px;line-height:1.3;margin:0 0 12px;letter-spacing:-.025em}h3{font-size:17px;margin:8px 0}
+p{max-width:1020px;margin:8px 0 16px}.muted,.caption{color:var(--muted)}.caption{font-size:13px;margin-top:10px}
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}.chip{padding:5px 12px;border:1px solid #cddbd7;border-radius:30px;font-size:13px;background:#fff}
+nav{display:flex;gap:20px;flex-wrap:wrap;margin-top:24px;font-size:14px}a{color:#006d82;text-underline-offset:3px}nav a{font-weight:650;text-decoration:none}
+section{background:white;border:1px solid var(--line);border-radius:16px;padding:28px;margin:24px 0;box-shadow:0 6px 22px #16303804;scroll-margin-top:20px}
+.section-no{color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:750;display:block;margin-bottom:8px}
+.status{padding:12px 16px;border-radius:8px;background:#fff0d5;border:1px solid #efce8b;margin:18px 0;font-size:14px}.status.done{background:#eaf5ed;border-color:#bdd8c2}
+.controls{display:grid;grid-template-columns:minmax(190px,1fr) minmax(280px,2fr);gap:22px;padding:20px;background:#f4f8f7;border:1px solid var(--line);border-radius:12px;margin:22px 0}
+.unit-control{max-width:440px;margin-top:24px}[hidden]{display:none!important}
+label{display:block;font-size:13px;font-weight:650;margin-bottom:6px}select,input[type=range]{width:100%}select{padding:10px 12px;color:var(--ink);background:#fff;border:1px solid #b8cccb;border-radius:6px;font:inherit}
+input[type=range]{accent-color:var(--accent);margin-top:9px}.control-value{font-variant-numeric:tabular-nums;font-weight:500;color:var(--accent)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}.plot{min-width:0;height:380px;border:1px solid #e4ebea;border-radius:10px;background:#fff}.plot.tall{height:440px}.plot.wide{height:440px}
+.table-wrap{overflow:auto;margin:20px 0}table{border-collapse:collapse;width:100%;font-size:14px;white-space:nowrap}th{text-align:left;font-weight:650;background:#f1f6f4}th,td{padding:11px 12px;border-bottom:1px solid #e2e9e7}td.num{font-variant-numeric:tabular-nums}tbody tr:last-child td{border-bottom:none}.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px}
+.callout{border-left:4px solid var(--accent);padding:8px 18px;margin:20px 0;background:#f1f7f6}.callout p{margin:4px 0}
+.overview{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:8px}.downloads{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}.downloads a{background:#e9f2f0;border:1px solid #cbddda;padding:8px 14px;border-radius:6px;font-size:14px;text-decoration:none}
+.method-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}.method-grid ul{padding-left:20px}.method-grid li{margin-bottom:9px}code{font-size:.87em;background:#eff3f2;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}details{border:1px solid var(--line);padding:14px 18px;border-radius:9px;margin-top:18px}summary{cursor:pointer;font-weight:650}footer{color:var(--muted);font-size:13px;padding:8px 0}
+@media(max-width:850px){main{padding:24px 14px 50px}section{padding:20px 14px}.grid2,.method-grid,.controls{grid-template-columns:1fr}.plot{height:340px}h1{font-size:34px}nav{gap:14px}.table-wrap{margin-right:-8px}}
+@media print{body{background:white}main{padding:0}section{break-inside:avoid;box-shadow:none}.controls,nav,.modebar{display:none!important}a{color:inherit}}
+</style>
+<script>/*__PLOTLY_JS__*/</script>
+</head>
+<body>
+<!-- TEMPLATE_NOTICE_START -->
+<aside id="templateNotice" class="status" style="max-width:900px;margin:50px auto;padding:28px">
+<h2>This is the report template</h2>
+<p>The simulation results are saved in the generated report. This source file contains the layout only.</p>
+<p><a href="../../outputs/polynomial_duration_cutoff_sweep/n100/report.html"><strong>Open the complete report with all five pulse lengths →</strong></a></p>
+</aside>
+<!-- TEMPLATE_NOTICE_END -->
+<main id="reportContent" hidden>
+<header>
+<div class="eyebrow">Polynomial echo / duration study</div>
+<h1>What changes when the pulse gets longer?</h1>
+<p class="muted">A matched comparison of <strong>10, 20, 30, 45, and 60 µs</strong> pulses across 100 logarithmic cutoffs. Explore the balance between dip width and visibility while keeping the polynomial shape and corrected DRAG fixed.</p>
+<div class="chips"><span class="chip">β = −0.5</span><span class="chip">Polynomial p = 5</span><span class="chip">16 ns echo transition</span><span class="chip">Cutoff 10⁻⁵ → 1</span><span class="chip">1,000 ideal shots</span></div>
+<div id="status" class="status">Loading saved results and interactive plots…</div>
+<div class="unit-control"><label for="widthUnit">FWHM display units · applies throughout this report</label><select id="widthUnit"><option value="t2" selected>T₂ limit units · FWHM / Γ₂</option><option value="khz">FWHM in kHz</option></select></div>
+<p class="caption" id="widthReference"></p>
+<nav><a href="#explore">Compare settings</a><a href="#population">Detuning × amplitude</a><a href="#overview">All lengths</a><a href="#robustness">Fixed-cutoff robustness</a><a href="#methods">Definitions</a><a href="#data">Saved data</a></nav>
+</header>
+
+<section id="explore">
+<span class="section-no">01 / MATCHED SETTINGS</span><h2>Follow the same cutoff and drive scale across lengths</h2>
+<p>Choose a drive scale to compare all cutoffs. The cutoff slider selects one shared point for the table and spectra. Gray gaps or dashes mean the local dip did not pass the extraction criteria.</p>
+<div class="controls">
+<div><label for="amplitude">Drive scale A <span class="control-value" id="amplitudeValue"></span></label><select id="amplitude"></select><div class="caption">All 100 saved drive scales are available. The selected scale is marked on the 2D population maps.</div></div>
+<div><label for="cutoff">Shared cutoff <span class="control-value" id="cutoffValue"></span></label><input id="cutoff" type="range" min="0" max="99" step="1"><div class="caption">100 log-spaced samples. At fixed cutoff, the root-Lorentzian core width grows with pulse duration.</div></div>
+</div>
+<div class="grid2"><div id="widthCutoff" class="plot" aria-label="FWHM versus cutoff"></div><div id="snrCutoff" class="plot" aria-label="SNR versus cutoff"></div></div>
+<div class="table-wrap"><table><thead><tr><th>Pulse length</th><th id="pointWidthHeading">FWHM / Γ₂</th><th>Ideal SNR</th><th>SNR / FWHM (MHz⁻¹)</th><th>Contrast</th><th>Prominent minima</th><th>Dip status</th></tr></thead><tbody id="pointRows"></tbody></table></div>
+<div class="grid2"><div id="spectrum" class="plot tall" aria-label="Matched excited-state spectra"></div><div id="tradeoff" class="plot tall" aria-label="Width and SNR tradeoff"></div></div>
+<p class="caption">Spectra show final excited-state probability Pₑ over the full saved detuning range. Tradeoff points represent the 100 sampled cutoffs at the selected drive scale; larger outlined points mark the shared cutoff.</p>
+<div class="callout"><p id="selectionFinding"></p></div>
+<h3>Best sampled SNR/FWHM at this drive scale</h3>
+<p class="caption">Each row may choose a different cutoff. This optimizes a ratio, so compare the actual FWHM and SNR as well. It does not establish an unsampled or experimentally calibrated optimum.</p>
+<div class="table-wrap"><table><thead><tr><th>Pulse length</th><th>Selected cutoff</th><th id="bestWidthHeading">FWHM / Γ₂</th><th>Ideal SNR</th><th>SNR / FWHM (MHz⁻¹)</th></tr></thead><tbody id="bestRows"></tbody></table></div>
+</section>
+
+<section id="population">
+<span class="section-no">02 / DETUNING × AMPLITUDE</span><h2>The full spectroscopy sweep at a shared cutoff</h2>
+<p>Compare the final excited-state probability Pₑ across all pulse lengths. Each map contains all 100 amplitudes × 201 detunings, including spectra whose local dip was rejected. Every panel uses the same 0–1 population color scale.</p>
+<div class="controls"><div><label for="populationCutoff">Shared cutoff <span class="control-value" id="populationCutoffValue"></span></label><input id="populationCutoff" type="range" min="0" max="99" step="1"></div><p class="caption">Linked to the cutoff in “Compare settings.” The dashed horizontal line marks the selected line spectrum. Hover or zoom to inspect saved samples; maps use no smoothing.</p></div>
+<p class="caption" id="populationReference">Vertical dashed lines bracket one T₂ reference FWHM about zero detuning.</p>
+<div class="grid2">__POPULATION_PANELS__</div>
+</section>
+
+<section id="overview">
+<span class="section-no">03 / THE FULL GRID</span><h2>All lengths on the same color scales</h2>
+<p>Each panel contains 100 cutoffs × 100 drive scales. FWHM and SNR use a common scale across lengths; gray cells are rejected local dips.</p>
+<p class="caption">__COVERAGE_SUMMARY__</p>
+<a id="overviewLink" href="duration_comparison.png" title="Open full-resolution comparison"><img id="overviewT2" class="overview" src="data:image/png;base64,__COMPARISON_PNG__" alt="FWHM in T2 limit units and SNR across pulse lengths"><img id="overviewKhz" class="overview" src="data:image/png;base64,__COMPARISON_KHZ_PNG__" alt="FWHM in kHz and SNR across pulse lengths" hidden></a>
+<div class="downloads"><a id="overviewPng" href="duration_comparison.png">Full-resolution PNG</a><a id="overviewPdf" href="duration_comparison.pdf">Comparison PDF</a></div>
+<div class="controls"><div><label for="mapLength">Inspect a length</label><select id="mapLength"></select></div><div><label for="mapMetric">Map quantity</label><select id="mapMetric"><option id="mapWidthOption" value="fwhm_hz">FWHM / Γ₂</option><option value="contrast_snr">Ideal SNR</option><option value="snr_per_mhz">SNR / FWHM (MHz⁻¹)</option><option value="max_final_pf">Maximum final f-state population</option></select></div></div>
+<div id="metricMap" class="plot wide" aria-label="Interactive full metric map"></div>
+<p class="caption">Hover for exact sampled values. Color ranges are shared across lengths for the selected quantity. Leakage is displayed for every trace, including traces with no accepted dip.</p>
+</section>
+
+<section id="robustness">
+<span class="section-no">04 / ONE CUTOFF OVER A DRIVE RANGE</span><h2>How stable is the tradeoff from 10 to 100 MHz?</h2>
+<p>For each pulse length, choose one cutoff that maximizes the <strong>minimum SNR/FWHM</strong> over every sampled drive scale ≥10 MHz. A candidate must have a resolved dip at every one of those amplitudes. The worst width and minimum SNR can occur at different amplitudes.</p>
+<div class="table-wrap"><table><thead><tr><th>Pulse length</th><th>Fixed cutoff</th><th id="robustWidthHeading">Worst FWHM / Γ₂</th><th>Minimum ideal SNR</th><th>Minimum SNR/FWHM (MHz⁻¹)</th><th>SNR ≥10 throughout?</th></tr></thead><tbody id="robustRows"></tbody></table></div>
+<div class="grid2"><div id="robustWidth" class="plot" aria-label="Linewidth robustness"></div><div id="robustSnr" class="plot" aria-label="SNR robustness"></div></div>
+<p class="caption">These are sampled local-dip metrics, not a guarantee of a unique resonance. Inspect the spectra and the prominent-minima count when choosing an operating point. The shown SNR uses equal shot budgets, not equal total acquisition time.</p>
+</section>
+
+<section id="methods">
+<span class="section-no">05 / DEFINITIONS AND NUMERICAL CHECKS</span><h2>What is held fixed, and what the numbers mean</h2>
+<div class="method-grid"><div><h3>The waveform and dynamics</h3><ul>
+<li>Cutoff-subtracted root-Lorentzian envelope multiplied by [1 − (2t/L)²]⁵. The unsigned midpoint value is one; there is no pulse-area or signed-peak renormalization.</li>
+<li>A 16 ns sine sign change at the midpoint. Corrected DRAG is Q = −β(dI/dt)/(2π|α|), with β = −0.5 and complex drive I − iQ. The derivative includes both the envelope and the sign transition.</li>
+<li>Three-level Duffing-transmon Lindblad dynamics; α = −216 MHz, T₁ = 51.24 µs, T₂ = 7.31 µs. No added phenomenological Stark correction.</li>
+<li>100 drive scales from 0 to 100 MHz, 201 detunings from −0.5 to +0.5 MHz, and a maximum time step of 0.25 ns, refined locally around the pulse core.</li>
+</ul></div><div><h3>FWHM and ideal SNR</h3><ul>
+<li>FWHM is the nearest half-depth width after subtracting a linear background fitted at |detuning| ≥0.4 MHz. The center search is restricted to ±0.25 MHz.</li>
+<li>Widths spanning fewer than six detuning intervals are rejected. Additional minima with population prominence ≥0.005 are counted; accepted does not necessarily mean a single isolated dip.</li>
+<li>500 shots at the center and 250 at each ±0.45 MHz shoulder. Signal = (pₗ + pᵣ)/2 − p꜀; variance = [2p꜀(1−p꜀) + pₗ(1−pₗ) + pᵣ(1−pᵣ)]/1000.</li>
+<li>SNR excludes readout assignment error, technical noise, drift, and the cost of locating the center. It is a simulation estimate, not measured hardware SNR.</li>
+</ul></div></div>
+<div class="callout"><p><strong>Duration changes the core too.</strong> With this cutoff parameterization, σ = (L/2)c/√(1−c²). A fixed cutoff and a longer pulse therefore change the central width as well as the tails. At cutoff 1, the normalized envelope uses the continuous limit [1−(2t/L)²]⁶.</p></div>
+<div id="validationText" class="caption"></div>
+<p class="caption">__CONVERGENCE_SUMMARY__</p>
+<details><summary>Reference linewidth and convergence scope</summary><p>The default width is FWHM / Γ₂ = πT₂ × FWHM (in Hz), with Γ₂ = 1/(πT₂) ≈43.5 kHz for T₂ = 7.31 µs. A value of 1 means one T₂ reference linewidth; dashed width lines show this reference. The selector switches all width charts, tables, and the overview image to kHz. SNR/FWHM ratios keep their labeled MHz⁻¹ units, and archived fwhm_hz arrays remain in Hz. This normalization does not claim that the shaped pulse reaches the weak-drive coherence limit. This study uses a fixed finite detuning window; inferred widths can depend on the chosen background. Representative finer-grid results are saved under <a href="validation/convergence.json">validation/convergence.json</a>. They do not establish convergence of every point or every possible optimum.</p></details>
+</section>
+
+<section id="data">
+<span class="section-no">06 / DATA YOU CAN REUSE</span><h2>Full populations, metrics, and provenance</h2>
+<p>The report is self-contained for viewing. The accompanying dataset preserves the original float64 populations, every metric row (including rejected traces), per-cutoff checkpoints, exact settings, source snapshots, and checksums.</p>
+<div class="downloads"><a href="metrics_all.csv">All metric rows · CSV</a><a href="comparison_metrics.npz">Combined metric arrays · NPZ</a><a href="comparison_summary.json">Comparison summary</a><a href="dataset_manifest.json">Dataset manifest</a><a href="checksums.sha256">SHA-256 checksums</a><a href="README.txt">Data guide & reproduction</a></div>
+<div class="table-wrap"><table><thead><tr><th>Pulse length</th><th>Arrays</th><th>Metrics</th><th>Diagnostics</th><th>Figures</th></tr></thead><tbody>__DATA_ROWS__</tbody></table></div>
+<p class="caption">Array order: per-duration populations[cutoff, level=(g,e,f), amplitude, detuning]; combined metrics[duration, cutoff, amplitude]. The 30 µs baseline is an independent verified copy of the previous 100-cutoff run. Browser maps and spectra share float32 display copies of the full Pₑ cube at all cutoffs, amplitudes, and detunings; metrics and full saved populations retain float64 precision.</p>
+</section>
+<footer>Generated __GENERATED__ · Local simulation report · Plotting code and browser data are embedded; no external services are contacted.</footer>
+</main>
+<script id="studyData" type="application/json">__PAYLOAD__</script>
+<script>
+"use strict";
+(()=>{
+const savedData=document.getElementById("studyData").textContent;
+if(savedData.trim().startsWith('__'))return;
+const D=JSON.parse(savedData);
+const $=id=>document.getElementById(id), cfg={responsive:true,displaylogo:false,toImageButtonOptions:{format:"png",scale:2}};
+const nc=D.cutoffs.length, na=D.amps.length, nd=D.detuning.length;
+const fmt=(v,n=2)=>v===null||!Number.isFinite(v)?"—":v.toFixed(n);
+const exp=v=>Number(v).toExponential(3), lineLabel=c=>`${c.duration} µs`;
+const dot=c=>`<span class="dot" style="background:${c.color}"></span>${lineLabel(c)}`;
+const baseLayout=(title,x,y)=>({title:{text:title,font:{size:16}},font:{family:"system-ui, sans-serif",color:"#183242",size:12},margin:{l:65,r:25,t:55,b:55},paper_bgcolor:"white",plot_bgcolor:"white",xaxis:{title:{text:x},gridcolor:"#e7eeec",zeroline:false},yaxis:{title:{text:y},gridcolor:"#e7eeec",zeroline:false},legend:{orientation:"h",y:1.03,yanchor:"bottom",font:{size:11}},hovermode:"closest"});
+const trace=(c,x,y,name=lineLabel(c))=>({x,y,name,type:"scatter",mode:"lines",connectgaps:false,line:{color:c.color,width:2},hovertemplate:"%{x:.5g}<br>%{y:.5g}<extra>%{fullData.name}</extra>"});
+const reference=(y,color="#80928d")=>({type:"line",xref:"paper",x0:0,x1:1,y0:y,y1:y,line:{dash:"dot",color,width:1.2}});
+const T2widthHz=1/(Math.PI*D.configuration.t2_us*1e-6);
+const T2halfWidthKhz=T2widthHz/2000;
+const t2DetuningMarkers=()=>[-T2halfWidthKhz,T2halfWidthKhz].map(x=>({type:'line',xref:'x',x0:x,x1:x,yref:'paper',y0:0,y1:1,line:{dash:'dash',color:'#ffffff',width:1.8}}));
+const normalizedWidth=()=>$('widthUnit').value==='t2';
+const widthFactor=()=>normalizedWidth()?1/T2widthHz:.001;
+const widthLabel=()=>normalizedWidth()?'FWHM / Γ₂':'FWHM (kHz)';
+const widthUnits=()=>normalizedWidth()?'Γ₂':'kHz';
+$('widthUnit').value='t2';
+$('widthReference').textContent=`Γ₂ = 1/(πT₂) = ${(T2widthHz/1000).toFixed(3)} kHz for T₂ = ${D.configuration.t2_us} µs. A normalized width of 1 is one T₂ reference linewidth.`;
+$('populationReference').textContent=`Vertical white dashed lines are at ±Γ₂/2 = ±${T2halfWidthKhz.toFixed(2)} kHz about zero detuning. Their separation is one T₂ reference FWHM, Γ₂ = ${(T2widthHz/1000).toFixed(2)} kHz. The markers stay fixed when the cutoff, amplitude, or width display units change.`;
+for(const c of D.cases){const bytes=Uint8Array.from(atob(c.population_base64),s=>s.charCodeAt(0));c.pe=new Float32Array(bytes.buffer);delete c.population_base64;}
+$('status').textContent=D.pending.length?`PREVIEW · ${D.cases.length} of 5 durations complete. Pending: ${D.pending.join(", ")} µs. Only completed data are shown.`:`COMPLETE · 5 durations × 100 cutoffs × 100 drive scales × 201 detunings = 10,050,000 simulated grid points.`;
+if(!D.pending.length)$('status').classList.add('done');
+D.amps.forEach((a,i)=>$('amplitude').add(new Option(`${a.toFixed(2)} MHz`,i)));
+$('amplitude').value=String(D.amps.reduce((best,v,i)=>Math.abs(v-50)<Math.abs(D.amps[best]-50)?i:best,0));
+$('cutoff').max=nc-1;$('cutoff').value=String(D.cutoffs.reduce((best,v,i)=>Math.abs(Math.log(v/.001))<Math.abs(Math.log(D.cutoffs[best]/.001))?i:best,0));
+$('populationCutoff').max=nc-1;
+D.cases.forEach((c,i)=>$('mapLength').add(new Option(lineLabel(c),i)));
+const masked=(c,key,ci,ai,factor=1)=>c.metrics.accepted[ci][ai]&&c.metrics[key][ci][ai]!==null?c.metrics[key][ci][ai]*factor:null;
+function refreshSelection(){
+ const ai=+$('amplitude').value, ci=+$('cutoff').value, cutoff=D.cutoffs[ci], factor=widthFactor();
+ $('amplitudeValue').textContent=`${D.amps[ai].toFixed(2)} MHz`;$('cutoffValue').textContent=exp(cutoff);
+ const w=D.cases.map(c=>trace(c,D.cutoffs,D.cutoffs.map((_,j)=>masked(c,'fwhm_hz',j,ai,factor))));
+ const s=D.cases.map(c=>trace(c,D.cutoffs,D.cutoffs.map((_,j)=>masked(c,'contrast_snr',j,ai))));
+ for(const [id,tr,title,y,ref] of [['widthCutoff',w,'Dip width versus cutoff',widthLabel(),T2widthHz*factor],['snrCutoff',s,'Visibility versus cutoff','Ideal contrast SNR',10]]){
+  const layout=baseLayout(title,'Cutoff',y);layout.xaxis.type='log';layout.shapes=[reference(ref),{type:'line',x0:cutoff,x1:cutoff,y0:0,y1:1,yref:'paper',line:{color:'#425c67',width:1,dash:'dash'}}];Plotly.react(id,tr,layout,cfg);
+ }
+ $('pointRows').innerHTML=D.cases.map(c=>{const m=c.metrics,ok=m.accepted[ci][ai];return `<tr><th>${dot(c)}</th><td class="num">${fmt(masked(c,'fwhm_hz',ci,ai,factor))}</td><td class="num">${fmt(masked(c,'contrast_snr',ci,ai))}</td><td class="num">${fmt(masked(c,'snr_per_mhz',ci,ai))}</td><td class="num">${fmt(masked(c,'shoulder_contrast',ci,ai),3)}</td><td>${m.prominent_minima[ci][ai]}</td><td>${ok?'Accepted local dip':'Rejected / unresolved'}</td></tr>`}).join('');
+ const spectra=D.cases.map(c=>{const offset=(ci*na+ai)*nd;return trace(c,D.detuning.map(x=>x*1000),Array.from(c.pe.subarray(offset,offset+nd)));});
+ const sl=baseLayout(`Spectra · cutoff ${exp(cutoff)}`,'Detuning (kHz)','Final excited population Pₑ');sl.yaxis.range=[0,1];Plotly.react('spectrum',spectra,sl,cfg);
+ const trade=[];
+ D.cases.forEach(c=>{const xs=[],ys=[],custom=[];D.cutoffs.forEach((v,j)=>{if(c.metrics.accepted[j][ai]){xs.push(c.metrics.fwhm_hz[j][ai]*factor);ys.push(c.metrics.contrast_snr[j][ai]);custom.push(v)}});trade.push({x:xs,y:ys,customdata:custom,type:'scatter',mode:'markers',name:lineLabel(c),marker:{color:c.color,size:5,opacity:.65},hovertemplate:`FWHM %{x:.3f} ${widthUnits()}<br>SNR %{y:.3f}<br>cutoff %{customdata:.5g}<extra>%{fullData.name}</extra>`});if(c.metrics.accepted[ci][ai])trade.push({x:[c.metrics.fwhm_hz[ci][ai]*factor],y:[c.metrics.contrast_snr[ci][ai]],type:'scatter',mode:'markers',name:`${lineLabel(c)} selected`,showlegend:false,marker:{color:c.color,size:12,line:{color:'#102e3d',width:2}},hovertemplate:`Selected: %{x:.3f} ${widthUnits()}, SNR %{y:.3f}<extra>%{fullData.name}</extra>`});});
+ const tl=baseLayout('Sampled width / SNR tradeoff',widthLabel(),'Ideal contrast SNR');tl.shapes=[reference(10)];Plotly.react('tradeoff',trade,tl,cfg);
+ const best=D.cases.map(c=>{let index=-1,score=-Infinity;D.cutoffs.forEach((_,j)=>{const v=masked(c,'snr_per_mhz',j,ai);if(v!==null&&v>score){score=v;index=j}});return {c,index,score}});
+ $('bestRows').innerHTML=best.map(({c,index:j})=>j<0?`<tr><th>${dot(c)}</th><td colspan="4">No accepted dip at this drive scale</td></tr>`:`<tr><th>${dot(c)}</th><td>${exp(D.cutoffs[j])}</td><td class="num">${fmt(c.metrics.fwhm_hz[j][ai]*factor)}</td><td class="num">${fmt(c.metrics.contrast_snr[j][ai])}</td><td class="num">${fmt(c.metrics.snr_per_mhz[j][ai])}</td></tr>`).join('');
+ const valid=D.cases.filter(c=>c.metrics.accepted[ci][ai]);
+ if(valid.length){const narrow=valid.reduce((a,b)=>a.metrics.fwhm_hz[ci][ai]<b.metrics.fwhm_hz[ci][ai]?a:b);const visible=valid.reduce((a,b)=>a.metrics.contrast_snr[ci][ai]>b.metrics.contrast_snr[ci][ai]?a:b);$('selectionFinding').textContent=`At A = ${D.amps[ai].toFixed(2)} MHz and cutoff ${exp(cutoff)}, ${narrow.duration} µs has the narrowest accepted dip (${fmt(narrow.metrics.fwhm_hz[ci][ai]*factor)} ${widthUnits()}); ${visible.duration} µs has the highest ideal SNR (${fmt(visible.metrics.contrast_snr[ci][ai])}). ${D.pending.length?'This comparison includes only completed durations.':''}`;}else{$('selectionFinding').textContent='No duration has an accepted dip at this shared operating point. Inspect the spectra and select a different drive scale or cutoff.';}
+}
+function refreshPopulationMaps(){
+ const ci=+$('cutoff').value, ai=+$('amplitude').value, cutoff=D.cutoffs[ci];
+ $('populationCutoff').value=String(ci);
+ $('populationCutoffValue').textContent=exp(cutoff);
+ const x=D.detuning.map(v=>v*1000);
+ D.cases.forEach((c,i)=>{
+  const z=D.amps.map((_,j)=>{const start=(ci*na+j)*nd;return Array.from(c.pe.subarray(start,start+nd));});
+  const layout=baseLayout(`${lineLabel(c)} · cutoff ${exp(cutoff)}`,'Detuning (kHz)','Drive scale A (MHz)');
+  layout.margin.r=85;layout.margin.t=70;layout.shapes=[reference(D.amps[ai],'#ffffff'),...t2DetuningMarkers()];
+  layout.annotations=[{x:0,xref:'x',y:1.02,yref:'paper',text:`T₂ FWHM: ${(T2widthHz/1000).toFixed(2)} kHz`,showarrow:false,yanchor:'bottom',font:{size:11,color:'#526974'}}];
+  layout.xaxis.range=[x[0],x[nd-1]];layout.yaxis.range=[D.amps[0],D.amps[na-1]];
+  Plotly.react(`populationMap${i}`,[{x,y:D.amps,z,type:'heatmap',colorscale:'Viridis',zmin:0,zmax:1,zsmooth:false,colorbar:{title:{text:'Pₑ'},thickness:14},hovertemplate:'Detuning %{x:.1f} kHz<br>A %{y:.3f} MHz<br>Pₑ %{z:.6f}<extra></extra>'}],layout,cfg);
+ });
+}
+function refreshMap(){
+ const c=D.cases[+$('mapLength').value],key=$('mapMetric').value,scale=key==='fwhm_hz'?widthFactor():1;
+ const labels={fwhm_hz:widthLabel(),contrast_snr:'Ideal SNR',snr_per_mhz:'SNR / FWHM (MHz⁻¹)',max_final_pf:'Maximum final P_f'};
+ let upper=0;D.cases.forEach(v=>v.metrics[key].forEach((row,j)=>row.forEach((x,k)=>{if(x!==null&&(key==='max_final_pf'||v.metrics.accepted[j][k]))upper=Math.max(upper,x*scale)})));
+ const z=c.metrics[key].map((row,j)=>row.map((x,k)=>key==='max_final_pf'?x:masked(c,key,j,k,scale)));
+ const layout=baseLayout(`${lineLabel(c)} · ${labels[key]}`,'Drive scale A (MHz)','Cutoff');layout.yaxis.type='log';layout.yaxis.range=[-5,0];layout.plot_bgcolor='#e2e7e9';layout.margin.r=120;
+ Plotly.react('metricMap',[{x:D.amps,y:D.cutoffs,z,type:'heatmap',colorscale:key==='fwhm_hz'?'Magma':'Viridis',zmin:0,zmax:upper,hoverongaps:false,colorbar:{title:{text:labels[key]},thickness:16},hovertemplate:'A %{x:.3f} MHz<br>cutoff %{y:.5g}<br>value %{z:.5g}<extra></extra>'}],layout,cfg);
+}
+function drawRobust(){
+ $('robustRows').innerHTML=D.cases.map(c=>{const r=c.robust;return r?`<tr><th>${dot(c)}</th><td>${exp(r.cutoff)}</td><td class="num">${fmt(r.worst_fwhm_khz*1000*widthFactor())}</td><td class="num">${fmt(r.minimum_snr)}</td><td class="num">${fmt(r.minimum_snr_per_mhz)}</td><td>${r.all_amplitudes_snr_at_least_10?'Yes':'No'}</td></tr>`:`<tr><th>${dot(c)}</th><td colspan="5">No cutoff is accepted across the full drive range.</td></tr>`}).join('');
+ const active=D.amps.map((a,i)=>a>=10?i:-1).filter(i=>i>=0), x=active.map(i=>D.amps[i]);
+ for(const [id,key,factor,title,y,ref] of [['robustWidth','fwhm_hz',widthFactor(),'Worst-range cutoff: linewidth',widthLabel(),T2widthHz*widthFactor()],['robustSnr','contrast_snr',1,'Worst-range cutoff: visibility','Ideal SNR',10]]){const t=D.cases.filter(c=>c.robust).map(c=>trace(c,x,active.map(i=>masked(c,key,c.robust.cutoff_index,i,factor))));const l=baseLayout(title,'Drive scale A (MHz)',y);l.shapes=[reference(ref)];Plotly.react(id,t,l,cfg);}
+ const total=D.cases.reduce((s,c)=>s+c.validation.total_traces,0),good=D.cases.reduce((s,c)=>s+c.validation.accepted_traces,0),traceError=Math.max(...D.cases.map(c=>c.validation.max_trace_error));
+ $('validationText').textContent=`Saved-array validation: ${good.toLocaleString()} of ${total.toLocaleString()} spectral traces pass the local-dip criteria. Rejected traces are retained in the data. Maximum raw population trace error: ${traceError.toExponential(2)}. Model settings and grid axes are checked before combining lengths.`;
+}
+function refreshWidthUnits(){
+ for(const id of ['pointWidthHeading','bestWidthHeading','mapWidthOption'])$(id).textContent=widthLabel();
+ $('robustWidthHeading').textContent=`Worst ${widthLabel()}`;
+ $('overviewT2').hidden=!normalizedWidth();$('overviewKhz').hidden=normalizedWidth();
+ const stem=normalizedWidth()?'duration_comparison':'duration_comparison_khz';
+ $('overviewLink').href=`${stem}.png`;$('overviewPng').href=`${stem}.png`;$('overviewPdf').href=`${stem}.pdf`;
+ refreshSelection();refreshMap();drawRobust();
+}
+$('amplitude').addEventListener('change',()=>{refreshSelection();refreshPopulationMaps();});
+$('cutoff').addEventListener('input',()=>{refreshSelection();refreshPopulationMaps();});
+$('populationCutoff').addEventListener('input',()=>{$('cutoff').value=$('populationCutoff').value;refreshSelection();refreshPopulationMaps();});
+$('widthUnit').addEventListener('change',refreshWidthUnits);
+$('mapLength').addEventListener('change',refreshMap);$('mapMetric').addEventListener('change',refreshMap);
+refreshWidthUnits();refreshPopulationMaps();
+window.reportReady=true;
+})();
+</script>
+</body></html>

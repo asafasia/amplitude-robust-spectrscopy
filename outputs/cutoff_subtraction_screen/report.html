@@ -1,0 +1,47 @@
+<!doctype html><html lang="en"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cutoff subtraction: an exploratory screen</title>
+<style>body{font:17px/1.6 system-ui;max-width:1200px;margin:auto;padding:30px;
+color:#172636;background:#fafbfd}img{width:100%}table{border-collapse:collapse}
+td,th{padding:9px 18px;border-bottom:1px solid #ddd;text-align:left}
+code{background:#eaf0f5;padding:3px}a{color:#176da1}</style>
+<h1>Subtracting the cutoff before shaping</h1>
+<p>Exploratory screen at <b>50.505, 74.747, and 100 MHz</b> only. This is not a
+full 100-amplitude robustness test. The same 30 µs, 16 ns sine echo inversion,
+β = −0.5, three-level model, T₁ = 51.24 µs, T₂ = 7.31 µs and α = −216 MHz apply.</p>
+<p>Best new candidate at cutoff 0.001: cancel the endpoint value and its first
+two derivatives by subtracting a smooth background. This improves width and
+visibility relative to the cubic at the three checked amplitudes. It does not
+reach the 43.54 kHz coherence reference.</p>
+<h2>At cutoff 0.001 and amplitude 100 MHz</h2>
+<table><tr><th>Shape</th><th>FWHM (kHz)</th><th>Ideal SNR</th><th>Pe contrast</th></tr>
+<tr><td>Original cubic</td><td>152.85</td><td>7.299</td><td>0.224</td></tr><tr><td>Original p = 8</td><td>173.53</td><td>10.684</td><td>0.316</td></tr><tr><td>Subtract cutoff only</td><td>151.34</td><td>6.031</td><td>0.187</td></tr><tr><td>Subtract + linear window</td><td>142.01</td><td>7.463</td><td>0.229</td></tr><tr><td>Subtract + cubic window</td><td>150.46</td><td>9.352</td><td>0.281</td></tr><tr><td>C2 endpoint subtraction</td><td>141.86</td><td>9.447</td><td>0.284</td></tr></table>
+<h2>Exact pulse construction</h2>
+<p>Let f(t) = [1 + (t/σ)²]<sup>−1/2</sup>, σ = 15/√(c<sup>−2</sup>−1) µs,
+x = 2t/L, y = 1 − x², and a = 1 − c². All shapes have support |t| ≤ L/2.</p>
+<p>The direct floor subtraction is <code>g(t) = [f(t) − c]/(1 − c)</code>.
+Its value reaches zero, but its slope does not. Multiplication by y or y³
+gives the mild and cubic window controls.</p>
+<p>The C2 construction is</p>
+<p><code>g(t) = [f(t) − c(1 + ay/2 + 3a²y²/8)] /
+[1 − c(1 + a/2 + 3a²/8)]</code>.</p>
+<p>This subtracts the quadratic Taylor expansion in y of
+f = c(1 − ay)<sup>−1/2</sup> at each endpoint. Consequently g, g′ and g″
+vanish there. The denominator restores g(0) = 1. The waveform is I = A s(t)g(t),
+with Q = −β I′/(2π|α|). There is no signed-pulse peak or area normalization.
+The cutoff still determines σ; zero endpoints do not remove core-width dependence.</p>
+<img src="screen.png" alt="Linewidth and SNR for six pulse shapes at three amplitudes">
+<p>Curves join three sampled points only. FWHM uses the same linear background
+at |detuning| ≥ 0.4 MHz in the ±0.5 MHz sweep. SNR uses ideal binary Pe readout,
+500 center shots and 250 at each ±0.45 MHz shoulder. It is not 10% population contrast.</p>
+<h2>Scope and validation</h2>
+<p>18 maps, each 3 states × 3 amplitudes × 201 detunings. Analytic derivatives
+were checked numerically. Original p = 3 and p = 8 populations match the previous
+study within 10⁻¹⁰. Halving dt from 0.5 to 0.25 ns for the new floor, floor_p1,
+and C2 cases at cutoff 0.001 changes widths by at most 8.84 Hz.
+This screen does not establish performance between the three amplitudes,
+or independence from background choice, and contains no hardware validation.</p>
+<p><a href="results.json">Parameters, all metrics, checks and source hashes</a> ·
+<a href="metrics.csv">Metrics CSV</a> · <a href="screen.pdf">Figure PDF</a></p>
+<p>Reproduce with <code>.venv/bin/python scripts/screen_cutoff_subtraction.py</code>.</p>
+</html>

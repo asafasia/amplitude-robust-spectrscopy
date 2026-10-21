@@ -1,13 +1,13 @@
 \section{Experimental--Simulation Comparison}
 \label{sec:data-analysis}
 
-The amplitude-robustness data set was acquired on qubit q1 using active reset
+The amplitude-robustness data set was acquired on the primary qubit using active reset
 and state-discriminated readout.  Each point contains 40 repetitions.  The
 detuning axis spans $-0.5$ to $+0.5~\mathrm{MHz}$ in $1~\mathrm{kHz}$ steps,
 and the data comprise 100 fixed-amplitude slices.  The pulse record contains a
-root--Lorentzian edge-to-peak ratio $c=0.005$, a pulse length
+root-Lorentzian edge-to-peak ratio $c=0.005$, a pulse length
 $L=10~\mu\mathrm{s}$, and an unscaled peak output amplitude of $0.2$.  The
-peak Rabi frequency is reconstructed from the saved q1 square-pulse
+peak Rabi frequency is reconstructed from the saved square-pulse
 calibration, including this peak output amplitude.
 
 For the matched comparisons in
@@ -16,7 +16,7 @@ Figs.~\ref{fig:amplitude-robustness-2d} and
 we integrate the two-level Lindblad model of
 Eq.~\eqref{eq:numerical-master-equation} on the complete experimental
 detuning and calibrated peak-Rabi grids.  The calculation uses the recorded
-echo--root--Lorentzian pulse parameters $L=10~\mu\mathrm{s}$ and $c=0.005$
+echo-root-Lorentzian pulse parameters $L=10~\mu\mathrm{s}$ and $c=0.005$
 together with the measurement-linked values
 $T_1=\MeasuredTOne~\mu\mathrm{s}$ and
 $T_\phi=\EffectiveTPhi~\mu\mathrm{s}$.  No affine readout calibration or
@@ -25,8 +25,8 @@ fitted frequency offset is applied.
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{../figures/paper/03_amplitude_robustness_2d.pdf}
-    \caption{Complete amplitude--detuning sweeps for the q1
-    echo--root--Lorentzian sequence.  (a) Measured excited-state probability
+    \caption{Complete amplitude--detuning sweeps for the
+    echo-root-Lorentzian sequence.  (a) Measured excited-state probability
     from 40 repetitions per point.  (b) Parameter-matched two-level Lindblad
     simulation on the identical calibrated peak-Rabi and detuning grids.  The
     two panels use the same probability color scale.  Both show the narrow
@@ -106,9 +106,9 @@ and 54 simulated slices pass.  Failed slices remain missing rather than being
 reported as zero.  We use $Q\geq0.10$ only as an operational
 signal--resolution threshold.
 
-\subsection{Constant-pulse reference window}
+\subsection{Constant-drive reference window}
 
-For comparison, we use the analytic steady-state Torrey constant-drive tool
+For comparison, we use the analytic steady-state Torrey constant-drive reference
 employed by the IPS FWHM plots.  With saturation parameter
 $s=\Omega_0^2 T_1T_2$, the power-broadened linewidth and population contrast
 are
@@ -120,8 +120,9 @@ are
 \end{equation}
 Here $T_1=\MeasuredTOne~\mu\mathrm{s}$ and
 $T_2=\EffectiveTTwo~\mu\mathrm{s}$, consistent with the normalization used
-above.  Increasing a constant drive raises the contrast but power broadens the
-line and lowers $R=1/W$.  In the low-drive limit the linewidth approaches
+above. Increasing the amplitude of the constant-drive reference raises the
+contrast but power broadens the line and lowers $R=1/W$. In the low-drive
+limit the linewidth approaches
 $\Gamma_{f,T_2}=1/(\pi T_2)=43.5~\mathrm{kHz}$.  The operational condition
 $Q=AR\geq0.10$ holds over
 $\Omega_0/2\pi=0.0045$--$0.0385~\mathrm{MHz}$, with an analytic maximum

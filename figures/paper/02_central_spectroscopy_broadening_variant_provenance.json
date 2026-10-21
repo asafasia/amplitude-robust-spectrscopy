@@ -1,0 +1,45 @@
+{
+  "generator": "scripts/make_figure2_broadening_variant.py",
+  "included_in_manuscript": false,
+  "figure_size_inches": [
+    3.38,
+    3.65
+  ],
+  "panel_box_aspect": 1,
+  "reference_line_width_pt": 0.45,
+  "inputs": {
+    "broad_root": {
+      "run": "2026-08-25/six_detuning_amplitude_sweeps/02_broad_50mhz_cutoff_0p005_no_echo",
+      "population_sha256": "318cd34ee86ce490f732c9070cd011a89f96023212e34e50e2b75c69698410b6"
+    },
+    "broad_echo": {
+      "run": "2026-08-25/six_detuning_amplitude_sweeps/03_broad_50mhz_cutoff_0p005_echo",
+      "population_sha256": "a2f21a4497705a1c6ecddba9a12c40c1dbc9d1889ad81ab9be222035146d0bc1"
+    },
+    "narrow_root": {
+      "run": "2026-08-25/six_detuning_amplitude_sweeps/05_narrow_1mhz_cutoff_0p005_no_echo",
+      "population_sha256": "7d6fb5662261ca160c78fff6cf1bccb4e6650b2d7acaa6cf4d835e0f804d5126"
+    },
+    "narrow_echo": {
+      "run": "2026-08-25/six_detuning_amplitude_sweeps/06_narrow_1mhz_cutoff_0p005_echo",
+      "population_sha256": "d671e2e1953e7a7690d90ac54b8867b0cc40250070bafd88f107e6538fe40623"
+    }
+  },
+  "processing": "Unchanged populations; display color scale fixed to 0--0.6",
+  "display_saturation": "Populations above 0.6 use the upper endpoint color",
+  "color_limits": [
+    0.0,
+    0.6
+  ],
+  "reference": {
+    "model": "Steady-state Bloch high-drive asymptote; not a finite-pulse fit",
+    "halfwidth_mhz": "(Omega_0 / (2*pi) in MHz) * sqrt(T1/T2)",
+    "t1_us": 51.2,
+    "t2_us": 7.31,
+    "slope": 2.6465267743153977,
+    "coherence_source": "paper/coherence_parameters.tex",
+    "coherence_sha256": "8a88b8b71c3949c95a37b6ee1e277fc19dacf7a6c7c5bfc146efc8f31eb465d6",
+    "leaves_broad_window_at_rabi_mhz": 9.446343125119899,
+    "leaves_narrow_window_at_rabi_mhz": 0.18892686250239799
+  }
+}

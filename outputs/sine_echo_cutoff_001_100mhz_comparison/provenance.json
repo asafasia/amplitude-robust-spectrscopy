@@ -1,0 +1,165 @@
+{
+  "parameters": {
+    "duration_us": 20.0,
+    "t1_us": 51.24,
+    "t_phi_us": 7.871480508563624,
+    "anharmonicity_mhz": -216.0,
+    "cutoff": 0.001,
+    "order": 0.5,
+    "echo": true,
+    "echo_transition_shape": "sine",
+    "drag_beta": 0.0,
+    "stark_kappa_mhz_inv": 0.0,
+    "echo_transition_us": 0.016
+  },
+  "betas": [
+    0.0,
+    -0.5,
+    -1.0
+  ],
+  "amplitude_points": 100,
+  "amplitude_range_mhz": [
+    0.0,
+    100.0
+  ],
+  "dt_ns": 0.5,
+  "summary": [
+    {
+      "beta": 0.0,
+      "max_final_pf": 0.00024350070032365894,
+      "accepted_fits": 36,
+      "high_drive_fit": {
+        "center_hz": 11354.251503900634,
+        "fwhm_hz": 229435.06938062955,
+        "center_error_hz": 2200.340577433778,
+        "fwhm_error_hz": 8274.67850128407,
+        "r_squared": 0.9353368845588406,
+        "contrast": 0.1566948482766037,
+        "accepted": false
+      },
+      "high_drive_direct": {
+        "center_hz": -2378.781902346712,
+        "fwhm_hz": 264086.39251939545,
+        "contrast": 0.2199801472158911,
+        "accepted": true
+      },
+      "max_population_error": 5.945051620659392e-06,
+      "max_checked_direct_center_error_hz": 1.6177770578224226,
+      "max_checked_direct_fwhm_error_hz": 5.051423244469333,
+      "max_checked_center_error_hz": 0.003501983685509913,
+      "max_checked_fwhm_error_hz": 0.06475847185356542
+    },
+    {
+      "beta": -0.5,
+      "max_final_pf": 0.00022406996317873525,
+      "accepted_fits": 63,
+      "high_drive_fit": {
+        "center_hz": -374.83762174172773,
+        "fwhm_hz": 246995.79027752133,
+        "center_error_hz": 948.3278538351029,
+        "fwhm_error_hz": 3951.155451204799,
+        "r_squared": 0.9879026472100079,
+        "contrast": 0.1652610488166028,
+        "accepted": true
+      },
+      "high_drive_direct": {
+        "center_hz": 656.1072317625977,
+        "fwhm_hz": 302303.3648816659,
+        "contrast": 0.23138413306665628,
+        "accepted": true
+      },
+      "max_population_error": 5.3267849732252515e-06,
+      "max_checked_direct_center_error_hz": 0.18410984587217172,
+      "max_checked_direct_fwhm_error_hz": 5.381397690915037,
+      "max_checked_center_error_hz": 0.5298219432538005,
+      "max_checked_fwhm_error_hz": 3.164536130934721
+    },
+    {
+      "beta": -1.0,
+      "max_final_pf": 0.00021968655175860538,
+      "accepted_fits": 30,
+      "high_drive_fit": {
+        "center_hz": -12302.753314592492,
+        "fwhm_hz": 225212.33064136666,
+        "center_error_hz": 2385.21141306163,
+        "fwhm_error_hz": 8772.394061070998,
+        "r_squared": 0.9238786445808291,
+        "contrast": 0.15479737406338592,
+        "accepted": false
+      },
+      "high_drive_direct": {
+        "center_hz": 4016.060326183693,
+        "fwhm_hz": 262033.53955533172,
+        "contrast": 0.21743743449097064,
+        "accepted": true
+      },
+      "max_population_error": 6.50090341858256e-06,
+      "max_checked_direct_center_error_hz": 1.882659747168418,
+      "max_checked_direct_fwhm_error_hz": 5.98178884855588,
+      "max_checked_center_error_hz": 0.006240308915494097,
+      "max_checked_fwhm_error_hz": 0.04015852033626288
+    }
+  ],
+  "source_runs": {
+    "broad": "2026-08-25/six_detuning_amplitude_sweeps/03_broad_50mhz_cutoff_0p005_echo",
+    "narrow": "2026-08-25/six_detuning_amplitude_sweeps/06_narrow_1mhz_cutoff_0p005_echo"
+  },
+  "convention": "I=L*s, no renormalization; Q=-beta*dI/dt/(2*pi*abs(alpha)); drive=I-iQ",
+  "direct_metrics": "Center: raw Pe minimum refined quadratically. Width: nearest half-depth crossings after subtracting linear background fitted on |detuning|>=0.4 MHz; finite-window operational width.",
+  "fitting": "Pe Gaussian dip on \u00b10.3 MHz after 1-bin Gaussian smoothing; FWHM=2sqrt(2ln2)*sigma. Require R2>=0.95, depth>=0.001, FWHM>=15 kHz, and both half-depth points inside fit window. Zero drive excluded. No uncertainty from fit covariance is interpreted as physical uncertainty.",
+  "caveat": "Final Pf, not transient peak leakage; three-level Markovian simulation. Fitted center and FWHM describe the Gaussian approximation, not necessarily the exact minimum or literal half-depth width.",
+  "detuning_grid_refinement": [
+    {
+      "rabi_mhz": 46.46464646464647,
+      "coarse": {
+        "center_hz": -10.845968198554356,
+        "fwhm_hz": 194460.48240531777,
+        "contrast": 0.332090078243752,
+        "accepted": true
+      },
+      "fine": {
+        "center_hz": -10.692293738695602,
+        "fwhm_hz": 194507.17182106164,
+        "contrast": 0.33212290119133675,
+        "accepted": true
+      },
+      "center_change_hz": 0.15367445985875428,
+      "width_change_hz": 46.68941574386554
+    },
+    {
+      "rabi_mhz": 97.97979797979798,
+      "coarse": {
+        "center_hz": 927.8975994403422,
+        "fwhm_hz": 298683.9360947328,
+        "contrast": 0.23410689389693556,
+        "accepted": true
+      },
+      "fine": {
+        "center_hz": 927.8227129085415,
+        "fwhm_hz": 298657.8097083552,
+        "contrast": 0.23410710523857398,
+        "accepted": true
+      },
+      "center_change_hz": -0.07488653180075744,
+      "width_change_hz": -26.12638637755299
+    },
+    {
+      "rabi_mhz": 100.0,
+      "coarse": {
+        "center_hz": 656.1072317625977,
+        "fwhm_hz": 302303.3648816659,
+        "contrast": 0.23138413306665628,
+        "accepted": true
+      },
+      "fine": {
+        "center_hz": 657.9582267881431,
+        "fwhm_hz": 302279.5547298065,
+        "contrast": 0.23137784680440077,
+        "accepted": true
+      },
+      "center_change_hz": 1.8509950255453305,
+      "width_change_hz": -23.81015185941942
+    }
+  ],
+  "parameter_change": "Cutoff 0.001; nominal amplitude range extended to 0\u2013100 MHz with 100 points; all beta cases recomputed."
+}

@@ -1,0 +1,44 @@
+[
+  {
+    "family": "polynomial5",
+    "max_population_change": 1.5509302204563813e-05,
+    "max_time_step_width_change_hz": 2.314028291584691,
+    "max_frequency_grid_width_change_hz": 46.75774608284701,
+    "max_time_step_center_change_hz": 0.2114228959163711,
+    "max_snr_change": 0.003149713416908284,
+    "previous_full_map_difference": 4.107825191113079e-15
+  },
+  {
+    "family": "c2",
+    "max_population_change": 1.3111304470903029e-05,
+    "max_time_step_width_change_hz": 2.9613129463396035,
+    "max_frequency_grid_width_change_hz": 49.748182174836984,
+    "max_time_step_center_change_hz": 0.12620902260960065,
+    "max_snr_change": 0.0033663013723792545,
+    "previous_three_amplitude_difference": 3.7192471324942744e-15
+  },
+  {
+    "family": "spline",
+    "max_population_change": 1.8454629240993725e-05,
+    "max_time_step_width_change_hz": 1.1643555515329354,
+    "max_frequency_grid_width_change_hz": 70.32907547423383,
+    "max_time_step_center_change_hz": 0.1590352281655214,
+    "max_snr_change": 0.006109347071339144
+  },
+  {
+    "family": "margin",
+    "max_population_change": 1.9562220158753085e-05,
+    "max_time_step_width_change_hz": 1.498525230694213,
+    "max_frequency_grid_width_change_hz": 47.27124073536834,
+    "max_time_step_center_change_hz": 0.18060179339897786,
+    "max_snr_change": 0.004771807118407523
+  },
+  {
+    "family": "clean",
+    "max_population_change": 1.7912694611488256e-05,
+    "max_time_step_width_change_hz": 1.2692083883157466,
+    "max_frequency_grid_width_change_hz": 33.28711274525267,
+    "max_time_step_center_change_hz": 0.24206404115523128,
+    "max_snr_change": 0.004310407107148251
+  }
+]

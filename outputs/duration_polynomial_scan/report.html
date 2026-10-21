@@ -1,0 +1,122 @@
+<!doctype html><html lang="en"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Longer pulses and higher polynomial powers</title>
+<style>body{font:17px/1.6 system-ui;max-width:1400px;margin:auto;padding:32px;
+color:#172636;background:#fafbfd}img{width:100%;margin:16px 0}
+table{border-collapse:collapse;width:100%;font-size:15px}
+td,th{padding:9px;border-bottom:1px solid #d5dce2;text-align:left}
+.lead{background:#eaf2f8;padding:18px;border-left:4px solid #176da1}
+code{background:#eef1f5;padding:3px}a{color:#176da1}</style>
+<h1>Can longer pulses and stronger tapering reach the T₂ linewidth?</h1>
+<p class="lead"><b>The tested family still misses the joint target.</b>
+At fixed T₂ = 7.31 µs the coherence reference is 43.54 kHz.
+Across 83 duration/power/shape settings screened at three high amplitudes,
+0 sampled points meet both FWHM ≤ 50 kHz and ideal SNR ≥ 10.
+Longer duration can narrow a visible dip, but the signal falls; increasing the
+polynomial exponent restores visibility while broadening the dip again.</p>
+<p>The lowest worst-case width among the screened cases with minimum SNR ≥ 10 is
+<b>156.22 kHz</b>, for 30 µs, p=4, subtract.
+This is a finite search, not a proof that every possible pulse fails.
+The full grids below check 9 selected cases with <b>100 amplitudes from 0 to
+100 MHz</b>. High-amplitude statistics use all 50 points from 50.505 to 100 MHz.</p>
+<p>At 100 MHz specifically, the 120 µs, power-32 original pulse reaches
+<b>58.05 kHz</b>, but its ideal SNR is only
+<b>0.29</b> and its population contrast is
+0.72 percentage points.
+It is much closer to the linewidth reference, with too little signal at this shot budget.</p>
+<p>This study varies polynomial windows, with and without subtracting the endpoint
+value. The previous C2 endpoint-subtraction construction is a different family and
+was not varied here; this is not a ranking of every earlier pulse design.</p>
+<h2>Full-grid comparison</h2>
+<p>Each column reports a conservative worst case across the high-amplitude range;
+the extrema need not occur at the same amplitude. Contrast is a population difference;
+SNR is that difference divided by its ideal shot noise.</p>
+<table><tr><th>Pulse</th><th>Worst FWHM (kHz)</th><th>Width / T₂ reference</th>
+<th>Minimum SNR</th><th>Minimum Pe contrast</th><th>Max |center| (kHz)</th></tr>
+<tr><td>30 µs, p=3, subtract</td><td>150.46</td><td>3.46×</td><td>9.35</td><td>0.281</td><td>0.72</td></tr><tr><td>30 µs, p=4, subtract</td><td>156.22</td><td>3.59×</td><td>10.04</td><td>0.300</td><td>0.80</td></tr><tr><td>30 µs, p=5, subtract</td><td>161.85</td><td>3.72×</td><td>10.64</td><td>0.315</td><td>0.88</td></tr><tr><td>30 µs, p=8, original</td><td>173.53</td><td>3.99×</td><td>10.68</td><td>0.316</td><td>0.91</td></tr><tr><td>45 µs, p=32, original</td><td>203.12</td><td>4.66×</td><td>10.05</td><td>0.289</td><td>1.36</td></tr><tr><td>60 µs, p=16, original</td><td>145.28</td><td>3.34×</td><td>4.03</td><td>0.119</td><td>0.81</td></tr><tr><td>60 µs, p=64, original, fixed core</td><td>202.07</td><td>4.64×</td><td>10.26</td><td>0.283</td><td>1.15</td></tr><tr><td>60 µs, p=128, subtract</td><td>281.06</td><td>6.45×</td><td>11.27</td><td>0.303</td><td>1.77</td></tr><tr><td>120 µs, p=32, original</td><td>120.25</td><td>2.76×</td><td>0.29</td><td>0.007</td><td>0.64</td></tr></table>
+<img src="selected.png" alt="High-amplitude linewidth and SNR for selected pulses">
+<h2>Why higher power does not solve the duration tradeoff</h2>
+<p>The pulse is I(t) = A s(t) g(t) [1 − (2t/L)²]<sup>p</sup> on |t| &lt; L/2.
+For the original family, g = [1 + (t/σ)²]<sup>−1/2</sup>.
+For cutoff subtraction, g = (f − c)/(1 − c). Both have g(0) = 1 before the
+16 ns sine echo inversion. The full product derivative supplies DRAG Q.</p>
+<p>The window alone has temporal half-height width
+<code>W = L √(1 − 2<sup>−1/p</sup>) ≈ L √(ln 2 / p)</code>.
+This is the width of the polynomial window, not the Lorentzian core or an exact
+spectral-width formula. For large p, doubling L and quadrupling p nearly preserves
+the taper around the center. It adds little useful tail duration while moving
+readout farther from the center. At fixed L, raising p suppresses more of the
+slow Lorentzian wings. The simulation includes relaxation and dephasing throughout;
+the loss of visibility cannot be described by a single exp(−L/T₂) factor.</p>
+<p>Thus endpoint smoothness and amplitude robustness do not by themselves produce
+the narrowest line. The additional width is protocol- and drive-dependent;
+1/(πT₂) is the weak-drive Lorentzian reference, not a universal lower bound on a
+finite pulse's interference dip.</p>
+<p>Literature context: truncating Lorentzian tails creates amplitude-dependent
+broadening in coherent excitation spectroscopy
+(<a href="https://arxiv.org/html/2308.14187v2">Mihov and Vitanov</a>).
+That result motivates smooth tails, but it does not establish the linewidth or
+visibility of this three-level dissipative echo sequence.</p>
+<h2>Screen across duration and power</h2>
+<p>Durations: 30, 45, 60, 90, 120 µs.
+Powers: 3, 8, 16, 32, 64, 128.
+These heatmaps use only 50.505, 74.747 and 100 MHz.
+Gray means at least one trace failed the central-dip quality criteria.
+Values above the color scale are printed explicitly.</p>
+<img src="screen.png" alt="Screen of duration versus polynomial exponent">
+<h2>Resolve the SNR = 10 boundary</h2>
+<p>After the broad screen, 11 extra settings resolve intermediate powers
+and 35–40 µs durations near the most promising short-pulse region.
+These rows also use three screening amplitudes.</p>
+<table><tr><th>Pulse</th><th>Worst FWHM (kHz)</th><th>Minimum SNR</th></tr>
+<tr><td>30 µs, p=4, subtract</td><td>156.22</td><td>10.04</td></tr><tr><td>30 µs, p=5, subtract</td><td>161.85</td><td>10.64</td></tr><tr><td>30 µs, p=6, subtract</td><td>167.33</td><td>11.16</td></tr><tr><td>30 µs, p=7, original</td><td>168.46</td><td>10.18</td></tr><tr><td>35 µs, p=6, subtract</td><td>155.37</td><td>8.84</td></tr><tr><td>35 µs, p=8, subtract</td><td>164.19</td><td>9.68</td></tr><tr><td>35 µs, p=12, subtract</td><td>180.69</td><td>10.97</td></tr><tr><td>40 µs, p=8, subtract</td><td>154.03</td><td>7.78</td></tr><tr><td>40 µs, p=12, subtract</td><td>167.23</td><td>9.00</td></tr><tr><td>40 µs, p=16, subtract</td><td>180.31</td><td>9.95</td></tr><tr><td>45 µs, p=24, subtract</td><td>188.48</td><td>9.63</td></tr></table>
+<h2>Separate control: keep the Lorentzian core fixed</h2>
+<p>At fixed c = 0.001, σ scales with duration: 15 ns at 30 µs, 30 ns at 60 µs,
+and 60 ns at 120 µs. We also keep σ = 15.000008 ns
+while increasing L, using c = [1 + (L/(2σ))²]<sup>−1/2</sup>.
+This extends the tails without widening the core. These controls use the original
+envelope and the same three screening amplitudes; selected controls also have a full grid.</p>
+<table><tr><th>L (µs)</th><th>p</th><th>Worst FWHM (kHz)</th><th>Minimum SNR</th></tr>
+<tr><td>60</td><td>3</td><td>587.64</td><td>1.51</td></tr><tr><td>60</td><td>8</td><td>167.69</td><td>3.90</td></tr><tr><td>60</td><td>16</td><td>144.74</td><td>5.86</td></tr><tr><td>60</td><td>32</td><td>164.16</td><td>8.01</td></tr><tr><td>60</td><td>64</td><td>202.07</td><td>10.26</td></tr><tr><td>60</td><td>128</td><td>262.13</td><td>12.48</td></tr><tr><td>120</td><td>3</td><td>246.16</td><td>0.62</td></tr><tr><td>120</td><td>8</td><td>567.16</td><td>0.84</td></tr><tr><td>120</td><td>16</td><td>545.57</td><td>1.14</td></tr><tr><td>120</td><td>32</td><td>192.41</td><td>2.43</td></tr><tr><td>120</td><td>64</td><td>143.18</td><td>3.82</td></tr><tr><td>120</td><td>128</td><td>162.02</td><td>5.30</td></tr></table>
+<h2>Center, leakage, and population spectra</h2>
+<img src="details.png" alt="Full-range linewidth, SNR, center and final leakage">
+<img src="spectra_100mhz.png" alt="Three populations versus detuning at 100 MHz">
+<img src="populations_1.png" alt="Three populations versus amplitude and detuning, group 1">
+<img src="populations_2.png" alt="Three populations versus amplitude and detuning, group 2">
+<img src="populations_3.png" alt="Three populations versus amplitude and detuning, group 3">
+<h2>Parameters and measurement definition</h2>
+<p>β = −0.5; 16 ns sine echo transition for every pulse; α = −216 MHz;
+T₁ = 51.24 µs; T₂ = 7.31 µs; Tφ = 7.871480508563624 µs.
+Three-level RWA Lindblad simulation with adjacent-level relaxation and number
+dephasing; no extra phenomenological Stark correction. Q = −β I′/(2π|α|),
+with time in µs and α in MHz. No area or signed-envelope peak renormalization.</p>
+<p>Detuning spans ±0.5 MHz with 201 points. FWHM uses nearest half-depth crossings
+above the central Pe minimum, relative to a linear background fitted at
+|detuning| ≥ 0.4 MHz. This is a fixed finite-window definition, not a Lorentzian fit.
+The SNR budget is 500 shots at the fitted center and 250 at each ±0.45 MHz shoulder.
+It assumes perfect binary Pe readout and omits technical noise and center-search
+cost. A longer pulse also costs more time per shot, which this equal-shot comparison
+does not reward or penalize. Final Pf is not peak transient leakage.</p>
+<h2>Validation and reproducibility</h2>
+<p>Original 30 µs powers 3, 8 and 16 reproduce the prior populations within 10⁻¹⁰.
+Envelope positivity, symmetry and analytic derivatives were checked across the screen.
+All output populations are finite, within [0,1], and sum to one within 10⁻¹⁰.
+For 9 selected cases at the three screen amplitudes, halving the
+time step from 0.5 to 0.25 ns changes populations by at most 4.84e-05
+and widths by 22.35 Hz. Refining the detuning grid from 5 to 2.5 kHz
+changes widths by at most 123.52 Hz.</p>
+<p>43 focused model/window/metric tests passed. Full-suite collection is blocked
+by the environment's missing Torch package. Repository-wide Ruff reports 692
+existing findings; the two new scripts pass scoped Ruff. All results here are simulations.</p>
+<p><a href="provenance.json">Parameters and numerical provenance</a> ·
+<a href="source_hashes.json">Source hashes</a> ·
+<a href="summary_screen.json">Screen summaries</a> ·
+<a href="summary_full.json">Full-grid summaries</a> ·
+<a href="metrics_full.csv">Full metrics CSV</a> ·
+<a href="checks_refine.json">Numerical convergence</a> ·
+<a href="selected.pdf">Comparison PDF</a> · <a href="screen.pdf">Screen PDF</a></p>
+<p>Reproduce: <code>.venv/bin/python scripts/scan_duration_polynomial.py --stage screen</code>,
+then <code>--stage full --cases L30_p3_subtracted_cutoff L30_p4_subtracted_cutoff L30_p5_subtracted_cutoff L30_p8_raw_cutoff L45_p32_raw_cutoff L60_p16_raw_cutoff L60_p64_raw_core L60_p128_subtracted_cutoff L120_p32_raw_cutoff</code>,
+then <code>--stage refine --cases L120_p32_raw_cutoff L30_p3_subtracted_cutoff L30_p4_subtracted_cutoff L30_p5_subtracted_cutoff L30_p8_raw_cutoff L45_p32_raw_cutoff L60_p128_subtracted_cutoff L60_p16_raw_cutoff L60_p64_raw_core</code>,
+and <code>.venv/bin/python scripts/plot_duration_polynomial.py</code>.</p>
+</html>

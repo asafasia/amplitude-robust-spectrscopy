@@ -1,0 +1,35 @@
+[
+  {
+    "case": "c0.001_hard_beta-0.5",
+    "max_population_difference": 7.908895760522228e-12,
+    "amplitudes_mhz": [
+      50.505050505050505,
+      74.74747474747475,
+      100.0
+    ],
+    "detuning_points": 9,
+    "dt_ns": 0.5
+  },
+  {
+    "case": "c0.001_ramp6_beta-0.5",
+    "max_population_difference": 1.106092994973551e-11,
+    "amplitudes_mhz": [
+      50.505050505050505,
+      74.74747474747475,
+      100.0
+    ],
+    "detuning_points": 9,
+    "dt_ns": 0.5
+  },
+  {
+    "case": "c0.001_polynomial_beta-0.5",
+    "max_population_difference": 3.074984711304296e-12,
+    "amplitudes_mhz": [
+      50.505050505050505,
+      74.74747474747475,
+      100.0
+    ],
+    "detuning_points": 9,
+    "dt_ns": 0.5
+  }
+]

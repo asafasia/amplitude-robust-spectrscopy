@@ -2,7 +2,11 @@
 
 from __future__ import annotations
 
+# Local source imports follow the repository path setup.
+# ruff: noqa: E402
 import csv
+import hashlib
+import json
 import os
 import sys
 from collections import defaultdict
@@ -11,13 +15,14 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
 
-
-ROOT = Path(os.environ.get("AMPLITUDE_ROBUST_ROOT", Path(__file__).resolve().parents[1]))
+ROOT = Path(
+    os.environ.get("AMPLITUDE_ROBUST_ROOT", Path(__file__).resolve().parents[1])
+)
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from echospec.analysis.trace_alignment import fit_population_offset
 from echospec.figures import FigureVariant, apply_figure_style
-
 
 DATA_PATH = Path(
     os.environ.get(
@@ -86,6 +91,8 @@ def main() -> None:
         constrained_layout=True,
     )
     panel_labels = iter("abcdef")
+    fits = []
+    aligned_rows = []
 
     for row, target_rabi in enumerate(TARGET_RABI_MHZ):
         for column, (
@@ -98,7 +105,22 @@ def main() -> None:
             axis = axes[row, column]
             sim_x, sim_y = traces[(simulation_key, target_rabi)]
             exp_x, exp_y = traces[(experiment_key, target_rabi)]
-            axis.plot(sim_x, sim_y, color=simulation_color, lw=0.8, zorder=2)
+            panel = next(panel_labels)
+            fit = fit_population_offset(exp_x, exp_y, sim_x, sim_y)
+            fits.append(
+                {
+                    "panel": panel,
+                    "target_rabi_mhz": target_rabi,
+                    "simulation_series": simulation_key,
+                    **fit,
+                }
+            )
+            aligned_y = sim_y + fit["offset"]
+            aligned_rows.extend(
+                (simulation_key, target_rabi, x, raw, shifted)
+                for x, raw, shifted in zip(sim_x, sim_y, aligned_y, strict=True)
+            )
+            axis.plot(sim_x, aligned_y, color=simulation_color, lw=0.8, zorder=2)
             axis.scatter(
                 exp_x,
                 exp_y,
@@ -116,12 +138,17 @@ def main() -> None:
             axis.text(
                 0.04,
                 0.94,
-                f"({next(panel_labels)})",
+                f"({panel})",
                 transform=axis.transAxes,
                 ha="left",
                 va="top",
                 fontweight="bold",
-                bbox={"facecolor": "white", "edgecolor": "none", "alpha": 0.78, "pad": 0.5},
+                bbox={
+                    "facecolor": "white",
+                    "edgecolor": "none",
+                    "alpha": 0.78,
+                    "pad": 0.5,
+                },
             )
             if row == 0:
                 axis.set_title(title)
@@ -148,6 +175,36 @@ def main() -> None:
             pad_inches=0.04,
         )
     plt.close(figure)
+    with (OUTPUT_DIR / f"{OUTPUT_STEM}_aligned_simulation.csv").open(
+        "w", newline="", encoding="utf-8"
+    ) as stream:
+        writer = csv.writer(stream)
+        writer.writerow(
+            [
+                "series",
+                "target_rabi_mhz",
+                "detuning_mhz",
+                "original_simulation_pe",
+                "aligned_simulation_pe",
+            ]
+        )
+        writer.writerows(aligned_rows)
+    source_provenance = ROOT / "figures/paper" / f"{OUTPUT_STEM}_provenance.json"
+    provenance = json.loads(source_provenance.read_text())
+    provenance["per_panel_simulation_alignment"] = {
+        "model": "simulation + offset; fixed gain and detuning",
+        "objective": "Unweighted sum of squared residuals over all 501 measured points per panel, -0.5 to +0.5 MHz",
+        "estimator": "Mean of experiment minus simulation interpolated at measured detunings",
+        "experimental_reference": "Existing globally aligned experimental CSV; original global gain/offset retained",
+        "source_sha256": hashlib.sha256(DATA_PATH.read_bytes()).hexdigest(),
+        "maximum_absolute_offset": max(abs(fit["offset"]) for fit in fits),
+        "fits": fits,
+        "warning": "Display alignment, not a calibrated readout-assignment correction or proof of its cause",
+    }
+    (OUTPUT_DIR / f"{OUTPUT_STEM}_provenance.json").write_text(
+        json.dumps(provenance, indent=2) + "\n"
+    )
+    print(json.dumps(fits, indent=2))
     print(OUTPUT_DIR / f"{OUTPUT_STEM}.pdf")
 
 

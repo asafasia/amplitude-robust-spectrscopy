@@ -63,6 +63,8 @@ venv/
 
 # Generated analysis reports and intermediate figure exports
 /outputs/ac_stark.html
+/outputs/**/evaluations/
+/outputs/**/*.npz
 /figures/paper/16_drag_stark_*
 /figures/paper/17_drag_stark_*
 /figures/paper/18_drag_stark_*

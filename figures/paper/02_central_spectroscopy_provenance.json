@@ -1,0 +1,43 @@
+{
+  "generator": "scripts/make_main_central_spectroscopy_experiment.py",
+  "layout": "Two rows by three columns; overview above resonance zoom",
+  "figure_size_inches": [
+    7.1,
+    3.05
+  ],
+  "processing": "Unchanged measured populations; shared linear color scale",
+  "zoom_guides_mhz": [
+    -0.5,
+    0.5
+  ],
+  "color_limits": [
+    0.168,
+    0.713
+  ],
+  "inputs": {
+    "broad_constant": {
+      "run": "2026-08-25/six_detuning_amplitude_sweeps/01_broad_50mhz_cutoff_0p999_no_echo",
+      "population_sha256": "fc08d334a1c37e4a8af370b229d78f7d335a056048ff160bab9c40ecc983b880"
+    },
+    "broad_root": {
+      "run": "2026-08-25/six_detuning_amplitude_sweeps/02_broad_50mhz_cutoff_0p005_no_echo",
+      "population_sha256": "318cd34ee86ce490f732c9070cd011a89f96023212e34e50e2b75c69698410b6"
+    },
+    "broad_echo": {
+      "run": "2026-08-25/six_detuning_amplitude_sweeps/03_broad_50mhz_cutoff_0p005_echo",
+      "population_sha256": "a2f21a4497705a1c6ecddba9a12c40c1dbc9d1889ad81ab9be222035146d0bc1"
+    },
+    "narrow_constant": {
+      "run": "2026-08-25/six_detuning_amplitude_sweeps/04_narrow_1mhz_cutoff_0p999_no_echo",
+      "population_sha256": "bc78b74bfd8a90521a361b42c2673e2b99051a2ab79d784aee6a722cc5a615cc"
+    },
+    "narrow_root": {
+      "run": "2026-08-25/six_detuning_amplitude_sweeps/05_narrow_1mhz_cutoff_0p005_no_echo",
+      "population_sha256": "7d6fb5662261ca160c78fff6cf1bccb4e6650b2d7acaa6cf4d835e0f804d5126"
+    },
+    "narrow_echo": {
+      "run": "2026-08-25/six_detuning_amplitude_sweeps/06_narrow_1mhz_cutoff_0p005_echo",
+      "population_sha256": "d671e2e1953e7a7690d90ac54b8867b0cc40250070bafd88f107e6538fe40623"
+    }
+  }
+}

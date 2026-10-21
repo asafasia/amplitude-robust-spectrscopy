@@ -1,0 +1,48 @@
+{
+  "all_accepted": true,
+  "rows": [
+    {
+      "amplitude_mhz": 50.505050505050505,
+      "center_hz": -47.53708074765088,
+      "fwhm_hz": 132094.69592506546,
+      "contrast": 0.36730565698890466,
+      "accepted": true,
+      "contrast_snr": 12.579762488868624,
+      "shoulder_contrast": 0.3674696431121268,
+      "contrast_per_mhz": 2.7818652409827616,
+      "center_population": 0.262243726205732,
+      "shoulder_population": 0.6297133693178588,
+      "max_final_pf": 7.558938079938405e-05
+    },
+    {
+      "amplitude_mhz": 74.74747474747475,
+      "center_hz": -302.14833646489205,
+      "fwhm_hz": 137687.99692438013,
+      "contrast": 0.31873686609980867,
+      "accepted": true,
+      "contrast_snr": 10.714083996272343,
+      "shoulder_contrast": 0.31885654263898583,
+      "contrast_per_mhz": 2.315790408470432,
+      "center_population": 0.28435159371115754,
+      "shoulder_population": 0.6032081363501434,
+      "max_final_pf": 0.00016403056950038084
+    },
+    {
+      "amplitude_mhz": 100.0,
+      "center_hz": -626.2436646139704,
+      "fwhm_hz": 141815.50395271715,
+      "contrast": 0.2842477652291856,
+      "accepted": true,
+      "contrast_snr": 9.450409297589825,
+      "shoulder_contrast": 0.2843417063803059,
+      "contrast_per_mhz": 2.0050114300274857,
+      "center_population": 0.29893085482991805,
+      "shoulder_population": 0.583272561210224,
+      "max_final_pf": 0.00029343789370635443
+    }
+  ],
+  "worst_fwhm_khz": 141.81550395271714,
+  "minimum_snr": 9.450409297589825,
+  "max_center_khz": 0.6262436646139704,
+  "target_points": 0
+}

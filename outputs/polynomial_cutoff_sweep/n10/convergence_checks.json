@@ -1,0 +1,133 @@
+{
+  "description": "Representative 30 us cases: dt 0.25 to 0.125 ns and 201 to 401 detuning points; amplitudes 10, 50, 100 MHz. Not an exhaustive grid convergence guarantee.",
+  "coarse_dt_ns": 0.25,
+  "refined_dt_ns": 0.125,
+  "checks": [
+    {
+      "cutoff": 1e-05,
+      "max_population_change": 1.6648349365766535e-11,
+      "rows": [
+        {
+          "amplitude_mhz": 10.0,
+          "coarse_accepted": false,
+          "fine_accepted": false,
+          "coarse_fwhm_hz": null,
+          "fine_fwhm_hz": null,
+          "coarse_snr": null,
+          "fine_snr": null
+        },
+        {
+          "amplitude_mhz": 50.0,
+          "coarse_accepted": true,
+          "fine_accepted": true,
+          "coarse_fwhm_hz": 125668.50120801387,
+          "fine_fwhm_hz": 125597.71850789037,
+          "coarse_snr": 0.8727717849750098,
+          "fine_snr": 0.8727767460621975
+        },
+        {
+          "amplitude_mhz": 100.0,
+          "coarse_accepted": true,
+          "fine_accepted": true,
+          "coarse_fwhm_hz": 125929.47866464237,
+          "fine_fwhm_hz": 125863.27275116832,
+          "coarse_snr": 1.7545291237949705,
+          "fine_snr": 1.754540891971905
+        }
+      ],
+      "refined_diagnostics": {
+        "max_trace_error": 1.192379528447418e-13,
+        "min_population": 2.4001045368638744e-10,
+        "max_population": 0.9999545341531877,
+        "min_density_eigenvalue": 2.3532954956491935e-10,
+        "num_steps": 240704,
+        "min_dt_ns": 0.002343750000117188,
+        "max_dt_ns": 0.12499939549552626
+      }
+    },
+    {
+      "cutoff": 0.0016681005372000592,
+      "max_population_change": 7.478860222787098e-07,
+      "rows": [
+        {
+          "amplitude_mhz": 10.0,
+          "coarse_accepted": true,
+          "fine_accepted": true,
+          "coarse_fwhm_hz": 132959.28465176732,
+          "fine_fwhm_hz": 132909.79728685776,
+          "coarse_snr": 18.260734880278125,
+          "fine_snr": 18.260790399100266
+        },
+        {
+          "amplitude_mhz": 50.0,
+          "coarse_accepted": true,
+          "fine_accepted": true,
+          "coarse_fwhm_hz": 159160.81630332518,
+          "fine_fwhm_hz": 159150.86248519848,
+          "coarse_snr": 11.365218347673714,
+          "fine_snr": 11.365466077201239
+        },
+        {
+          "amplitude_mhz": 100.0,
+          "coarse_accepted": true,
+          "fine_accepted": true,
+          "coarse_fwhm_hz": 168586.3687962525,
+          "fine_fwhm_hz": 168552.44976937602,
+          "coarse_snr": 8.833368587080521,
+          "fine_snr": 8.835915638419275
+        }
+      ],
+      "refined_diagnostics": {
+        "max_trace_error": 8.08242361927114e-14,
+        "min_population": 4.036511857850206e-06,
+        "max_population": 0.8315772861037134,
+        "min_density_eigenvalue": 4.03647552940387e-06,
+        "num_steps": 240128,
+        "min_dt_ns": 0.0625,
+        "max_dt_ns": 0.125
+      }
+    },
+    {
+      "cutoff": 1.0,
+      "max_population_change": 8.94256788949166e-05,
+      "rows": [
+        {
+          "amplitude_mhz": 10.0,
+          "coarse_accepted": true,
+          "fine_accepted": true,
+          "coarse_fwhm_hz": 251445.266851251,
+          "fine_fwhm_hz": 251440.00047246617,
+          "coarse_snr": 3.1378563056452076,
+          "fine_snr": 3.1379441924237543
+        },
+        {
+          "amplitude_mhz": 50.0,
+          "coarse_accepted": true,
+          "fine_accepted": true,
+          "coarse_fwhm_hz": 325783.9440145706,
+          "fine_fwhm_hz": 325788.04384754755,
+          "coarse_snr": 2.5016365515058667,
+          "fine_snr": 2.5018722288214024
+        },
+        {
+          "amplitude_mhz": 100.0,
+          "coarse_accepted": true,
+          "fine_accepted": true,
+          "coarse_fwhm_hz": 359137.9858207544,
+          "fine_fwhm_hz": 359188.73196091596,
+          "coarse_snr": 2.02959642250166,
+          "fine_snr": 2.032397314991808
+        }
+      ],
+      "refined_diagnostics": {
+        "max_trace_error": 5.861977570020827e-14,
+        "min_population": 0.0005584566073544982,
+        "max_population": 0.620541155603543,
+        "min_density_eigenvalue": 0.0005584566051875707,
+        "num_steps": 240128,
+        "min_dt_ns": 0.0625,
+        "max_dt_ns": 0.125
+      }
+    }
+  ]
+}

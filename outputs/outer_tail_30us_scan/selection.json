@@ -1,0 +1,47 @@
+[
+  {
+    "cutoff": 0.001,
+    "best_tradeoff_ramp_us": 15.0,
+    "narrowest_ramp_us": 15.0,
+    "best_snr_ramp_us": 15.0,
+    "best_tradeoff_case": "c0.001_ramp15_beta-0.5",
+    "best_overall_case": "c0.001_polynomial_beta-0.5",
+    "best_with_untouched_center_ramp_us": 14.75,
+    "best_local_upto_6us": 6.0,
+    "sampled_ramps_within_5percent_of_best": [
+      14.5,
+      14.75,
+      15.0
+    ]
+  },
+  {
+    "cutoff": 0.003,
+    "best_tradeoff_ramp_us": 15.0,
+    "narrowest_ramp_us": 15.0,
+    "best_snr_ramp_us": 15.0,
+    "best_tradeoff_case": "c0.003_ramp15_beta-0.5",
+    "best_overall_case": "c0.003_polynomial_beta-0.5",
+    "best_with_untouched_center_ramp_us": 14.75,
+    "best_local_upto_6us": 6.0,
+    "sampled_ramps_within_5percent_of_best": [
+      14.5,
+      14.75,
+      15.0
+    ]
+  },
+  {
+    "cutoff": 0.005,
+    "best_tradeoff_ramp_us": 15.0,
+    "narrowest_ramp_us": 15.0,
+    "best_snr_ramp_us": 15.0,
+    "best_tradeoff_case": "c0.005_ramp15_beta-0.5",
+    "best_overall_case": "c0.005_polynomial_beta-0.5",
+    "best_with_untouched_center_ramp_us": 14.75,
+    "best_local_upto_6us": 6.0,
+    "sampled_ramps_within_5percent_of_best": [
+      14.5,
+      14.75,
+      15.0
+    ]
+  }
+]

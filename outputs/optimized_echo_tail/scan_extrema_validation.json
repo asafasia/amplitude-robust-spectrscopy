@@ -1,0 +1,98 @@
+{
+  "amplitude_indices": [
+    57,
+    62,
+    78
+  ],
+  "amplitudes_mhz": [
+    57.57575757575758,
+    62.62626262626263,
+    78.7878787878788
+  ],
+  "max_population_change": 4.66764368844963e-06,
+  "max_width_change_hz": 33.7096554194286,
+  "refined_metrics": {
+    "all_accepted": true,
+    "rows": [
+      {
+        "amplitude_mhz": 57.57575757575758,
+        "center_hz": 22.205825873052213,
+        "fwhm_hz": 110354.91328229697,
+        "contrast": 0.2822548228753924,
+        "accepted": true,
+        "contrast_snr": 9.79901628736823,
+        "shoulder_contrast": 0.2826683794819971,
+        "contrast_per_mhz": 2.561448068550496,
+        "center_population": 0.21036866671005824,
+        "shoulder_population": 0.49303704619205535,
+        "max_final_pf": 8.851322292656417e-05
+      },
+      {
+        "amplitude_mhz": 62.62626262626263,
+        "center_hz": -190.66865353266024,
+        "fwhm_hz": 106465.79974319965,
+        "contrast": 0.29890590960820035,
+        "accepted": true,
+        "contrast_snr": 10.325643300940335,
+        "shoulder_contrast": 0.2991329464192042,
+        "contrast_per_mhz": 2.8096623248097177,
+        "center_population": 0.21695709510640893,
+        "shoulder_population": 0.5160900415256131,
+        "max_final_pf": 0.00011341279814723695
+      },
+      {
+        "amplitude_mhz": 78.7878787878788,
+        "center_hz": 193.73598354474117,
+        "fwhm_hz": 136389.22936006877,
+        "contrast": 0.3707546616460563,
+        "accepted": true,
+        "contrast_snr": 12.842528238109798,
+        "shoulder_contrast": 0.37121153631708576,
+        "contrast_per_mhz": 2.7217071176279175,
+        "center_population": 0.2326773407206349,
+        "shoulder_population": 0.6038888770377207,
+        "max_final_pf": 0.00017279094368112159
+      }
+    ],
+    "worst_fwhm_khz": 136.38922936006878,
+    "minimum_snr": 9.79901628736823,
+    "max_center_khz": 0.19373598354474117,
+    "target_points": 0
+  },
+  "refined_satellites": {
+    "max_satellite_prominence": 0.056318014907686065,
+    "satellites": [
+      {
+        "max_prominence": 0.0435703334287893,
+        "detuning_mhz": [
+          -0.235,
+          0.235
+        ],
+        "prominence": [
+          0.0435703334287893,
+          0.04320570087023834
+        ]
+      },
+      {
+        "max_prominence": 0.056318014907686065,
+        "detuning_mhz": [
+          -0.22749999999999998,
+          0.22750000000000004
+        ],
+        "prominence": [
+          0.056318014907686065,
+          0.05540846074241168
+        ]
+      },
+      {
+        "max_prominence": 1.6067736992031456e-06,
+        "detuning_mhz": [
+          -0.175
+        ],
+        "prominence": [
+          1.6067736992031456e-06
+        ]
+      }
+    ]
+  }
+}

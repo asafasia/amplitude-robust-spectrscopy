@@ -1,0 +1,63 @@
+{
+  "parameters": {
+    "duration_us": 30.0,
+    "t1_us": 51.24,
+    "t_phi_us": 7.871480508563624,
+    "anharmonicity_mhz": -216.0,
+    "order": 0.5,
+    "echo": true,
+    "echo_transition_shape": "sine",
+    "echo_transition_us": 0.016,
+    "stark_kappa_mhz_inv": 0.0,
+    "drag_beta": -0.5
+  },
+  "powers": [
+    3.0,
+    4.0,
+    6.0,
+    8.0,
+    12.0,
+    16.0,
+    24.0
+  ],
+  "cutoffs": [
+    0.001,
+    0.003,
+    0.005
+  ],
+  "amplitude_points": 100,
+  "amplitude_range_mhz": [
+    0,
+    100
+  ],
+  "detuning_points": 201,
+  "detuning_range_mhz": [
+    -0.5,
+    0.5
+  ],
+  "dt_ns": 0.5,
+  "source_sha256": {
+    "echospec/simulation/qutrit.py": "58891d88564eb9d3b5ed592fa69b52c3fb5cec9e7178471c5039e5b8c07c6b15",
+    "echospec/simulation/edge_window.py": "13653bdeb1ba393dd8d969152143380328a791080f598cfd00bee31cb1dabc2b",
+    "echospec/simulation/qutrit_native.py": "e26a097b8d803b1c2da8f0ad56222fff59456e02a445f33d22629a0f639a6dd9",
+    "echospec/simulation/qutrit_rk4.cpp": "493150abcad473a10ff4128c3b42a5f0ddfd0cdd8fe4c1cf09a936858068bab6",
+    "scripts/make_polynomial_power_scan.py": "27e44d2e45ac1e26779f839ca49a136418963784a971631bb7a0efb4d69e2df8",
+    "scripts/plot_polynomial_power_scan.py": "96b9a3321eb5616ee5fbcbbd86b274f6225a6c2d606322e04a13538ee751f25d",
+    "scripts/validate_polynomial_power_scan.py": "2a17a85dce449220b024a5d01c5782905df3ec9e61a7713ac9023dd6839b28b0",
+    "scripts/make_echo_edge_ramp_comparison.py": "f626971aa828d3e7d36f36dd29090a3d9c3d2e03d26e0f5dde2d259d47367285",
+    "scripts/make_outer_tail_ramp_scan.py": "b88f464353f1db050e5b8c7d546914ef50d8b4cae76de469b3c95323a5492af8",
+    "echospec/analysis/dip_metrics.py": "851f4571da5dc275890f42eaf7393f1818fffe69043f4fff703272dddf9290ca",
+    "echospec/analysis/spectroscopy_quality.py": "1e898a6b550e0c46119f66a268e0397a997de59135406b50a55fe6735c212f44"
+  },
+  "python_version": "3.12.0 (v3.12.0:0fb18b02c8, Oct  2 2023, 09:45:56) [Clang 13.0.0 (clang-1300.0.29.30)]",
+  "numpy_version": "2.4.0",
+  "optimization": "Maximize minimum ideal SNR/FWHM over 50.505 to 100 MHz; also report worst width, minimum SNR and Pareto frontier. This score is a heuristic, not frequency uncertainty.",
+  "normalization": "Fixed duration, core width, nominal amplitude; no peak or area normalization. Hard and p3 baselines rerun.",
+  "snr": "Ideal binary Pe measurement, 500 shots at center and 250 each at +/-0.45 MHz; no readout error or technical noise.",
+  "fwhm": "Half-depth of central Pe dip relative to a linear background from |detuning| >= 0.4 MHz; no parametric line fit.",
+  "reproduce_commands": [
+    ".venv/bin/python scripts/make_polynomial_power_scan.py --powers 3 4 6 8 12 16 24",
+    ".venv/bin/python scripts/validate_polynomial_power_scan.py",
+    ".venv/bin/python scripts/plot_polynomial_power_scan.py"
+  ]
+}

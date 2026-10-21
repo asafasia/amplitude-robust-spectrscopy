@@ -9,6 +9,8 @@ from typing import Literal
 import numpy as np
 from numpy.typing import NDArray
 
+from .edge_window import edge_window
+
 
 @dataclass(frozen=True)
 class QutritSimulationResult:
@@ -184,6 +186,19 @@ def _finalize(state: NDArray[np.complex128]) -> QutritSimulationResult:
     return QutritSimulationResult(*populations)
 
 
+def sine_echo_sign(time_us: float, transition_us: float) -> tuple[float, float]:
+    """Return echo sign and its derivative; T is the full sine-window width.
+
+    For T=0 the derivative excludes the ideal discontinuity at the midpoint.
+    """
+    if not np.isfinite(transition_us) or transition_us < 0:
+        raise ValueError("transition_us must be finite and nonnegative")
+    if transition_us == 0 or abs(time_us) >= transition_us / 2:
+        return (1.0 if time_us < 0 else -1.0), 0.0
+    angle = np.pi * time_us / transition_us
+    return float(-np.sin(angle)), float(-np.pi / transition_us * np.cos(angle))
+
+
 def _smooth_echo_peak(
     *,
     half_duration_us: float,
@@ -239,8 +254,13 @@ def simulate_qutrit_map(
     cutoff: float | None = None,
     echo: bool = False,
     echo_transition_us: float = 0.0,
+    echo_transition_shape: Literal["tanh", "sine"] = "tanh",
     order: float = 0.5,
     drag_beta: float = 0.0,
+    edge_window_kind: Literal["none", "quintic", "polynomial"] = "none",
+    edge_ramp_us: float = 0.0,
+    edge_window_power: float = 3.0,
+    integration_backend: Literal["numpy", "native"] = "numpy",
     stark_kappa_mhz_inv: float = 0.0,
     stark_correction_mode: Literal[
         "detuning", "accumulated_phase", "instantaneous_phase"
@@ -258,6 +278,23 @@ def simulate_qutrit_map(
     The peak in-phase amplitude remains equal to ``rabi_mhz``.  When DRAG is
     enabled, its derivative is taken from this complete signed waveform, so it
     includes the finite midpoint transition as well as the smooth envelope.
+
+    With ``echo_transition_shape="sine"``, transition time is the full window
+    width: the sign is -sin(pi*t/T) inside [-T/2, T/2] and +1/-1
+    outside. This multiplies the original envelope without renormalizing it,
+    applies even at beta=0, and uses abs(alpha) in the DRAG denominator.
+    The default tanh path retains its historical signed-alpha convention.
+
+    ``edge_window_kind`` optionally multiplies the shaped envelope by a C2
+    window within the existing duration. ``quintic`` tapers the outer
+    ``edge_ramp_us`` at each end; ``polynomial`` uses (1-(2t/L)^2)^p, with
+    ``edge_window_power`` p >= 3 (default 3). The
+    underlying Lorentzian width is unchanged, no area renormalization is
+    applied, and DRAG includes the derivative of the window as well.
+
+    ``integration_backend="native"`` uses an optional fused C++ RK4 kernel
+    with the same equations, time step and waveform. It requires a C++17
+    compiler and zero Stark correction. NumPy remains the default.
 
     ``drag_beta`` adds a DRAG quadrature to a shaped pulse,
 
@@ -287,12 +324,25 @@ def simulate_qutrit_map(
     """
     if duration_us <= 0:
         raise ValueError("duration_us must be positive")
+    integrator = _integrate
+    if integration_backend == "native":
+        from .qutrit_native import integrate_native
+
+        integrator = integrate_native
+    elif integration_backend != "numpy":
+        raise ValueError("integration_backend must be numpy or native")
     if t1_us <= 0 or t_phi_us <= 0:
         raise ValueError("t1_us and t_phi_us must be positive")
     if num_steps_per_half < 1:
         raise ValueError("num_steps_per_half must be positive")
     if cutoff is not None and not 0.0 < cutoff < 1.0:
         raise ValueError("cutoff must lie strictly between zero and one")
+    edge_window(0.0, duration_us, kind=edge_window_kind, ramp_us=edge_ramp_us,
+                power=edge_window_power)
+    if cutoff is None and edge_window_kind != "none":
+        raise ValueError("edge windows require a shaped pulse with cutoff")
+    if echo_transition_shape not in {"tanh", "sine"}:
+        raise ValueError("echo_transition_shape must be tanh or sine")
     if not np.isfinite(echo_transition_us) or echo_transition_us < 0.0:
         raise ValueError("echo_transition_us must be finite and nonnegative")
     if echo_transition_us > 0.0 and (cutoff is None or not echo):
@@ -340,7 +390,7 @@ def simulate_qutrit_map(
         for segment_index, drive_sign in enumerate(
             (1.0, -1.0 if echo else 1.0)
         ):
-            state, accumulated_phase = _integrate(
+            state, accumulated_phase = integrator(
                 state,
                 coordinate_start=0.0,
                 coordinate_stop=half_duration,
@@ -355,6 +405,8 @@ def simulate_qutrit_map(
     sigma_us = (duration_us / 2.0) / np.sqrt(cutoff ** (-1.0 / order) - 1.0)
     half_duration = duration_us / 2.0
     alpha_angular_per_us = 2.0 * np.pi * anharmonicity_mhz
+    if echo_transition_shape == "sine":
+        alpha_angular_per_us = abs(alpha_angular_per_us)
     smooth_echo = echo and echo_transition_us > 0.0
     smooth_echo_peak = (
         _smooth_echo_peak(
@@ -363,7 +415,7 @@ def simulate_qutrit_map(
             order=order,
             transition_us=echo_transition_us,
         )
-        if smooth_echo
+        if smooth_echo and echo_transition_shape == "tanh"
         else 1.0
     )
 
@@ -384,10 +436,23 @@ def simulate_qutrit_map(
             midpoint_derivative = -(
                 1.0 - midpoint_sign**2
             ) / echo_transition_us
+            if echo_transition_shape == "sine":
+                midpoint_sign, midpoint_derivative = sine_echo_sign(
+                    time, echo_transition_us
+                )
             in_phase = midpoint_sign * base / smooth_echo_peak
             in_phase_derivative = (
                 midpoint_derivative * base + midpoint_sign * base_derivative
             ) / smooth_echo_peak
+        if edge_window_kind != "none":
+            window, window_derivative = edge_window(
+                time, duration_us, kind=edge_window_kind, ramp_us=edge_ramp_us,
+                power=edge_window_power,
+            )
+            in_phase_derivative = (
+                in_phase_derivative * window + in_phase * window_derivative
+            )
+            in_phase *= window
         quadrature = 0.0
         if drag_beta != 0.0:
             quadrature = (
@@ -403,7 +468,7 @@ def simulate_qutrit_map(
             -1.0 if echo and not smooth_echo else 1.0,
         ),
     ):
-        state, accumulated_phase = _integrate(
+        state, accumulated_phase = integrator(
             state,
             coordinate_start=time_start,
             coordinate_stop=time_stop,

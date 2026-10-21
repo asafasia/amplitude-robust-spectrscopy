@@ -79,15 +79,28 @@ The script validates the broad/narrow grids, 2000-shot counts, pulse parameters,
 array orientation, and saved active-$x180$ calibrations before writing PDF,
 PNG, and SVG assets to `figures/paper/`.
 
-The experiment--simulation slice figure uses the q6 fixed-amplitude campaign
-at 3, 20, and 40 MHz from the sibling `opx1000-codes` checkout.  Its documented
-CSV and provenance record the common empirical display alignment applied only
-for line-shape comparison.  After refreshing those imported arrays, render the
-paper-styled figure with:
+The supplemental spectrum slices (Fig. S2) use five acquired rows from the
+primary-qubit narrow-detuning scans also shown in main-text Fig. 2. They target
+3, 10, 20, 30, and 40 MHz; the captions give the actual acquired values.
+The simulator evaluates those exact drives and detunings. Each experiment and
+simulation trace is independently mean-centered, then stacked on a common
+population scale without gain or frequency fitting. Raw populations, display
+arrays, selection indices, and alignment metadata are retained alongside the
+figure. Rebuild its data and rendering with:
 
 ```bash
-PYTHONPATH=. MPLBACKEND=Agg python scripts/make_figure3_left_exp_sim.py
+PYTHONPATH=. MPLBACKEND=Agg python scripts/make_supplemental_spectrum_slices.py
 ```
+
+To render just the reordered Figs. S2 and S3 from the saved arrays:
+
+```bash
+PYTHONPATH=. MPLBACKEND=Agg python scripts/make_supplemental_figures.py --only spectrum_slices duration_metrics
+```
+
+The earlier three-amplitude q6 slice CSV and its display alignment remain
+historical artifacts; they are not the source of the current Fig. S2.
+
 
 The experimental long-pulse comparison is generated from the sibling
 `data_opx1000` repository with:
@@ -99,18 +112,6 @@ PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_long_pulse_lorentzian_
 Set `OPX1000_DATA_DIR` when the data repository is not located beside this
 checkout. The script writes PDF, PNG, and SVG versions to `figures/paper/` and
 the plotted arrays to `paper/data/experimental/`.
-
-The experimental broad and focused cutoff maps are generated from the
-`cutoff_amp_fwhm_map` and `echo_lorentzian_cutoff_sweep` campaigns with:
-
-```bash
-PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_echo_lorentzian_cutoff_sweep.py
-```
-
-The script accepts `OPX1000_DATA_DIR`, applies the documented fit-quality
-screen, and writes PDF, PNG, SVG, and a provenance JSON file to
-`figures/paper/`, together with a portable data/provenance pair in
-`paper/data/experimental/`.
 
 The main-text echo-root-Lorentzian resolution and contrast comparison for
 $L=5$, 10, 15, 20, and $30~\mu\mathrm{s}$ is generated with:
@@ -149,6 +150,41 @@ and provenance under `paper/data/`. Regenerate Figure 4 first when its
 source data or center selection changes.
 The lower panel fits Gaussian-dip linewidths from the same stored measured
 spectra, using the source campaign's fitting procedure.
+
+The supplemental DRAG coefficient figure combines a resolved simulation scan,
+waveform quadratures, saved simulated centers, and the available two-setting
+experimental comparison. Reproduce it with:
+
+```bash
+.venv/bin/python scripts/scan_drag_beta_center.py
+MPLCONFIGDIR=/private/tmp/ars-matplotlib-cache .venv/bin/python scripts/make_supplemental_figures.py --only drag_beta_optimization
+make paper-supplemental
+```
+
+The scan minimizes RMS central-dip detuning over seven amplitudes for the
+20 us, cutoff 0.005, 16 ns sine-smoothed echo. Its saved arrays and numerical
+convergence checks are under `outputs/drag_beta_center_scan/`; the figure arrays
+and provenance are under `figures/paper/supplemental/drag_beta_optimization*`.
+The lowest sampled coefficient is -0.495, close to the half-derivative value
+-0.5. The experimental panel uses the existing 50 us, cutoff 0.00075 cache at
+beta 0 and -0.22 with different midpoint smoothing. It is not an experimental
+beta optimization, and its coefficients are quoted in the acquisition convention.
+
+The supplemental edge-smoothing comparison uses the saved
+`03_pulse_improvement.npz` hard-cutoff and cutoff-subtracted polynomial (p=5)
+pulses, both at beta -0.5. Render it with:
+
+```bash
+MPLCONFIGDIR=/private/tmp/ars-matplotlib-cache .venv/bin/python scripts/make_supplemental_figures.py --only edge_smoothing_results
+```
+
+The four panels show the 100 MHz spectrum and drive-dependent linewidth,
+contrast, and ideal SNR. SNR assumes 1000 total ideal binary measurements:
+500 at the dip and 250 at each +/-0.45 MHz shoulder. It is not measured SNR.
+Arrays, metrics, source hashes, and high-drive summaries are saved as
+`figures/paper/supplemental/edge_smoothing_results*`. Older edge-ramp reports
+also contain a plain polynomial window without cutoff subtraction; those
+arrays describe a different pulse and are not substituted here.
 
 ## Editing conventions
 

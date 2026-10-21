@@ -8,17 +8,21 @@ the actual measurement chain used in this work.
 
 from __future__ import annotations
 
+from math import cos, radians, sin
 from pathlib import Path
 
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 from matplotlib.patches import (
+    Arc,
     Circle,
     FancyArrowPatch,
     FancyBboxPatch,
+    PathPatch,
     Polygon,
     Rectangle,
 )
+from matplotlib.path import Path as MplPath
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_DIR = ROOT / "paper" / "figures"
@@ -97,22 +101,39 @@ def attenuator(ax: plt.Axes, x: float, y: float, value: str) -> None:
     )
 
 
-def low_pass_filter(ax: plt.Axes, x: float, y: float) -> None:
+def low_pass_filter(
+    ax: plt.Axes,
+    x: float,
+    y: float,
+    *,
+    label: str | None = "300 MHz",
+) -> None:
+    """Draw the square-corner filter body and reference-style bent-line glyph."""
     ax.add_patch(
         Rectangle(
-            (x - 0.22, y - 0.15),
-            0.44,
-            0.30,
+            (x - 0.135, y - 0.20),
+            0.27,
+            0.40,
             facecolor="white",
             edgecolor=BLUE,
             linewidth=0.95,
             zorder=8,
         )
     )
+    line(
+        ax,
+        [x - 0.045, x - 0.045, x + 0.045],
+        [y - 0.14, y + 0.05, y + 0.14],
+        color=BLUE,
+        linewidth=0.95,
+        zorder=9,
+    )
+    if label is None:
+        return
     ax.text(
         x + 0.30,
         y,
-        "LP 7.5 GHz",
+        label,
         ha="left",
         va="center",
         fontsize=6.7,
@@ -144,15 +165,70 @@ def circulator(ax: plt.Axes, x: float, y: float) -> None:
             zorder=8,
         )
     )
-    ax.text(
-        x,
-        y - 0.005,
-        r"$\circlearrowright$",
-        ha="center",
-        va="center",
-        fontsize=10.0,
-        color=INK,
-        zorder=9,
+    # Use explicit geometry so the clockwise arrow scales with the component.
+    radius = 0.105
+    ax.add_patch(
+        Arc(
+            (x, y),
+            2 * radius,
+            2 * radius,
+            theta1=-135,
+            theta2=135,
+            color=INK,
+            linewidth=0.95,
+            capstyle="round",
+            zorder=9,
+        )
+    )
+    angle = radians(-135)
+    radial = (cos(angle), sin(angle))
+    tangent = (sin(angle), -cos(angle))
+    tip = (x + radius * radial[0], y + radius * radial[1])
+    base = (tip[0] - 0.065 * tangent[0], tip[1] - 0.065 * tangent[1])
+    ax.add_patch(
+        Polygon(
+            [
+                tip,
+                (base[0] + 0.032 * radial[0], base[1] + 0.032 * radial[1]),
+                (base[0] - 0.032 * radial[0], base[1] - 0.032 * radial[1]),
+            ],
+            closed=True,
+            facecolor=INK,
+            edgecolor=INK,
+            linewidth=0.3,
+            zorder=10,
+        )
+    )
+
+
+def bias_coil(ax: plt.Axes, x: float, y: float) -> None:
+    """Draw smooth flattened windings and a rounded return lead."""
+    vertices = [(0, 0.25), (-0.035, 0.25), (-0.035, 0.18)]
+    codes = [MplPath.MOVETO, MplPath.LINETO, MplPath.LINETO]
+    curves = [
+        [(-0.035, 0.155), (-0.44, 0.18), (-0.44, 0.09)],
+        [(-0.44, -0.005), (0.44, -0.005), (0.44, 0.04)],
+        [(0.44, 0.085), (-0.44, 0.085), (-0.44, -0.01)],
+        [(-0.44, -0.105), (0.44, -0.105), (0.44, -0.06)],
+        [(0.44, -0.015), (-0.44, -0.015), (-0.44, -0.11)],
+        [(-0.44, -0.19), (-0.10, -0.18), (-0.015, -0.18)],
+        [(0.04, -0.18), (0.04, -0.14), (0.04, -0.10)],
+    ]
+    for curve in curves:
+        vertices.extend(curve)
+        codes.extend([MplPath.CURVE4] * 3)
+    vertices.append((0.04, 0.25))
+    codes.append(MplPath.LINETO)
+    ax.add_patch(
+        PathPatch(
+            MplPath([(x + dx, y + dy) for dx, dy in vertices], codes),
+            facecolor="none",
+            edgecolor=GREEN,
+            linewidth=1.0,
+            capstyle="round",
+            joinstyle="round",
+            zorder=9,
+        )
     )
 
 
@@ -218,9 +294,9 @@ def build_figure() -> plt.Figure:
         (8.10, "50 K"),
         (7.20, "10 K"),
         (6.20, "4 K"),
-        (5.20, "Still, 2.7 K"),
-        (4.20, "Cold plate, 900 mK"),
-        (3.20, "M/C, 9 mK"),
+        (5.20, "Still"),
+        (4.20, "Cold plate"),
+        (3.20, "MXC"),
     ]
     for y, label in stages:
         line(
@@ -263,7 +339,7 @@ def build_figure() -> plt.Figure:
     top_labels = [
         (x_qubit, "Qubit drive\nRF OUT"),
         (x_readout, "Readout drive\nRF OUT"),
-        (x_bias, "DC bias\nnot used"),
+        (x_bias, "DC bias"),
         (x_hemt_power, "HEMT\nDC power"),
         (x_return, "Readout acquire\nRF IN"),
     ]
@@ -275,7 +351,7 @@ def build_figure() -> plt.Figure:
     # the refrigerator.  Values match the measurement setup in the manuscript.
     line(ax, [x_qubit, x_qubit], [9.25, 1.05], linewidth=1.25)
     line(ax, [x_readout, x_readout], [9.25, 1.36], linewidth=1.25)
-    line(ax, [x_bias, x_bias], [9.25, 2.07], color=GREEN, linewidth=1.2)
+    line(ax, [x_bias, x_bias], [9.25, 2.45], color=GREEN, linewidth=1.2)
     direction_marker(ax, x_qubit, 8.72, direction="down", color=BLUE)
     direction_marker(ax, x_readout, 8.72, direction="down", color=BLUE)
     direction_marker(ax, x_bias, 8.72, direction="down", color=GREEN)
@@ -286,7 +362,6 @@ def build_figure() -> plt.Figure:
     for y, value in zip(attenuation_y, ["6 dB", "10 dB", "6 dB", "20 dB", "20 dB"], strict=True):
         attenuator(ax, x_readout, y, value)
 
-    low_pass_filter(ax, x_bias, 5.93)
     low_pass_filter(ax, x_bias, 2.93)
 
     # The acquisition path rises from the device through three circulators and
@@ -299,7 +374,7 @@ def build_figure() -> plt.Figure:
     ax.text(
         x_return - 0.38,
         6.45,
-        "HEMT, 4 K",
+        "HEMT",
         ha="right",
         va="center",
         fontsize=7.0,
@@ -312,31 +387,20 @@ def build_figure() -> plt.Figure:
     line(ax, [6.20, x_return], [circulator_y, circulator_y], linewidth=1.25)
     for x in (7.15, 7.72, 8.29):
         circulator(ax, x, circulator_y)
-    ax.text(
-        7.72,
-        3.28,
-        "Circulators ×3",
-        ha="center",
-        va="bottom",
-        fontsize=7.1,
-        color=INK,
-        bbox={"facecolor": "white", "edgecolor": "none", "pad": 0.6},
-        zorder=10,
-    )
 
     # Mixing-chamber package.  The two generated tones enter the QPU and the
     # returning readout signal exits through the isolated chain.
     shield = Rectangle(
-        (1.95, 0.34),
+        (1.95, 0.10),
         7.25,
-        2.00,
+        2.24,
         facecolor=SHIELD_FILL,
         edgecolor=INK,
         linewidth=1.15,
         zorder=2,
     )
     ax.add_patch(shield)
-    ax.text(8.98, 0.56, "Magnetic shield", ha="right", va="bottom", fontsize=7.2, color=INK, zorder=7)
+    ax.text(8.98, 0.33, "Magnetic shield", ha="right", va="center", fontsize=7.2, color=INK, zorder=7)
 
     qpu = FancyBboxPatch(
         (4.62, 0.60),
@@ -354,12 +418,29 @@ def build_figure() -> plt.Figure:
     qubit_points += [(5.35 + 0.18 * col, 0.78) for col in range(2)]
     for qx, qy in qubit_points:
         ax.add_patch(Circle((qx, qy), 0.035, facecolor="white", edgecolor=GRAY, linewidth=0.7, zorder=8))
-    ax.text(5.30, 1.70, "QPU · 11 qubits", ha="center", va="bottom", fontsize=7.4, color=INK)
+    ax.text(5.30, 0.33, "QPU · 11 qubits", ha="center", va="center", fontsize=7.4, color=INK)
 
     line(ax, [x_qubit, 4.62], [1.05, 1.05], linewidth=1.25)
     line(ax, [x_readout, 4.62], [1.36, 1.36], linewidth=1.25)
     line(ax, [5.98, 6.20, 6.20], [1.18, 1.18, circulator_y], linewidth=1.25)
-    line(ax, [x_bias, x_bias, 5.72], [2.07, 1.54, 1.54], color=GREEN, linewidth=1.1, linestyle=(0, (2.5, 2.0)))
+    line(
+        ax,
+        [x_bias, x_bias],
+        [2.45, 2.15],
+        color=GREEN,
+        linewidth=1.1,
+    )
+    bias_coil(ax, x_bias, 1.90)
+    ax.text(
+        6.48,
+        1.90,
+        "Global\nbias coil",
+        ha="left",
+        va="center",
+        fontsize=7.4,
+        color=INK,
+        zorder=9,
+    )
 
     return fig
 

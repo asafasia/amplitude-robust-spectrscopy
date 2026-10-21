@@ -1,0 +1,17 @@
+{
+  "created_utc": "2026-09-18T09:06:10.903893+00:00",
+  "git_head": "6f2947a362441219f3db1b25bf8957cb4440da84",
+  "source_sha256": {
+    "echospec/simulation/piecewise.py": "b0968122fe82aaed04c16aefa04d26b8cf0a836ced4c659bccf2b774381a28b2",
+    "echospec/simulation/config.py": "947742404fff239e6596650d060af029eee28f5b32b55931bb489945f010b8df",
+    "echospec/simulation/model.py": "66976d300b9bded234ba666a566506b6069e2a379a5d01793c999273face684c",
+    "scripts/make_cutoff_broad_spectroscopy.py": "81ddf1bd430383d77f3da857ed7446b01faed76b6b76f2335f3bd068494ecf2c",
+    "tests/test_piecewise_simulation.py": "586c1d3ba78550e679080e7299cce97263b8d008c3593c49619f03312714a2ec",
+    "tests/test_cutoff_broad_spectroscopy.py": "8e6037f017c697c9fd346b5e76d485582a17a6972a9bfd74d9e9eaf23d6e2598"
+  },
+  "full_test_suite": "67 passed, 1 skipped; before adding one peak-extraction test",
+  "final_focused_tests": "6 passed, including the added peak-extraction test",
+  "scoped_ruff": "passed for all four new Python files",
+  "repository_make_lint": "692 existing violations outside the new files",
+  "refinement": "P1 maxima refined on 0.02 MHz frequency grids; 64 midpoint segments per half. Independent 256-segment checks gave ordinary=28.13368 MHz and echo=29.28381 MHz at 100 MHz Rabi. These maxima are operational, smoothing-dependent quantities."
+}

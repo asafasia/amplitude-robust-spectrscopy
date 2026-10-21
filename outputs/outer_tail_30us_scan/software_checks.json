@@ -1,0 +1,41 @@
+{
+  "focused_tests": {
+    "passed": 52,
+    "seconds": 12.09,
+    "command": "MPLCONFIGDIR=/private/tmp/ars-matplotlib-cache /opt/miniconda3/envs/qarakal-dev/bin/python -m pytest tests/analysis/test_outer_tail_selection.py tests/test_echo_edge_experiment.py tests/test_edge_window.py tests/test_sine_echo_transition.py tests/test_qutrit_simulation.py tests/test_qutrit_native.py tests/analysis/test_dip_metrics.py tests/analysis/test_spectroscopy_quality.py -q"
+  },
+  "selection_tests_after_last_logic_change": {
+    "passed": 7,
+    "seconds": 0.15
+  },
+  "scoped_ruff": "Passed for all three new scripts and the new selection tests",
+  "full_pytest": {
+    "status": "blocked during collection",
+    "collected_items": 103,
+    "reason": "tests/test_mps_simulation.py imports unavailable torch"
+  },
+  "repository_lint": {
+    "status": "failed",
+    "findings": 692,
+    "note": "Findings are outside the four files added in this turn; scoped Ruff passes"
+  },
+  "scope": "Local three-level simulations only; no hardware runs",
+  "browser_interaction_tested": false,
+  "visual_inspection": [
+    "ramp_tradeoffs.png",
+    "comparison_c0.001.png",
+    "populations_c0.001.png"
+  ],
+  "html_checks": {
+    "local_references": 33,
+    "no_missing_files": true,
+    "unsubstituted_placeholders": false,
+    "javascript_syntax": "Passed node --check"
+  },
+  "provenance_checks": {
+    "source_hashes": 10,
+    "all_current": true,
+    "primary_maps": 54,
+    "metric_rows": 5400
+  }
+}

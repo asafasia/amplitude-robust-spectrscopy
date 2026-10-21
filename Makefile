@@ -1,5 +1,5 @@
 .PHONY: install install-dev test lint paper paper-main paper-supplemental \
-	paper-clean paper-data paper-data-core
+	paper-clean paper-data paper-data-core paper-figures-supplemental
 
 PYTHON ?= python
 
@@ -23,6 +23,10 @@ paper-main:
 paper-supplemental:
 	latexmk -pdf -interaction=nonstopmode -halt-on-error -cd paper/supplemental.tex
 
+paper-figures-supplemental:
+	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_supplemental_figures.py
+	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_supplemental_extended_cutoff.py
+
 paper-clean:
 	latexmk -c -cd paper/main.tex
 	latexmk -c -cd paper/supplemental.tex
@@ -34,8 +38,10 @@ paper-clean:
 paper-data-core:
 	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_main_ac_stark_correction_maps.py
 	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_main_ac_stark_shifts.py
+	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_main_drag_summary.py
+	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_main_pulse_improvement.py
+	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_main_duration_cutoff_scan.py
 	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_long_pulse_lorentzian_comparison.py
-	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_echo_lorentzian_cutoff_sweep.py
 
 paper-data: paper-data-core
 	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_simulated_echo_lorentzian_duration_cutoff_comparison.py

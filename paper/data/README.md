@@ -46,7 +46,6 @@ The maintained generators below export here:
 | `04_main_ac_stark_correction_maps` | experimental | Letter, Figure 4 | included | `scripts/make_main_ac_stark_correction_maps.py` |
 | `04_main_ac_stark_shifts_square` | experimental and numerical (separate archives) | Letter, Figure 5 | included | `scripts/make_main_ac_stark_shifts.py` |
 | `06_long_pulse_lorentzian_comparison` | experimental | Supplemental | included | `scripts/make_long_pulse_lorentzian_comparison.py` |
-| `08_echo_lorentzian_cutoff_sweep` | experimental | Supplemental | included | `scripts/make_echo_lorentzian_cutoff_sweep.py` |
 | `09_simulated_echo_lorentzian_<L>us` | numerical | Supplemental | producer migrated; regenerate to populate | `scripts/make_simulated_echo_lorentzian_duration_cutoff_comparison.py` |
 | `10_simulated_duration_resolution_comparison` | numerical | Letter and Supplemental | producer migrated; regenerate to populate | `scripts/make_duration_resolution_comparison.py` |
 
@@ -151,3 +150,22 @@ kappa value is inactive. The right linewidth axis uses its saved T2*=6.121784 us
 with reference 1/(pi*T2*)=51.996 kHz. The simulation arrays contain precomputed
 qutrit predictions, not a refit; this generator reproduces the displayed figures
 from the documented package without requiring the original hardware or solver.
+
+## Supplemental Figure S2: five stacked spectroscopy slices
+
+`scripts/make_supplemental_spectrum_slices.py` writes
+`figures/paper/supplemental/s02_spectrum_slices.npz` and its provenance JSON.
+The source is the archived Fig. 2 map package, with 501 detunings and 250
+acquired amplitude rows per protocol. Targets 3, 10, 20, 30, and 40 MHz select
+rows 17, 58, 117, 175, and 233 (zero-based), using actual drives 2.916806,
+9.951455, 20.074488, 30.025943, and 39.977398 MHz. There is no interpolation
+between measured amplitudes or selection based on simulation agreement.
+
+The export retains measured populations, simulated Pg/Pe/Pf at the identical
+drives and detunings, the removed trace means, stacking offsets, and displayed
+coordinates. The common display rule is `raw - mean(raw) + 0.55*j`; experiment
+and simulation are centered independently. No gain, frequency shift, contrast
+normalization, or experimental smoothing is applied. An offset-only residual
+RMSE is recorded for each pair. Step-halving checks cover every selected drive
+at seven representative detunings and are recorded separately from those
+experiment/model residuals. The source maps and main-text figures are unchanged.

@@ -1,0 +1,47 @@
+{
+  "case": "c0.001_p8",
+  "cutoff": 0.001,
+  "power": 8.0,
+  "amplitudes_mhz": [
+    50.505050505050505,
+    74.74747474747475,
+    100.0
+  ],
+  "refined_dt_ns": 0.25,
+  "refined_frequency_step_khz": 2.5,
+  "max_population_difference": 1.60012272882315e-05,
+  "time_max_fwhm_hz_change": 2.2890665035520215,
+  "grid_max_fwhm_hz_change": 38.62784266693052,
+  "time_max_center_hz_change": 0.32955896766475234,
+  "grid_max_center_hz_change": 0.3617184868189156,
+  "time_max_contrast_snr_change": 0.0006312619311419354,
+  "grid_max_contrast_snr_change": 0.0019561069029503386,
+  "area_ratio_to_p3": 0.9318909421845363,
+  "equal_unsigned_I_area_controls": [
+    {
+      "amplitude_mhz": 50.505050505050505,
+      "p3_amplitude_mhz": 47.06519910022911,
+      "selected_fwhm_khz": 159.7910560521831,
+      "p3_fwhm_khz": 137.9315822507369,
+      "selected_snr": 13.49650396564839,
+      "p3_snr": 10.54584789632055
+    },
+    {
+      "amplitude_mhz": 74.74747474747475,
+      "p3_amplitude_mhz": 69.65649466833908,
+      "selected_fwhm_khz": 168.38967513894673,
+      "p3_fwhm_khz": 147.6012619079533,
+      "selected_snr": 11.80788919943178,
+      "p3_snr": 8.763690547768835
+    },
+    {
+      "amplitude_mhz": 100.0,
+      "p3_amplitude_mhz": 93.18909421845363,
+      "selected_fwhm_khz": 173.4876956043318,
+      "p3_fwhm_khz": 151.90091726637752,
+      "selected_snr": 10.686105391806286,
+      "p3_snr": 7.575478248965314
+    }
+  ],
+  "passed": true
+}

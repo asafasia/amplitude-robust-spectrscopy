@@ -1,0 +1,19 @@
+{
+  "duration_us": 30,
+  "cutoff": 0.001,
+  "sigma_us": 0.015000007500005626,
+  "polynomial_power": 5,
+  "echo_transition_ns": 16,
+  "families": [
+    "Hard cutoff",
+    "Polynomial p = 5 + cutoff subtraction",
+    "C\u00b2 subtraction"
+  ],
+  "normalization": "Unsigned g(0)=1; no area rescaling",
+  "edge_axis": "symlog, linear below 1e-9; zero is shown explicitly",
+  "source_sha256": {
+    "scripts/plot_polynomial_echo_note.py": "17da131430fb591da40dc1b02baca7fb66739ed0d2bc2eb308c7d986a4494f2b",
+    "scripts/optimize_echo_tail.py": "0dfa62650241fa13305a676c62aa17aae95cf68ce375beaa7fa30cf47d0c3519"
+  },
+  "reproduce": "python scripts/plot_polynomial_echo_note.py"
+}

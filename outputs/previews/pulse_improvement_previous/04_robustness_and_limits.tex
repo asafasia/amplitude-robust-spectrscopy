@@ -1,0 +1,90 @@
+% An echo-type sequence applied to the root pulse partially mitigates decoherence effects but remains limited by pronounced amplitude-dependent broadening. Conversely, the Lorentzian echo variant demonstrates an amplitude-independent linewidth spanning over three orders of magnitude in drive strength, evidencing remarkable robustness against amplitude-induced dephasing. This insensitivity arises from the adiabatic evolution and the symmetric frequency-splitting intrinsic to the pulse design. The primary limitation lies in the floating offset and amplitude-dependent baseline, resulting in reduced contrast compared to conventional square and Lorentzian drives.
+
+
+
+To identify the useful operating regime, we examine the linewidth and contrast
+of the echo response as functions of pulse duration and drive amplitude.  We
+choose pulse durations shorter than $T_1$, but long enough that Fourier
+broadening does not dominate.  The duration-dependent linewidth, contrast,
+and contrast-weighted resolution are reported in the Supplemental
+Material~\cite{SupplementalMaterial}.
+
+A second design constraint is the cutoff of the formally infinite-support
+pulse envelope.  Truncation introduces a residual endpoint drive
+$\Omega_c=c\Omega_0$ and a corresponding cutoff-broadening
+contribution~\cite{boradjiev_qubit_2013,mihov_defying_2024,mihov_qubit_2024}.
+The relevant weak-saturation condition is
+$s_c=\Omega_c^2T_1T_2\ll1$, or
+$\Omega_c\ll1/\sqrt{T_1T_2}$; the inequality therefore points toward
+\emph{smaller}, not larger, endpoint amplitudes.  The relative cutoff $c$
+cannot be specified independently of $\Omega_0$, $T_1$, and $T_2$, giving a
+three-dimensional design space of pulse duration, drive amplitude, and cutoff
+level.  The corresponding cutoff--amplitude measurements and their
+resolution--signal analysis are reported in the Supplemental
+Material~\cite{SupplementalMaterial}.
+
+Beyond linewidth and contrast, amplitude robustness requires that increasing
+the drive not displace the inferred resonance center.  At large amplitudes,
+multilevel AC-Stark shifts and finite-pulse interference become important; we
+therefore examine the center stability in a measurement on a second qubit
+over a calibrated nominal Rabi-frequency range of $10$--$60~\mathrm{MHz}$.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\columnwidth]{%
+        ../figures/paper/04_main_drag_summary.pdf}
+    \caption{DRAG-assisted echo-root-Lorentzian spectroscopy.
+    Measured populations for (a) $\beta=0$ and (b) $\beta=-0.22$,
+    with $L=50~\mu\mathrm{s}$ and cutoff $c=0.00075$; white curves
+    trace fitted centers after subtracting each run's mean, lightly
+    smoothed with a Gaussian of one amplitude-sample standard deviation.
+    (c) The same smoothed center traces; the unsmoothed fits have RMS
+    values of $6.78$ and
+    $2.64~\mathrm{kHz}$, respectively.
+    (d) Gaussian-fit FWHM in units of $\Gamma_{T_2}$; colors match (c).
+    The red curve is the constant-drive Bloch power-broadening reference;
+    the dotted line marks unity, with
+    $\Gamma_{T_2}=\EffectiveCoherenceFwhm~\mathrm{kHz}$,
+    using the primary qubit's coherence calibration.
+    The $\beta=-0.22$ acquisition combines the derivative quadrature
+    with a smoothed midpoint inversion, so this comparison does not
+    isolate the DRAG contribution or establish an optimum in $\beta$.}
+    \label{fig:ac-stark-correction-maps}
+    \label{fig:main-ac-stark-shifts}
+\end{figure}
+
+For comparison, the weak-drive three-level AC-Stark shift of a constant drive
+is $\delta f_{01}\simeq-\left(\Omega_0/2\pi\right)^2/
+[2(\alpha/2\pi)]$~\cite{PhysRevA.76.042319,schneider_multilevel_2018}.
+With $\alpha/(2\pi)=-237~\mathrm{MHz}$ for this qubit, the shift reaches
+$5.3~\mathrm{MHz}$ at $\Omega_0/(2\pi)=50~\mathrm{MHz}$.  For the
+$20~\mu\mathrm{s}$ root-Lorentzian envelope with $c=0.001$, the phase-average
+shift is smaller by $\langle f^2\rangle_t=0.001570$ and reaches only
+$8.2~\mathrm{kHz}$; the echo sign change does not cancel this quadratic term.
+Fig.~\ref{fig:ac-stark-correction-maps} instead tests a derivative-quadrature
+waveform on the second qubit. The acquisition
+uses $I+iQ$ with $Q=-\beta\dot I/(2\pi\alpha)$, where
+$\alpha=237~\mathrm{MHz}$ is the signed value supplied to the
+waveform generator and time is in microseconds. Both the derivative
+quadrature and the midpoint smoothing change between these sequential runs;
+no accumulated-phase correction is applied. The depletion feature persists
+across the displayed $10$--$60~\mathrm{MHz}$ range in both maps.
+The RMS center motion about each run's mean is $6.78$ and
+$2.64~\mathrm{kHz}$ for $\beta=0$ and $-0.22$, respectively. This lower
+scatter characterizes the combined smoothed-midpoint and DRAG waveform;
+the comparison does not isolate the derivative-quadrature contribution.
+The absence of resolved three-state readout precludes a measured
+leakage-suppression claim.
+
+Fig.~\ref{fig:main-ac-stark-shifts}(c) resolves the measured center
+variations directly on a kilohertz scale. Panel (d) compares FWHM values
+extracted from the same Gaussian dip estimator with the steady-state Bloch
+reference $\Gamma=\Gamma_{T_2}\sqrt{1+\Omega^2T_1T_2}$, using the primary
+spectroscopy values $T_1=\MeasuredTOne~\mu\mathrm{s}$ and
+$T_2=\EffectiveTTwo~\mu\mathrm{s}$. This is a primary-qubit coherence
+reference, rather than a separate calibration of the second qubit.
+Both measured linewidths
+increase with drive;
+the smaller center fluctuations for $\beta=-0.22$ therefore do not imply
+a uniformly narrower resonance. Numerical accumulated-phase compensation
+is discussed separately in the Supplemental Material~\cite{SupplementalMaterial}.

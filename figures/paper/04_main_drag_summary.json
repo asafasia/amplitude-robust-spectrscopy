@@ -1,0 +1,31 @@
+{
+  "generator": "scripts/make_main_drag_summary.py",
+  "reproduction_command": "python scripts/make_main_drag_summary.py",
+  "figure_size_inches": [
+    3.4,
+    3.45
+  ],
+  "source_sha256": {
+    "paper/data/experimental/04_main_ac_stark_correction_maps.npz": "0bb6d0df6c7025a90f7296584e9c5a75c34bb4d576037aeb6bce3aefefd2dd35",
+    "paper/data/experimental/04_main_ac_stark_shifts_square.npz": "c4f20c873c8c61af9e747352330db64c1a4d69a09969a98fdf35ee3f37a34c78",
+    "paper/data/numerical/04_main_ac_stark_shifts_square.npz": "a9f393701a1278f517f12b1436d9ebaa1b981689186fead557d0ffcce0bfe9ce"
+  },
+  "panels": {
+    "a_b": "Unmodified measured populations; lightly smoothed mean-centered fits",
+    "c": "Same smoothed center traces as a/b; MHz converted to kHz",
+    "d": "Unsmoothed accepted Gaussian FWHM and Bloch reference divided by Gamma_T2"
+  },
+  "display_smoothing": {
+    "method": "Gaussian filter, sigma=1 amplitude sample, truncate=3, nearest edges",
+    "gaps": "Filter contiguous accepted runs independently; retain gaps",
+    "scope": "Center traces in a/b/c only; raw fits and reported RMS unchanged"
+  },
+  "linewidth_normalization_khz": 43.5,
+  "display_arrays": "figures/paper/04_main_drag_summary.npz",
+  "limitations": [
+    "Beta and midpoint smoothing both differ between measured runs.",
+    "These are selected settings, not beta-optimization sweeps.",
+    "No paired experimental and simulated beta sweeps found locally.",
+    "The Bloch reference uses the primary qubit coherence calibration."
+  ]
+}

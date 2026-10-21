@@ -1,0 +1,92 @@
+[
+  {
+    "family": "polynomial5",
+    "amplitude_mhz": 50.505050505050505,
+    "original_background_width_khz": 149.80393968789568,
+    "outer_background_width_khz": 164.61198272860864
+  },
+  {
+    "family": "polynomial5",
+    "amplitude_mhz": 74.74747474747475,
+    "original_background_width_khz": 156.90093734062015,
+    "outer_background_width_khz": 175.9048103605627
+  },
+  {
+    "family": "polynomial5",
+    "amplitude_mhz": 100.0,
+    "original_background_width_khz": 161.8497823915546,
+    "outer_background_width_khz": 183.67576350181625
+  },
+  {
+    "family": "c2",
+    "amplitude_mhz": 50.505050505050505,
+    "original_background_width_khz": 132.1439729994608,
+    "outer_background_width_khz": 147.6010990716205
+  },
+  {
+    "family": "c2",
+    "amplitude_mhz": 74.74747474747475,
+    "original_background_width_khz": 137.73824154138723,
+    "outer_background_width_khz": 158.85702674362324
+  },
+  {
+    "family": "c2",
+    "amplitude_mhz": 100.0,
+    "original_background_width_khz": 141.8578095426464,
+    "outer_background_width_khz": 167.42483959072652
+  },
+  {
+    "family": "spline",
+    "amplitude_mhz": 50.505050505050505,
+    "original_background_width_khz": 83.52942519384365,
+    "outer_background_width_khz": 114.65416441168747
+  },
+  {
+    "family": "spline",
+    "amplitude_mhz": 74.74747474747475,
+    "original_background_width_khz": 72.2763936170039,
+    "outer_background_width_khz": 84.73361438378859
+  },
+  {
+    "family": "spline",
+    "amplitude_mhz": 100.0,
+    "original_background_width_khz": 77.7415914223602,
+    "outer_background_width_khz": 85.9858472884846
+  },
+  {
+    "family": "margin",
+    "amplitude_mhz": 50.505050505050505,
+    "original_background_width_khz": 87.52980671995357,
+    "outer_background_width_khz": 118.87954083328894
+  },
+  {
+    "family": "margin",
+    "amplitude_mhz": 74.74747474747475,
+    "original_background_width_khz": 77.33030402135974,
+    "outer_background_width_khz": 90.57042605065779
+  },
+  {
+    "family": "margin",
+    "amplitude_mhz": 100.0,
+    "original_background_width_khz": 79.11545830249042,
+    "outer_background_width_khz": 89.14557498885547
+  },
+  {
+    "family": "clean",
+    "amplitude_mhz": 50.505050505050505,
+    "original_background_width_khz": 128.249704712263,
+    "outer_background_width_khz": 101.98211727814046
+  },
+  {
+    "family": "clean",
+    "amplitude_mhz": 74.74747474747475,
+    "original_background_width_khz": 131.5771844207701,
+    "outer_background_width_khz": 121.03928104095307
+  },
+  {
+    "family": "clean",
+    "amplitude_mhz": 100.0,
+    "original_background_width_khz": 133.099211595516,
+    "outer_background_width_khz": 137.57061147729465
+  }
+]

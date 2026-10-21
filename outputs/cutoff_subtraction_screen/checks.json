@@ -1,0 +1,29 @@
+{
+  "analytic_waveform_derivative_checks": "passed",
+  "baseline_p3_p8_agreement": "passed <1e-10",
+  "timestep_checks": [
+    {
+      "shape": "floor",
+      "cutoff": 0.001,
+      "max_population_change": 8.376093224238268e-06,
+      "max_fwhm_change_hz": 8.84026545099914
+    },
+    {
+      "shape": "floor_p1",
+      "cutoff": 0.001,
+      "max_population_change": 1.0668498792387737e-05,
+      "max_fwhm_change_hz": 4.5952069424965885
+    },
+    {
+      "shape": "subtract_c2",
+      "cutoff": 0.001,
+      "max_population_change": 1.3111304472457341e-05,
+      "max_fwhm_change_hz": 2.961312947096303
+    }
+  ],
+  "scoped_ruff": "passed",
+  "full_pytest": "Collection blocked by missing torch",
+  "full_lint": "692 pre-existing findings",
+  "artifact_links": "passed",
+  "source_hashes": "passed"
+}

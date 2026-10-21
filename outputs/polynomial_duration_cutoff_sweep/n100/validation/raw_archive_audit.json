@@ -1,0 +1,44 @@
+{
+  "complete": true,
+  "maps_checked": 500,
+  "grid_points": 10050000,
+  "baseline_hash_matched": true,
+  "simulation_source_snapshots_matched": true,
+  "records": [
+    {
+      "duration_us": 10.0,
+      "maps": 100,
+      "max_trace_error": 3.774758283725532e-14,
+      "min_population": 0.0,
+      "max_population": 1.0
+    },
+    {
+      "duration_us": 20.0,
+      "maps": 100,
+      "max_trace_error": 6.794564910705958e-14,
+      "min_population": 0.0,
+      "max_population": 1.0
+    },
+    {
+      "duration_us": 30.0,
+      "maps": 100,
+      "max_trace_error": 8.526512829121202e-14,
+      "min_population": 0.0,
+      "max_population": 1.0
+    },
+    {
+      "duration_us": 45.0,
+      "maps": 100,
+      "max_trace_error": 1.3011813848606835e-13,
+      "min_population": 0.0,
+      "max_population": 1.0
+    },
+    {
+      "duration_us": 60.0,
+      "maps": 100,
+      "max_trace_error": 1.6564527527407336e-13,
+      "min_population": 0.0,
+      "max_population": 1.0
+    }
+  ]
+}

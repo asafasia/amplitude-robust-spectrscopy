@@ -1,0 +1,56 @@
+{
+  "model": "Unitary two-level RWA; abrupt echo; ground-state preparation",
+  "duration_us": 20.0,
+  "cutoff": 0.005,
+  "tau_us": 0.050000625011719,
+  "weak_dissipation_floor_check": {
+    "rate_halving_remainder_ratio": 3.9989423789627434,
+    "absolute_remainders": [
+      5.901474189108115e-07,
+      1.4757587456508577e-07
+    ]
+  },
+  "width_definition": "Twice the first positive Pe=0.5 crossing, converted to cyclic frequency. This approximates a dip FWHM only when the local shoulder is near 1. Null means no crossing within 0 <= Delta/(Omega0*c) <= 4.",
+  "rows": [
+    {
+      "a_Omega0_tau": 0.3,
+      "peak_rabi_mhz": 0.9549177218560352,
+      "S_us": 5.510840606754078,
+      "curvature_relative_error": -1.511621567362731e-06,
+      "numerical_refinement_max_population_error": 2.0133686384760097e-12,
+      "cutoff_lorentzian_width_khz": 9.549177218560352,
+      "exact_Pe_half_crossing_width_khz": null,
+      "half_crossing_over_asymptotic": null
+    },
+    {
+      "a_Omega0_tau": 1.0,
+      "peak_rabi_mhz": 3.183059072853451,
+      "S_us": 9.952236973521838,
+      "curvature_relative_error": 6.192499846235933e-10,
+      "numerical_refinement_max_population_error": 3.0218716418062286e-11,
+      "cutoff_lorentzian_width_khz": 31.83059072853451,
+      "exact_Pe_half_crossing_width_khz": 51.41078239633237,
+      "half_crossing_over_asymptotic": 1.6151375522618001
+    },
+    {
+      "a_Omega0_tau": 3.0,
+      "peak_rabi_mhz": 9.549177218560352,
+      "S_us": 5.980849024111241,
+      "curvature_relative_error": -5.15127673850202e-09,
+      "numerical_refinement_max_population_error": 2.0388202237597852e-10,
+      "cutoff_lorentzian_width_khz": 95.49177218560352,
+      "exact_Pe_half_crossing_width_khz": 94.51078834108844,
+      "half_crossing_over_asymptotic": 0.9897270327897111
+    },
+    {
+      "a_Omega0_tau": 10.0,
+      "peak_rabi_mhz": 31.83059072853451,
+      "S_us": 1.989875814457283,
+      "curvature_relative_error": -9.45863654067125e-09,
+      "numerical_refinement_max_population_error": 1.0170332354064726e-09,
+      "cutoff_lorentzian_width_khz": 318.3059072853451,
+      "exact_Pe_half_crossing_width_khz": 320.39550163759696,
+      "half_crossing_over_asymptotic": 1.0065647363257342
+    }
+  ]
+}

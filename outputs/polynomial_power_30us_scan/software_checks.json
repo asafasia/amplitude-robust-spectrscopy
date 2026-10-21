@@ -1,0 +1,23 @@
+{
+  "focused_tests": {
+    "command": "MPLCONFIGDIR=/private/tmp/ars-matplotlib-cache /opt/miniconda3/envs/qarakal-dev/bin/python -m pytest -q -o addopts= tests/test_edge_window.py tests/test_qutrit_native.py tests/test_sine_echo_transition.py tests/analysis/test_dip_metrics.py tests/analysis/test_spectroscopy_quality.py tests/analysis/test_outer_tail_selection.py",
+    "result": "......................................................                   [100%]\n54 passed in 10.35s"
+  },
+  "full_pytest": {
+    "command": "/opt/miniconda3/envs/qarakal-dev/bin/python -m pytest",
+    "status": "collection blocked",
+    "reason": "ModuleNotFoundError: torch in tests/test_mps_simulation.py"
+  },
+  "full_lint": {
+    "command": "make lint",
+    "status": "failed",
+    "findings": 692,
+    "note": "Pre-existing repository-wide findings; changed files are checked separately."
+  },
+  "scoped_lint": {
+    "status": "passed"
+  },
+  "scoped_git_diff_check": {
+    "status": "passed"
+  }
+}

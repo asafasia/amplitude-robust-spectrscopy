@@ -1,0 +1,115 @@
+{
+  "generator": "scripts/make_figure2_experiment_simulation_variant.py",
+  "included_in_manuscript": true,
+  "panels": {
+    "a": {
+      "kind": "experiment",
+      "domain": "broad",
+      "protocol": "root"
+    },
+    "b": {
+      "kind": "experiment",
+      "domain": "broad",
+      "protocol": "echo"
+    },
+    "c": {
+      "kind": "simulation",
+      "domain": "broad",
+      "protocol": "root"
+    },
+    "d": {
+      "kind": "simulation",
+      "domain": "broad",
+      "protocol": "echo"
+    },
+    "e": {
+      "kind": "experiment",
+      "domain": "narrow",
+      "protocol": "root"
+    },
+    "f": {
+      "kind": "experiment",
+      "domain": "narrow",
+      "protocol": "echo"
+    },
+    "g": {
+      "kind": "simulation",
+      "domain": "narrow",
+      "protocol": "root"
+    },
+    "h": {
+      "kind": "simulation",
+      "domain": "narrow",
+      "protocol": "echo"
+    }
+  },
+  "figure_size_inches": [
+    7.1,
+    3.42
+  ],
+  "panel_size_inches": [
+    1.4,
+    1.26
+  ],
+  "row_separator": {
+    "color": "0.65",
+    "linewidth_pt": 0.8
+  },
+  "color_limits": [
+    0,
+    0.8
+  ],
+  "display_saturation_above": 0.8,
+  "simulation_settings": {
+    "duration_us": 20.0,
+    "cutoff": 0.005,
+    "order": 0.5,
+    "t1_us": 51.2,
+    "t_phi_us": 7.87,
+    "anharmonicity_mhz": -216.0,
+    "num_steps_per_half": 12800,
+    "integration_backend": "native"
+  },
+  "solver_hashes": {
+    "qutrit.py": "58891d88564eb9d3b5ed592fa69b52c3fb5cec9e7178471c5039e5b8c07c6b15",
+    "qutrit_native.py": "e26a097b8d803b1c2da8f0ad56222fff59456e02a445f33d22629a0f639a6dd9",
+    "qutrit_rk4.cpp": "493150abcad473a10ff4128c3b42a5f0ddfd0cdd8fe4c1cf09a936858068bab6"
+  },
+  "cache_signature": "67386e75061ab847",
+  "step_halving_max_population_error": {
+    "root": 1.604445412062283e-05,
+    "echo": 4.615652619999189e-06
+  },
+  "experimental_inputs": {
+    "broad_root": "2026-08-25/six_detuning_amplitude_sweeps/02_broad_50mhz_cutoff_0p005_no_echo",
+    "broad_echo": "2026-08-25/six_detuning_amplitude_sweeps/03_broad_50mhz_cutoff_0p005_echo",
+    "narrow_root": "2026-08-25/six_detuning_amplitude_sweeps/05_narrow_1mhz_cutoff_0p005_no_echo",
+    "narrow_echo": "2026-08-25/six_detuning_amplitude_sweeps/06_narrow_1mhz_cutoff_0p005_echo"
+  },
+  "comparison": "Raw measured populations versus simulated |e> populations; no gain, offset, or frequency fits; no readout model",
+  "red_lines": "Broad-spectrum panels only: linear steady-state Bloch half-width, not a finite-pulse fit",
+  "coherence_reference": {
+    "panels": [
+      "e",
+      "f",
+      "g",
+      "h"
+    ],
+    "t2_us": 7.31,
+    "detuning_mhz": [
+      -0.021772222037194984,
+      0.021772222037194984
+    ],
+    "fwhm_khz": 43.544444074389965,
+    "definition": "Vertical lines at +/-1/(2*pi*T2); separation is the coherence-limited FWHM 1/(pi*T2)",
+    "color": "white",
+    "linewidth_pt": 0.45,
+    "linestyle": "dashed",
+    "dash_pattern": [
+      3,
+      15
+    ]
+  },
+  "simulation_parameters_source": "paper/coherence_parameters.tex; duration and cutoff from experimental runs",
+  "notes": "Two-state discrimination does not independently resolve |f>; this is a model comparison, not a demonstrated quantitative fit."
+}

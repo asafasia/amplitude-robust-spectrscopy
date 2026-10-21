@@ -17,8 +17,7 @@ applies cosine and sine integration weights to the sampled signal and accumulate
 the result to obtain the measured quadratures \cite{qm_opx_demodulation}.  Thus,
 separate MW-FEM outputs provide the qubit-drive and resonator-readout tones,
 while an MW-FEM input acquires the returning readout signal.  A dedicated DC
-bias line was available but was not used in these measurements; consequently,
-the qubits were not necessarily operated at their flux sweet spots.
+bias line was used to set the qubit to its flux sweet spot.
 
 The device was mounted at the mixing-chamber stage ($\sim$9 mK), with the drive
 and readout lines attenuated across the refrigerator stages.  The returning
@@ -27,65 +26,51 @@ transistor (HEMT) amplifier before entering the MW-FEM for digital
 downconversion and demodulation.
 
 
-\begin{figure}
+\begin{figure*}[!tp]
     \centering
-    \includegraphics[width=0.98\linewidth]{figures/cryogenic_measurement_chain.pdf}
+    \includegraphics[width=\textwidth]{../figures/paper/supplemental/s01_measurement_chain.pdf}
     \caption{Schematic of the experimental setup for qubit control and readout.
 A control computer submits QUA programs and receives data over Ethernet.  The
 OPX1000 MW-FEM directly generates the qubit-drive and resonator-readout RF
 signals and acquires the returning readout signal.  Input lines are attenuated
 across the 300 K, 50 K, 10 K, 4 K, still, cold-plate, and mixing-chamber stages.
-The low-pass-filtered DC-bias line is shown for completeness but was not used.
 At the mixing chamber, the device is isolated by circulators; the returning
 readout signal is amplified by a 4 K HEMT before entering the MW-FEM for digital
 downconversion and demodulation.}
     \label{fig:diagram}
-\end{figure}
+\end{figure*}
 
 \subsection{Qubit parameters}
-\label{subsec:q1-coherence-characterization}
+\label{subsec:coherence-characterization}
 
-Table~\ref{tab:q1-device-parameters} summarizes the transition frequencies and
-coherence parameters used in this work.  The $T_1$ and Ramsey $T_2^*$ values
+Table~\ref{tab:device-parameters} summarizes the transition frequencies and
+coherence parameters of the primary qubit. The additional high-drive and
+dense pulse-length measurements use a second qubit, with the corresponding
+parameters specified alongside those measurements.  The $T_1$ and Ramsey $T_2^*$ values
 were obtained from exponential and exponentially damped sinusoidal fits,
-respectively.  The Hahn-echo $T_2$ was measured in a later calibration session,
-so calculations tied to the original spectroscopy data conservatively use
-$T_{2,\mathrm{eff}}=T_2^*=\EffectiveTTwo~\mu\mathrm{s}$.  The quoted coherence
-uncertainties are one-standard-deviation estimates from the fit covariance
-matrices.
+respectively. The Hahn-echo $T_2$ was obtained from an echo-decay fit.
+Calculations use the Ramsey value as a conservative coherence reference,
+$T_{2,\mathrm{eff}}=T_2^*=\MeasuredTTwoStar~\mu\mathrm{s}$.
 
-\begin{table}[h]
-    \caption{Parameters of qubit q1 used in the experiment and numerical
-    analysis.  The approximately $1~\mathrm{MHz}$ anharmonicity uncertainty is
-    set by the finest two-photon spectroscopy grid.}
-    \label{tab:q1-device-parameters}
+\begin{table}[!tp]
+    \caption{Parameters of the primary qubit used in the experiment and numerical
+    analysis. Transition frequencies are rounded to $1~\mathrm{MHz}$ and
+    coherence times to $0.1~\mu\mathrm{s}$.}
+    \label{tab:device-parameters}
     \begin{ruledtabular}
         \begin{tabular}{lcl}
             Parameter & Value & Determination \\
-            $f_{01}$ & $\MeasuredFZeroOne~\mathrm{GHz}$ & Qubit spectroscopy \\
-            $f_{02}/2$ & $\MeasuredFTwoPhotonHalf~\mathrm{GHz}$ & Two-photon spectroscopy \\
-            $f_{12}$ & $\DerivedFOneTwo~\mathrm{GHz}$ & $2(f_{02}/2)-f_{01}$ \\
-            $\alpha/(2\pi)$ & $(\MeasuredAnharmonicity\pm\MeasuredAnharmonicityUncertainty)~\mathrm{MHz}$ & $f_{12}-f_{01}$ \\
-            $T_1$ & $\MeasuredTOneFit~\mu\mathrm{s}$ & Energy-relaxation fit \\
-            $T_2^*$ & $\MeasuredTTwoStarFit~\mu\mathrm{s}$ & Ramsey fit \\
-            $T_2$ & $\MeasuredTTwoEchoFit~\mu\mathrm{s}$ & Hahn-echo fit (later session) \\
-            $T_\phi^*$ & $\EffectiveTPhi~\mu\mathrm{s}$ & $[1/T_2^*-1/(2T_1)]^{-1}$ \\
+            % Display rounding only; full source values remain in coherence_parameters.tex.
+            $f_{01}$ & $4.267~\mathrm{GHz}$ & Qubit spectroscopy \\
+            $f_{02}/2$ & $4.159~\mathrm{GHz}$ & Two-photon spectroscopy \\
+            $f_{12}$ & $4.051~\mathrm{GHz}$ & $2(f_{02}/2)-f_{01}$ \\
+            $\alpha/(2\pi)$ & $-216~\mathrm{MHz}$ & $f_{12}-f_{01}$ \\
+            $T_1$ & $\MeasuredTOne~\mu\mathrm{s}$ & Energy-relaxation fit \\
+            $T_2^*$ & $\MeasuredTTwoStar~\mu\mathrm{s}$ & Ramsey fit \\
+            $T_2$ & $\MeasuredTTwoEcho~\mu\mathrm{s}$ & Hahn-echo fit \\
+            $T_\phi^*$ & $7.9~\mu\mathrm{s}$ & $[1/T_2^*-1/(2T_1)]^{-1}$ \\
             $\Gamma_{f,T_2^*}$ & $\EffectiveCoherenceFwhm~\mathrm{kHz}$ & $1/(\pi T_2^*)$ \\
         \end{tabular}
     \end{ruledtabular}
 \end{table}
 
-% Coherence-data figure retained for possible future use but intentionally
-% omitted from the Supplemental Material in favor of Table~\ref{tab:q1-device-parameters}.
-% \begin{figure}[t]
-%     \centering
-%     \includegraphics[width=\linewidth]{../figures/paper/05_q1_t1_t2.pdf}
-%     \caption{Independent coherence characterization of qubit q1.
-%     (a) Energy relaxation following state preparation, together with an
-%     exponential fit. (b) Ramsey fringes acquired with a positive
-%     $2~\mathrm{MHz}$ programmed detuning, together with an exponentially damped
-%     sinusoidal fit. (c) Hahn-echo decay with an exponential fit.}
-%     \label{fig:q1-t1-t2}
-% \end{figure}
-
-\FloatBarrier

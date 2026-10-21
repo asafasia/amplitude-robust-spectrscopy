@@ -1,0 +1,17 @@
+{
+  "maps_checked": 15,
+  "map_shape": [
+    3,
+    100,
+    201
+  ],
+  "all_local_report_links_exist": true,
+  "focused_tests_passed": 42,
+  "scoped_ruff": "passed",
+  "full_pytest": "Collection blocked: pytest environment lacks optional torch (tests/test_mps_simulation.py).",
+  "repository_ruff": "689 pre-existing findings; modified and new Python files pass scoped checks.",
+  "validation_cases": 4,
+  "max_population_refinement_difference": 8.489447626375268e-05,
+  "max_time_refinement_fwhm_change_hz": 8.984744334971765,
+  "max_grid_refinement_fwhm_change_hz": 54.59841887615039
+}

@@ -1,22 +1,20 @@
-\begin{figure}[t]
+\begin{figure*}[!tp]
     \centering
-    \includegraphics[width=\columnwidth]{%
-        ../figures/paper/03_lorentzian_echo_slices.pdf}
-    \caption{Experimental and simulated spectra.
-    (a)--(f) Final excited-state probability $P_e$ versus detuning for
-    $20~\mu\mathrm{s}$ root-Lorentzian (left) and echo-root-Lorentzian (right)
-    pulses with $c=0.005$.  From top to bottom,
-    $\Omega_0/2\pi=3$, $20$, and $40~\mathrm{MHz}$. Continuous lines show
-    three-level simulations and markers show experiment. A common global
-    population offset and small gain adjustment are applied to the measured
-    traces for comparison. Residual baseline mismatches remain, but the
-    spectral profiles otherwise agree closely. At high drive, the echo
-    response shows a line-shape discrepancy and a deeper experimental
-    resonance dip, providing a stronger signal for resonance detection.
-    Partial refocusing of slowly varying, non-Markovian noise by the echo
-    is a possible explanation for the enhanced dip contrast relative to the
-    Markovian model, consistent with noise suppression in rotary-echo
-    experiments~\cite{gustavsson_rotary_echo_2012}.
+    \includegraphics[width=\textwidth]{%
+        ../figures/paper/supplemental/s02_spectrum_slices.pdf}
+    \caption{Stacked experimental and simulated spectra for
+    (a) root-Lorentzian and (b) echo-root-Lorentzian pulses, with
+    $L=20~\mu\mathrm{s}$ and $c=0.005$. From bottom to top, the acquired
+    peak Rabi frequencies are approximately 2.92, 9.95, 20.07, 30.03,
+    and $39.98~\mathrm{MHz}$, labeled individually. Colored markers show
+    all measured points from the narrow-detuning scans in main-text Fig.~2;
+    black lines show three-level simulations at the identical drive and
+    detuning values. For each trace independently,
+    $y=P-\langle P\rangle_{\Delta}+0.55j$, where $j=0,\ldots,4$
+    indexes increasing drive. The scale bars denote a population difference
+    of 0.2. Only constant vertical offsets are removed; contrast and frequency
+    are not fitted. Two-state readout does not independently resolve
+    $|f\rangle$, whereas the simulated observable is $P_e$.
     }
     \label{fig:simulation-results}
-\end{figure}
+\end{figure*}

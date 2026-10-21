@@ -1,0 +1,107 @@
+[
+  {
+    "cutoff": 0.001,
+    "window": "hard",
+    "unsigned_area_us": 0.22229687475553658,
+    "area_fraction": 1.0,
+    "peak_i_scale": 0.890700771500592
+  },
+  {
+    "cutoff": 0.001,
+    "window": "ramp1",
+    "unsigned_area_us": 0.22127727975849792,
+    "area_fraction": 0.9954133633315362,
+    "peak_i_scale": 0.890700771500592
+  },
+  {
+    "cutoff": 0.001,
+    "window": "ramp3",
+    "unsigned_area_us": 0.21910954986039605,
+    "area_fraction": 0.9856618546767889,
+    "peak_i_scale": 0.890700771500592
+  },
+  {
+    "cutoff": 0.001,
+    "window": "ramp6",
+    "unsigned_area_us": 0.21546721859980641,
+    "area_fraction": 0.9692768683174657,
+    "peak_i_scale": 0.890700771500592
+  },
+  {
+    "cutoff": 0.001,
+    "window": "polynomial",
+    "unsigned_area_us": 0.19479716240690864,
+    "area_fraction": 0.8762928521650616,
+    "peak_i_scale": 0.89070013515561
+  },
+  {
+    "cutoff": 0.003,
+    "window": "hard",
+    "unsigned_area_us": 0.5794054703715898,
+    "area_fraction": 1.0,
+    "peak_i_scale": 0.984747688138407
+  },
+  {
+    "cutoff": 0.003,
+    "window": "ramp1",
+    "unsigned_area_us": 0.5763466858713842,
+    "area_fraction": 0.9947208221934045,
+    "peak_i_scale": 0.984747688138407
+  },
+  {
+    "cutoff": 0.003,
+    "window": "ramp3",
+    "unsigned_area_us": 0.5698435008443874,
+    "area_fraction": 0.9834969291521013,
+    "peak_i_scale": 0.984747688138407
+  },
+  {
+    "cutoff": 0.003,
+    "window": "ramp6",
+    "unsigned_area_us": 0.5589165290043376,
+    "area_fraction": 0.9646379911565004,
+    "peak_i_scale": 0.984747688138407
+  },
+  {
+    "cutoff": 0.003,
+    "window": "polynomial",
+    "unsigned_area_us": 0.49691188663085584,
+    "area_fraction": 0.8576237402663313,
+    "peak_i_scale": 0.9847468686972581
+  },
+  {
+    "cutoff": 0.005,
+    "window": "hard",
+    "unsigned_area_us": 0.8929208474982013,
+    "area_fraction": 1.0,
+    "peak_i_scale": 0.9943844653842605
+  },
+  {
+    "cutoff": 0.005,
+    "window": "ramp1",
+    "unsigned_area_us": 0.8878228749675574,
+    "area_fraction": 0.9942906781212159,
+    "peak_i_scale": 0.9943844653842605
+  },
+  {
+    "cutoff": 0.005,
+    "window": "ramp3",
+    "unsigned_area_us": 0.8769842488135307,
+    "area_fraction": 0.9821522828934702,
+    "peak_i_scale": 0.9943844653842605
+  },
+  {
+    "cutoff": 0.005,
+    "window": "ramp6",
+    "unsigned_area_us": 0.858772702218358,
+    "area_fraction": 0.9617568059078023,
+    "peak_i_scale": 0.9943844653842605
+  },
+  {
+    "cutoff": 0.005,
+    "window": "polynomial",
+    "unsigned_area_us": 0.7554476771215082,
+    "area_fraction": 0.8460410340268485,
+    "peak_i_scale": 0.9943836253072873
+  }
+]

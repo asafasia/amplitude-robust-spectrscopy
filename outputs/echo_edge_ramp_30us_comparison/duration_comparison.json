@@ -1,0 +1,173 @@
+[
+  {
+    "cutoff": 0.001,
+    "window": "hard",
+    "previous_duration_us": 20.0,
+    "duration_us": 30.0,
+    "previous_at_100": {
+      "fwhm_hz": 302303.3648816659,
+      "shoulder_contrast": 0.23100906051087444,
+      "contrast_snr": 7.508518544291198,
+      "center_hz": 656.1072317625977
+    },
+    "current_at_100": {
+      "fwhm_hz": 506015.6491655306,
+      "shoulder_contrast": 0.07877930762112478,
+      "contrast_snr": 2.4999331880566515,
+      "center_hz": 1008.8435131313319
+    },
+    "improves_both_high_amplitude_points": 0
+  },
+  {
+    "cutoff": 0.001,
+    "window": "ramp6",
+    "previous_duration_us": 20.0,
+    "duration_us": 30.0,
+    "previous_at_100": {
+      "fwhm_hz": 225404.5822192397,
+      "shoulder_contrast": 0.321938220894713,
+      "contrast_snr": 10.764755854396972,
+      "center_hz": 118.1456467867304
+    },
+    "current_at_100": {
+      "fwhm_hz": 274145.8501520069,
+      "shoulder_contrast": 0.13380787337592182,
+      "contrast_snr": 4.279985412518022,
+      "center_hz": -982.5710198651167
+    },
+    "improves_both_high_amplitude_points": 0
+  },
+  {
+    "cutoff": 0.001,
+    "window": "polynomial",
+    "previous_duration_us": 20.0,
+    "duration_us": 30.0,
+    "previous_at_100": {
+      "fwhm_hz": 174274.75993559533,
+      "shoulder_contrast": 0.3936005766951862,
+      "contrast_snr": 13.574353670449772,
+      "center_hz": 216.40989310038458
+    },
+    "current_at_100": {
+      "fwhm_hz": 152852.52116794934,
+      "shoulder_contrast": 0.22362118076492848,
+      "contrast_snr": 7.298691523234535,
+      "center_hz": -758.19412207749
+    },
+    "improves_both_high_amplitude_points": 0
+  },
+  {
+    "cutoff": 0.003,
+    "window": "hard",
+    "previous_duration_us": 20.0,
+    "duration_us": 30.0,
+    "previous_at_100": {
+      "fwhm_hz": 456578.37174964655,
+      "shoulder_contrast": 0.1096585546408747,
+      "contrast_snr": 3.5071388973707984,
+      "center_hz": 3518.253969468112
+    },
+    "current_at_100": {
+      "fwhm_hz": 357939.1726465612,
+      "shoulder_contrast": 0.01996787868164135,
+      "contrast_snr": 0.6334778802108824,
+      "center_hz": -1291.1683175969365
+    },
+    "improves_both_high_amplitude_points": 0
+  },
+  {
+    "cutoff": 0.003,
+    "window": "ramp6",
+    "previous_duration_us": 20.0,
+    "duration_us": 30.0,
+    "previous_at_100": {
+      "fwhm_hz": 269868.4596411964,
+      "shoulder_contrast": 0.22111477054017903,
+      "contrast_snr": 7.208664359038612,
+      "center_hz": 942.764856026691
+    },
+    "current_at_100": {
+      "fwhm_hz": 229182.44622721782,
+      "shoulder_contrast": 0.0654485418037491,
+      "contrast_snr": 2.0864624916407566,
+      "center_hz": -1046.3574094059093
+    },
+    "improves_both_high_amplitude_points": 0
+  },
+  {
+    "cutoff": 0.003,
+    "window": "polynomial",
+    "previous_duration_us": 20.0,
+    "duration_us": 30.0,
+    "previous_at_100": {
+      "fwhm_hz": 209441.710135831,
+      "shoulder_contrast": 0.2856897310763201,
+      "contrast_snr": 9.480655997976973,
+      "center_hz": 569.7924058326611
+    },
+    "current_at_100": {
+      "fwhm_hz": 160574.86312128848,
+      "shoulder_contrast": 0.12921887982793462,
+      "contrast_snr": 4.158637769608841,
+      "center_hz": -999.6850496796792
+    },
+    "improves_both_high_amplitude_points": 0
+  },
+  {
+    "cutoff": 0.005,
+    "window": "hard",
+    "previous_duration_us": 20.0,
+    "duration_us": 30.0,
+    "previous_at_100": {
+      "fwhm_hz": 544397.5581661131,
+      "shoulder_contrast": 0.06685933673552774,
+      "contrast_snr": 2.1412798184187616,
+      "center_hz": -2000.9350313331715
+    },
+    "current_at_100": {
+      "fwhm_hz": 468220.5684584376,
+      "shoulder_contrast": 0.014134110772814068,
+      "contrast_snr": 0.44855655742428746,
+      "center_hz": 1616.341131097924
+    },
+    "improves_both_high_amplitude_points": 0
+  },
+  {
+    "cutoff": 0.005,
+    "window": "ramp6",
+    "previous_duration_us": 20.0,
+    "duration_us": 30.0,
+    "previous_at_100": {
+      "fwhm_hz": 301801.23815768067,
+      "shoulder_contrast": 0.19595295674149776,
+      "contrast_snr": 6.359610025043346,
+      "center_hz": -2059.6559318895297
+    },
+    "current_at_100": {
+      "fwhm_hz": 255132.8552871064,
+      "shoulder_contrast": 0.05758964576817227,
+      "contrast_snr": 1.834514271251909,
+      "center_hz": -1663.1130382105896
+    },
+    "improves_both_high_amplitude_points": 0
+  },
+  {
+    "cutoff": 0.005,
+    "window": "polynomial",
+    "previous_duration_us": 20.0,
+    "duration_us": 30.0,
+    "previous_at_100": {
+      "fwhm_hz": 229868.0600060355,
+      "shoulder_contrast": 0.25044754435248234,
+      "contrast_snr": 8.23590472312894,
+      "center_hz": 86.40189665135897
+    },
+    "current_at_100": {
+      "fwhm_hz": 167026.10733366053,
+      "shoulder_contrast": 0.10377941414249736,
+      "contrast_snr": 3.330809971006362,
+      "center_hz": -775.8605062418924
+    },
+    "improves_both_high_amplitude_points": 0
+  }
+]

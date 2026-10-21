@@ -1,7 +1,7 @@
 \section{Pulse Truncation and Endpoint Amplitude}
 \label{sec:pulse-cutoff}
 
-The ideal Lorentzian tail has infinite support, whereas the implemented pulse
+The ideal root-Lorentzian tail has infinite support, whereas the implemented pulse
 starts and ends at finite amplitude $\Omega_c=c\Omega_0$.  Abruptly switching
 this residual drive produces an endpoint transient.  A useful estimate of the
 associated population contribution is~\cite{mihov_defying_2024}
@@ -37,76 +37,3 @@ Keeping the endpoint contribution in the weak-saturation regime requires
 The inequality therefore bounds the endpoint amplitude from above.  It is a
 perturbative design criterion, not a claim that the cutoff artifact has the
 steady-state Lorentzian lineshape.
-
-We therefore measured the cutoff dependence over two complementary q1
-echo--root--Lorentzian scans.  The broad survey spans $c=0.002$--$0.99$
-with 25 peak-amplitude settings, while the focused sweep resolves
-$c=0.01$--$0.10$ with 200 peak-amplitude settings.  Both use a
-$20~\mu\mathrm{s}$ pulse and the same measured transverse-coherence
-reference, $T_2=6.856~\mu\mathrm{s}$.
-We characterize the scans using the dimensionless reciprocal-linewidth metric
-\begin{equation}
-    \mathcal{R}
-    = \frac{\Gamma_{f,T_2}}{\Gamma_f}
-    = \frac{1/(\pi T_2)}{\Gamma_f},
-    \label{eq:cutoff-resolution-metric}
-\end{equation}
-where every linewidth is a cyclic-frequency FWHM in hertz.  Thus
-$\mathcal{R}=1$ is the $T_2$-limited linewidth and
-$\mathcal{R}<1$ denotes a broader feature.  We also use the
-signal-weighted metric $|A_{\mathrm{fit}}|\mathcal{R}$, which suppresses
-narrow fits with negligible contrast.  These are linewidth-based scores, not
-direct estimates of frequency-estimation uncertainty.
-
-The analysis retains only resolved and bounded probability features: the fitted
-contrast is between 0.05 and 1, $R^2\geq0.60$, the fitted center lies inside
-the measured frequency interval, and the FWHM lies between two frequency bins
-and half the sweep span.  Measurements that do not pass this common screen are
-omitted.  The denser focused sweep provides substantially more accepted fits
-than the coarse survey and resolves the loss of reciprocal-linewidth
-performance as the cutoff increases across the $0.01$--$0.10$ interval.
-
-% Experimental cutoff-sweep figure omitted from the supplement.
-\iffalse
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=\linewidth]{../figures/paper/08_echo_lorentzian_cutoff_sweep.pdf}
-    \caption{Experimental cutoff sweep for q1 echo--root--Lorentzian
-    spectroscopy.  The left column is the broad survey
-    ($c=0.002$--$0.99$, 25 amplitudes, 60 repetitions per point); the right
-    column is the denser focused sweep ($c=0.01$--$0.10$, 200 amplitudes,
-    100 repetitions per point).
-    (a,b) Reciprocal-linewidth metric $\mathcal{R}$ and
-    (c,d) signal-weighted metric $|A_{\mathrm{fit}}|\mathcal{R}$.
-    Both color scales are logarithmic.  On the upper color scale,
-    $\mathcal{R}=1$ is the $T_2$-limited linewidth and values below one
-    correspond to FWHM broader than that limit.  Gray cells are rejected or
-    unresolved fits under the common screen described in the text; no fitted
-    surface or interpolation is shown.}
-    \label{fig:echo-lorentzian-cutoff-sweep}
-\end{figure}
-\FloatBarrier
-\fi
-
-% Simulated cutoff--amplitude operating map omitted from the supplement.
-\iffalse
-\subsection{Simulated cutoff--amplitude operating map}
-
-The finite-duration pulse is specified by its duration, peak drive amplitude,
-and cutoff level.  To isolate the latter two parameters, we fix the pulse
-duration at $50~\mu\mathrm{s}$ and simulate the root-Lorentzian and
-echo-root-Lorentzian protocols over matched amplitude--cutoff grids.  For each
-simulated spectrum, we extract the cyclic-frequency FWHM $\Gamma_f$ and the
-contrast-weighted width
-$\Gamma_f/(A_{\mathrm{peak}}\Gamma_{f,T_2})$.  This is a heuristic
-resolution--signal metric; a direct Fisher-information or Cram\'er--Rao
-analysis would additionally require a measurement-noise model and the full
-frequency dependence of the response.
-
-The simulated maps show that the root-Lorentzian pulse contains extended
-narrow-linewidth regions, but its useful operating structure is strongly
-oscillatory.  The echo protocol instead produces a broader, contiguous region
-in which both the linewidth and the resolution--signal trade-off remain
-favorable.  Because the amplitude and cutoff grids are logarithmic, apparent
-region sizes should not be interpreted as linear parameter tolerances.
-\fi

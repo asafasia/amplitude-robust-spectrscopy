@@ -1,0 +1,44 @@
+{
+  "primary_maps": 24,
+  "shape": [
+    3,
+    100,
+    201
+  ],
+  "rows": 2400,
+  "min_population": 0.0,
+  "max_population": 1.0,
+  "trace_error": 2.220446049250313e-16,
+  "previous_baseline_agreement": [
+    {
+      "case": "c0.001_hard",
+      "previous": "outputs/echo_edge_ramp_30us_comparison/c0.001_hard_beta-0.5.npz",
+      "max_population_difference": 0.0
+    },
+    {
+      "case": "c0.001_p3",
+      "previous": "outputs/echo_edge_ramp_30us_comparison/c0.001_polynomial_beta-0.5.npz",
+      "max_population_difference": 0.0
+    },
+    {
+      "case": "c0.003_hard",
+      "previous": "outputs/echo_edge_ramp_30us_comparison/c0.003_hard_beta-0.5.npz",
+      "max_population_difference": 0.0
+    },
+    {
+      "case": "c0.003_p3",
+      "previous": "outputs/echo_edge_ramp_30us_comparison/c0.003_polynomial_beta-0.5.npz",
+      "max_population_difference": 0.0
+    },
+    {
+      "case": "c0.005_hard",
+      "previous": "outputs/echo_edge_ramp_30us_comparison/c0.005_hard_beta-0.5.npz",
+      "max_population_difference": 0.0
+    },
+    {
+      "case": "c0.005_p3",
+      "previous": "outputs/echo_edge_ramp_30us_comparison/c0.005_polynomial_beta-0.5.npz",
+      "max_population_difference": 0.0
+    }
+  ]
+}

@@ -1,0 +1,155 @@
+<!doctype html><html lang="en"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Optimized Lorentzian echo tails: linewidth and selectivity</title>
+<style>body{font:17px/1.6 system-ui;max-width:1300px;margin:auto;padding:32px;
+color:#172636;background:#fafbfd}img{width:100%;margin:15px 0}
+table{border-collapse:collapse;width:100%;font-size:15px}
+td,th{padding:9px;border-bottom:1px solid #d5dce2;text-align:left}
+.lead{background:#e6f2f4;padding:18px;border-left:4px solid #007c91}
+code{background:#eef1f5;padding:3px}a{color:#007c91}</style>
+<h1>A fixed Lorentzian core with a separately optimized tail</h1>
+<p class="lead">Candidate selected to suppress competing dips, applied unchanged at all amplitudes:
+<b>worst FWHM 136.42 kHz</b> and
+<b>minimum ideal SNR 9.799</b> over all 50 sampled amplitudes
+from 50.505 to 100 MHz. The width is 3.13 times
+the 43.54 kHz T₂ reference, and 15.7% below the p=5 control.
+<b>The joint near-T₂ / SNR-10 target is not achieved across the full range.</b></p>
+<p><b>The narrowest central feature was not the cleanest resonance.</b> Optimizing
+only linewidth and SNR produced central widths of 75–88 kHz with SNR above 10,
+but also two side dips nearly as deep as the center. These are interference
+fringes, not a single isolated narrow line. We retained those results and repeated
+the search with a penalty for competing dips. The table distinguishes both outcomes.</p>
+<p>Five full maps, each <b>100 amplitudes from 0 to 100 MHz × 201 detunings ×
+three populations</b>. All use 30 µs duration, the same 15.0000075 ns root-Lorentzian
+core, β = −0.5, the same 16 ns sine echo inversion, α = −216 MHz,
+T₁ = 51.24 µs and T₂ = 7.31 µs. No waveform rescaling at individual amplitudes.</p>
+<h2>Full amplitude test</h2>
+<p>Statistics below are conservative extrema over 50.505–100 MHz, and need not
+occur at the same amplitude. SNR assumes the same ideal 1,000-shot measurement
+for every pulse. "Near T₂" is operationally FWHM ≤ 50 kHz.</p>
+<table><tr><th>Pulse</th><th>Worst FWHM (kHz)</th><th>Minimum SNR</th>
+<th>Minimum Pe contrast</th><th>Max |center| (kHz)</th><th>Max final Pf (%)</th>
+<th>Max competing-dip prominence (pp)</th></tr>
+<tr><td>Cutoff-subtracted p=5</td><td>161.85</td><td>10.636</td><td>0.315</td><td>0.880</td><td>0.0296</td><td>0.00</td></tr><tr><td>C2 subtraction</td><td>141.86</td><td>9.447</td><td>0.284</td><td>0.729</td><td>0.0293</td><td>0.00</td></tr><tr><td>Fringed tail: narrower</td><td>83.53</td><td>9.874</td><td>0.276</td><td>0.488</td><td>0.0453</td><td>26.56</td></tr><tr><td>Fringed tail: SNR margin</td><td>87.53</td><td>10.501</td><td>0.291</td><td>0.482</td><td>0.0421</td><td>26.24</td></tr><tr><td>Tail with suppressed satellites</td><td>136.42</td><td>9.799</td><td>0.283</td><td>0.758</td><td>0.0269</td><td>5.63</td></tr></table>
+<img src="comparison.png" alt="Linewidth, SNR, center and contrast versus amplitude">
+<h2>The pulse shape</h2>
+<p>Let f(t) = [1 + (t/σ)²]<sup>−1/2</sup>, σ = 0.0150000075 µs.
+The positive envelope is <code>g(t) = f(t) exp[h(ln |t|)] w(t)</code>.
+The correction h is exactly zero for |t| ≤ 0.05 µs, so the strong central core
+is preserved. Outside that region it is a quintic interpolating spline through
+the table below, with its first two derivatives with respect to ln|t| zero at
+the first and last knots. Values shown are log multipliers; the selected*.json files
+retain full floating-point precision.</p>
+<table><tr><th>|t| (µs)</th><th>h: narrower candidate</th>
+<th>h: SNR-margin candidate</th><th>h: suppressed-satellite candidate</th></tr><tr><td>0.05</td><td>0</td><td>0</td><td>0</td></tr><tr><td>0.15</td><td>1.194074084</td><td>1.071618823</td><td>-0.8945772094</td></tr><tr><td>0.5</td><td>-0.8564975909</td><td>-0.8585929974</td><td>-0.4267166507</td></tr><tr><td>1.5</td><td>-2.194868967</td><td>-2.193787255</td><td>0.1577108406</td></tr><tr><td>4</td><td>-1.60679775</td><td>-1.626084362</td><td>-1.18429486</td></tr><tr><td>9</td><td>-6.232267933</td><td>-6.232267933</td><td>-5.061788805</td></tr><tr><td>15</td><td>-10.45798107</td><td>-10.45798107</td><td>-8.044265912</td></tr></table>
+<p>The endpoint closure is w = 1 for |t| ≤ 13 µs,
+w = 10u³ − 15u⁴ + 6u⁵ for 13 &lt; |t| &lt; 15 µs, where u = (15 − |t|)/2,
+and w = 0 outside. Thus g, g′ and g″ vanish at the support endpoints.
+The signed pulse is I = A s(t)g(t), with the original 16 ns sine inversion s.
+Q = −β I′/(2π|α|), using the complete analytic product derivative, µs and MHz.
+The simulated complex envelope is I − iQ.</p>
+<p>The envelope is positive and never exceeds its original normalized midpoint
+value of one. There is no peak or area renormalization. The cutoff c = 0.001
+still sets the retained Lorentzian core width; the shaped endpoints are exactly
+zero. The new tail curve replaces the original single polynomial window.</p>
+<img src="waveforms.png" alt="Central I and Q waveforms and independently shaped tails">
+<h2>How the candidate was selected</h2>
+<p>The physical idea is to control the weak-drive tails independently of the fast
+core, rather than changing the full duration or one global exponent.
+The general idea of redistributing ramp speed according to the dynamics is
+motivated by <a href="https://arxiv.org/abs/1411.5783">fast quasiadiabatic control</a>.
+This is our numerical pulse-design test, not an implementation of that paper's
+FAQUAD protocol or a literature claim that the target is attainable here.</p>
+<p>The six free spline ordinates were selected using amplitudes
+50.505, 74.747 and 100 MHz, with 201 detunings and a 0.5 ns RK4 step.
+The deterministic search used seed 20261011, 32 initial candidates, 15 generations
+of differential evolution, then up to 200 Powell evaluations; it recorded
+607 distinct evaluated shapes. The optimization objective
+penalizes SNR below 10.2, resonance centers beyond ±10 kHz, and envelopes above
+the original peak. Among evaluated candidates with minimum SNR ≥ 10, the lowest
+worst-case linewidth was selected. This is a finite search, not a global optimum.</p>
+<p>The first candidate's three-point result was 83.53 kHz
+and SNR 10.025. Its remaining 47 high-amplitude points were
+not used in that selection; the full grid revealed minimum SNR
+9.874. We then selected the narrowest existing
+trial whose three-point SNR was at least 10.5, without rerunning the optimizer,
+and tested this second fixed waveform on the full grid. This is an adaptive
+follow-up, not a claim that the second selection was blind to the first validation.</p>
+<p>Inspecting the full spectra then revealed strong satellite dips. The additional
+search used the same six-parameter family and the same training amplitudes, but
+penalized the prominence of any extra Pe minimum at |detuning| ≥ 50 kHz. The
+optimization target was at most 0.015 population prominence, with a final
+selection cap of 0.025 (2.5 percentage points). This is measured relative to the
+neighboring spectral maxima, not the far-off-resonance background. A synthetic
+single-dip and two-dip check verified the detector.</p>
+<p>This second search evaluated 608 distinct shapes over
+18 differential-evolution generations with seed 20261012.
+The selected three-point width/SNR were 133.10 kHz and
+11.556. The full 100-point map has maximum competing-dip
+prominence 5.63 percentage points over 50–100 MHz.
+Both search stages are documented; the unsuccessful fringed designs are not discarded
+from the comparison.</p>
+<p><b>The sparse optimization did not guarantee the full amplitude range.</b>
+The full scan's minimum SNR is 9.799 at
+57.58 MHz, its maximum width is
+136.42 kHz at 78.79 MHz,
+and competing-dip prominence reaches 5.63
+percentage points at 62.63 MHz. This exceeds the 2.5-point
+selection cap used at the three optimization amplitudes. The pulse is a partial
+improvement, not a fully robust solution. All three newly identified cases were
+also rerun with a 0.25 ns timestep and 2.5 kHz frequency spacing.</p>
+<img src="intermediate_spectra.png" alt="Intermediate amplitudes with the weakest SNR,
+strongest competing dip, and broadest central dip">
+<h2>Populations</h2>
+<img src="populations.png" alt="Pg Pe and Pf maps for the five compared pulses">
+<img src="spectra_100mhz.png" alt="Three population spectra at 100 MHz">
+<p>The full amplitude range also matters: the fringed candidates lose contrast
+and broaden substantially below their high-amplitude operating range.</p>
+<img src="full_range.png" alt="Full amplitude range including low-amplitude limitations">
+<h2>Background sensitivity</h2>
+<p>The primary FWHM definition remains exactly the previous one: a central Pe dip
+and nearest half-depth crossings relative to a linear background fitted at
+|detuning| = 0.4–0.5 MHz. It is not a Lorentzian fit and is not independent of
+background choice. We also simulated ±1 MHz at the three selection amplitudes
+and recomputed the half-depth width using the 0.8–1.0 MHz outer background.</p>
+<img src="wide_spectra.png" alt="Wider population spectra with background bands">
+<table><tr><th>Pulse</th><th>Amplitude (MHz)</th><th>Original background (kHz)</th>
+<th>Outer background (kHz)</th></tr><tr><td>Cutoff-subtracted p=5</td><td>50.505</td><td>149.80</td><td>164.61</td></tr><tr><td>Cutoff-subtracted p=5</td><td>74.747</td><td>156.90</td><td>175.90</td></tr><tr><td>Cutoff-subtracted p=5</td><td>100.000</td><td>161.85</td><td>183.68</td></tr><tr><td>C2 subtraction</td><td>50.505</td><td>132.14</td><td>147.60</td></tr><tr><td>C2 subtraction</td><td>74.747</td><td>137.74</td><td>158.86</td></tr><tr><td>C2 subtraction</td><td>100.000</td><td>141.86</td><td>167.42</td></tr><tr><td>Fringed tail: narrower</td><td>50.505</td><td>83.53</td><td>114.65</td></tr><tr><td>Fringed tail: narrower</td><td>74.747</td><td>72.28</td><td>84.73</td></tr><tr><td>Fringed tail: narrower</td><td>100.000</td><td>77.74</td><td>85.99</td></tr><tr><td>Fringed tail: SNR margin</td><td>50.505</td><td>87.53</td><td>118.88</td></tr><tr><td>Fringed tail: SNR margin</td><td>74.747</td><td>77.33</td><td>90.57</td></tr><tr><td>Fringed tail: SNR margin</td><td>100.000</td><td>79.12</td><td>89.15</td></tr><tr><td>Tail with suppressed satellites</td><td>50.505</td><td>128.25</td><td>101.98</td></tr><tr><td>Tail with suppressed satellites</td><td>74.747</td><td>131.58</td><td>121.04</td></tr><tr><td>Tail with suppressed satellites</td><td>100.000</td><td>133.10</td><td>137.57</td></tr></table>
+<h2>Model and validation</h2>
+<p>Same three-level RWA Lindblad equations, adjacent-level relaxation and number
+dephasing, Tφ = 7.871480508563624 µs, and no extra phenomenological Stark correction.
+The new vectorized waveform preparation feeds the existing native RK4 kernel.
+The p=5 full map reproduces the prior full map within 10⁻¹⁰, and the C2 control
+reproduces the prior three-amplitude screen within 10⁻¹⁰.
+Selected waveform derivatives, symmetry, peak and endpoint conditions were checked.</p>
+<p>All reported probabilities are finite, within [0,1], and normalized within
+10⁻¹⁰. Refinement at the three selection amplitudes gives maximum population
+change 1.96e-05, maximum linewidth change 2.96 Hz when halving
+the timestep to 0.25 ns, and 70.33 Hz when halving frequency spacing
+to 2.5 kHz. This checks numerical resolution, not hardware performance.</p>
+<p>The extra checks at the worst intermediate amplitudes give maximum population
+change 4.67e-06 and combined timestep/grid linewidth
+change 33.71 Hz.</p>
+<p>SNR is shoulder-minus-center Pe divided by ideal Bernoulli noise: 500 shots
+at the fitted center, 250 each at ±0.45 MHz. It excludes assignment errors,
+technical noise, drift and the cost of locating the center. It is not a percent
+contrast. Final Pf does not quantify maximum transient leakage.
+1/(πT₂) is the weak-drive Lorentzian reference, not a universal bound on every
+finite-duration interference feature.</p>
+<p>43 focused model/window/metric tests passed and the new scripts pass scoped
+Ruff. The full test suite stops at collection because Torch is absent; repository-wide
+Ruff reports 692 existing findings. These environment and repository issues do not
+replace the numerical and shape checks documented above.</p>
+<p><a href="selected_clean.json">Shape with suppressed satellites</a> ·
+<a href="selected_margin.json">Fringed shape with SNR margin</a> ·
+<a href="selected.json">Narrower shape and search result</a> ·
+<a href="optimized_clean_waveform.npz">Sampled I/Q with suppressed satellites</a> ·
+<a href="optimized_margin_waveform.npz">Fringed sampled I/Q with SNR margin</a> ·
+<a href="optimized_spline_waveform.npz">Narrower sampled I/Q waveform</a> ·
+<a href="metrics.csv">Full metrics CSV</a> · <a href="summary.json">Full summaries</a> ·
+<a href="validation.json">Numerical checks</a> ·
+<a href="scan_extrema_validation.json">Intermediate-amplitude checks</a> ·
+<a href="background_sensitivity.json">Background checks</a> ·
+<a href="provenance.json">Source hashes and reproduction</a> ·
+<a href="comparison.pdf">Comparison PDF</a> · <a href="waveforms.pdf">Waveforms PDF</a></p>
+</html>

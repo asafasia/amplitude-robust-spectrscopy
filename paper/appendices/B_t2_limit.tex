@@ -2,27 +2,30 @@
 \label{sec:t2-limit}
 
 For comparison with the shaped-pulse protocol, we first summarize the
-steady-state response of a continuously driven two-level system.  We define
+constant-drive reference: the steady-state response of a continuously driven
+two-level system. We define
 $w\equiv\rho_{00}-\rho_{11}$, with $\lvert0\rangle$ the ground state and
 $\lvert1\rangle$ the excited state.  Hence $P_e=\rho_{11}=(1-w)/2$; no Pauli
 matrix sign convention is left implicit.  Solving the optical Bloch equations for a drive
 with angular Rabi frequency $\Omega_0$, angular detuning $\Delta$, relaxation
 time $T_1$, and transverse coherence time $T_2$ gives~\cite{PhysRev.70.460}
 \begin{equation}
+    \begin{aligned}
     w_{\mathrm{ss}}(\Delta)
-    =
+    &=
     \frac{1+\Delta^2T_2^2}
     {1+\Delta^2T_2^2+\Omega_0^2T_1T_2},
-    \qquad
+    \\
     P_{e,\mathrm{ss}}(\Delta)
-    =\frac{1}{2}
+    &=\frac{1}{2}
     \frac{s}{1+s+\Delta^2T_2^2},
     \quad s\equiv\Omega_0^2T_1T_2.
+    \end{aligned}
     \label{eq:bloch-steady-state}
 \end{equation}
 This expression assumes a pulse long enough to approach steady state.  It is a
 reference result for conventional saturation spectroscopy, rather than a
-closed-form description of the finite echo pulse.
+closed-form description of the finite echo-root-Lorentzian pulse.
 
 At resonance, $P_{e,\mathrm{ss}}(0)=s/[2(1+s)]$, which approaches the
 saturated value $1/2$ only for $s\gg1$.  The positive half-maximum detuning is

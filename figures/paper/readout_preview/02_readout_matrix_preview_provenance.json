@@ -1,0 +1,250 @@
+{
+  "generator": "scripts/make_figure2_readout_preview.py",
+  "status": "PROVISIONAL: snapshot matrix, classifier match unverified",
+  "included_in_manuscript": false,
+  "primary_color_limits": [
+    0,
+    0.6
+  ],
+  "diagnostic_color_limits": [
+    0,
+    0.8
+  ],
+  "source_arrays_sha256": "745c241f7d7c9a7d1e8f7500a6dd86c91579a5fae301c47e6b68fef47b72faae",
+  "source_figure_provenance": {
+    "generator": "scripts/make_figure2_experiment_simulation_variant.py",
+    "included_in_manuscript": true,
+    "panels": {
+      "a": {
+        "kind": "experiment",
+        "domain": "broad",
+        "protocol": "root"
+      },
+      "b": {
+        "kind": "experiment",
+        "domain": "broad",
+        "protocol": "echo"
+      },
+      "c": {
+        "kind": "simulation",
+        "domain": "broad",
+        "protocol": "root"
+      },
+      "d": {
+        "kind": "simulation",
+        "domain": "broad",
+        "protocol": "echo"
+      },
+      "e": {
+        "kind": "experiment",
+        "domain": "narrow",
+        "protocol": "root"
+      },
+      "f": {
+        "kind": "experiment",
+        "domain": "narrow",
+        "protocol": "echo"
+      },
+      "g": {
+        "kind": "simulation",
+        "domain": "narrow",
+        "protocol": "root"
+      },
+      "h": {
+        "kind": "simulation",
+        "domain": "narrow",
+        "protocol": "echo"
+      }
+    },
+    "figure_size_inches": [
+      7.1,
+      3.42
+    ],
+    "panel_size_inches": [
+      1.4,
+      1.26
+    ],
+    "color_limits": [
+      0,
+      0.6
+    ],
+    "display_saturation_above": 0.6,
+    "simulation_settings": {
+      "duration_us": 20.0,
+      "cutoff": 0.005,
+      "order": 0.5,
+      "t1_us": 51.2,
+      "t_phi_us": 7.87,
+      "anharmonicity_mhz": -216.0,
+      "num_steps_per_half": 12800,
+      "integration_backend": "native"
+    },
+    "solver_hashes": {
+      "qutrit.py": "58891d88564eb9d3b5ed592fa69b52c3fb5cec9e7178471c5039e5b8c07c6b15",
+      "qutrit_native.py": "e26a097b8d803b1c2da8f0ad56222fff59456e02a445f33d22629a0f639a6dd9",
+      "qutrit_rk4.cpp": "493150abcad473a10ff4128c3b42a5f0ddfd0cdd8fe4c1cf09a936858068bab6"
+    },
+    "cache_signature": "67386e75061ab847",
+    "step_halving_max_population_error": {
+      "root": 1.604445412062283e-05,
+      "echo": 4.615652619999189e-06
+    },
+    "experimental_inputs": {
+      "broad_root": "2026-08-25/six_detuning_amplitude_sweeps/02_broad_50mhz_cutoff_0p005_no_echo",
+      "broad_echo": "2026-08-25/six_detuning_amplitude_sweeps/03_broad_50mhz_cutoff_0p005_echo",
+      "narrow_root": "2026-08-25/six_detuning_amplitude_sweeps/05_narrow_1mhz_cutoff_0p005_no_echo",
+      "narrow_echo": "2026-08-25/six_detuning_amplitude_sweeps/06_narrow_1mhz_cutoff_0p005_echo"
+    },
+    "comparison": "Raw measured populations versus simulated |e> populations; no gain, offset, or frequency fits; no readout model",
+    "red_lines": "Broad-spectrum panels only: linear steady-state Bloch half-width, not a finite-pulse fit",
+    "simulation_parameters_source": "paper/coherence_parameters.tex; duration and cutoff from experimental runs",
+    "notes": "Two-state discrimination does not independently resolve |f>; this is a model comparison, not a demonstrated quantitative fit."
+  },
+  "matrix_convention": "rows prepared g,e; columns assigned g,e",
+  "correction": "p_e = (q_e - M[0,1]) / (M[1,1] - M[0,1])",
+  "uncertainty": "sqrt(q_e*(1-q_e)/N)/abs(M[1,1]-M[0,1]); fixed matrix only",
+  "snr": "An affine correction scales signal contrast and noise equally; statistical SNR is unchanged for a fixed matrix. Calibration uncertainty is not available.",
+  "limitations": [
+    "The sweep metadata identifies q6. The older figure loader docstring calls this q1; that description is stale. Matrices are selected by the recorded sweep qubit, not by that docstring.",
+    "Original matching IQ shots were not found in the local paper data or sibling data repository.",
+    "Available acquisition code uses a threshold classifier; available IQ analysis saves a nearest-center confusion matrix separately from its threshold fidelity matrix. Exact historical classifier matching is unverified.",
+    "Saved centers imply a different midpoint from the acquisition threshold. Do not publish as a validated correction without the original threshold fidelity calibration.",
+    "Calibration may contain state-preparation errors; drift and f-state assignment are not resolved by this two-state matrix.",
+    "Negative estimates are retained in NPZ; the displayed color scale saturates below 0 and above 0.6.",
+    "Narrow-run metadata explicitly identifies results.npz as unmitigated. Referenced results_mitigated.npz files are not in the local export."
+  ],
+  "runs": {
+    "broad_root": {
+      "source": "data/experimental/2026-08-25/six_detuning_amplitude_sweeps/02_broad_50mhz_cutoff_0p005_no_echo",
+      "qubit": "q6",
+      "results_sha256": "62d836aff670ffd7054280d7cb7c8fb5912f8a4668f87b2f3ee0000e9a89ae75",
+      "profile_sha256": "7894ca0ccf724860a30cc2ddd6acf2d1d06b4fd8a1d593234d612cb49ae1bea3",
+      "measurement_timestamp": "2026-08-26T01:11:43.573546+03:00",
+      "shots": 2000,
+      "matrix": [
+        [
+          0.8102,
+          0.1898
+        ],
+        [
+          0.1555,
+          0.8445
+        ]
+      ],
+      "contrast_gain": 1.5274171376202839,
+      "mean_assignment_fidelity": 0.82735,
+      "acquisition_threshold": -0.0003621410513074578,
+      "saved_center_midpoint_I": -0.0003509220343959267,
+      "raw_range": [
+        0.168,
+        0.629
+      ],
+      "corrected_range": [
+        -0.03329769360012217,
+        0.6708416068428288
+      ],
+      "fraction_below_zero": 0.020415169660678644,
+      "fraction_above_one": 0.0,
+      "fraction_above_color_max": 0.0003592814371257485
+    },
+    "broad_echo": {
+      "source": "data/experimental/2026-08-25/six_detuning_amplitude_sweeps/03_broad_50mhz_cutoff_0p005_echo",
+      "qubit": "q6",
+      "results_sha256": "0f152d54a5177f29bf630c40223f2e113451bdac99ceecb64c1f88c8fec07340",
+      "profile_sha256": "7894ca0ccf724860a30cc2ddd6acf2d1d06b4fd8a1d593234d612cb49ae1bea3",
+      "measurement_timestamp": "2026-08-26T04:28:15.455126+03:00",
+      "shots": 2000,
+      "matrix": [
+        [
+          0.8102,
+          0.1898
+        ],
+        [
+          0.1555,
+          0.8445
+        ]
+      ],
+      "contrast_gain": 1.5274171376202839,
+      "mean_assignment_fidelity": 0.82735,
+      "acquisition_threshold": -0.0003621410513074578,
+      "saved_center_midpoint_I": -0.0003509220343959267,
+      "raw_range": [
+        0.1785,
+        0.58
+      ],
+      "corrected_range": [
+        -0.017259813655109216,
+        0.5959981670994348
+      ],
+      "fraction_below_zero": 0.00043912175648702596,
+      "fraction_above_one": 0.0,
+      "fraction_above_color_max": 0.0
+    },
+    "narrow_root": {
+      "source": "data/experimental/2026-08-25/six_detuning_amplitude_sweeps/05_narrow_1mhz_cutoff_0p005_no_echo",
+      "qubit": "q6",
+      "results_sha256": "65338e7d8a935d3baa58cf7c9da02d70bf9622a7fa6ed0ebc792db437f7e50f5",
+      "profile_sha256": "f05aadba1bb9ea5a6d9d92668f3c9e36b958c37f320409f66261e464c1f5b4c8",
+      "measurement_timestamp": "2026-08-29T17:59:08.325529+03:00",
+      "shots": 2000,
+      "matrix": [
+        [
+          0.8713,
+          0.1287
+        ],
+        [
+          0.124,
+          0.876
+        ]
+      ],
+      "contrast_gain": 1.3381506757660913,
+      "mean_assignment_fidelity": 0.87365,
+      "acquisition_threshold": -0.0005467555686741818,
+      "saved_center_midpoint_I": -0.0005428403484972059,
+      "raw_range": [
+        0.208,
+        0.713
+      ],
+      "corrected_range": [
+        0.10611534858825102,
+        0.781881439850127
+      ],
+      "fraction_below_zero": 0.0,
+      "fraction_above_one": 0.0,
+      "fraction_above_color_max": 0.052271457085828345
+    },
+    "narrow_echo": {
+      "source": "data/experimental/2026-08-25/six_detuning_amplitude_sweeps/06_narrow_1mhz_cutoff_0p005_echo",
+      "qubit": "q6",
+      "results_sha256": "4c5264d597280b2a02e4ecb937b0d9c02a21893dbbb0d1136175bc07e65fe698",
+      "profile_sha256": "f05aadba1bb9ea5a6d9d92668f3c9e36b958c37f320409f66261e464c1f5b4c8",
+      "measurement_timestamp": "2026-08-29T21:54:18.194475+03:00",
+      "shots": 2000,
+      "matrix": [
+        [
+          0.8713,
+          0.1287
+        ],
+        [
+          0.124,
+          0.876
+        ]
+      ],
+      "contrast_gain": 1.3381506757660913,
+      "mean_assignment_fidelity": 0.87365,
+      "acquisition_threshold": -0.0005467555686741818,
+      "saved_center_midpoint_I": -0.0005428403484972059,
+      "raw_range": [
+        0.2325,
+        0.7055
+      ],
+      "corrected_range": [
+        0.1389000401445203,
+        0.7718453097818815
+      ],
+      "fraction_below_zero": 0.0,
+      "fraction_above_one": 0.0,
+      "fraction_above_color_max": 0.743001996007984
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "rows": [
+    {
+      "amplitude_mhz": 10.0,
+      "center_hz": 2.004375900706846,
+      "fwhm_hz": 127126.47731897741,
+      "contrast": 0.3133570969243213,
+      "accepted": true,
+      "contrast_snr": 12.194005127722622,
+      "shoulder_contrast": 0.3123165389917289,
+      "contrast_per_mhz": 2.4567387186233813,
+      "center_population": 0.09561396667267624,
+      "shoulder_population": 0.40793050566440514,
+      "max_final_pf": 4.513635688259847e-06,
+      "satellite_prominence": 0.0,
+      "satellite_detunings_mhz": [],
+      "satellite_prominences": [],
+      "whole_spectrum_error": 0.03612584674376621,
+      "total_outward_reversal": 0.17787059940245953
+    }
+  ],
+  "all_accepted": true,
+  "worst_fwhm_khz": 127.12647731897741,
+  "minimum_snr": 12.194005127722622,
+  "max_center_khz": 0.002004375900706846,
+  "max_satellite_prominence": 0.0,
+  "max_outward_reversal": 0.17787059940245953,
+  "mean_shape_error": 0.03612584674376621,
+  "worst_shape_error": 0.03612584674376621
+}

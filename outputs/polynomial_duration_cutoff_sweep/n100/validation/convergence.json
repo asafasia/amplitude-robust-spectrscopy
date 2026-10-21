@@ -1,0 +1,224 @@
+{
+  "complete": true,
+  "created_utc": "2026-10-11T22:11:43.713944+00:00",
+  "duration_us": [
+    10.0,
+    20.0,
+    30.0,
+    45.0,
+    60.0
+  ],
+  "cutoff_indices": [
+    0,
+    40,
+    99
+  ],
+  "cutoffs": [
+    1e-05,
+    0.001047615752789665,
+    1.0
+  ],
+  "amplitudes_mhz": [
+    10.101010101010102,
+    49.494949494949495,
+    100.0
+  ],
+  "coarse_dt_ns": 0.25,
+  "finer_dt_ns": 0.125,
+  "coarse_detuning_points": 201,
+  "finer_detuning_points": 401,
+  "compared_traces": 45,
+  "pending_main_cases": [],
+  "maximum_changes": {
+    "max_population_time_step_change": 0.00012812625003466582,
+    "time_fwhm_hz_absolute_change": 254.4191454591928,
+    "time_fwhm_hz_relative_change": 0.001311449280009258,
+    "time_contrast_snr_absolute_change": 0.0035398704142570736,
+    "time_contrast_snr_relative_change": 0.004658044387816362,
+    "frequency_fwhm_hz_absolute_change": 116.13764969816839,
+    "frequency_fwhm_hz_relative_change": 0.0012283351159999567,
+    "frequency_contrast_snr_absolute_change": 0.003583900687598174,
+    "frequency_contrast_snr_relative_change": 0.00041435482709095695
+  },
+  "time_status_changes": 0,
+  "frequency_status_changes": 0,
+  "scope": "Three cutoffs (endpoints and nearest 0.001), three amplitudes (nearest 10, 50, 100 MHz), all lengths. Halve time step and double detuning intervals. This is a representative check, not a full-grid accuracy bound.",
+  "metric_comparison": "Metric differences only compare pairs accepted at both resolutions. All status changes and original/fine metrics remain in convergence.csv.",
+  "diagnostics": [
+    {
+      "duration_us": 10.0,
+      "cutoff_index": 0,
+      "max_trace_error": 5.417888360170764e-14,
+      "min_population": 4.914237243124805e-12,
+      "max_population": 0.9999975151018299,
+      "min_density_eigenvalue": 3.4515830086493485e-12,
+      "num_steps": 80908,
+      "min_dt_ns": 0.0007812500000390625,
+      "max_dt_ns": 0.12499637312027853
+    },
+    {
+      "duration_us": 10.0,
+      "cutoff_index": 40,
+      "max_trace_error": 4.39648317751562e-14,
+      "min_population": 5.57302963369836e-07,
+      "max_population": 0.9796758333979185,
+      "min_density_eigenvalue": 5.509219549812469e-07,
+      "num_steps": 80136,
+      "min_dt_ns": 0.06137596359237378,
+      "max_dt_ns": 0.12499877062109958
+    },
+    {
+      "duration_us": 10.0,
+      "cutoff_index": 99,
+      "max_trace_error": 3.6415315207705135e-14,
+      "min_population": 0.0002786911121993777,
+      "max_population": 0.7975789514170963,
+      "min_density_eigenvalue": 0.0002786905731254256,
+      "num_steps": 80128,
+      "min_dt_ns": 0.0625,
+      "max_dt_ns": 0.125
+    },
+    {
+      "duration_us": 20.0,
+      "cutoff_index": 0,
+      "max_trace_error": 8.282263763703668e-14,
+      "min_population": 6.262502742134829e-11,
+      "max_population": 0.9999834863503099,
+      "min_density_eigenvalue": 5.799534810071736e-11,
+      "num_steps": 160782,
+      "min_dt_ns": 0.001562500000078125,
+      "max_dt_ns": 0.12499713904878276
+    },
+    {
+      "duration_us": 20.0,
+      "cutoff_index": 40,
+      "max_trace_error": 6.417089082333405e-14,
+      "min_population": 2.470223159254976e-06,
+      "max_population": 0.9233821340094229,
+      "min_density_eigenvalue": 2.4695916392350325e-06,
+      "num_steps": 160128,
+      "min_dt_ns": 0.0625,
+      "max_dt_ns": 0.125
+    },
+    {
+      "duration_us": 20.0,
+      "cutoff_index": 99,
+      "max_trace_error": 5.218048215738236e-14,
+      "min_population": 0.0004602410355387261,
+      "max_population": 0.6798741310798104,
+      "min_density_eigenvalue": 0.0004602410049536533,
+      "num_steps": 160128,
+      "min_dt_ns": 0.0625,
+      "max_dt_ns": 0.125
+    },
+    {
+      "duration_us": 30.0,
+      "cutoff_index": 0,
+      "max_trace_error": 1.27675647831893e-13,
+      "min_population": 2.4985466718913305e-10,
+      "max_population": 0.9999536112648361,
+      "min_density_eigenvalue": 2.4498177220036375e-10,
+      "num_steps": 240704,
+      "min_dt_ns": 0.002343750000117188,
+      "max_dt_ns": 0.12499939549552626
+    },
+    {
+      "duration_us": 30.0,
+      "cutoff_index": 40,
+      "max_trace_error": 7.860379014346108e-14,
+      "min_population": 3.2213746696484864e-06,
+      "max_population": 0.868630376878235,
+      "min_density_eigenvalue": 3.221368157934685e-06,
+      "num_steps": 240128,
+      "min_dt_ns": 0.0625,
+      "max_dt_ns": 0.125
+    },
+    {
+      "duration_us": 30.0,
+      "cutoff_index": 99,
+      "max_trace_error": 6.195044477408373e-14,
+      "min_population": 0.0005697792495025676,
+      "max_population": 0.6202070877640129,
+      "min_density_eigenvalue": 0.0005697792472968754,
+      "num_steps": 240128,
+      "min_dt_ns": 0.0625,
+      "max_dt_ns": 0.125
+    },
+    {
+      "duration_us": 45.0,
+      "cutoff_index": 0,
+      "max_trace_error": 1.7630341631047486e-13,
+      "min_population": 8.70545115066381e-10,
+      "max_population": 0.999880057290111,
+      "min_density_eigenvalue": 8.6811578644576e-10,
+      "num_steps": 360630,
+      "min_dt_ns": 0.003515625000175782,
+      "max_dt_ns": 0.12499872845342964
+    },
+    {
+      "duration_us": 45.0,
+      "cutoff_index": 40,
+      "max_trace_error": 1.1679546219056647e-13,
+      "min_population": 3.1579459721624607e-06,
+      "max_population": 0.813247574762371,
+      "min_density_eigenvalue": 3.1579418689928193e-06,
+      "num_steps": 360128,
+      "min_dt_ns": 0.0625,
+      "max_dt_ns": 0.125
+    },
+    {
+      "duration_us": 45.0,
+      "cutoff_index": 99,
+      "max_trace_error": 7.260858581048524e-14,
+      "min_population": 0.0006436268150302046,
+      "max_population": 0.5858981568888556,
+      "min_density_eigenvalue": 0.000643626814988075,
+      "num_steps": 360128,
+      "min_dt_ns": 0.0625,
+      "max_dt_ns": 0.125
+    },
+    {
+      "duration_us": 60.0,
+      "cutoff_index": 0,
+      "max_trace_error": 2.2160051571518125e-13,
+      "min_population": 1.8660572860409074e-09,
+      "max_population": 0.9997799037413846,
+      "min_density_eigenvalue": 1.8653006516978618e-09,
+      "num_steps": 480578,
+      "min_dt_ns": 0.004687500000234376,
+      "max_dt_ns": 0.12499939549552626
+    },
+    {
+      "duration_us": 60.0,
+      "cutoff_index": 40,
+      "max_trace_error": 1.2279066652354231e-13,
+      "min_population": 3.717389349815167e-06,
+      "max_population": 0.7860036064343909,
+      "min_density_eigenvalue": 3.717388639700161e-06,
+      "num_steps": 480128,
+      "min_dt_ns": 0.0625,
+      "max_dt_ns": 0.125
+    },
+    {
+      "duration_us": 60.0,
+      "cutoff_index": 99,
+      "max_trace_error": 8.526512829121202e-14,
+      "min_population": 0.0006484424459452854,
+      "max_population": 0.6057479422605793,
+      "min_density_eigenvalue": 0.0006484424459444442,
+      "num_steps": 480128,
+      "min_dt_ns": 0.0625,
+      "max_dt_ns": 0.125
+    }
+  ],
+  "source_sha256": {
+    "scripts/scan_polynomial_cutoffs.py": "60ea4239fd3f872e49ec12479329587d3cb580feb50d66250c977ac6214f0d08",
+    "echospec/simulation/polynomial_echo.py": "59021291bb6363a59767274c3c3d727843d37319364a60d51d63c9e7193b950d",
+    "echospec/simulation/qutrit_native.py": "e26a097b8d803b1c2da8f0ad56222fff59456e02a445f33d22629a0f639a6dd9",
+    "echospec/simulation/qutrit_rk4.cpp": "493150abcad473a10ff4128c3b42a5f0ddfd0cdd8fe4c1cf09a936858068bab6",
+    "echospec/analysis/cutoff_metrics.py": "ac615bc4b8726e520b1eb457a9ce9535976bbe6fcb7acd8b631978f2c528b74c",
+    "echospec/analysis/spectroscopy_quality.py": "1e898a6b550e0c46119f66a268e0397a997de59135406b50a55fe6735c212f44",
+    "echospec/analysis/dip_metrics.py": "851f4571da5dc275890f42eaf7393f1818fffe69043f4fff703272dddf9290ca"
+  },
+  "validator_sha256": "0a0ac1d7f9a27f170ef1686d291ade4b5a5fff708111ab5f76d51f70f9b5ce8b"
+}

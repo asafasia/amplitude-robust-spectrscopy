@@ -1,0 +1,23 @@
+{
+  "parameters": {
+    "duration_us": 30.0,
+    "cutoff": 0.001,
+    "power": 5.0,
+    "transition_us": 0.016,
+    "drag_beta": -0.5,
+    "anharmonicity_mhz": -216.0
+  },
+  "convention": "I-iQ; Q/Omega0=-beta*(g_prime*s+g*s_prime)/(2*pi*abs(alpha_MHz))",
+  "families": [
+    "Hard cutoff",
+    "Polynomial ($p=5$)"
+  ],
+  "normalization": "Unsigned g(0)=1; no area or signed-peak rescaling",
+  "quadrature_panel": "Polynomial pulse; total and its two derivative contributions",
+  "reproduce": ".venv/bin/python scripts/make_supplemental_figures.py --only pulse_modifications",
+  "source_sha256": {
+    "echospec/simulation/polynomial_echo.py": "59021291bb6363a59767274c3c3d727843d37319364a60d51d63c9e7193b950d"
+  },
+  "generator_sha256": "d0422d05e0ec09bc00b7a5127cd0273bc52db1a7b494103275b9ae828a690ad7",
+  "arrays_sha256": "29abf2d2fd5b7e823f93d47cff6729e9630567516a2593e7201b1f49f5b45b61"
+}

@@ -1,0 +1,65 @@
+[
+  {
+    "case": "L120_p32_raw_cutoff",
+    "max_population_dt_change": 1.0825423335525386e-05,
+    "max_width_dt_change_hz": 22.352840772211493,
+    "max_width_grid_change_hz": 104.17230456681864,
+    "max_snr_change": 0.000477951883256833
+  },
+  {
+    "case": "L30_p3_subtracted_cutoff",
+    "max_population_dt_change": 1.33803183450798e-05,
+    "max_width_dt_change_hz": 2.855708486313233,
+    "max_width_grid_change_hz": 76.7934355616162,
+    "max_snr_change": 0.0020374985149160807
+  },
+  {
+    "case": "L30_p4_subtracted_cutoff",
+    "max_population_dt_change": 1.454881575196909e-05,
+    "max_width_dt_change_hz": 2.522271777095739,
+    "max_width_grid_change_hz": 79.2780683854653,
+    "max_snr_change": 0.0020712872127806037
+  },
+  {
+    "case": "L30_p5_subtracted_cutoff",
+    "max_population_dt_change": 1.5509302203620123e-05,
+    "max_width_dt_change_hz": 2.3140282904496416,
+    "max_width_grid_change_hz": 46.75774608342908,
+    "max_snr_change": 0.0031497134168816388
+  },
+  {
+    "case": "L30_p8_raw_cutoff",
+    "max_population_dt_change": 1.600122728867559e-05,
+    "max_width_dt_change_hz": 2.2890665028535295,
+    "max_width_grid_change_hz": 38.62784266716335,
+    "max_snr_change": 0.0025873688340460888
+  },
+  {
+    "case": "L45_p32_raw_cutoff",
+    "max_population_dt_change": 2.994301749537076e-05,
+    "max_width_dt_change_hz": 3.1469356679008342,
+    "max_width_grid_change_hz": 24.545646560116438,
+    "max_snr_change": 0.004355928248203966
+  },
+  {
+    "case": "L60_p128_subtracted_cutoff",
+    "max_population_dt_change": 4.840959549437529e-05,
+    "max_width_dt_change_hz": 3.221734180871863,
+    "max_width_grid_change_hz": 17.965183011139743,
+    "max_snr_change": 0.004271567745632865
+  },
+  {
+    "case": "L60_p16_raw_cutoff",
+    "max_population_dt_change": 1.9745379822522224e-05,
+    "max_width_dt_change_hz": 9.07305386394728,
+    "max_width_grid_change_hz": 123.51681707336684,
+    "max_snr_change": 0.0016766727317421015
+  },
+  {
+    "case": "L60_p64_raw_core",
+    "max_population_dt_change": 1.5313598552224583e-05,
+    "max_width_dt_change_hz": 1.368791964428965,
+    "max_width_grid_change_hz": 29.702556928416016,
+    "max_snr_change": 0.0027694393878956447
+  }
+]

@@ -1,0 +1,130 @@
+{
+  "source_sha256": {
+    "echospec/simulation/qutrit.py": "58891d88564eb9d3b5ed592fa69b52c3fb5cec9e7178471c5039e5b8c07c6b15",
+    "echospec/simulation/edge_window.py": "13653bdeb1ba393dd8d969152143380328a791080f598cfd00bee31cb1dabc2b",
+    "echospec/simulation/qutrit_native.py": "e26a097b8d803b1c2da8f0ad56222fff59456e02a445f33d22629a0f639a6dd9",
+    "echospec/simulation/qutrit_rk4.cpp": "493150abcad473a10ff4128c3b42a5f0ddfd0cdd8fe4c1cf09a936858068bab6",
+    "scripts/optimize_echo_tail.py": "0dfa62650241fa13305a676c62aa17aae95cf68ce375beaa7fa30cf47d0c3519",
+    "scripts/report_optimized_echo_tail.py": "8eb12a497475ad1c04025e2230ef32b4a2de940979e0a1c5e7763e228a7af23c",
+    "scripts/refine_echo_tail_selectivity.py": "2315fb7a58e018b282da4caf8ca75d4d73294df6b98deecf407a70a0c8b75495",
+    "echospec/analysis/dip_metrics.py": "851f4571da5dc275890f42eaf7393f1818fffe69043f4fff703272dddf9290ca",
+    "echospec/analysis/spectroscopy_quality.py": "1e898a6b550e0c46119f66a268e0397a997de59135406b50a55fe6735c212f44",
+    "scripts/scan_duration_polynomial.py": "1ba12c82d641930ccdbe6fa489ef50361fddd7b06f2775de6fba5bf7fc6cb716"
+  },
+  "computation_sha256": {
+    "echospec/simulation/qutrit.py": "58891d88564eb9d3b5ed592fa69b52c3fb5cec9e7178471c5039e5b8c07c6b15",
+    "echospec/simulation/edge_window.py": "13653bdeb1ba393dd8d969152143380328a791080f598cfd00bee31cb1dabc2b",
+    "echospec/simulation/qutrit_native.py": "e26a097b8d803b1c2da8f0ad56222fff59456e02a445f33d22629a0f639a6dd9",
+    "echospec/simulation/qutrit_rk4.cpp": "493150abcad473a10ff4128c3b42a5f0ddfd0cdd8fe4c1cf09a936858068bab6",
+    "envelope": "54e0554b68be3436232d8d7d50db1fb691f1555356222297686c0b71de3331dc",
+    "drive": "8c2eb45e85d5b0df096eb6ca3bd0c577bfd682e6843b1bfe1577d85f7a9cff29",
+    "simulate": "42c020becd97f23c1353ea73b48a491034c4aeab3300d212f5f419eaf73858ba",
+    "quality": "c4e2c797ca952e3214985a764e8652ea8d5f83d197f373596204622cf302c471",
+    "objective": "457352460d393e93b2153532b2bb06634746080f7bf90a1809c14de15017b0b4"
+  },
+  "parameters": {
+    "spline": [
+      1.1940740839328632,
+      -0.8564975909029772,
+      -2.1948689670855464,
+      -1.606797749978971,
+      -6.232267933392235,
+      -10.457981072060367
+    ],
+    "margin": [
+      1.0716188227370216,
+      -0.8585929973565766,
+      -2.1937872546005797,
+      -1.626084362250046,
+      -6.232267933392235,
+      -10.457981072060367
+    ],
+    "clean": [
+      -0.894577209369823,
+      -0.42671665071182585,
+      0.15771084057507423,
+      -1.1842948602306909,
+      -5.061788804619578,
+      -8.044265912280391
+    ]
+  },
+  "knot_times_us": [
+    0.05,
+    0.15,
+    0.5,
+    1.5,
+    4.0,
+    9.0,
+    15.0
+  ],
+  "bounds": [
+    [
+      -3.0,
+      1.5
+    ],
+    [
+      -5.0,
+      2.0
+    ],
+    [
+      -6.0,
+      2.0
+    ],
+    [
+      -8.0,
+      2.0
+    ],
+    [
+      -10.0,
+      1.0
+    ],
+    [
+      -12.0,
+      0.0
+    ]
+  ],
+  "training_amplitudes_mhz": [
+    50.505050505050505,
+    74.74747474747475,
+    100.0
+  ],
+  "full_amplitude_points": 100,
+  "full_amplitude_range_mhz": [
+    0,
+    100
+  ],
+  "cutoff_for_retained_core": 0.001,
+  "sigma_us": 0.015000007500005626,
+  "duration_us": 30.0,
+  "beta": -0.5,
+  "echo_transition_ns": 16,
+  "t1_us": 51.24,
+  "t2_us": 7.31,
+  "anharmonicity_mhz": -216,
+  "dt_ns": 0.5,
+  "detuning_step_khz": 5,
+  "refined_dt_ns": 0.25,
+  "refined_detuning_step_khz": 2.5,
+  "goal": {
+    "maximum_fwhm_khz": 50,
+    "minimum_snr": 10
+  },
+  "numpy_version": "2.4.0",
+  "python_version": "3.12.0 (v3.12.0:0fb18b02c8, Oct  2 2023, 09:45:56) [Clang 13.0.0 (clang-1300.0.29.30)]",
+  "reproduction": [
+    ".venv/bin/python scripts/optimize_echo_tail.py --stage validate",
+    ".venv/bin/python scripts/optimize_echo_tail.py --stage optimize --iterations 15 --workers 2",
+    ".venv/bin/python scripts/optimize_echo_tail.py --stage full",
+    ".venv/bin/python scripts/optimize_echo_tail.py --stage refine",
+    ".venv/bin/python scripts/optimize_echo_tail.py --stage wide",
+    ".venv/bin/python scripts/optimize_echo_tail.py --stage select-margin",
+    ".venv/bin/python scripts/optimize_echo_tail.py --stage full --margin",
+    ".venv/bin/python scripts/optimize_echo_tail.py --stage refine --margin",
+    ".venv/bin/python scripts/optimize_echo_tail.py --stage wide --margin",
+    ".venv/bin/python scripts/refine_echo_tail_selectivity.py --iterations 18",
+    ".venv/bin/python scripts/optimize_echo_tail.py --stage full --clean",
+    ".venv/bin/python scripts/optimize_echo_tail.py --stage refine --clean",
+    ".venv/bin/python scripts/optimize_echo_tail.py --stage wide --clean",
+    ".venv/bin/python scripts/report_optimized_echo_tail.py"
+  ]
+}

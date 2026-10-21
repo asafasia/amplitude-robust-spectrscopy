@@ -1,0 +1,256 @@
+[
+  {
+    "case": "c0.001_p16",
+    "cutoff": 0.001,
+    "power": 16.0,
+    "amplitudes_mhz": [
+      50.505050505050505,
+      74.74747474747475,
+      100.0
+    ],
+    "refined_dt_ns": 0.25,
+    "refined_frequency_step_khz": 2.5,
+    "max_population_difference": 2.08367465527326e-05,
+    "time_max_fwhm_hz_change": 1.3528256423596758,
+    "grid_max_fwhm_hz_change": 31.347551174083492,
+    "time_max_center_hz_change": 0.4321971489888483,
+    "grid_max_center_hz_change": 0.14009959149541373,
+    "time_max_contrast_snr_change": 0.0009090314579704994,
+    "grid_max_contrast_snr_change": 0.0023655953792829365,
+    "area_ratio_to_p3": 0.8808509829144282,
+    "equal_unsigned_I_area_controls": [
+      {
+        "amplitude_mhz": 50.505050505050505,
+        "p3_amplitude_mhz": 44.48742337951658,
+        "selected_fwhm_khz": 193.55563441506484,
+        "p3_fwhm_khz": 136.2282421781578,
+        "selected_snr": 16.13209120625784,
+        "p3_snr": 10.814836644206895
+      },
+      {
+        "amplitude_mhz": 74.74747474747475,
+        "p3_amplitude_mhz": 65.84138660168453,
+        "selected_fwhm_khz": 202.4509705954027,
+        "p3_fwhm_khz": 145.93685139663816,
+        "selected_snr": 14.542034106319852,
+        "p3_snr": 9.009389872862165
+      },
+      {
+        "amplitude_mhz": 100.0,
+        "p3_amplitude_mhz": 88.08509829144282,
+        "selected_fwhm_khz": 209.15249283245035,
+        "p3_fwhm_khz": 150.99947898701515,
+        "selected_snr": 13.47387705111524,
+        "p3_snr": 7.7950318566399215
+      }
+    ],
+    "passed": true,
+    "primary_population_tolerance_passed": true,
+    "status": "passed"
+  },
+  {
+    "case": "c0.003_p24",
+    "cutoff": 0.003,
+    "power": 24.0,
+    "amplitudes_mhz": [
+      50.505050505050505,
+      74.74747474747475,
+      100.0
+    ],
+    "refined_dt_ns": 0.25,
+    "refined_frequency_step_khz": 2.5,
+    "max_population_difference": 9.710333087831202e-05,
+    "time_max_fwhm_hz_change": 4.6926954126683995,
+    "grid_max_fwhm_hz_change": 10.406037778302561,
+    "time_max_center_hz_change": 2.0021646329989835,
+    "grid_max_center_hz_change": 0.4120210078679065,
+    "time_max_contrast_snr_change": 0.004169469669873749,
+    "grid_max_contrast_snr_change": 0.001671629636673444,
+    "area_ratio_to_p3": 0.8241526024815518,
+    "equal_unsigned_I_area_controls": [
+      {
+        "amplitude_mhz": 50.505050505050505,
+        "p3_amplitude_mhz": 41.62386881219958,
+        "selected_fwhm_khz": 249.34819790423524,
+        "p3_fwhm_khz": 154.1610116322507,
+        "selected_snr": 13.910807128699718,
+        "p3_snr": 6.512648689471368
+      },
+      {
+        "amplitude_mhz": 74.74747474747475,
+        "p3_amplitude_mhz": 61.60332584205539,
+        "selected_fwhm_khz": 259.2604542748662,
+        "p3_fwhm_khz": 156.60462370722038,
+        "selected_snr": 12.838890034630634,
+        "p3_snr": 5.305786992751251
+      },
+      {
+        "amplitude_mhz": 100.0,
+        "p3_amplitude_mhz": 82.41526024815518,
+        "selected_fwhm_khz": 266.2681553361583,
+        "p3_fwhm_khz": 158.4124958813414,
+        "selected_snr": 12.119325738538674,
+        "p3_snr": 4.574823958708246
+      }
+    ],
+    "passed": true,
+    "primary_population_tolerance_passed": true,
+    "status": "passed"
+  },
+  {
+    "case": "c0.001_p3",
+    "cutoff": 0.001,
+    "power": 3.0,
+    "amplitudes_mhz": [
+      50.505050505050505,
+      74.74747474747475,
+      100.0
+    ],
+    "refined_dt_ns": 0.25,
+    "refined_frequency_step_khz": 2.5,
+    "max_population_difference": 1.0898272625570193e-05,
+    "time_max_fwhm_hz_change": 4.149467058479786,
+    "grid_max_fwhm_hz_change": 64.36586811492452,
+    "time_max_center_hz_change": 0.042839160739561066,
+    "grid_max_center_hz_change": 0.7492473314390509,
+    "time_max_contrast_snr_change": 0.000379403325548644,
+    "grid_max_contrast_snr_change": 0.002306679959193758,
+    "area_ratio_to_p3": 1.0,
+    "equal_unsigned_I_area_controls": [
+      {
+        "amplitude_mhz": 50.505050505050505,
+        "p3_amplitude_mhz": 50.505050505050505,
+        "selected_fwhm_khz": 140.29706295910967,
+        "p3_fwhm_khz": 140.29706295910967,
+        "selected_snr": 10.209413905294142,
+        "p3_snr": 10.209413905294142
+      },
+      {
+        "amplitude_mhz": 74.74747474747475,
+        "p3_amplitude_mhz": 74.74747474747475,
+        "selected_fwhm_khz": 148.36875152169495,
+        "p3_fwhm_khz": 148.36875152169495,
+        "selected_snr": 8.46599469369151,
+        "p3_snr": 8.46599469369151
+      },
+      {
+        "amplitude_mhz": 100.0,
+        "p3_amplitude_mhz": 100.0,
+        "selected_fwhm_khz": 152.78400583277593,
+        "p3_fwhm_khz": 152.78400583277593,
+        "selected_snr": 7.301377606519277,
+        "p3_snr": 7.301377606519277
+      }
+    ],
+    "passed": true,
+    "primary_population_tolerance_passed": true,
+    "status": "passed"
+  },
+  {
+    "case": "c0.001_p8",
+    "cutoff": 0.001,
+    "power": 8.0,
+    "amplitudes_mhz": [
+      50.505050505050505,
+      74.74747474747475,
+      100.0
+    ],
+    "refined_dt_ns": 0.25,
+    "refined_frequency_step_khz": 2.5,
+    "max_population_difference": 1.60012272882315e-05,
+    "time_max_fwhm_hz_change": 2.2890665035520215,
+    "grid_max_fwhm_hz_change": 38.62784266693052,
+    "time_max_center_hz_change": 0.32955896766475234,
+    "grid_max_center_hz_change": 0.3617184868189156,
+    "time_max_contrast_snr_change": 0.0006312619311419354,
+    "grid_max_contrast_snr_change": 0.0019561069029503386,
+    "area_ratio_to_p3": 0.9318909421845363,
+    "equal_unsigned_I_area_controls": [
+      {
+        "amplitude_mhz": 50.505050505050505,
+        "p3_amplitude_mhz": 47.06519910022911,
+        "selected_fwhm_khz": 159.7910560521831,
+        "p3_fwhm_khz": 137.9315822507369,
+        "selected_snr": 13.49650396564839,
+        "p3_snr": 10.54584789632055
+      },
+      {
+        "amplitude_mhz": 74.74747474747475,
+        "p3_amplitude_mhz": 69.65649466833908,
+        "selected_fwhm_khz": 168.38967513894673,
+        "p3_fwhm_khz": 147.6012619079533,
+        "selected_snr": 11.80788919943178,
+        "p3_snr": 8.763690547768835
+      },
+      {
+        "amplitude_mhz": 100.0,
+        "p3_amplitude_mhz": 93.18909421845363,
+        "selected_fwhm_khz": 173.4876956043318,
+        "p3_fwhm_khz": 151.90091726637752,
+        "selected_snr": 10.686105391806286,
+        "p3_snr": 7.575478248965314
+      }
+    ],
+    "passed": true,
+    "primary_population_tolerance_passed": true,
+    "status": "passed"
+  },
+  {
+    "case": "c0.005_p24",
+    "cutoff": 0.005,
+    "power": 24.0,
+    "amplitudes_mhz": [
+      50.505050505050505,
+      74.74747474747475,
+      100.0
+    ],
+    "refined_dt_ns": 0.25,
+    "refined_frequency_step_khz": 2.5,
+    "max_population_difference": 0.00016643038182195813,
+    "time_max_fwhm_hz_change": 8.064344901125878,
+    "grid_max_fwhm_hz_change": 26.9366975344019,
+    "time_max_center_hz_change": 2.7845383680314626,
+    "grid_max_center_hz_change": 0.3902862186469065,
+    "time_max_contrast_snr_change": 0.006899373681482857,
+    "grid_max_contrast_snr_change": 0.0020736869726558638,
+    "area_ratio_to_p3": 0.8073423172996599,
+    "equal_unsigned_I_area_controls": [
+      {
+        "amplitude_mhz": 50.505050505050505,
+        "p3_amplitude_mhz": 40.77486451008383,
+        "selected_fwhm_khz": 261.6429742640313,
+        "p3_fwhm_khz": 157.00411108472017,
+        "selected_snr": 12.556249510599327,
+        "p3_snr": 5.047049617467468
+      },
+      {
+        "amplitude_mhz": 74.74747474747475,
+        "p3_amplitude_mhz": 60.346799474924076,
+        "selected_fwhm_khz": 272.9906905765694,
+        "p3_fwhm_khz": 160.6677947072159,
+        "selected_snr": 11.627353486966875,
+        "p3_snr": 4.157336608698512
+      },
+      {
+        "amplitude_mhz": 100.0,
+        "p3_amplitude_mhz": 80.73423172996598,
+        "selected_fwhm_khz": 278.9806661521861,
+        "p3_fwhm_khz": 163.28747511269341,
+        "selected_snr": 11.036924247912864,
+        "p3_snr": 3.644402486947677
+      }
+    ],
+    "passed": true,
+    "primary_population_tolerance_passed": false,
+    "status": "linewidth_converged_with_population_precision_note",
+    "extra_refinement": {
+      "dt_ns": 0.125,
+      "max_population_difference": 5.240737555256558e-06,
+      "population_error_reduction_factor": 31.757053290147173,
+      "max_fwhm_hz_change": 0.2562949238345027,
+      "max_center_hz_change": 0.17023499094420913,
+      "max_contrast_snr_change": 0.0002161545036614143
+    },
+    "note": "The 0.5 ns primary map exceeds the 1e-4 population tolerance. Its displayed linewidth is stable within the reported time-step difference. The 0.25 to 0.125 ns check quantifies convergence; raw primary maps retain their common 0.5 ns step."
+  }
+]

@@ -1,0 +1,70 @@
+<!doctype html><meta charset='utf-8'><title>Sine echo comparison</title>
+    <style>body{font:17px system-ui;max-width:1500px;margin:32px auto;padding:20px}img{width:100%}pre{white-space:pre-wrap}</style>
+    <h1>Echo midpoint smoothing: 0, 4, 8, 16 ns</h1>
+    <p>Figure 2 pulse settings: 20 µs root-Lorentzian, cutoff 0.005, β=0 and Q=0 throughout.
+    Sine sign transition over [−T/2,T/2], with no peak renormalization or Stark compensation.
+    T1=51.24 µs, T2=7.31 µs, anharmonicity −216 MHz. All populations are simulated final populations.</p>
+    <img src='narrow_populations.png' alt='narrow_populations'><img src='broad_populations.png' alt='broad_populations'><img src='population_changes.png' alt='population_changes'><img src='diagnostics.png' alt='diagnostics'><h2>Parameters and numerical checks</h2><pre>{
+  "parameters": {
+    "duration_us": 20.0,
+    "t1_us": 51.24,
+    "t_phi_us": 7.871480508563624,
+    "anharmonicity_mhz": -216.0,
+    "cutoff": 0.005,
+    "order": 0.5,
+    "echo": true,
+    "echo_transition_shape": "sine",
+    "drag_beta": 0.0,
+    "stark_kappa_mhz_inv": 0.0
+  },
+  "transition_ns": [
+    0,
+    4,
+    8,
+    16
+  ],
+  "dt_ns": 0.5,
+  "convergence_max_abs_population_error": {
+    "0": 1.358726709355107e-05,
+    "4": 1.8943553888650655e-05,
+    "8": 6.944074252168697e-06,
+    "16": 1.4767072263430648e-06
+  },
+  "metrics": [
+    {
+      "transition_ns": 0,
+      "max_final_pf": 0.031944308551598584,
+      "high_drive_pe_zero": 0.3846800389837931,
+      "high_drive_spectral_range": 0.15411650474360478,
+      "max_population_change": 0.0
+    },
+    {
+      "transition_ns": 4,
+      "max_final_pf": 0.007230838937766372,
+      "high_drive_pe_zero": 0.3916096945743928,
+      "high_drive_spectral_range": 0.15516117146999348,
+      "max_population_change": 0.02472667162511006
+    },
+    {
+      "transition_ns": 8,
+      "max_final_pf": 0.000464670526803922,
+      "high_drive_pe_zero": 0.39383124645001844,
+      "high_drive_spectral_range": 0.15595728982606655,
+      "max_population_change": 0.03157070468423263
+    },
+    {
+      "transition_ns": 16,
+      "max_final_pf": 0.0002546676489652022,
+      "high_drive_pe_zero": 0.39468440534428845,
+      "high_drive_spectral_range": 0.1578086617321196,
+      "max_population_change": 0.03310684902124866
+    }
+  ],
+  "source_runs": {
+    "broad": "2026-08-25/six_detuning_amplitude_sweeps/03_broad_50mhz_cutoff_0p005_echo",
+    "narrow": "2026-08-25/six_detuning_amplitude_sweeps/06_narrow_1mhz_cutoff_0p005_echo"
+  },
+  "grid_note": "25 amplitudes; 101 broad / 201 narrow detunings; original Figure 2 endpoints",
+  "convention": "I=L*s without peak renormalization; beta=0, Q=0; abrupt reference separate",
+  "caveat": "Final Pf is not peak transient leakage. Three-level Markovian simulation, not hardware data."
+}</pre>

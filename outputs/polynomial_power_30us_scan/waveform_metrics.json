@@ -1,0 +1,194 @@
+[
+  {
+    "case": "c0.001_hard",
+    "cutoff": 0.001,
+    "power": null,
+    "unsigned_I_area": 0.22229633869510992,
+    "area_ratio_to_p3": 1.1411714000360782,
+    "window_fwhm_us": 30
+  },
+  {
+    "case": "c0.001_p3",
+    "cutoff": 0.001,
+    "power": 3.0,
+    "unsigned_I_area": 0.19479662624569982,
+    "area_ratio_to_p3": 1.0,
+    "window_fwhm_us": 13.626060568422194
+  },
+  {
+    "case": "c0.001_p4",
+    "cutoff": 0.001,
+    "power": 4.0,
+    "unsigned_I_area": 0.19104671730437062,
+    "area_ratio_to_p3": 0.9807496207013391,
+    "window_fwhm_us": 11.966337212015084
+  },
+  {
+    "case": "c0.001_p6",
+    "cutoff": 0.001,
+    "power": 6.0,
+    "unsigned_I_area": 0.18554689517190076,
+    "area_ratio_to_p3": 0.952515958556016,
+    "window_fwhm_us": 9.909144951694604
+  },
+  {
+    "case": "c0.001_p8",
+    "cutoff": 0.001,
+    "power": 8.0,
+    "unsigned_I_area": 0.18152921156647417,
+    "area_ratio_to_p3": 0.9318909421845363,
+    "window_fwhm_us": 8.642705659444612
+  },
+  {
+    "case": "c0.001_p12",
+    "cutoff": 0.001,
+    "power": 12.0,
+    "unsigned_I_area": 0.1757492461648146,
+    "area_ratio_to_p3": 0.9022191480007438,
+    "window_fwhm_us": 7.107258162363024
+  },
+  {
+    "case": "c0.001_p16",
+    "cutoff": 0.001,
+    "power": 16.0,
+    "unsigned_I_area": 0.17158679969693919,
+    "area_ratio_to_p3": 0.8808509829144282,
+    "window_fwhm_us": 6.177139092758368
+  },
+  {
+    "case": "c0.001_p24",
+    "cutoff": 0.001,
+    "power": 24.0,
+    "unsigned_I_area": 0.16565899845731216,
+    "area_ratio_to_p3": 0.8504202647142567,
+    "window_fwhm_us": 5.061744063240923
+  },
+  {
+    "case": "c0.003_hard",
+    "cutoff": 0.003,
+    "power": null,
+    "unsigned_I_area": 0.5794042025242944,
+    "area_ratio_to_p3": 1.1660129226248561,
+    "window_fwhm_us": 30
+  },
+  {
+    "case": "c0.003_p3",
+    "cutoff": 0.003,
+    "power": 3.0,
+    "unsigned_I_area": 0.4969106184689407,
+    "area_ratio_to_p3": 1.0,
+    "window_fwhm_us": 13.626060568422194
+  },
+  {
+    "case": "c0.003_p4",
+    "cutoff": 0.003,
+    "power": 4.0,
+    "unsigned_I_area": 0.4856626277693172,
+    "area_ratio_to_p3": 0.9773641570907051,
+    "window_fwhm_us": 11.966337212015084
+  },
+  {
+    "case": "c0.003_p6",
+    "cutoff": 0.003,
+    "power": 6.0,
+    "unsigned_I_area": 0.4691665316590242,
+    "area_ratio_to_p3": 0.9441668465540134,
+    "window_fwhm_us": 9.909144951694604
+  },
+  {
+    "case": "c0.003_p8",
+    "cutoff": 0.003,
+    "power": 8.0,
+    "unsigned_I_area": 0.4571167472510918,
+    "area_ratio_to_p3": 0.9199174464404484,
+    "window_fwhm_us": 8.642705659444612
+  },
+  {
+    "case": "c0.003_p12",
+    "cutoff": 0.003,
+    "power": 12.0,
+    "unsigned_I_area": 0.439783157280058,
+    "area_ratio_to_p3": 0.8850347344862516,
+    "window_fwhm_us": 7.107258162363024
+  },
+  {
+    "case": "c0.003_p16",
+    "cutoff": 0.003,
+    "power": 16.0,
+    "unsigned_I_area": 0.42730189936364726,
+    "area_ratio_to_p3": 0.8599170222609274,
+    "window_fwhm_us": 6.177139092758368
+  },
+  {
+    "case": "c0.003_p24",
+    "cutoff": 0.003,
+    "power": 24.0,
+    "unsigned_I_area": 0.4095301794118949,
+    "area_ratio_to_p3": 0.8241526024815518,
+    "window_fwhm_us": 5.061744063240923
+  },
+  {
+    "case": "c0.005_hard",
+    "cutoff": 0.005,
+    "power": null,
+    "unsigned_I_area": 0.8929194168449439,
+    "area_ratio_to_p3": 1.1819761123300985,
+    "window_fwhm_us": 30
+  },
+  {
+    "case": "c0.005_p3",
+    "cutoff": 0.005,
+    "power": 3.0,
+    "unsigned_I_area": 0.7554462459352751,
+    "area_ratio_to_p3": 1.0,
+    "window_fwhm_us": 13.626060568422194
+  },
+  {
+    "case": "c0.005_p4",
+    "cutoff": 0.005,
+    "power": 4.0,
+    "unsigned_I_area": 0.7367045903204472,
+    "area_ratio_to_p3": 0.9751912783792778,
+    "window_fwhm_us": 11.966337212015084
+  },
+  {
+    "case": "c0.005_p6",
+    "cutoff": 0.005,
+    "power": 6.0,
+    "unsigned_I_area": 0.7092207482879048,
+    "area_ratio_to_p3": 0.9388103417071838,
+    "window_fwhm_us": 9.909144951694604
+  },
+  {
+    "case": "c0.005_p8",
+    "cutoff": 0.005,
+    "power": 8.0,
+    "unsigned_I_area": 0.6891470798250616,
+    "area_ratio_to_p3": 0.9122384068132707,
+    "window_fwhm_us": 8.642705659444612
+  },
+  {
+    "case": "c0.005_p12",
+    "cutoff": 0.005,
+    "power": 12.0,
+    "unsigned_I_area": 0.6602756199775499,
+    "area_ratio_to_p3": 0.8740206514099493,
+    "window_fwhm_us": 7.107258162363024
+  },
+  {
+    "case": "c0.005_p16",
+    "cutoff": 0.005,
+    "power": 16.0,
+    "unsigned_I_area": 0.6394906322778043,
+    "area_ratio_to_p3": 0.8465071283610488,
+    "window_fwhm_us": 6.177139092758368
+  },
+  {
+    "case": "c0.005_p24",
+    "cutoff": 0.005,
+    "power": 24.0,
+    "unsigned_I_area": 0.6099037227887137,
+    "area_ratio_to_p3": 0.8073423172996599,
+    "window_fwhm_us": 5.061744063240923
+  }
+]

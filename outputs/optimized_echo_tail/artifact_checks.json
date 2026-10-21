@@ -1,0 +1,22 @@
+{
+  "local_links_checked": 21,
+  "source_hashes_checked": 10,
+  "full_maps": 5,
+  "full_map_shape": [
+    3,
+    100,
+    201
+  ],
+  "all_map_configs_verified": 15,
+  "additional_scan_extrema_refinement": true,
+  "scoped_whitespace": "passed",
+  "plots_visually_checked": [
+    "comparison",
+    "spectra_100mhz",
+    "populations",
+    "waveforms",
+    "wide_spectra",
+    "full_range",
+    "intermediate_spectra"
+  ]
+}

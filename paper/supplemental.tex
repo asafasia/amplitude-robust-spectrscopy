@@ -2,7 +2,7 @@
     amsfonts,
     amssymb,
     amsmath,
-    preprint,
+    reprint,
     floatfix,
     nofootinbib,
     aps,
@@ -22,8 +22,8 @@
 \author{Asaf A. Solonnikov and Nadav Katz}
 \affiliation{The Racah Institute of Physics, The Hebrew University of Jerusalem, Israel}
 
-\date{\today}
 \maketitle
+\raggedbottom
 
 \setcounter{secnumdepth}{2}
 
@@ -31,11 +31,14 @@ This Supplemental Material provides the experimental setup and qubit coherence
 characterization; a precise definition of the finite echo-root-Lorentzian
 pulse and its resonant cancellation mechanism; the Bloch-equation coherence
 limit; pulse-cutoff and adiabaticity analyses; the numerical model and
-numerical protocol comparisons; and a dense q6 pulse-length campaign with
-matched three-level linewidth comparisons.
-The final section gives the three-level high-drive analysis: it treats the
-AC-Stark displacement, accumulated-phase compensation of the operational
-spectral center, and the limits of the three-level rotating-wave model.
+numerical protocol comparisons; and a dense pulse-length campaign with
+matched three-level linewidth comparisons. The AC-Stark discussion distinguishes
+the dressed-state shift and a phase-average estimate from the finite-pulse
+spectral center.
+The closing two sections examine pulse modifications---the midpoint phase
+inversion, DRAG quadrature, and cutoff-edge smoothing---and then extend the
+cutoff--duration study of the polynomial-corrected DRAG echo to the full
+cutoff range, including the linewidth--contrast tradeoff and numerical checks.
 
 \renewcommand{\thesection}{S\arabic{section}}
 \renewcommand{\thesubsection}{S\arabic{section}.\arabic{subsection}}
@@ -49,10 +52,13 @@ spectral center, and the limits of the three-level rotating-wave model.
 \input{appendices/C_cutoff}
 \input{appendices/D_adiabatic_basis}
 \input{appendices/G_numerical_model}
+\input{appendices/M_spectrum_slices}
 \input{appendices/L_dense_pulse_length}
 % \input{appendices/H_data_analysis}
 % \input{appendices/J_simulated_duration_cutoff_comparison}
 \input{appendices/K_ac_stark_shift}
+\input{appendices/O_pulse_modifications}
+\input{appendices/N_extended_cutoff_duration}
 
 \bibliography{references}
 

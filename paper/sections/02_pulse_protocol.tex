@@ -1,22 +1,29 @@
-Here, we propose a spectroscopic method for probing the qubit transition frequency using an echo-root-Lorentzian drive pulse. Previous theoretical work showed that Lorentzian pulses exhibit power narrowing, complementary to the conventional power broadening observed for constant drives, as a consequence of their adiabatic properties~\cite{boradjiev_power_2013}. Power narrowing with powers-of-Lorentzian pulses was subsequently demonstrated experimentally on IBM Quantum, including the cutoff broadening introduced by truncating the pulse wings~\cite{mihov_defying_2024}. In this work, we extend this framework to longer pulse durations approaching the $T_1$ timescale and introduce a $\pi$-phase jump at the pulse peak. The resulting echo property effectively cancels the net pulse area while preserving the adiabatic properties of the drive. This phase inversion reverses the coherent phase accumulation at resonance, suppressing on-resonant excitation while maintaining an off-resonant spectral response across the frequency domain, and thus making resonance distinguishable.
-
 \begin{figure*}[t]
     \centering
-    \includegraphics[width=0.92\textwidth]{../figures/paper/02_central_spectroscopy.pdf}
+    \includegraphics[width=\textwidth]{../figures/paper/02_central_spectroscopy_experiment_simulation_variant.pdf}
     \caption{
-Experimental q1 spectroscopy maps for $20~\mu\mathrm{s}$ pulses.
-From left to right: constant, root-Lorentzian, and echo-root-Lorentzian
-pulses, with $c=0.005$ for both shaped pulses. The Lorentzian pulses produce
-extremely narrow resonance features compared with the power-broadened
-constant-pulse response. The ordinary root-Lorentzian response retains
-pronounced coherent oscillations as the drive amplitude increases.
-The echo suppresses these oscillations, revealing a narrow, persistent
-resonance-centered depletion feature across the measured drive range.
+Experimental and simulated spectroscopy for $L=20~\mu\mathrm{s}$ and
+$c=0.005$. The left block (a)--(d) spans $50~\mathrm{MHz}$; the right block
+(e)--(h) resolves the central $1~\mathrm{MHz}$. Within each block,
+root-Lorentzian and echo-root-Lorentzian pulses occupy the left and right
+columns, respectively, with experiment above three-level Lindblad simulations.
+Red lines in (a)--(d) mark the linear high-drive half-width of the
+constant-drive reference,
+$\Delta/(2\pi)=\pm[\Omega_0/(2\pi)]\sqrt{T_1/T_2}$, using
+$T_2=\EffectiveTTwo~\mu\mathrm{s}$. Thin white dashed lines in (e)--(h) mark
+$\Delta/(2\pi)=\pm1/(2\pi T_2)$, enclosing the coherence-limited FWHM
+$1/(\pi T_2)=\EffectiveCoherenceFwhm~\mathrm{kHz}$.
+Both pulse shapes produce much narrower central spectral features than the
+constant-drive reference. The root-Lorentzian response exhibits pronounced
+coherent oscillations, whereas the echo response retains a narrow
+resonance-centered depletion across the drive range. Residual high-drive
+oscillations in the echo response are consistent with AC-Stark phase
+accumulation, which is not reversed by the echo phase inversion.
     }
     \label{fig:robust-echo-spectroscopy}
 \end{figure*}
 
-\input{figures/03_simulation_results_float}
+Here, we propose a spectroscopic method for probing the qubit transition frequency using an echo-root-Lorentzian drive pulse. Previous theoretical work showed that Lorentzian pulses exhibit power narrowing, complementary to the conventional power broadening observed for square (constant-amplitude) pulses, as a consequence of their adiabatic properties~\cite{boradjiev_power_2013}. Power narrowing with powers-of-Lorentzian pulses was subsequently demonstrated experimentally on IBM Quantum, including the cutoff broadening introduced by truncating the pulse wings~\cite{mihov_defying_2024}. In this work, we extend this framework to longer pulse durations approaching the $T_1$ timescale and introduce a $\pi$-phase jump at the pulse peak. The resulting echo property effectively cancels the net pulse area while preserving the adiabatic properties of the drive. This phase inversion reverses the coherent phase accumulation at resonance, suppressing on-resonant excitation while maintaining an off-resonant spectral response across the frequency domain, and thus making resonance distinguishable.
 
 We define the echo-root-Lorentzian drive from the order-$n$ generalized
 Lorentzian envelope as
@@ -25,7 +32,7 @@ L^{(n)}(t)
 &= \frac{1}{\left[1+\left(\frac{t}{\tau}\right)^2\right]^n},
 \\
 L^{(1/2)}_{\mathrm{echo}}(t)
-&:= L^{(1/2)}(t)\,\mathrm{sgn}(t).
+&:= -L^{(1/2)}(t)\,\mathrm{sgn}(t).
 \label{eq:Ln}
 \end{align}
 where $\tau$ sets the characteristic pulse duration and $n$ controls the

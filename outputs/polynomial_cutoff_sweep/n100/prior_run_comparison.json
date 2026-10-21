@@ -1,0 +1,66 @@
+{
+  "reference": "outputs/polynomial_cutoff_sweep/n10",
+  "only_configuration_change": "100 logarithmically spaced cutoffs instead of 10",
+  "checks": [
+    {
+      "cutoff": 1e-05,
+      "old_index": 0,
+      "new_index": 0,
+      "max_population_difference": 0.0
+    },
+    {
+      "cutoff": 3.5938136638046256e-05,
+      "old_index": 1,
+      "new_index": 11,
+      "max_population_difference": 0.0
+    },
+    {
+      "cutoff": 0.0001291549665014884,
+      "old_index": 2,
+      "new_index": 22,
+      "max_population_difference": 0.0
+    },
+    {
+      "cutoff": 0.0004641588833612782,
+      "old_index": 3,
+      "new_index": 33,
+      "max_population_difference": 0.0
+    },
+    {
+      "cutoff": 0.0016681005372000592,
+      "old_index": 4,
+      "new_index": 44,
+      "max_population_difference": 0.0
+    },
+    {
+      "cutoff": 0.005994842503189409,
+      "old_index": 5,
+      "new_index": 55,
+      "max_population_difference": 0.0
+    },
+    {
+      "cutoff": 0.021544346900318846,
+      "old_index": 6,
+      "new_index": 66,
+      "max_population_difference": 0.0
+    },
+    {
+      "cutoff": 0.07742636826811278,
+      "old_index": 7,
+      "new_index": 77,
+      "max_population_difference": 3.219646771412954e-14
+    },
+    {
+      "cutoff": 0.2782559402207126,
+      "old_index": 8,
+      "new_index": 88,
+      "max_population_difference": 0.0
+    },
+    {
+      "cutoff": 1.0,
+      "old_index": 9,
+      "new_index": 99,
+      "max_population_difference": 0.0
+    }
+  ]
+}

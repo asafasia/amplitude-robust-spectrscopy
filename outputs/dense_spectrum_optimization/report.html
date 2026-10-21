@@ -1,0 +1,126 @@
+<!doctype html><html lang="en"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Whole-spectrum echo optimization at 100 amplitudes</title>
+<style>body{font:17px/1.6 system-ui;max-width:1350px;margin:auto;padding:32px;color:#172636;
+background:#fafbfd}img{width:100%;margin:16px 0}table{border-collapse:collapse;width:100%;
+font-size:15px}th,td{padding:9px;border-bottom:1px solid #d5dce2;text-align:left}
+.lead{background:#e8f2ed;border-left:4px solid #007956;padding:18px}a{color:#007956}</style>
+<h1>One pulse optimized against all 100 amplitude points</h1>
+<p class="lead">The narrowest candidate satisfying the original frequency-window
+constraints gives worst FWHM <b>144.02 kHz</b>, minimum ideal SNR
+<b>12.065</b>, and maximum competing-dip prominence
+<b>1.319 percentage points</b> across
+10.101–100 MHz. Its worst width is 3.31×
+the 43.54 kHz T₂ reference. <b>The joint near-T₂ target was not achieved.</b></p>
+<p>The more conservative whole-spectrum objective, including a penalty on broad
+shoulder curvature, gives 162.71 kHz and SNR
+12.757. Both fixed shapes are shown. These are finite numerical searches within
+one six-parameter family, not evidence of a fundamental physical lower bound.</p>
+<p><b>Frequency-window limitation:</b> optimization and primary constraints use the
+complete original ±500 kHz spectrum. The independent ±1 MHz scan finds larger
+extra-dip prominences: Spectrum-optimized tail: 2.29 pp; Narrowest feasible trial: 9.86 pp. Suppression within the optimization window
+does not establish suppression at arbitrary detuning. In particular, the narrower
+shape does not meet the 1.5-point selectivity cap over ±1 MHz; its smaller central
+linewidth should not be interpreted as a clean isolated resonance over that window.</p>
+<h2>Parameters and operating range</h2>
+<p>Every simulated candidate uses <b>all 100 amplitudes from 0 to 100 MHz</b>.
+The requested visibility/selectivity requirement is enforced at the 90 grid points
+from 10.101 to 100 MHz. All 100 spectra contribute to the line-shape objective;
+SNR and linewidth are undefined at zero drive. The unchanged parameters are
+30 µs duration, cutoff 0.001, σ = 15.0000075 ns, 16 ns sine echo inversion,
+DRAG β = −0.5, α = −216 MHz, T₁ = 51.24 µs, T₂ = 7.31 µs,
+Tφ = 7.871480508563624 µs. Three-level RWA Lindblad dynamics, the same relaxation
+and dephasing operators, no extra Stark term, and no per-amplitude waveform rescaling.</p>
+<h2>Comparison over 10–100 MHz</h2>
+<p>Extrema can occur at different amplitudes. FWHM retains the previous central-dip,
+nearest-half-depth-crossing definition using the linear background at
+|detuning| = 0.4–0.5 MHz. These values are not Lorentzian-fit widths.</p>
+<table><tr><th>Pulse</th><th>Worst FWHM (kHz)</th><th>Minimum SNR</th>
+<th>Largest extra dip (pp)</th><th>Max |center| (kHz)</th></tr><tr><td>Polynomial p=4</td><td>156.22</td><td>10.045</td><td>0.000</td><td>0.802</td></tr><tr><td>Polynomial p=5</td><td>161.85</td><td>10.636</td><td>0.000</td><td>0.880</td></tr><tr><td>Previous three-amplitude optimization</td><td>136.42</td><td>3.513</td><td>5.626</td><td>0.758</td></tr><tr><td>Spectrum-optimized tail</td><td>162.71</td><td>12.757</td><td>0.102</td><td>0.872</td></tr><tr><td>Narrowest feasible trial</td><td>144.02</td><td>12.065</td><td>1.319</td><td>0.772</td></tr></table>
+<img src="comparison.png" alt="Six metrics across the required amplitude range">
+<h2>Populations and line shapes</h2>
+<img src="populations.png" alt="Pg, Pe and Pf at all 100 amplitudes">
+<img src="spectra.png" alt="Population spectra at six representative amplitudes">
+<h2>What was optimized</h2>
+<p>The same six-parameter tail family is retained: g(t) = f(t) exp[h(ln|t|)] w(t),
+where f is the original root-Lorentzian, h = 0 for |t| ≤ 50 ns, and h is a quintic
+spline through |t| = 0.05, 0.15, 0.5, 1.5, 4, 9, 15 µs. Its first two derivatives
+vanish at both spline endpoints. A fixed quintic window w closes the last 2 µs of
+each edge. The pulse and its first two derivatives vanish at ±15 µs.
+DRAG uses the complete analytic derivative of the signed envelope,
+Q = −β I′/(2π|α|), and the complex drive is I − iQ.</p>
+<table><tr><th>|t| (µs)</th><th>h: spectrum objective</th><th>h: narrower candidate</th></tr>
+<tr><td>0.05</td><td>0</td><td>0</td></tr><tr><td>0.15</td><td>0.02608929528</td><td>-0.1170264928</td></tr><tr><td>0.5</td><td>-0.2521181751</td><td>-0.5169524935</td></tr><tr><td>1.5</td><td>-0.3268981515</td><td>-0.304016284</td></tr><tr><td>4</td><td>-1.150590886</td><td>-1.11073116</td></tr><tr><td>9</td><td>-4.257741849</td><td>-4.202516461</td></tr><tr><td>15</td><td>-5.972557015</td><td>-6.458649439</td></tr></table>
+<img src="waveforms.png" alt="I Q and optimized tails">
+<p>The objective combines worst FWHM; mean and worst residuals relative to a
+43.54 kHz Lorentzian template, fitting only its depth; an SNR penalty below 10.15;
+extra-dip prominence above 1 percentage point; outward spectral reversals above
+2.5 percentage points total; and center displacement above 2 kHz. The template
+residual uses every frequency sample and all 100 amplitudes. Additional minima are
+identified after excluding the central basin within ±20 kHz, including dips closer
+than the previous 50 kHz exclusion. Feasible candidates require minimum SNR ≥ 10,
+extra-dip prominence ≤ 1.5 percentage points, and |center| ≤ 2 kHz.</p>
+<p>Initial search: 378 distinct trials, 24 initial shapes,
+12 differential-evolution generations, followed by six parallel coordinate sweeps,
+seed 20261013.
+Each trial used 100 × 101 frequency/amplitude points and a 1 ns RK4 step.
+Four distinct finalists spanning lowest objective and narrowest feasible width
+were evaluated at 100 × 201 points and 0.5 ns. Primary selection uses the lowest
+whole-spectrum objective among feasible finalists; the second uses lowest worst
+FWHM. The same 100 amplitudes were used for optimization and final resolution
+checks, so the latter are numerical validation, not unseen-amplitude validation.</p>
+<p>A final width-oriented branch added 81 trials, still using
+all 100 amplitudes and the complete frequency spectrum. It retained the template,
+SNR, extra-dip and center penalties while removing only the separate penalty on
+broad outward spectral curvature. Eight coordinate sweeps tested steps of
+0.15, 0.075, 0.035 and 0.015 in the six spline ordinates. The new narrow candidate
+was accepted only after satisfying the original SNR/selectivity constraints at
+0.5 ns / 5 kHz resolution. Total distinct trials: 459.</p>
+<p>The narrowest screening result slightly exceeded the 1.5-point extra-dip cap
+when recomputed on the finer grid. It was rejected, and the next narrow candidate
+was checked before selection. This boundary check is retained in
+<a href="narrow_finalist_checks.json">the finalist records</a>.</p>
+<p>459 trials passed the waveform peak check and were propagated at
+all 100 amplitudes; the remaining trials were rejected before propagation because
+the unsigned envelope exceeded the original normalized peak of one.</p>
+<img src="search_tradeoff.png" alt="Linewidth versus SNR for all valid search trials">
+<h2>Numerical resolution and amplitudes between search points</h2>
+<p>Both selected waveforms were rerun at all 100 amplitudes using 401 detunings
+and a 0.25 ns step. Maximum probability change is
+1.81e-05; maximum linewidth change is
+73.33 Hz; maximum SNR change is
+0.0049.</p>
+<p>Independent checks used 99 amplitudes halfway between every pair of search
+amplitudes, with 201 detunings and a 0.5 ns step. Statistics below use midpoint
+amplitudes ≥ 10 MHz; no optimization was performed on them. The exact 10 MHz
+endpoint was checked separately with 401 detunings and a 0.25 ns step.</p>
+<table><tr><th>Pulse</th><th>Worst FWHM (kHz)</th><th>Minimum SNR</th>
+<th>Largest extra dip (pp)</th></tr><tr><td>Spectrum-optimized tail</td><td>162.63</td><td>12.779</td><td>0.065</td></tr><tr><td>Narrowest feasible trial</td><td>144.04</td><td>12.078</td><td>1.315</td></tr></table>
+<h2>Wider frequency window</h2>
+<p>Both pulses were also simulated at all 100 amplitudes over ±1 MHz. The following
+widths use a different background band, 0.8–1 MHz, and should not be mixed with
+the primary definition. Extra-dip prominence is checked across that wider spectrum.</p>
+<table><tr><th>Pulse</th><th>Outer-background FWHM range (kHz)</th>
+<th>Largest extra dip over ±1 MHz (pp)</th></tr><tr><td>Spectrum-optimized tail</td><td>152.04–185.30</td><td>2.287</td></tr><tr><td>Narrowest feasible trial</td><td>114.29–158.73</td><td>9.858</td></tr></table>
+<img src="wide_spectra.png" alt="Wider spectra and alternative background bands">
+<h2>Full amplitude range</h2><img src="full_range.png" alt="Results from zero to 100 MHz">
+<h2>Interpretation and reproducibility</h2>
+<p>SNR assumes 500 ideal Bernoulli shots at the center and 250 at each ±0.45 MHz
+shoulder. It excludes readout error, drift and center-search cost. It is not
+percentage contrast. Final Pf does not bound transient leakage. The 1/(πT₂)
+value is a weak-drive Lorentzian reference, not a universal bound on finite-pulse
+interference features. No hardware measurements were performed.</p>
+<p>48 focused objective/model/metric tests passed. The full suite cannot collect
+because Torch is missing; repository-wide Ruff has 692 pre-existing findings.
+The new scripts and focused test pass scoped Ruff. All maps are normalized and
+physical, and the reused controls were checked against their source hashes.</p>
+<p><a href="selected.json">Selected shape</a> ·
+<a href="selected_narrow.json">Narrowest feasible shape</a> ·
+<a href="spectrum_waveform.npz">Selected normalized I/Q</a> ·
+<a href="narrow_waveform.npz">Narrow candidate normalized I/Q</a> ·
+<a href="summary.json">All metrics</a> · <a href="metrics.csv">Metrics CSV</a> ·
+<a href="validation.json">Resolution checks</a> ·
+<a href="search_provenance.json">Objective and grid provenance</a> ·
+<a href="provenance.json">Sources and reproduction</a> ·
+<a href="comparison.pdf">Comparison PDF</a> · <a href="populations.pdf">Populations PDF</a></p>
+</html>

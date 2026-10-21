@@ -1,0 +1,47 @@
+{
+  "case": "c0.005_ramp14.75_beta-0.5",
+  "ramp_us": 14.75,
+  "cutoff": 0.005,
+  "amplitudes_mhz": [
+    50.505050505050505,
+    74.74747474747475,
+    100.0
+  ],
+  "refined_dt_ns": 0.25,
+  "refined_detuning_step_khz": 2.5,
+  "max_population_difference": 6.814091554618873e-05,
+  "time_max_fwhm_change_hz": 6.439933974150335,
+  "grid_max_fwhm_change_hz": 41.315416306839325,
+  "time_max_center_change_hz": 1.1277857778488851,
+  "grid_max_center_change_hz": 0.7812414738275493,
+  "time_max_snr_change": 0.0022327774762853636,
+  "grid_max_snr_change": 0.0008082201163834846,
+  "area_fraction": 0.8724934170222269,
+  "equal_area_controls": [
+    {
+      "amplitude_mhz": 50.505050505050505,
+      "hard_amplitude_mhz": 44.065324092031666,
+      "ramp_width_khz": 163.00329761200388,
+      "hard_width_khz": 353.9509608872547,
+      "ramp_snr": 4.125897305940805,
+      "hard_snr": 0.8835137190501046
+    },
+    {
+      "amplitude_mhz": 74.74747474747475,
+      "hard_amplitude_mhz": 65.21667965620686,
+      "ramp_width_khz": 167.2615413423633,
+      "hard_width_khz": 367.2293404268182,
+      "ramp_snr": 3.4437747904561564,
+      "hard_snr": 0.598018474512231
+    },
+    {
+      "amplitude_mhz": 100.0,
+      "hard_amplitude_mhz": 87.2493417022227,
+      "ramp_width_khz": 172.53826873350766,
+      "hard_width_khz": 436.13099216557555,
+      "ramp_snr": 3.0611694697657836,
+      "hard_snr": 0.5190323749226887
+    }
+  ],
+  "passed": true
+}

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 from dataclasses import dataclass
 from fractions import Fraction
@@ -20,28 +21,22 @@ OUTPUT_STEM = "02_central_spectroscopy"
 
 RUNS = {
     ("broad", "constant"): (
-        "2026-08-25/six_detuning_amplitude_sweeps/"
-        "01_broad_50mhz_cutoff_0p999_no_echo"
+        "2026-08-25/six_detuning_amplitude_sweeps/01_broad_50mhz_cutoff_0p999_no_echo"
     ),
     ("broad", "root"): (
-        "2026-08-25/six_detuning_amplitude_sweeps/"
-        "02_broad_50mhz_cutoff_0p005_no_echo"
+        "2026-08-25/six_detuning_amplitude_sweeps/02_broad_50mhz_cutoff_0p005_no_echo"
     ),
     ("broad", "echo"): (
-        "2026-08-25/six_detuning_amplitude_sweeps/"
-        "03_broad_50mhz_cutoff_0p005_echo"
+        "2026-08-25/six_detuning_amplitude_sweeps/03_broad_50mhz_cutoff_0p005_echo"
     ),
     ("narrow", "constant"): (
-        "2026-08-25/six_detuning_amplitude_sweeps/"
-        "04_narrow_1mhz_cutoff_0p999_no_echo"
+        "2026-08-25/six_detuning_amplitude_sweeps/04_narrow_1mhz_cutoff_0p999_no_echo"
     ),
     ("narrow", "root"): (
-        "2026-08-25/six_detuning_amplitude_sweeps/"
-        "05_narrow_1mhz_cutoff_0p005_no_echo"
+        "2026-08-25/six_detuning_amplitude_sweeps/05_narrow_1mhz_cutoff_0p005_no_echo"
     ),
     ("narrow", "echo"): (
-        "2026-08-25/six_detuning_amplitude_sweeps/"
-        "06_narrow_1mhz_cutoff_0p005_echo"
+        "2026-08-25/six_detuning_amplitude_sweeps/06_narrow_1mhz_cutoff_0p005_echo"
     ),
 }
 
@@ -96,9 +91,7 @@ def load_measurement(relative_run_path: str) -> Measurement:
     pi_amplitude_v = float(pi_pulse["amplitude"])
     pi_length_ns = float(pi_pulse["length_ns"])
     pi_rabi_hz = 1.0 / (2.0 * pi_length_ns * 1e-9)
-    rabi_mhz = (
-        amp_prefactor * peak_amplitude_v / pi_amplitude_v * pi_rabi_hz / 1e6
-    )
+    rabi_mhz = amp_prefactor * peak_amplitude_v / pi_amplitude_v * pi_rabi_hz / 1e6
 
     denominators = {
         Fraction(float(value)).limit_denominator(10_000).denominator
@@ -211,17 +204,19 @@ def main() -> None:
     apply_figure_style(FigureVariant.PAPER)
     plt.rcParams.update(
         {
-            "figure.figsize": (7.1, 4.55),
-            "axes.titlesize": 7.2,
-            "axes.labelsize": 6.8,
-            "xtick.labelsize": 6.1,
-            "ytick.labelsize": 6.1,
+            "figure.figsize": (7.1, 3.05),
+            "font.size": 8,
+            "axes.titlesize": 8,
+            "axes.labelsize": 8,
+            "xtick.labelsize": 7,
+            "ytick.labelsize": 7,
             "pdf.fonttype": 42,
             "svg.fonttype": "none",
         }
     )
 
     fig, axes = plt.subplots(2, 3, sharey=True, constrained_layout=True)
+    fig.get_layout_engine().set(w_pad=0.025, h_pad=0.025, wspace=0.025, hspace=0.06)
     protocols = (
         ("constant", "Constant"),
         ("root", "Root-Lorentzian"),
@@ -247,7 +242,8 @@ def main() -> None:
             )
             ax.set_xlim(measurement.detuning_mhz[0], measurement.detuning_mhz[-1])
             ax.set_ylim(rabi_min, rabi_max)
-            ax.set_box_aspect(1.0)
+            ax.set_yticks([0, 20, 40])
+            ax.set_xticks([-20, 0, 20] if row == 0 else [-0.4, 0, 0.4])
             panel_text = ax.text(
                 0.035,
                 0.95,
@@ -263,16 +259,19 @@ def main() -> None:
             )
             if row == 0:
                 ax.set_title(protocol_label)
-            if row == 1:
-                ax.set_xlabel(r"$\Delta/2\pi$ (MHz)")
-            if column == 0:
-                ax.set_ylabel(r"$\Omega_0/2\pi$ (MHz)")
+                for edge in (-0.5, 0.5):
+                    ax.axvline(
+                        edge, ymin=0.9, color="white", lw=0.65, ls=(0, (3, 3))
+                    )
+
+    fig.supxlabel(r"$\Delta/2\pi$ (MHz)", fontsize=8)
+    fig.supylabel(r"$\Omega_0/2\pi$ (MHz)", fontsize=8)
 
     if image is None:
         raise RuntimeError("No panels were generated")
     colorbar = fig.colorbar(image, ax=axes, pad=0.018, fraction=0.055)
     colorbar.set_label(r"Measured $P_e$")
-    colorbar.ax.tick_params(labelsize=6.0)
+    colorbar.ax.tick_params(labelsize=7.0)
 
     saved = save_figure(
         fig,
@@ -285,6 +284,26 @@ def main() -> None:
     )
     for path in saved:
         print(path)
+    provenance = {
+        "generator": str(Path(__file__).relative_to(ROOT)),
+        "layout": "Two rows by three columns; overview above resonance zoom",
+        "figure_size_inches": [7.1, 3.05],
+        "processing": "Unchanged measured populations; shared linear color scale",
+        "zoom_guides_mhz": [-0.5, 0.5],
+        "color_limits": [color_min, color_max],
+        "inputs": {
+            f"{domain}_{protocol}": {
+                "run": RUNS[(domain, protocol)],
+                "population_sha256": hashlib.sha256(
+                    measurement.excited.tobytes()
+                ).hexdigest(),
+            }
+            for (domain, protocol), measurement in measurements.items()
+        },
+    }
+    saved[0].with_name(f"{OUTPUT_STEM}_provenance.json").write_text(
+        json.dumps(provenance, indent=2) + "\n"
+    )
     print(
         f"q1 f01={reference.f01_ghz:.9f} GHz; "
         f"displayed Rabi range={rabi_min:.6g}--{rabi_max:.6g} MHz; "

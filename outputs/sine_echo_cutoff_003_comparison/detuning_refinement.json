@@ -1,0 +1,53 @@
+[
+  {
+    "rabi_mhz": 19.850917813960614,
+    "coarse": {
+      "center_hz": 12.915017349754613,
+      "fwhm_hz": 231281.49549457445,
+      "contrast": 0.2990365375584927,
+      "accepted": true
+    },
+    "fine": {
+      "center_hz": 12.919614204511873,
+      "fwhm_hz": 231273.15166515615,
+      "contrast": 0.29902910337643196,
+      "accepted": true
+    },
+    "center_change_hz": 0.004596854757259905,
+    "width_change_hz": -8.34382941829972
+  },
+  {
+    "rabi_mhz": 42.29108577756826,
+    "coarse": {
+      "center_hz": 229.62694827601894,
+      "fwhm_hz": 331422.659830257,
+      "contrast": 0.20208962496602695,
+      "accepted": true
+    },
+    "fine": {
+      "center_hz": 229.60880741967793,
+      "fwhm_hz": 331497.33115122345,
+      "contrast": 0.20213291751123158,
+      "accepted": true
+    },
+    "center_change_hz": -0.01814085634100593,
+    "width_change_hz": 74.67132096644491
+  },
+  {
+    "rabi_mhz": 42.7226274691761,
+    "coarse": {
+      "center_hz": 223.12595910137395,
+      "fwhm_hz": 334148.9604373081,
+      "contrast": 0.20073756297088846,
+      "accepted": true
+    },
+    "fine": {
+      "center_hz": 223.28047100573218,
+      "fwhm_hz": 334194.3441777001,
+      "contrast": 0.20077444929491822,
+      "accepted": true
+    },
+    "center_change_hz": 0.15451190435823037,
+    "width_change_hz": 45.383740391989704
+  }
+]

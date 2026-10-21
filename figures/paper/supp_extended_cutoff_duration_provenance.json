@@ -1,0 +1,57 @@
+{
+  "style": "styles/supplemental.mplstyle",
+  "style_sha256": "31153017bfd084632a10987f65956cbefd1971fa92fe4ad5d38e4f0879bef28f",
+  "source_report": "outputs/polynomial_duration_cutoff_sweep/n100/report.html",
+  "source_sha256": {
+    "outputs/polynomial_duration_cutoff_sweep/n100/comparison_metrics.npz": "4e2a6150214efb95285f02aa28a5d45d812f7ae60dd02a28636b854fd46096a0",
+    "outputs/polynomial_duration_cutoff_sweep/n100/duration_comparison.pdf": "48f3df3d2820516a42acd2f5d80783aeb3c545fba5cdc18c21387660fba78dc3",
+    "outputs/polynomial_duration_cutoff_sweep/n100/simulations/L10us/scan.npz": "605d0c3f3df932c6e5a648929fbedf3a407668879921e5c11728cd052a80a0b5",
+    "outputs/polynomial_duration_cutoff_sweep/n100/simulations/L20us/scan.npz": "9f00a07b44a1df5c367014884c24d24553b3ffafb0af327b7867f22d0be25af5",
+    "outputs/polynomial_duration_cutoff_sweep/n100/baseline_30us/L30us/scan.npz": "71766d93ecbdc18a54b1e65e83d47d26a246f61925d1d4a3e1b64762359f8b31",
+    "outputs/polynomial_duration_cutoff_sweep/n100/simulations/L45us/scan.npz": "f8440013a6ea2348c98f15b8f1162c09de22b29cd9cf0fb7e6c8f553d7ce1840",
+    "outputs/polynomial_duration_cutoff_sweep/n100/simulations/L60us/scan.npz": "e28f05f39ced4065bd0eb64a65a6483efaaaff60d6bad7ab3642e57208672178"
+  },
+  "generator": "scripts/make_supplemental_extended_cutoff.py",
+  "generator_sha256": "cc8f1968740c04d6e781ec623f2b54772dce516775b3c0dcdb9c381f32d3331a",
+  "reproduction": "MPLBACKEND=Agg python scripts/make_supplemental_extended_cutoff.py",
+  "change_from_report": "Five duration rows; same samples, masks, and cell boundaries. Replace ideal SNR with saved dip contrast on [0, 1]; show normalized linewidth on [0, 10] with reversed magma colors so low widths are light. Widths above 10 saturate at the darkest color.",
+  "contrast_definition": "Dip depth in excited-state probability relative to the fitted linear background at the dip.",
+  "contrast_outline": {
+    "threshold": 0.2,
+    "rule": "accepted and contrast > threshold",
+    "geometry": "Linearly interpolated C=0.2 isoline between accepted samples, with rejected grid cells masked; identical in both columns. Heatmap values are not smoothed.",
+    "color": "white",
+    "linewidth_pt": 0.6,
+    "halo": false,
+    "cells_per_duration": [
+      6922,
+      6550,
+      3757,
+      2398,
+      1643
+    ]
+  },
+  "array_order": "duration, cutoff, nominal drive",
+  "reference_linewidth_hz": 43544.44407438997,
+  "color_scales": {
+    "fwhm_hz": {
+      "factor": 2.2965042297741388e-05,
+      "vmin": 0,
+      "vmax": 10.0,
+      "colormap": "magma_r"
+    },
+    "contrast": {
+      "factor": 1,
+      "vmin": 0,
+      "vmax": 1,
+      "colormap": "viridis"
+    }
+  },
+  "accepted_traces_per_duration": [
+    9238,
+    9552,
+    9651,
+    9714,
+    5561
+  ]
+}

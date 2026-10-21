@@ -1,0 +1,59 @@
+{
+  "recorded_utc": "2026-10-12T05:51:46.076731+00:00",
+  "pytest": {
+    "passed": 184,
+    "skipped": 1,
+    "log": "pytest.log",
+    "environment": "Repository .venv with installed system pytest added to sys.path"
+  },
+  "scoped_ruff": {
+    "status": "passed",
+    "files": [
+      "echospec/analysis/duration_cutoffs.py",
+      "scripts/report_polynomial_durations.py",
+      "scripts/validate_polynomial_durations.py",
+      "tests/analysis/test_duration_cutoffs.py"
+    ]
+  },
+  "repository_ruff": {
+    "status": "existing_failures",
+    "issues": 692
+  },
+  "report_controls": {
+    "status": "passed",
+    "durations_us": [
+      10,
+      20,
+      30,
+      45,
+      60
+    ],
+    "checks": [
+      "DOM targets",
+      "all 100 amplitudes available for line spectra",
+      "full population cube indexed as cutoff, amplitude, detuning",
+      "population maps at first, middle, last and default cutoffs for every length",
+      "synchronized cutoff sliders and selected-amplitude markers",
+      "T2 normalized default and kHz switch for width plots, tables and overview exports",
+      "SNR and populations unchanged by width unit switching",
+      "zero-drive rejection display",
+      "four metric maps for all lengths in both width units",
+      "raw template shows a generated-report link and skips placeholder execution",
+      "two fixed vertical T2 half-width markers span one reference FWHM on every population map"
+    ]
+  },
+  "plotly_schema": {
+    "status": "passed",
+    "chart_configurations": 76,
+    "version": "5.24.1"
+  },
+  "visual_inspection": {
+    "static_five_duration_comparison": "passed, T2-normalized default",
+    "html_browser_render": "Not checked: browser tool blocks local file URLs. Report JavaScript and chart specifications were checked locally.",
+    "population_maps_from_html_chart_data": {
+      "status": "passed",
+      "image": "population_maps_display_check.png",
+      "method": "Static Matplotlib plot of the initial HTML heatmap data, axes and T2 marker coordinates; not a browser rendering."
+    }
+  }
+}

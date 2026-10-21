@@ -1,22 +1,31 @@
 \par
-Square pulses exhibit pronounced power broadening even at low drive
-amplitudes compared to Lorentzian-type pulses, with substantial linewidth
-expansion observed over three orders of magnitude in amplitude.  In contrast, the root-Lorentzian pulse displays the characteristic power-narrowing behavior and maintains a narrow linewidth. However, even for pulse durations shorter than the qubit lifetime $T_1$, coherent oscillations arise for both square and root-Lorentzian pulses,
+The constant-drive reference in Fig.~\ref{fig:robust-echo-spectroscopy}
+illustrates linear power broadening at large drive. In contrast, the
+root-Lorentzian pulse displays the characteristic power-narrowing behavior
+and maintains a narrow linewidth. However, even for pulse durations shorter
+than the qubit lifetime $T_1$, coherent oscillations arise for root-Lorentzian pulses,
 resulting in amplitude-dependent linewidth variations that hinder precise
 spectral extraction.
 
 Introducing a $\pi$ phase inversion at the peak of the root-Lorentzian envelope partitions the drive into two sequential segments of opposite phase.  For an ideal symmetric unitary two-level pulse, the corresponding forward and backward evolutions cancel exactly at zero detuning; relaxation, dephasing, waveform imbalance, and finite bandwidth make the cancellation incomplete in experiment.  This echo-like structure suppresses resonant Rabi oscillations while preserving the off-resonant spectral response, producing a sharp depletion feature centered at the qubit transition frequency.  The waveform Fourier spectrum in Fig.~\ref{fig:fig1} has a null at zero baseband frequency, consistent with its vanishing signed area, but this linear waveform property is not itself the nonlinear qubit response.  The resonance-centered depletion instead follows from the driven dynamics and is observed in the experimental spectroscopy maps.
 
-This mechanism can be viewed as a Loschmidt-echo-like evolution, in which ideal reversibility occurs only on resonance, while detuning, decoherence, and experimental imperfections break the cancellation and restore excitation~\cite{Gorin_2006,PhysRevA.30.1610}. Combined with the adiabatic following of the Lorentzian envelope~\cite{boradjiev_power_2013,mihov_defying_2024}, this interference effect suppresses both power broadening and coherent Rabi oscillations, enabling narrow spectroscopy over a broad range of drive strengths with driven-spectroscopy pulses shorter than $T_1$. This sub-$T_1$ operating regime remains useful as qubit lifetimes increase because square and ordinary root-Lorentzian pulses can still exhibit coherent oscillatory distortions. The numerical model used for the experiment--theory comparison in Fig.~\ref{fig:simulation-results} is detailed in the Supplemental Material~\cite{SupplementalMaterial}.
+This mechanism can be viewed as a Loschmidt-echo-like evolution, in which ideal reversibility occurs only on resonance, while detuning, decoherence, and experimental imperfections break the cancellation and restore excitation~\cite{Gorin_2006,PhysRevA.30.1610}. Combined with the adiabatic following of the root-Lorentzian envelope~\cite{boradjiev_power_2013,mihov_defying_2024}, this interference effect suppresses both power broadening and coherent Rabi oscillations, enabling narrow spectroscopy over a broad range of drive strengths with driven-spectroscopy pulses shorter than $T_1$. This sub-$T_1$ operating regime remains useful as qubit lifetimes increase because square and ordinary root-Lorentzian pulses can still exhibit coherent oscillatory distortions. The numerical model used for the experiment--theory comparison in Fig.~\ref{fig:robust-echo-spectroscopy} is detailed in the Supplemental Material~\cite{SupplementalMaterial}.
 
-Fig.~\ref{fig:robust-echo-spectroscopy} compares measured spectroscopy for a
-constant pulse, an ordinary root-Lorentzian pulse, and an
-echo-root-Lorentzian pulse on q1.  All protocols use $L=20~\mu\mathrm{s}$ and
+Fig.~\ref{fig:robust-echo-spectroscopy} compares measured and simulated
+spectroscopy for ordinary root-Lorentzian and echo-root-Lorentzian pulses
+on the primary qubit. Both protocols use $L=20~\mu\mathrm{s}$, $c=0.005$, and
 a calibrated peak-Rabi range extending to approximately $42.5~\mathrm{MHz}$.
-The upper and lower rows span broad
-$50~\mathrm{MHz}$ and narrow $1~\mathrm{MHz}$ detuning domains,
-respectively.  The constant-envelope and ordinary root-Lorentzian measurements
-retain strong amplitude-dependent coherent structure.  The
+The left and right blocks span broad $50~\mathrm{MHz}$ and narrow
+$1~\mathrm{MHz}$ detuning domains, respectively. The upper row shows
+experiment and the lower row shows three-level simulations with matched
+pulse duration and cutoff. The simulated $|e\rangle$ populations are shown
+without fitted offsets or gains; the measurement uses two-state discrimination
+and does not independently resolve $|f\rangle$ population.
+For the tested $4$--$16~\mathrm{ns}$ midpoint-smoothed echo pulses,
+simulations predict final leakage into $|f\rangle$ below $1\%$ over the
+sampled near-resonance range (Supplemental Material~\cite{SupplementalMaterial}).
+The ordinary root-Lorentzian measurements retain strong amplitude-dependent
+coherent structure. The
 echo-root-Lorentzian data instead show a narrow resonance-centered depletion
 channel over the measured drive range.
 
@@ -39,9 +48,5 @@ channel over the measured drive range.
 
 % The effectiveness of the echo-type Lorentzian pulse arises from two complementary mechanisms. First, the adiabatic nature of the Lorentzian envelope ensures that over a broad range of drive amplitudes the qubit state follows the instantaneous dressed eigenstate of the driven Hamiltonian. In contrast to square pulses—which introduce abrupt non-adiabatic transitions and induce oscillatory Rabi dynamics—the smooth Lorentzian profile suppresses spectral leakage and mitigates the sidebands typically associated with high-power drives.
 
-Fig.~\ref{fig:simulation-results}(a)--(f) provides a complementary
-fixed-amplitude comparison for the ordinary and echo protocols.  These traces
-use $L=20~\mu\mathrm{s}$ and $c=0.005$.  The three rows compare the protocols at
-$\Omega_0/(2\pi)=3$, $20$, and $40~\mathrm{MHz}$, making the echo-induced
-central depletion and its persistence with increasing drive amplitude
-explicit.
+The Supplemental Material~\cite{SupplementalMaterial} provides a complementary
+fixed-amplitude comparison for the ordinary and echo protocols.

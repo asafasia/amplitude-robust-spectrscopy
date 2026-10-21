@@ -1,0 +1,30 @@
+{
+  "focused_pytest": {
+    "passed": 45,
+    "seconds": 10.83,
+    "command": "MPLCONFIGDIR=/private/tmp/ars-matplotlib-cache /opt/miniconda3/envs/qarakal-dev/bin/python -m pytest tests/test_echo_edge_experiment.py tests/test_edge_window.py tests/test_sine_echo_transition.py tests/test_qutrit_simulation.py tests/test_qutrit_native.py tests/analysis/test_dip_metrics.py tests/analysis/test_spectroscopy_quality.py -q"
+  },
+  "full_pytest": {
+    "status": "blocked at collection",
+    "reason": "tests/test_mps_simulation.py: ModuleNotFoundError: No module named torch",
+    "collected_before_error": 96
+  },
+  "scoped_ruff": "passed for the four duration-aware scripts and new regression test",
+  "repository_make_lint": {
+    "status": "failed",
+    "errors": 689,
+    "note": "Existing repository lint issues; scoped changed files pass"
+  },
+  "repository_diff_check": "Existing generated SVG files have trailing whitespace; unrelated files were not changed",
+  "html_checks": {
+    "local_links_checked": 25,
+    "no_missing_files": true,
+    "all_duration_labels_correct": true,
+    "browser_interaction_tested": false
+  },
+  "visual_inspection": [
+    "headline_comparison.png",
+    "duration_comparison.png",
+    "populations_c0.001.png"
+  ]
+}

@@ -4,16 +4,16 @@
 
 % Experimentally, this limit is probed by weak-drive spectroscopy, in which a continuous tone is swept across the qubit transition while monitoring the excited-state population\cite{PhysRevLett.107.240501,PhysRevX.9.041041,spec123}. In this regime, the drive amplitude must remain sufficiently small to avoid power broadening, allowing the measured linewidth to approach the intrinsic decoherence-limited value.Increasing the drive strength enhances signal visibility but leads to transition saturation and a corresponding linewidth that grows approximately linearly with the drive amplitude. Conversely, excessively weak driving results in poor contrast and limits spectral resolvability. As a result, conventional spectroscopy operates within a narrow range of drive amplitudes that balances signal strength against power-induced broadening.
 
-\begin{figure*}
+\begin{figure}[t]
     \centering
-    \includegraphics[width=1\linewidth]{../figures/paper/01_pulse_mechanism.png}
+    \includegraphics[width=\columnwidth]{../figures/paper/01_pulse_mechanism.pdf}
     \caption{
     Pulse waveform and echo-cancellation mechanism.
     (a) Signed echo-root-Lorentzian drive envelope with peak amplitude $\Omega_0/(2\pi)=15~\mathrm{MHz}$ and a $\pi$ phase inversion at the pulse midpoint.
     (b) Normalized magnitude of the waveform Fourier spectrum, showing the spectral null at zero frequency produced by the phase inversion.
     (c) Unitary two-level excited-state population during the pulse at $\Delta/(2\pi)=0$, $0.10$, and $2.00~\mathrm{MHz}$, without relaxation or dephasing. At resonance, the evolution accumulated during the first half is exactly reversed during the second half, whereas finite detuning prevents complete cancellation.}
     \label{fig:fig1}
-\end{figure*}
+\end{figure}
 
 
 Determining the transition frequency of a quantum system is a fundamental task

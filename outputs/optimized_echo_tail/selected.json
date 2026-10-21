@@ -1,0 +1,69 @@
+{
+  "parameters": [
+    1.1940740839328632,
+    -0.8564975909029772,
+    -2.1948689670855464,
+    -1.606797749978971,
+    -6.232267933392235,
+    -10.457981072060367
+  ],
+  "peak_envelope": 1.0,
+  "loss": 390.31724621544527,
+  "all_accepted": true,
+  "rows": [
+    {
+      "amplitude_mhz": 50.505050505050505,
+      "center_hz": -24.594382933813797,
+      "fwhm_hz": 83529.42519384365,
+      "contrast": 0.27667489399244793,
+      "accepted": true,
+      "contrast_snr": 10.024846404255692,
+      "shoulder_contrast": 0.27744424198756124,
+      "contrast_per_mhz": 3.321515039086006,
+      "center_population": 0.16311118428467003,
+      "shoulder_population": 0.44055542627223127,
+      "max_final_pf": 0.00012465760827911758
+    },
+    {
+      "amplitude_mhz": 74.74747474747475,
+      "center_hz": 289.386788064882,
+      "fwhm_hz": 72276.39361700391,
+      "contrast": 0.2992001744086303,
+      "accepted": true,
+      "contrast_snr": 10.308098810039795,
+      "shoulder_contrast": 0.2998394022616836,
+      "contrast_per_mhz": 4.148510838138203,
+      "center_population": 0.22359337286671202,
+      "shoulder_population": 0.5234327751283956,
+      "max_final_pf": 0.0002628867021082545
+    },
+    {
+      "amplitude_mhz": 100.0,
+      "center_hz": -384.7802362330867,
+      "fwhm_hz": 77741.5914223602,
+      "contrast": 0.33037260218597025,
+      "accepted": true,
+      "contrast_snr": 11.246979443619418,
+      "shoulder_contrast": 0.33102236600965274,
+      "contrast_per_mhz": 4.257982888609138,
+      "center_population": 0.2568495297465442,
+      "shoulder_population": 0.5878718957561969,
+      "max_final_pf": 0.0004529027970959849
+    }
+  ],
+  "worst_fwhm_khz": 83.52942519384365,
+  "minimum_snr": 10.024846404255692,
+  "max_center_khz": 0.3847802362330867,
+  "target_points": 0,
+  "evaluations": 607,
+  "de_loss": 89.52470945095803,
+  "local_loss": 919437.7473273688,
+  "seed": 20261011,
+  "training_amplitudes_mhz": [
+    50.505050505050505,
+    74.74747474747475,
+    100.0
+  ],
+  "selection": "Lowest worst FWHM with minimum ideal SNR >= 10",
+  "search_target_snr": 10.2
+}

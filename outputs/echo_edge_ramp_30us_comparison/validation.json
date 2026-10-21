@@ -1,0 +1,202 @@
+[
+  {
+    "case": "c0.001_polynomial_beta-0.5",
+    "amplitudes_mhz": [
+      50.505050505050505,
+      74.74747474747475,
+      100.0
+    ],
+    "refined_dt_ns": 0.25,
+    "refined_detuning_step_khz": 2.5,
+    "max_population_difference": 1.0898272625570193e-05,
+    "time_refinement_max_center_hz_change": 0.042839160739561066,
+    "grid_refinement_max_center_hz_change": 0.7492473314390509,
+    "time_refinement_max_fwhm_hz_change": 4.149467058479786,
+    "grid_refinement_max_fwhm_hz_change": 64.36586811492452,
+    "time_refinement_max_contrast_snr_change": 0.000379403325548644,
+    "grid_refinement_max_contrast_snr_change": 0.002306679959193758,
+    "area_matched_comparison": [
+      {
+        "window_amplitude_mhz": 50.505050505050505,
+        "hard_amplitude_mhz": 44.25721475581119,
+        "window_fwhm_khz": 140.29706295910967,
+        "hard_fwhm_khz": 359.59022663360753,
+        "window_snr": 10.209413905294142,
+        "hard_snr": 5.599690701518753,
+        "window_contrast": 0.3061740700005934,
+        "hard_contrast": 0.17425019747556203
+      },
+      {
+        "window_amplitude_mhz": 74.74747474747475,
+        "hard_amplitude_mhz": 65.50067783860057,
+        "window_fwhm_khz": 148.36875152169495,
+        "hard_fwhm_khz": 445.80269660750736,
+        "window_snr": 8.46599469369151,
+        "hard_snr": 3.9944267554739956,
+        "window_contrast": 0.2574214947765892,
+        "hard_contrast": 0.12531548177876867
+      },
+      {
+        "window_amplitude_mhz": 100.0,
+        "hard_amplitude_mhz": 87.62928521650616,
+        "window_fwhm_khz": 152.78400583277593,
+        "hard_fwhm_khz": 489.2140021923654,
+        "window_snr": 7.301377606519277,
+        "hard_snr": 2.9297013759318005,
+        "window_contrast": 0.22369748180469795,
+        "hard_contrast": 0.09223749172034024
+      }
+    ],
+    "passed": true
+  },
+  {
+    "case": "c0.001_ramp6_beta-0.5",
+    "amplitudes_mhz": [
+      50.505050505050505,
+      74.74747474747475,
+      100.0
+    ],
+    "refined_dt_ns": 0.25,
+    "refined_detuning_step_khz": 2.5,
+    "max_population_difference": 7.314327933771736e-06,
+    "time_refinement_max_center_hz_change": 0.10511769234199164,
+    "grid_refinement_max_center_hz_change": 0.9289215813200826,
+    "time_refinement_max_fwhm_hz_change": 15.893889610248152,
+    "grid_refinement_max_fwhm_hz_change": 15.721366971498355,
+    "time_refinement_max_contrast_snr_change": 0.00023845360313945463,
+    "grid_refinement_max_contrast_snr_change": 0.0007558598309289621,
+    "area_matched_comparison": [
+      {
+        "window_amplitude_mhz": 50.505050505050505,
+        "hard_amplitude_mhz": 48.953377187750796,
+        "window_fwhm_khz": 271.5235209550459,
+        "hard_fwhm_khz": 384.3495265140311,
+        "window_snr": 6.781145436142418,
+        "hard_snr": 5.185256492860234,
+        "window_contrast": 0.2096399413134633,
+        "hard_contrast": 0.16173802383151414
+      },
+      {
+        "window_amplitude_mhz": 74.74747474747475,
+        "hard_amplitude_mhz": 72.45099823787119,
+        "window_fwhm_khz": 287.44653915643755,
+        "hard_fwhm_khz": 463.06720341397823,
+        "window_snr": 5.281328729355715,
+        "hard_snr": 3.6280086534974054,
+        "window_contrast": 0.16454692598938475,
+        "hard_contrast": 0.1139800214087533
+      },
+      {
+        "window_amplitude_mhz": 100.0,
+        "hard_amplitude_mhz": 96.92768683174657,
+        "window_fwhm_khz": 274.1320654114825,
+        "hard_fwhm_khz": 499.5672986350983,
+        "window_snr": 4.280979725952091,
+        "hard_snr": 2.604198101976395,
+        "window_contrast": 0.13383812207078083,
+        "hard_contrast": 0.08204923568052197
+      }
+    ],
+    "passed": true
+  },
+  {
+    "case": "c0.003_polynomial_beta-0.5",
+    "amplitudes_mhz": [
+      50.505050505050505,
+      74.74747474747475,
+      100.0
+    ],
+    "refined_dt_ns": 0.25,
+    "refined_detuning_step_khz": 2.5,
+    "max_population_difference": 4.2039604845056644e-05,
+    "time_refinement_max_center_hz_change": 0.23315454220210086,
+    "grid_refinement_max_center_hz_change": 0.6833598557402638,
+    "time_refinement_max_fwhm_hz_change": 9.827082826959668,
+    "grid_refinement_max_fwhm_hz_change": 85.46866274331114,
+    "time_refinement_max_contrast_snr_change": 0.0013978996551289313,
+    "grid_refinement_max_contrast_snr_change": 0.0012782684707115521,
+    "area_matched_comparison": [
+      {
+        "window_amplitude_mhz": 50.505050505050505,
+        "hard_amplitude_mhz": 43.314330316481374,
+        "window_fwhm_khz": 155.61560281360877,
+        "hard_fwhm_khz": 513.7851675812436,
+        "window_snr": 5.88558066386055,
+        "hard_snr": 1.7636447011202832,
+        "window_contrast": 0.18165922072945673,
+        "hard_contrast": 0.055624490677075644
+      },
+      {
+        "window_amplitude_mhz": 74.74747474747475,
+        "hard_amplitude_mhz": 64.10520886839244,
+        "window_fwhm_khz": 157.90181162174576,
+        "hard_fwhm_khz": 377.78972198583836,
+        "window_snr": 4.805100472008816,
+        "hard_snr": 1.0518038465417379,
+        "window_contrast": 0.1489672709364993,
+        "hard_contrast": 0.033170465283387074
+      },
+      {
+        "window_amplitude_mhz": 100.0,
+        "hard_amplitude_mhz": 85.76237402663313,
+        "window_fwhm_khz": 160.53347417029548,
+        "hard_fwhm_khz": 347.5822333862885,
+        "window_snr": 4.161313937734682,
+        "hard_snr": 0.7353955388731586,
+        "window_contrast": 0.12929920912309978,
+        "hard_contrast": 0.02318400558921574
+      }
+    ],
+    "passed": true
+  },
+  {
+    "case": "c0.005_polynomial_beta-0.5",
+    "amplitudes_mhz": [
+      50.505050505050505,
+      74.74747474747475,
+      100.0
+    ],
+    "refined_dt_ns": 0.25,
+    "refined_detuning_step_khz": 2.5,
+    "max_population_difference": 7.069811828885886e-05,
+    "time_refinement_max_center_hz_change": 1.5440616586714668,
+    "grid_refinement_max_center_hz_change": 0.3347637544313784,
+    "time_refinement_max_fwhm_hz_change": 8.57612950951443,
+    "grid_refinement_max_fwhm_hz_change": 28.122669921896886,
+    "time_refinement_max_contrast_snr_change": 0.002317592482261599,
+    "grid_refinement_max_contrast_snr_change": 0.0006892141832790522,
+    "area_matched_comparison": [
+      {
+        "window_amplitude_mhz": 50.505050505050505,
+        "hard_amplitude_mhz": 42.72934515287113,
+        "window_fwhm_khz": 159.06292350334962,
+        "hard_fwhm_khz": 349.2934531968901,
+        "window_snr": 4.534771043160597,
+        "hard_snr": 0.9037366109493639,
+        "window_contrast": 0.14072376891820304,
+        "hard_contrast": 0.02849691576343838
+      },
+      {
+        "window_amplitude_mhz": 74.74747474747475,
+        "hard_amplitude_mhz": 63.23943082624929,
+        "window_fwhm_khz": 162.47968700666468,
+        "hard_fwhm_khz": 367.8799198138214,
+        "window_snr": 3.771373368930332,
+        "hard_snr": 0.6302429470045604,
+        "window_contrast": 0.11733468193033642,
+        "hard_contrast": 0.019866042185897215
+      },
+      {
+        "window_amplitude_mhz": 100.0,
+        "hard_amplitude_mhz": 84.60410340268484,
+        "window_fwhm_khz": 166.99614702303938,
+        "hard_fwhm_khz": 436.72174936377934,
+        "window_snr": 3.3338167776719025,
+        "hard_snr": 0.5268195902159674,
+        "window_contrast": 0.1038707567219263,
+        "hard_contrast": 0.0166030234687653
+      }
+    ],
+    "passed": true
+  }
+]

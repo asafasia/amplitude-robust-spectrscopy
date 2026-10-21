@@ -1,0 +1,22 @@
+{
+  "search_maps_verified": 459,
+  "amplitudes_per_search_map": 100,
+  "frequency_points_per_search_map": 101,
+  "local_links_checked": 19,
+  "source_hashes_checked": 11,
+  "refined_full_maps": 2,
+  "midpoint_maps": 2,
+  "wide_maps": 2,
+  "scoped_whitespace": "passed",
+  "objective_tests": 5,
+  "focused_model_and_metric_tests": 48,
+  "plots_visually_checked": [
+    "comparison",
+    "populations",
+    "spectra",
+    "wide_spectra",
+    "waveforms",
+    "full_range",
+    "search_tradeoff"
+  ]
+}

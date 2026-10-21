@@ -1,0 +1,35 @@
+# Supplemental figures, matched to the extended cutoff map (Fig. S9).
+# Render at 7.2 inches and include at full text width for consistent type sizes.
+font.family: DejaVu Sans
+font.size: 9
+mathtext.fontset: dejavusans
+axes.labelsize: 9
+axes.titlesize: 9
+axes.titleweight: normal
+axes.titlelocation: left
+axes.linewidth: 0.6
+axes.grid: False
+axes.spines.top: True
+axes.spines.right: True
+xtick.labelsize: 8
+ytick.labelsize: 8
+xtick.direction: out
+ytick.direction: out
+xtick.major.size: 3.5
+ytick.major.size: 3.5
+xtick.major.width: 0.6
+ytick.major.width: 0.6
+xtick.minor.visible: False
+ytick.minor.visible: False
+lines.linewidth: 1.0
+lines.markersize: 3
+legend.fontsize: 8
+legend.title_fontsize: 8
+legend.frameon: False
+legend.handlelength: 1.8
+pdf.fonttype: 42
+ps.fonttype: 42
+svg.fonttype: none
+figure.facecolor: white
+savefig.facecolor: white
+savefig.dpi: 300

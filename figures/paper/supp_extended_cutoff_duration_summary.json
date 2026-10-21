@@ -1,0 +1,40 @@
+{
+  "selection": "Maximize minimum contrast/FWHM over sampled drives >=10 MHz; require accepted dips at every drive. No interpolation.",
+  "results": [
+    {
+      "duration_us": 10.0,
+      "cutoff": 0.0026560877829466868,
+      "maximum_fwhm_khz": 362.4787131755853,
+      "minimum_contrast": 0.5740893734540624,
+      "minimum_contrast_per_mhz": 1.7402019716882167
+    },
+    {
+      "duration_us": 20.0,
+      "cutoff": 0.0011768119524349979,
+      "maximum_fwhm_khz": 205.06345903204118,
+      "minimum_contrast": 0.4516647423384204,
+      "minimum_contrast_per_mhz": 2.2702608354806806
+    },
+    {
+      "duration_us": 30.0,
+      "cutoff": 0.0006579332246575682,
+      "maximum_fwhm_khz": 154.90194908288186,
+      "minimum_contrast": 0.32120997381136085,
+      "minimum_contrast_per_mhz": 2.3286158659869467
+    },
+    {
+      "duration_us": 45.0,
+      "cutoff": 0.0003678379771828634,
+      "maximum_fwhm_khz": 133.17433385866795,
+      "minimum_contrast": 0.20228529530302647,
+      "minimum_contrast_per_mhz": 1.9438537834238634
+    },
+    {
+      "duration_us": 60.0,
+      "cutoff": 0.0002310129700083158,
+      "maximum_fwhm_khz": 145.37817839702853,
+      "minimum_contrast": 0.12262674228562111,
+      "minimum_contrast_per_mhz": 1.3706431224616316
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+\section{Additional Spectral Comparisons}
+\label{sec:additional-spectral-comparisons}
+\label{sec:fixed-amplitude-spectra}
+
+\subsection{Fixed-amplitude spectra}
+
+Figure~\ref{fig:simulation-results} resolves the narrow-detuning maps of
+main-text Fig.~2 into five measured amplitude slices per protocol. The
+nearest acquired rows to nominal peak Rabi frequencies of 3, 10, 20, 30,
+and $40~\mathrm{MHz}$ are selected without optimizing their agreement with
+the model. The three-level calculation uses the exact acquired drive values
+and all 501 measured detunings over $\pm0.5~\mathrm{MHz}$, with the same
+primary-qubit model parameters as main-text Fig.~2. Each measured point
+contains 2000 repetitions. Halving the integration step at all five drives
+and seven representative detunings changes $P_e$ by less than
+$1.2\times10^{-5}$. This checks numerical accuracy independently of
+the model's agreement with experiment.
+
+To compare line shapes independently of their absolute offsets, we subtract
+each trace's mean over the full displayed detuning interval and add the same
+stacking offset to its experimental and simulated members. The vertical scale
+is common to every trace: no contrast normalization, gain adjustment,
+frequency shift, or smoothing of the measured data is applied. This display
+retains differences in feature depth, width, and center, while removing only
+a constant population background. The unaligned maps remain in the main text.
+
+\input{figures/03_simulation_results_float}
+
+\subsection{Duration--contrast tradeoff}
+
+Figure~\ref{fig:duration-resolution-comparison} quantifies the tradeoff between
+pulse duration, linewidth, and signal contrast at fixed cutoff $c=0.005$.
+The continuous curves show the simulated response, while the markers show the
+experimental data.  Panels (a) and (b) separate spectral narrowing from signal
+loss: longer pulses reach smaller FWHM relative to the $T_2$ limit, but their
+fitted contrast remains lower over the usable drive range.  Their
+contrast-weighted operating windows in panel (c) therefore contract despite
+the high resolution.  Pulse duration must consequently be selected jointly
+with contrast and experimental signal quality, rather than by linewidth alone.
+
+\begin{figure*}[!tp]
+    \centering
+    \includegraphics[width=\textwidth]{%
+        ../figures/paper/supplemental/s03_duration_resolution.pdf}
+    \caption{Resolution--contrast performance versus peak Rabi frequency up
+    to $25~\mathrm{MHz}$ for echo-root-Lorentzian pulses with $c=0.005$ and
+    $L=5$, 10, 15, 20, and $30~\mu\mathrm{s}$.  Colored continuous lines show
+    two-level simulations, and colored markers show OPX1000 data.  (a) Fitted
+    FWHM in units of the coherence-limited reference,
+    $\Gamma_f/\Gamma_{f,T_2}$, with the dashed line marking
+    $\Gamma_f/\Gamma_{f,T_2}=1$; (b) fitted contrast $A$; and (c)
+    contrast-weighted resolution
+    $Q=AR=A\Gamma_{f,T_2}/\Gamma_f$.  The red curve is the constant-drive
+    reference from the Bloch equations, and the dashed line in (c) marks $Q=0.10$.}
+    \label{fig:duration-resolution-comparison}
+\end{figure*}
+

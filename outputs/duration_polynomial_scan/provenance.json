@@ -1,0 +1,718 @@
+{
+  "parameters": {
+    "duration_us": "scanned",
+    "t1_us": 51.24,
+    "t_phi_us": 7.871480508563624,
+    "anharmonicity_mhz": -216.0,
+    "order": 0.5,
+    "echo": true,
+    "echo_transition_shape": "sine",
+    "echo_transition_us": 0.016,
+    "stark_kappa_mhz_inv": 0.0,
+    "drag_beta": -0.5
+  },
+  "t2_us": 7.31,
+  "coherence_reference_khz": 43.54444407438997,
+  "screen_cases": [
+    {
+      "duration_us": 30.0,
+      "power": 3.0,
+      "family": "raw",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.015000007500005626
+    },
+    {
+      "duration_us": 30.0,
+      "power": 3.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.015000007500005626
+    },
+    {
+      "duration_us": 30.0,
+      "power": 8.0,
+      "family": "raw",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.015000007500005626
+    },
+    {
+      "duration_us": 30.0,
+      "power": 8.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.015000007500005626
+    },
+    {
+      "duration_us": 30.0,
+      "power": 16.0,
+      "family": "raw",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.015000007500005626
+    },
+    {
+      "duration_us": 30.0,
+      "power": 16.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.015000007500005626
+    },
+    {
+      "duration_us": 30.0,
+      "power": 32.0,
+      "family": "raw",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.015000007500005626
+    },
+    {
+      "duration_us": 30.0,
+      "power": 32.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.015000007500005626
+    },
+    {
+      "duration_us": 30.0,
+      "power": 64.0,
+      "family": "raw",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.015000007500005626
+    },
+    {
+      "duration_us": 30.0,
+      "power": 64.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.015000007500005626
+    },
+    {
+      "duration_us": 30.0,
+      "power": 128.0,
+      "family": "raw",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.015000007500005626
+    },
+    {
+      "duration_us": 30.0,
+      "power": 128.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.015000007500005626
+    },
+    {
+      "duration_us": 45.0,
+      "power": 3.0,
+      "family": "raw",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.022500011250008438
+    },
+    {
+      "duration_us": 45.0,
+      "power": 3.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.022500011250008438
+    },
+    {
+      "duration_us": 45.0,
+      "power": 8.0,
+      "family": "raw",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.022500011250008438
+    },
+    {
+      "duration_us": 45.0,
+      "power": 8.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.022500011250008438
+    },
+    {
+      "duration_us": 45.0,
+      "power": 16.0,
+      "family": "raw",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.022500011250008438
+    },
+    {
+      "duration_us": 45.0,
+      "power": 16.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.022500011250008438
+    },
+    {
+      "duration_us": 45.0,
+      "power": 32.0,
+      "family": "raw",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.022500011250008438
+    },
+    {
+      "duration_us": 45.0,
+      "power": 32.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.022500011250008438
+    },
+    {
+      "duration_us": 45.0,
+      "power": 64.0,
+      "family": "raw",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.022500011250008438
+    },
+    {
+      "duration_us": 45.0,
+      "power": 64.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.022500011250008438
+    },
+    {
+      "duration_us": 45.0,
+      "power": 128.0,
+      "family": "raw",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.022500011250008438
+    },
+    {
+      "duration_us": 45.0,
+      "power": 128.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.022500011250008438
+    },
+    {
+      "duration_us": 60.0,
+      "power": 3.0,
+      "family": "raw",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.030000015000011253
+    },
+    {
+      "duration_us": 60.0,
+      "power": 3.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.030000015000011253
+    },
+    {
+      "duration_us": 60.0,
+      "power": 8.0,
+      "family": "raw",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.030000015000011253
+    },
+    {
+      "duration_us": 60.0,
+      "power": 8.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.030000015000011253
+    },
+    {
+      "duration_us": 60.0,
+      "power": 16.0,
+      "family": "raw",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.030000015000011253
+    },
+    {
+      "duration_us": 60.0,
+      "power": 16.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.030000015000011253
+    },
+    {
+      "duration_us": 60.0,
+      "power": 32.0,
+      "family": "raw",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.030000015000011253
+    },
+    {
+      "duration_us": 60.0,
+      "power": 32.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.030000015000011253
+    },
+    {
+      "duration_us": 60.0,
+      "power": 64.0,
+      "family": "raw",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.030000015000011253
+    },
+    {
+      "duration_us": 60.0,
+      "power": 64.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.030000015000011253
+    },
+    {
+      "duration_us": 60.0,
+      "power": 128.0,
+      "family": "raw",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.030000015000011253
+    },
+    {
+      "duration_us": 60.0,
+      "power": 128.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.030000015000011253
+    },
+    {
+      "duration_us": 90.0,
+      "power": 3.0,
+      "family": "raw",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.045000022500016876
+    },
+    {
+      "duration_us": 90.0,
+      "power": 3.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.045000022500016876
+    },
+    {
+      "duration_us": 90.0,
+      "power": 8.0,
+      "family": "raw",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.045000022500016876
+    },
+    {
+      "duration_us": 90.0,
+      "power": 8.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.045000022500016876
+    },
+    {
+      "duration_us": 90.0,
+      "power": 16.0,
+      "family": "raw",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.045000022500016876
+    },
+    {
+      "duration_us": 90.0,
+      "power": 16.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.045000022500016876
+    },
+    {
+      "duration_us": 90.0,
+      "power": 32.0,
+      "family": "raw",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.045000022500016876
+    },
+    {
+      "duration_us": 90.0,
+      "power": 32.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.045000022500016876
+    },
+    {
+      "duration_us": 90.0,
+      "power": 64.0,
+      "family": "raw",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.045000022500016876
+    },
+    {
+      "duration_us": 90.0,
+      "power": 64.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.045000022500016876
+    },
+    {
+      "duration_us": 90.0,
+      "power": 128.0,
+      "family": "raw",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.045000022500016876
+    },
+    {
+      "duration_us": 90.0,
+      "power": 128.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.045000022500016876
+    },
+    {
+      "duration_us": 120.0,
+      "power": 3.0,
+      "family": "raw",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.060000030000022506
+    },
+    {
+      "duration_us": 120.0,
+      "power": 3.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.060000030000022506
+    },
+    {
+      "duration_us": 120.0,
+      "power": 8.0,
+      "family": "raw",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.060000030000022506
+    },
+    {
+      "duration_us": 120.0,
+      "power": 8.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.060000030000022506
+    },
+    {
+      "duration_us": 120.0,
+      "power": 16.0,
+      "family": "raw",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.060000030000022506
+    },
+    {
+      "duration_us": 120.0,
+      "power": 16.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.060000030000022506
+    },
+    {
+      "duration_us": 120.0,
+      "power": 32.0,
+      "family": "raw",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.060000030000022506
+    },
+    {
+      "duration_us": 120.0,
+      "power": 32.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.060000030000022506
+    },
+    {
+      "duration_us": 120.0,
+      "power": 64.0,
+      "family": "raw",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.060000030000022506
+    },
+    {
+      "duration_us": 120.0,
+      "power": 64.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.060000030000022506
+    },
+    {
+      "duration_us": 120.0,
+      "power": 128.0,
+      "family": "raw",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.060000030000022506
+    },
+    {
+      "duration_us": 120.0,
+      "power": 128.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.060000030000022506
+    },
+    {
+      "duration_us": 60.0,
+      "power": 3.0,
+      "family": "raw",
+      "scaling": "core",
+      "cutoff": 0.0005000001875001055,
+      "sigma_us": 0.015000007500005628
+    },
+    {
+      "duration_us": 60.0,
+      "power": 8.0,
+      "family": "raw",
+      "scaling": "core",
+      "cutoff": 0.0005000001875001055,
+      "sigma_us": 0.015000007500005628
+    },
+    {
+      "duration_us": 60.0,
+      "power": 16.0,
+      "family": "raw",
+      "scaling": "core",
+      "cutoff": 0.0005000001875001055,
+      "sigma_us": 0.015000007500005628
+    },
+    {
+      "duration_us": 60.0,
+      "power": 32.0,
+      "family": "raw",
+      "scaling": "core",
+      "cutoff": 0.0005000001875001055,
+      "sigma_us": 0.015000007500005628
+    },
+    {
+      "duration_us": 60.0,
+      "power": 64.0,
+      "family": "raw",
+      "scaling": "core",
+      "cutoff": 0.0005000001875001055,
+      "sigma_us": 0.015000007500005628
+    },
+    {
+      "duration_us": 60.0,
+      "power": 128.0,
+      "family": "raw",
+      "scaling": "core",
+      "cutoff": 0.0005000001875001055,
+      "sigma_us": 0.015000007500005628
+    },
+    {
+      "duration_us": 120.0,
+      "power": 3.0,
+      "family": "raw",
+      "scaling": "core",
+      "cutoff": 0.0002500001171875824,
+      "sigma_us": 0.015000007500005626
+    },
+    {
+      "duration_us": 120.0,
+      "power": 8.0,
+      "family": "raw",
+      "scaling": "core",
+      "cutoff": 0.0002500001171875824,
+      "sigma_us": 0.015000007500005626
+    },
+    {
+      "duration_us": 120.0,
+      "power": 16.0,
+      "family": "raw",
+      "scaling": "core",
+      "cutoff": 0.0002500001171875824,
+      "sigma_us": 0.015000007500005626
+    },
+    {
+      "duration_us": 120.0,
+      "power": 32.0,
+      "family": "raw",
+      "scaling": "core",
+      "cutoff": 0.0002500001171875824,
+      "sigma_us": 0.015000007500005626
+    },
+    {
+      "duration_us": 120.0,
+      "power": 64.0,
+      "family": "raw",
+      "scaling": "core",
+      "cutoff": 0.0002500001171875824,
+      "sigma_us": 0.015000007500005626
+    },
+    {
+      "duration_us": 120.0,
+      "power": 128.0,
+      "family": "raw",
+      "scaling": "core",
+      "cutoff": 0.0002500001171875824,
+      "sigma_us": 0.015000007500005626
+    },
+    {
+      "duration_us": 30.0,
+      "power": 4.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.015000007500005626
+    },
+    {
+      "duration_us": 30.0,
+      "power": 5.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.015000007500005626
+    },
+    {
+      "duration_us": 30.0,
+      "power": 6.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.015000007500005626
+    },
+    {
+      "duration_us": 35.0,
+      "power": 6.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.017500008750006565
+    },
+    {
+      "duration_us": 35.0,
+      "power": 8.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.017500008750006565
+    },
+    {
+      "duration_us": 35.0,
+      "power": 12.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.017500008750006565
+    },
+    {
+      "duration_us": 40.0,
+      "power": 8.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.0200000100000075
+    },
+    {
+      "duration_us": 40.0,
+      "power": 12.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.0200000100000075
+    },
+    {
+      "duration_us": 40.0,
+      "power": 16.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.0200000100000075
+    },
+    {
+      "duration_us": 45.0,
+      "power": 24.0,
+      "family": "subtracted",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.022500011250008438
+    },
+    {
+      "duration_us": 30.0,
+      "power": 7.0,
+      "family": "raw",
+      "scaling": "cutoff",
+      "cutoff": 0.001,
+      "sigma_us": 0.015000007500005626
+    }
+  ],
+  "screen_amplitude_indices": [
+    50,
+    74,
+    99
+  ],
+  "full_amplitude_points": 100,
+  "amplitude_range_mhz": [
+    0,
+    100
+  ],
+  "detuning_range_mhz": [
+    -0.5,
+    0.5
+  ],
+  "detuning_step_khz": 5,
+  "dt_ns": 0.5,
+  "refined_dt_ns": 0.25,
+  "refined_detuning_step_khz": 2.5,
+  "normalization": "Unsigned base envelope equals 1 at midpoint before sine echo; no signed-pulse peak or area normalization.",
+  "subtraction": "(f-c)/(1-c), then multiply by polynomial window",
+  "fixed_core_sigma_us": 0.015000007500005626,
+  "target": "FWHM <= 50 kHz and ideal SNR >= 10 at every high-amplitude point",
+  "snr": "1000 ideal Bernoulli shots: 500 center, 250 each +/-0.45 MHz",
+  "width": "Nearest half-depth crossings relative to linear background at |detuning| >= 0.4 MHz; finite-window-dependent metric",
+  "computation_sha256": {
+    "echospec/simulation/qutrit.py": "58891d88564eb9d3b5ed592fa69b52c3fb5cec9e7178471c5039e5b8c07c6b15",
+    "echospec/simulation/edge_window.py": "13653bdeb1ba393dd8d969152143380328a791080f598cfd00bee31cb1dabc2b",
+    "echospec/simulation/qutrit_native.py": "e26a097b8d803b1c2da8f0ad56222fff59456e02a445f33d22629a0f639a6dd9",
+    "echospec/simulation/qutrit_rk4.cpp": "493150abcad473a10ff4128c3b42a5f0ddfd0cdd8fe4c1cf09a936858068bab6",
+    "specification": "3d52f6b94e463415f18a34566984398afe476f758ba8820437111530724e23fb",
+    "envelope": "e5cfceba1c9852cf90bb2cfd228ab7e098f7f0ddd016fdfdd811a329ed004a31",
+    "drive": "c36ca07eeccde02727b8a4083321d7f11c9cba78ca7b65b3887b6cfc6d2643a0",
+    "simulate": "5a583986104b0216be9ee66c607852fd716209e133bc14e890a45d68c38a03c9"
+  },
+  "python_version": "3.12.0 (v3.12.0:0fb18b02c8, Oct  2 2023, 09:45:56) [Clang 13.0.0 (clang-1300.0.29.30)]",
+  "numpy_version": "2.4.0"
+}

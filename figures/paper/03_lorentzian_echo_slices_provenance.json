@@ -60,5 +60,70 @@
     "rmse": 0.05366150661068283,
     "warning": "Applied uniformly for line-shape comparison; not a calibrated readout-assignment correction."
   },
-  "builder": "scripts/make_figure3_left_exp_sim.py"
+  "builder": "scripts/make_figure3_left_exp_sim.py",
+  "per_panel_simulation_alignment": {
+    "model": "simulation + offset; fixed gain and detuning",
+    "objective": "Unweighted sum of squared residuals over all 501 measured points per panel, -0.5 to +0.5 MHz",
+    "estimator": "Mean of experiment minus simulation interpolated at measured detunings",
+    "experimental_reference": "Existing globally aligned experimental CSV; original global gain/offset retained",
+    "source_sha256": "165b5c93b5adc270836fe49cf59b44710dc58617ef8342e63f841c7370c635b8",
+    "maximum_absolute_offset": 0.0634914509349366,
+    "fits": [
+      {
+        "panel": "a",
+        "target_rabi_mhz": 3.0,
+        "simulation_series": "current_noecho_three_level_simulation",
+        "offset": 0.0634914509349366,
+        "rmse_before": 0.06514296951029404,
+        "rmse_after": 0.014575394841843468,
+        "sample_count": 501
+      },
+      {
+        "panel": "b",
+        "target_rabi_mhz": 3.0,
+        "simulation_series": "current_echo_three_level_simulation",
+        "offset": 0.05649467603570132,
+        "rmse_before": 0.058608366635660894,
+        "rmse_after": 0.015597827391056864,
+        "sample_count": 501
+      },
+      {
+        "panel": "c",
+        "target_rabi_mhz": 20.0,
+        "simulation_series": "current_noecho_three_level_simulation",
+        "offset": -0.024342780363991977,
+        "rmse_before": 0.03706401887008851,
+        "rmse_after": 0.027949428240175576,
+        "sample_count": 501
+      },
+      {
+        "panel": "d",
+        "target_rabi_mhz": 20.0,
+        "simulation_series": "current_echo_three_level_simulation",
+        "offset": -0.028767434183765647,
+        "rmse_before": 0.04471451838483941,
+        "rmse_after": 0.034231898645427965,
+        "sample_count": 501
+      },
+      {
+        "panel": "e",
+        "target_rabi_mhz": 40.0,
+        "simulation_series": "current_noecho_three_level_simulation",
+        "offset": -0.05908409445253123,
+        "rmse_before": 0.06595738209528179,
+        "rmse_after": 0.02931631006090921,
+        "sample_count": 501
+      },
+      {
+        "panel": "f",
+        "target_rabi_mhz": 40.0,
+        "simulation_series": "current_echo_three_level_simulation",
+        "offset": -0.007791817970348271,
+        "rmse_before": 0.04330462714303842,
+        "rmse_after": 0.04259786737284553,
+        "sample_count": 501
+      }
+    ],
+    "warning": "Display alignment, not a calibrated readout-assignment correction or proof of its cause"
+  }
 }

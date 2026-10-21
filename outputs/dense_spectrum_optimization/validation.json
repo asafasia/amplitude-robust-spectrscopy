@@ -1,0 +1,22 @@
+[
+  {
+    "tag": "spectrum",
+    "amplitude_points": 100,
+    "max_population_change": 1.806459702929919e-05,
+    "max_fwhm_change_hz": 66.04394298265106,
+    "max_snr_change": 0.004926634142002229,
+    "refined_minimum_snr": 12.759587689917042,
+    "refined_worst_fwhm_khz": 162.67650840098372,
+    "refined_max_satellite_prominence": 0.0010241573406666316
+  },
+  {
+    "tag": "narrow",
+    "amplitude_points": 100,
+    "max_population_change": 1.746026582349902e-05,
+    "max_fwhm_change_hz": 73.32558874494862,
+    "max_snr_change": 0.004937556942058663,
+    "refined_minimum_snr": 12.067973497861392,
+    "refined_worst_fwhm_khz": 143.9684881665637,
+    "refined_max_satellite_prominence": 0.013235046523574545
+  }
+]

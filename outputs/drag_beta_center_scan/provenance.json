@@ -1,0 +1,104 @@
+{
+  "parameters": {
+    "duration_us": 20.0,
+    "cutoff": 0.005,
+    "echo": true,
+    "order": 0.5,
+    "echo_transition_us": 0.016,
+    "echo_transition_shape": "sine",
+    "t1_us": 51.24,
+    "t_phi_us": 7.871480508563624,
+    "anharmonicity_mhz": -216.0,
+    "stark_kappa_mhz_inv": 0.0,
+    "integration_backend": "native"
+  },
+  "beta": [
+    -1.0,
+    -0.9,
+    -0.8,
+    -0.7,
+    -0.6,
+    -0.56,
+    -0.555,
+    -0.55,
+    -0.545,
+    -0.54,
+    -0.535,
+    -0.53,
+    -0.525,
+    -0.52,
+    -0.515,
+    -0.51,
+    -0.505,
+    -0.5,
+    -0.495,
+    -0.49,
+    -0.485,
+    -0.48,
+    -0.475,
+    -0.47,
+    -0.465,
+    -0.46,
+    -0.455,
+    -0.45,
+    -0.445,
+    -0.44,
+    -0.4,
+    -0.3,
+    -0.2,
+    -0.1,
+    0.0
+  ],
+  "rabi_mhz": [
+    10.0,
+    15.453771244999999,
+    20.907542489999997,
+    26.361313735,
+    31.815084979999998,
+    37.26885622499999,
+    42.72262747
+  ],
+  "objective": "RMS of seven raw central-dip positions about zero detuning",
+  "extraction": "Three-point parabolic interpolation; no Gaussian fitting",
+  "detuning_mhz": [
+    -0.06,
+    0.06
+  ],
+  "detuning_step_khz": 1.0,
+  "time_step_ns": 0.5,
+  "best_sampled_beta": -0.495,
+  "best_rms_center_hz": 98.79509960181582,
+  "beta_zero_rms_center_hz": 7639.07516865014,
+  "convergence": {
+    "time_step_ns": 0.25,
+    "detuning_step_khz": 0.5,
+    "checks": [
+      {
+        "beta": -0.5,
+        "rms_center_hz": 124.54621938846498,
+        "max_center_change_hz": 0.09743544246963864,
+        "max_population_change": 4.764229636355921e-07
+      },
+      {
+        "beta": -0.495,
+        "rms_center_hz": 98.76938445548858,
+        "max_center_change_hz": 0.09529672294077329,
+        "max_population_change": 4.771458398389328e-07
+      },
+      {
+        "beta": -0.49,
+        "rms_center_hz": 125.31976127551879,
+        "max_center_change_hz": 0.09316894646377705,
+        "max_population_change": 4.778921377512901e-07
+      }
+    ]
+  },
+  "source_sha256": {
+    "scripts/scan_drag_beta_center.py": "0396c7513794345eef59388d35160215c2573d48366d00bee56273a5eacfb6ab",
+    "echospec/simulation/qutrit.py": "58891d88564eb9d3b5ed592fa69b52c3fb5cec9e7178471c5039e5b8c07c6b15",
+    "echospec/simulation/qutrit_native.py": "e26a097b8d803b1c2da8f0ad56222fff59456e02a445f33d22629a0f639a6dd9",
+    "echospec/simulation/qutrit_rk4.cpp": "493150abcad473a10ff4128c3b42a5f0ddfd0cdd8fe4c1cf09a936858068bab6"
+  },
+  "reproduce": ".venv/bin/python scripts/scan_drag_beta_center.py",
+  "limitation": "Finite-grid simulation minimum for this pulse and center objective; not experimental optimization or minimum leakage"
+}

@@ -1,0 +1,93 @@
+{
+  "parameters": [
+    -0.894577209369823,
+    -0.42671665071182585,
+    0.15771084057507423,
+    -1.1842948602306909,
+    -5.061788804619578,
+    -8.044265912280391
+  ],
+  "peak_envelope": 1.0,
+  "loss": 133.099211595516,
+  "all_accepted": true,
+  "rows": [
+    {
+      "amplitude_mhz": 50.505050505050505,
+      "center_hz": -27.586928608576976,
+      "fwhm_hz": 128249.70471226299,
+      "contrast": 0.33084388176439694,
+      "accepted": true,
+      "contrast_snr": 11.555502117378671,
+      "shoulder_contrast": 0.33158297120414687,
+      "contrast_per_mhz": 2.5854482234331533,
+      "center_population": 0.20511536817565063,
+      "shoulder_population": 0.5366983393797975,
+      "max_final_pf": 7.704266912826747e-05
+    },
+    {
+      "amplitude_mhz": 74.74747474747475,
+      "center_hz": -405.9419032876689,
+      "fwhm_hz": 131577.1844207701,
+      "contrast": 0.3781826504728697,
+      "accepted": true,
+      "contrast_snr": 13.132638018501568,
+      "shoulder_contrast": 0.3784716116512825,
+      "contrast_per_mhz": 2.8764227880190063,
+      "center_population": 0.22981016653414968,
+      "shoulder_population": 0.6082817781854322,
+      "max_final_pf": 0.00015574293917435808
+    },
+    {
+      "amplitude_mhz": 100.0,
+      "center_hz": -634.4228194123481,
+      "fwhm_hz": 133099.211595516,
+      "contrast": 0.34074963704475647,
+      "accepted": true,
+      "contrast_snr": 11.661702504754473,
+      "shoulder_contrast": 0.3407874297448029,
+      "contrast_per_mhz": 2.560401565566326,
+      "center_population": 0.24316876696050702,
+      "shoulder_population": 0.58395619670531,
+      "max_final_pf": 0.0002688228441334267
+    }
+  ],
+  "worst_fwhm_khz": 133.099211595516,
+  "minimum_snr": 11.555502117378671,
+  "max_center_khz": 0.6344228194123481,
+  "target_points": 0,
+  "max_satellite_prominence": 0.007219601755514948,
+  "satellites": [
+    {
+      "max_prominence": 0.0,
+      "detuning_mhz": [],
+      "prominence": []
+    },
+    {
+      "max_prominence": 0.00064468819624941,
+      "detuning_mhz": [
+        -0.175,
+        0.18000000000000005
+      ],
+      "prominence": [
+        0.00015597593930249953,
+        0.00064468819624941
+      ]
+    },
+    {
+      "max_prominence": 0.007219601755514948,
+      "detuning_mhz": [
+        -0.195,
+        0.20000000000000007
+      ],
+      "prominence": [
+        0.003338883885559474,
+        0.007219601755514948
+      ]
+    }
+  ],
+  "evaluations": 608,
+  "generations": 18,
+  "seed": 20261012,
+  "de_loss": 133.099211595516,
+  "selection": "Minimum worst FWHM with SNR >= 10 and competing-dip prominence <= 0.025"
+}
