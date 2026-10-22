@@ -29,43 +29,27 @@ errors~\cite{motzoi_drag_2009,gambetta_analytic_2011}.
 Figure~\ref{fig:pulse-improvement} compares three-level simulations
 for a $30~\mu\mathrm{s}$ echo-root-Lorentzian pulse with $c=0.001$: an uncorrected outer
 envelope, the same envelope with DRAG, and DRAG with a polynomial edge
-correction. All three retain the same $16~\mathrm{ns}$ sine midpoint
-transition. Thus, panels (a) and (b) isolate the derivative quadrature,
-while (b) and (c) isolate the outer-envelope modification.
-
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=\columnwidth]{../figures/paper/03_pulse_improvement.pdf}
-    \caption{Simulated improvement through pulse shaping.
-    (a)--(c) Final $P_e$ for an echo-root-Lorentzian pulse (echo),
-    echo with DRAG, and echo with DRAG plus
-    cutoff subtraction and a $p=5$ polynomial window, respectively.
-    All use $L=30~\mu\mathrm{s}$, $c=0.001$, a $16~\mathrm{ns}$ sine
-    inversion, $T_1=51.24~\mu\mathrm{s}$, $T_2=7.31~\mu\mathrm{s}$,
-    and $\alpha/(2\pi)=-216~\mathrm{MHz}$. The shared scale saturates
-    above $P_e=0.6$.
-    Thin white dashed lines in (a)--(c) mark
-    $\Delta/(2\pi)=\pm1/(2\pi T_2)$.
-    (d) Contrast $C$, the dip depth in excited-state probability, on a
-    scale from 0 to 1. (e) Dip FWHM. Both use a linear background fitted at
-    $0.4\leq|\Delta/(2\pi)|\leq0.5~\mathrm{MHz}$.
-    The right axis uses $\Gamma_{T_2}=1/(\pi T_2)=43.5~\mathrm{kHz}$
-    as its unit (dotted line).
-    Zero-drive metrics are undefined and omitted.}
-    \label{fig:pulse-improvement}
-\end{figure}
-
-Writing $f(t)=[1+(t/\sigma)^2]^{-1/2}$ with time relative to the midpoint,
-the corrected unsigned envelope is
-\begin{equation}
-    g(t)=\frac{f(t)-c}{1-c}
-    \left[1-\left(\frac{2t}{L}\right)^2\right]^5,
-    \qquad |t|<L/2,
-\end{equation}
-with zero drive outside the pulse and
-$\sigma=(L/2)/\sqrt{c^{-2}-1}$. The sine sign factor $s(t)$ changes
-from $+1$ to $-1$ over $16~\mathrm{ns}$, giving $I(t)=\Omega_0g(t)s(t)$.
-The added DRAG quadrature is
+correction. All three use the same sine-smoothed phase jump $s(t)$ of
+duration $T_s=16~\mathrm{ns}$ at the midpoint. The corrected pulse is
+\begin{align}
+    L_{\mathrm{floor}}^{(1/2)}(t)
+    &=\frac{L^{(1/2)}(t)-c}{1-c},\\
+    W_p(t)&=\left[1-\left(\frac{2t}{L}\right)^2\right]^p,
+    \qquad p=5,\\
+    s(t)&=\begin{cases}
+        +1, & t\leq-T_s/2,\\
+        -\sin(\pi t/T_s), & |t|<T_s/2,\\
+        -1, & t\geq T_s/2,
+    \end{cases}\\
+    L^{\mathrm{smooth}}(t)
+    &=L_{\mathrm{floor}}^{(1/2)}(t)\,s(t)\,W_p(t).
+\end{align}
+Here $|t|<L/2$, $\tau=(L/2)/\sqrt{c^{-2}-1}$, and $W_p=0$ outside
+the pulse. The floor correction removes the endpoint offset, and
+$W_p(t)$ smooths the edges. Thus, (a)--(b) isolate DRAG,
+while (b)--(c) isolate this edge correction.
+With $I(t)=\Omega_0L^{\mathrm{smooth}}(t)$, the added DRAG
+quadrature is
 \begin{equation}
     Q(t)=-\frac{\beta}{|\alpha|}\frac{dI(t)}{dt},
     \label{eq:drag-quadrature}
@@ -76,7 +60,13 @@ AC-Stark-induced detuning~\cite{motzoi_drag_2009,gambetta_analytic_2011},
 as supported by the coefficient scan in the Supplemental
 Material~\cite{SupplementalMaterial}.
 
-DRAG suppresses amplitude-dependent spectral structure but does not, by
+DRAG suppresses amplitude-dependent resonance motion: the interpolated
+center RMS falls from $6.54~\mathrm{kHz}$ for the echo to
+$0.31~\mathrm{kHz}$ with DRAG and $0.29~\mathrm{kHz}$ with DRAG plus
+the polynomial correction [Fig.~\ref{fig:pulse-improvement}(d)].
+These sub-grid estimates quantify the saved maps; they do not independently
+establish sub-kHz numerical accuracy.
+DRAG does not, by
 itself, prevent the high-drive linewidth increase in this comparison.
 Adding the polynomial correction changes the FWHM at
 $\Omega_0/(2\pi)=100~\mathrm{MHz}$ from $506$ to $162~\mathrm{kHz}$,
@@ -90,41 +80,25 @@ by measurement noise.
 These simulations establish a pulse-shaping tradeoff rather than an
 experimental sensitivity gain or a globally optimized waveform.
 
-Figure~\ref{fig:duration-cutoff-scan} extends this comparison to five pulse
-lengths, using the same polynomial correction, midpoint smoothing, and DRAG.
-The upper panels vary $c$ at a common nominal drive of
-$\Omega_0/(2\pi)=49.5~\mathrm{MHz}$; the lower panels vary drive at
-$c=1.05\times10^{-3}$. Both values are the nearest saved samples to
-$50~\mathrm{MHz}$ and $10^{-3}$, respectively. At the common operating
-point, increasing $L$ from $10$ to $30~\mu\mathrm{s}$ reduces the local
-FWHM from $309$ to $150~\mathrm{kHz}$, but lowers contrast from $0.723$
-to $0.388$. Extending to $45~\mu\mathrm{s}$ yields $139~\mathrm{kHz}$
-and contrast $0.220$; at $60~\mu\mathrm{s}$, the width increases to
-$188~\mathrm{kHz}$ while contrast falls to $0.114$.
+Figure~\ref{fig:duration-cutoff-scan} maps the joint dependence on cutoff
+and drive amplitude for the $30~\mu\mathrm{s}$ polynomial-corrected DRAG
+echo. The white contours mark $C=0.2$: the band between them has a dip
+depth exceeding 0.2 in excitation probability. Across this broad region
+of parameter space, the simulated response combines appreciable contrast
+with local FWHM values of $112$--$182~\mathrm{kHz}$, approximately
+$2.6$--$4.2$ times the coherence reference $\Gamma_{T_2}$.
+The contours select contrast; the linewidth within that region is read
+independently from panel (a).
 
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=\columnwidth]{../figures/paper/04_duration_cutoff_scan.pdf}
-    \caption{Duration--cutoff tradeoff for the polynomial-corrected DRAG echo.
-    Colors denote $L=10$, 20, 30, 45, and $60~\mu\mathrm{s}$.
-    (a),(b) Local dip FWHM and probability contrast versus cutoff at
-    $\Omega_0/(2\pi)=49.5~\mathrm{MHz}$, showing the
-    $10^{-5}\leq c\leq10^{-2}$ portion of the scan.
-    (c),(d) The same metrics versus drive at $c=1.05\times10^{-3}$,
-    marked vertically above. Right-hand FWHM axes use $\Gamma_{T_2}$
-    as their unit (horizontal dotted lines).
-    Pulse corrections, coherence parameters, and the contrast definition
-    match Fig.~\ref{fig:pulse-improvement}; only $L$, $c$, and drive vary.
-    Rejected or unresolved dips are omitted. Curves connect saved samples
-    without fitting or optimizing cutoff separately for each duration.}
-    \label{fig:duration-cutoff-scan}
-\end{figure}
+The useful band shifts toward smaller cutoff as drive increases, yet a
+single cutoff can retain both narrow linewidth and high contrast over a
+wide drive range. For example, at the sampled
+$c=6.58\times10^{-4}$, the local FWHM remains below $155~\mathrm{kHz}$
+and contrast above $0.32$ throughout the sampled $10$--$100~\mathrm{MHz}$
+interval. Here $c$ sets the original root-Lorentzian core width even though
+the corrected envelope vanishes at its endpoints: changing $c$ also
+changes $\tau$. The full duration survey and numerical checks are given
+in the Supplemental Material~\cite{SupplementalMaterial}.
 
-The contrast maximum moves toward smaller cutoff as duration increases.
-Consequently, pulse length and cutoff must be chosen jointly with the
-available drive range and contrast requirement. Here $c$ sets the original
-root-Lorentzian core width even though the corrected envelope vanishes at
-its endpoints: changing $L$ or $c$ also changes $\sigma$.
-The displayed FWHM is a local, finite-window dip metric; a small width with
-vanishing contrast does not establish useful spectral resolution. Contrast
-describes the probability response and does not assume a measurement shot budget.
+% Let the text flow around Figure 4 without a forced page break.
+\input{figures/04_duration_cutoff_scan_float}

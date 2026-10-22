@@ -170,6 +170,54 @@ The lowest sampled coefficient is -0.495, close to the half-derivative value
 beta 0 and -0.22 with different midpoint smoothing. It is not an experimental
 beta optimization, and its coefficients are quoted in the acquisition convention.
 
+Figure 3 includes the resonance-center traces of all three saved 2D sweeps.
+Regenerate the figure, center arrays, metrics, and provenance with:
+
+```bash
+PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_main_pulse_improvement.py
+make paper-main
+```
+
+Panel (d) uses the existing `dip_metrics` three-point quadratic interpolation
+of each raw central minimum, without smoothing or recentering. The annotations
+report RMS relative to zero detuning over the 90 common samples in 10--100 MHz:
+6.54 kHz (echo), 0.31 kHz (+ DRAG), and 0.29 kHz (+ polynomial).
+The underlying detuning spacing is 5 kHz; interpolated sub-grid values are
+not an independent sub-kHz convergence check. The NPZ includes the three
+`*_center_hz` arrays and `center_rms_mask`, and the provenance records both
+RMS about zero and the standard deviation about each curve's mean.
+
+Figure 4 now shows the 30 us row of the supplemental full-range cutoff--drive
+survey as two maps: local FWHM normalized to `1/(pi*T2)` and probability
+contrast. Regenerate it with:
+
+```bash
+PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_main_duration_cutoff_scan.py
+make paper
+```
+
+The generator checks exact equality to the supplemental arrays and the original
+simulation cache. White contours mark `C=0.2`; the band between them has `C>0.2`.
+They are contrast boundaries, not a linewidth threshold. Heatmap cells, masks,
+and color scales match supplemental panels (e,f). Figure 4 displays amplitude
+on the logarithmic vertical axis from 1 to 100 MHz, with cutoff on the horizontal
+axis, omitting zero drive without
+resampling the original linear-amplitude cells. The exported NPZ and CSV
+contain the full 100-by-100 grid at 30 us, replacing the previous duration-slice
+export. Provenance records the contour definition and the quoted linewidth and
+fixed-cutoff summaries.
+
+Figure 4 panels (c,d) show cutoff slices for 10, 20, 30, 45, and 60 us at the
+same saved amplitude nearest 50 MHz (49.494949 MHz). Thick solid orange curves
+highlight 30 us and match the orange dashed horizontal lines in maps (a,b).
+All four panels use individual `Cutoff c` x-axis labels; the slice amplitude
+appears in the caption only. Rejected
+slice samples are gaps. Slice axes use the map colorbar units; the FWHM axis
+extends to 15 to include the shorter-duration widths. The contrast slice has
+a dotted `C=0.2` reference. The NPZ and provenance record the selected amplitude,
+column index, durations, and all five slices with acceptance masks; no slice
+interpolation is used.
+
 The supplemental edge-smoothing comparison uses the saved
 `03_pulse_improvement.npz` hard-cutoff and cutoff-subtracted polynomial (p=5)
 pulses, both at beta -0.5. Render it with:

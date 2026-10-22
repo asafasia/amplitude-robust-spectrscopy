@@ -10,9 +10,10 @@
     "outputs/polynomial_duration_cutoff_sweep/n100/simulations/L20us/scan.npz": "9f00a07b44a1df5c367014884c24d24553b3ffafb0af327b7867f22d0be25af5",
     "outputs/polynomial_duration_cutoff_sweep/n100/baseline_30us/L30us/scan.npz": "71766d93ecbdc18a54b1e65e83d47d26a246f61925d1d4a3e1b64762359f8b31",
     "outputs/polynomial_duration_cutoff_sweep/n100/simulations/L45us/scan.npz": "f8440013a6ea2348c98f15b8f1162c09de22b29cd9cf0fb7e6c8f553d7ce1840",
-    "outputs/polynomial_duration_cutoff_sweep/n100/simulations/L60us/scan.npz": "e28f05f39ced4065bd0eb64a65a6483efaaaff60d6bad7ab3642e57208672178"
+    "outputs/polynomial_duration_cutoff_sweep/n100/simulations/L60us/scan.npz": "e28f05f39ced4065bd0eb64a65a6483efaaaff60d6bad7ab3642e57208672178",
+    "figures/paper/supp_extended_cutoff_duration.npz": "a3841e7b7f541387c6ea654500ecb43d429697b49ab822da9dd4bc9ae3c997b6"
   },
-  "generator_sha256": "c117f1681dd88178d50de1ced96f947a793604257b9a7e5e0aab6c524dd63353",
+  "generator_sha256": "801c9586e50fef241d04c8ca99230c242c8fcec82ec004edec5cb9029188f0a3",
   "source_configuration": {
     "amplitude_convention": "Scale A before echo smoothing; no peak/area renormalization",
     "anharmonicity_mhz": -216.0,
@@ -445,48 +446,94 @@
   },
   "figure_size_inches": [
     3.38,
-    3.5
+    3.48
   ],
-  "secondary_fwhm_axis": {
-    "t2_us": 7.31,
-    "reference_fwhm_khz": 43.54444407438997,
-    "definition": "FWHM / [1/(pi*T2)]"
+  "selection": "Exact 30 us row (panels e/f) of the supplemental full-range survey",
+  "array_order": "cutoff, nominal drive",
+  "reference_linewidth_hz": 43544.44407438997,
+  "map_axes": {
+    "x": "cutoff",
+    "y": "nominal drive",
+    "display": "Transposed arrays"
   },
-  "selection": "Report default: nearest sampled cutoff to 0.001 and drive to 50 MHz; show cutoff subset 1e-5 to 1e-2 and all drive samples, all five lengths",
-  "matched_operating_point": {
-    "cutoff": 0.001047615752789665,
+  "color_scales": {
+    "fwhm_hz": {
+      "factor": 2.2965042297741388e-05,
+      "vmin": 1,
+      "vmax": 5,
+      "colormap": "magma"
+    },
+    "contrast": {
+      "factor": 1,
+      "vmin": 0,
+      "vmax": 1,
+      "colormap": "viridis"
+    }
+  },
+  "contrast_threshold": 0.2,
+  "cutoff_slices": {
+    "panels": [
+      "c",
+      "d"
+    ],
+    "amplitude_index": 49,
     "amplitude_mhz": 49.494949494949495,
-    "results": [
-      {
-        "duration_us": 10.0,
-        "fwhm_khz": 308.5631632752667,
-        "contrast": 0.7226474017513018
-      },
-      {
-        "duration_us": 20.0,
-        "fwhm_khz": 187.28832047818787,
-        "contrast": 0.5502040936946431
-      },
-      {
-        "duration_us": 30.0,
-        "fwhm_khz": 150.38545545330444,
-        "contrast": 0.38776342908823136
-      },
-      {
-        "duration_us": 45.0,
-        "fwhm_khz": 138.87298965542067,
-        "contrast": 0.22001315852408387
-      },
-      {
-        "duration_us": 60.0,
-        "fwhm_khz": 187.54976660492068,
-        "contrast": 0.11409304957979127
-      }
-    ]
+    "requested_amplitude_mhz": 50,
+    "selection": "Nearest saved amplitude to 50 MHz; no interpolation",
+    "durations_us": [
+      10.0,
+      20.0,
+      30.0,
+      45.0,
+      60.0
+    ],
+    "values": "Same amplitude column for all five durations; rejected samples are gaps. The 30 us slices exactly match the displayed maps.",
+    "highlighted_duration_us": 30,
+    "highlight_style": "Thick solid orange, drawn above thinner comparison curves",
+    "fwhm_axis_limits_normalized": [
+      0,
+      15
+    ],
+    "contrast_axis_limits": [
+      0,
+      1
+    ],
+    "map_markers": "Orange dashed horizontal lines at the selected amplitude in a/b, matching the highlighted 30 us curves",
+    "amplitude_annotation": "Shown in caption only",
+    "contrast_reference": "Dotted horizontal line at C=0.2 in panel d"
   },
-  "metric_mask": "Only accepted dips drawn; rejected and zero-drive rows are gaps, not zero values. FWHM is local, not a guarantee of a unique dip.",
-  "contrast": "Dip depth in excited-state probability relative to the fitted linear background at the dip; dimensionless, plotted on [0, 1]",
-  "validation": "Source files verified against report SHA-256 manifest; selected point reproduced from summary; no smoothing or metric recomputation",
+  "amplitude_display": {
+    "scale": "log",
+    "limits_mhz": [
+      1,
+      100
+    ],
+    "positive_sample_count": 99,
+    "zero_drive": "Omitted from the plot; retained in exported arrays and CSV",
+    "cell_edges": "Original linear-amplitude cell edges; no resampling"
+  },
+  "white_contours": "C=0.2, linearly interpolated between accepted samples with corner_mask=False; the band between the curves has C>0.2. These are contrast boundaries, not a linewidth threshold.",
+  "metric_mask": "Rejected and unresolved dips are gray, not zero; local FWHM does not certify a unique resonance.",
+  "contrast": "Dip depth in excitation probability relative to a fitted linear background at the dip; dimensionless and independent of shot count",
+  "validation": "Exact equality to supplemental row and original 30 us scan; source SHA-256 checksums verified; no smoothing or recomputation",
+  "summaries": {
+    "above_threshold": {
+      "sample_count": 3757,
+      "fwhm_khz_range": [
+        112.43545455985121,
+        181.73873052776736
+      ]
+    },
+    "fixed_cutoff_example": {
+      "cutoff": 0.0006579332246575682,
+      "amplitude_mhz_range": [
+        10.101010101010102,
+        100.0
+      ],
+      "minimum_contrast": 0.32120997381136085,
+      "maximum_fwhm_khz": 154.90194908288186
+    }
+  },
   "representative_convergence": {
     "scope": "Three cutoffs (endpoints and nearest 0.001), three amplitudes (nearest 10, 50, 100 MHz), all lengths. Halve time step and double detuning intervals. This is a representative check, not a full-grid accuracy bound.",
     "maximum_changes": {

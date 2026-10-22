@@ -78,17 +78,17 @@
     "outputs/polynomial_echo_note_2d/c0.001_hard_beta0.npz": "9fb2cacdbd7ab8c1b0c23edbdc3f459ce790064cd75730f2d44bc9ba656f8c79",
     "outputs/polynomial_power_30us_scan/c0.001_hard.npz": "cc5b7a1be1fbe2b564676d758cce2583642c4c852efafa948aaf982bf83980cd",
     "outputs/optimized_echo_tail/polynomial5_full.npz": "d1de475d3cb71f4d857ee76cb6422f497a3da863fc18cf64e5e95bd5a7ec8e54",
-    "scripts/make_main_pulse_improvement.py": "f3b5b1a16dcbc6dbf00e9c0a7c5c5388eff88cfb98f2de0c2cd21981ead055df",
+    "scripts/make_main_pulse_improvement.py": "7a88e253dedb39bdda7e7bad9577fe420c83a06c3790ade17d65629d0151d4c6",
     "echospec/analysis/dip_metrics.py": "851f4571da5dc275890f42eaf7393f1818fffe69043f4fff703272dddf9290ca",
     "figures/paper/polynomial_echo_note/sweeps_2d_provenance.json": "063d0064748c5324b712af0745b2f89c62c46f409dcf20f43e3932e8e302d2e8"
   },
   "figure_size_inches": [
     3.38,
-    3.55
+    4.77
   ],
   "color_limits": [
     0,
-    0.6
+    0.8
   ],
   "row_normalization": false,
   "population_order": [
@@ -107,7 +107,13 @@
         "accepted": true
       },
       "minimum_contrast_10_to_100_mhz": 0.07064041111258967,
-      "maximum_fwhm_khz_10_to_100_mhz": 485.44965800696076
+      "maximum_fwhm_khz_10_to_100_mhz": 485.44965800696076,
+      "center_stability_10_to_100_mhz": {
+        "sample_count": 90,
+        "rms_from_zero_hz": 6543.0330842835665,
+        "mean_hz": -69.29757938534193,
+        "standard_deviation_hz": 6542.666106987323
+      }
     },
     "drag": {
       "at_100_mhz": {
@@ -119,7 +125,13 @@
         "accepted": true
       },
       "minimum_contrast_10_to_100_mhz": 0.07906447250951154,
-      "maximum_fwhm_khz_10_to_100_mhz": 506.0156491655306
+      "maximum_fwhm_khz_10_to_100_mhz": 506.0156491655306,
+      "center_stability_10_to_100_mhz": {
+        "sample_count": 90,
+        "rms_from_zero_hz": 313.74992065249495,
+        "mean_hz": 25.24090075443166,
+        "standard_deviation_hz": 312.73296858270606
+      }
     },
     "polynomial": {
       "at_100_mhz": {
@@ -131,8 +143,26 @@
         "accepted": true
       },
       "minimum_contrast_10_to_100_mhz": 0.3152047884841248,
-      "maximum_fwhm_khz_10_to_100_mhz": 161.8497823915546
+      "maximum_fwhm_khz_10_to_100_mhz": 161.8497823915546,
+      "center_stability_10_to_100_mhz": {
+        "sample_count": 90,
+        "rms_from_zero_hz": 290.8127652875768,
+        "mean_hz": -10.08032191283578,
+        "standard_deviation_hz": 290.6380077765825
+      }
     }
+  },
+  "resonance_center": {
+    "panel": "d",
+    "definition": "Three-point quadratic interpolation of the raw Pe minimum within +/-0.25 MHz, as returned by dip_metrics",
+    "display": "Raw interpolated centers; no smoothing, detrending, or subtraction of a case-dependent mean",
+    "rms_definition": "sqrt(mean(center_hz**2)) relative to zero detuning",
+    "rms_amplitude_range_mhz": [
+      10,
+      100
+    ],
+    "detuning_grid_spacing_khz": 5.000000000000004,
+    "limitation": "Sub-grid interpolation is not an independent validation of sub-kHz numerical accuracy"
   },
   "coherence_reference": {
     "panels": [

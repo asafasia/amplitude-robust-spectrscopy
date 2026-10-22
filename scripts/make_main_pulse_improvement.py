@@ -42,6 +42,21 @@ COMMON = {
 }
 
 
+def center_stability(amps, center_hz):
+    """Summarize finite centers at 10--100 MHz, with RMS referenced to zero."""
+    amps, center_hz = np.asarray(amps), np.asarray(center_hz)
+    mask = (amps >= 10) & (amps <= 100) & np.isfinite(center_hz)
+    if not mask.any():
+        raise ValueError("No finite resonance centers in the 10--100 MHz range")
+    selected = center_hz[mask]
+    return {
+        "sample_count": int(mask.sum()),
+        "rms_from_zero_hz": float(np.sqrt(np.mean(selected ** 2))),
+        "mean_hz": float(np.mean(selected)),
+        "standard_deviation_hz": float(np.std(selected)),
+    }
+
+
 def main():
     amps, det = np.linspace(0, 100, 100), np.linspace(-0.5, 0.5, 201)
     prior_path = OUT / "polynomial_echo_note/sweeps_2d_provenance.json"
@@ -85,6 +100,10 @@ def main():
                 r["fwhm_hz"] / 1000 for r in local[10:]
             ),
         }
+        center_hz = np.array([r["center_hz"] for r in local])
+        summaries[key]["center_stability_10_to_100_mhz"] = center_stability(
+            amps, center_hz
+        )
         rows.extend(local)
 
     apply_figure_style(FigureVariant.PAPER)
@@ -95,7 +114,7 @@ def main():
         "axes.grid": False, "pdf.fonttype": 42, "svg.fonttype": "none",
         "savefig.bbox": None,
     })
-    width, height = 3.38, 3.55
+    width, height = 3.38, 4.77
     fig = plt.figure(figsize=(width, height))
     t2_us = 1 / (1 / (2 * COMMON["t1_us"]) + 1 / COMMON["t_phi_us"])
     coherence_fwhm_khz = 1000 / (np.pi * t2_us)
@@ -107,10 +126,10 @@ def main():
         return ax
 
     for index, (key, title, _, beta) in enumerate(CASES):
-        ax = axes(0.4 + index * 0.96, 1.96, 0.91, 1.12)
+        ax = axes(0.4 + index * 0.96, 3.18, 0.91, 1.12)
         mesh = ax.pcolormesh(
             det, amps, populations[key][1], shading="nearest", cmap="magma",
-            vmin=0, vmax=0.6, rasterized=True,
+            vmin=0, vmax=0.8, rasterized=True,
         )
         for sign in (-1, 1):
             ax.axvline(
@@ -129,20 +148,25 @@ def main():
         ax.text(0.94, 0.08, rf"$\beta={beta:g}$", transform=ax.transAxes,
                 ha="right", color="0.15", fontsize=6,
                 bbox=dict(facecolor="white", edgecolor="none", alpha=0.7, pad=1))
-    fig.text(1.82 / width, 1.71 / height, r"$\Delta/2\pi$ (MHz)", ha="center")
-    cb_ax = fig.add_axes([1.08 / width, 3.35 / height, 1.18 / width, 0.055 / height])
-    cb = fig.colorbar(mesh, cax=cb_ax, orientation="horizontal", ticks=[0, 0.3, 0.6])
+    fig.text(1.82 / width, 2.93 / height, r"$\Delta/2\pi$ (MHz)", ha="center")
+    cb_ax = fig.add_axes([1.225 / width, 4.57 / height, 1.18 / width, 0.055 / height])
+    cb = fig.colorbar(mesh, cax=cb_ax, orientation="horizontal", ticks=[0, 0.4, 0.8])
     cb.ax.xaxis.set_ticks_position("top")
     cb.ax.tick_params(labelsize=6, length=2, pad=1)
-    fig.text(2.34 / width, 3.38 / height, r"$P_e$", va="center")
+    fig.text(2.485 / width, 4.60 / height, r"$P_e$", va="center")
 
-    contrast_ax = axes(0.4, 0.42, 1.0, 1.03)
-    fwhm_ax = axes(1.97, 0.42, 1.0, 1.03)
+    center_ax = axes(0.4, 1.82, 2.82, 0.95)
+    fwhm_ax = axes(0.4, 0.42, 1.08, 1.03)
+    contrast_ax = axes(2.14, 0.42, 1.08, 1.03)
+    center_ax.axhline(0, color="0.75", lw=0.5, zorder=0)
     for index, (key, _, _, _) in enumerate(CASES):
         local = [r for r in rows if r["case"] == key]
         style = dict(color=COLORS[index], ls=LINESTYLES[index], lw=1.0)
         contrast_ax.plot(amps, [r["contrast"] for r in local], **style)
         fwhm_ax.plot(amps, [r["fwhm_hz"] / 1000 for r in local], **style)
+        center_ax.plot(amps, [r["center_hz"] / 1000 for r in local], **style)
+    center_ax.set(ylabel=r"$\Delta_{\mathrm{res}}/2\pi$ (kHz)",
+                  ylim=(-22, 22), yticks=[-20, 0, 20])
     contrast_ax.set(ylabel="Contrast", ylim=(0, 1), yticks=[0, 0.5, 1])
     fwhm_ax.set(ylabel="FWHM (kHz)", ylim=(0, 550), yticks=[0, 250, 500])
     normalized_axis = fwhm_ax.secondary_yaxis(
@@ -154,8 +178,8 @@ def main():
     normalized_axis.tick_params(direction="in", length=2, pad=2, labelsize=6)
     fwhm_ax.tick_params(right=False)
     fwhm_ax.axhline(coherence_fwhm_khz, color="0.5", ls=":", lw=0.65)
-    fwhm_ax.text(5, 63, r"$1/(\pi T_2)$", color="0.35", fontsize=6)
-    for ax, label in ((contrast_ax, "(d)"), (fwhm_ax, "(e)")):
+    fwhm_ax.text(95, 63, r"$1/(\pi T_2)$", ha="right", color="0.35", fontsize=6)
+    for ax, label in ((center_ax, "(d)"), (fwhm_ax, "(e)"), (contrast_ax, "(f)")):
         ax.set(xlim=(0, 100), xticks=[0, 50, 100], xlabel=r"$\Omega_0/2\pi$ (MHz)")
         ax.xaxis.labelpad = 2
         ax.yaxis.labelpad = 2
@@ -176,7 +200,11 @@ def main():
         writer.writeheader()
         writer.writerows(rows)
     np.savez_compressed(OUT / f"{STEM}.npz", rabi_mhz=amps, detuning_mhz=det,
-                        **populations)
+                        **populations,
+                        **{f"{key}_center_hz": np.array([
+                            r["center_hz"] for r in rows if r["case"] == key
+                        ]) for key, _, _, _ in CASES},
+                        center_rms_mask=(amps >= 10) & (amps <= 100))
     for source in ("scripts/make_main_pulse_improvement.py",
                    "echospec/analysis/dip_metrics.py",
                    str(prior_path.relative_to(ROOT))):
@@ -185,9 +213,21 @@ def main():
         "generator": "scripts/make_main_pulse_improvement.py",
         "included_in_manuscript": True, "source_configs": configs,
         "source_sha256": hashes, "figure_size_inches": [width, height],
-        "color_limits": [0, 0.6], "row_normalization": False,
+        "color_limits": [0, 0.8], "row_normalization": False,
         "population_order": ["ground", "excited", "second_excited"],
         "summaries": summaries,
+        "resonance_center": {
+            "panel": "d",
+            "definition": "Three-point quadratic interpolation of the raw Pe "
+            "minimum within +/-0.25 MHz, as returned by dip_metrics",
+            "display": "Raw interpolated centers; no smoothing, detrending, "
+            "or subtraction of a case-dependent mean",
+            "rms_definition": "sqrt(mean(center_hz**2)) relative to zero detuning",
+            "rms_amplitude_range_mhz": [10, 100],
+            "detuning_grid_spacing_khz": float(1000 * (det[1] - det[0])),
+            "limitation": "Sub-grid interpolation is not an independent "
+            "validation of sub-kHz numerical accuracy",
+        },
         "coherence_reference": {
             "panels": ["a", "b", "c"],
             "t2_us": t2_us,

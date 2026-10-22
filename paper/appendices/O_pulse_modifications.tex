@@ -235,7 +235,17 @@ multiplies by a symmetric window:
     \qquad |t|<L/2.
     \label{eq:pulse-modification-polynomial}
 \end{equation}
-It is zero outside the pulse. We use $p=5$, which makes the envelope
+It is zero outside the pulse. In the main-text notation,
+$L_{\mathrm{floor}}^{(1/2)}(t)=[f(t)-c]/(1-c)$ and the polynomial
+edge window is
+\begin{equation}
+    W_p(t)=\left[1-\left(\frac{2t}{L}\right)^2\right]^p,
+    \quad |t|<L/2,
+\end{equation}
+and zero outside. Thus
+$L^{\mathrm{smooth}}(t)=L_{\mathrm{floor}}^{(1/2)}(t)s_T(t)W_p(t)$,
+where $s_T(t)$ is the shared smoothed midpoint phase-jump factor.
+We use $p=5$, which makes the envelope
 and its first five derivatives vanish at the boundaries. The corrected
 envelope retains $g_p(0)=1$, is even, and uses the same
 nominal scale $\Omega_0$. We apply neither pulse-area normalization nor
