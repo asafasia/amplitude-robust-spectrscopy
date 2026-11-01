@@ -26,16 +26,17 @@ tradeoff. A derivative removal by adiabatic gate (DRAG) pulse adds a
 quadrature component proportional to the time derivative of the in-phase
 waveform to suppress leakage and drive-induced phase
 errors~\cite{motzoi_drag_2009,gambetta_analytic_2011}.
-Figure~\ref{fig:pulse-improvement} compares three-level simulations
-for a $30~\mu\mathrm{s}$ echo-root-Lorentzian pulse with $c=0.001$: an uncorrected outer
+Figure~\ref{fig:pulse-improvement} compares completed measurements
+for a $20~\mu\mathrm{s}$ echo-root-Lorentzian pulse with $c=0.005$: an uncorrected outer
 envelope, the same envelope with DRAG, and DRAG with a polynomial edge
 correction. All three use the same sine-smoothed phase jump $s(t)$ of
-duration $T_s=16~\mathrm{ns}$ at the midpoint. The corrected pulse is
+duration $T_s=50~\mathrm{ns}$ at the midpoint.
+The corrected pulse is
 \begin{align}
     L_{\mathrm{floor}}^{(1/2)}(t)
     &=\frac{L^{(1/2)}(t)-c}{1-c},\\
     W_p(t)&=\left[1-\left(\frac{2t}{L}\right)^2\right]^p,
-    \qquad p=5,\\
+    \qquad p=2,\\
     s(t)&=\begin{cases}
         +1, & t\leq-T_s/2,\\
         -\sin(\pi t/T_s), & |t|<T_s/2,\\
@@ -48,41 +49,57 @@ Here $|t|<L/2$, $\tau=(L/2)/\sqrt{c^{-2}-1}$, and $W_p=0$ outside
 the pulse. The floor correction removes the endpoint offset, and
 $W_p(t)$ smooths the edges. Thus, (a)--(b) isolate DRAG,
 while (b)--(c) isolate this edge correction.
-With $I(t)=\Omega_0L^{\mathrm{smooth}}(t)$, the added DRAG
+
+\begin{samepage}
+With $I(t)=A L^{\mathrm{smooth}}(t)$, the added experimental DRAG
 quadrature is
 \begin{equation}
-    Q(t)=-\frac{\beta}{|\alpha|}\frac{dI(t)}{dt},
+    Q(t)=\frac{\beta_{\mathrm{acq}}}{|\alpha|}\frac{dI(t)}{dt},
     \label{eq:drag-quadrature}
 \end{equation}
+\end{samepage}
 where $\alpha=\omega_{12}-\omega_{01}$ is the qubit anharmonicity.
-We use DRAG with $\beta=-0.5$ for near-optimal compensation of
-AC-Stark-induced detuning~\cite{motzoi_drag_2009,gambetta_analytic_2011},
-as supported by the coefficient scan in the Supplemental
-Material~\cite{SupplementalMaterial}.
+The acquisition uses the positive anharmonicity magnitude in this
+quadrature convention. The coefficient $\beta_{\mathrm{acq}}=1.25576$
+was selected in an earlier experimental center-stability search with a
+$32~\mathrm{ns}$ transition and $p=5$, and retained for this comparison;
+it was not reoptimized for $T_s=50~\mathrm{ns}$ and $p=2$.
+Each variant is scaled separately to cover the same calibrated
+complex-envelope peak $\Omega_{\mathrm{pk}}=\max_t\sqrt{I(t)^2+Q(t)^2}$
+from 0 to $100~\mathrm{MHz}$ in cyclic-frequency units. Figure~3 and the
+statistics below use the $0$--$\LatestThreeDisplayMaxRabi~\mathrm{MHz}$ window.
+This peak-amplitude convention differs
+from the nominal pre-envelope amplitude $\Omega_0$ used in Fig.~2
+and in the retained numerical scans.
 
-DRAG suppresses amplitude-dependent resonance motion: the interpolated
-center RMS falls from $6.54~\mathrm{kHz}$ for the echo to
-$0.31~\mathrm{kHz}$ with DRAG and $0.29~\mathrm{kHz}$ with DRAG plus
-the polynomial correction [Fig.~\ref{fig:pulse-improvement}(d)].
-These sub-grid estimates quantify the saved maps; they do not independently
-establish sub-kHz numerical accuracy.
-DRAG does not, by
-itself, prevent the high-drive linewidth increase in this comparison.
-Adding the polynomial correction changes the FWHM at
-$\Omega_0/(2\pi)=100~\mathrm{MHz}$ from $506$ to $162~\mathrm{kHz}$,
-while the probability contrast increases from $0.079$ to $0.315$.
-The corrected pulse maintains contrast above $0.31$ across the sampled
-$10$--$100~\mathrm{MHz}$ range. This improvement comes at the cost of a
-broader low-drive line, and the high-drive width remains above
-$1/(\pi T_2)$. Here contrast is the dip depth relative to the local
-background, expressed as a probability difference rather than normalized
-by measurement noise.
-These simulations establish a pulse-shaping tradeoff rather than an
-experimental sensitivity gain or a globally optimized waveform.
+Using Gaussian-dip fits at the same accepted nonzero amplitudes for echo,
+DRAG, and DRAG plus polynomial, the center RMS
+about each curve's arithmetic mean is \LatestEchoCenterRms,
+\LatestDragCenterRms, and $\LatestPolyCenterRms~\mathrm{kHz}$
+[Fig.~\ref{fig:pulse-improvement}(d)]. These describe observed
+amplitude-dependent variation, including fit noise, rather than absolute
+frequency accuracy or repeated-measurement precision.
+The corresponding median FWHM values are \LatestEchoWidth,
+\LatestDragWidth, and $\LatestPolyWidth~\mathrm{kHz}$, with median dip
+contrasts \LatestEchoContrast, \LatestDragContrast, and \LatestPolyContrast.
+Thus DRAG alone reduces center motion without narrowing the median
+feature, while the polynomial correction improves both width and contrast.
+Contrast is the fitted dip depth relative to a local linear background,
+in measured excited-state fraction; no readout-fidelity correction is applied.
+The representative measured Ramsey time is
+$T_2^*=\LatestThreeTTwoStar~\mu\mathrm{s}$, corresponding to the FWHM reference
+$\Gamma_{T_2^*}=\LatestThreeLimit~\mathrm{kHz}$.
+The corrected median linewidth remains approximately \LatestPolyLimitRatio{}
+times this reference. This dataset therefore demonstrates improved measured
+line shape and center stability, without establishing a coherence-limited
+linewidth, a sensitivity gain, or a global waveform optimum.
 
 Figure~\ref{fig:duration-cutoff-scan} maps the joint dependence on cutoff
-and drive amplitude for the $30~\mu\mathrm{s}$ polynomial-corrected DRAG
-echo. The white contours mark $C=0.2$: the band between them has a dip
+and drive amplitude in the retained numerical study of a
+$30~\mu\mathrm{s}$ polynomial-corrected DRAG echo, with $p=5$, a
+$16~\mathrm{ns}$ midpoint transition, and $\beta=-0.5$ in its numerical
+quadrature convention. These settings differ from the measured Fig.~3.
+The white contours mark $C=0.2$: the band between them has a dip
 depth exceeding 0.2 in excitation probability. Across this broad region
 of parameter space, the simulated response combines appreciable contrast
 with local FWHM values of $112$--$182~\mathrm{kHz}$, approximately

@@ -36,6 +36,7 @@ paper-clean:
 	$(RM) paper/supplementalNotes.bib
 
 paper-data-core:
+	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_latest_paper_measurements.py
 	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_main_ac_stark_correction_maps.py
 	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_main_ac_stark_shifts.py
 	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_main_drag_summary.py

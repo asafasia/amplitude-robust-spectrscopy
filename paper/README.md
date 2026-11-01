@@ -56,6 +56,59 @@ make paper-clean
 
 ## Reviewer data package
 
+### Updated Figure 2 and Figure 3 measurements (31 October-1 November 2026)
+
+The current Letter uses the four completed 5,000-average, 200-by-200 q1
+Figure 2 maps from `20261031_002217_547409_optimized_5000/figures2-3`, and
+the complete 5,000-average, 300-by-200 Figure 3 set from
+`20261031_191600_figure3_50ns_poly2_avg5000_amp300/maps`. Partial acquisitions are
+excluded. Figure 2 retains its earlier numerical reference panels, cropped
+to the new measured range; Figure 3 is now entirely experimental.
+
+```bash
+python scripts/make_latest_paper_measurements.py
+make paper
+```
+
+The generator uses portable datasets in `paper/data/experimental/` after
+their first import. To validate and reimport the completed raw acquisitions,
+add `--refresh-source`; `--source-data-dir` or `OPX1000_DATA_DIR` can point to
+the q1 campaign-data directory (default `experiments/paper_q1/data`). It
+checks raw/processed equality, acquisition completion, settings, grids,
+shot counts and waveform-derived peak axes. It performs no acquisition,
+new fitting or simulation. Existing model arrays are exported separately
+under `paper/data/numerical/02_latest_q1_reference_simulations.*`.
+Use `--figure3-only --refresh-source` to replace the Figure 3 data and assets
+while keeping the existing Figure 2 exports and figures.
+Use `--figure2-only` to regenerate only Figure 2. Its left block groups the
+broad and narrow root-Lorentzian maps; its right block groups the corresponding
+echo-root-Lorentzian maps, with measurements above reference simulations.
+
+The current figure assets are `02_latest_q1_spectroscopy` and
+`03_latest_q1_pulse_improvement` under `figures/paper/`. Their provenance
+sidecars retain the source hashes, fit masks, displayed color limits and
+matched-amplitude statistics. The generator also writes
+`latest_results_parameters.tex`, keeping quantitative manuscript claims
+tied to the exported data. Campaign-specific coherence references are
+separate from `coherence_parameters.tex`, which remains the input to the
+retained simulations. Figure 3 uses 20 us, 50 ns midpoint smoothing,
+polynomial power 2 and acquisition beta 1.2557576. Its amplitude axis is
+the actual complex-envelope peak, unlike the nominal axis of Figure 2.
+Figure 3 displays the 0--60 MHz window (180 acquired amplitude rows), with
+the three maps above the resonance-position, contrast and linewidth graphs.
+The last panel shows FWHM divided by the representative Ramsey linewidth on the left
+axis and FWHM in MHz on the right axis, displayed from 0 to 0.5 MHz.
+Its reported statistics use the 177 nonzero amplitude rows accepted for all
+three pulses in this window. The full 0--100 MHz acquisition and saved fit
+masks remain unchanged in the portable export. The shared map color scale is
+0--0.8. One representative Ramsey T2* is the arithmetic mean of the accepted
+measurements for each campaign; its linewidth is 1/(pi * mean T2*).
+The Figure 3 maps show vertical half-width markers, and the resonance panel
+uses the same half-width as horizontal markers. Coherence values are displayed
+to one decimal place, with unrounded measurements retained in data provenance.
+
+### Other and archived figure workflows
+
 Migrated figure workflows write the arrays used in the Letter and Supplemental
 Material to `paper/data/numerical/` and `paper/data/experimental/`. Every NPZ
 archive has a JSON provenance sidecar. See `paper/data/README.md` for the data
@@ -67,7 +120,7 @@ hand. Refresh the populated core package with
 `make PYTHON=.venv/bin/python paper-data-core`; use the `paper-data` target to
 also run the longer migrated simulations.
 
-The measured main-text Figure 2 maps are generated from the six imported q1
+The archived August Figure 2 maps are generated from the six imported q1
 OPX1000 runs and batch provenance under
 `data/experimental/2026-08-25/six_detuning_amplitude_sweeps/` with:
 
@@ -80,7 +133,7 @@ array orientation, and saved active-$x180$ calibrations before writing PDF,
 PNG, and SVG assets to `figures/paper/`.
 
 The supplemental spectrum slices (Fig. S2) use five acquired rows from the
-primary-qubit narrow-detuning scans also shown in main-text Fig. 2. They target
+earlier primary-qubit narrow-detuning scans. They target
 3, 10, 20, 30, and 40 MHz; the captions give the actual acquired values.
 The simulator evaluates those exact drives and detunings. Each experiment and
 simulation trace is independently mean-centered, then stacked on a common
@@ -170,8 +223,10 @@ The lowest sampled coefficient is -0.495, close to the half-derivative value
 beta 0 and -0.22 with different midpoint smoothing. It is not an experimental
 beta optimization, and its coefficients are quoted in the acquisition convention.
 
-Figure 3 includes the resonance-center traces of all three saved 2D sweeps.
-Regenerate the figure, center arrays, metrics, and provenance with:
+The archived simulated pulse-shaping figure includes resonance-center traces
+of all three saved 2D sweeps. Its arrays remain in use by supplemental
+comparisons; they are separate from the new measured Figure 3. Regenerate
+that simulation figure, center arrays, metrics, and provenance with:
 
 ```bash
 PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_main_pulse_improvement.py

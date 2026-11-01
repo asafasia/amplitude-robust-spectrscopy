@@ -9,7 +9,8 @@ solver's internal integration steps.
 
 The dissipative simulations use either two or three levels, as specified
 for each comparison below, with Markovian relaxation and dephasing.
-Main-text Figs.~2--4 use the three-state transmon model.
+The retained reference simulations in main-text Fig.~2 and the numerical
+scan in Fig.~4 use the three-state transmon model. Updated Fig.~3 is experimental.
 In the frame rotating at the drive frequency, and within the
 rotating-wave approximation, the real-drive Hamiltonian is
 implemented as~\cite{PhysRevA.76.042319}
@@ -55,8 +56,8 @@ $\mathcal{D}[C]\rho=C\rho C^\dagger-\frac{1}{2}
 \end{equation}
 The primary-qubit calculations use
 $T_1=\MeasuredTOne~\mu\mathrm{s}$ and
-$T_{2,\mathrm{eff}}=\EffectiveTTwo~\mu\mathrm{s}$, corresponding to
-$T_\phi=\EffectiveTPhi~\mu\mathrm{s}$.
+$T_{2,\mathrm{eff}}=\EffectiveTTwoDisplay~\mu\mathrm{s}$, corresponding to
+$T_\phi=\EffectiveTPhiDisplay~\mu\mathrm{s}$.
 The primary-qubit anharmonicity is inferred from repeated OPX1000 two-photon
 spectroscopy.  With $f_{01}=4.267106667~\mathrm{GHz}$, three scans locate the
 sharp, interior response at $f_{02}/2=4.159106667~\mathrm{GHz}$, including a
@@ -75,8 +76,11 @@ three-level density matrix, with 12\,800 uniform time steps in each
 $10~\mu\mathrm{s}$ half of the $20~\mu\mathrm{s}$ pulse
 ($\Delta t=0.78125~\mathrm{ns}$). The two halves are integrated separately
 so that no step crosses the abrupt sign reversal. Each simulated map has
-126 drive values selected from the broad experimental grid and 401
-detunings over either $\pm25$ or $\pm0.5~\mathrm{MHz}$.
+126 drive values selected from the earlier broad experimental grid and 401
+detunings over either $\pm25$ or $\pm0.5~\mathrm{MHz}$. The saved arrays are
+unchanged; the updated figure crops the display to 0--20 MHz drive and
+$\pm20~\mathrm{MHz}$ broad detuning. The new measurements have separate
+coherence references as reported in Sec.~\ref{subsec:coherence-characterization}.
 Doubling the steps per half at representative drive--detuning points
 changes $P_e$ by at most $1.61\times10^{-5}$ for the ordinary pulse and
 $4.62\times10^{-6}$ for the echo. Figure~\ref{fig:simulation-results}
@@ -87,9 +91,10 @@ These calculations retain the states
 $|g\rangle$, $|e\rangle$, and $|f\rangle$, with
 $\alpha/(2\pi)=\MeasuredAnharmonicity~\mathrm{MHz}$, and report
 $P_e=\rho_{ee}$ while retaining
-$P_f=\rho_{ff}$ in the archived figure data.  The pulse-shaping calculations in main-text Figs.~3 and 4 use the same
+$P_f=\rho_{ff}$ in the archived figure data. The archived pulse-shaping
+comparison and main-text Fig.~4 use the same
 three-level Lindblad structure with complex drive $I-iQ$, including the
-derivative of the complete signed envelope. Figure~3 uses a $0.5~\mathrm{ns}$
+derivative of the complete signed envelope. The archived comparison uses a $0.5~\mathrm{ns}$
 time step; Fig.~4 uses a maximum $0.25~\mathrm{ns}$ step with a grid adapted
 to the pulse core. The latter scan covers five durations, 100 logarithmic
 cutoffs from $10^{-5}$ to 1, 100 drive amplitudes from 0 to $100~\mathrm{MHz}$,
@@ -120,7 +125,7 @@ and 201 detunings over $\pm0.5~\mathrm{MHz}$; the displayed drive range
 ends at $25~\mathrm{MHz}$. These calculations capture
 coherent drive dynamics, relaxation, and pure dephasing, but do not describe
 leakage, higher-level AC-Stark shifts, or multiphoton transitions.  The
-main-text Figs.~2--4, fixed-amplitude spectra in
+reference simulations in main-text Fig.~2, the numerical Fig.~4, fixed-amplitude spectra in
 Sec.~\ref{sec:fixed-amplitude-spectra}, dense pulse-length comparison in
 Sec.~\ref{sec:dense-pulse-length}, and high-drive analyses in
 Secs.~\ref{sec:pulse-modifications}--\ref{sec:extended-cutoff-duration} use the

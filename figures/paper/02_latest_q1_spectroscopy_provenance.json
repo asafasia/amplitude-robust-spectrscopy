@@ -1,0 +1,58 @@
+{
+  "generator": "scripts/make_latest_paper_measurements.py",
+  "experimental_dataset": "paper/data/experimental/02_latest_q1_spectroscopy.npz",
+  "existing_simulations_retained": true,
+  "representative_ramsey": {
+    "method": "Arithmetic mean of accepted Ramsey T2* measurements",
+    "t2_star_s": 9.257500027521787e-06,
+    "fwhm_limit_hz": 34384.0005657555,
+    "source_phases": [
+      "before"
+    ],
+    "source_t2_star_s": [
+      9.257500027521787e-06
+    ]
+  },
+  "column_order": [
+    "A1_broad_no_echo",
+    "A3_narrow_no_echo",
+    "A2_broad_echo",
+    "A4_narrow_echo"
+  ],
+  "layout": "Root-Lorentzian left, echo-root-Lorentzian right; broad then narrow in each block",
+  "spacing": {
+    "between_blocks_wspace": 0.18,
+    "within_blocks_wspace": 0.15
+  },
+  "row_data_extrema": [
+    [
+      0.0518,
+      0.7646
+    ],
+    [
+      0.0,
+      0.7953982925126432
+    ]
+  ],
+  "color_limits": [
+    0.0,
+    0.8
+  ],
+  "colorbar_count": 1,
+  "display_limits": {
+    "detuning_mhz": [
+      [
+        -20,
+        20
+      ],
+      [
+        -0.5,
+        0.5
+      ]
+    ],
+    "nominal_rabi_mhz": [
+      0,
+      20
+    ]
+  }
+}

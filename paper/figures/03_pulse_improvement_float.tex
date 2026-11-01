@@ -1,18 +1,24 @@
-\begin{figure}[t]
+\begin{figure*}[t]
     \centering
-    \includegraphics[width=\columnwidth]{../figures/paper/03_pulse_improvement.pdf}
-    \caption{Simulated improvement through pulse shaping.
-    (a)--(c) Final $P_e$ for an echo-root-Lorentzian pulse (echo),
-    echo with DRAG, and echo with DRAG plus
-    cutoff subtraction and a polynomial window, respectively.
-    All pulses have duration $L=30~\mu\mathrm{s}$ and cutoff $c=0.001$.
-    White dashed lines bracket the coherence-limited linewidth.
-    (d) Resonance-center detuning. (e) Dip FWHM.
-    (f) Contrast $C$, the dip depth in excited-state probability.
-    DRAG compensates drive-induced detuning, suppressing resonance motion
-    as the amplitude varies. The polynomial correction smooths the pulse
-    edges, reducing high-drive broadening and preserving greater dip contrast.
-    Together, these corrections keep the resonance more stable and
-    distinguishable over a broad drive-amplitude range.}
+    \includegraphics[width=\textwidth]{../figures/paper/03_latest_q1_pulse_improvement.pdf}
+    \caption{Measured pulse-shaping comparison on q1.
+    (a)--(c) Echo without DRAG or polynomial shaping, DRAG only, and
+    DRAG with cutoff subtraction and a power-2 polynomial window.
+    All pulses use $L=20~\mu\mathrm{s}$, $c=0.005$, and a $50~\mathrm{ns}$ sine midpoint
+    transition. Here $\Omega_{\mathrm{pk}}=\max_t|I+iQ|$
+    is the calibrated complex-envelope peak; $\beta_{\mathrm{acq}}=1.25576$
+    in (b,c). All maps show the $0$--$\LatestThreeDisplayMaxRabi~\mathrm{MHz}$ window
+    and share one colorbar spanning $P_e=0$--$0.8$.
+    (d)--(f) Saved Gaussian-fit resonance detuning, dip contrast, and FWHM.
+    Gaps denote rejected fits; zero drive is excluded from the curves.
+    Center error bars show one fit standard error. White vertical lines in
+    (a)--(c) and dashed horizontal lines in (d) lie at $\pm1/(2\pi T_2^*)$
+    and enclose the representative Ramsey linewidth.
+    In (f), the left axis shows FWHM normalized by the Ramsey linewidth
+    $\Gamma_{T_2^*}=1/(\pi T_2^*)$; the right axis shows FWHM in MHz.
+    The line in (f) marks $\Gamma_{T_2^*}=\LatestThreeLimit~\mathrm{kHz}$,
+    using $T_2^*=\LatestThreeTTwoStar~\mu\mathrm{s}$. The polynomial correction gives
+    a narrower, higher-contrast feature and less observed resonance motion
+    than DRAG alone over the common accepted amplitudes.}
     \label{fig:pulse-improvement}
-\end{figure}
+\end{figure*}

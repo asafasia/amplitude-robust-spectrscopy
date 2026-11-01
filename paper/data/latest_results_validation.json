@@ -1,0 +1,162 @@
+{
+  "verified_at": "2026-11-01T10:02:33.653437+02:00",
+  "source_selection": {
+    "figure2": "Four complete maps from 20261031_002217_547409_optimized_5000/figures2-3; 5000 averages each; 800000000 shots",
+    "figure3": "Complete 20261031_191600_figure3_50ns_poly2_avg5000_amp300/maps; 5000 averages; 300 x 200 per map; 900000000 shots"
+  },
+  "raw_processed_equality": "All three replacement Figure 3 maps exactly match saved raw data; Figure 2 previously validated and unchanged",
+  "existing_figure2_and_simulations": "Experimental and reference-simulation arrays unchanged; Figure 2 regenerated with unchanged map values and Ramsey marker positions",
+  "figure3_statistics": "Agrees with separate overnight 0-60 MHz preview on 177 common accepted nonzero amplitude rows; full acquisition arrays and acceptance masks unchanged",
+  "focused_tests": "27 passed, including accepted-mean Ramsey reference, vertical map markers, single linewidth reference, dual-axis conversion and windowed statistics",
+  "new_generator_ruff": "Passed for generator and new tests",
+  "full_pytest": "4 existing collection errors: qutip and torch unavailable; sandbox temporary-directory cleanup also reports access denied",
+  "repository_ruff": "8740 existing findings; edited generator and new tests clean",
+  "pdf_builds": "Updated main latexmk build succeeded, 6 pages, no undefined references or overfull boxes; previously verified 17-page supplement unchanged",
+  "visual_review": "Rendered main pages 4 and 5 checked after compacting Figure 3: axes, legend, caption and following page remain legible without overlaps",
+  "display": {
+    "color_limits": [
+      0,
+      0.8
+    ],
+    "colorbars_per_figure": 1,
+    "figure3_center_ylim_khz": [
+      -100,
+      100
+    ],
+    "figure3_center_reference": {
+      "calibration": "representative_ramsey",
+      "t2_star_s": 7.851475877121491e-06,
+      "definition": "Lines at +/- 1/(2*pi*Ramsey_T2_star), enclosing the FWHM",
+      "horizontal_lines_khz": [
+        -20.27070395206318,
+        20.27070395206318
+      ],
+      "legend_panel": "d",
+      "legend_location": "upper left",
+      "inline_annotation": false
+    },
+    "figure2_column_order": [
+      "A1_broad_no_echo",
+      "A3_narrow_no_echo",
+      "A2_broad_echo",
+      "A4_narrow_echo"
+    ],
+    "figure2_left_block": "Root-Lorentzian",
+    "figure2_right_block": "Echo-root-Lorentzian",
+    "figure3_amplitude_limits_mhz": [
+      0,
+      60
+    ],
+    "figure3_acquisition_amplitude_limits_mhz": [
+      0,
+      100
+    ],
+    "figure3_displayed_amplitude_count": 180,
+    "figure3_common_accepted_count": 177,
+    "figure3_panel_order": [
+      "E1_no_drag_no_poly",
+      "E2_drag_no_poly",
+      "E3_drag_poly",
+      "resonance_position",
+      "contrast",
+      "fwhm"
+    ],
+    "figure3_colormap": "viridis",
+    "figure3_fwhm_axes": {
+      "left": "FWHM / Gamma_T2_star",
+      "right": "FWHM (MHz)",
+      "normalization": "Representative Ramsey: Gamma_T2_star = 1 / (pi * mean_T2_star)",
+      "normalization_hz": 40541.40790412636,
+      "left_ylim": [
+        0,
+        12.333069467701177
+      ],
+      "right_ylim_mhz": [
+        0,
+        0.5
+      ]
+    },
+    "figure3_map_reference_vertical_lines_khz": [
+      -20.27070395206318,
+      20.27070395206318
+    ],
+    "coherence_decimal_places": 1,
+    "figure2_spacing": {
+      "between_blocks_wspace": 0.18,
+      "within_blocks_wspace": 0.15
+    },
+    "figure3_layout": {
+      "figure_size_inches": [
+        7.1,
+        4.5
+      ],
+      "row_height_ratios": [
+        0.96,
+        1
+      ],
+      "row_spacing": 0.33
+    }
+  },
+  "figure3_coherence": {
+    "after": {
+      "accepted": true,
+      "formula": "FWHM_Hz = 1 / (pi * Ramsey_T2_star_seconds)",
+      "fwhm_limit_error_hz": 1731.3997776465678,
+      "fwhm_limit_hz": 40727.278698440954,
+      "source": "raw\\2026-11-01\\06a_ramsey\\07-26-12-992020",
+      "t2_star_error_s": 3.322589587226419e-07,
+      "t2_star_s": 7.815643380955271e-06
+    },
+    "before": {
+      "accepted": true,
+      "formula": "FWHM_Hz = 1 / (pi * Ramsey_T2_star_seconds)",
+      "fwhm_limit_error_hz": 1447.5790967494695,
+      "fwhm_limit_hz": 40357.22595325734,
+      "source": "raw\\2026-10-31\\06a_ramsey\\19-18-42-508707",
+      "t2_star_error_s": 2.829109895712942e-07,
+      "t2_star_s": 7.88730837328771e-06
+    }
+  },
+  "sha256": {
+    "paper/main.pdf": "18e79eddc30bc9c4b71789fd3a2ea71a448be4d79b01ecac223fed4746cb661e",
+    "paper/supplemental.pdf": "11493c9f4b8ee41eb590f0f2497eaa3ea43ad7a907f3c816e701e8531807134d",
+    "figures/paper/02_latest_q1_spectroscopy.pdf": "e8f64248163317ed8e11c481e6fa7435f2005ea08bcf4609b19e04ec201789dc",
+    "figures/paper/03_latest_q1_pulse_improvement.pdf": "f769f7497ec493f0918e590576d87c55315543d8dd5bf2978193ed4a8f485fbf",
+    "paper/data/experimental/02_latest_q1_spectroscopy.npz": "2abe7f2a5ef0892008b3219f3f4550085945b2ecb55d29ee55844ebbed6cf270",
+    "paper/data/experimental/03_latest_q1_pulse_improvement.npz": "fc07b1530c75220864fdb4981458780c23d79e7fa4598a1773122ce27520a61d",
+    "paper/data/numerical/02_latest_q1_reference_simulations.npz": "548aa08a0b8273c03536fd66d7a81ee50f11f5729743469ea85283afd519fc16",
+    "paper/latest_results_parameters.tex": "cd62f3969c599c89829ebb52d954bceb136ab97096d7a335fd3cbb480fecc0fa"
+  },
+  "figure2_layout_verification": "Checked plotted experimental arrays against exports, column order, panel lettering, detuning limits and one shared 0-0.8 colorbar",
+  "figure3_comparison_preview": "experiments/paper_q1/previews/20261101_overnight_figure3_0to60_with_analysis.json",
+  "editorial_revision": "Removed acquisition point counts, repetition counts and active-reset mentions from the manuscript captions and experimental descriptions; plots, data exports and numerical results unchanged",
+  "pdf_text_verification": "Both PDFs contain 9.3 us/34.4 kHz and 7.9 us/40.5 kHz references, without before/after, pre-run or post-run comparisons; acquisition details remain removed",
+  "representative_ramsey": {
+    "figure2": {
+      "method": "Arithmetic mean of accepted Ramsey T2* measurements",
+      "t2_star_s": 9.257500027521787e-06,
+      "fwhm_limit_hz": 34384.0005657555,
+      "source_phases": [
+        "before"
+      ],
+      "source_t2_star_s": [
+        9.257500027521787e-06
+      ]
+    },
+    "figure3": {
+      "method": "Arithmetic mean of accepted Ramsey T2* measurements",
+      "t2_star_s": 7.851475877121491e-06,
+      "fwhm_limit_hz": 40541.40790412636,
+      "source_phases": [
+        "after",
+        "before"
+      ],
+      "source_t2_star_s": [
+        7.815643380955271e-06,
+        7.88730837328771e-06
+      ]
+    }
+  },
+  "latest_layout_revision": "Shortened Figure 3 maps by approximately 12 percent and reduced inter-row gap by approximately 19 percent, keeping the analysis row approximately the same height",
+  "latest_layout_checks": "4 figure-generator tests passed; generator Ruff and diff whitespace checks passed; numerical exports, reported values, Figure 2 and supplement hashes unchanged"
+}

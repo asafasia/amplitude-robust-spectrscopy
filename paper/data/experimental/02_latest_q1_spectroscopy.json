@@ -1,0 +1,684 @@
+{
+  "arrays": {
+    "a1_broad_no_echo_absolute_frequency_hz": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a1_broad_no_echo_accepted": {
+      "dtype": "bool",
+      "shape": [
+        200
+      ]
+    },
+    "a1_broad_no_echo_amplitude_factor": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a1_broad_no_echo_center_error_hz": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a1_broad_no_echo_center_hz": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a1_broad_no_echo_contrast": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a1_broad_no_echo_detuning_hz": {
+      "dtype": "int64",
+      "shape": [
+        200
+      ]
+    },
+    "a1_broad_no_echo_fwhm_hz": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a1_broad_no_echo_nominal_rabi_mhz": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a1_broad_no_echo_r_squared": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a1_broad_no_echo_state": {
+      "dtype": "float64",
+      "shape": [
+        200,
+        200
+      ]
+    },
+    "a1_broad_no_echo_waveform_peak_rabi_mhz": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a2_broad_echo_absolute_frequency_hz": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a2_broad_echo_accepted": {
+      "dtype": "bool",
+      "shape": [
+        200
+      ]
+    },
+    "a2_broad_echo_amplitude_factor": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a2_broad_echo_center_error_hz": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a2_broad_echo_center_hz": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a2_broad_echo_contrast": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a2_broad_echo_detuning_hz": {
+      "dtype": "int64",
+      "shape": [
+        200
+      ]
+    },
+    "a2_broad_echo_fwhm_hz": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a2_broad_echo_nominal_rabi_mhz": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a2_broad_echo_r_squared": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a2_broad_echo_state": {
+      "dtype": "float64",
+      "shape": [
+        200,
+        200
+      ]
+    },
+    "a2_broad_echo_waveform_peak_rabi_mhz": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a3_narrow_no_echo_absolute_frequency_hz": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a3_narrow_no_echo_accepted": {
+      "dtype": "bool",
+      "shape": [
+        200
+      ]
+    },
+    "a3_narrow_no_echo_amplitude_factor": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a3_narrow_no_echo_center_error_hz": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a3_narrow_no_echo_center_hz": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a3_narrow_no_echo_contrast": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a3_narrow_no_echo_detuning_hz": {
+      "dtype": "int64",
+      "shape": [
+        200
+      ]
+    },
+    "a3_narrow_no_echo_fwhm_hz": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a3_narrow_no_echo_nominal_rabi_mhz": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a3_narrow_no_echo_r_squared": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a3_narrow_no_echo_state": {
+      "dtype": "float64",
+      "shape": [
+        200,
+        200
+      ]
+    },
+    "a3_narrow_no_echo_waveform_peak_rabi_mhz": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a4_narrow_echo_absolute_frequency_hz": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a4_narrow_echo_accepted": {
+      "dtype": "bool",
+      "shape": [
+        200
+      ]
+    },
+    "a4_narrow_echo_amplitude_factor": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a4_narrow_echo_center_error_hz": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a4_narrow_echo_center_hz": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a4_narrow_echo_contrast": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a4_narrow_echo_detuning_hz": {
+      "dtype": "int64",
+      "shape": [
+        200
+      ]
+    },
+    "a4_narrow_echo_fwhm_hz": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a4_narrow_echo_nominal_rabi_mhz": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a4_narrow_echo_r_squared": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    },
+    "a4_narrow_echo_state": {
+      "dtype": "float64",
+      "shape": [
+        200,
+        200
+      ]
+    },
+    "a4_narrow_echo_waveform_peak_rabi_mhz": {
+      "dtype": "float64",
+      "shape": [
+        200
+      ]
+    }
+  },
+  "category": "experimental",
+  "data_file": "02_latest_q1_spectroscopy.npz",
+  "dataset": "02_latest_q1_spectroscopy",
+  "provenance": {
+    "calibrations": {
+      "before_echo": {
+        "T2_echo": 1.924012980822837e-05,
+        "T2_echo_error": 1.23908973907157e-06,
+        "success": true
+      },
+      "before_iq-blobs": {
+        "average_fidelity": 87.97500000000001,
+        "average_fidelity_std": 0.5142710253358632,
+        "center_matrix": [
+          [
+            -0.0021148418121337887,
+            -0.00031831903076171876
+          ],
+          [
+            -0.0003941650772094727,
+            -0.00026401299667358404
+          ]
+        ],
+        "center_method": "mean",
+        "center_separation": 0.0017215334941406706,
+        "confusion_matrix": [
+          [
+            0.884,
+            0.116
+          ],
+          [
+            0.127,
+            0.873
+          ]
+        ],
+        "confusion_matrix_std": [
+          [
+            0.0071604469134265636,
+            0.0071604469134265636
+          ],
+          [
+            0.007445501997850783,
+            0.007445501997850783
+          ]
+        ],
+        "fidelity_matrix": [
+          [
+            0.88,
+            0.12
+          ],
+          [
+            0.1205,
+            0.8795
+          ]
+        ],
+        "fidelity_matrix_std": [
+          [
+            0.0072663608498339805,
+            0.0072663608498339805
+          ],
+          [
+            0.007279414468211024,
+            0.007279414468211026
+          ]
+        ],
+        "ge_threshold": -0.0014710670644038516,
+        "iw_angle": -0.03155038512643532,
+        "readout_fidelity": 87.97500000000001,
+        "readout_fidelity_std": 0.5142710253358632,
+        "rus_threshold": -0.0014710670644038516,
+        "separation_to_width": 1.7954071774945062,
+        "state_labels": [
+          "g",
+          "e"
+        ],
+        "success": true,
+        "threshold_line_midpoints": [
+          [
+            -0.0012545034446716308,
+            -0.0002911660137176514
+          ]
+        ],
+        "threshold_line_normals": [
+          [
+            0.001720676734924316,
+            5.430603408813472e-05
+          ]
+        ],
+        "threshold_pairs": [
+          "ge"
+        ]
+      },
+      "before_ramsey": {
+        "decay": 9.257500027521787e-06,
+        "decay_error": 3.480389540192761e-07,
+        "drive_frequency_hz": 4263203245.0,
+        "freq_offset": -39.34070120763396,
+        "frequency_correction_hz": 39.34070120763396,
+        "qubit_frequency_hz": 4263203284.340701,
+        "success": true
+      },
+      "before_t1": {
+        "success": true,
+        "t1": 55016.66830155505,
+        "t1_error": 1946.6001224324132
+      }
+    },
+    "coherence": {
+      "before": {
+        "accepted": true,
+        "formula": "FWHM_Hz = 1 / (pi * Ramsey_T2_star_seconds)",
+        "fwhm_limit_error_hz": 1292.6785370053383,
+        "fwhm_limit_hz": 34384.0005657555,
+        "source": "raw\\2026-10-31\\06a_ramsey\\01-06-11-688534",
+        "t2_star_error_s": 3.480389540192761e-07,
+        "t2_star_s": 9.257500027521787e-06
+      }
+    },
+    "frequency_reference_hz": 4263203245.0,
+    "generator": "scripts/make_latest_paper_measurements.py",
+    "manuscript_scope": "Main-text Figure 2",
+    "maps": {
+      "A1_broad_no_echo": {
+        "color_limits": [
+          0.0578,
+          0.63
+        ],
+        "interrupted": false,
+        "parameters": {
+          "ac_stark_correction": false,
+          "acquisition": "averaged",
+          "active_reset_max_attempts": 15,
+          "amp_factor_points": 200,
+          "amp_factor_spacing": "linear",
+          "amp_factor_step": 0.03,
+          "cutoff": 0.005,
+          "drag_beta": 0.0,
+          "echo": false,
+          "echo_transition_time_ns": 0.0,
+          "edge_smoothing": "none",
+          "edge_smoothing_power": 5,
+          "fit_fwhm": false,
+          "fixed_amp_factor": null,
+          "fixed_rabi_frequency_mhz": null,
+          "frequency_points": 200,
+          "frequency_span_in_mhz": 40.0,
+          "frequency_step_in_mhz": 2.0,
+          "load_data_id": null,
+          "lorentzian_length_in_ns": 20000,
+          "lorentzian_peak_amplitude": 0.7,
+          "max_amp_factor": 0.10920954572894369,
+          "min_amp_factor": 0.0,
+          "multiplexed": false,
+          "num_shots": 5000,
+          "operation": "lorentzian",
+          "plot_sweep_diagnostics": false,
+          "pulse_shape": "root_lorentzian",
+          "qubits": [
+            "q1"
+          ],
+          "readout_states": [
+            "g",
+            "e"
+          ],
+          "reset_type": "active",
+          "simulate": false,
+          "simulation_duration_ns": 50000,
+          "stark_chirp_max_error_hz": 10.0,
+          "stark_kappa_mhz_inv": 0.0,
+          "timeout": 120,
+          "use_readout_mitigation": 0.0,
+          "use_state_discrimination": true,
+          "use_three_state_discrimination": false,
+          "use_waveform_report": true,
+          "waveform_template_length_in_ns": 20000
+        },
+        "processed_sha256": "0d75a43c95540fe1743293d19da96f083b3dfe01fb2d1eb93c01b542d10c1f87",
+        "raw_saved": true,
+        "raw_sha256": "7c11fe0307ddf7026cea440e15526b7efd6a2beb3665278d8242736c8668c4cd",
+        "raw_state_exactly_matches": true,
+        "source_processed": "20261031_002217_547409_optimized_5000/figures2-3/processed/A1_broad_no_echo.npz",
+        "source_raw": "20261031_002217_547409_optimized_5000/figures2-3/raw/2026-10-31/A1_broad_no_echo/08-15-30-426145/results.npz",
+        "waveform_sha256": "01ff209bc34ac1d24033b1be85e69f076bc6841fd85962f9b5f4e806843372ae"
+      },
+      "A2_broad_echo": {
+        "color_limits": [
+          0.0518,
+          0.7354
+        ],
+        "interrupted": false,
+        "parameters": {
+          "ac_stark_correction": false,
+          "acquisition": "averaged",
+          "active_reset_max_attempts": 15,
+          "amp_factor_points": 200,
+          "amp_factor_spacing": "linear",
+          "amp_factor_step": 0.03,
+          "cutoff": 0.005,
+          "drag_beta": 0.0,
+          "echo": true,
+          "echo_transition_time_ns": 0.0,
+          "edge_smoothing": "none",
+          "edge_smoothing_power": 5,
+          "fit_fwhm": false,
+          "fixed_amp_factor": null,
+          "fixed_rabi_frequency_mhz": null,
+          "frequency_points": 200,
+          "frequency_span_in_mhz": 40.0,
+          "frequency_step_in_mhz": 2.0,
+          "load_data_id": null,
+          "lorentzian_length_in_ns": 20000,
+          "lorentzian_peak_amplitude": 0.7,
+          "max_amp_factor": 0.10920954572894369,
+          "min_amp_factor": 0.0,
+          "multiplexed": false,
+          "num_shots": 5000,
+          "operation": "lorentzian",
+          "plot_sweep_diagnostics": false,
+          "pulse_shape": "root_lorentzian",
+          "qubits": [
+            "q1"
+          ],
+          "readout_states": [
+            "g",
+            "e"
+          ],
+          "reset_type": "active",
+          "simulate": false,
+          "simulation_duration_ns": 50000,
+          "stark_chirp_max_error_hz": 10.0,
+          "stark_kappa_mhz_inv": 0.0,
+          "timeout": 120,
+          "use_readout_mitigation": 0.0,
+          "use_state_discrimination": true,
+          "use_three_state_discrimination": false,
+          "use_waveform_report": true,
+          "waveform_template_length_in_ns": 20000
+        },
+        "processed_sha256": "0c2d8016ac3d4d74538b646950ea92fb91ae64a63f6da52d59b8733e608e90a3",
+        "raw_saved": true,
+        "raw_sha256": "4ba383756c0f59a1cfd223215eb75e4b65569c74a5df9ef816706a1b60a3a813",
+        "raw_state_exactly_matches": true,
+        "source_processed": "20261031_002217_547409_optimized_5000/figures2-3/processed/A2_broad_echo.npz",
+        "source_raw": "20261031_002217_547409_optimized_5000/figures2-3/raw/2026-10-31/A2_broad_echo/10-39-53-868564/results.npz",
+        "waveform_sha256": "922903020456c0355b0e9808611d1cf4cb578cb109589a14cd277c8b50f6a8cc"
+      },
+      "A3_narrow_no_echo": {
+        "color_limits": [
+          0.0604,
+          0.737
+        ],
+        "interrupted": false,
+        "parameters": {
+          "ac_stark_correction": false,
+          "acquisition": "averaged",
+          "active_reset_max_attempts": 15,
+          "amp_factor_points": 200,
+          "amp_factor_spacing": "linear",
+          "amp_factor_step": 0.03,
+          "cutoff": 0.005,
+          "drag_beta": 0.0,
+          "echo": false,
+          "echo_transition_time_ns": 0.0,
+          "edge_smoothing": "none",
+          "edge_smoothing_power": 5,
+          "fit_fwhm": false,
+          "fixed_amp_factor": null,
+          "fixed_rabi_frequency_mhz": null,
+          "frequency_points": 200,
+          "frequency_span_in_mhz": 1.0,
+          "frequency_step_in_mhz": 2.0,
+          "load_data_id": null,
+          "lorentzian_length_in_ns": 20000,
+          "lorentzian_peak_amplitude": 0.7,
+          "max_amp_factor": 0.10920954572894369,
+          "min_amp_factor": 0.0,
+          "multiplexed": false,
+          "num_shots": 5000,
+          "operation": "lorentzian",
+          "plot_sweep_diagnostics": false,
+          "pulse_shape": "root_lorentzian",
+          "qubits": [
+            "q1"
+          ],
+          "readout_states": [
+            "g",
+            "e"
+          ],
+          "reset_type": "active",
+          "simulate": false,
+          "simulation_duration_ns": 50000,
+          "stark_chirp_max_error_hz": 10.0,
+          "stark_kappa_mhz_inv": 0.0,
+          "timeout": 120,
+          "use_readout_mitigation": 0.0,
+          "use_state_discrimination": true,
+          "use_three_state_discrimination": false,
+          "use_waveform_report": true,
+          "waveform_template_length_in_ns": 20000
+        },
+        "processed_sha256": "55816096d6ab0457d5a35a9907811170d1546dc129bb4f87fe773c7335929db5",
+        "raw_saved": true,
+        "raw_sha256": "34f88c213e976db75e6b3d0b63a162b0e47a206863bf23dfa67c92ea93ad8524",
+        "raw_state_exactly_matches": true,
+        "source_processed": "20261031_002217_547409_optimized_5000/figures2-3/processed/A3_narrow_no_echo.npz",
+        "source_raw": "20261031_002217_547409_optimized_5000/figures2-3/raw/2026-10-31/A3_narrow_no_echo/03-23-24-667928/results.npz",
+        "waveform_sha256": "6914f40da84cedc35486b9932225b452333b367d9ed93cb4695ad762b17f4538"
+      },
+      "A4_narrow_echo": {
+        "color_limits": [
+          0.063,
+          0.7646
+        ],
+        "interrupted": false,
+        "parameters": {
+          "ac_stark_correction": false,
+          "acquisition": "averaged",
+          "active_reset_max_attempts": 15,
+          "amp_factor_points": 200,
+          "amp_factor_spacing": "linear",
+          "amp_factor_step": 0.03,
+          "cutoff": 0.005,
+          "drag_beta": 0.0,
+          "echo": true,
+          "echo_transition_time_ns": 0.0,
+          "edge_smoothing": "none",
+          "edge_smoothing_power": 5,
+          "fit_fwhm": false,
+          "fixed_amp_factor": null,
+          "fixed_rabi_frequency_mhz": null,
+          "frequency_points": 200,
+          "frequency_span_in_mhz": 1.0,
+          "frequency_step_in_mhz": 2.0,
+          "load_data_id": null,
+          "lorentzian_length_in_ns": 20000,
+          "lorentzian_peak_amplitude": 0.7,
+          "max_amp_factor": 0.10920954572894369,
+          "min_amp_factor": 0.0,
+          "multiplexed": false,
+          "num_shots": 5000,
+          "operation": "lorentzian",
+          "plot_sweep_diagnostics": false,
+          "pulse_shape": "root_lorentzian",
+          "qubits": [
+            "q1"
+          ],
+          "readout_states": [
+            "g",
+            "e"
+          ],
+          "reset_type": "active",
+          "simulate": false,
+          "simulation_duration_ns": 50000,
+          "stark_chirp_max_error_hz": 10.0,
+          "stark_kappa_mhz_inv": 0.0,
+          "timeout": 120,
+          "use_readout_mitigation": 0.0,
+          "use_state_discrimination": true,
+          "use_three_state_discrimination": false,
+          "use_waveform_report": true,
+          "waveform_template_length_in_ns": 20000
+        },
+        "processed_sha256": "e320fad5830529439887c8d4c73019e8cc597439965bd7c463fdafe2a282bbdf",
+        "raw_saved": true,
+        "raw_sha256": "939addaffe064c832a66877b12d4638a2a9dca687323e68f9d5e0599152e3bda",
+        "raw_state_exactly_matches": true,
+        "source_processed": "20261031_002217_547409_optimized_5000/figures2-3/processed/A4_narrow_echo.npz",
+        "source_raw": "20261031_002217_547409_optimized_5000/figures2-3/raw/2026-10-31/A4_narrow_echo/06-10-28-205327/results.npz",
+        "waveform_sha256": "53a7dfdda8f3ce496e06716a1b85d719db6d3e49c7068df80125e26307feaba4"
+      }
+    },
+    "nominal_rabi_hz_per_volt": 261620249.22567108,
+    "processing": "Raw populations unchanged; saved Gaussian fit values and quality masks retained",
+    "rabi_axis": "nominal_rabi_mhz",
+    "reference_pi": {
+      "amplitude_v": 0.09800856667982125,
+      "effective_length_ns": 19.500000000000004,
+      "length_ns": 40
+    },
+    "selection": "Only individually completed maps with saved, uninterrupted raw data",
+    "source_plan_sha256": "3c53d71a28074c39083537c63df5ad101e8b9268c9edebc62bc6cafcb4538375",
+    "source_root_convention": "Relative to q1 campaign data root",
+    "source_session": "20261031_002217_547409_optimized_5000/figures2-3",
+    "source_session_status": "stopped_by_user",
+    "source_summary_sha256": "be594c62626aa2ef291ee3d13ade344e7a07b78017db1220f66dda7640571cec",
+    "spectroscopy_shots": 800000000
+  },
+  "schema_version": 1
+}
