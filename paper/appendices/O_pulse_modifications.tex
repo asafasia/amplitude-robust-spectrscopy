@@ -19,39 +19,6 @@ Fig.~\ref{fig:drag-beta-optimization}(d) uses the current q1 measurements
 to separate the effects of DRAG and polynomial edge smoothing at fixed
 midpoint duration.
 
-Table~\ref{tab:pulse-modification-overview} summarizes the role of each
-modification before the separate comparisons below.
-
-\begin{table}[!ht]
-    \caption{Pulse modifications and the limitations they address.
-    The effects listed are established by the separate simulation
-    comparisons below; the SNR is an ideal shot-noise estimate.}
-    \label{tab:pulse-modification-overview}
-    \renewcommand{\arraystretch}{1.15}
-    \begin{ruledtabular}
-    \begin{tabular}{p{0.27\columnwidth}p{0.64\columnwidth}}
-    Modification & Problem and benefit \\
-    \hline
-    \raggedright Midpoint smoothing &
-    Abrupt sign reversal causes leakage into $\lvert f\rangle$.
-    A finite sine transition suppresses final-state leakage and gives
-    a finite derivative for DRAG
-    (Fig.~\ref{fig:midpoint-leakage}). \\
-    \raggedright DRAG quadrature &
-    Drive-induced phase error displaces the spectral center.
-    Adding $Q\propto dI/dt$, with $\beta\simeq-0.5$ in our convention,
-    reduces center motion; it does not by itself narrow the dip
-    (Fig.~\ref{fig:drag-beta-optimization}). \\
-    \raggedright Polynomial outer-edge smoothing &
-    Hard truncation contributes to high-drive broadening and loss of
-    visibility. Endpoint subtraction and the $p=2$ window reduce
-    broadening, improve contrast and ideal SNR, and maintain these
-    improvements over a wider drive range at fixed DRAG
-    (Fig.~\ref{fig:edge-smoothing-results}). \\
-    \end{tabular}
-    \end{ruledtabular}
-\end{table}
-
 \subsection{The midpoint phase jump and its smooth implementation}
 
 The ideal echo changes the carrier phase by $\pi$ at the pulse midpoint,
