@@ -1,0 +1,10 @@
+{
+  "new_simulations": 2666,
+  "evaluated_records": 2666,
+  "algorithm": "SLSQP with finite-difference gradients; not an adjoint method",
+  "continuation": "New-band objective alternates with cumulative objective; hard guards always cover 5--60 MHz.",
+  "no_forgetting_scope": "Earlier bands are replayed, but may trade improvements while remaining above the ORIGINAL baseline. Their intermediate best values are not frozen.",
+  "band_contrast_floor": 0.0,
+  "model": "Two levels; no leakage or multilevel Stark shift validation; beta configurable, default zero.",
+  "comparison": "Single joint-start reference, not an equal-budget or global-optimality benchmark."
+}

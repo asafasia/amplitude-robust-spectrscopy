@@ -2,8 +2,8 @@
 % Reproduce with scripts/make_supplemental_figures.py --only pulse_modifications.
 % Midpoint comparison: outputs/sine_echo_transition_comparison/T{0,4,8,16}ns.npz
 % and provenance.json; leakage is max(Pf_narrow), not maximum transient leakage.
-% Matched linewidth/contrast: figures/paper/03_pulse_improvement_provenance.json
-% and 03_pulse_improvement_metrics.csv; contrast uses dip_metrics, not SNR.
+% Matched linewidth/contrast: paper/data/numerical/07_current_edge_comparison.*
+% and supplemental/edge_smoothing_results_metrics.csv; contrast uses dip_metrics.
 \section{Pulse Modifications: Phase Inversion, DRAG, and Cutoff-Edge Smoothing}
 \label{sec:pulse-modifications}
 
@@ -15,8 +15,9 @@ midpoint can suppress population transfer to $\lvert f\rangle$ without
 removing the spectral effects of the outer edges, while DRAG alone need
 not narrow the central spectroscopy dip. The separate effects are examined
 with three-level simulations. The experimental comparison in
-Fig.~\ref{fig:drag-beta-optimization}(d) tests a combined change of
-midpoint smoothing and DRAG, rather than either modification in isolation.
+Fig.~\ref{fig:drag-beta-optimization}(d) uses the current q1 measurements
+to separate the effects of DRAG and polynomial edge smoothing at fixed
+midpoint duration.
 
 Table~\ref{tab:pulse-modification-overview} summarizes the role of each
 modification before the separate comparisons below.
@@ -43,7 +44,7 @@ modification before the separate comparisons below.
     (Fig.~\ref{fig:drag-beta-optimization}). \\
     \raggedright Polynomial outer-edge smoothing &
     Hard truncation contributes to high-drive broadening and loss of
-    visibility. Endpoint subtraction and the $p=5$ window reduce
+    visibility. Endpoint subtraction and the $p=2$ window reduce
     broadening, improve contrast and ideal SNR, and maintain these
     improvements over a wider drive range at fixed DRAG
     (Fig.~\ref{fig:edge-smoothing-results}). \\
@@ -81,9 +82,7 @@ or after adding a noncommuting quadrature.
 
 The saved transition-duration comparison isolates this change with
 $L=20~\mu\mathrm{s}$, $c=0.005$, $\beta=0$, and no additional Stark-phase
-correction. It uses $T_1=51.24~\mu\mathrm{s}$,
-$T_2=\EffectiveTTwoDisplay~\mu\mathrm{s}$, and
-$\alpha/(2\pi)=-216~\mathrm{MHz}$. Figure~\ref{fig:midpoint-leakage}
+correction and $\alpha/(2\pi)=-216~\mathrm{MHz}$. Figure~\ref{fig:midpoint-leakage}
 shows the final $P_f$ over 201 detunings within $\pm0.5~\mathrm{MHz}$
 at the highest drive, and its maximum over detuning for each of 25 drive
 scales from 0 to $42.72~\mathrm{MHz}$. The largest final populations on
@@ -96,8 +95,8 @@ This is final-state leakage, not the maximum transient occupation of
 $\lvert f\rangle$. Halving the integration step from 0.5 to
 $0.25~\mathrm{ns}$ at representative drive--detuning points changes
 the final populations by at most $1.90\times10^{-5}$ across the four
-transition durations. The subsequent matched waveform comparisons use
-the same $16~\mathrm{ns}$ inversion with and without DRAG.
+transition durations. The DRAG and edge-smoothing comparisons below use the experimental
+$50~\mathrm{ns}$ inversion.
 
 \begin{figure*}[!tp]
     \centering
@@ -160,61 +159,64 @@ minimum of a finite echo spectrum also depends on interference,
 dissipation, and the cutoff, so its optimal coefficient need not be
 exactly $-0.5$ or coincide with the minimum-leakage coefficient.
 
-Figure~\ref{fig:drag-beta-optimization} tests this choice for the
-$20~\mu\mathrm{s}$, $c=0.005$, $16~\mathrm{ns}$ sine-smoothed
-echo-root-Lorentzian pulse, using the same three-level parameters as the
-preceding leakage comparison. We scan 35 coefficients over
-$-1\leq\beta\leq0$, with spacing 0.005 near $-0.5$, and hold all other
-pulse parameters fixed. At seven equally spaced drive amplitudes from
-10 to $42.72~\mathrm{MHz}$, the central minimum of $P_e$ is located
-on a $[-60,60]~\mathrm{kHz}$ detuning grid with $1~\mathrm{kHz}$ spacing
-and refined by a parabola through the minimum and its two neighbors.
-The objective is the RMS center offset about zero detuning,
+Figure~\ref{fig:drag-beta-optimization} tests this choice using the current
+pulse parameters: $L=20~\mu\mathrm{s}$, $c=0.005$, and a
+$50~\mathrm{ns}$ sine midpoint transition. The numerical comparison
+includes both hard cutoff edges and cutoff subtraction with a $p=2$
+polynomial window. Drive amplitudes are normalized to the actual
+complex-envelope peak, as in the measured comparison. We use the
+three-level model with $\alpha/(2\pi)=-216~\mathrm{MHz}$ and the
+campaign-average $T_1\simeq44~\mu\mathrm{s}$.
+
+We scan 17 coefficients over $-1\leq\beta\leq0$, with spacing 0.025
+near $-0.5$. At six peak Rabi amplitudes from 10 to $60~\mathrm{MHz}$,
+the minimum of $P_e$ is located on a $[-120,120]~\mathrm{kHz}$ detuning
+grid with $2~\mathrm{kHz}$ spacing and refined by a local parabola.
+The numerical objective is the RMS center offset about zero,
 \begin{equation}
-    J(\beta)=\left[\frac{1}{7}\sum_{j=1}^{7}
+    J(\beta)=\left[\frac{1}{6}\sum_{j=1}^{6}
         \left(\frac{\Delta_{\min,j}(\beta)}{2\pi}\right)^2
         \right]^{1/2}.
     \label{eq:drag-beta-objective}
 \end{equation}
-The smallest sampled value is $J=0.099~\mathrm{kHz}$ at
-$\beta=-0.495$, compared with $0.125~\mathrm{kHz}$ at $-0.5$ and
-$7.64~\mathrm{kHz}$ at zero. Repeating the three coefficients
-$-0.500$, $-0.495$, and $-0.490$ with a $0.25~\mathrm{ns}$ time step
-and $0.5~\mathrm{kHz}$ detuning spacing preserves their ranking and
-changes individual centers by less than $0.10~\mathrm{Hz}$.
-Thus $-0.5$ is close to the numerical optimum for this center objective,
-rather than an exact universal optimum.
+Both pulse shapes favor a coefficient close to $-0.5$.
+At $\beta=-0.5$, the RMS offset decreases from about $8~\mathrm{kHz}$
+without DRAG to $400~\mathrm{Hz}$, and to about $30~\mathrm{Hz}$
+with the polynomial window.
+The coefficients surrounding each minimum are checked with a
+$0.25~\mathrm{ns}$ integration step and $1~\mathrm{kHz}$ detuning spacing.
+The refined calculation changes the individual centers by less than
+$1~\mathrm{Hz}$. The numerical optimum is specific to this center objective and pulse model.
 
-The experimental comparison in Fig.~\ref{fig:drag-beta-optimization}(d)
-compares two measured settings: $\beta=0$ with an
-abrupt inversion and $\beta=-0.22$ with a $16~\mathrm{ns}$ inversion,
-for $L=50~\mu\mathrm{s}$ and $c=0.00075$ on the second qubit.
-The coefficients are quoted in the acquisition convention. Each run's
-mean accepted center over the displayed 10--$60~\mathrm{MHz}$ range is
-subtracted; the RMS variations are 6.78 and $2.64~\mathrm{kHz}$,
-respectively. These measurements demonstrate improved center stability
-for the combined pulse change. Because both the quadrature and midpoint
-smoothing change, they neither isolate the effect of $\beta$ nor
-establish an experimental optimum at $-0.5$.
+Figure~\ref{fig:drag-beta-optimization}(d) shows the new q1 measurements
+used in Fig.~3 of the Letter: echo, DRAG, and DRAG with the $p=2$
+polynomial window. All three share the same $50~\mathrm{ns}$ midpoint
+transition, with 5000 averages per point. The DRAG pulses use
+$\beta_{\mathrm{acq}}=1.25$ in the acquisition convention.
+Using the common accepted nonzero amplitudes up to $60~\mathrm{MHz}$,
+the center variation about each curve's own mean decreases from roughly
+24 to 4 to $2~\mathrm{kHz}$. Thus the more refined pulse shaping
+progressively stabilizes the measured center. These curves compare
+fixed pulse settings; the numerical scan does not determine the
+experimental acquisition coefficient.
 
 \begin{figure*}[!tp]
     \centering
     \includegraphics[width=\textwidth]{../figures/paper/supplemental/drag_beta_optimization.pdf}
-    \caption{DRAG quadrature, simulated coefficient optimization, and
-    experimental center stability. (a) Signed in-phase waveform (blue,
-    left axis) and added quadrature (orange, right axis) at $\beta=-0.5$,
-    with a $16~\mathrm{ns}$ inversion interval.
-    (b) Simulated RMS center offset $J(\beta)$; the star marks the lowest
-    sampled value at $-0.495$, and the dotted line marks $-0.5$.
-    (c) Direct central minima of the saved simulated spectra for
-    $\beta=0,-0.5,-1$; all three use identical midpoint smoothing.
-    Panels (a)--(c) use $L=20~\mu\mathrm{s}$ and $c=0.005$ with no
-    additional detuning correction. Lines connect sampled values.
-    (d) Accepted Gaussian-fit centers from two measured $50~\mu\mathrm{s}$,
-    $c=0.00075$ pulses, with one mean subtracted per run and no additional
-    smoothing. The settings
-    differ in both $\beta$ and inversion duration, as labeled; this panel
-    is a measured comparison, not an experimental coefficient scan.}
+    \caption{DRAG optimization and the updated measured comparison.
+    All panels use $L=20~\mu\mathrm{s}$, $c=0.005$, and a
+    $50~\mathrm{ns}$ sine inversion; polynomial smoothing uses $p=2$.
+    (a) In-phase waveform (blue, left axis) and quadrature (orange,
+    right axis) for the polynomial pulse at simulated $\beta=-0.5$.
+    (b) Numerical RMS center offset $J(\beta)$ for DRAG without and
+    with polynomial smoothing. Stars mark the lowest sampled values;
+    the dotted line marks $-0.5$.
+    (c) Simulated centers for echo, DRAG, and DRAG with polynomial
+    smoothing, with $\beta=0,-0.5,-0.5$, respectively.
+    (d) Saved Gaussian-fit centers from the current q1 measurements
+    on common accepted amplitudes, with one mean subtracted per curve.
+    Error bars show one fit standard error. The DRAG acquisition
+    coefficient is $1.25$; no experimental coefficient scan is shown.}
     \label{fig:drag-beta-optimization}
 \end{figure*}
 
@@ -245,17 +247,17 @@ edge window is
 and zero outside. Thus
 $L^{\mathrm{smooth}}(t)=L_{\mathrm{floor}}^{(1/2)}(t)s_T(t)W_p(t)$,
 where $s_T(t)$ is the shared smoothed midpoint phase-jump factor.
-We use $p=5$, which makes the envelope
-and its first five derivatives vanish at the boundaries. The corrected
-envelope retains $g_p(0)=1$, is even, and uses the same
-nominal scale $\Omega_0$. We apply neither pulse-area normalization nor
-renormalization to the peak of the signed, smoothed waveform. The
-cutoff $c$ consequently specifies the underlying core width, not the
-nonzero endpoint amplitude of the corrected pulse. Figure~\ref{fig:pulse-modification-waveforms}
+We use $p=2$, which makes the envelope
+and its first two derivatives vanish at the boundaries. The unsigned
+envelope retains $g_p(0)=1$ and is even. In the dynamical comparisons
+and the $I/Q$ panels, each complete pulse is scaled to the same
+complex-envelope peak $\Omega_{\mathrm{pk}}$, without pulse-area matching.
+The cutoff $c$ specifies the underlying core width, not the endpoint
+amplitude of the corrected pulse. Figure~\ref{fig:pulse-modification-waveforms}
 shows the envelope, turn-on edge, signed midpoint waveform, and DRAG
-quadrature for
-$L=30~\mu\mathrm{s}$ and $c=0.001$, corresponding to
-$\sigma\simeq15~\mathrm{ns}$. Even with smoother outer edges, the sine
+quadrature for $L=20~\mu\mathrm{s}$, $c=0.005$, and a
+$50~\mathrm{ns}$ transition, giving $\sigma\simeq50~\mathrm{ns}$.
+Even with smoother outer edges, the sine
 midpoint transition is only $C^1$ at its joins; outer-edge regularity
 should not be confused with the regularity of the entire signed pulse.
 The turn-off follows from the even symmetry of $g_p$. The signed
@@ -268,45 +270,44 @@ inversion interval.
 \begin{figure*}[!tp]
     \centering
     \includegraphics[width=\textwidth]{../figures/paper/supplemental/s08_pulse_modifications.pdf}
-    \caption{Envelope shaping and DRAG for $L=30~\mu\mathrm{s}$,
-    $c=0.001$, and a $16~\mathrm{ns}$ midpoint transition.
-    (a) Unsigned hard-cutoff and polynomial-corrected ($p=5$) envelopes.
+    \caption{Envelope shaping and DRAG for $L=20~\mu\mathrm{s}$,
+    $c=0.005$, and a $50~\mathrm{ns}$ midpoint transition.
+    (a) Unsigned hard-cutoff and polynomial-corrected ($p=2$) envelopes,
+    each with $g(0)=1$.
     (b) Turn-on edge; the turn-off is its mirror image. The envelope
     axes are logarithmic above $10^{-8}$ in (a) and $10^{-9}$ in (b),
     and linear below these values to include zero.
-    (c) Signed in-phase waveform $I/\Omega_0$ near the midpoint,
-    including the abrupt hard-cutoff inversion as a reference.
-    (d) Polynomial-pulse DRAG quadrature $Q/\Omega_0$ for $\beta=-0.5$
-    and $\alpha/(2\pi)=-216~\mathrm{MHz}$, decomposed into the
-    envelope-derivative term $-\beta g_p^{\prime}s_T/|\alpha|$ and
-    midpoint term $-\beta g_p s_T^{\prime}/|\alpha|$.
-    Vertical dotted lines mark the $16~\mathrm{ns}$ inversion interval
-    in (c),(d).
-    The convention is $I-iQ$; $g(0)=1$ is held fixed without area or
-    signed-peak renormalization.}
+    (c) Signed in-phase waveform $I/\Omega_{\mathrm{pk}}$ near the midpoint,
+    with the abrupt inversion as a reference.
+    (d) Polynomial-pulse quadrature $Q/\Omega_{\mathrm{pk}}$ at
+    numerical $\beta=-0.5$ and $\alpha/(2\pi)=-216~\mathrm{MHz}$,
+    separated into envelope- and midpoint-derivative contributions.
+    Dotted vertical lines mark the $50~\mathrm{ns}$ inversion interval.
+    The convention is $I-iQ$; panels (c),(d) use the complete
+    complex-envelope peak for normalization.}
     \label{fig:pulse-modification-waveforms}
 \end{figure*}
 
 \subsection{Edge smoothing: linewidth, visibility, and drive robustness}
 
 Figure~\ref{fig:edge-smoothing-results} isolates the outer-envelope
-correction at fixed $\beta=-0.5$ and fixed $16~\mathrm{ns}$ midpoint
-inversion. Both pulses use $L=30~\mu\mathrm{s}$, $c=0.001$, and the
-same three-level coherence and anharmonicity parameters given above.
-The only change is replacement of the hard-truncated envelope by
-Eq.~\eqref{eq:pulse-modification-polynomial}, including both endpoint
-subtraction and the $p=5$ window. The nominal peak scale is held fixed,
-without area rematching. These are the saved matched simulations used
-for the main-text pulse-improvement comparison, evaluated at 100 drive
-scales from 0 to $100~\mathrm{MHz}$ and 201 detunings within
-$\pm0.5~\mathrm{MHz}$.
+correction at fixed numerical $\beta=-0.5$ and a $50~\mathrm{ns}$
+midpoint inversion. Both pulses use $L=20~\mu\mathrm{s}$, $c=0.005$,
+and the same three-level parameters as Fig.~\ref{fig:drag-beta-optimization}.
+The correction combines endpoint subtraction with the $p=2$ window.
+The complex-envelope peak is held fixed without area rematching.
+The new simulations cover 101 drive amplitudes from 0 to
+$100~\mathrm{MHz}$ and 201 detunings within $\pm0.5~\mathrm{MHz}$.
+At representative drives of 10, 50, and $100~\mathrm{MHz}$, halving the
+$0.5~\mathrm{ns}$ integration step changes the widths by less than
+$0.02~\mathrm{kHz}$; independently halving the detuning spacing changes
+them by less than $0.12~\mathrm{kHz}$.
 
 The FWHM is extracted from the nearest half-depth crossings relative to
 a linear background fitted over $0.4\leq|\Delta|/(2\pi)\leq0.5~\mathrm{MHz}$.
 The contrast $C$ is the dip depth relative to this background, in
 excitation-probability units. To quantify visibility at a fixed shot
-budget, we additionally use the ideal SNR estimate from the saved
-analysis. Let $p_c$ be the interpolated probability at the central dip
+budget, we additionally calculate an ideal SNR estimate. Let $p_c$ be the interpolated probability at the central dip
 and $p_\pm$ the probabilities at detunings $\pm0.45~\mathrm{MHz}$.
 For $N=1000$ independent binary measurements, with $N/2$ shots at the
 center and $N/4$ at each shoulder,
@@ -329,37 +330,31 @@ not a measured experimental SNR.
     \includegraphics[width=\textwidth]{../figures/paper/supplemental/edge_smoothing_results.pdf}
     \caption{Effect of polynomial outer-edge smoothing at fixed DRAG.
     Gray solid curves show the hard cutoff; blue dashed curves add
-    endpoint subtraction and the $p=5$ window. Both use
-    $L=30~\mu\mathrm{s}$, $c=0.001$, $\beta=-0.5$, and a
-    $16~\mathrm{ns}$ sine midpoint transition.
-    (a) Simulated spectra at $\Omega_0/(2\pi)=100~\mathrm{MHz}$.
+    endpoint subtraction and the $p=2$ window. Both use
+    $L=20~\mu\mathrm{s}$, $c=0.005$, numerical $\beta=-0.5$, and a
+    $50~\mathrm{ns}$ sine midpoint transition.
+    (a) Simulated spectra at $\Omega_{\mathrm{pk}}/(2\pi)=100~\mathrm{MHz}$.
     (b) Dip FWHM, (c) background-referenced contrast $C$, and
     (d) ideal SNR from Eq.~\eqref{eq:edge-ideal-snr} versus peak drive.
-    Dotted lines indicate illustrative criteria of FWHM $\leq200~\mathrm{kHz}$
-    and SNR $\geq10$. All 50 sampled polynomial-pulse points in the
-    50--$100~\mathrm{MHz}$ interval meet both criteria.
-    Curves connect saved samples without
-    additional smoothing or normalization; undefined zero-drive metrics
-    are omitted.}
+    Dotted lines mark illustrative guides of $200~\mathrm{kHz}$ and
+    SNR $=10$. Curves connect simulated samples; undefined zero-drive
+    metrics are omitted.}
     \label{fig:edge-smoothing-results}
 \end{figure*}
 
-At $100~\mathrm{MHz}$, edge correction reduces the FWHM from 506.0 to
-$161.8~\mathrm{kHz}$ and raises $C$ from 0.079 to 0.315. The ideal SNR
-increases from 2.50 to 10.64. The improvement persists across all 50
-sampled drive settings from 50.51 to $100~\mathrm{MHz}$: the corrected
-pulse has worst-case FWHM $161.8~\mathrm{kHz}$ and minimum ideal SNR
-10.64, compared with $506.0~\mathrm{kHz}$ and 2.50 for the hard cutoff.
-Thus the polynomial correction maintains a narrower, more visible dip
-throughout this high-drive interval. This is robustness to changing the
-nominal drive scale; no stochastic amplitude-noise process is simulated.
+At $100~\mathrm{MHz}$, edge correction reduces the width from about
+530 to $220~\mathrm{kHz}$, roughly a factor of 2.5, while raising the
+contrast from about 0.06 to 0.27 and the ideal SNR from about 2 to 9.
+The narrower, more visible response persists throughout the sampled
+50--$100~\mathrm{MHz}$ interval, although the polynomial pulse crosses
+the illustrative width and SNR guides at the higher drives.
+This comparison tests robustness to the peak drive amplitude; no
+stochastic amplitude-noise process is simulated.
 
-The roles of the two corrections remain distinct. In the same saved
-comparison, adding DRAG to the hard-cutoff pulse changes its
-$100~\mathrm{MHz}$ FWHM from 484.8 to $506.0~\mathrm{kHz}$, so DRAG
-alone does not produce the narrowing. The edge-corrected width also
-remains above $1/(\pi T_2)=43.5~\mathrm{kHz}$. These results establish
-an improvement for the specified pulse, drive interval, and readout
-model, rather than a universal optimum or coherence-limited linewidth.
+A matched no-DRAG control at $100~\mathrm{MHz}$ gives a width of about
+$610~\mathrm{kHz}$, so DRAG alone provides only modest narrowing here.
+Polynomial edge correction provides the larger additional improvement,
+while the width remains above $\Gamma_{T_2^*}$. The result applies to
+the specified pulse, drive interval, and ideal readout model.
 The final section examines the polynomial family's behavior over the
 full cutoff and pulse-duration range.

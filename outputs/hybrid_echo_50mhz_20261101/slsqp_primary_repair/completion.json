@@ -1,0 +1,15 @@
+{
+  "status": "Optimization terminated successfully",
+  "evaluations": 276,
+  "feasible": 249,
+  "best": {
+    "feasible": true,
+    "width50_khz": 107.11220948129677,
+    "contrast50": 0.403009820847055,
+    "local_contrast50": 0.3097086279774515,
+    "min_contrast_gain": 0.0010011391284526772,
+    "min_width_gain_khz": 0.3925690785290499,
+    "max_violation": 0.0,
+    "loss": 1.080452706016453
+  }
+}

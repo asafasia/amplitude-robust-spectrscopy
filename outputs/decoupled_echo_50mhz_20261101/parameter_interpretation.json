@@ -1,0 +1,77 @@
+{
+  "contrast_first": {
+    "pulse": {
+      "duration_us": 16.09042836100788,
+      "core_us": 0.024723051917865814,
+      "tail_gain": 0.7750346991388251,
+      "tail_join_us": 0.13821352246019378,
+      "tail_scale_us": 14.310113452845385,
+      "tail_power": 19.598301315263434,
+      "edge_width_us": 0.7090710318570616,
+      "transition_us": 0.016,
+      "drag_beta": -0.5,
+      "anharmonicity_mhz": -216.0,
+      "phase_rad": 0.4533785712863818,
+      "phase_scale_us": 2.2252374329402853,
+      "phase2_rad": -0.504813829663552,
+      "phase2_scale_us": 0.09146912240726797
+    },
+    "peak_scale": 0.952766097717203,
+    "raw_rabi_at_chirp_peak_for_5mhz": 0.05692615201380285,
+    "raw_rabi_at_chirp_peak_for_50mhz": 0.5692615201380286,
+    "broad_phase_component_extremum_us": 1.573480478582221,
+    "total_phase_chirp_at_broad_component_extremum_mhz": 0.02781458093319466,
+    "global_max_phase_chirp_mhz": 0.7515507050689438,
+    "global_phase_chirp_extremum_us": 0.06459777280989325
+  },
+  "preserve_original": {
+    "pulse": {
+      "duration_us": 21.101242835090837,
+      "core_us": 0.01510528514643049,
+      "tail_gain": 0.8072371180256004,
+      "tail_join_us": 1.5190416076585926,
+      "tail_scale_us": 6.612120613753458,
+      "tail_power": 3.536388272093394,
+      "edge_width_us": 3.3619104832707443,
+      "transition_us": 0.016,
+      "drag_beta": -0.5,
+      "anharmonicity_mhz": -216.0,
+      "phase_rad": -0.9331851920697108,
+      "phase_scale_us": 0.22742916237553631,
+      "phase2_rad": 0.0,
+      "phase2_scale_us": 4.0
+    },
+    "peak_scale": 0.8919755400744086,
+    "raw_rabi_at_chirp_peak_for_5mhz": 0.5225459078912059,
+    "raw_rabi_at_chirp_peak_for_50mhz": 5.225459078912059,
+    "broad_phase_component_extremum_us": 0.16081670295531814,
+    "total_phase_chirp_at_broad_component_extremum_mhz": 0.5601567522189955,
+    "global_max_phase_chirp_mhz": 0.5601567522189564,
+    "global_phase_chirp_extremum_us": 0.16081674532414386
+  },
+  "preserve_high_contrast": {
+    "pulse": {
+      "duration_us": 18.8704981042782,
+      "core_us": 0.015035463259751998,
+      "tail_gain": 0.8007572916550201,
+      "tail_join_us": 1.2449871834559614,
+      "tail_scale_us": 6.843915916892468,
+      "tail_power": 3.627009204965284,
+      "edge_width_us": 3.349335411938738,
+      "transition_us": 0.016,
+      "drag_beta": -0.5,
+      "anharmonicity_mhz": -216.0,
+      "phase_rad": -0.9771686911469755,
+      "phase_scale_us": 0.26805749570877013,
+      "phase2_rad": 0.0,
+      "phase2_scale_us": 4.0
+    },
+    "peak_scale": 0.8911623355062598,
+    "raw_rabi_at_chirp_peak_for_5mhz": 0.44104854924419296,
+    "raw_rabi_at_chirp_peak_for_50mhz": 4.4104854924419294,
+    "broad_phase_component_extremum_us": 0.18954527296355522,
+    "total_phase_chirp_at_broad_component_extremum_mhz": 0.4976562654294471,
+    "global_max_phase_chirp_mhz": 0.4976562654294363,
+    "global_phase_chirp_extremum_us": 0.1895453009772841
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "complete": true,
+  "pending_durations_us": [],
+  "matched_operating_point": {
+    "cutoff": 0.001047615752789665,
+    "amplitude_mhz": 49.770235643321115,
+    "selection": "Nearest sampled cutoff to 0.001 and drive scale to 50 MHz; report default.",
+    "results": [
+      {
+        "duration_us": 10.0,
+        "accepted": true,
+        "fwhm_khz": 246.61633617275714,
+        "ideal_snr": 31.64894225566187,
+        "snr_per_mhz": 128.3327079901612
+      },
+      {
+        "duration_us": 20.0,
+        "accepted": true,
+        "fwhm_khz": 155.18133925851262,
+        "ideal_snr": 18.620388252241238,
+        "snr_per_mhz": 119.99115577435512
+      },
+      {
+        "duration_us": 30.0,
+        "accepted": true,
+        "fwhm_khz": 134.4190592028128,
+        "ideal_snr": 11.391125008141062,
+        "snr_per_mhz": 84.74337698610148
+      },
+      {
+        "duration_us": 45.0,
+        "accepted": true,
+        "fwhm_khz": 166.25809494366584,
+        "ideal_snr": 5.578429278574086,
+        "snr_per_mhz": 33.552828092155494
+      },
+      {
+        "duration_us": 60.0,
+        "accepted": true,
+        "fwhm_khz": 445.922989732101,
+        "ideal_snr": 2.290489286336185,
+        "snr_per_mhz": 5.136513117909107
+      }
+    ]
+  },
+  "results": [
+    {
+      "duration_us": 10.0,
+      "validation": {
+        "max_trace_error": 3.708144902248023e-14,
+        "min_population": 4.698769414621049e-16,
+        "max_population": 0.9999999697955629,
+        "min_density_eigenvalue": 3.768472610472424e-16,
+        "accepted_traces": 8176,
+        "total_traces": 10000
+      },
+      "best_fixed_cutoff_over_10_to_100mhz": {
+        "cutoff_index": 47,
+        "cutoff": 0.002364489412645407,
+        "sampled_amplitude_min_mhz": 10.235310218990262,
+        "sampled_amplitude_max_mhz": 100.0,
+        "worst_fwhm_khz": 294.3639416958546,
+        "minimum_snr": 20.97408462305976,
+        "minimum_snr_per_mhz": 81.70008093262432,
+        "all_amplitudes_snr_at_least_10": true
+      }
+    },
+    {
+      "duration_us": 20.0,
+      "validation": {
+        "max_trace_error": 6.705747068735946e-14,
+        "min_population": 6.009993498326576e-15,
+        "max_population": 0.9999998042906645,
+        "min_density_eigenvalue": 5.813866831728528e-15,
+        "accepted_traces": 8639,
+        "total_traces": 10000
+      },
+      "best_fixed_cutoff_over_10_to_100mhz": {
+        "cutoff_index": 39,
+        "cutoff": 0.0009326033468832199,
+        "sampled_amplitude_min_mhz": 10.235310218990262,
+        "sampled_amplitude_max_mhz": 100.0,
+        "worst_fwhm_khz": 167.7090080413114,
+        "minimum_snr": 13.485048526687342,
+        "minimum_snr_per_mhz": 91.74063332348584,
+        "all_amplitudes_snr_at_least_10": true
+      }
+    },
+    {
+      "duration_us": 30.0,
+      "validation": {
+        "max_trace_error": 8.570921750106208e-14,
+        "min_population": 2.399567740012171e-14,
+        "max_population": 0.9999994614299401,
+        "min_density_eigenvalue": 2.3858501354858303e-14,
+        "accepted_traces": 8845,
+        "total_traces": 10000
+      },
+      "best_fixed_cutoff_over_10_to_100mhz": {
+        "cutoff_index": 34,
+        "cutoff": 0.0005214008287999684,
+        "sampled_amplitude_min_mhz": 10.235310218990262,
+        "sampled_amplitude_max_mhz": 100.0,
+        "worst_fwhm_khz": 134.249943461057,
+        "minimum_snr": 9.394945166392125,
+        "minimum_snr_per_mhz": 83.18649407938487,
+        "all_amplitudes_snr_at_least_10": false
+      }
+    },
+    {
+      "duration_us": 45.0,
+      "validation": {
+        "max_trace_error": 1.3367085216486885e-13,
+        "min_population": 8.36511410334488e-14,
+        "max_population": 0.9999986414328921,
+        "min_density_eigenvalue": 8.361411039593285e-14,
+        "accepted_traces": 6887,
+        "total_traces": 10000
+      },
+      "best_fixed_cutoff_over_10_to_100mhz": {
+        "cutoff_index": 28,
+        "cutoff": 0.00025950242113997375,
+        "sampled_amplitude_min_mhz": 10.235310218990262,
+        "sampled_amplitude_max_mhz": 100.0,
+        "worst_fwhm_khz": 130.87552793993345,
+        "minimum_snr": 5.406846352172583,
+        "minimum_snr_per_mhz": 60.20603272598522,
+        "all_amplitudes_snr_at_least_10": false
+      }
+    },
+    {
+      "duration_us": 60.0,
+      "validation": {
+        "max_trace_error": 1.7741363933510002e-13,
+        "min_population": 1.7939541177198031e-13,
+        "max_population": 0.9999975541833878,
+        "min_density_eigenvalue": 1.793891671285911e-13,
+        "accepted_traces": 5375,
+        "total_traces": 10000
+      },
+      "best_fixed_cutoff_over_10_to_100mhz": {
+        "cutoff_index": 24,
+        "cutoff": 0.00016297508346206434,
+        "sampled_amplitude_min_mhz": 10.235310218990262,
+        "sampled_amplitude_max_mhz": 100.0,
+        "worst_fwhm_khz": 162.68743246973688,
+        "minimum_snr": 3.586913058557417,
+        "minimum_snr_per_mhz": 41.84622218861268,
+        "all_amplitudes_snr_at_least_10": false
+      }
+    }
+  ],
+  "selection": "Among cutoffs with resolved dips at every sampled amplitude >=10 MHz, maximize the minimum SNR/FWHM. No extrapolation between samples."
+}

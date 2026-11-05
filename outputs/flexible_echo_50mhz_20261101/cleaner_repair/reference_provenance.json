@@ -1,0 +1,18 @@
+{
+  "source_npz": "outputs/flexible_echo_50mhz_20261101/validated_spectra.npz",
+  "source_npz_sha256": "b7391da83524debd4776dbc306fc16d145f0bdcf6d9289a3ad17310ac8782981",
+  "dt_ns": 0.25,
+  "note": "Exact baseline and cleaner_preselection native maps reused with report agent confirmation; no duplicate reference simulation.",
+  "baseline_validation.json": {
+    "sha256": "a17ea219222706d2ef10a650e577092406f55718c8c30f9c3e5964e38736a922"
+  },
+  "cleaner_smooth_validation.json": {
+    "sha256": "b82cb315e3f952414359753d28d26447cf435b3162632c72a82514c682cc1e0c"
+  },
+  "cleaner_preselection.json": {
+    "sha256": "671f5fc8e83b37b4486e3b88cefc33b6139aa0fbb126e511d68c33fb6039f16b"
+  },
+  "cleaner_shape/best.json": {
+    "sha256": "cafbb2c8c41628bc791829a5df8827abc70e61ada5a3edb165aacf2d918bfef5"
+  }
+}

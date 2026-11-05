@@ -1,105 +1,228 @@
 {
   "generator": "scripts/make_supplemental_spectrum_slices.py",
   "source_sha256": {
-    "figures/paper/02_central_spectroscopy_experiment_simulation_variant.npz": "745c241f7d7c9a7d1e8f7500a6dd86c91579a5fae301c47e6b68fef47b72faae",
-    "figures/paper/02_central_spectroscopy_experiment_simulation_variant_provenance.json": "00e76419219014e3e4f139fd2887215e0a653520322d3755955d4998d44a4fce",
-    "scripts/make_supplemental_spectrum_slices.py": "8e82030c86890f7ed0af0ab69bed959522489f17c179ae350506a96593615386",
+    "paper/data/experimental/02_latest_q1_spectroscopy.npz": "2abe7f2a5ef0892008b3219f3f4550085945b2ecb55d29ee55844ebbed6cf270",
+    "paper/data/experimental/02_latest_q1_spectroscopy.json": "1615ab3ff45eb97938a43bae19f0f68bf810a9813ce0c22fbccb0bb3740faf70",
+    "scripts/make_supplemental_spectrum_slices.py": "82167ca8971e9f644389ecc5489b735b6799d444c0e0d778680155bbf522cdf8",
+    "echospec/figures/coherence.py": "23366fede8a34300fafaca825da685fa1236c7f4ff154ddf1e712a0f54fc489f",
     "echospec/simulation/qutrit.py": "58891d88564eb9d3b5ed592fa69b52c3fb5cec9e7178471c5039e5b8c07c6b15",
     "echospec/simulation/qutrit_native.py": "e26a097b8d803b1c2da8f0ad56222fff59456e02a445f33d22629a0f639a6dd9",
     "echospec/simulation/qutrit_rk4.cpp": "493150abcad473a10ff4128c3b42a5f0ddfd0cdd8fe4c1cf09a936858068bab6"
   },
-  "selection": "Nearest acquired rows to 3, 10, 20, 30, 40 MHz; no fit-based selection",
+  "selection": "Nearest acquired rows to 3, 5, 10, 15, 20 MHz in current Fig. 2 narrow maps; no fit-based selection",
   "simulation_settings": {
     "duration_us": 20.0,
     "cutoff": 0.005,
     "order": 0.5,
-    "t1_us": 51.2,
-    "t_phi_us": 7.87,
+    "t1_us": 55.01666830155505,
+    "t_phi_us": 8.16387892765612,
     "anharmonicity_mhz": -216.0,
-    "num_steps_per_half": 12800,
+    "echo_transition_us": 0.0,
+    "drag_beta": 0.0,
+    "edge_window_kind": "none",
+    "num_steps_per_half": 20000,
     "integration_backend": "native"
   },
-  "simulation_grid": "Exact measured drives and all 501 measured detunings",
+  "reference_t2_star_us": 7.6,
+  "source_session": "20261031_002217_547409_optimized_5000/figures2-3",
+  "amplitude_convention": "Nominal Rabi frequency, identical to main-text Fig. 2",
+  "simulation_grid": "Exact measured drives and all 200 measured detunings",
   "selections": {
     "root": {
-      "source_run": "2026-08-25/six_detuning_amplitude_sweeps/05_narrow_1mhz_cutoff_0p005_no_echo",
+      "source_run": "20261031_002217_547409_optimized_5000/figures2-3/raw/2026-10-31/A3_narrow_no_echo/03-23-24-667928/results.npz",
+      "pulse_parameters": {
+        "ac_stark_correction": false,
+        "acquisition": "averaged",
+        "active_reset_max_attempts": 15,
+        "amp_factor_points": 200,
+        "amp_factor_spacing": "linear",
+        "amp_factor_step": 0.03,
+        "cutoff": 0.005,
+        "drag_beta": 0.0,
+        "echo": false,
+        "echo_transition_time_ns": 0.0,
+        "edge_smoothing": "none",
+        "edge_smoothing_power": 5,
+        "fit_fwhm": false,
+        "fixed_amp_factor": null,
+        "fixed_rabi_frequency_mhz": null,
+        "frequency_points": 200,
+        "frequency_span_in_mhz": 1.0,
+        "frequency_step_in_mhz": 2.0,
+        "load_data_id": null,
+        "lorentzian_length_in_ns": 20000,
+        "lorentzian_peak_amplitude": 0.7,
+        "max_amp_factor": 0.10920954572894369,
+        "min_amp_factor": 0.0,
+        "multiplexed": false,
+        "num_shots": 5000,
+        "operation": "lorentzian",
+        "plot_sweep_diagnostics": false,
+        "pulse_shape": "root_lorentzian",
+        "qubits": [
+          "q1"
+        ],
+        "readout_states": [
+          "g",
+          "e"
+        ],
+        "reset_type": "active",
+        "simulate": false,
+        "simulation_duration_ns": 50000,
+        "stark_chirp_max_error_hz": 10.0,
+        "stark_kappa_mhz_inv": 0.0,
+        "timeout": 120,
+        "use_readout_mitigation": 0.0,
+        "use_state_discrimination": true,
+        "use_three_state_discrimination": false,
+        "use_waveform_report": true,
+        "waveform_template_length_in_ns": 20000
+      },
+      "measured_detuning_points": 200,
+      "convergence_detuning_mhz": [
+        -0.5,
+        -0.248744,
+        -0.047739,
+        -0.002513,
+        0.047739,
+        0.248744,
+        0.5
+      ],
       "amplitude_indices": [
-        17,
-        58,
-        117,
-        175,
-        233
+        30,
+        50,
+        100,
+        149,
+        199
       ],
       "actual_rabi_mhz": [
-        2.916805891469854,
-        9.951455394426564,
-        20.074487605998407,
-        30.02594300042497,
-        39.97739839485153
+        3.015075376884422,
+        5.025125628140703,
+        10.050251256281406,
+        14.974874371859295,
+        19.999999999999996
       ],
       "removed_experiment_means": [
-        0.2881806387225549,
-        0.2925808383233533,
-        0.34027245508982035,
-        0.3759620758483034,
-        0.40393013972055886
+        0.189548,
+        0.17890499999999998,
+        0.22492499999999999,
+        0.271475,
+        0.308301
       ],
       "removed_simulation_means": [
-        0.1634369059229238,
-        0.2508020020475626,
-        0.34114732437922485,
-        0.38527347180552424,
-        0.41047615403333665
+        0.15499957518952265,
+        0.17356599974098091,
+        0.2488739568692621,
+        0.2998237128697598,
+        0.33614063662048804
       ],
       "offset_only_rmse": [
-        0.06648906111989623,
-        0.04785511466263681,
-        0.034309373381043555,
-        0.037970738685495296,
-        0.0439732135882365
+        0.02982023108621004,
+        0.029207877991066618,
+        0.03170524301077301,
+        0.038915110401815764,
+        0.042633748256932315
       ]
     },
     "echo": {
-      "source_run": "2026-08-25/six_detuning_amplitude_sweeps/06_narrow_1mhz_cutoff_0p005_echo",
+      "source_run": "20261031_002217_547409_optimized_5000/figures2-3/raw/2026-10-31/A4_narrow_echo/06-10-28-205327/results.npz",
+      "pulse_parameters": {
+        "ac_stark_correction": false,
+        "acquisition": "averaged",
+        "active_reset_max_attempts": 15,
+        "amp_factor_points": 200,
+        "amp_factor_spacing": "linear",
+        "amp_factor_step": 0.03,
+        "cutoff": 0.005,
+        "drag_beta": 0.0,
+        "echo": true,
+        "echo_transition_time_ns": 0.0,
+        "edge_smoothing": "none",
+        "edge_smoothing_power": 5,
+        "fit_fwhm": false,
+        "fixed_amp_factor": null,
+        "fixed_rabi_frequency_mhz": null,
+        "frequency_points": 200,
+        "frequency_span_in_mhz": 1.0,
+        "frequency_step_in_mhz": 2.0,
+        "load_data_id": null,
+        "lorentzian_length_in_ns": 20000,
+        "lorentzian_peak_amplitude": 0.7,
+        "max_amp_factor": 0.10920954572894369,
+        "min_amp_factor": 0.0,
+        "multiplexed": false,
+        "num_shots": 5000,
+        "operation": "lorentzian",
+        "plot_sweep_diagnostics": false,
+        "pulse_shape": "root_lorentzian",
+        "qubits": [
+          "q1"
+        ],
+        "readout_states": [
+          "g",
+          "e"
+        ],
+        "reset_type": "active",
+        "simulate": false,
+        "simulation_duration_ns": 50000,
+        "stark_chirp_max_error_hz": 10.0,
+        "stark_kappa_mhz_inv": 0.0,
+        "timeout": 120,
+        "use_readout_mitigation": 0.0,
+        "use_state_discrimination": true,
+        "use_three_state_discrimination": false,
+        "use_waveform_report": true,
+        "waveform_template_length_in_ns": 20000
+      },
+      "measured_detuning_points": 200,
+      "convergence_detuning_mhz": [
+        -0.5,
+        -0.248744,
+        -0.047739,
+        -0.002513,
+        0.047739,
+        0.248744,
+        0.5
+      ],
       "amplitude_indices": [
-        17,
-        58,
-        117,
-        175,
-        233
+        30,
+        50,
+        100,
+        149,
+        199
       ],
       "actual_rabi_mhz": [
-        2.916805891469854,
-        9.951455394426564,
-        20.074487605998407,
-        30.02594300042497,
-        39.97739839485153
+        3.015075376884422,
+        5.025125628140703,
+        10.050251256281406,
+        14.974874371859295,
+        19.999999999999996
       ],
       "removed_experiment_means": [
-        0.5651956087824351,
-        0.6306037924151696,
-        0.6195908183632733,
-        0.6051646706586826,
-        0.5920908183632735
+        0.622193,
+        0.696038,
+        0.694421,
+        0.678768,
+        0.6549640000000001
       ],
       "removed_simulation_means": [
-        0.5934035061925224,
-        0.6049834806406792,
-        0.5346949224216357,
-        0.4961636532148389,
-        0.46993064404427753
+        0.6132424605823651,
+        0.6619456873519585,
+        0.6134958175687405,
+        0.5719290126257124,
+        0.5413010943788494
       ],
       "offset_only_rmse": [
-        0.06584345251226448,
-        0.062317211629816974,
-        0.034856861886956726,
-        0.024111347730041498,
-        0.024999456969480617
+        0.04323954516619572,
+        0.04962929650999655,
+        0.03954134996221415,
+        0.03192235275555927,
+        0.031375139482972686
       ]
     }
   },
   "display": {
-    "formula": "y = raw - mean(raw over all 501 detunings) + j * 0.55",
+    "formula": "y = raw - mean(raw over all measured detunings) + j * 0.55",
     "applies_to": "Experiment and simulation independently; j=0..4",
     "gain": 1.0,
     "frequency_shift_mhz": 0.0,
@@ -107,8 +230,8 @@
     "warning": "Relative population, not absolute probability or calibrated readout correction"
   },
   "step_halving_max_pe_error": {
-    "root": 1.1738207096934072e-05,
-    "echo": 2.7360975348722505e-06
+    "root": 3.476364335286419e-08,
+    "echo": 4.144784580994987e-06
   },
   "numerical_check": "All five amplitudes at seven detunings; not physical-model validation"
 }

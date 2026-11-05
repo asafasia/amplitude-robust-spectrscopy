@@ -1,0 +1,171 @@
+"""Fast two-level echo simulation, with explicit T1/T2 Bloch dynamics.
+
+Uses the repository convention H01=(2*pi*rabi)*u(t)/2 and H11=-2*pi*detuning,
+where u=I-iQ. No fictitious third state or leakage estimate is introduced.
+"""
+
+from __future__ import annotations
+
+import ctypes
+import hashlib
+import os
+import shutil
+import subprocess
+import tempfile
+import threading
+from pathlib import Path
+
+import numpy as np
+
+_LIBRARY = None
+_LOCK = threading.Lock()
+
+
+def _kernel():
+    global _LIBRARY
+    with _LOCK:
+        if _LIBRARY is None:
+            source = Path(__file__).with_name("bloch_rk4.cpp")
+            digest = hashlib.sha256(source.read_bytes()).hexdigest()[:20]
+            library = Path(tempfile.gettempdir()) / f"echospec-bloch-{digest}.so"
+            if not library.exists():
+                compiler = shutil.which("clang++") or shutil.which("g++")
+                if compiler is None:
+                    raise RuntimeError(
+                        "Two-level native backend needs a C++17 compiler"
+                    )
+                temporary = library.with_name(library.name + f".{os.getpid()}")
+                subprocess.run(
+                    [
+                        compiler,
+                        "-std=c++17",
+                        "-O3",
+                        "-shared",
+                        "-fPIC",
+                        str(source),
+                        "-o",
+                        str(temporary),
+                    ],
+                    check=True,
+                    capture_output=True,
+                )
+                temporary.replace(library)
+            _LIBRARY = ctypes.CDLL(str(library))
+            array = np.ctypeslib.ndpointer(
+                dtype=np.float64, ndim=1, flags="C_CONTIGUOUS"
+            )
+            _LIBRARY.bloch_rk4.argtypes = [
+                array,
+                ctypes.c_int,
+                ctypes.c_int,
+                ctypes.c_double,
+                array,
+                array,
+                array,
+                array,
+                ctypes.c_double,
+                ctypes.c_double,
+            ]
+            _LIBRARY.bloch_rk4.restype = None
+    return _LIBRARY.bloch_rk4
+
+
+def bloch_segments(pulse, amplitudes, detuning, max_dt_ns=2.0):
+    """Resolve the core, reversal, and local Rabi rotation; halve all steps together."""
+    if not np.isfinite(max_dt_ns) or not 0 < max_dt_ns <= 4:
+        raise ValueError("Require 0 < max_dt_ns <= 4")
+    half = pulse.duration_us / 2
+    transition = getattr(pulse, "transition_us", pulse.duration_us)
+    sigma = getattr(pulse, "sigma_us", np.inf)
+    radius = min(sigma, transition / 2, half)
+    if radius <= 0 or not np.isfinite(radius):
+        raise ValueError("Need a positive finite feature scale")
+    positive = [0.0, half, min(transition / 2, half)]
+    while radius < half:
+        positive.append(radius)
+        radius *= 2
+    positive = np.unique(positive)
+    boundaries = np.r_[-positive[:0:-1], positive]
+    result = []
+    for start, stop in zip(boundaries[:-1], boundaries[1:], strict=True):
+        near = min(abs(start), abs(stop))
+        feature = np.hypot(sigma, near) / 32
+        if near < transition / 2:
+            feature = min(feature, transition / 64)
+        # Sampling includes feature boundaries; the refinement audit checks this bound.
+        drive_bound = np.max(abs(pulse.drive(np.linspace(start, stop, 17))))
+        rate = (
+            2
+            * np.pi
+            * np.hypot(np.max(amplitudes) * drive_bound, np.max(abs(detuning)))
+        )
+        rotation_step = 0.08 / rate if rate else np.inf
+        step = min(max_dt_ns / 1000, min(feature, rotation_step) * max_dt_ns / 2)
+        result.append((float(start), float(stop), int(np.ceil((stop - start) / step))))
+    return result
+
+
+def simulate_bloch_echo(
+    pulse,
+    rabi_mhz,
+    detuning_mhz,
+    *,
+    t1_us=51.24,
+    t2_us=7.31,
+    max_dt_ns=2.0,
+    initial_bloch=(0.0, 0.0, 1.0),
+):
+    """Return [Pg, Pe] arrays; amplitudes multiply pulse.drive().
+
+    ``initial_bloch`` uses standard Pauli expectation values (x, y, z).
+    The native kernel stores +2 Im(rho01), opposite to the Pauli-y coordinate.
+    """
+    amps, det = np.asarray(rabi_mhz, float), np.asarray(detuning_mhz, float)
+    if any(a.ndim != 1 or not a.size or not np.isfinite(a).all() for a in (amps, det)):
+        raise ValueError("Require nonempty finite one-dimensional axes")
+    if np.any(amps < 0) or not (0 < t1_us and 0 < t2_us <= 2 * t1_us):
+        raise ValueError("Need nonnegative amplitudes and 0 < T2 <= 2*T1")
+    initial = np.asarray(initial_bloch, float)
+    if (
+        initial.shape != (3,)
+        or not np.isfinite(initial).all()
+        or np.linalg.norm(initial) > 1 + 1e-12
+    ):
+        raise ValueError("Initial Bloch vector must describe a physical state")
+    delta, amplitude = np.meshgrid(2 * np.pi * det, 2 * np.pi * amps)
+    state = np.broadcast_to(initial[:, None], (3, delta.size)).copy(order="C")
+    state[1] *= -1
+    d, a = np.ascontiguousarray(delta.ravel()), np.ascontiguousarray(amplitude.ravel())
+    segments = bloch_segments(pulse, amps, det, max_dt_ns)
+    kernel = _kernel()
+    for start, stop, steps in segments:
+        drive = pulse.drive(np.linspace(start, stop, 2 * steps + 1))
+        kernel(
+            state.ravel(),
+            delta.size,
+            steps,
+            (stop - start) / steps,
+            d,
+            a,
+            np.ascontiguousarray(drive.real),
+            np.ascontiguousarray(drive.imag),
+            1 / t1_us,
+            1 / t2_us,
+        )
+    radius = np.sqrt(np.sum(state**2, axis=0))
+    populations = np.stack(((1 + state[2]) / 2, (1 - state[2]) / 2)).reshape(
+        2, *delta.shape
+    )
+    diagnostics = dict(
+        levels=2,
+        min_eigenvalue=float((1 - radius.max()) / 2),
+        min_population=float(populations.min()),
+        max_population=float(populations.max()),
+        num_steps=sum(n for _, _, n in segments),
+        max_dt_ns=max(1000 * (b - a) / n for a, b, n in segments),
+    )
+    if not np.isfinite(state).all() or diagnostics["min_eigenvalue"] < -2e-6:
+        raise RuntimeError(
+            f"Unphysical two-level state; refine timestep: {diagnostics}"
+        )
+    return populations, diagnostics

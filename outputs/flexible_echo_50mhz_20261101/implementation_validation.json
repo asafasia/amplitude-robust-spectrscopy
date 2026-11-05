@@ -1,0 +1,10 @@
+{
+  "focused_tests": "88 passed: flexible, decoupled, selective, polynomial echo and dip metrics",
+  "full_suite": "Blocked at collection by missing torch in tests/test_mps_simulation.py",
+  "repository_lint": "708 existing findings, including historical generated scripts; current task source files pass focused Ruff",
+  "hardware_validation": false,
+  "source_sha256": {
+    "echospec/simulation/flexible_echo.py": "f59d9322511710559224dbdd6b20e2e71162a03cf81afa7cd6c51bce3f342b18",
+    "tests/test_flexible_echo.py": "7907c00ad1b988b8ec807d0dca80a2229460e4c600b57d82fa81d72101b28a34"
+  }
+}

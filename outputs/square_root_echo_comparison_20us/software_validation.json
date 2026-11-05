@@ -1,0 +1,23 @@
+{
+  "focused_tests": {
+    "passed": 30,
+    "files": [
+      "tests/test_rotary_echo.py",
+      "tests/test_echo_theory.py",
+      "tests/test_piecewise_simulation.py",
+      "tests/test_qutrit_native.py"
+    ],
+    "environment": ".venv Python; pytest loaded from installed global site-packages"
+  },
+  "focused_ruff": "passed",
+  "full_pytest": "collection blocked: optional torch missing",
+  "pytest_without_torch_module": {
+    "passed": 204,
+    "failed": 1,
+    "failure": "tests/test_latest_paper_measurements.py::test_figure3_statistics_exclude_out_of_view_outliers_and_rejected_rows",
+    "observed_vs_expected": "[-20.94144,20.94144] vs [-20,20]"
+  },
+  "make_lint": {
+    "issues_outside_added_files": 692
+  }
+}

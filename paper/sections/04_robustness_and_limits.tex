@@ -60,7 +60,7 @@ quadrature is
 \end{samepage}
 where $\alpha=\omega_{12}-\omega_{01}$ is the qubit anharmonicity.
 The acquisition uses the positive anharmonicity magnitude in this
-quadrature convention. The coefficient $\beta_{\mathrm{acq}}=1.25576$
+quadrature convention. The coefficient $\beta_{\mathrm{acq}}=1.25$
 was selected in an earlier experimental center-stability search with a
 $32~\mathrm{ns}$ transition and $p=5$, and retained for this comparison;
 it was not reoptimized for $T_s=50~\mathrm{ns}$ and $p=2$.
@@ -72,46 +72,56 @@ This peak-amplitude convention differs
 from the nominal pre-envelope amplitude $\Omega_0$ used in Fig.~2
 and in the retained numerical scans.
 
-Using Gaussian-dip fits at the same accepted nonzero amplitudes for echo,
-DRAG, and DRAG plus polynomial, the center RMS
-about each curve's arithmetic mean is \LatestEchoCenterRms,
-\LatestDragCenterRms, and $\LatestPolyCenterRms~\mathrm{kHz}$
-[Fig.~\ref{fig:pulse-improvement}(d)]. These describe observed
-amplitude-dependent variation, including fit noise, rather than absolute
-frequency accuracy or repeated-measurement precision.
-The corresponding median FWHM values are \LatestEchoWidth,
-\LatestDragWidth, and $\LatestPolyWidth~\mathrm{kHz}$, with median dip
-contrasts \LatestEchoContrast, \LatestDragContrast, and \LatestPolyContrast.
-Thus DRAG alone reduces center motion without narrowing the median
-feature, while the polynomial correction improves both width and contrast.
+Pulse shaping progressively stabilizes the resonance center
+[Fig.~\ref{fig:pulse-improvement}(d)]. On common accepted amplitudes, the
+RMS variation about each curve's mean falls from approximately
+$\LatestEchoCenterRms~\mathrm{kHz}$ for the echo to
+$\LatestDragCenterRms~\mathrm{kHz}$ with DRAG and
+$\LatestPolyCenterRms~\mathrm{kHz}$ with the added polynomial correction.
+This measures amplitude-dependent center motion, including fit noise,
+rather than absolute frequency accuracy.
+DRAG alone leaves the median linewidth near $300~\mathrm{kHz}$, while
+the polynomial correction roughly halves it to
+$\LatestPolyWidth~\mathrm{kHz}$. Median dip contrast also increases from
+about \LatestEchoContrast{} for the echo to \LatestDragContrast{} with DRAG
+and \LatestPolyContrast{} with polynomial shaping.
 Contrast is the fitted dip depth relative to a local linear background,
 in measured excited-state fraction; no readout-fidelity correction is applied.
-The representative measured Ramsey time is
-$T_2^*=\LatestThreeTTwoStar~\mu\mathrm{s}$, corresponding to the FWHM reference
-$\Gamma_{T_2^*}=\LatestThreeLimit~\mathrm{kHz}$.
 The corrected median linewidth remains approximately \LatestPolyLimitRatio{}
-times this reference. This dataset therefore demonstrates improved measured
+times $\Gamma_{T_2^*}$. This dataset therefore demonstrates improved measured
 line shape and center stability, without establishing a coherence-limited
 linewidth, a sensitivity gain, or a global waveform optimum.
 
+The polynomial-corrected DRAG echo retains a narrow response at strong drive,
+potentially extending to still higher Rabi amplitudes. At approximately
+$60~\mathrm{MHz}$, its dip FWHM is about $0.18~\mathrm{MHz}$
+[Fig.~\ref{fig:pulse-improvement}(f)], compared with roughly
+$300~\mathrm{MHz}$ from the two-level steady-state square-pulse estimate---about
+three orders of magnitude broader. Higher-level excitation can further degrade
+the square-pulse spectrum beyond this idealized estimate.
+
 Figure~\ref{fig:duration-cutoff-scan} maps the joint dependence on cutoff
-and drive amplitude in the retained numerical study of a
-$30~\mu\mathrm{s}$ polynomial-corrected DRAG echo, with $p=5$, a
+and drive amplitude in a numerical study of a
+$20~\mu\mathrm{s}$ polynomial-corrected DRAG echo, with $p=2$, a
 $16~\mathrm{ns}$ midpoint transition, and $\beta=-0.5$ in its numerical
-quadrature convention. These settings differ from the measured Fig.~3.
+quadrature convention. The 100 drive samples are logarithmically spaced
+from 1 to $100~\mathrm{MHz}$. This survey uses nominal drive scales
+and retains the earlier relaxation parameters and midpoint transition,
+rather than the $50~\mathrm{ns}$ transition and actual peak normalization
+of the measured Fig.~3.
 The white contours mark $C=0.2$: the band between them has a dip
 depth exceeding 0.2 in excitation probability. Across this broad region
 of parameter space, the simulated response combines appreciable contrast
-with local FWHM values of $112$--$182~\mathrm{kHz}$, approximately
-$2.6$--$4.2$ times the coherence reference $\Gamma_{T_2}$.
+with local FWHM values of $125$--$305~\mathrm{kHz}$, approximately
+$3.0$--$7.3$ times the coherence reference $\Gamma_{T_2^*}$.
 The contours select contrast; the linewidth within that region is read
 independently from panel (a).
 
 The useful band shifts toward smaller cutoff as drive increases, yet a
 single cutoff can retain both narrow linewidth and high contrast over a
 wide drive range. For example, at the sampled
-$c=6.58\times10^{-4}$, the local FWHM remains below $155~\mathrm{kHz}$
-and contrast above $0.32$ throughout the sampled $10$--$100~\mathrm{MHz}$
+$c=1.048\times10^{-3}$, the local FWHM remains below $171~\mathrm{kHz}$
+and contrast above $0.39$ throughout the sampled $10.235$--$100~\mathrm{MHz}$
 interval. Here $c$ sets the original root-Lorentzian core width even though
 the corrected envelope vanishes at its endpoints: changing $c$ also
 changes $\tau$. The full duration survey and numerical checks are given

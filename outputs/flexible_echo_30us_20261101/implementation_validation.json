@@ -1,0 +1,11 @@
+{
+  "focused_tests": "38 passed: time scaling and flexible echo tests",
+  "focused_ruff": "Pass on all three new source/test/script files",
+  "full_pytest": "Collection blocked: torch missing in tests/test_mps_simulation.py",
+  "repository_lint": "733 findings elsewhere; current task files pass focused Ruff",
+  "hardware_validation": false,
+  "source_sha256": {
+    "echospec/simulation/time_scaled_echo.py": "0e36384750d630377b017f79e28e44f985556e56beae38b2c3268f8e34f587b3",
+    "tests/test_time_scaled_echo.py": "b024310870023d10a8dc720e5c234105c910d555121329303a880e4f2ce9817f"
+  }
+}

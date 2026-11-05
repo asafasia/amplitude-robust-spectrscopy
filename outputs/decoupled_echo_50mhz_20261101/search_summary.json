@@ -1,0 +1,100 @@
+{
+  "campaigns": {
+    "initial": {
+      "saved_evaluations": 1242,
+      "best_quality": {
+        "feasible": false,
+        "violation": 186.5799638993594,
+        "width50_khz": 168.93144120917123,
+        "max_width_khz": 173.52794525404605,
+        "min_contrast": 0.4090739366834941,
+        "max_contrast_regression": -0.05104585724659677,
+        "max_width_regression_khz": 24.052836760614724,
+        "max_satellite": 0.0,
+        "max_center_khz": 0.29958162204851685,
+        "max_leakage": 0.0002793919978583043
+      },
+      "accepted_under_campaign_constraints": 0,
+      "contrast_floor_scope": "5--60 MHz"
+    },
+    "core_phase": {
+      "saved_evaluations": 1242,
+      "best_quality": {
+        "feasible": false,
+        "violation": 122.48058253635995,
+        "width50_khz": 166.44015209492588,
+        "max_width_khz": 170.25923431151028,
+        "min_contrast": 0.4060624553622322,
+        "max_contrast_regression": -0.04803437592533483,
+        "max_width_regression_khz": 14.624678573975416,
+        "max_satellite": 0.0,
+        "max_center_khz": 0.16894126948578547,
+        "max_leakage": 0.000252931210527009
+      },
+      "accepted_under_campaign_constraints": 0,
+      "contrast_floor_scope": "5--60 MHz"
+    },
+    "strict_local": {
+      "saved_evaluations": 249,
+      "best_quality": {
+        "feasible": false,
+        "violation": 118.01649939976963,
+        "width50_khz": 166.07951416322507,
+        "max_width_khz": 169.65682692100216,
+        "min_contrast": 0.4049989450416295,
+        "max_contrast_regression": -0.046970865604732126,
+        "max_width_regression_khz": 14.023375330814616,
+        "max_satellite": 0.0,
+        "max_center_khz": 0.17710803272094472,
+        "max_leakage": 0.00025075077597365474
+      },
+      "accepted_under_campaign_constraints": 0,
+      "contrast_floor_scope": "5--60 MHz"
+    },
+    "preserve_original": {
+      "saved_evaluations": 1008,
+      "best_quality": {
+        "feasible": false,
+        "violation": 16.260246691727513,
+        "width50_khz": 147.90681942101065,
+        "max_width_khz": 152.92771464148473,
+        "min_contrast": 0.26003204162440674,
+        "max_contrast_regression": -0.0024138190045803753,
+        "max_width_regression_khz": 2.567407372378028,
+        "max_satellite": 0.0,
+        "max_center_khz": 0.075524965523332,
+        "max_leakage": 0.00017501102784770644
+      },
+      "accepted_under_campaign_constraints": 0,
+      "contrast_floor_scope": "50 MHz only"
+    },
+    "preserve_original_local": {
+      "saved_evaluations": 200,
+      "best_quality": {
+        "feasible": true,
+        "violation": 0.0,
+        "width50_khz": 137.75652145319705,
+        "max_width_khz": 139.9503723360906,
+        "min_contrast": 0.258634143079049,
+        "max_contrast_regression": -0.0010159204592226079,
+        "max_width_regression_khz": -0.6691041544332847,
+        "max_satellite": 0.0,
+        "max_center_khz": 0.10850841689178867,
+        "max_leakage": 0.00016579525379240118
+      },
+      "accepted_under_campaign_constraints": 168,
+      "contrast_floor_scope": "50 MHz only"
+    }
+  },
+  "saved_evaluations": 3941,
+  "finite_search_only": true,
+  "input_sha256": {
+    "initial/configuration.json": "907f0d5fe55aa83d8c6a758519cd4ab6330a0a3e63d4b4b79092f00b220b6a25",
+    "core_phase/configuration.json": "14fde37ecb4b71113bc79e8a20a71c0ac1b1f8783b0dabfde4d5e79e22f01e55",
+    "strict_local/configuration.json": "a0bf731d27fde84afffd5d8e40e79f7b2d2bf550425e1c43fe126520b3b4ea4b",
+    "preserve_original/configuration.json": "51bbc283f419cdb0dc048e0fce2fe4757e2d6f27cd07c034ac693bc4a99f37f4",
+    "preserve_original_local/configuration.json": "6591cf7e526ff572866493e8edf66d84e6d4411613608f9bbc4c3764436ad31c",
+    "results.json": "387e3f6efe970fe3e30298d7a6cea631155c597f8cda8c4afe800458472f3996"
+  },
+  "generator_sha256": "a1ed50a8f083bd506a6d1019056271a45031b23bc885ae660e77d22b915c3362"
+}

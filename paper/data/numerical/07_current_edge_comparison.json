@@ -1,0 +1,227 @@
+{
+  "arrays": {
+    "detuning_mhz": {
+      "dtype": "float64",
+      "shape": [
+        201
+      ]
+    },
+    "drag": {
+      "dtype": "float64",
+      "shape": [
+        3,
+        101,
+        201
+      ]
+    },
+    "drag_refined_frequency_populations": {
+      "dtype": "float64",
+      "shape": [
+        3,
+        3,
+        401
+      ]
+    },
+    "drag_refined_time_populations": {
+      "dtype": "float64",
+      "shape": [
+        3,
+        3,
+        201
+      ]
+    },
+    "echo_control_100mhz": {
+      "dtype": "float64",
+      "shape": [
+        3,
+        201
+      ]
+    },
+    "polynomial": {
+      "dtype": "float64",
+      "shape": [
+        3,
+        101,
+        201
+      ]
+    },
+    "polynomial_refined_frequency_populations": {
+      "dtype": "float64",
+      "shape": [
+        3,
+        3,
+        401
+      ]
+    },
+    "polynomial_refined_time_populations": {
+      "dtype": "float64",
+      "shape": [
+        3,
+        3,
+        201
+      ]
+    },
+    "rabi_mhz": {
+      "dtype": "float64",
+      "shape": [
+        101
+      ]
+    },
+    "refined_detuning_mhz": {
+      "dtype": "float64",
+      "shape": [
+        401
+      ]
+    },
+    "refined_rabi_mhz": {
+      "dtype": "float64",
+      "shape": [
+        3
+      ]
+    }
+  },
+  "category": "numerical",
+  "data_file": "07_current_edge_comparison.npz",
+  "dataset": "07_current_edge_comparison",
+  "provenance": {
+    "convention": "I-iQ; Q=-beta*dI/dt/abs(alpha); numerical beta=-0.5",
+    "convergence": {
+      "checks": [
+        {
+          "case": "drag",
+          "frequency_contrast_change": 8.046701124586608e-05,
+          "frequency_fwhm_change_hz": 65.97903190707439,
+          "frequency_snr_change": 6.487609032745922e-05,
+          "rabi_mhz": 10.0,
+          "time_fwhm_change_hz": 0.0003935860295314342,
+          "time_max_population_change": 1.6167762570126548e-09
+        },
+        {
+          "case": "drag",
+          "frequency_contrast_change": 3.198441030627386e-05,
+          "frequency_fwhm_change_hz": 82.27773465361679,
+          "frequency_snr_change": 7.294804439794689e-05,
+          "rabi_mhz": 50.0,
+          "time_fwhm_change_hz": 0.5137206551153213,
+          "time_max_population_change": 1.117664421568243e-06
+        },
+        {
+          "case": "drag",
+          "frequency_contrast_change": 1.818522587238025e-05,
+          "frequency_fwhm_change_hz": 112.82683608378284,
+          "frequency_snr_change": 8.132875249500238e-05,
+          "rabi_mhz": 100.0,
+          "time_fwhm_change_hz": 11.995719367288984,
+          "time_max_population_change": 6.493126030893137e-05
+        },
+        {
+          "case": "polynomial",
+          "frequency_contrast_change": 6.996436016870611e-06,
+          "frequency_fwhm_change_hz": 16.156005316763185,
+          "frequency_snr_change": 3.3920535887688175e-05,
+          "rabi_mhz": 10.0,
+          "time_fwhm_change_hz": 8.081115083768964e-06,
+          "time_max_population_change": 1.8451284944376312e-10
+        },
+        {
+          "case": "polynomial",
+          "frequency_contrast_change": 3.755489546897195e-06,
+          "frequency_fwhm_change_hz": 29.039225220418302,
+          "frequency_snr_change": 3.984879936780317e-05,
+          "rabi_mhz": 50.0,
+          "time_fwhm_change_hz": 0.10825171292526647,
+          "time_max_population_change": 1.7975963969574238e-06
+        },
+        {
+          "case": "polynomial",
+          "frequency_contrast_change": 1.7502930160784302e-06,
+          "frequency_fwhm_change_hz": 26.997506157058524,
+          "frequency_snr_change": 0.00031374546228235545,
+          "rabi_mhz": 100.0,
+          "time_fwhm_change_hz": 9.365044215111993,
+          "time_max_population_change": 9.649025205904493e-05
+        }
+      ],
+      "refined_detuning_step_khz": 2.5,
+      "refined_dt_ns": 0.25,
+      "scope": "Representative low, middle and high drive; separate time and detuning refinement"
+    },
+    "diagnostics": {
+      "drag": {
+        "max_dt_ns": 0.5,
+        "max_population": 1.0,
+        "max_trace_error": 2.7977620220553945e-14,
+        "min_density_eigenvalue": 0.0,
+        "min_dt_ns": 0.49999999999999994,
+        "min_population": 0.0,
+        "num_steps": 40000
+      },
+      "echo_control": {
+        "max_dt_ns": 0.5,
+        "max_population": 0.6049908349043875,
+        "max_trace_error": 2.120525977034049e-14,
+        "min_density_eigenvalue": 0.0012358098231669736,
+        "min_dt_ns": 0.49999999999999994,
+        "min_population": 0.001237191800556353,
+        "num_steps": 40000
+      },
+      "polynomial": {
+        "max_dt_ns": 0.5,
+        "max_population": 1.0,
+        "max_trace_error": 3.064215547965432e-14,
+        "min_density_eigenvalue": 0.0,
+        "min_dt_ns": 0.49999999999999994,
+        "min_population": 0.0,
+        "num_steps": 40000
+      }
+    },
+    "grid": {
+      "amplitudes": 101,
+      "detuning_window_mhz": [
+        -0.5,
+        0.5
+      ],
+      "detunings": 201,
+      "dt_ns": 0.5,
+      "max_rabi_mhz": 100
+    },
+    "model": {
+      "anharmonicity_mhz": -216,
+      "levels": 3,
+      "t1_us": 43.78199877974857,
+      "t2_us": 7.6
+    },
+    "normalization": "Each complete complex pulse has unit max|I-iQ|; amplitude is actual peak Rabi frequency",
+    "reproduce": "PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_current_edge_supplement.py",
+    "source_configs": {
+      "drag": {
+        "anharmonicity_mhz": -216.0,
+        "cutoff": 0.005,
+        "drag_beta": -0.5,
+        "duration_us": 20.0,
+        "polynomial": false,
+        "power": 2.0,
+        "transition_us": 0.05
+      },
+      "polynomial": {
+        "anharmonicity_mhz": -216.0,
+        "cutoff": 0.005,
+        "drag_beta": -0.5,
+        "duration_us": 20.0,
+        "polynomial": true,
+        "power": 2.0,
+        "transition_us": 0.05
+      }
+    },
+    "source_sha256": {
+      "echospec/analysis/dip_metrics.py": "851f4571da5dc275890f42eaf7393f1818fffe69043f4fff703272dddf9290ca",
+      "echospec/analysis/spectroscopy_quality.py": "1e898a6b550e0c46119f66a268e0397a997de59135406b50a55fe6735c212f44",
+      "echospec/simulation/polynomial_echo.py": "59021291bb6363a59767274c3c3d727843d37319364a60d51d63c9e7193b950d",
+      "echospec/simulation/qutrit_rk4.cpp": "493150abcad473a10ff4128c3b42a5f0ddfd0cdd8fe4c1cf09a936858068bab6",
+      "paper/data/numerical/05_current_drag_comparison.json": "fe60344c272df6ad7a02c85088e9e5801ed43ef88bd7c3101bf9b3e3f62846ac",
+      "scripts/make_current_drag_supplement.py": "fa1819d2a34ea633c90cde791fd6f260263b4d6f074dd9740c08b1a0f403c536",
+      "scripts/make_current_edge_supplement.py": "9e3c82f82ea8e18e7af1635e95a83ea16d558af7117018f8865582b5f1ea9e27"
+    }
+  },
+  "schema_version": 1
+}

@@ -13,6 +13,36 @@
       9.257500027521787e-06
     ]
   },
+  "square_pulse_broadening_reference": {
+    "panels": [
+      "a",
+      "c",
+      "e",
+      "g"
+    ],
+    "definition": "Strong-drive Bloch HWHM asymptotes: detuning = +/- f_R * sqrt(T1/T2_star)",
+    "t1_s": 5.5016668301555056e-05,
+    "t1_source": "Mean accepted Figure 2 T1 fits; saved fit t1 is in ns",
+    "t2_star_s": 7.6e-06,
+    "hwhm_slope_mhz_per_mhz": 2.6905455400041443,
+    "origin": [
+      0,
+      0
+    ],
+    "color": "red",
+    "linewidth_pt": 0.4,
+    "alpha": 0.5
+  },
+  "narrow_panel_reference": {
+    "t2_star_s": 7.6e-06,
+    "source": "User-specified common display reference",
+    "definition": "Lines at +/- 1/(2*pi*T2_star), enclosing the FWHM",
+    "vertical_lines_mhz": [
+      -0.020941439880512544,
+      0.020941439880512544
+    ],
+    "rows": "experiment and reference simulation"
+  },
   "column_order": [
     "A1_broad_no_echo",
     "A3_narrow_no_echo",

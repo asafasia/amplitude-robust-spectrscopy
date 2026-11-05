@@ -1,0 +1,24 @@
+{
+  "evaluations": 46,
+  "accepted": true,
+  "dense_quality": {
+    "feasible": true,
+    "user_constraints_pass": true,
+    "guardrails_pass": true,
+    "repair_targets_pass": false,
+    "width50_khz": 107.67229383404556,
+    "contrast50": 0.401913091712491,
+    "minimum_contrast_gain": 9.273705741180693e-05,
+    "minimum_width_gain_khz": 0.15250055712547805,
+    "max_satellite": 0.00919197210691447,
+    "max_center_khz": 1.622682778938806,
+    "max_leakage": 0.0007239347097567231,
+    "min_inequality": -0.0007262942588193071,
+    "contrast_regression_amplitudes_mhz": [],
+    "width_regression_amplitudes_mhz": []
+  },
+  "selected_objective": 0.004102471770465905,
+  "native_dense_cache": "validate_native_9e3578877ff19351a2ad1457aa31eba7a3f48524711e04c1908a746344a4126c.npz",
+  "optimizer_status": "Stopped explicitly after obtaining positive training margins",
+  "final_native_audits": 1
+}

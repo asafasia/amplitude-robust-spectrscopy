@@ -1,0 +1,1721 @@
+{
+  "label": "Narrower line; preserves original",
+  "control": false,
+  "pulse_type": "DecoupledEchoPulse",
+  "pulse": {
+    "duration_us": 21.101242835090837,
+    "core_us": 0.01510528514643049,
+    "tail_gain": 0.8072371180256004,
+    "tail_join_us": 1.5190416076585926,
+    "tail_scale_us": 6.612120613753458,
+    "tail_power": 3.536388272093394,
+    "edge_width_us": 3.3619104832707443,
+    "transition_us": 0.016,
+    "drag_beta": -0.5,
+    "anharmonicity_mhz": -216.0,
+    "phase_rad": -0.9331851920697108,
+    "phase_scale_us": 0.22742916237553631,
+    "phase2_rad": 0.0,
+    "phase2_scale_us": 4.0
+  },
+  "unit_waveform_peak": 0.8919755400744086,
+  "scale_for_actual_50mhz": 56.055348777645854,
+  "rows": [
+    {
+      "rabi_mhz": 5.0,
+      "center_hz": 14.52753001746537,
+      "fwhm_hz": 129571.38779256443,
+      "contrast": 0.25973675917563843,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 1.6563219163056408e-06,
+      "population_at_zero": 0.0823549160970661,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.25897067402235197,
+        "fwhm_hz": 129231.08437030314,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 6.0,
+      "center_hz": 8.36804171671662,
+      "fwhm_hz": 131241.87254392233,
+      "contrast": 0.33151857231535903,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 2.6758215610391677e-06,
+      "population_at_zero": 0.09991100663673337,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.33127177308399824,
+        "fwhm_hz": 131151.89741423223,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 7.0,
+      "center_hz": 3.2340583195581045,
+      "fwhm_hz": 132255.5001391572,
+      "contrast": 0.39226826709440016,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 3.758579562210456e-06,
+      "population_at_zero": 0.11511953115396839,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.392680520741949,
+        "fwhm_hz": 132384.72350325482,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 7.5,
+      "center_hz": 1.1935527038104068,
+      "fwhm_hz": 132481.79630703237,
+      "contrast": 0.41760143904599045,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 4.305880569899955e-06,
+      "population_at_zero": 0.1218621968906767,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.41832779758673455,
+        "fwhm_hz": 132695.503925519,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 8.0,
+      "center_hz": -0.4532269621787524,
+      "fwhm_hz": 132526.17385806612,
+      "contrast": 0.43951529318234994,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 4.848774991329445e-06,
+      "population_at_zero": 0.1280425517533301,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.44051144431942746,
+        "fwhm_hz": 132804.40959529532,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 9.0,
+      "center_hz": -2.5696129456687973,
+      "fwhm_hz": 132141.2737598815,
+      "contrast": 0.47375474789486727,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 5.920781554786281e-06,
+      "population_at_zero": 0.13886183717327968,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.4750847302956086,
+        "fwhm_hz": 132484.43263851863,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 10.0,
+      "center_hz": -3.359116155745494,
+      "fwhm_hz": 131316.76594898355,
+      "contrast": 0.49701852883336767,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 6.922402539326068e-06,
+      "population_at_zero": 0.1481322967398479,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.49835512977064883,
+        "fwhm_hz": 131643.1181811703,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 11.0,
+      "center_hz": -3.372172839244632,
+      "fwhm_hz": 130338.750864269,
+      "contrast": 0.5118471570725415,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 7.808336429227174e-06,
+      "population_at_zero": 0.15661651122340847,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.512896801997883,
+        "fwhm_hz": 130585.53802713584,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 12.0,
+      "center_hz": -3.2550125595156136,
+      "fwhm_hz": 129524.97194794547,
+      "contrast": 0.5208551930158559,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 8.458439230323756e-06,
+      "population_at_zero": 0.16479671579317204,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.5214458353322053,
+        "fwhm_hz": 129655.01813156837,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 12.5,
+      "center_hz": -3.305623671566996,
+      "fwhm_hz": 129257.65977884246,
+      "contrast": 0.5239400957428311,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 8.68080821835621e-06,
+      "population_at_zero": 0.16877946387641174,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.5242886103167566,
+        "fwhm_hz": 129333.81518498721,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 13.0,
+      "center_hz": -3.466675353890546,
+      "fwhm_hz": 129113.02501620287,
+      "contrast": 0.5264168278695447,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 8.84806863195897e-06,
+      "population_at_zero": 0.17264749761385606,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.526544156974547,
+        "fwhm_hz": 129140.82126321582,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 14.0,
+      "center_hz": -4.046251469294161,
+      "fwhm_hz": 129250.36340851487,
+      "contrast": 0.5302122669390043,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 9.099761897449308e-06,
+      "population_at_zero": 0.1799110093599328,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.530039649340308,
+        "fwhm_hz": 129213.60099380213,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 15.0,
+      "center_hz": -4.53851778847042,
+      "fwhm_hz": 129958.54651049571,
+      "contrast": 0.5329358559392728,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 1.0858513035592355e-05,
+      "population_at_zero": 0.18648975854760086,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.5327526258527053,
+        "fwhm_hz": 129920.40291454805,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 16.0,
+      "center_hz": -4.114693414309277,
+      "fwhm_hz": 131144.95836510803,
+      "contrast": 0.534515827319854,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 1.4243208319857516e-05,
+      "population_at_zero": 0.19249608549035502,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.5346659473968,
+        "fwhm_hz": 131178.7616563159,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 17.0,
+      "center_hz": -1.8618012204819185,
+      "fwhm_hz": 132517.04893382388,
+      "contrast": 0.5346833482225986,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 1.704398903752734e-05,
+      "population_at_zero": 0.198004846158636,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.535483420712722,
+        "fwhm_hz": 132697.61564931448,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 17.5,
+      "center_hz": 0.15578186960393683,
+      "fwhm_hz": 133175.43017539923,
+      "contrast": 0.5342073855895095,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 1.8042590141744626e-05,
+      "population_at_zero": 0.20054745402700797,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.5354226840597243,
+        "fwhm_hz": 133450.97991073638,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 18.0,
+      "center_hz": 2.7899428078548225,
+      "fwhm_hz": 133768.50870764462,
+      "contrast": 0.5333730178010593,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 1.872846513879793e-05,
+      "population_at_zero": 0.2029265737989121,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.53504216131405,
+        "fwhm_hz": 134148.92407543582,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 19.0,
+      "center_hz": 9.57542688756754,
+      "fwhm_hz": 134659.60297428543,
+      "contrast": 0.5307027451697572,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 1.9480711717421007e-05,
+      "population_at_zero": 0.2071889351864346,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.5333231883333509,
+        "fwhm_hz": 135274.97522268107,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 20.0,
+      "center_hz": 17.07250749878294,
+      "fwhm_hz": 135089.0242418916,
+      "contrast": 0.5267906613861112,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 2.0507697970427178e-05,
+      "population_at_zero": 0.2109534210429449,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.5303071620069799,
+        "fwhm_hz": 135942.89285589033,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 21.0,
+      "center_hz": 22.883674678025184,
+      "fwhm_hz": 135082.22004519217,
+      "contrast": 0.5217622788139715,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 2.1623754835915845e-05,
+      "population_at_zero": 0.21454232920652833,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.5260154286012466,
+        "fwhm_hz": 136124.37276438772,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 22.0,
+      "center_hz": 24.483700978961537,
+      "fwhm_hz": 134771.19944284717,
+      "contrast": 0.515923139859183,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 2.268563952128289e-05,
+      "population_at_zero": 0.21815222224721423,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.5207021722264468,
+        "fwhm_hz": 135944.00235286346,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 22.5,
+      "center_hz": 23.19775427684189,
+      "fwhm_hz": 134561.14118107027,
+      "contrast": 0.5128566870705042,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 2.325556353618131e-05,
+      "population_at_zero": 0.21995158611861826,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.5178188991739427,
+        "fwhm_hz": 135774.79660688364,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 23.0,
+      "center_hz": 20.508077587566493,
+      "fwhm_hz": 134343.39444138488,
+      "contrast": 0.5097835855474386,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 2.418850043300915e-05,
+      "population_at_zero": 0.22171785883945988,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.5148814968301609,
+        "fwhm_hz": 135585.84686606555,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 24.0,
+      "center_hz": 11.858255172703343,
+      "fwhm_hz": 133964.7970318338,
+      "contrast": 0.5038131056705115,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 2.6948969370685684e-05,
+      "population_at_zero": 0.22508310056805275,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.5090698307878136,
+        "fwhm_hz": 135239.48234880422,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 25.0,
+      "center_hz": 1.8768224174660093,
+      "fwhm_hz": 133752.9228805019,
+      "contrast": 0.4981834136821295,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 2.9787720943117974e-05,
+      "population_at_zero": 0.22823270020805378,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.5035086201403192,
+        "fwhm_hz": 135047.8750460641,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 26.0,
+      "center_hz": -4.729613098370619,
+      "fwhm_hz": 133733.72349477743,
+      "contrast": 0.4927963271107483,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 3.296431094593086e-05,
+      "population_at_zero": 0.23128469131231746,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.4981697359130465,
+        "fwhm_hz": 135050.67293440847,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 27.0,
+      "center_hz": -3.8456587430978444,
+      "fwhm_hz": 133836.73677589858,
+      "contrast": 0.4875373669848085,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 3.7815087628140085e-05,
+      "population_at_zero": 0.2342872773418327,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.49299022586018054,
+        "fwhm_hz": 135189.4641874027,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 27.5,
+      "center_hz": 0.009738944387473547,
+      "fwhm_hz": 133894.91460398305,
+      "contrast": 0.48495967095512804,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 3.971106430218326e-05,
+      "population_at_zero": 0.2357370857290962,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.49047213657264543,
+        "fwhm_hz": 135272.1387418171,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 28.0,
+      "center_hz": 5.98713472107109,
+      "fwhm_hz": 133935.55313802508,
+      "contrast": 0.48243104950013427,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 4.113496513174718e-05,
+      "population_at_zero": 0.23712418281703085,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.4880167798555729,
+        "fwhm_hz": 135340.02350155855,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 29.0,
+      "center_hz": 22.257268095937803,
+      "fwhm_hz": 133916.01424303633,
+      "contrast": 0.47754142362934043,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 4.2523605298423586e-05,
+      "population_at_zero": 0.23966564047859346,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.48330561145694345,
+        "fwhm_hz": 135378.30694110424,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 30.0,
+      "center_hz": 38.72977042502601,
+      "fwhm_hz": 133732.3080345657,
+      "contrast": 0.4728135883933534,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 4.340554850456615e-05,
+      "population_at_zero": 0.2419558426190808,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.47877258071558104,
+        "fwhm_hz": 135248.46869659142,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 31.0,
+      "center_hz": 47.51682320622255,
+      "fwhm_hz": 133419.6973559796,
+      "contrast": 0.4681102346217616,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 4.51366832417175e-05,
+      "population_at_zero": 0.2441784175777596,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.47424381227067025,
+        "fwhm_hz": 134984.08752406333,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 32.0,
+      "center_hz": 42.31538898264592,
+      "fwhm_hz": 133068.57029276737,
+      "contrast": 0.46340280264741585,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 4.728983073141854e-05,
+      "population_at_zero": 0.24644508491271744,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.46966116905484623,
+        "fwhm_hz": 134668.95993494394,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 32.5,
+      "center_hz": 33.734093118562804,
+      "fwhm_hz": 132912.77625638904,
+      "contrast": 0.4610926332993915,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 4.837284658877632e-05,
+      "population_at_zero": 0.24757821472004166,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.4673899638737961,
+        "fwhm_hz": 134527.75141854363,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 33.0,
+      "center_hz": 21.56691735099143,
+      "fwhm_hz": 132787.94251158476,
+      "contrast": 0.4588482833983436,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 4.9473454220118615e-05,
+      "population_at_zero": 0.24868736873041522,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.4651689509179956,
+        "fwhm_hz": 134413.51730556984,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 34.0,
+      "center_hz": -9.827955027624467,
+      "fwhm_hz": 132675.02228323175,
+      "contrast": 0.4546315360227081,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 5.225951684656011e-05,
+      "population_at_zero": 0.2507840307750545,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.46095913924154464,
+        "fwhm_hz": 134311.75206827268,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 35.0,
+      "center_hz": -41.332684430765234,
+      "fwhm_hz": 132788.53720718404,
+      "contrast": 0.45076795604581826,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 5.557231429602617e-05,
+      "population_at_zero": 0.25273937347006975,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.45707005015269037,
+        "fwhm_hz": 134428.82488883493,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 36.0,
+      "center_hz": -60.21850634752414,
+      "fwhm_hz": 133125.4351615851,
+      "contrast": 0.44711230310087113,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 5.994572239384358e-05,
+      "population_at_zero": 0.25467145389275736,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.45338635605313893,
+        "fwhm_hz": 134770.14350433272,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 37.0,
+      "center_hz": -56.444808123030604,
+      "fwhm_hz": 133613.80100174015,
+      "contrast": 0.4435445682708183,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 6.671524602555074e-05,
+      "population_at_zero": 0.2566383896752478,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.4498146849802284,
+        "fwhm_hz": 135282.33182243558,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 37.5,
+      "center_hz": -44.82571577481525,
+      "fwhm_hz": 133878.54788519055,
+      "contrast": 0.4417947838147172,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 6.950424898335943e-05,
+      "population_at_zero": 0.2576102443547132,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.44807727249724866,
+        "fwhm_hz": 135568.90097114161,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 38.0,
+      "center_hz": -27.268279964851242,
+      "fwhm_hz": 134136.05503296372,
+      "contrast": 0.44008000223927385,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 7.172485897336407e-05,
+      "population_at_zero": 0.2585499754840059,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.4463853516799193,
+        "fwhm_hz": 135850.68108980436,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 39.0,
+      "center_hz": 20.16747313602922,
+      "fwhm_hz": 134578.74978254503,
+      "contrast": 0.43677249261345164,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 7.428864417969683e-05,
+      "population_at_zero": 0.26028737183581196,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.44315193357106497,
+        "fwhm_hz": 136345.9032576989,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 40.0,
+      "center_hz": 69.9020427260681,
+      "fwhm_hz": 134883.49874403898,
+      "contrast": 0.43356868607089416,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 7.469420493139705e-05,
+      "population_at_zero": 0.26186590956492817,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.4400469656827368,
+        "fwhm_hz": 136701.01106831472,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 41.0,
+      "center_hz": 102.32298414122582,
+      "fwhm_hz": 135060.53473135893,
+      "contrast": 0.43032973822161474,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 7.675341752471583e-05,
+      "population_at_zero": 0.26341952889279224,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.43690966263021286,
+        "fwhm_hz": 136919.99564733487,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 42.0,
+      "center_hz": 101.72747822691257,
+      "fwhm_hz": 135161.60574778746,
+      "contrast": 0.4269971243649214,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 8.028969589684554e-05,
+      "population_at_zero": 0.2650299859570146,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.43365972695836147,
+        "fwhm_hz": 137058.03470472878,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 42.5,
+      "center_hz": 87.0028736642039,
+      "fwhm_hz": 135207.48631408458,
+      "contrast": 0.42532421349296434,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 8.228754163212868e-05,
+      "population_at_zero": 0.2658398773140662,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.4320161113546809,
+        "fwhm_hz": 137119.69780336707,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 43.0,
+      "center_hz": 63.37008730549672,
+      "fwhm_hz": 135263.63020236604,
+      "contrast": 0.42367534405786095,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 8.425858619868265e-05,
+      "population_at_zero": 0.2666313098784537,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.43038724645102094,
+        "fwhm_hz": 137188.67559349412,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 44.0,
+      "center_hz": -2.8701976219370575,
+      "fwhm_hz": 135440.15335808907,
+      "contrast": 0.42051435686158145,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 8.820515755199233e-05,
+      "population_at_zero": 0.26811206473215454,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.42723924817275616,
+        "fwhm_hz": 137380.06882858806,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 45.0,
+      "center_hz": -74.35327728114936,
+      "fwhm_hz": 135731.97377202028,
+      "contrast": 0.4175428696490227,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 9.218255590450035e-05,
+      "population_at_zero": 0.26946963758159553,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.42425300852836684,
+        "fwhm_hz": 137678.91654797824,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 46.0,
+      "center_hz": -123.16788842068514,
+      "fwhm_hz": 136141.69312492697,
+      "contrast": 0.4146647978113909,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 9.616058027478032e-05,
+      "population_at_zero": 0.27080776354939884,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.4213488411899877,
+        "fwhm_hz": 138093.16560104152,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 47.0,
+      "center_hz": -126.60272332907269,
+      "fwhm_hz": 136620.58273375605,
+      "contrast": 0.41180860062608754,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 0.00010399808750970413,
+      "population_at_zero": 0.27218843553355737,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.41847358875989177,
+        "fwhm_hz": 138579.46836241952,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 47.5,
+      "center_hz": -108.07645563211518,
+      "fwhm_hz": 136859.1926597101,
+      "contrast": 0.41039972352882725,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 0.0001075163537849652,
+      "population_at_zero": 0.27287763196929893,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.41706261651985543,
+        "fwhm_hz": 138824.01473176782,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 48.0,
+      "center_hz": -76.79408420347877,
+      "fwhm_hz": 137081.24938653587,
+      "contrast": 0.40901968736137545,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 0.00011045685768472949,
+      "population_at_zero": 0.2735462965705275,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.4156870768534497,
+        "fwhm_hz": 139053.77969748917,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 49.0,
+      "center_hz": 13.996648590905684,
+      "fwhm_hz": 137437.74285681066,
+      "contrast": 0.40637579354508707,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 0.00011430054118255695,
+      "population_at_zero": 0.27478230894602745,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.41307334031559245,
+        "fwhm_hz": 139431.01050235846,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 50.0,
+      "center_hz": 115.43740107915238,
+      "fwhm_hz": 137650.53484719136,
+      "contrast": 0.4038525520194522,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 0.00011564453426304959,
+      "population_at_zero": 0.2759059318202914,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.4106050112861102,
+        "fwhm_hz": 139672.04645061478,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 51.0,
+      "center_hz": 189.0997369597338,
+      "fwhm_hz": 137742.93740273025,
+      "contrast": 0.4013318109350738,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 0.0001174748825275172,
+      "population_at_zero": 0.27703074225682606,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.4081535196531961,
+        "fwhm_hz": 139801.26216787263,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 52.0,
+      "center_hz": 202.90089678111656,
+      "fwhm_hz": 137780.2479483829,
+      "contrast": 0.3987453841921593,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 0.00012133893815136705,
+      "population_at_zero": 0.27823006358381175,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.40563687819643246,
+        "fwhm_hz": 139871.40848274188,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 52.5,
+      "center_hz": 182.44951560239994,
+      "fwhm_hz": 137801.44249302763,
+      "contrast": 0.39744463086469933,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 0.00012355656617736848,
+      "population_at_zero": 0.2788438470708437,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.4043671412402818,
+        "fwhm_hz": 139906.59766801944,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 53.0,
+      "center_hz": 144.4279016444384,
+      "fwhm_hz": 137835.24903900656,
+      "contrast": 0.3961600841290385,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 0.00012584890772166966,
+      "population_at_zero": 0.2794477569850438,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.40310937673865316,
+        "fwhm_hz": 139952.5083856147,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 54.0,
+      "center_hz": 28.097362259339988,
+      "fwhm_hz": 137965.33222871166,
+      "contrast": 0.3936897149932703,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 0.00013050709279598834,
+      "population_at_zero": 0.280580622603947,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.40067729889410464,
+        "fwhm_hz": 140101.45998471533,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 55.0,
+      "center_hz": -107.43297556325766,
+      "fwhm_hz": 138203.13162809634,
+      "contrast": 0.39135281299095354,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 0.00013529539074964806,
+      "population_at_zero": 0.28161593379630373,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.39835836301808764,
+        "fwhm_hz": 140364.86873793494,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 56.0,
+      "center_hz": -211.91650208551954,
+      "fwhm_hz": 138548.55207515496,
+      "contrast": 0.38906335009926357,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 0.00014047780412898529,
+      "population_at_zero": 0.2826385336429495,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.3960717951655049,
+        "fwhm_hz": 140736.716703699,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 57.0,
+      "center_hz": -241.85253257562135,
+      "fwhm_hz": 138960.72419261275,
+      "contrast": 0.38675755138247875,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 0.0001494343522339,
+      "population_at_zero": 0.2837048434979565,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.39376265536776317,
+        "fwhm_hz": 141176.64482164054,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 57.5,
+      "center_hz": -221.50956877312686,
+      "fwhm_hz": 139169.08587285958,
+      "contrast": 0.3856088701850921,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 0.00015365732307132327,
+      "population_at_zero": 0.28424081876043356,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.39261288164206537,
+        "fwhm_hz": 141399.12937547071,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 58.0,
+      "center_hz": -177.84734591098635,
+      "fwhm_hz": 139364.98491280826,
+      "contrast": 0.38447840774487535,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 0.00015730681420073918,
+      "population_at_zero": 0.28476153635067863,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.39148301188116247,
+        "fwhm_hz": 141608.95204328088,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 59.0,
+      "center_hz": -34.861109739817934,
+      "fwhm_hz": 139685.34891884087,
+      "contrast": 0.3823048801445099,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 0.00016251694314797872,
+      "population_at_zero": 0.2857204329282558,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.3893181322385566,
+        "fwhm_hz": 141955.5287543371,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    },
+    {
+      "rabi_mhz": 60.0,
+      "center_hz": 139.69534781218738,
+      "fwhm_hz": 139892.1133866064,
+      "contrast": 0.3802291287386842,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 0.00016503963954515898,
+      "population_at_zero": 0.28658466692245654,
+      "local_shoulders": {
+        "accepted": true,
+        "contrast": 0.38726196439018157,
+        "fwhm_hz": 142179.96374899757,
+        "center_mhz": 0.0,
+        "left_shoulder_mhz": -0.5,
+        "right_shoulder_mhz": 0.5
+      }
+    }
+  ],
+  "at50": {
+    "rabi_mhz": 50.0,
+    "center_hz": 115.43740107915238,
+    "fwhm_hz": 137650.53484719136,
+    "contrast": 0.4038525520194522,
+    "accepted": true,
+    "satellite_prominence": 0.0,
+    "final_leakage_max": 0.00011564453426304959,
+    "population_at_zero": 0.2759059318202914,
+    "local_shoulders": {
+      "accepted": true,
+      "contrast": 0.4106050112861102,
+      "fwhm_hz": 139672.04645061478,
+      "center_mhz": 0.0,
+      "left_shoulder_mhz": -0.5,
+      "right_shoulder_mhz": 0.5
+    }
+  },
+  "validation": {
+    "native_diagnostics": {
+      "max_trace_error": 4.218847493575595e-14,
+      "min_population": 4.984698080750249e-07,
+      "max_population": 0.9176435570300934,
+      "min_density_eigenvalue": 4.984178732633835e-07,
+      "num_steps": 84470,
+      "min_dt_ns": 0.125,
+      "max_dt_ns": 0.25
+    },
+    "native_dt_halving_max_population": 1.136479099717036e-08,
+    "native_dt_halving_fwhm_change_khz": 1.3724735181313008e-06,
+    "detuning_halving_fwhm_change_khz": 0.019769072511291598,
+    "fine_grid_50mhz": {
+      "center_hz": 115.43458661091647,
+      "fwhm_hz": 137630.76440220655,
+      "contrast": 0.403856808017539,
+      "accepted": true
+    },
+    "wide_native_diagnostics": {
+      "max_trace_error": 4.1744385725905886e-14,
+      "min_population": 3.7536776564181846e-07,
+      "max_population": 0.9176435570300934,
+      "min_density_eigenvalue": 3.7529883159650165e-07,
+      "num_steps": 84470,
+      "min_dt_ns": 0.125,
+      "max_dt_ns": 0.25
+    },
+    "split3_vs_native_max_pe": 2.0810482246336193e-06,
+    "levels3_vs4_max_pe": 0.00043136508694474607,
+    "levels4_vs5_max_pe": 1.4162792588146011e-06,
+    "split4_dt_refinement_max_pe": 2.8236363773803674e-06,
+    "levels4_max_final_leakage": 0.0001181019037088636,
+    "levels5_max_final_leakage": 0.00011808256154464913,
+    "levels4_metrics": {
+      "center_hz": 23.202269321458186,
+      "fwhm_hz": 137693.17082079986,
+      "contrast": 0.4038456096775912,
+      "accepted": true
+    },
+    "levels5_metrics": {
+      "center_hz": 22.6708529455756,
+      "fwhm_hz": 137693.36366608497,
+      "contrast": 0.403845448892322,
+      "accepted": true
+    }
+  },
+  "broad_spectrum": [
+    {
+      "rabi_mhz": 5.0,
+      "max_prominence": 0.0,
+      "detuning_mhz": [],
+      "prominence": [],
+      "max_final_leakage": 1.6563219163054755e-06
+    },
+    {
+      "rabi_mhz": 10.0,
+      "max_prominence": 0.0,
+      "detuning_mhz": [],
+      "prominence": [],
+      "max_final_leakage": 6.922402539324957e-06
+    },
+    {
+      "rabi_mhz": 20.0,
+      "max_prominence": 0.0,
+      "detuning_mhz": [],
+      "prominence": [],
+      "max_final_leakage": 2.0507697970429255e-05
+    },
+    {
+      "rabi_mhz": 40.0,
+      "max_prominence": 0.0,
+      "detuning_mhz": [],
+      "prominence": [],
+      "max_final_leakage": 7.469420493141637e-05
+    },
+    {
+      "rabi_mhz": 50.0,
+      "max_prominence": 0.0,
+      "detuning_mhz": [],
+      "prominence": [],
+      "max_final_leakage": 0.00011564453426302966
+    },
+    {
+      "rabi_mhz": 60.0,
+      "max_prominence": 0.0,
+      "detuning_mhz": [],
+      "prominence": [],
+      "max_final_leakage": 0.00016503963954513358
+    }
+  ],
+  "bandwidth": [
+    {
+      "gaussian_sigma_ns": 1.0,
+      "amplitude_3db_mhz": 132.50518175969842,
+      "postfilter_peak_retention": 0.9829790752535786,
+      "renormalized_to_target_peak": true,
+      "rows": [
+        {
+          "rabi_mhz": 5.0,
+          "center_hz": 14.023145098939734,
+          "fwhm_hz": 129739.14776624118,
+          "contrast": 0.2662744250243956,
+          "accepted": true,
+          "satellite_prominence": 0.0,
+          "final_leakage_max": 1.720641099166442e-06,
+          "population_at_zero": 0.08396955139354109
+        },
+        {
+          "rabi_mhz": 10.0,
+          "center_hz": -3.4486918992256332,
+          "fwhm_hz": 131152.69729178312,
+          "contrast": 0.5001176846349595,
+          "accepted": true,
+          "satellite_prominence": 0.0,
+          "final_leakage_max": 7.035420406038085e-06,
+          "population_at_zero": 0.1496371910575025
+        },
+        {
+          "rabi_mhz": 20.0,
+          "center_hz": 19.12973196103157,
+          "fwhm_hz": 135140.1909621532,
+          "contrast": 0.5251790549011298,
+          "accepted": true,
+          "satellite_prominence": 0.0,
+          "final_leakage_max": 2.0703285771675968e-05,
+          "population_at_zero": 0.21220057672906553
+        },
+        {
+          "rabi_mhz": 40.0,
+          "center_hz": 91.75696221219262,
+          "fwhm_hz": 135027.9590888561,
+          "contrast": 0.43133967408769136,
+          "accepted": true,
+          "satellite_prominence": 0.0,
+          "final_leakage_max": 7.489953445675454e-05,
+          "population_at_zero": 0.26293714353757514
+        },
+        {
+          "rabi_mhz": 50.0,
+          "center_hz": 173.25995139167281,
+          "fwhm_hz": 137745.96938991902,
+          "contrast": 0.4016713476648025,
+          "accepted": true,
+          "satellite_prominence": 0.0,
+          "final_leakage_max": 0.0001155496524585625,
+          "population_at_zero": 0.27687596887360744
+        },
+        {
+          "rabi_mhz": 60.0,
+          "center_hz": 266.7083457776062,
+          "fwhm_hz": 140020.71828030812,
+          "contrast": 0.37807664454879303,
+          "accepted": true,
+          "satellite_prominence": 0.0,
+          "final_leakage_max": 0.00016527451290831397,
+          "population_at_zero": 0.28748622383282835
+        }
+      ],
+      "diagnostics": {
+        "max_trace_error": 5.706546346573305e-14,
+        "min_population": 5.213224917395669e-07,
+        "max_population": 0.916028865134755,
+        "min_density_eigenvalue": 5.212978915341264e-07,
+        "num_steps": 168938,
+        "min_dt_ns": 0.0625,
+        "max_dt_ns": 0.125
+      }
+    },
+    {
+      "gaussian_sigma_ns": 2.0,
+      "amplitude_3db_mhz": 66.25259087984921,
+      "postfilter_peak_retention": 0.9496165171776232,
+      "renormalized_to_target_peak": true,
+      "rows": [
+        {
+          "rabi_mhz": 5.0,
+          "center_hz": 12.901303486588846,
+          "fwhm_hz": 130084.94525434094,
+          "contrast": 0.27964922057064834,
+          "accepted": true,
+          "satellite_prominence": 0.0,
+          "final_leakage_max": 1.846978599104663e-06,
+          "population_at_zero": 0.08724488048187172
+        },
+        {
+          "rabi_mhz": 10.0,
+          "center_hz": -3.5594978328599756,
+          "fwhm_hz": 130802.36516136628,
+          "contrast": 0.505752720883001,
+          "accepted": true,
+          "satellite_prominence": 0.0,
+          "final_leakage_max": 7.232615441275515e-06,
+          "population_at_zero": 0.15268269654471872
+        },
+        {
+          "rabi_mhz": 20.0,
+          "center_hz": 22.098965623545997,
+          "fwhm_hz": 135102.34227680785,
+          "contrast": 0.5214842202325143,
+          "accepted": true,
+          "satellite_prominence": 0.0,
+          "final_leakage_max": 2.1182295005719283e-05,
+          "population_at_zero": 0.21474944872288895
+        },
+        {
+          "rabi_mhz": 40.0,
+          "center_hz": 96.6913751201008,
+          "fwhm_hz": 135202.7771441956,
+          "contrast": 0.4266328629283337,
+          "accepted": true,
+          "satellite_prominence": 0.0,
+          "final_leakage_max": 7.804304148439721e-05,
+          "population_at_zero": 0.26520430724636934
+        },
+        {
+          "rabi_mhz": 50.0,
+          "center_hz": 175.7690374943978,
+          "fwhm_hz": 137827.10811881593,
+          "contrast": 0.3970641988860936,
+          "accepted": true,
+          "satellite_prominence": 0.0,
+          "final_leakage_max": 0.0001199738383764203,
+          "population_at_zero": 0.2790063289255554
+        },
+        {
+          "rabi_mhz": 60.0,
+          "center_hz": 260.513150367025,
+          "fwhm_hz": 140217.04999614615,
+          "contrast": 0.3735194087995769,
+          "accepted": true,
+          "satellite_prominence": 0.0,
+          "final_leakage_max": 0.00017200795305436062,
+          "population_at_zero": 0.2895074991245302
+        }
+      ],
+      "diagnostics": {
+        "max_trace_error": 5.728750807065808e-14,
+        "min_population": 5.682847962809251e-07,
+        "max_population": 0.9127534257761737,
+        "min_density_eigenvalue": 5.68284589766522e-07,
+        "num_steps": 168938,
+        "min_dt_ns": 0.0625,
+        "max_dt_ns": 0.125
+      }
+    },
+    {
+      "gaussian_sigma_ns": 4.0,
+      "amplitude_3db_mhz": 33.126295439924604,
+      "postfilter_peak_retention": 0.8686598891762516,
+      "renormalized_to_target_peak": true,
+      "rows": [
+        {
+          "rabi_mhz": 5.0,
+          "center_hz": 10.030007750624824,
+          "fwhm_hz": 131005.51879426367,
+          "contrast": 0.3152208739279839,
+          "accepted": true,
+          "satellite_prominence": 0.0,
+          "final_leakage_max": 2.1619499810641974e-06,
+          "population_at_zero": 0.09584056454854221
+        },
+        {
+          "rabi_mhz": 10.0,
+          "center_hz": -4.041736519979888,
+          "fwhm_hz": 129830.92466377832,
+          "contrast": 0.5167255155877349,
+          "accepted": true,
+          "satellite_prominence": 0.0,
+          "final_leakage_max": 7.621725281816337e-06,
+          "population_at_zero": 0.16078774033896903
+        },
+        {
+          "rabi_mhz": 20.0,
+          "center_hz": 20.353419069492844,
+          "fwhm_hz": 134347.24145524658,
+          "contrast": 0.5096918482081931,
+          "accepted": true,
+          "satellite_prominence": 0.0,
+          "final_leakage_max": 2.217234093904502e-05,
+          "population_at_zero": 0.22177459982287268
+        },
+        {
+          "rabi_mhz": 40.0,
+          "center_hz": -59.136269364685056,
+          "fwhm_hz": 135993.04957125854,
+          "contrast": 0.4144804540336636,
+          "accepted": true,
+          "satellite_prominence": 0.0,
+          "final_leakage_max": 8.720326430432792e-05,
+          "population_at_zero": 0.27087875987398624
+        },
+        {
+          "rabi_mhz": 50.0,
+          "center_hz": -164.53871649127302,
+          "fwhm_hz": 139030.09833924295,
+          "contrast": 0.38548830969062536,
+          "accepted": true,
+          "satellite_prominence": 0.0,
+          "final_leakage_max": 0.0001361347825862061,
+          "population_at_zero": 0.2842474124047953
+        },
+        {
+          "rabi_mhz": 60.0,
+          "center_hz": -243.57309081546592,
+          "fwhm_hz": 142282.239109238,
+          "contrast": 0.3622660472114517,
+          "accepted": true,
+          "satellite_prominence": 0.0,
+          "final_leakage_max": 0.00019780828068828463,
+          "population_at_zero": 0.2944115417166361
+        }
+      ],
+      "diagnostics": {
+        "max_trace_error": 5.3734794391857577e-14,
+        "min_population": 6.936210131336525e-07,
+        "max_population": 0.9041574740900666,
+        "min_density_eigenvalue": 6.936210131325983e-07,
+        "num_steps": 168938,
+        "min_dt_ns": 0.0625,
+        "max_dt_ns": 0.125
+      }
+    }
+  ],
+  "selection_record": {
+    "parameters": [
+      21.101242835090837,
+      -1.8208710720224497,
+      -1.8642248431526447,
+      0.18156966966861554,
+      0.8203407670727021,
+      3.536388272093394,
+      0.3186457318694017,
+      -0.9331851920697108,
+      -0.6431538481498505
+    ],
+    "pulse": {
+      "duration_us": 21.101242835090837,
+      "core_us": 0.01510528514643049,
+      "tail_gain": 0.8072371180256004,
+      "tail_join_us": 1.5190416076585926,
+      "tail_scale_us": 6.612120613753458,
+      "tail_power": 3.536388272093394,
+      "edge_width_us": 3.3619104832707443,
+      "transition_us": 0.016,
+      "drag_beta": -0.5,
+      "anharmonicity_mhz": -216.0,
+      "phase_rad": -0.9331851920697108,
+      "phase_scale_us": 0.22742916237553631,
+      "phase2_rad": 0.0,
+      "phase2_scale_us": 4.0
+    },
+    "peak_scale": 0.8919755400744086,
+    "rows": [
+      {
+        "rabi_mhz": 5.0,
+        "center_hz": 14.792088117580672,
+        "fwhm_hz": 129578.6010928368,
+        "contrast": 0.25973475143851926,
+        "accepted": true,
+        "satellite_prominence": 0.0,
+        "final_leakage_max": 1.6564043164886863e-06,
+        "population_at_zero": 0.08235491611958778
+      },
+      {
+        "rabi_mhz": 7.5,
+        "center_hz": 1.4423051652945085,
+        "fwhm_hz": 132532.23315472712,
+        "contrast": 0.41758861430147154,
+        "accepted": true,
+        "satellite_prominence": 0.0,
+        "final_leakage_max": 4.306052441285121e-06,
+        "population_at_zero": 0.12186219691188917
+      },
+      {
+        "rabi_mhz": 10.0,
+        "center_hz": -3.1306393208658148,
+        "fwhm_hz": 131340.5457306282,
+        "contrast": 0.49699730225137173,
+        "accepted": true,
+        "satellite_prominence": 0.0,
+        "final_leakage_max": 6.922038607142995e-06,
+        "population_at_zero": 0.1481322967596268
+      },
+      {
+        "rabi_mhz": 15.0,
+        "center_hz": -4.348711582162328,
+        "fwhm_hz": 129945.88962401864,
+        "contrast": 0.5328728932991448,
+        "accepted": true,
+        "satellite_prominence": 0.0,
+        "final_leakage_max": 1.0858254299383199e-05,
+        "population_at_zero": 0.18648975905560908
+      },
+      {
+        "rabi_mhz": 20.0,
+        "center_hz": 17.225693449901037,
+        "fwhm_hz": 135169.66075245006,
+        "contrast": 0.5266824688306234,
+        "accepted": true,
+        "satellite_prominence": 0.0,
+        "final_leakage_max": 2.0508231736170303e-05,
+        "population_at_zero": 0.2109534230306834
+      },
+      {
+        "rabi_mhz": 30.0,
+        "center_hz": 38.81969238695918,
+        "fwhm_hz": 133788.77103874588,
+        "contrast": 0.4727167105578942,
+        "accepted": true,
+        "satellite_prominence": 0.0,
+        "final_leakage_max": 4.340619622764352e-05,
+        "population_at_zero": 0.24195586249592096
+      },
+      {
+        "rabi_mhz": 40.0,
+        "center_hz": 69.93818866701167,
+        "fwhm_hz": 134957.6737229492,
+        "contrast": 0.4334859323395167,
+        "accepted": true,
+        "satellite_prominence": 0.0,
+        "final_leakage_max": 7.469460292742695e-05,
+        "population_at_zero": 0.26186601217161987
+      },
+      {
+        "rabi_mhz": 50.0,
+        "center_hz": 115.44665085351062,
+        "fwhm_hz": 137671.51335535015,
+        "contrast": 0.4037755923976958,
+        "accepted": true,
+        "satellite_prominence": 0.0,
+        "final_leakage_max": 0.0001156447256861785,
+        "population_at_zero": 0.275906297656374
+      },
+      {
+        "rabi_mhz": 60.0,
+        "center_hz": 139.7374738831118,
+        "fwhm_hz": 139876.76804634475,
+        "contrast": 0.3801556216450058,
+        "accepted": true,
+        "satellite_prominence": 0.0,
+        "final_leakage_max": 0.00016503922714263496,
+        "population_at_zero": 0.28658569182365357
+      }
+    ],
+    "quality": {
+      "feasible": true,
+      "violation": 12.516166601332282,
+      "width50_khz": 137.67151335535016,
+      "max_width_khz": 139.87676804634475,
+      "min_contrast": 0.25973475143851926,
+      "max_contrast_regression": -0.0021165288186928977,
+      "max_width_regression_khz": -1.3062187501282665,
+      "max_satellite": 0.0,
+      "max_center_khz": 0.13973747388311178,
+      "max_leakage": 0.00016503922714263496
+    },
+    "loss": 150.8492563639808,
+    "diagnostics": {
+      "max_trace_error": 2.5757174171303632e-14,
+      "min_population": 4.985047087238302e-07,
+      "max_population": 0.9176435569348326,
+      "min_density_eigenvalue": 4.985047087238294e-07,
+      "num_steps": 42236,
+      "min_dt_ns": 0.25,
+      "max_dt_ns": 0.5
+    },
+    "configuration_sha256": "a10b430e621ad5c00b90d3ea8d50a3ebf266e62b7f61d40c8ee2b213289c11d5",
+    "name": "preserve_original",
+    "label": "Narrower line; preserves original",
+    "pulse_type": "decoupled"
+  }
+}

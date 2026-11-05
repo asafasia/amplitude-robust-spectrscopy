@@ -1,0 +1,80 @@
+{
+  "family": "polynomial",
+  "parameters": [
+    32.6760190225518,
+    -3.604616797206223,
+    1.161797686956004
+  ],
+  "pulse": {
+    "duration_us": 32.6760190225518,
+    "cutoff": 0.0002485325082184544,
+    "power": 1.161797686956004,
+    "transition_us": 0.016,
+    "drag_beta": -0.5,
+    "anharmonicity_mhz": -216.0
+  },
+  "loss": 107.89034120383909,
+  "rows": [
+    {
+      "rabi_mhz": 40.0,
+      "center_hz": 10.954847480926288,
+      "fwhm_hz": 104911.39939784467,
+      "contrast": 0.4035464422195726,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 1.098473428207104e-05,
+      "population_at_zero": 0.17505046343876887
+    },
+    {
+      "rabi_mhz": 45.0,
+      "center_hz": 12.281290383445816,
+      "fwhm_hz": 104838.65966091707,
+      "contrast": 0.41730949708376175,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 1.2537746847840125e-05,
+      "population_at_zero": 0.18842971494790106
+    },
+    {
+      "rabi_mhz": 50.0,
+      "center_hz": 1.6498446482224591,
+      "fwhm_hz": 105313.25107397826,
+      "contrast": 0.4250087179924219,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 1.50048841489783e-05,
+      "population_at_zero": 0.19991825845300706
+    },
+    {
+      "rabi_mhz": 55.0,
+      "center_hz": -12.760543670149348,
+      "fwhm_hz": 106391.53382097073,
+      "contrast": 0.42864530105382037,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 2.1493285937058623e-05,
+      "population_at_zero": 0.20990291998611796
+    },
+    {
+      "rabi_mhz": 60.0,
+      "center_hz": -13.836354722693917,
+      "fwhm_hz": 107784.69969278704,
+      "contrast": 0.4288312909499503,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 2.552531654290314e-05,
+      "population_at_zero": 0.2188488581006033
+    }
+  ],
+  "diagnostics": {
+    "max_trace_error": 2.6201263381153694e-14,
+    "min_population": 5.2402428366378406e-06,
+    "max_population": 0.8249442963183767,
+    "min_density_eigenvalue": 5.2402428366378406e-06,
+    "num_steps": 65394,
+    "min_dt_ns": 0.12105321708099324,
+    "max_dt_ns": 0.49999750446674707
+  },
+  "evaluations": 482,
+  "optimizer_loss": 107.89034120383909
+}

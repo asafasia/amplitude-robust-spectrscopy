@@ -6,50 +6,63 @@ Uses archived metrics and masks without rerunning or interpolating simulations.
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
+from matplotlib.ticker import LogLocator, NullFormatter
 
+from echospec.figures.coherence import REFERENCE_FWHM_HZ, REFERENCE_T2_STAR_S
 from echospec.figures.supplemental import STYLE_PATH, apply_supplemental_style
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "outputs/polynomial_duration_cutoff_sweep/n100"
+SOURCE = ROOT / "outputs/polynomial_duration_cutoff_poly2_log/n100"
 OUT = ROOT / "figures/paper"
 STEM = "supp_extended_cutoff_duration"
 CONTRAST_THRESHOLD = 0.2
 
 
-def main():
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--input-dir", type=Path, default=SOURCE)
+    parser.add_argument("--output-dir", type=Path, default=OUT)
+    parser.add_argument("--stem", default=STEM)
+    args = parser.parse_args(argv)
+    source_dir = args.input_dir.resolve()
+    output_dir = args.output_dir.resolve()
+    stem = args.stem
+    manifest = json.loads((source_dir / "dataset_manifest.json").read_text())
     checksums = dict(
         (name, digest)
         for digest, name in (
             line.split("  ", 1)
-            for line in (SOURCE / "checksums.sha256").read_text().splitlines()
+            for line in (source_dir / "checksums.sha256").read_text().splitlines()
         )
     )
     hashes = {}
-    for name in ("comparison_metrics.npz", "duration_comparison.pdf"):
-        digest = hashlib.sha256((SOURCE / name).read_bytes()).hexdigest()
+    for name in ("comparison_metrics.npz",):
+        digest = hashlib.sha256((source_dir / name).read_bytes()).hexdigest()
         assert digest == checksums[name], f"Source checksum changed: {name}"
-        hashes[str((SOURCE / name).relative_to(ROOT))] = digest
+        hashes[str((source_dir / name).relative_to(ROOT))] = digest
     keys = ("durations_us", "cutoffs", "rabi_mhz", "accepted", "fwhm_hz",
             "configuration")
-    with np.load(SOURCE / "comparison_metrics.npz", allow_pickle=False) as source:
+    with np.load(source_dir / "comparison_metrics.npz", allow_pickle=False) as source:
         data = {key: source[key].copy() for key in keys}
         assert source["pending_durations_us"].size == 0
     lengths, cutoffs, amps = (data[key] for key in keys[:3])
     accepted = data["accepted"]
     contrasts = []
     for row, length in enumerate(lengths):
-        folder = "baseline_30us" if length == 30 else "simulations"
+        folder = (manifest["baseline_copy"] if length in manifest["reused_durations_us"]
+                  else manifest["new_runs"])
         name = f"{folder}/L{length:g}us/scan.npz"
-        digest = hashlib.sha256((SOURCE / name).read_bytes()).hexdigest()
+        digest = hashlib.sha256((source_dir / name).read_bytes()).hexdigest()
         assert digest == checksums[name], f"Source checksum changed: {name}"
-        hashes[str((SOURCE / name).relative_to(ROOT))] = digest
-        with np.load(SOURCE / name, allow_pickle=False) as source:
+        hashes[str((source_dir / name).relative_to(ROOT))] = digest
+        with np.load(source_dir / name, allow_pickle=False) as source:
             np.testing.assert_array_equal(source["cutoffs"], cutoffs)
             np.testing.assert_array_equal(source["rabi_mhz"], amps)
             np.testing.assert_array_equal(source["accepted"], accepted[row])
@@ -57,20 +70,27 @@ def main():
             contrasts.append(source["contrast"].copy())
     data["contrast"] = np.stack(contrasts)
     assert ((data["contrast"][accepted] >= 0) & (data["contrast"][accepted] <= 1)).all()
-    config = json.loads(str(data["configuration"]))
     np.testing.assert_array_equal(lengths, [10, 20, 30, 45, 60])
     np.testing.assert_allclose(cutoffs, np.geomspace(1e-5, 1, 100))
-    np.testing.assert_allclose(amps, np.linspace(0, 100, 100))
+    config = json.loads(str(data["configuration"]))
+    logarithmic = config.get("amplitude_spacing") == "log"
+    expected = np.geomspace(1, 100, 100) if logarithmic else np.linspace(0, 100, 100)
+    np.testing.assert_allclose(amps, expected)
     assert accepted.shape == (5, 100, 100)
-    reference_hz = 1 / (np.pi * config["t2_us"] * 1e-6)
-    # Match the report's cells and width scale; contrast uses probability [0, 1].
+    reference_hz = REFERENCE_FWHM_HZ
+    # Preserve the original cell edges while matching the main Figure 4 display.
     logc = np.log(cutoffs)
     c_edges = np.exp(np.r_[logc[0] - (logc[1] - logc[0]) / 2,
                           (logc[1:] + logc[:-1]) / 2,
                           logc[-1] + (logc[-1] - logc[-2]) / 2])
-    a_edges = np.r_[amps[0] - (amps[1] - amps[0]) / 2,
-                    (amps[1:] + amps[:-1]) / 2,
-                    amps[-1] + (amps[-1] - amps[-2]) / 2]
+    centers = np.log(amps) if logarithmic else amps
+    a_edges = np.r_[centers[0] - (centers[1] - centers[0]) / 2,
+                    (centers[1:] + centers[:-1]) / 2,
+                    centers[-1] + (centers[-1] - centers[-2]) / 2]
+    if logarithmic:
+        a_edges = np.exp(a_edges)
+    positive = amps > 0
+    first_positive = int(np.flatnonzero(positive)[0])
     # Keep the sampled threshold mask; interpolate only the displayed isoline.
     data["contrast_above_threshold"] = accepted & (data["contrast"] > CONTRAST_THRESHOLD)
     data["contrast_threshold"] = np.array(CONTRAST_THRESHOLD)
@@ -78,58 +98,67 @@ def main():
     fig, axes = plt.subplots(5, 2, figsize=(7.2, 7.6), sharex=True, sharey=True,
                              layout="constrained")
     scales = {}
-    for col, (key, factor, minimum, rounding, cmap, label) in enumerate([
-        ("fwhm_hz", 1 / reference_hz, 600_000, 5000, "magma_r",
-         r"Local dip FWHM / $\Gamma_{f,T_2}$"),
-        ("contrast", 1, 1, 1, "viridis", "Contrast"),
+    for col, (key, factor, lower, upper, cmap, label, ticks) in enumerate([
+        ("fwhm_hz", 1 / reference_hz, 0, 10, "magma",
+         r"FWHM/$\Gamma_{T_2^*}$", [0, 2, 4, 6, 8, 10]),
+        ("contrast", 1, 0, 1, "viridis", "Contrast", [0, 0.5, 1]),
     ]):
         values = data[key]
         assert values.shape == accepted.shape
         assert np.isfinite(values[accepted]).all()
-        upper = factor * max(minimum, np.ceil(values[accepted].max() / rounding)
-                             * rounding)
-        if key == "fwhm_hz":
-            upper = 10.0
-        scales[key] = {"factor": factor, "vmin": 0, "vmax": upper, "colormap": cmap}
+        scales[key] = {"factor": factor, "vmin": lower, "vmax": upper, "colormap": cmap}
         color = plt.get_cmap(cmap).copy()
         color.set_bad("#e2e7e9")
         for row, length in enumerate(lengths):
             ax = axes[row, col]
             masked = np.ma.masked_where(~accepted[row], values[row] * factor)
-            artist = ax.pcolormesh(a_edges, c_edges, masked, cmap=color,
-                                   vmin=0, vmax=upper, rasterized=True)
+            artist = ax.pcolormesh(
+                c_edges, a_edges[first_positive:], masked[:, positive].T,
+                cmap=color, vmin=lower, vmax=upper, rasterized=True,
+            )
             ax.contour(
-                amps, cutoffs,
-                np.ma.masked_where(~accepted[row], data["contrast"][row]),
+                cutoffs, amps[positive],
+                np.ma.masked_where(~accepted[row], data["contrast"][row])[:, positive].T,
                 levels=[CONTRAST_THRESHOLD], colors=["white"], linewidths=0.6,
                 corner_mask=False, zorder=3,
             )
-            ax.set(yscale="log", ylim=(cutoffs[0], cutoffs[-1]), xlim=(0, 100),
-                   xticks=[0, 25, 50, 75, 100], yticks=[1e-5, 1e-3, 1e-1, 1])
+            ax.set(xscale="log", yscale="log", xlim=(1e-5, 1), ylim=(1, 100),
+                   xticks=[1e-5, 1e-3, 1e-1, 1], yticks=[1, 10, 100])
             ax.minorticks_off()
+            ax.yaxis.set_minor_locator(LogLocator(base=10, subs=np.arange(2, 10)))
+            ax.yaxis.set_minor_formatter(NullFormatter())
+            ax.tick_params(direction="in", top=True, right=True, length=2, pad=2,
+                           labelleft=True)
+            ax.tick_params(axis="y", which="major", length=3)
+            ax.tick_params(axis="y", which="minor", direction="in", right=True,
+                           length=1.5, width=0.5)
             ax.set_title(f"({chr(97 + 2 * row + col)})  "
                          + rf"$L={length:g}\,\mu\mathrm{{s}}$", loc="left", fontsize=9)
             if col == 0:
-                ax.set_ylabel("Cutoff $c$")
+                ax.set_ylabel(r"$\Omega_0/2\pi$ (MHz)")
             if row == 4:
-                ax.set_xlabel(r"Nominal drive $\Omega_0/(2\pi)$ (MHz)")
+                ax.set_xlabel("Cutoff $c$")
         bar = fig.colorbar(artist, ax=list(axes[:, col]), location="top",
-                           fraction=0.035, pad=0.025, aspect=35)
+                           fraction=0.035, pad=0.025, aspect=35, ticks=ticks)
         bar.set_label(label)
-    OUT.mkdir(parents=True, exist_ok=True)
+    output_dir.mkdir(parents=True, exist_ok=True)
     for ext in ("pdf", "png"):
-        fig.savefig(OUT / f"{STEM}.{ext}", dpi=300)
+        fig.savefig(output_dir / f"{stem}.{ext}", dpi=300)
     plt.close(fig)
-    np.savez_compressed(OUT / f"{STEM}.npz", **data)
+    np.savez_compressed(output_dir / f"{stem}.npz", **data)
     provenance = {
         "style": str(STYLE_PATH.relative_to(ROOT)),
         "style_sha256": hashlib.sha256(STYLE_PATH.read_bytes()).hexdigest(),
-        "source_report": str((SOURCE / "report.html").relative_to(ROOT)),
+        "source_dataset": str(source_dir.relative_to(ROOT)),
+        "configuration": config,
         "source_sha256": hashes,
         "generator": str(Path(__file__).resolve().relative_to(ROOT)),
         "generator_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
-        "reproduction": "MPLBACKEND=Agg python scripts/make_supplemental_extended_cutoff.py",
-        "change_from_report": "Five duration rows; same samples, masks, and cell boundaries. Replace ideal SNR with saved dip contrast on [0, 1]; show normalized linewidth on [0, 10] with reversed magma colors so low widths are light. Widths above 10 saturate at the darkest color.",
+        "reproduction": ("PYTHONPATH=. MPLBACKEND=Agg python "
+                         "scripts/make_supplemental_extended_cutoff.py "
+                         f"--input-dir {source_dir.relative_to(ROOT)} "
+                         f"--output-dir {output_dir.relative_to(ROOT)} --stem {stem}"),
+        "change_from_report": "Five duration rows; same samples, masks, and cell boundaries. Match main Figure 4 axis orientation and colormaps: logarithmic cutoff on x, logarithmic positive drive on y, normalized linewidth in magma on [0, 10], and probability contrast in viridis on [0, 1]. Widths above 10 saturate at the lightest color.",
         "contrast_definition": "Dip depth in excited-state probability relative to the fitted linear background at the dip.",
         "contrast_outline": {
             "threshold": CONTRAST_THRESHOLD,
@@ -141,11 +170,22 @@ def main():
             "cells_per_duration": data["contrast_above_threshold"].sum(axis=(1, 2)).tolist(),
         },
         "array_order": "duration, cutoff, nominal drive",
+        "map_axes": {"x": "cutoff", "y": "nominal drive", "display": "Transposed arrays"},
+        "amplitude_display": {
+            "scale": "log", "limits_mhz": [1, 100],
+            "positive_sample_count": int(positive.sum()),
+            "sampling": "logarithmic" if logarithmic else "linear",
+            "zero_drive": ("Not sampled: logarithmic grid starts at 1 MHz" if logarithmic
+                           else "Omitted from plot; retained in exported arrays"),
+            "cell_edges": ("Geometric midpoints" if logarithmic else
+                           "Original linear-amplitude cell edges; no resampling"),
+        },
         "reference_linewidth_hz": reference_hz,
+        "reference_t2_star_s": REFERENCE_T2_STAR_S,
         "color_scales": scales,
         "accepted_traces_per_duration": accepted.sum(axis=(1, 2)).tolist(),
     }
-    (OUT / f"{STEM}_provenance.json").write_text(json.dumps(provenance, indent=2) + "\n")
+    (output_dir / f"{stem}_provenance.json").write_text(json.dumps(provenance, indent=2) + "\n")
     # Recompute the supplemental table with the probability-contrast objective.
     drive_mask = amps >= 10
     summaries = []
@@ -155,7 +195,10 @@ def main():
         eligible = accepted[row][:, drive_mask].all(axis=1)
         score = np.min(contrast / (width / 1e6), axis=1)
         score[~eligible] = -np.inf
-        assert eligible.any()
+        if not eligible.any():
+            summaries.append(dict(duration_us=float(length), cutoff=None,
+                                  status="No cutoff accepted at every drive >=10 MHz"))
+            continue
         index = int(np.argmax(score))
         summaries.append(dict(
             duration_us=float(length), cutoff=float(cutoffs[index]),
@@ -163,7 +206,7 @@ def main():
             minimum_contrast=float(contrast[index].min()),
             minimum_contrast_per_mhz=float(score[index]),
         ))
-    (OUT / f"{STEM}_summary.json").write_text(json.dumps({
+    (output_dir / f"{stem}_summary.json").write_text(json.dumps({
         "selection": "Maximize minimum contrast/FWHM over sampled drives >=10 MHz; require accepted dips at every drive. No interpolation.",
         "results": summaries,
     }, indent=2) + "\n")

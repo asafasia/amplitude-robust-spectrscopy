@@ -1,0 +1,248 @@
+<!doctype html><meta charset="utf-8"><title>Decoupled echo optimization</title>
+<style>body{font:17px/1.55 system-ui;max-width:1280px;margin:32px auto;padding:20px;color:#172b3a}h1,h2{line-height:1.2}img{max-width:100%}table{border-collapse:collapse;width:100%}td,th{text-align:left;padding:10px;border-bottom:1px solid #ccd5dc}pre{font-size:13px;background:#f2f5f7;padding:16px;overflow:auto}.callout{padding:18px;background:#edf4f8;border-left:4px solid #136f9c}a{color:#136f9c}</style>
+<h1>Independent core, tails, edge taper, and phase</h1><p>Local numerical study. One echo reversal; no free-evolution interval. All operating-point comparisons have an actual maximum |I−iQ| of 50 MHz.</p>
+<div class="callout">No new candidate passed all specified constraints on the validation grid. The displayed candidates must not be interpreted as meeting the full requested target. The separate preserve-original condition passed for Narrower line; preserves original, Higher contrast; preserves original: C>0.4 at 50 MHz with no regression over the amplitude band. This does not require C>0.4 everywhere. The homogeneous coherence reference is 43.54 kHz, from T₂=7.31 µs. Target reached under all stated constraints: <b>False</b>.</div>
+<p>Robustness is assessed over 5–60 MHz, including the low-drive start. The original p=5 pulse and previous phase-shaped pulse are controls, not automatic feasible solutions. Primary contrast is the absolute depth below a linear background fitted at 0.4–0.5 MHz from resonance; local-shoulder and broad-spectrum metrics are reported separately in the data.</p>
+<table><tr><th>Shape</th><th>FWHM at 50 (kHz)</th><th>C at 50</th><th>Local-shoulder C at 50</th><th>Minimum C in band</th><th>Maximum FWHM in band (kHz)</th><th>Strict full band</th><th>Preserve original + C₅₀&gt;0.4</th></tr><tr><td>Original polynomial p=5</td><td>152.48</td><td>0.379</td><td>0.386</td><td>0.258</td><td>155.59</td><td>FAIL</td><td>FAIL</td></tr><tr><td>Previous phase-shaped echo</td><td>94.71</td><td>0.420</td><td>0.363</td><td>0.051</td><td>394.86</td><td>FAIL</td><td>FAIL</td></tr><tr><td>Contrast-first trial (width regression)</td><td>166.43</td><td>0.428</td><td>0.435</td><td>0.406</td><td>170.28</td><td>FAIL</td><td>FAIL</td></tr><tr><td>Narrower line; preserves original</td><td>137.65</td><td>0.404</td><td>0.411</td><td>0.260</td><td>139.89</td><td>FAIL</td><td>PASS</td></tr><tr><td>Higher contrast; preserves original</td><td>146.16</td><td>0.424</td><td>0.431</td><td>0.260</td><td>151.20</td><td>FAIL</td><td>PASS</td></tr></table>
+<p>The strict verdict requires C&gt;0.4 across the full amplitude band. The separate preserve-original verdict requires C&gt;0.4 only at 50 MHz while retaining every amplitude's baseline contrast and linewidth, plus the same center, satellite, and leakage checks. The minimum contrast in the band is shown explicitly for both interpretations.</p>
+<p>The higher-contrast candidate has C&gt;0.4 at every validated amplitude from 7.5 to 60 MHz. It falls below that absolute floor at 5, 6, 7 MHz, while still improving on the original pulse there. Both preserve-original verdicts cover the full requested amplitude band; they are not restricted to high drive.</p>
+<img src="maps_preserving_start.png" alt="Original pulse and candidates passing the preserve-original verdict"><p><a href="maps_preserving_start.pdf">PDF of candidates preserving the start</a>. This compact comparison includes only new candidates passing the preserve-original verdict on the full validation grid, alongside the original control. It does not imply C&gt;0.4 at every amplitude.</p>
+<details><summary>All candidates and controls, including rejected trials</summary>
+<img src="maps_2d.png" alt="Population maps and low-drive zooms"><p><a href="maps_2d.pdf">PDF maps</a> · <a href="maps_2d.svg">SVG maps</a>. Every panel uses the same 0–1 probability scale, with no interpolation. Each shape is held fixed as its amplitude is swept.</p>
+</details>
+<img src="comparison.png" alt="Spectral slices, linewidth, contrast, and final leakage"><img src="broad_spectra.png" alt="Broad-spectrum comparison">
+<h2>What is independently controlled</h2><p>The new positive envelope multiplies a root-Lorentzian core by a separately weighted tail, a generalized Lorentzian tail decay, and a local quintic endpoint taper. Core width, tail weight/decay, and edge duration are distinct parameters. Two even Gaussian phase components preserve odd time-reversed control before the complete complex-waveform DRAG correction. The ideal resonant two-level cancellation does not imply constant linewidth or contrast in the dissipative multilevel model.</p><img src="waveforms.png" alt="Saved core, tail, and phase waveforms at50 MHz">
+<p><a href="theory_note.md">Theory and interpretation note</a></p>
+<p><a href="search_tradeoffs.png">Search tradeoffs figure</a></p><p><a href="search_summary.json">Search summary and evaluated campaigns</a></p>
+<h2>What each part contributes</h2>
+<p>These one-at-a-time changes start from the narrower candidate, renormalize the complete waveform to the same actual peak, and are <b>not reoptimized</b>. The table uses the coarse search grid and a 0.5 ns maximum integration step. It is a local comparison, not a proof of global optimality or a unique causal decomposition.</p>
+<table><tr><th>Variation</th><th>FWHM at 5 MHz (kHz)</th><th>C at 5 MHz</th><th>FWHM at 50 MHz (kHz)</th><th>C at 50 MHz</th></tr><tr><td>Selected narrow candidate</td><td>129.58</td><td>0.2597</td><td>137.67</td><td>0.4038</td></tr><tr><td>Phase turned off</td><td>141.31</td><td>0.2913</td><td>137.51</td><td>0.4036</td></tr><tr><td>Tail gain set to 1</td><td>108.51</td><td>0.2495</td><td>140.79</td><td>0.3828</td></tr><tr><td>Taper over the whole half-pulse</td><td>148.68</td><td>0.2724</td><td>176.62</td><td>0.4641</td></tr></table>
+<p>Turning off the compact phase barely changes the 50 MHz linewidth but broadens the 5 MHz line; the phase improves low-drive selectivity at some contrast cost. Extending the taper over the whole half-pulse broadens the 50 MHz line substantially. Setting tail gain to one loses nominal contrast. The useful candidates retain a core near 15 ns, close to the original pulse, rather than the previous phase pulse's approximately 1.68 ns core. This avoids its low-drive collapse while allowing the tails and edge closure to be adjusted separately.</p>
+<p><a href="ablation.json">Ablation metrics and provenance</a> · <a href="ablation.npz">Ablation population arrays</a></p>
+<h2>Validation boundary</h2><p>The model uses T₁=51.24 µs, T₂=7.31 µs, α/2π=−216 MHz. New candidates receive time-step and frequency-grid checks at 50 MHz plus independent three-/four-/five-level propagation. The main maps are three-level simulations. Local shoulder contrast can reveal a misleading broad background; the ±2 MHz scans inspect additional dips. Gaussian bandwidth checks, when present, convolve the entire I/Q waveform and then restore its actual peak. They are illustrative transfer functions, not measurements of the hardware. No hardware experiment is run.</p>
+<p><a href="implementation_validation.json">Implementation checks: focused tests and repository-wide exceptions</a></p>
+<h2>Illustrative bandwidth sensitivity at 50 MHz</h2>
+<p>Absolute contrast after Gaussian convolution of the complete waveform, with the actual peak restored to 50 MHz. The 1, 2, and 4 ns kernel widths correspond to approximately 133, 66, and 33 MHz amplitude-response −3 dB bandwidths. These are test transfer functions, not measured hardware responses. Filtered linewidths and sampled amplitude scans are saved in results.json.</p>
+<table><tr><th>Candidate</th><th>Unfiltered C</th><th>1 ns C</th><th>2 ns C</th><th>4 ns C</th></tr><tr><td>Contrast-first trial (width regression)</td><td>0.4276</td><td>0.4261</td><td>0.4236</td><td>0.4171</td></tr><tr><td>Narrower line; preserves original</td><td>0.4039</td><td>0.4017</td><td>0.3971</td><td>0.3855</td></tr><tr><td>Higher contrast; preserves original</td><td>0.4237</td><td>0.4217</td><td>0.4174</td><td>0.4061</td></tr></table>
+<h2>Exact constraints</h2><pre>{
+  &quot;amplitude_min_mhz&quot;: 5.0,
+  &quot;amplitude_max_mhz&quot;: 60.0,
+  &quot;contrast_min&quot;: 0.4,
+  &quot;no_regression_width_khz_tolerance&quot;: 0.25,
+  &quot;no_regression_contrast_tolerance&quot;: 0.001,
+  &quot;max_center_khz&quot;: 2.0,
+  &quot;max_satellite_prominence&quot;: 0.01,
+  &quot;max_final_leakage&quot;: 0.005
+}</pre><p>Linewidth/contrast regression checks compare each amplitude with the original pulse at that same amplitude. Tolerances are numerical allowances, not improvements to the target. Any unresolved dip fails acceptance; summary minima and maxima include only defined metrics. See the per-amplitude failure lists in results.json. A PASS describes these spectral constraints on the sampled grid; convergence, multilevel, local-shoulder, and broad-spectrum audits remain separate diagnostics.</p>
+<h2>Exact pulse parameters</h2><pre>{
+  &quot;baseline&quot;: {
+    &quot;duration_us&quot;: 30.0,
+    &quot;cutoff&quot;: 0.001,
+    &quot;power&quot;: 5.0,
+    &quot;transition_us&quot;: 0.016,
+    &quot;drag_beta&quot;: -0.5,
+    &quot;anharmonicity_mhz&quot;: -216.0
+  },
+  &quot;previous_phase&quot;: {
+    &quot;duration_us&quot;: 27.681945163021936,
+    &quot;cutoff&quot;: 0.00012148126644240747,
+    &quot;power&quot;: 1.373018937798303,
+    &quot;transition_us&quot;: 0.016,
+    &quot;drag_beta&quot;: -0.5,
+    &quot;anharmonicity_mhz&quot;: -216.0,
+    &quot;phase_rad&quot;: -1.8543341745279704,
+    &quot;phase_scale_us&quot;: 0.7996939165673144
+  },
+  &quot;contrast_first&quot;: {
+    &quot;duration_us&quot;: 16.09042836100788,
+    &quot;core_us&quot;: 0.024723051917865814,
+    &quot;tail_gain&quot;: 0.7750346991388251,
+    &quot;tail_join_us&quot;: 0.13821352246019378,
+    &quot;tail_scale_us&quot;: 14.310113452845385,
+    &quot;tail_power&quot;: 19.598301315263434,
+    &quot;edge_width_us&quot;: 0.7090710318570616,
+    &quot;transition_us&quot;: 0.016,
+    &quot;drag_beta&quot;: -0.5,
+    &quot;anharmonicity_mhz&quot;: -216.0,
+    &quot;phase_rad&quot;: 0.4533785712863818,
+    &quot;phase_scale_us&quot;: 2.2252374329402853,
+    &quot;phase2_rad&quot;: -0.504813829663552,
+    &quot;phase2_scale_us&quot;: 0.09146912240726797
+  },
+  &quot;preserve_original&quot;: {
+    &quot;duration_us&quot;: 21.101242835090837,
+    &quot;core_us&quot;: 0.01510528514643049,
+    &quot;tail_gain&quot;: 0.8072371180256004,
+    &quot;tail_join_us&quot;: 1.5190416076585926,
+    &quot;tail_scale_us&quot;: 6.612120613753458,
+    &quot;tail_power&quot;: 3.536388272093394,
+    &quot;edge_width_us&quot;: 3.3619104832707443,
+    &quot;transition_us&quot;: 0.016,
+    &quot;drag_beta&quot;: -0.5,
+    &quot;anharmonicity_mhz&quot;: -216.0,
+    &quot;phase_rad&quot;: -0.9331851920697108,
+    &quot;phase_scale_us&quot;: 0.22742916237553631,
+    &quot;phase2_rad&quot;: 0.0,
+    &quot;phase2_scale_us&quot;: 4.0
+  },
+  &quot;preserve_high_contrast&quot;: {
+    &quot;duration_us&quot;: 18.8704981042782,
+    &quot;core_us&quot;: 0.015035463259751998,
+    &quot;tail_gain&quot;: 0.8007572916550201,
+    &quot;tail_join_us&quot;: 1.2449871834559614,
+    &quot;tail_scale_us&quot;: 6.843915916892468,
+    &quot;tail_power&quot;: 3.627009204965284,
+    &quot;edge_width_us&quot;: 3.349335411938738,
+    &quot;transition_us&quot;: 0.016,
+    &quot;drag_beta&quot;: -0.5,
+    &quot;anharmonicity_mhz&quot;: -216.0,
+    &quot;phase_rad&quot;: -0.9771686911469755,
+    &quot;phase_scale_us&quot;: 0.26805749570877013,
+    &quot;phase2_rad&quot;: 0.0,
+    &quot;phase2_scale_us&quot;: 4.0
+  }
+}</pre><h2>Independent numerical checks</h2><pre>{
+  &quot;contrast_first&quot;: {
+    &quot;native_diagnostics&quot;: {
+      &quot;max_trace_error&quot;: 4.241051954068098e-14,
+      &quot;min_population&quot;: 1.3593225715416385e-06,
+      &quot;max_population&quot;: 0.8981156003123801,
+      &quot;min_density_eigenvalue&quot;: 1.3591934661141524e-06,
+      &quot;num_steps&quot;: 64426,
+      &quot;min_dt_ns&quot;: 0.125,
+      &quot;max_dt_ns&quot;: 0.25
+    },
+    &quot;native_dt_halving_max_population&quot;: 2.3098178036917716e-08,
+    &quot;native_dt_halving_fwhm_change_khz&quot;: 2.6133438805118205e-06,
+    &quot;detuning_halving_fwhm_change_khz&quot;: 0.006980068218370434,
+    &quot;fine_grid_50mhz&quot;: {
+      &quot;center_hz&quot;: 169.4245549684392,
+      &quot;fwhm_hz&quot;: 166422.38208112353,
+      &quot;contrast&quot;: 0.42758676397587636,
+      &quot;accepted&quot;: true
+    },
+    &quot;wide_native_diagnostics&quot;: {
+      &quot;max_trace_error&quot;: 2.9976021664879227e-14,
+      &quot;min_population&quot;: 8.085878874605371e-07,
+      &quot;max_population&quot;: 0.8981156003123801,
+      &quot;min_density_eigenvalue&quot;: 8.084238891420111e-07,
+      &quot;num_steps&quot;: 64426,
+      &quot;min_dt_ns&quot;: 0.125,
+      &quot;max_dt_ns&quot;: 0.25
+    },
+    &quot;split3_vs_native_max_pe&quot;: 5.349626926332007e-06,
+    &quot;levels3_vs4_max_pe&quot;: 0.00036705944761605824,
+    &quot;levels4_vs5_max_pe&quot;: 1.2678648370068046e-06,
+    &quot;split4_dt_refinement_max_pe&quot;: 5.041808180950014e-06,
+    &quot;levels4_max_final_leakage&quot;: 0.00018110267687721187,
+    &quot;levels5_max_final_leakage&quot;: 0.00018094433486934847,
+    &quot;levels4_metrics&quot;: {
+      &quot;center_hz&quot;: 70.19284059903077,
+      &quot;fwhm_hz&quot;: 166466.66352153392,
+      &quot;contrast&quot;: 0.42756920103256496,
+      &quot;accepted&quot;: true
+    },
+    &quot;levels5_metrics&quot;: {
+      &quot;center_hz&quot;: 70.96271747358944,
+      &quot;fwhm_hz&quot;: 166466.92843567923,
+      &quot;contrast&quot;: 0.4275696305250081,
+      &quot;accepted&quot;: true
+    }
+  },
+  &quot;preserve_original&quot;: {
+    &quot;native_diagnostics&quot;: {
+      &quot;max_trace_error&quot;: 4.218847493575595e-14,
+      &quot;min_population&quot;: 4.984698080750249e-07,
+      &quot;max_population&quot;: 0.9176435570300934,
+      &quot;min_density_eigenvalue&quot;: 4.984178732633835e-07,
+      &quot;num_steps&quot;: 84470,
+      &quot;min_dt_ns&quot;: 0.125,
+      &quot;max_dt_ns&quot;: 0.25
+    },
+    &quot;native_dt_halving_max_population&quot;: 1.136479099717036e-08,
+    &quot;native_dt_halving_fwhm_change_khz&quot;: 1.3724735181313008e-06,
+    &quot;detuning_halving_fwhm_change_khz&quot;: 0.019769072511291598,
+    &quot;fine_grid_50mhz&quot;: {
+      &quot;center_hz&quot;: 115.43458661091647,
+      &quot;fwhm_hz&quot;: 137630.76440220655,
+      &quot;contrast&quot;: 0.403856808017539,
+      &quot;accepted&quot;: true
+    },
+    &quot;wide_native_diagnostics&quot;: {
+      &quot;max_trace_error&quot;: 4.1744385725905886e-14,
+      &quot;min_population&quot;: 3.7536776564181846e-07,
+      &quot;max_population&quot;: 0.9176435570300934,
+      &quot;min_density_eigenvalue&quot;: 3.7529883159650165e-07,
+      &quot;num_steps&quot;: 84470,
+      &quot;min_dt_ns&quot;: 0.125,
+      &quot;max_dt_ns&quot;: 0.25
+    },
+    &quot;split3_vs_native_max_pe&quot;: 2.0810482246336193e-06,
+    &quot;levels3_vs4_max_pe&quot;: 0.00043136508694474607,
+    &quot;levels4_vs5_max_pe&quot;: 1.4162792588146011e-06,
+    &quot;split4_dt_refinement_max_pe&quot;: 2.8236363773803674e-06,
+    &quot;levels4_max_final_leakage&quot;: 0.0001181019037088636,
+    &quot;levels5_max_final_leakage&quot;: 0.00011808256154464913,
+    &quot;levels4_metrics&quot;: {
+      &quot;center_hz&quot;: 23.202269321458186,
+      &quot;fwhm_hz&quot;: 137693.17082079986,
+      &quot;contrast&quot;: 0.4038456096775912,
+      &quot;accepted&quot;: true
+    },
+    &quot;levels5_metrics&quot;: {
+      &quot;center_hz&quot;: 22.6708529455756,
+      &quot;fwhm_hz&quot;: 137693.36366608497,
+      &quot;contrast&quot;: 0.403845448892322,
+      &quot;accepted&quot;: true
+    }
+  },
+  &quot;preserve_high_contrast&quot;: {
+    &quot;native_diagnostics&quot;: {
+      &quot;max_trace_error&quot;: 4.0190073491430667e-14,
+      &quot;min_population&quot;: 5.327381182165433e-07,
+      &quot;max_population&quot;: 0.9183577482107101,
+      &quot;min_density_eigenvalue&quot;: 5.326541330546412e-07,
+      &quot;num_steps&quot;: 75546,
+      &quot;min_dt_ns&quot;: 0.125,
+      &quot;max_dt_ns&quot;: 0.25
+    },
+    &quot;native_dt_halving_max_population&quot;: 1.2114016900710567e-08,
+    &quot;native_dt_halving_fwhm_change_khz&quot;: 1.2796406226698309e-06,
+    &quot;detuning_halving_fwhm_change_khz&quot;: 0.008106443064927589,
+    &quot;fine_grid_50mhz&quot;: {
+      &quot;center_hz&quot;: 68.12042945943493,
+      &quot;fwhm_hz&quot;: 146150.90246172345,
+      &quot;contrast&quot;: 0.4236627115063226,
+      &quot;accepted&quot;: true
+    },
+    &quot;wide_native_diagnostics&quot;: {
+      &quot;max_trace_error&quot;: 3.47499806707674e-14,
+      &quot;min_population&quot;: 4.009157101016956e-07,
+      &quot;max_population&quot;: 0.9183577482107101,
+      &quot;min_density_eigenvalue&quot;: 4.008075561025666e-07,
+      &quot;num_steps&quot;: 75546,
+      &quot;min_dt_ns&quot;: 0.125,
+      &quot;max_dt_ns&quot;: 0.25
+    },
+    &quot;split3_vs_native_max_pe&quot;: 2.308713003440488e-06,
+    &quot;levels3_vs4_max_pe&quot;: 0.0003585093304193654,
+    &quot;levels4_vs5_max_pe&quot;: 1.2015668426901271e-06,
+    &quot;split4_dt_refinement_max_pe&quot;: 3.20619843163783e-06,
+    &quot;levels4_max_final_leakage&quot;: 0.00012504955506445695,
+    &quot;levels5_max_final_leakage&quot;: 0.00012505724009818814,
+    &quot;levels4_metrics&quot;: {
+      &quot;center_hz&quot;: -2.5839367386957277,
+      &quot;fwhm_hz&quot;: 146217.09382742428,
+      &quot;contrast&quot;: 0.42365010840700273,
+      &quot;accepted&quot;: true
+    },
+    &quot;levels5_metrics&quot;: {
+      &quot;center_hz&quot;: -3.236761893015347,
+      &quot;fwhm_hz&quot;: 146217.29609203973,
+      &quot;contrast&quot;: 0.4236501258306313,
+      &quot;accepted&quot;: true
+    }
+  }
+}</pre>
+<p><a href="results.json">All metrics, failure lists, bandwidth checks, and provenance</a> · <a href="validated_spectra.npz">Saved population arrays</a> · <a href="comparison.pdf">Comparison PDF</a></p>
+<p>Reproduce with <code>.venv/bin/python scripts/report_decoupled_50mhz_echo.py --candidates PATH --stage all</code>. Use <code>--stage render</code> to regenerate figures and this report from saved data without rerunning simulations.</p>

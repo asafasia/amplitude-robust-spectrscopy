@@ -1,0 +1,26 @@
+{
+  "scripts/staged_echo_descent.py": {
+    "file": "staged_echo_descent.py.txt",
+    "sha256": "3025a74171d31ca93d01a19c7f379a2dc086035b530ba901d4f29b03def17a44"
+  },
+  "echospec/simulation/bloch_echo.py": {
+    "file": "bloch_echo.py.txt",
+    "sha256": "643fdf55e5b249f71f85ac129ad42d7e08c0751b96b7a2eb6b1efe0998b453e2"
+  },
+  "echospec/simulation/bloch_rk4.cpp": {
+    "file": "bloch_rk4.cpp.txt",
+    "sha256": "cf18d5ffdf333cbf026a3f89f7cdb99f7321c46b2d3676637720841a788a8df2"
+  },
+  "echospec/simulation/polynomial_echo.py": {
+    "file": "polynomial_echo.py.txt",
+    "sha256": "59021291bb6363a59767274c3c3d727843d37319364a60d51d63c9e7193b950d"
+  },
+  "echospec/analysis/dip_metrics.py": {
+    "file": "dip_metrics.py.txt",
+    "sha256": "851f4571da5dc275890f42eaf7393f1818fffe69043f4fff703272dddf9290ca"
+  },
+  "scripts/optimize_50mhz_echo.py": {
+    "file": "optimize_50mhz_echo.py.txt",
+    "sha256": "b3f153a50ea8f9155424289a172ac95ded96d5234004acfc5a78cf7e7b059bb1"
+  }
+}

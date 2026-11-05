@@ -1,0 +1,3595 @@
+{
+  "duration_us": 60.0,
+  "cutoffs": [
+    {
+      "cutoff": 1e-05,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 34,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 1e-05,
+        "amplitude_mhz": 100.0,
+        "center_hz": 13.48285028650469,
+        "fwhm_hz": 76661.00521556141,
+        "contrast": 0.022974382296239937,
+        "accepted": true,
+        "contrast_snr": 2.025979848471766,
+        "shoulder_contrast": 0.022978224902735933,
+        "contrast_per_mhz": 0.2997381111573474,
+        "center_population": 0.02191793640901392,
+        "shoulder_population": 0.04489616131174985,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 15.332201043112269,
+        "snr_per_mhz": 26.42777566997664,
+        "fwhm_over_snr_hz": 37838.97716129221,
+        "fwhm_times_snr_hz": 155313.65173031637,
+        "shots_for_snr_10": 24362.943462944953,
+        "max_final_pf": 3.732838410340522e-05
+      },
+      "status_counts": {
+        "accepted": 34,
+        "no_resolved_dip": 66
+      }
+    },
+    {
+      "cutoff": 1.1233240329780266e-05,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 37,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 1.1233240329780266e-05,
+        "amplitude_mhz": 100.0,
+        "center_hz": 15.070628210164523,
+        "fwhm_hz": 77169.46657177473,
+        "contrast": 0.02893355457221811,
+        "accepted": true,
+        "contrast_snr": 2.3032083042002975,
+        "shoulder_contrast": 0.028938390259089886,
+        "contrast_per_mhz": 0.3749979304596399,
+        "center_population": 0.026919087268300678,
+        "shoulder_population": 0.055857477527390564,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 15.43389331435493,
+        "snr_per_mhz": 29.8461089148271,
+        "fwhm_over_snr_hz": 33505.205078951345,
+        "fwhm_times_snr_hz": 177737.35623881881,
+        "shots_for_snr_10": 18850.964022403765,
+        "max_final_pf": 5.375371760617221e-05
+      },
+      "status_counts": {
+        "accepted": 37,
+        "no_resolved_dip": 63
+      }
+    },
+    {
+      "cutoff": 1.2618568830660211e-05,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 39,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 1.2618568830660211e-05,
+        "amplitude_mhz": 100.0,
+        "center_hz": 16.48589391052002,
+        "fwhm_hz": 77774.07904824297,
+        "contrast": 0.0363815470096574,
+        "accepted": true,
+        "contrast_snr": 2.6228848875325013,
+        "shoulder_contrast": 0.03638768023418526,
+        "contrast_per_mhz": 0.4678638523204385,
+        "center_population": 0.032859741140855825,
+        "shoulder_population": 0.06924742137504108,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 15.55481580964858,
+        "snr_per_mhz": 33.724409464309254,
+        "fwhm_over_snr_hz": 29652.112991283244,
+        "fwhm_times_snr_hz": 203992.45657739462,
+        "shots_for_snr_10": 14535.887007190999,
+        "max_final_pf": 7.568078100895309e-05
+      },
+      "status_counts": {
+        "accepted": 39,
+        "no_resolved_dip": 61
+      }
+    },
+    {
+      "cutoff": 1.4174741629268048e-05,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 42,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 1.4174741629268048e-05,
+        "amplitude_mhz": 100.0,
+        "center_hz": 17.36105358325391,
+        "fwhm_hz": 78483.30635751104,
+        "contrast": 0.0456363393025062,
+        "accepted": true,
+        "contrast_snr": 2.9915192458699553,
+        "shoulder_contrast": 0.04564422649756128,
+        "contrast_per_mhz": 0.5815787919234753,
+        "center_population": 0.039823973374321725,
+        "shoulder_population": 0.085468199871883,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 15.696661271502194,
+        "snr_per_mhz": 38.11663122655459,
+        "fwhm_over_snr_hz": 26235.267069019817,
+        "fwhm_times_snr_hz": 234784.3214480021,
+        "shots_for_snr_10": 11174.198901876063,
+        "max_final_pf": 0.00010362143142244009
+      },
+      "status_counts": {
+        "accepted": 42,
+        "no_resolved_dip": 58
+      }
+    },
+    {
+      "cutoff": 1.5922827933410938e-05,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 44,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 1.5922827933410938e-05,
+        "amplitude_mhz": 100.0,
+        "center_hz": 17.165562869085008,
+        "fwhm_hz": 79301.87807712225,
+        "contrast": 0.057038409178846824,
+        "accepted": true,
+        "contrast_snr": 3.415640807492407,
+        "shoulder_contrast": 0.05704876076689846,
+        "contrast_per_mhz": 0.7193872598000478,
+        "center_population": 0.047865716717028446,
+        "shoulder_population": 0.1049144774839269,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 15.860375615424436,
+        "snr_per_mhz": 43.071373469498994,
+        "fwhm_over_snr_hz": 23217.276800057243,
+        "fwhm_times_snr_hz": 270866.73087100626,
+        "shots_for_snr_10": 8571.47598946506,
+        "max_final_pf": 0.0001370374482061862
+      },
+      "status_counts": {
+        "accepted": 44,
+        "no_resolved_dip": 56
+      }
+    },
+    {
+      "cutoff": 1.788649529057435e-05,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 47,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 1.788649529057435e-05,
+        "amplitude_mhz": 100.0,
+        "center_hz": 15.234124006374563,
+        "fwhm_hz": 80268.03313774153,
+        "contrast": 0.0709155705141921,
+        "accepted": true,
+        "contrast_snr": 3.900878771039869,
+        "shoulder_contrast": 0.07092949885638855,
+        "contrast_per_mhz": 0.8836581149892153,
+        "center_population": 0.056997209490905865,
+        "shoulder_population": 0.12792670834729442,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 16.05360662754829,
+        "snr_per_mhz": 48.59816066933998,
+        "fwhm_over_snr_hz": 20576.910447371898,
+        "fwhm_times_snr_hz": 313115.8664601406,
+        "shots_for_snr_10": 6571.660095031089,
+        "max_final_pf": 0.0001735062213332799
+      },
+      "status_counts": {
+        "accepted": 47,
+        "no_resolved_dip": 53
+      }
+    },
+    {
+      "cutoff": 2.0092330025650458e-05,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 49,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 2.0092330025650458e-05,
+        "amplitude_mhz": 100.0,
+        "center_hz": 10.892524522193495,
+        "fwhm_hz": 81467.81746966105,
+        "contrast": 0.08752162328025438,
+        "accepted": true,
+        "contrast_snr": 4.450494390917633,
+        "shoulder_contrast": 0.0875408132803346,
+        "contrast_per_mhz": 1.0745447220669089,
+        "center_population": 0.06718233011351436,
+        "shoulder_population": 0.15472314339384896,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 16.293563493932197,
+        "snr_per_mhz": 54.62886485912078,
+        "fwhm_over_snr_hz": 18305.34100569071,
+        "fwhm_times_snr_hz": 362572.0646890281,
+        "shots_for_snr_10": 5048.745556663581,
+        "max_final_pf": 0.00020787534731402002
+      },
+      "status_counts": {
+        "accepted": 49,
+        "no_resolved_dip": 51
+      }
+    },
+    {
+      "cutoff": 2.2570197196339216e-05,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 82.7566728666059,
+      "minimum_snr": 0.44374494375292,
+      "minimum_snr_per_mhz": 5.955222056197312,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 2.2570197196339216e-05,
+        "amplitude_mhz": 100.0,
+        "center_hz": 3.742250416775284,
+        "fwhm_hz": 82756.67286660589,
+        "contrast": 0.10694617719079925,
+        "accepted": true,
+        "contrast_snr": 5.0633708867059015,
+        "shoulder_contrast": 0.10697298568221851,
+        "contrast_per_mhz": 1.2926206670324518,
+        "center_population": 0.0783377963871233,
+        "shoulder_population": 0.18531078206934182,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 16.551334573321164,
+        "snr_per_mhz": 61.1838382491218,
+        "fwhm_over_snr_hz": 16344.185468200068,
+        "fwhm_times_snr_hz": 419027.7280734165,
+        "shots_for_snr_10": 3900.5021322446846,
+        "max_final_pf": 0.00023195641596133085
+      },
+      "status_counts": {
+        "accepted": 52,
+        "no_resolved_dip": 48
+      }
+    },
+    {
+      "cutoff": 2.5353644939701114e-05,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 84.09882682290844,
+      "minimum_snr": 0.4988622364053714,
+      "minimum_snr_per_mhz": 6.692958528633273,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 2.5353644939701114e-05,
+        "amplitude_mhz": 100.0,
+        "center_hz": -5.855417081443777,
+        "fwhm_hz": 84098.82682290844,
+        "contrast": 0.1290052587917993,
+        "accepted": true,
+        "contrast_snr": 5.731494057256245,
+        "shoulder_contrast": 0.12903813415810667,
+        "contrast_per_mhz": 1.5343630706029874,
+        "center_population": 0.0903453683912845,
+        "shoulder_population": 0.21938350254939115,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 16.81976536458167,
+        "snr_per_mhz": 68.15189074308218,
+        "fwhm_over_snr_hz": 14673.107218254336,
+        "fwhm_times_snr_hz": 482011.9261577218,
+        "shots_for_snr_10": 3044.137794518608,
+        "max_final_pf": 0.00024021194852860174
+      },
+      "status_counts": {
+        "accepted": 54,
+        "no_resolved_dip": 46
+      }
+    },
+    {
+      "cutoff": 2.848035868435799e-05,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 85.44730398207928,
+      "minimum_snr": 0.5609447227877417,
+      "minimum_snr_per_mhz": 7.523025846108097,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 2.848035868435799e-05,
+        "amplitude_mhz": 100.0,
+        "center_hz": -16.157524187057827,
+        "fwhm_hz": 85447.30398207928,
+        "contrast": 0.15314148403148595,
+        "accepted": true,
+        "contrast_snr": 6.438457816127129,
+        "shoulder_contrast": 0.153177594579748,
+        "contrast_per_mhz": 1.792655677139605,
+        "center_population": 0.10305097729146184,
+        "shoulder_population": 0.25622857187120984,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 17.08946079641584,
+        "snr_per_mhz": 75.35004050540267,
+        "fwhm_over_snr_hz": 13271.392998498772,
+        "fwhm_times_snr_hz": 550148.8621904091,
+        "shots_for_snr_10": 2412.3276281366702,
+        "max_final_pf": 0.00024752781174731915
+      },
+      "status_counts": {
+        "accepted": 57,
+        "no_resolved_dip": 43
+      }
+    },
+    {
+      "cutoff": 3.199267137797385e-05,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 86.7503680096103,
+      "minimum_snr": 0.6309217321858182,
+      "minimum_snr_per_mhz": 8.457347519385387,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 3.199267137797385e-05,
+        "amplitude_mhz": 100.0,
+        "center_hz": -23.600134927751178,
+        "fwhm_hz": 86750.3680096103,
+        "contrast": 0.17837771557673215,
+        "accepted": true,
+        "contrast_snr": 7.158653787251646,
+        "shoulder_contrast": 0.17841786627542866,
+        "contrast_per_mhz": 2.0566813763333354,
+        "center_population": 0.11626106389374431,
+        "shoulder_population": 0.29467893016917296,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 17.350073601922045,
+        "snr_per_mhz": 82.52015468635939,
+        "fwhm_over_snr_hz": 12118.251641684092,
+        "fwhm_times_snr_hz": 621015.8504974708,
+        "shots_for_snr_10": 1951.359475281774,
+        "max_final_pf": 0.00024883417947209704
+      },
+      "status_counts": {
+        "accepted": 59,
+        "no_resolved_dip": 41
+      }
+    },
+    {
+      "cutoff": 3.5938136638046256e-05,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 87.96603671999193,
+      "minimum_snr": 0.7098656584613653,
+      "minimum_snr_per_mhz": 9.509520940757096,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 3.5938136638046256e-05,
+        "amplitude_mhz": 100.0,
+        "center_hz": -23.289005150187446,
+        "fwhm_hz": 87966.03671999193,
+        "contrast": 0.20336014528253082,
+        "accepted": true,
+        "contrast_snr": 7.857378746815638,
+        "shoulder_contrast": 0.20340796635228486,
+        "contrast_per_mhz": 2.31234660485797,
+        "center_population": 0.12975281143261602,
+        "shoulder_population": 0.3331607777849009,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 17.59320734399837,
+        "snr_per_mhz": 89.32286868654505,
+        "fwhm_over_snr_hz": 11195.341290585227,
+        "fwhm_times_snr_hz": 691182.4673652686,
+        "shots_for_snr_10": 1619.7374527251766,
+        "max_final_pf": 0.0002417167375575381
+      },
+      "status_counts": {
+        "accepted": 62,
+        "no_resolved_dip": 38
+      }
+    },
+    {
+      "cutoff": 4.037017258596558e-05,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 89.08479015186475,
+      "minimum_snr": 0.799020446665822,
+      "minimum_snr_per_mhz": 10.695093895268963,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 4.037017258596558e-05,
+        "amplitude_mhz": 100.0,
+        "center_hz": -11.465515933341079,
+        "fwhm_hz": 89084.79015186476,
+        "contrast": 0.22649730051751124,
+        "accepted": true,
+        "contrast_snr": 8.492499826172345,
+        "shoulder_contrast": 0.22655978439863167,
+        "contrast_per_mhz": 2.5431926596269725,
+        "center_population": 0.1433199605109623,
+        "shoulder_population": 0.36987974490959397,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 17.816958030372934,
+        "snr_per_mhz": 95.33052512886879,
+        "fwhm_over_snr_hz": 10489.81948487318,
+        "fwhm_times_snr_hz": 756552.5648793112,
+        "shots_for_snr_10": 1386.528837761136,
+        "max_final_pf": 0.00021490414322996202
+      },
+      "status_counts": {
+        "accepted": 64,
+        "no_resolved_dip": 36
+      }
+    },
+    {
+      "cutoff": 4.534878508128582e-05,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 90.17980228888013,
+      "minimum_snr": 0.8998373007906206,
+      "minimum_snr_per_mhz": 12.03189450825809,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 4.534878508128582e-05,
+        "amplitude_mhz": 100.0,
+        "center_hz": 9.756700225607762,
+        "fwhm_hz": 90179.80228888012,
+        "contrast": 0.24620775674594003,
+        "accepted": true,
+        "contrast_snr": 9.018385426859815,
+        "shoulder_contrast": 0.24627930494744174,
+        "contrast_per_mhz": 2.7309807595110454,
+        "center_population": 0.15686721199390732,
+        "shoulder_population": 0.40314651694134906,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 18.035960457776007,
+        "snr_per_mhz": 100.00449322311115,
+        "fwhm_over_snr_hz": 9999.550697877032,
+        "fwhm_times_snr_hz": 813276.2147591359,
+        "shots_for_snr_10": 1229.5393024421046,
+        "max_final_pf": 0.00017070650205184605
+      },
+      "status_counts": {
+        "accepted": 67,
+        "no_resolved_dip": 33
+      }
+    },
+    {
+      "cutoff": 5.0941380148163754e-05,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 91.5166616487917,
+      "minimum_snr": 1.014019444416828,
+      "minimum_snr_per_mhz": 13.540422676353538,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 5.0941380148163754e-05,
+        "amplitude_mhz": 100.0,
+        "center_hz": 28.118043914918232,
+        "fwhm_hz": 91516.66164879169,
+        "contrast": 0.26134221671481034,
+        "accepted": true,
+        "contrast_snr": 9.400160112486962,
+        "shoulder_contrast": 0.2614096691993114,
+        "contrast_per_mhz": 2.856416137670193,
+        "center_population": 0.17034739892678785,
+        "shoulder_population": 0.43175706812609926,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 18.303332329758323,
+        "snr_per_mhz": 102.71528640939094,
+        "fwhm_over_snr_hz": 9735.649239338276,
+        "fwhm_times_snr_hz": 860271.2724589369,
+        "shots_for_snr_10": 1131.69526299659,
+        "max_final_pf": 0.0001223145484684224
+      },
+      "status_counts": {
+        "accepted": 69,
+        "no_resolved_dip": 31
+      }
+    },
+    {
+      "cutoff": 5.72236765935022e-05,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 93.22178926696695,
+      "minimum_snr": 1.1435779563595334,
+      "minimum_snr_per_mhz": 15.244308299333065,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 5.72236765935022e-05,
+        "amplitude_mhz": 95.45484566618342,
+        "center_hz": 28.33570027082378,
+        "fwhm_hz": 92474.58202038777,
+        "contrast": 0.26811482016678045,
+        "accepted": true,
+        "contrast_snr": 9.558219276119129,
+        "shoulder_contrast": 0.26818773098505955,
+        "contrast_per_mhz": 2.9001237434729092,
+        "center_population": 0.17828610522606633,
+        "shoulder_population": 0.4464738362111259,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 18.494916404077536,
+        "snr_per_mhz": 103.36050260829337,
+        "fwhm_over_snr_hz": 9674.875554637278,
+        "fwhm_times_snr_hz": 883892.3324183298,
+        "shots_for_snr_10": 1094.5762509520603,
+        "max_final_pf": 0.00011270412858175081
+      },
+      "status_counts": {
+        "accepted": 72,
+        "no_resolved_dip": 28
+      }
+    },
+    {
+      "cutoff": 6.428073117284319e-05,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 95.72957527958597,
+      "minimum_snr": 1.2909005462706296,
+      "minimum_snr_per_mhz": 17.170833790336992,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 6.428073117284319e-05,
+        "amplitude_mhz": 86.97490026177834,
+        "center_hz": 23.95199373655628,
+        "fwhm_hz": 92843.93435585297,
+        "contrast": 0.27004414069407845,
+        "accepted": true,
+        "contrast_snr": 9.601456285382293,
+        "shoulder_contrast": 0.27012203433402965,
+        "contrast_per_mhz": 2.909420375257944,
+        "center_population": 0.18085788953543325,
+        "shoulder_population": 0.4509799238694629,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 18.568786871170577,
+        "snr_per_mhz": 103.4150087670968,
+        "fwhm_over_snr_hz": 9669.77629187386,
+        "fwhm_times_snr_hz": 891436.9770806255,
+        "shots_for_snr_10": 1084.7403170935866,
+        "max_final_pf": 8.505842706127873e-05
+      },
+      "status_counts": {
+        "accepted": 74,
+        "no_resolved_dip": 26
+      }
+    },
+    {
+      "cutoff": 7.220809018385456e-05,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 99.3896638874844,
+      "minimum_snr": 1.4588342819673157,
+      "minimum_snr_per_mhz": 19.35150142292165,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 7.220809018385456e-05,
+        "amplitude_mhz": 75.64633275546291,
+        "center_hz": 21.35812284702804,
+        "fwhm_hz": 92510.41060032666,
+        "contrast": 0.2682639520392068,
+        "accepted": true,
+        "contrast_snr": 9.564194280090144,
+        "shoulder_contrast": 0.2683412681212045,
+        "contrast_per_mhz": 2.9006602216967887,
+        "center_population": 0.17820906679269696,
+        "shoulder_population": 0.4465503349139015,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 18.502082120065317,
+        "snr_per_mhz": 103.38505923847204,
+        "fwhm_over_snr_hz": 9672.577521026134,
+        "fwhm_times_snr_hz": 884787.5399124349,
+        "shots_for_snr_10": 1093.2090569430268,
+        "max_final_pf": 4.6074689955596955e-05
+      },
+      "status_counts": {
+        "accepted": 77,
+        "no_resolved_dip": 23
+      }
+    },
+    {
+      "cutoff": 8.111308307896872e-05,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 104.54130640193823,
+      "minimum_snr": 1.6507810585680658,
+      "minimum_snr_per_mhz": 21.822593136668495,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 8.111308307896872e-05,
+        "amplitude_mhz": 68.92612104349699,
+        "center_hz": 17.973957567591665,
+        "fwhm_hz": 92881.59199639928,
+        "contrast": 0.2701694378683738,
+        "accepted": true,
+        "contrast_snr": 9.606450670873075,
+        "shoulder_contrast": 0.2702509508176293,
+        "contrast_per_mhz": 2.9096287542972568,
+        "center_population": 0.18079463919195252,
+        "shoulder_population": 0.4510455900095818,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 18.576318399279838,
+        "snr_per_mhz": 103.4268520208556,
+        "fwhm_over_snr_hz": 9668.669020288406,
+        "fwhm_times_snr_hz": 892262.4317455691,
+        "shots_for_snr_10": 1083.612699166679,
+        "max_final_pf": 3.1762809389202266e-05
+      },
+      "status_counts": {
+        "accepted": 79,
+        "no_resolved_dip": 21
+      }
+    },
+    {
+      "cutoff": 9.111627561154887e-05,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 109.92572635079118,
+      "minimum_snr": 1.870800021305784,
+      "minimum_snr_per_mhz": 24.625611615672153,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 9.111627561154887e-05,
+        "amplitude_mhz": 62.80291441834256,
+        "center_hz": 14.623248876397653,
+        "fwhm_hz": 93272.36370252375,
+        "contrast": 0.2718659875292056,
+        "accepted": true,
+        "contrast_snr": 9.642166535317836,
+        "shoulder_contrast": 0.2719517136599148,
+        "contrast_per_mhz": 2.915673012504092,
+        "center_population": 0.18336359946543146,
+        "shoulder_population": 0.45531531312534623,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 18.654472740504733,
+        "snr_per_mhz": 103.37645742601609,
+        "fwhm_over_snr_hz": 9673.382362862209,
+        "fwhm_times_snr_hz": 899347.6639624685,
+        "shots_for_snr_10": 1075.5998764973604,
+        "max_final_pf": 2.0962524654101106e-05
+      },
+      "status_counts": {
+        "accepted": 82,
+        "no_resolved_dip": 18
+      }
+    },
+    {
+      "cutoff": 0.00010235310218990269,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 115.8585106133172,
+      "minimum_snr": 2.1237026818165825,
+      "minimum_snr_per_mhz": 27.80739270670345,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.00010235310218990269,
+        "amplitude_mhz": 54.62277217684343,
+        "center_hz": 13.469523665511291,
+        "fwhm_hz": 92951.73700629808,
+        "contrast": 0.27031193597475345,
+        "accepted": true,
+        "contrast_snr": 9.61170399901633,
+        "shoulder_contrast": 0.27039595500847025,
+        "contrast_per_mhz": 2.908993029255055,
+        "center_population": 0.1807643226379025,
+        "shoulder_population": 0.4511602776463728,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 18.5903474012596,
+        "snr_per_mhz": 103.4053188093201,
+        "fwhm_over_snr_hz": 9670.682432148435,
+        "fwhm_times_snr_hz": 893424.5822989494,
+        "shots_for_snr_10": 1082.4285142528709,
+        "max_final_pf": 1.1099429412491752e-05
+      },
+      "status_counts": {
+        "accepted": 84,
+        "no_resolved_dip": 16
+      }
+    },
+    {
+      "cutoff": 0.00011497569953977356,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 123.07733979544294,
+      "minimum_snr": 2.415112222045714,
+      "minimum_snr_per_mhz": 31.41952530905453,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.00011497569953977356,
+        "amplitude_mhz": 49.770235643321115,
+        "center_hz": 11.300473805606863,
+        "fwhm_hz": 93340.81611676078,
+        "contrast": 0.27198692277580727,
+        "accepted": true,
+        "contrast_snr": 9.646555179496984,
+        "shoulder_contrast": 0.27207414607524705,
+        "contrast_per_mhz": 2.914846445470407,
+        "center_population": 0.18334303266722626,
+        "shoulder_population": 0.45541717874247334,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 18.66816322335214,
+        "snr_per_mhz": 103.34766269270702,
+        "fwhm_over_snr_hz": 9676.077561360926,
+        "fwhm_times_snr_hz": 900417.3331696142,
+        "shots_for_snr_10": 1074.6214233015228,
+        "max_final_pf": 8.681327701060773e-06
+      },
+      "status_counts": {
+        "accepted": 87,
+        "no_resolved_dip": 13
+      }
+    },
+    {
+      "cutoff": 0.0001291549665014884,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 133.78353448165242,
+      "minimum_snr": 2.7514362035475606,
+      "minimum_snr_per_mhz": 35.51649292345847,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.0001291549665014884,
+        "amplitude_mhz": 43.287612810830595,
+        "center_hz": 10.274897496839323,
+        "fwhm_hz": 93071.76297337169,
+        "contrast": 0.27053146988149657,
+        "accepted": true,
+        "contrast_snr": 9.619453158250138,
+        "shoulder_contrast": 0.2706170421170687,
+        "contrast_per_mhz": 2.907617020153509,
+        "center_population": 0.18074732063078766,
+        "shoulder_population": 0.4513643627478564,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 18.614352594674322,
+        "snr_per_mhz": 103.355226665281,
+        "fwhm_over_snr_hz": 9675.3694250851,
+        "fwhm_times_snr_hz": 895299.4642781086,
+        "shots_for_snr_10": 1080.6852691335491,
+        "max_final_pf": 7.056688593618309e-06
+      },
+      "status_counts": {
+        "accepted": 89,
+        "no_resolved_dip": 11
+      }
+    },
+    {
+      "cutoff": 0.000145082877849594,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 147.2434465847714,
+      "minimum_snr": 3.139670408934063,
+      "minimum_snr_per_mhz": 40.151669777006376,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.000145082877849594,
+        "amplitude_mhz": 39.442060594376564,
+        "center_hz": 8.941105817313312,
+        "fwhm_hz": 93464.12609746828,
+        "contrast": 0.2722009280244223,
+        "accepted": true,
+        "contrast_snr": 9.654051564154834,
+        "shoulder_contrast": 0.2722889210673957,
+        "contrast_per_mhz": 2.913298742914918,
+        "center_population": 0.18333011439510588,
+        "shoulder_population": 0.4556190354625016,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 18.69282521949364,
+        "snr_per_mhz": 103.29151908067045,
+        "fwhm_over_snr_hz": 9681.336947121497,
+        "fwhm_times_snr_hz": 902307.4927436283,
+        "shots_for_snr_10": 1072.9531811471113,
+        "max_final_pf": 6.423126220027998e-06
+      },
+      "status_counts": {
+        "accepted": 92,
+        "no_resolved_dip": 8
+      }
+    },
+    {
+      "cutoff": 0.00016297508346206434,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 162.68743246973688,
+      "minimum_snr": 3.586913058557417,
+      "minimum_snr_per_mhz": 41.84622218861268,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.00016297508346206434,
+        "amplitude_mhz": 34.30469286314919,
+        "center_hz": 7.973977173529011,
+        "fwhm_hz": 93266.6234542631,
+        "contrast": 0.27089408489203537,
+        "accepted": true,
+        "contrast_snr": 9.632088279734782,
+        "shoulder_contrast": 0.27098066586384795,
+        "contrast_per_mhz": 2.9054409372580516,
+        "center_population": 0.1807318481790187,
+        "shoulder_population": 0.4517125140428666,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 18.653324690852603,
+        "snr_per_mhz": 103.27476135616993,
+        "fwhm_over_snr_hz": 9682.907874763703,
+        "fwhm_times_snr_hz": 898352.3506642447,
+        "shots_for_snr_10": 1077.8518993804744,
+        "max_final_pf": 5.725040923466629e-06
+      },
+      "status_counts": {
+        "accepted": 94,
+        "no_resolved_dip": 6
+      }
+    },
+    {
+      "cutoff": 0.0001830738280295368,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 181.65463454343754,
+      "minimum_snr": 4.099434273977408,
+      "minimum_snr_per_mhz": 34.73712055683782,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.0001830738280295368,
+        "amplitude_mhz": 31.25715849688237,
+        "center_hz": 7.1632518171448245,
+        "fwhm_hz": 93671.63943317767,
+        "contrast": 0.2725792383175817,
+        "accepted": true,
+        "contrast_snr": 9.667202981061934,
+        "shoulder_contrast": 0.27266769410996583,
+        "contrast_per_mhz": 2.910888458448282,
+        "center_population": 0.18331542920044297,
+        "shoulder_population": 0.4559831233104088,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 18.734327886635516,
+        "snr_per_mhz": 103.20309369580539,
+        "fwhm_over_snr_hz": 9689.632008004855,
+        "fwhm_times_snr_hz": 905542.7519693737,
+        "shots_for_snr_10": 1070.0358417017694,
+        "max_final_pf": 5.479793301298638e-06
+      },
+      "status_counts": {
+        "accepted": 96,
+        "no_resolved_dip": 4
+      }
+    },
+    {
+      "cutoff": 0.00020565123083486514,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 203.23558046750895,
+      "minimum_snr": 4.681143024259221,
+      "minimum_snr_per_mhz": 28.67392933167811,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.00020565123083486514,
+        "amplitude_mhz": 27.185882427329414,
+        "center_hz": 6.230258640056756,
+        "fwhm_hz": 93568.94619576329,
+        "contrast": 0.2714743518381642,
+        "accepted": true,
+        "contrast_snr": 9.65223065761522,
+        "shoulder_contrast": 0.27156184659928717,
+        "contrast_per_mhz": 2.902264668356212,
+        "center_population": 0.1807134760369434,
+        "shoulder_population": 0.4522753226362306,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 18.71378923915264,
+        "snr_per_mhz": 103.15634673731383,
+        "fwhm_over_snr_hz": 9694.02302067255,
+        "fwhm_times_snr_hz": 903149.0510714954,
+        "shots_for_snr_10": 1073.3580475085,
+        "max_final_pf": 4.954213170467345e-06
+      },
+      "status_counts": {
+        "accepted": 99,
+        "no_resolved_dip": 1
+      }
+    },
+    {
+      "cutoff": 0.0002310129700083158,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 226.92141548948962,
+      "minimum_snr": 5.331373615160083,
+      "minimum_snr_per_mhz": 23.57217166980754,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.0002310129700083158,
+        "amplitude_mhz": 24.770763559917114,
+        "center_hz": 5.736910725202572,
+        "fwhm_hz": 94000.7151859611,
+        "contrast": 0.27320470323287316,
+        "accepted": true,
+        "contrast_snr": 9.688905291298182,
+        "shoulder_contrast": 0.27329374074907364,
+        "contrast_per_mhz": 2.907358100504003,
+        "center_population": 0.18329573260807983,
+        "shoulder_population": 0.4565894733571535,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 18.800143037192203,
+        "snr_per_mhz": 103.07267633156485,
+        "fwhm_over_snr_hz": 9701.892253027305,
+        "fwhm_times_snr_hz": 910764.0267510719,
+        "shots_for_snr_10": 1065.2476347398606,
+        "max_final_pf": 4.762728686133969e-06
+      },
+      "status_counts": {
+        "accepted": 100
+      }
+    },
+    {
+      "cutoff": 0.00025950242113997375,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 252.5305060711738,
+      "minimum_snr": 4.8803194723732535,
+      "minimum_snr_per_mhz": 19.325663058695067,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.00025950242113997375,
+        "amplitude_mhz": 21.544346900318846,
+        "center_hz": 4.870796432293491,
+        "fwhm_hz": 94017.65180706298,
+        "contrast": 0.2723573641914727,
+        "accepted": true,
+        "contrast_snr": 9.682828567870716,
+        "shoulder_contrast": 0.2724461370350252,
+        "contrast_per_mhz": 2.8978189924815583,
+        "center_population": 0.1806922560146855,
+        "shoulder_population": 0.4531383930497107,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 18.80353036141258,
+        "snr_per_mhz": 102.98947465462335,
+        "fwhm_over_snr_hz": 9709.730080219499,
+        "fwhm_times_snr_hz": 910356.8048015514,
+        "shots_for_snr_10": 1066.5851047640733,
+        "max_final_pf": 4.270604235214928e-06
+      },
+      "status_counts": {
+        "accepted": 100
+      }
+    },
+    {
+      "cutoff": 0.0002915053062825176,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 279.8376455181776,
+      "minimum_snr": 4.421573603245386,
+      "minimum_snr_per_mhz": 15.800496016388085,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.0002915053062825176,
+        "amplitude_mhz": 19.630406500402714,
+        "center_hz": 4.5749849769163875,
+        "fwhm_hz": 94494.9983761377,
+        "contrast": 0.27417246704246745,
+        "accepted": true,
+        "contrast_snr": 9.722454601310314,
+        "shoulder_contrast": 0.27426267554434036,
+        "contrast_per_mhz": 2.9024041510920693,
+        "center_population": 0.1832712678080596,
+        "shoulder_population": 0.45753394335239994,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 18.898999675227522,
+        "snr_per_mhz": 102.8885630815088,
+        "fwhm_over_snr_hz": 9719.253239135971,
+        "fwhm_times_snr_hz": 918723.3317628906,
+        "shots_for_snr_10": 1057.908611125201,
+        "max_final_pf": 4.084515239012841e-06
+      },
+      "status_counts": {
+        "accepted": 100
+      }
+    },
+    {
+      "cutoff": 0.00032745491628777284,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 308.7345875285678,
+      "minimum_snr": 3.9734473505550008,
+      "minimum_snr_per_mhz": 12.870107565085595,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.00032745491628777284,
+        "amplitude_mhz": 17.073526474706913,
+        "center_hz": 3.8268805431863795,
+        "fwhm_hz": 94654.54476015753,
+        "contrast": 0.27363407831791137,
+        "accepted": true,
+        "contrast_snr": 9.727014579444374,
+        "shoulder_contrast": 0.2737250284929541,
+        "contrast_per_mhz": 2.891831862765155,
+        "center_population": 0.18067148633792754,
+        "shoulder_population": 0.45439651483088167,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 18.930908952031487,
+        "snr_per_mhz": 102.76331267654798,
+        "fwhm_over_snr_hz": 9731.09929948973,
+        "fwhm_times_snr_hz": 920706.1368927223,
+        "shots_for_snr_10": 1056.9169585782356,
+        "max_final_pf": 3.6193088237046083e-06
+      },
+      "status_counts": {
+        "accepted": 100
+      }
+    },
+    {
+      "cutoff": 0.0003678379771828634,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 339.63256680247196,
+      "minimum_snr": 3.5318884840219007,
+      "minimum_snr_per_mhz": 10.399145515618423,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.0003678379771828634,
+        "amplitude_mhz": 15.556761439304722,
+        "center_hz": 3.6588317230154903,
+        "fwhm_hz": 95200.18864733662,
+        "contrast": 0.27558225550169635,
+        "accepted": true,
+        "contrast_snr": 9.771292318383107,
+        "shoulder_contrast": 0.27567481673884703,
+        "contrast_per_mhz": 2.89573813514244,
+        "center_population": 0.18324551811129203,
+        "shoulder_population": 0.45892033485013906,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 19.040037729467308,
+        "snr_per_mhz": 102.63942180388185,
+        "fwhm_over_snr_hz": 9742.845218971994,
+        "fwhm_times_snr_hz": 930228.872038343,
+        "shots_for_snr_10": 1047.3600112650988,
+        "max_final_pf": 3.4393387853464308e-06
+      },
+      "status_counts": {
+        "accepted": 100
+      }
+    },
+    {
+      "cutoff": 0.00041320124001153346,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 372.407629250356,
+      "minimum_snr": 3.1049510347628377,
+      "minimum_snr_per_mhz": 8.33750651406632,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.00041320124001153346,
+        "amplitude_mhz": 13.530477745798075,
+        "center_hz": 3.064252878613421,
+        "fwhm_hz": 95518.1966860813,
+        "contrast": 0.2753890204138298,
+        "accepted": true,
+        "contrast_snr": 9.787688999159661,
+        "shoulder_contrast": 0.27548371979470887,
+        "contrast_per_mhz": 2.884096741274134,
+        "center_population": 0.18065787250344267,
+        "shoulder_population": 0.45614159229815154,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 19.103639337216244,
+        "snr_per_mhz": 102.46936540611954,
+        "fwhm_over_snr_hz": 9759.014277454276,
+        "fwhm_times_snr_hz": 934902.4029239267,
+        "shots_for_snr_10": 1043.8538019511725,
+        "max_final_pf": 3.0256568341550286e-06
+      },
+      "status_counts": {
+        "accepted": 100
+      }
+    },
+    {
+      "cutoff": 0.0004641588833612782,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 407.63089376839895,
+      "minimum_snr": 2.690648790606006,
+      "minimum_snr_per_mhz": 6.600698896327359,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.0004641588833612782,
+        "amplitude_mhz": 12.328467394420665,
+        "center_hz": 2.9799158508050163,
+        "fwhm_hz": 96156.6642712631,
+        "contrast": 0.27752270731172607,
+        "accepted": true,
+        "contrast_snr": 9.83846803587545,
+        "shoulder_contrast": 0.27761956901765095,
+        "contrast_per_mhz": 2.88715889971465,
+        "center_population": 0.18322596538427147,
+        "shoulder_population": 0.46084553440192244,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 19.231332854252603,
+        "snr_per_mhz": 102.31706882136226,
+        "fwhm_over_snr_hz": 9773.540343947141,
+        "fwhm_times_snr_hz": 946034.267869229,
+        "shots_for_snr_10": 1033.1063763641746,
+        "max_final_pf": 2.858306378961959e-06
+      },
+      "status_counts": {
+        "accepted": 100
+      }
+    },
+    {
+      "cutoff": 0.0005214008287999684,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 445.8332885534702,
+      "minimum_snr": 2.289588942397746,
+      "minimum_snr_per_mhz": 5.135527115587171,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.0005214008287999684,
+        "amplitude_mhz": 10.722672220103236,
+        "center_hz": 2.5456794400057263,
+        "fwhm_hz": 96634.48562879827,
+        "contrast": 0.2776811808357409,
+        "accepted": true,
+        "contrast_snr": 9.866868140826396,
+        "shoulder_contrast": 0.27778203126864176,
+        "contrast_per_mhz": 2.87456418338775,
+        "center_population": 0.1806615379949926,
+        "shoulder_population": 0.45844356926363433,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 19.326897125759636,
+        "snr_per_mhz": 102.10504124508888,
+        "fwhm_over_snr_hz": 9793.835718646249,
+        "fwhm_times_snr_hz": 953479.7275559359,
+        "shots_for_snr_10": 1027.1676927784176,
+        "max_final_pf": 2.5018300152201312e-06
+      },
+      "status_counts": {
+        "accepted": 100
+      }
+    },
+    {
+      "cutoff": 0.0005857020818056667,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 487.81413473775643,
+      "minimum_snr": 1.9036912265226071,
+      "minimum_snr_per_mhz": 3.9024929598360463,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.0005857020818056667,
+        "amplitude_mhz": 10.235310218990262,
+        "center_hz": 2.799834428869309,
+        "fwhm_hz": 97538.2665198466,
+        "contrast": 0.28122799543347865,
+        "accepted": true,
+        "contrast_snr": 9.922639951353323,
+        "shoulder_contrast": 0.28132965017016154,
+        "contrast_per_mhz": 2.884300287548354,
+        "center_population": 0.18830832205434625,
+        "shoulder_population": 0.46963797222450776,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 19.507653303969303,
+        "snr_per_mhz": 101.7307391795231,
+        "fwhm_over_snr_hz": 9829.87057859976,
+        "fwhm_times_snr_hz": 967837.1001555781,
+        "shots_for_snr_10": 1015.6534169871794,
+        "max_final_pf": 2.532778940349703e-06
+      },
+      "status_counts": {
+        "accepted": 100
+      }
+    },
+    {
+      "cutoff": 0.0006579332246575682,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 534.2194163220383,
+      "minimum_snr": 1.5379111588069494,
+      "minimum_snr_per_mhz": 2.8788005673681187,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.0006579332246575682,
+        "amplitude_mhz": 10.235310218990262,
+        "center_hz": 2.936223780858201,
+        "fwhm_hz": 98443.27571763714,
+        "contrast": 0.2810573582942465,
+        "accepted": true,
+        "contrast_snr": 9.816558690539079,
+        "shoulder_contrast": 0.2811559620155827,
+        "contrast_per_mhz": 2.8560199766413366,
+        "center_population": 0.20079906317136156,
+        "shoulder_population": 0.4819550251869442,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 19.68865514352741,
+        "snr_per_mhz": 99.71791997958007,
+        "fwhm_over_snr_hz": 10028.287796263468,
+        "fwhm_times_snr_hz": 966374.1937711055,
+        "shots_for_snr_10": 1037.7230539579946,
+        "max_final_pf": 2.7645170721193207e-06
+      },
+      "status_counts": {
+        "accepted": 100
+      }
+    },
+    {
+      "cutoff": 0.0007390722033525775,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 586.7889314585548,
+      "minimum_snr": 1.1883170078527787,
+      "minimum_snr_per_mhz": 2.0251183077005774,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.0007390722033525775,
+        "amplitude_mhz": 10.235310218990262,
+        "center_hz": 2.431048392912163,
+        "fwhm_hz": 99649.86706310161,
+        "contrast": 0.27610703184878027,
+        "accepted": true,
+        "contrast_snr": 9.560445394119684,
+        "shoulder_contrast": 0.2762045310398129,
+        "contrast_per_mhz": 2.771750120498515,
+        "center_population": 0.21268378569781668,
+        "shoulder_population": 0.48888831673762956,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 19.929973412620306,
+        "snr_per_mhz": 95.94037278610409,
+        "fwhm_over_snr_hz": 10423.140654554962,
+        "fwhm_times_snr_hz": 952697.1125880686,
+        "shots_for_snr_10": 1094.066573398104,
+        "max_final_pf": 2.9890603942995405e-06
+      },
+      "status_counts": {
+        "accepted": 100
+      }
+    },
+    {
+      "cutoff": 0.0008302175681319744,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 646.6573215046811,
+      "minimum_snr": 0.8635878464288592,
+      "minimum_snr_per_mhz": 1.3354644225157941,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.0008302175681319744,
+        "amplitude_mhz": 10.235310218990262,
+        "center_hz": 1.7024342041423859,
+        "fwhm_hz": 102580.8358425308,
+        "contrast": 0.26860859519287733,
+        "accepted": true,
+        "contrast_snr": 9.231129345396457,
+        "shoulder_contrast": 0.26871298276174876,
+        "contrast_per_mhz": 2.619524207954819,
+        "center_population": 0.22383910258393874,
+        "shoulder_population": 0.4925520853456875,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 20.51616716850614,
+        "snr_per_mhz": 89.98882948825771,
+        "fwhm_over_snr_hz": 11112.490357822537,
+        "fwhm_times_snr_hz": 946936.9640212827,
+        "shots_for_snr_10": 1173.5195456550769,
+        "max_final_pf": 3.5604778030372738e-06
+      },
+      "status_counts": {
+        "accepted": 100
+      }
+    },
+    {
+      "cutoff": 0.0009326033468832199,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 660.4619261804742,
+      "minimum_snr": 0.6951808220732681,
+      "minimum_snr_per_mhz": 1.1515712159339955,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.0009326033468832199,
+        "amplitude_mhz": 10.235310218990262,
+        "center_hz": 1.6045627015101536,
+        "fwhm_hz": 108279.36148093484,
+        "contrast": 0.2599367576502851,
+        "accepted": true,
+        "contrast_snr": 8.87297208878412,
+        "shoulder_contrast": 0.2600608224842728,
+        "contrast_per_mhz": 2.40175799826879,
+        "center_population": 0.2345703542226269,
+        "shoulder_population": 0.4946311767068997,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 21.65587229618695,
+        "snr_per_mhz": 81.94518297327066,
+        "fwhm_over_snr_hz": 12203.279847775624,
+        "fwhm_times_snr_hz": 960759.7522117012,
+        "shots_for_snr_10": 1270.169760929646,
+        "max_final_pf": 4.305556406388064e-06
+      },
+      "status_counts": {
+        "accepted": 100
+      }
+    },
+    {
+      "cutoff": 0.001047615752789665,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 665.056847111237,
+      "minimum_snr": 0.5443443651978951,
+      "minimum_snr_per_mhz": 1.0944639622322963,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.001047615752789665,
+        "amplitude_mhz": 10.235310218990262,
+        "center_hz": 2.573211609849971,
+        "fwhm_hz": 117283.20863222488,
+        "contrast": 0.25078539547296175,
+        "accepted": true,
+        "contrast_snr": 8.510148098620496,
+        "shoulder_contrast": 0.25094025470976267,
+        "contrast_per_mhz": 2.1396093919689543,
+        "center_population": 0.24459212408871553,
+        "shoulder_population": 0.49553237879847817,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 23.456641726444953,
+        "snr_per_mhz": 72.56066915176667,
+        "fwhm_over_snr_hz": 13781.57081088126,
+        "fwhm_times_snr_hz": 998097.4749416395,
+        "shots_for_snr_10": 1380.7840573574333,
+        "max_final_pf": 4.289282263187178e-06
+      },
+      "status_counts": {
+        "accepted": 100
+      }
+    },
+    {
+      "cutoff": 0.0011768119524349979,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 660.4506257604712,
+      "minimum_snr": 0.4119724692237833,
+      "minimum_snr_per_mhz": 1.1522399924083204,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.0011768119524349979,
+        "amplitude_mhz": 10.235310218990262,
+        "center_hz": 3.7769423520549403,
+        "fwhm_hz": 128409.17161671877,
+        "contrast": 0.24037607511084924,
+        "accepted": true,
+        "contrast_snr": 8.114992933562478,
+        "shoulder_contrast": 0.2405604163212569,
+        "contrast_per_mhz": 1.8733896753052188,
+        "center_population": 0.25385567819355975,
+        "shoulder_population": 0.49441609451481666,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 25.68183432334373,
+        "snr_per_mhz": 63.19636542617422,
+        "fwhm_over_snr_hz": 15823.6948162501,
+        "fwhm_times_snr_hz": 1042039.5202742843,
+        "shots_for_snr_10": 1518.531160131528,
+        "max_final_pf": 4.645731145590501e-06
+      },
+      "status_counts": {
+        "accepted": 100
+      }
+    },
+    {
+      "cutoff": 0.0013219411484660286,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 50,
+      "all_active_points_accepted": true,
+      "worst_fwhm_khz": 665.0801694770428,
+      "minimum_snr": 0.2985582092766483,
+      "minimum_snr_per_mhz": 1.0946446717407765,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.0013219411484660286,
+        "amplitude_mhz": 10.235310218990262,
+        "center_hz": 3.5068766910953917,
+        "fwhm_hz": 140057.78244814853,
+        "contrast": 0.22727541110143418,
+        "accepted": true,
+        "contrast_snr": 7.6359676398172756,
+        "shoulder_contrast": 0.2274706603156041,
+        "contrast_per_mhz": 1.6241201048561302,
+        "center_population": 0.2629251403513922,
+        "shoulder_population": 0.4903958006669963,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 28.01155648962968,
+        "snr_per_mhz": 54.52012381135781,
+        "fwhm_over_snr_hz": 18341.851230199823,
+        "fwhm_times_snr_hz": 1069476.69447863,
+        "shots_for_snr_10": 1715.0304747072094,
+        "max_final_pf": 5.183276963170934e-06
+      },
+      "status_counts": {
+        "accepted": 100
+      }
+    },
+    {
+      "cutoff": 0.001484968262254465,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 49,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.001484968262254465,
+        "amplitude_mhz": 10.235310218990262,
+        "center_hz": 2.5320783524987642,
+        "fwhm_hz": 152271.16435647735,
+        "contrast": 0.21242375676894876,
+        "accepted": true,
+        "contrast_snr": 7.106982988234869,
+        "shoulder_contrast": 0.2126069382115814,
+        "contrast_per_mhz": 1.3962389997481979,
+        "center_population": 0.27134655183449174,
+        "shoulder_population": 0.48395349004607313,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 30.454232871295442,
+        "snr_per_mhz": 46.67320315221948,
+        "fwhm_over_snr_hz": 21425.570401470213,
+        "fwhm_times_snr_hz": 1082188.5746802003,
+        "shots_for_snr_10": 1979.8370545356875,
+        "max_final_pf": 6.14992082237573e-06
+      },
+      "status_counts": {
+        "accepted": 99,
+        "no_resolved_dip": 1
+      }
+    },
+    {
+      "cutoff": 0.0016681005372000592,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 46,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.0016681005372000592,
+        "amplitude_mhz": 10.235310218990262,
+        "center_hz": 3.7870684448574936,
+        "fwhm_hz": 168707.25249826763,
+        "contrast": 0.19726300780432204,
+        "accepted": true,
+        "contrast_snr": 6.575151701324939,
+        "shoulder_contrast": 0.1974301687931833,
+        "contrast_per_mhz": 1.170253002580376,
+        "center_population": 0.2794058378154673,
+        "shoulder_population": 0.4768360066086506,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 33.741450499653496,
+        "snr_per_mhz": 38.973734702913596,
+        "fwhm_over_snr_hz": 25658.30571852387,
+        "fwhm_times_snr_hz": 1109275.7782898406,
+        "shots_for_snr_10": 2313.068239719524,
+        "max_final_pf": 6.9725324739363036e-06
+      },
+      "status_counts": {
+        "accepted": 96,
+        "no_resolved_dip": 4
+      }
+    },
+    {
+      "cutoff": 0.001873817422860383,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 44,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.001873817422860383,
+        "amplitude_mhz": 10.235310218990262,
+        "center_hz": 5.709880258334633,
+        "fwhm_hz": 189207.3802071011,
+        "contrast": 0.18329133548625703,
+        "accepted": true,
+        "contrast_snr": 6.090715108461505,
+        "shoulder_contrast": 0.18346047335771543,
+        "contrast_per_mhz": 0.9696264128645761,
+        "center_population": 0.28677143486579143,
+        "shoulder_population": 0.47023190822350686,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 37.84147604142019,
+        "snr_per_mhz": 32.190684643457246,
+        "fwhm_over_snr_hz": 31064.887593288575,
+        "fwhm_times_snr_hz": 1152408.249259811,
+        "shots_for_snr_10": 2695.6495333352113,
+        "max_final_pf": 7.386379768725404e-06
+      },
+      "status_counts": {
+        "accepted": 94,
+        "no_resolved_dip": 6
+      }
+    },
+    {
+      "cutoff": 0.00210490414451202,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 41,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.00210490414451202,
+        "amplitude_mhz": 10.235310218990262,
+        "center_hz": 4.297095249549055,
+        "fwhm_hz": 211757.2427527375,
+        "contrast": 0.16948049941341864,
+        "accepted": true,
+        "contrast_snr": 5.616390257511201,
+        "shoulder_contrast": 0.16966081425537954,
+        "contrast_per_mhz": 0.8012043038050288,
+        "center_population": 0.2940474830995636,
+        "shoulder_population": 0.4637082973549431,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 42.35144855054747,
+        "snr_per_mhz": 26.522777613180807,
+        "fwhm_over_snr_hz": 37703.44172033619,
+        "fwhm_times_snr_hz": 1189311.3151539094,
+        "shots_for_snr_10": 3170.1911215279215,
+        "max_final_pf": 8.304224682542232e-06
+      },
+      "status_counts": {
+        "accepted": 91,
+        "no_resolved_dip": 9
+      }
+    },
+    {
+      "cutoff": 0.002364489412645407,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 39,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.002364489412645407,
+        "amplitude_mhz": 10.235310218990262,
+        "center_hz": 5.5080202507870855,
+        "fwhm_hz": 236109.57895120067,
+        "contrast": 0.1554778441827861,
+        "accepted": true,
+        "contrast_snr": 5.140165324158583,
+        "shoulder_contrast": 0.15565371625508007,
+        "contrast_per_mhz": 0.6592435467738932,
+        "center_population": 0.30094872335470535,
+        "shoulder_population": 0.4566024396097854,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 47.22191579024009,
+        "snr_per_mhz": 21.770253231534316,
+        "fwhm_over_snr_hz": 45934.238309708555,
+        "fwhm_times_snr_hz": 1213642.270426645,
+        "shots_for_snr_10": 3784.8251852303056,
+        "max_final_pf": 9.74714784553596e-06
+      },
+      "status_counts": {
+        "accepted": 89,
+        "no_resolved_dip": 11
+      }
+    },
+    {
+      "cutoff": 0.0026560877829466868,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 36,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.0026560877829466868,
+        "amplitude_mhz": 10.235310218990262,
+        "center_hz": 7.802472598868652,
+        "fwhm_hz": 262452.03307241615,
+        "contrast": 0.141740020284773,
+        "accepted": true,
+        "contrast_snr": 4.67692398830737,
+        "shoulder_contrast": 0.1419043498214524,
+        "contrast_per_mhz": 0.5406867996419671,
+        "center_population": 0.3073273515942815,
+        "shoulder_population": 0.4492317014157339,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 52.490406614483184,
+        "snr_per_mhz": 17.820109577954405,
+        "fwhm_over_snr_hz": 56116.37771504609,
+        "fwhm_times_snr_hz": 1227468.2092564222,
+        "shots_for_snr_10": 4571.71740105924,
+        "max_final_pf": 1.0530613948173568e-05
+      },
+      "status_counts": {
+        "accepted": 86,
+        "no_resolved_dip": 14
+      }
+    },
+    {
+      "cutoff": 0.0029836472402833404,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 34,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.0029836472402833404,
+        "amplitude_mhz": 10.235310218990262,
+        "center_hz": 6.368498341428067,
+        "fwhm_hz": 290490.2843501423,
+        "contrast": 0.12807891090312873,
+        "accepted": true,
+        "contrast_snr": 4.219201237997754,
+        "shoulder_contrast": 0.12823778908027467,
+        "contrast_per_mhz": 0.44145293660046586,
+        "center_population": 0.31364298912519656,
+        "shoulder_population": 0.4418807782054712,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 58.09805687002841,
+        "snr_per_mhz": 14.524414293016912,
+        "fwhm_over_snr_hz": 68849.59212990658,
+        "fwhm_times_snr_hz": 1225636.96735644,
+        "shots_for_snr_10": 5617.453941390766,
+        "max_final_pf": 1.2255443729956515e-05
+      },
+      "status_counts": {
+        "accepted": 84,
+        "no_resolved_dip": 16
+      }
+    },
+    {
+      "cutoff": 0.003351602650938841,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 31,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.003351602650938841,
+        "amplitude_mhz": 10.235310218990262,
+        "center_hz": 10.431136532600542,
+        "fwhm_hz": 319792.76566036936,
+        "contrast": 0.11485493436376415,
+        "accepted": true,
+        "contrast_snr": 3.7788236873616956,
+        "shoulder_contrast": 0.1150025834877838,
+        "contrast_per_mhz": 0.35961596332645124,
+        "center_population": 0.3194332591954202,
+        "shoulder_population": 0.434435842683204,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 63.95855313207382,
+        "snr_per_mhz": 11.816476459554853,
+        "fwhm_over_snr_hz": 84627.59634166544,
+        "fwhm_times_snr_hz": 1208440.4779243115,
+        "shots_for_snr_10": 7003.042176063714,
+        "max_final_pf": 1.3307968381656772e-05
+      },
+      "status_counts": {
+        "accepted": 81,
+        "no_resolved_dip": 19
+      }
+    },
+    {
+      "cutoff": 0.0037649358067924675,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 29,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.0037649358067924675,
+        "amplitude_mhz": 10.235310218990262,
+        "center_hz": 8.932540921483193,
+        "fwhm_hz": 352039.5610290496,
+        "contrast": 0.1015983860691444,
+        "accepted": true,
+        "contrast_snr": 3.3390625408727304,
+        "shoulder_contrast": 0.10173333344043145,
+        "contrast_per_mhz": 0.2889826732627831,
+        "center_population": 0.32526486284892464,
+        "shoulder_population": 0.4269981962893561,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 70.40791220580986,
+        "snr_per_mhz": 9.484907125529556,
+        "fwhm_over_snr_hz": 105430.65807238132,
+        "fwhm_times_snr_hz": 1175482.111137379,
+        "shots_for_snr_10": 8969.141858770457,
+        "max_final_pf": 1.5331331273088282e-05
+      },
+      "status_counts": {
+        "accepted": 79,
+        "no_resolved_dip": 21
+      }
+    },
+    {
+      "cutoff": 0.0042292428743894986,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 26,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.0042292428743894986,
+        "amplitude_mhz": 10.235310218990262,
+        "center_hz": 13.454450036980072,
+        "fwhm_hz": 385481.0963630298,
+        "contrast": 0.08890611166021928,
+        "accepted": true,
+        "contrast_snr": 2.919750509053328,
+        "shoulder_contrast": 0.08902625087010635,
+        "contrast_per_mhz": 0.2309484218812774,
+        "center_population": 0.3306166362666772,
+        "shoulder_population": 0.41964288713678355,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 77.0962192726059,
+        "snr_per_mhz": 7.574302700186445,
+        "fwhm_over_snr_hz": 132025.35462114346,
+        "fwhm_times_snr_hz": 1125508.6273363912,
+        "shots_for_snr_10": 11730.283661493768,
+        "max_final_pf": 1.6783652306443092e-05
+      },
+      "status_counts": {
+        "accepted": 76,
+        "no_resolved_dip": 24
+      }
+    },
+    {
+      "cutoff": 0.0047508101621027985,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 24,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.0047508101621027985,
+        "amplitude_mhz": 10.235310218990262,
+        "center_hz": 13.774013152440832,
+        "fwhm_hz": 422619.792824696,
+        "contrast": 0.07637335590290528,
+        "accepted": true,
+        "contrast_snr": 2.506655973558611,
+        "shoulder_contrast": 0.07647746699982971,
+        "contrast_per_mhz": 0.18096044789732035,
+        "center_population": 0.3359580398913866,
+        "shoulder_population": 0.41243550689121633,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 84.52395856493912,
+        "snr_per_mhz": 5.931231845069735,
+        "fwhm_over_snr_hz": 168599.0408267783,
+        "fwhm_times_snr_hz": 1059362.4282281268,
+        "shots_for_snr_10": 15915.142573894609,
+        "max_final_pf": 1.914193636205475e-05
+      },
+      "status_counts": {
+        "accepted": 74,
+        "no_resolved_dip": 26
+      }
+    },
+    {
+      "cutoff": 0.005336699231206307,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 21,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.005336699231206307,
+        "amplitude_mhz": 10.235310218990262,
+        "center_hz": 15.260690386887937,
+        "fwhm_hz": 462320.42462604836,
+        "contrast": 0.06441399290801636,
+        "accepted": true,
+        "contrast_snr": 2.1133307225035383,
+        "shoulder_contrast": 0.0645008127939945,
+        "contrast_per_mhz": 0.13951538664156252,
+        "center_population": 0.3409499545887789,
+        "shoulder_population": 0.4054507673827734,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 92.46408492520959,
+        "snr_per_mhz": 4.571138565234108,
+        "fwhm_over_snr_hz": 218763.87812995244,
+        "fwhm_times_snr_hz": 977035.9570031094,
+        "shots_for_snr_10": 22390.565727076533,
+        "max_final_pf": 2.1245248953521085e-05
+      },
+      "status_counts": {
+        "accepted": 71,
+        "no_resolved_dip": 29
+      }
+    },
+    {
+      "cutoff": 0.005994842503189409,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 19,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.005994842503189409,
+        "amplitude_mhz": 10.235310218990262,
+        "center_hz": 21.084232841449108,
+        "fwhm_hz": 506116.33307188743,
+        "contrast": 0.05293818920547089,
+        "accepted": true,
+        "contrast_snr": 1.7363703103694077,
+        "shoulder_contrast": 0.053006711564961895,
+        "contrast_per_mhz": 0.1047322682578453,
+        "center_population": 0.34575307595735477,
+        "shoulder_population": 0.39875978752231667,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 101.2232666143774,
+        "snr_per_mhz": 3.43077311856438,
+        "fwhm_over_snr_hz": 291479.4903192123,
+        "fwhm_times_snr_hz": 878805.3743390597,
+        "shots_for_snr_10": 33167.69546822935,
+        "max_final_pf": 2.3704232772417862e-05
+      },
+      "status_counts": {
+        "accepted": 69,
+        "no_resolved_dip": 31
+      }
+    },
+    {
+      "cutoff": 0.006734150657750821,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 16,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.006734150657750821,
+        "amplitude_mhz": 10.235310218990262,
+        "center_hz": 25.147406149907848,
+        "fwhm_hz": 555233.7807293363,
+        "contrast": 0.04199439752379264,
+        "accepted": true,
+        "contrast_snr": 1.3771515532299463,
+        "shoulder_contrast": 0.04204460029468643,
+        "contrast_per_mhz": 0.07572413954975518,
+        "center_population": 0.3503852840835242,
+        "shoulder_population": 0.39242988437821064,
+        "status": "accepted",
+        "prominent_minima": 1,
+        "fwhm_grid_intervals": 111.04675614586716,
+        "snr_per_mhz": 2.480309377828141,
+        "fwhm_over_snr_hz": 403175.51065973897,
+        "fwhm_times_snr_hz": 764641.063537141,
+        "shots_for_snr_10": 52727.420731852384,
+        "max_final_pf": 2.657424746319329e-05
+      },
+      "status_counts": {
+        "accepted": 66,
+        "no_resolved_dip": 34
+      }
+    },
+    {
+      "cutoff": 0.007564633275546291,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 14,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.007564633275546291,
+        "amplitude_mhz": 12.328467394420665,
+        "center_hz": 159522.61394313545,
+        "fwhm_hz": 279388.89616401814,
+        "contrast": 0.020831847544337645,
+        "accepted": true,
+        "contrast_snr": 0.6855985631809903,
+        "shoulder_contrast": 0.020903319755517513,
+        "contrast_per_mhz": 0.0748180047328939,
+        "center_population": 0.3572848704931375,
+        "shoulder_population": 0.378188190248655,
+        "status": "accepted",
+        "prominent_minima": 3,
+        "fwhm_grid_intervals": 55.877779232803576,
+        "snr_per_mhz": 2.4539220154923505,
+        "fwhm_over_snr_hz": 407510.9126071237,
+        "fwhm_times_snr_hz": 191548.62577877374,
+        "shots_for_snr_10": 212745.4117461393,
+        "max_final_pf": 4.3207659049427e-05
+      },
+      "status_counts": {
+        "accepted": 64,
+        "no_resolved_dip": 36
+      }
+    },
+    {
+      "cutoff": 0.008497534359086439,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 11,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.008497534359086439,
+        "amplitude_mhz": 10.722672220103236,
+        "center_hz": 156148.76232295862,
+        "fwhm_hz": 286916.4229990904,
+        "contrast": 0.021736890394623898,
+        "accepted": true,
+        "contrast_snr": 0.7151328848538688,
+        "shoulder_contrast": 0.02180894662438504,
+        "contrast_per_mhz": 0.07601149629714357,
+        "center_population": 0.3572844863618857,
+        "shoulder_population": 0.37909343298627074,
+        "status": "accepted",
+        "prominent_minima": 3,
+        "fwhm_grid_intervals": 57.383284599818026,
+        "snr_per_mhz": 2.4924780442287053,
+        "fwhm_over_snr_hz": 401207.144959806,
+        "fwhm_times_snr_hz": 205183.36929129245,
+        "shots_for_snr_10": 195535.8986186764,
+        "max_final_pf": 3.6596201201553024e-05
+      },
+      "status_counts": {
+        "accepted": 61,
+        "no_resolved_dip": 39
+      }
+    },
+    {
+      "cutoff": 0.009545484566618337,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 9,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.009545484566618337,
+        "amplitude_mhz": 10.235310218990262,
+        "center_hz": 167482.93004582604,
+        "fwhm_hz": 272468.3774873193,
+        "contrast": 0.018819558768571443,
+        "accepted": true,
+        "contrast_snr": 0.6198289984626922,
+        "shoulder_contrast": 0.01888809776764988,
+        "contrast_per_mhz": 0.06932216480251524,
+        "center_population": 0.35729432217635015,
+        "shoulder_population": 0.37618241994400003,
+        "status": "accepted",
+        "prominent_minima": 3,
+        "fwhm_grid_intervals": 54.493675497463805,
+        "snr_per_mhz": 2.2748658181132932,
+        "fwhm_over_snr_hz": 439586.36682552577,
+        "fwhm_times_snr_hz": 168883.80153071988,
+        "shots_for_snr_10": 260289.24197657005,
+        "max_final_pf": 3.747669253722241e-05
+      },
+      "status_counts": {
+        "accepted": 59,
+        "no_resolved_dip": 41
+      }
+    },
+    {
+      "cutoff": 0.010722672220103232,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 6,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.010722672220103232,
+        "amplitude_mhz": 10.235310218990262,
+        "center_hz": 188630.26145648473,
+        "fwhm_hz": 262052.84594229123,
+        "contrast": 0.014454463211631241,
+        "accepted": true,
+        "contrast_snr": 0.4769478333337581,
+        "shoulder_contrast": 0.014516954650406422,
+        "contrast_per_mhz": 0.05539705015683485,
+        "center_population": 0.3573104645062653,
+        "shoulder_population": 0.3718274191566717,
+        "status": "accepted",
+        "prominent_minima": 3,
+        "fwhm_grid_intervals": 52.4105691884582,
+        "snr_per_mhz": 1.8200444708728356,
+        "fwhm_over_snr_hz": 549437.124204131,
+        "fwhm_times_snr_hz": 124985.5370911209,
+        "shots_for_snr_10": 439600.5625863439,
+        "max_final_pf": 4.173381902534415e-05
+      },
+      "status_counts": {
+        "accepted": 56,
+        "no_resolved_dip": 44
+      }
+    },
+    {
+      "cutoff": 0.012045035402587823,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 4,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.012045035402587823,
+        "amplitude_mhz": 10.235310218990262,
+        "center_hz": 212335.70455307362,
+        "fwhm_hz": 249976.87613904485,
+        "contrast": 0.010671748186403096,
+        "accepted": true,
+        "contrast_snr": 0.352908881434977,
+        "shoulder_contrast": 0.010730187909637368,
+        "contrast_per_mhz": 0.04292472197975986,
+        "center_population": 0.35731966246176633,
+        "shoulder_population": 0.3680498503714037,
+        "status": "accepted",
+        "prominent_minima": 2,
+        "fwhm_grid_intervals": 49.99537522780892,
+        "snr_per_mhz": 1.411766107672608,
+        "fwhm_over_snr_hz": 708332.6300052404,
+        "fwhm_times_snr_hz": 88219.05974284011,
+        "shots_for_snr_10": 802924.7104537736,
+        "max_final_pf": 4.6651877719356544e-05
+      },
+      "status_counts": {
+        "accepted": 54,
+        "no_resolved_dip": 46
+      }
+    },
+    {
+      "cutoff": 0.013530477745798061,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 1,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": {
+        "duration_us": 60.0,
+        "cutoff": 0.013530477745798061,
+        "amplitude_mhz": 10.235310218990262,
+        "center_hz": 239047.60985386145,
+        "fwhm_hz": 233546.09063430212,
+        "contrast": 0.007482080383687029,
+        "accepted": true,
+        "contrast_snr": 0.24824462007413958,
+        "shoulder_contrast": 0.007540917810573644,
+        "contrast_per_mhz": 0.03228877773159381,
+        "center_population": 0.357320275973267,
+        "shoulder_population": 0.36486119378384063,
+        "status": "accepted",
+        "prominent_minima": 2,
+        "fwhm_grid_intervals": 46.70921812686038,
+        "snr_per_mhz": 1.062936311200572,
+        "fwhm_over_snr_hz": 940790.1390352481,
+        "fwhm_times_snr_hz": 57976.5605393129,
+        "shots_for_snr_10": 1622707.7465164817,
+        "max_final_pf": 5.2222371635622906e-05
+      },
+      "status_counts": {
+        "accepted": 51,
+        "no_resolved_dip": 49
+      }
+    },
+    {
+      "cutoff": 0.01519911082952933,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "accepted": 49,
+        "no_resolved_dip": 51
+      }
+    },
+    {
+      "cutoff": 0.017073526474706904,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "accepted": 46,
+        "no_resolved_dip": 54
+      }
+    },
+    {
+      "cutoff": 0.019179102616724886,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "accepted": 44,
+        "no_resolved_dip": 56
+      }
+    },
+    {
+      "cutoff": 0.021544346900318846,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "accepted": 41,
+        "no_resolved_dip": 59
+      }
+    },
+    {
+      "cutoff": 0.02420128264794381,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "accepted": 38,
+        "no_resolved_dip": 62
+      }
+    },
+    {
+      "cutoff": 0.027185882427329403,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "accepted": 36,
+        "no_resolved_dip": 64
+      }
+    },
+    {
+      "cutoff": 0.030538555088334154,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "accepted": 33,
+        "no_resolved_dip": 67
+      }
+    },
+    {
+      "cutoff": 0.03430469286314919,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "accepted": 31,
+        "no_resolved_dip": 69
+      }
+    },
+    {
+      "cutoff": 0.03853528593710527,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "accepted": 28,
+        "no_resolved_dip": 72
+      }
+    },
+    {
+      "cutoff": 0.04328761281083057,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "accepted": 26,
+        "no_resolved_dip": 74
+      }
+    },
+    {
+      "cutoff": 0.04862601580065353,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "accepted": 23,
+        "no_resolved_dip": 77
+      }
+    },
+    {
+      "cutoff": 0.05462277217684343,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "accepted": 20,
+        "no_resolved_dip": 80
+      }
+    },
+    {
+      "cutoff": 0.061359072734131694,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "accepted": 17,
+        "no_resolved_dip": 83
+      }
+    },
+    {
+      "cutoff": 0.06892612104349695,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "accepted": 15,
+        "no_resolved_dip": 85
+      }
+    },
+    {
+      "cutoff": 0.0774263682681127,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "accepted": 12,
+        "no_resolved_dip": 88
+      }
+    },
+    {
+      "cutoff": 0.08697490026177834,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "accepted": 9,
+        "no_resolved_dip": 91
+      }
+    },
+    {
+      "cutoff": 0.09770099572992247,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "accepted": 6,
+        "no_resolved_dip": 94
+      }
+    },
+    {
+      "cutoff": 0.10974987654930568,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "no_resolved_dip": 100
+      }
+    },
+    {
+      "cutoff": 0.12328467394420659,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "no_resolved_dip": 100
+      }
+    },
+    {
+      "cutoff": 0.13848863713938717,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "no_resolved_dip": 100
+      }
+    },
+    {
+      "cutoff": 0.15556761439304723,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "no_resolved_dip": 100
+      }
+    },
+    {
+      "cutoff": 0.1747528400007683,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "no_resolved_dip": 100
+      }
+    },
+    {
+      "cutoff": 0.19630406500402725,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "no_resolved_dip": 100
+      }
+    },
+    {
+      "cutoff": 0.22051307399030456,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "no_resolved_dip": 100
+      }
+    },
+    {
+      "cutoff": 0.2477076355991709,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "no_resolved_dip": 100
+      }
+    },
+    {
+      "cutoff": 0.2782559402207126,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "no_resolved_dip": 100
+      }
+    },
+    {
+      "cutoff": 0.31257158496882353,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "no_resolved_dip": 100
+      }
+    },
+    {
+      "cutoff": 0.3511191734215127,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "no_resolved_dip": 100
+      }
+    },
+    {
+      "cutoff": 0.3944206059437656,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "no_resolved_dip": 100
+      }
+    },
+    {
+      "cutoff": 0.44306214575838776,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "no_resolved_dip": 100
+      }
+    },
+    {
+      "cutoff": 0.49770235643321137,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "no_resolved_dip": 100
+      }
+    },
+    {
+      "cutoff": 0.5590810182512223,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "no_resolved_dip": 100
+      }
+    },
+    {
+      "cutoff": 0.6280291441834247,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "no_resolved_dip": 100
+      }
+    },
+    {
+      "cutoff": 0.7054802310718645,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "no_resolved_dip": 100
+      }
+    },
+    {
+      "cutoff": 0.7924828983539169,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "no_resolved_dip": 100
+      }
+    },
+    {
+      "cutoff": 0.8902150854450392,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "no_resolved_dip": 100
+      }
+    },
+    {
+      "cutoff": 1.0,
+      "sampled_points_10mhz_up": 50,
+      "accepted_points_10mhz_up": 0,
+      "all_active_points_accepted": false,
+      "worst_fwhm_khz": null,
+      "minimum_snr": null,
+      "minimum_snr_per_mhz": null,
+      "best_sampled_tradeoff": null,
+      "status_counts": {
+        "no_resolved_dip": 100
+      }
+    }
+  ],
+  "diagnostics": [
+    {
+      "max_dt_ns": 0.24999879099105252,
+      "max_population": 0.9999975541833878,
+      "max_trace_error": 1.7741363933510002e-13,
+      "min_density_eigenvalue": 1.793891671285911e-13,
+      "min_dt_ns": 0.009375000000468751,
+      "min_population": 1.7939541177198031e-13,
+      "num_steps": 240296
+    },
+    {
+      "max_dt_ns": 0.24999942438441314,
+      "max_population": 0.9999969137651327,
+      "max_trace_error": 1.6608936448392342e-13,
+      "min_density_eigenvalue": 2.7135779039486017e-13,
+      "min_dt_ns": 0.010531162809833444,
+      "min_population": 2.713672365458092e-13,
+      "num_steps": 240290
+    },
+    {
+      "max_dt_ns": 0.2499961285854167,
+      "max_population": 0.9999961056694745,
+      "max_trace_error": 1.6564527527407336e-13,
+      "min_density_eigenvalue": 4.0677157838863534e-13,
+      "min_dt_ns": 0.011829908279685775,
+      "min_population": 4.0678573381552883e-13,
+      "num_steps": 240278
+    },
+    {
+      "max_dt_ns": 0.2499970937714939,
+      "max_population": 0.9999950860004403,
+      "max_trace_error": 1.6431300764452317e-13,
+      "min_density_eigenvalue": 6.033945619404277e-13,
+      "min_dt_ns": 0.013288820278773811,
+      "min_population": 6.034155512799918e-13,
+      "num_steps": 240264
+    },
+    {
+      "max_dt_ns": 0.2499995334707947,
+      "max_population": 0.9999937993740649,
+      "max_trace_error": 1.4721557306529576e-13,
+      "min_density_eigenvalue": 8.842860352629736e-13,
+      "min_dt_ns": 0.014927651189465105,
+      "min_population": 8.843167870104451e-13,
+      "num_steps": 240252
+    },
+    {
+      "max_dt_ns": 0.24999717457399398,
+      "max_population": 0.9999921759136131,
+      "max_trace_error": 1.4832579608992091e-13,
+      "min_density_eigenvalue": 1.2779991586144151e-12,
+      "min_dt_ns": 0.016768589337595813,
+      "min_population": 1.2780435754475846e-12,
+      "num_steps": 240240
+    },
+    {
+      "max_dt_ns": 0.2499984360540007,
+      "max_population": 0.9999901274597511,
+      "max_trace_error": 1.4233059175694507e-13,
+      "min_density_eigenvalue": 1.8177118417012208e-12,
+      "min_dt_ns": 0.01883655940284948,
+      "min_population": 1.8177749808342005e-12,
+      "num_steps": 240232
+    },
+    {
+      "max_dt_ns": 0.2499989482539785,
+      "max_population": 0.9999875427918681,
+      "max_trace_error": 1.3233858453531866e-13,
+      "min_density_eigenvalue": 2.5384820559669246e-12,
+      "min_dt_ns": 0.021159559876957505,
+      "min_population": 2.538570164412121e-12,
+      "num_steps": 240222
+    },
+    {
+      "max_dt_ns": 0.24999646053537086,
+      "max_population": 0.9999842816012134,
+      "max_trace_error": 1.3700152123874432e-13,
+      "min_density_eigenvalue": 3.4718535640636012e-12,
+      "min_dt_ns": 0.02376904213860925,
+      "min_population": 3.471973939705228e-12,
+      "num_steps": 240210
+    },
+    {
+      "max_dt_ns": 0.24999849819114234,
+      "max_population": 0.9999801668938075,
+      "max_trace_error": 1.2434497875801753e-13,
+      "min_density_eigenvalue": 4.637108872253996e-12,
+      "min_dt_ns": 0.02670033627741435,
+      "min_population": 4.6372694400708206e-12,
+      "num_steps": 240198
+    },
+    {
+      "max_dt_ns": 0.2499993372373163,
+      "max_population": 0.999974975413266,
+      "max_trace_error": 1.20570220474292e-13,
+      "min_density_eigenvalue": 6.029279812947745e-12,
+      "min_dt_ns": 0.029993129432199936,
+      "min_population": 6.0294882398322145e-12,
+      "num_steps": 240186
+    },
+    {
+      "max_dt_ns": 0.24999872460653658,
+      "max_population": 0.9999684255713516,
+      "max_trace_error": 1.2234657731369225e-13,
+      "min_density_eigenvalue": 7.605404231465073e-12,
+      "min_dt_ns": 0.03369200311992582,
+      "min_population": 7.605666605054055e-12,
+      "num_steps": 240184
+    },
+    {
+      "max_dt_ns": 0.24999681557253406,
+      "max_population": 0.9999601622414209,
+      "max_trace_error": 1.305622276959184e-13,
+      "min_density_eigenvalue": 9.272954934546485e-12,
+      "min_dt_ns": 0.03784703683018336,
+      "min_population": 9.273273669350462e-12,
+      "num_steps": 240172
+    },
+    {
+      "max_dt_ns": 0.2499981478922529,
+      "max_population": 0.999949737604684,
+      "max_trace_error": 1.1302070390684094e-13,
+      "min_density_eigenvalue": 1.0886056843053735e-11,
+      "min_dt_ns": 0.04251448605742124,
+      "min_population": 1.088642907999804e-11,
+      "num_steps": 240160
+    },
+    {
+      "max_dt_ns": 0.24999707658965487,
+      "max_population": 0.9999365870342632,
+      "max_trace_error": 1.0969003483296547e-13,
+      "min_density_eigenvalue": 1.2257641136442368e-11,
+      "min_dt_ns": 0.04775754395086951,
+      "min_population": 1.225805695972003e-11,
+      "num_steps": 240146
+    },
+    {
+      "max_dt_ns": 0.2499962808448212,
+      "max_population": 0.9999199987446085,
+      "max_trace_error": 1.1501910535116622e-13,
+      "min_density_eigenvalue": 1.3192573687179626e-11,
+      "min_dt_ns": 0.053647196894243514,
+      "min_population": 1.319301574253633e-11,
+      "num_steps": 240132
+    },
+    {
+      "max_dt_ns": 0.24999766721218183,
+      "max_population": 0.9998990756143716,
+      "max_trace_error": 1.1968204205459188e-13,
+      "min_density_eigenvalue": 1.3541561883356056e-11,
+      "min_dt_ns": 0.06026318559904461,
+      "min_population": 1.3542006649232957e-11,
+      "num_steps": 240124
+    },
+    {
+      "max_dt_ns": 0.24999803180783883,
+      "max_population": 0.9998726871962924,
+      "max_trace_error": 1.0147438445073931e-13,
+      "min_density_eigenvalue": 1.3264392349450307e-11,
+      "min_dt_ns": 0.06769508472384503,
+      "min_population": 1.3264813313088898e-11,
+      "num_steps": 240118
+    },
+    {
+      "max_dt_ns": 0.2499981359334911,
+      "max_population": 0.9998394094362865,
+      "max_trace_error": 1.0791367799356522e-13,
+      "min_density_eigenvalue": 1.2481507721968964e-11,
+      "min_dt_ns": 0.07604351563669096,
+      "min_population": 1.2481880297789226e-11,
+      "num_steps": 240106
+    },
+    {
+      "max_dt_ns": 0.24999705250802107,
+      "max_population": 0.9997974490266784,
+      "max_trace_error": 1.1612932837579137e-13,
+      "min_density_eigenvalue": 1.1487122519249847e-11,
+      "min_dt_ns": 0.08542150874041925,
+      "min_population": 1.1487429507945503e-11,
+      "num_steps": 240100
+    },
+    {
+      "max_dt_ns": 0.2499979976341279,
+      "max_population": 0.9997445485821977,
+      "max_trace_error": 1.0014211682118912e-13,
+      "min_density_eigenvalue": 1.0714168391949959e-11,
+      "min_dt_ns": 0.09595603380565902,
+      "min_population": 1.071440303859553e-11,
+      "num_steps": 240098
+    },
+    {
+      "max_dt_ns": 0.24999936391327152,
+      "max_population": 0.9996778679420031,
+      "max_trace_error": 9.725553695716371e-14,
+      "min_density_eigenvalue": 1.0660422226580827e-11,
+      "min_dt_ns": 0.10778971903099605,
+      "min_population": 1.0660588639963991e-11,
+      "num_steps": 240092
+    },
+    {
+      "max_dt_ns": 0.24999889564260297,
+      "max_population": 0.9995938358383346,
+      "max_trace_error": 8.992806499463768e-14,
+      "min_density_eigenvalue": 1.1816982978962082e-11,
+      "min_dt_ns": 0.08356731509255126,
+      "min_population": 1.1817093356882818e-11,
+      "num_steps": 240074
+    },
+    {
+      "max_dt_ns": 0.24999929721729763,
+      "max_population": 0.9994879649224999,
+      "max_trace_error": 8.570921750106208e-14,
+      "min_density_eigenvalue": 1.464349102188041e-11,
+      "min_dt_ns": 0.1215837872901449,
+      "min_population": 1.464356110055751e-11,
+      "num_steps": 240076
+    },
+    {
+      "max_dt_ns": 0.24999848353154028,
+      "max_population": 0.9993546216960547,
+      "max_trace_error": 8.348877145181177e-14,
+      "min_density_eigenvalue": 1.9615484516926064e-11,
+      "min_dt_ns": 0.12223131421983377,
+      "min_population": 1.961552892647635e-11,
+      "num_steps": 240080
+    },
+    {
+      "max_dt_ns": 0.2499962564878852,
+      "max_population": 0.9991867412829437,
+      "max_trace_error": 8.126832540256146e-14,
+      "min_density_eigenvalue": 2.7327980095034294e-11,
+      "min_dt_ns": 0.11941833652739446,
+      "min_population": 2.7328010061927916e-11,
+      "num_steps": 240082
+    },
+    {
+      "max_dt_ns": 0.24999924595241524,
+      "max_population": 0.9989754752592175,
+      "max_trace_error": 8.459899447643693e-14,
+      "min_density_eigenvalue": 3.8620921969747634e-11,
+      "min_dt_ns": 0.12203086296611268,
+      "min_population": 3.862094500274358e-11,
+      "num_steps": 240078
+    },
+    {
+      "max_dt_ns": 0.2499988948469626,
+      "max_population": 0.9987097590625741,
+      "max_trace_error": 8.504308368628699e-14,
+      "min_density_eigenvalue": 5.4700357589637794e-11,
+      "min_dt_ns": 0.11884563498038979,
+      "min_population": 5.470037843791149e-11,
+      "num_steps": 240078
+    },
+    {
+      "max_dt_ns": 0.24999858974333947,
+      "max_population": 0.9983757840846871,
+      "max_trace_error": 8.415490526658687e-14,
+      "min_density_eigenvalue": 7.725397160903327e-11,
+      "min_dt_ns": 0.10746355183575712,
+      "min_population": 7.7253993300358e-11,
+      "num_steps": 240076
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.9979563588258639,
+      "max_trace_error": 9.281464485866309e-14,
+      "min_density_eigenvalue": 1.0858718033663396e-10,
+      "min_dt_ns": 0.125,
+      "min_population": 1.0858720484854114e-10,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.9974301441578817,
+      "max_trace_error": 9.103828801926284e-14,
+      "min_density_eigenvalue": 1.518058448436232e-10,
+      "min_dt_ns": 0.125,
+      "min_population": 1.5180587344102495e-10,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.9967707508865116,
+      "max_trace_error": 7.66053886991358e-14,
+      "min_density_eigenvalue": 2.110657397482977e-10,
+      "min_dt_ns": 0.125,
+      "min_population": 2.1106577312575574e-10,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.9959456950749557,
+      "max_trace_error": 7.949196856316121e-14,
+      "min_density_eigenvalue": 2.9190371847421296e-10,
+      "min_dt_ns": 0.125,
+      "min_population": 2.9190375693866147e-10,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.9949152204011356,
+      "max_trace_error": 8.637535131583718e-14,
+      "min_density_eigenvalue": 4.0167068699928005e-10,
+      "min_dt_ns": 0.125,
+      "min_population": 4.016707306503346e-10,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.9936310205518051,
+      "max_trace_error": 8.038014698286133e-14,
+      "min_density_eigenvalue": 5.500947222253371e-10,
+      "min_dt_ns": 0.125,
+      "min_population": 5.500947711091437e-10,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.992034932802982,
+      "max_trace_error": 8.348877145181177e-14,
+      "min_density_eigenvalue": 7.500127137939626e-10,
+      "min_dt_ns": 0.125,
+      "min_population": 7.500127680096235e-10,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.9900577320090858,
+      "max_trace_error": 8.282263763703668e-14,
+      "min_density_eigenvalue": 1.0183191854210952e-09,
+      "min_dt_ns": 0.125,
+      "min_population": 1.0183192451811212e-09,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.9876182381300412,
+      "max_trace_error": 8.171241461241152e-14,
+      "min_density_eigenvalue": 1.3771926913398707e-09,
+      "min_dt_ns": 0.125,
+      "min_population": 1.3771927569966993e-09,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.9846230647363254,
+      "max_trace_error": 8.149037000748649e-14,
+      "min_density_eigenvalue": 1.855673814396351e-09,
+      "min_dt_ns": 0.125,
+      "min_population": 1.8556738864474694e-09,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.9809674801712125,
+      "max_trace_error": 7.505107646466058e-14,
+      "min_density_eigenvalue": 2.4916836455758453e-09,
+      "min_dt_ns": 0.125,
+      "min_population": 2.491683724656593e-09,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.9765380148046156,
+      "max_trace_error": 8.126832540256146e-14,
+      "min_density_eigenvalue": 3.3345856769610926e-09,
+      "min_dt_ns": 0.125,
+      "min_population": 3.3345857638303433e-09,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.9712175912497791,
+      "max_trace_error": 7.172040739078511e-14,
+      "min_density_eigenvalue": 4.448403263278319e-09,
+      "min_dt_ns": 0.125,
+      "min_population": 4.448403358799245e-09,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.964894003740017,
+      "max_trace_error": 8.37108160567368e-14,
+      "min_density_eigenvalue": 5.915801927386163e-09,
+      "min_dt_ns": 0.125,
+      "min_population": 5.9158020325021625e-09,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.9574723931397824,
+      "max_trace_error": 7.37188088351104e-14,
+      "min_density_eigenvalue": 7.842918526496036e-09,
+      "min_dt_ns": 0.125,
+      "min_population": 7.842918642200723e-09,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.9488917495270603,
+      "max_trace_error": 6.927791673660977e-14,
+      "min_density_eigenvalue": 1.0365048306721067e-08,
+      "min_dt_ns": 0.125,
+      "min_population": 1.0365048434020434e-08,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.9391441694496285,
+      "max_trace_error": 7.438494264988549e-14,
+      "min_density_eigenvalue": 1.3653057923981953e-08,
+      "min_dt_ns": 0.125,
+      "min_population": 1.3653058063846738e-08,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.9282933972983054,
+      "max_trace_error": 7.771561172376096e-14,
+      "min_density_eigenvalue": 1.792014041047085e-08,
+      "min_dt_ns": 0.125,
+      "min_population": 1.792014056377719e-08,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.9164861966218288,
+      "max_trace_error": 7.549516567451064e-14,
+      "min_density_eigenvalue": 2.342812520571717e-08,
+      "min_dt_ns": 0.125,
+      "min_population": 2.342812537317442e-08,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.9039472137645709,
+      "max_trace_error": 7.638334409421077e-14,
+      "min_density_eigenvalue": 3.049197074326582e-08,
+      "min_dt_ns": 0.125,
+      "min_population": 3.049197092533158e-08,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.8909474877674731,
+      "max_trace_error": 7.194245199571014e-14,
+      "min_density_eigenvalue": 3.9480306541029614e-08,
+      "min_dt_ns": 0.125,
+      "min_population": 3.9480306737814195e-08,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.8777425708725929,
+      "max_trace_error": 7.460698725481052e-14,
+      "min_density_eigenvalue": 5.0809056886069446e-08,
+      "min_dt_ns": 0.125,
+      "min_population": 5.080905709723486e-08,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.8644927079510688,
+      "max_trace_error": 7.149836278586008e-14,
+      "min_density_eigenvalue": 6.492453754555412e-08,
+      "min_dt_ns": 0.125,
+      "min_population": 6.492453777021656e-08,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.8512047313218165,
+      "max_trace_error": 7.038813976123492e-14,
+      "min_density_eigenvalue": 8.227248400593933e-08,
+      "min_dt_ns": 0.125,
+      "min_population": 8.227248424258912e-08,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.8377599016217271,
+      "max_trace_error": 7.949196856316121e-14,
+      "min_density_eigenvalue": 1.0325102247373926e-07,
+      "min_dt_ns": 0.125,
+      "min_population": 1.032510227201962e-07,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.8240788392141395,
+      "max_trace_error": 8.260059303211165e-14,
+      "min_density_eigenvalue": 1.2814952296329577e-07,
+      "min_dt_ns": 0.125,
+      "min_population": 1.2814952321672273e-07,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.8103788024904558,
+      "max_trace_error": 6.861178292183467e-14,
+      "min_density_eigenvalue": 1.5708210411570418e-07,
+      "min_dt_ns": 0.125,
+      "min_population": 1.570821043727009e-07,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.7973052859791275,
+      "max_trace_error": 6.905587213168474e-14,
+      "min_density_eigenvalue": 1.8993357856405408e-07,
+      "min_dt_ns": 0.125,
+      "min_population": 1.8993357882084996e-07,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.7856276777910395,
+      "max_trace_error": 6.861178292183467e-14,
+      "min_density_eigenvalue": 2.2634382155073128e-07,
+      "min_dt_ns": 0.125,
+      "min_population": 2.263438218034793e-07,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.775486546003236,
+      "max_trace_error": 7.016609515630989e-14,
+      "min_density_eigenvalue": 2.6575816013639985e-07,
+      "min_dt_ns": 0.125,
+      "min_population": 2.657581603815536e-07,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.7659302264531644,
+      "max_trace_error": 7.238654120556021e-14,
+      "min_density_eigenvalue": 2.969179058136386e-07,
+      "min_dt_ns": 0.125,
+      "min_population": 2.969179058940582e-07,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.755787782522391,
+      "max_trace_error": 7.704947790898586e-14,
+      "min_density_eigenvalue": 3.215210715916981e-07,
+      "min_dt_ns": 0.125,
+      "min_population": 3.2152107171476346e-07,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.7453529957430373,
+      "max_trace_error": 7.038813976123492e-14,
+      "min_density_eigenvalue": 3.832493163214486e-07,
+      "min_dt_ns": 0.125,
+      "min_population": 3.8324931646115015e-07,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.736071760536128,
+      "max_trace_error": 7.283063041541027e-14,
+      "min_density_eigenvalue": 4.4442515536615404e-07,
+      "min_dt_ns": 0.125,
+      "min_population": 4.444251555637509e-07,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.7277578940692958,
+      "max_trace_error": 7.216449660063518e-14,
+      "min_density_eigenvalue": 4.951520546827843e-07,
+      "min_dt_ns": 0.125,
+      "min_population": 4.951520548697404e-07,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.7190057219171546,
+      "max_trace_error": 7.638334409421077e-14,
+      "min_density_eigenvalue": 5.501945205219312e-07,
+      "min_dt_ns": 0.125,
+      "min_population": 5.501945207000816e-07,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.711285561483994,
+      "max_trace_error": 6.439293542825908e-14,
+      "min_density_eigenvalue": 6.10882381197628e-07,
+      "min_dt_ns": 0.125,
+      "min_population": 6.108823813686261e-07,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.7056030731162294,
+      "max_trace_error": 7.172040739078511e-14,
+      "min_density_eigenvalue": 6.783598892394829e-07,
+      "min_dt_ns": 0.125,
+      "min_population": 6.783598894044448e-07,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.6986231293809152,
+      "max_trace_error": 7.860379014346108e-14,
+      "min_density_eigenvalue": 7.534576685042842e-07,
+      "min_dt_ns": 0.125,
+      "min_population": 7.534576686636988e-07,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.6913324603592157,
+      "max_trace_error": 7.061018436615996e-14,
+      "min_density_eigenvalue": 8.367545095877277e-07,
+      "min_dt_ns": 0.125,
+      "min_population": 8.367545097416124e-07,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.6847272644058231,
+      "max_trace_error": 8.282263763703668e-14,
+      "min_density_eigenvalue": 9.28760947456897e-07,
+      "min_dt_ns": 0.125,
+      "min_population": 9.287609476050443e-07,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.6784216557110049,
+      "max_trace_error": 6.94999613415348e-14,
+      "min_density_eigenvalue": 1.0300770473176972e-06,
+      "min_dt_ns": 0.125,
+      "min_population": 1.0300770474598662e-06,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.6741400449547694,
+      "max_trace_error": 7.394085344003543e-14,
+      "min_density_eigenvalue": 1.141421433512988e-06,
+      "min_dt_ns": 0.125,
+      "min_population": 1.1414214336489722e-06,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.6677686254721447,
+      "max_trace_error": 6.705747068735946e-14,
+      "min_density_eigenvalue": 1.2635617172929137e-06,
+      "min_dt_ns": 0.125,
+      "min_population": 1.263561717422536e-06,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.661959190002759,
+      "max_trace_error": 7.105427357601002e-14,
+      "min_density_eigenvalue": 1.39724922553916e-06,
+      "min_dt_ns": 0.125,
+      "min_population": 1.3972492256622598e-06,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.6570886245822574,
+      "max_trace_error": 7.005507285384738e-14,
+      "min_density_eigenvalue": 1.5432029599335336e-06,
+      "min_dt_ns": 0.125,
+      "min_population": 1.543202960049971e-06,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.6527022338688774,
+      "max_trace_error": 6.772360450213455e-14,
+      "min_density_eigenvalue": 1.7021085024822128e-06,
+      "min_dt_ns": 0.125,
+      "min_population": 1.7021085025918813e-06,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.6472257639517077,
+      "max_trace_error": 6.461498003318411e-14,
+      "min_density_eigenvalue": 1.8746012166300652e-06,
+      "min_dt_ns": 0.125,
+      "min_population": 1.8746012167329037e-06,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.6433843884693539,
+      "max_trace_error": 7.793765632868599e-14,
+      "min_density_eigenvalue": 2.061239165116966e-06,
+      "min_dt_ns": 0.125,
+      "min_population": 2.061239165212966e-06,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.6434689749285671,
+      "max_trace_error": 7.216449660063518e-14,
+      "min_density_eigenvalue": 2.2624735984464284e-06,
+      "min_dt_ns": 0.125,
+      "min_population": 2.262473598535638e-06,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.6437099689650992,
+      "max_trace_error": 6.727951529228449e-14,
+      "min_density_eigenvalue": 2.478616313432492e-06,
+      "min_dt_ns": 0.125,
+      "min_population": 2.47861631351502e-06,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.6458981025891567,
+      "max_trace_error": 6.927791673660977e-14,
+      "min_density_eigenvalue": 2.709804195410851e-06,
+      "min_dt_ns": 0.125,
+      "min_population": 2.709804195486861e-06,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.6477614439649095,
+      "max_trace_error": 6.750155989720952e-14,
+      "min_density_eigenvalue": 2.9559623721198963e-06,
+      "min_dt_ns": 0.125,
+      "min_population": 2.9559623721896088e-06,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.6492702743835514,
+      "max_trace_error": 7.682743330406083e-14,
+      "min_density_eigenvalue": 3.2167673679105076e-06,
+      "min_dt_ns": 0.125,
+      "min_population": 3.216767367974197e-06,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.650421933898882,
+      "max_trace_error": 6.616929226765933e-14,
+      "min_density_eigenvalue": 3.4916123902441666e-06,
+      "min_dt_ns": 0.125,
+      "min_population": 3.491612390302148e-06,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.6512205779545067,
+      "max_trace_error": 6.94999613415348e-14,
+      "min_density_eigenvalue": 3.7795781841190867e-06,
+      "min_dt_ns": 0.125,
+      "min_population": 3.7795781841717125e-06,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.6516766540954677,
+      "max_trace_error": 7.194245199571014e-14,
+      "min_density_eigenvalue": 4.0794130030762255e-06,
+      "min_dt_ns": 0.125,
+      "min_population": 4.079413003123867e-06,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.6518065363666575,
+      "max_trace_error": 7.37188088351104e-14,
+      "min_density_eigenvalue": 4.389523412673091e-06,
+      "min_dt_ns": 0.125,
+      "min_population": 4.38952341271614e-06,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.6516323115202176,
+      "max_trace_error": 7.416289804496046e-14,
+      "min_density_eigenvalue": 4.707978118517123e-06,
+      "min_dt_ns": 0.125,
+      "min_population": 4.707978118555974e-06,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.6511807134723024,
+      "max_trace_error": 7.460698725481052e-14,
+      "min_density_eigenvalue": 5.032530526982422e-06,
+      "min_dt_ns": 0.125,
+      "min_population": 5.032530527017467e-06,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.6504815197401657,
+      "max_trace_error": 6.505906924303417e-14,
+      "min_density_eigenvalue": 5.360662670945689e-06,
+      "min_dt_ns": 0.125,
+      "min_population": 5.360662670977306e-06,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.6495669689993174,
+      "max_trace_error": 6.039613253960852e-14,
+      "min_density_eigenvalue": 5.689645141406336e-06,
+      "min_dt_ns": 0.125,
+      "min_population": 5.689645141434894e-06,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.6484715368501296,
+      "max_trace_error": 6.394884621840902e-14,
+      "min_density_eigenvalue": 6.016611676234752e-06,
+      "min_dt_ns": 0.125,
+      "min_population": 6.016611676260585e-06,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.6472303448024234,
+      "max_trace_error": 6.816769371198461e-14,
+      "min_density_eigenvalue": 6.338653444634914e-06,
+      "min_dt_ns": 0.125,
+      "min_population": 6.3386534446583395e-06,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.6458774719939254,
+      "max_trace_error": 6.838973831690964e-14,
+      "min_density_eigenvalue": 6.652925397321744e-06,
+      "min_dt_ns": 0.125,
+      "min_population": 6.652925397343062e-06,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.6444459015074119,
+      "max_trace_error": 6.317169010117141e-14,
+      "min_density_eigenvalue": 6.95674774866251e-06,
+      "min_dt_ns": 0.125,
+      "min_population": 6.956747748681978e-06,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.6429676046139706,
+      "max_trace_error": 7.37188088351104e-14,
+      "min_density_eigenvalue": 7.247699377849201e-06,
+      "min_dt_ns": 0.125,
+      "min_population": 7.247699377867054e-06,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.6414722495909988,
+      "max_trace_error": 7.194245199571014e-14,
+      "min_density_eigenvalue": 7.523705963362818e-06,
+      "min_dt_ns": 0.125,
+      "min_population": 7.523705963379279e-06,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.6399858262118028,
+      "max_trace_error": 6.461498003318411e-14,
+      "min_density_eigenvalue": 7.783111779042197e-06,
+      "min_dt_ns": 0.125,
+      "min_population": 7.783111779057442e-06,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.6385305386257297,
+      "max_trace_error": 8.215650382226158e-14,
+      "min_density_eigenvalue": 8.024720430222895e-06,
+      "min_dt_ns": 0.125,
+      "min_population": 8.024720430237097e-06,
+      "num_steps": 240064
+    },
+    {
+      "max_dt_ns": 0.25,
+      "max_population": 0.6371253199922877,
+      "max_trace_error": 6.59472476627343e-14,
+      "min_density_eigenvalue": 8.247803532379166e-06,
+      "min_dt_ns": 0.125,
+      "min_population": 8.247803532392458e-06,
+      "num_steps": 240064
+    }
+  ],
+  "caveat": "Local finite-window dip metrics; multiple minima can remain. SNR is ideal, not measured."
+}

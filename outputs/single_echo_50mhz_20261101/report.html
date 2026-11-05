@@ -1,0 +1,72 @@
+<!doctype html><meta charset="utf-8"><title>50 MHz single-echo study</title>
+<style>body{font:17px/1.55 system-ui;max-width:1080px;margin:40px auto;color:#172b3a;padding:20px}h1,h2{line-height:1.2}img{width:100%}table{border-collapse:collapse;width:100%}td,th{padding:10px;border-bottom:1px solid #ccd5dc;text-align:left}pre{font-size:13px;background:#f2f5f7;padding:20px;overflow:auto}.callout{background:#edf4f8;padding:20px;border-left:4px solid #136f9c}a{color:#136f9c}</style>
+<h1>50 MHz single-echo linewidth study</h1><p>1 November 2026. Local simulations only.</p>
+<div class="callout">The searches found a narrower single echo while maintaining approximately 0.4 absolute contrast near 50 MHz. They did <b>not</b> reach the 43.54 kHz coherence reference. This is a finite search, not a proof of an unattainable target or a global optimum.</div>
+<p>Every main comparison has an actual maximum |I−iQ| of 50 MHz, one echo reversal, and no inserted free-evolution interval. Robustness was optimized on 40, 45, 50, 55, 60 MHz and checked at 2.5 MHz spacing. The wider amplitude scan explicitly shows the limits outside that band. Model: three-level Duffing Lindblad, T₁=51.24 µs, T₂=7.31 µs, α/2π=−216 MHz; independent four-/five-level checks are in results.json.</p>
+<table><tr><th>Shape</th><th>FWHM at 50 (kHz)</th><th>Contrast at 50</th><th>Min C, 40–60</th><th>Max width, 40–60 (kHz)</th></tr><tr><td>Original polynomial p=5</td><td>152.48</td><td>0.379</td><td>0.358</td><td>155.59</td></tr><tr><td>Retuned polynomial</td><td>108.97</td><td>0.423</td><td>0.400</td><td>110.38</td></tr><tr><td>Symmetric phase shaping</td><td>94.71</td><td>0.420</td><td>0.405</td><td>98.58</td></tr><tr><td>Local-adiabatic candidate</td><td>144.14</td><td>0.402</td><td>0.384</td><td>157.60</td></tr></table>
+<img src="comparison.png" alt="Spectra, linewidth, contrast, and wider spectra"><!-- BEGIN 50MHZ 2D MAPS -->
+<h2>Two-dimensional spectroscopy maps</h2>
+<p>The retuned polynomial and symmetric phase-shaped echo are shown alongside the original p=5 control. Each column keeps its pulse shape fixed while sweeping the actual peak Rabi rate. The top row spans 10–100 MHz and ±500 kHz detuning; the bottom row zooms into the 40–60 MHz operating band and ±150 kHz detuning. All six panels share the same 0–1 excited-state population color scale. Dashed lines mark 50 MHz; dotted lines on the full maps mark 40 and 60 MHz.</p>
+<img src="spectroscopy_maps_2d.png" alt="Two-dimensional population maps for the original polynomial, retuned polynomial, and symmetric phase-shaped echo, with operating-band zooms">
+<p>These are the saved three-level simulation values, displayed without interpolation. Detuning spacing is 2.5 kHz; amplitude spacing is 2.5 MHz inside 40–60 MHz and 5 MHz elsewhere. This addition does not introduce new simulations or extend the validation range.</p>
+<p><a href="spectroscopy_maps_2d.pdf">PDF</a> · <a href="spectroscopy_maps_2d.svg">SVG</a> · <a href="spectroscopy_maps_2d_provenance.json">Map provenance</a> · <a href="validated_spectra.npz">Underlying arrays</a></p>
+<p>Reproduce this addition after generating the base report: <code>.venv/bin/python scripts/plot_50mhz_echo_maps.py</code>.</p>
+<!-- END 50MHZ 2D MAPS -->
+<h2>Why the polynomial does not remove every source of broadening</h2>
+<p>The endpoint correction removes a finite drive jump, but a global (1−(2t/L)²)ᵖ taper also redistributes the useful weak tail. Pulse length and pulse-envelope width are not the detuning-sensitive interrogation time. For a real two-level echo, θ(t)=∫Ω<sub>I</sub>(s)ds and S=∫sinθ(t)dt give Pₑ(Δ)=Δ²S²/4+O(Δ⁴). Rapid rotations contribute with alternating signs. Increasing L at fixed cutoff also increases the root-Lorentzian core width σ=Lc/(2√(1−c²)); it is not simply extending an unchanged tail.</p>
+<p>A polynomial edge behaves as Ω≈b s<sup>p+1</sup>, where s is distance from the endpoint. Rescaling the local Schrödinger equation gives a characteristic edge scale Δ<sub>edge</sub>∝b<sup>1/(p+2)</sup>. A high p can weaken amplitude dependence while still having a larger absolute linewidth. This scaling is not a full dissipative FWHM formula.</p>
+<h2>New control direction: time-reversed phase shaping</h2>
+<p>Let the complex control be u(t)=A g(t)s(t)exp[iφ(t)], with g and φ even and the echo sign s odd. Then u(−t)=−u(t). In an ideal resonant two-level system, the second half is the inverse of the first: U(0,A)=identity for every global A, even when the instantaneous control axes do not commute. This preserves the amplitude-independent resonant cancellation and permits optimization of the off-resonant response through φ(t). It does not guarantee constant linewidth or contrast, and multilevel terms, DRAG, and dissipation break the ideal cancellation.</p>
+<p>This study tests φ(t)=φ₀ exp[−(t/τφ)²], with the derivative correction applied to the complete complex waveform. It is a concrete tested extension of the scalar envelope. The limited search does not establish that phase shaping reaches the coherence reference.</p>
+<p>Controlled comparison: keeping this candidate's envelope parameters fixed and switching off the phase modulation gives 117.76 kHz and contrast 0.463, with the actual peak again normalized to 50 MHz.</p>
+<p>A separate local-adiabatic candidate uses |dΩ/dt|∝(Ω²+Δ*²)<sup>3/2</sup>/|Δ*|, inspired by <a href="https://arxiv.org/abs/1411.5783">fast quasiadiabatic dynamics</a>. Its regularized tail did not outperform the selected retuned polynomial in this search. That method controls the time spent near Ω≈Δ*, but it does not remove the dephasing cost of making the qubit sensitive to detuning. <a href="https://arxiv.org/abs/2308.14187">Mihov and Vitanov</a> analyze power narrowing and cutoff broadening; their ideal asymptotic result is not a dissipative linewidth guarantee for this echo.</p>
+<h2>What the T₂ reference means</h2>
+<p>1/(πT₂) is the weak-drive homogeneous Lorentzian FWHM. It is a reference, not a universal bound on the FWHM of a transient interference dip. A very narrow dip with tiny contrast or large competing fringes does not meet the present objective. The model treats the supplied T₂ as Markovian; it does not justify replacing it by the measured echo coherence time. Slow frequency noise and a DC detuning signal act through the same operator, so protecting against one may also suppress the desired frequency response.</p>
+<h2>Amplitude convention matters</h2>
+<p>The original 50 MHz nominal scale peaks at 44.53 MHz after echo smoothing. Unnormalized optimization can reduce that peak further by shrinking the core. Those historical-convention comparisons are recorded separately in results.json; they are not used to claim a fixed-peak improvement.</p>
+<img src="waveforms.png" alt="Waveform tails and central I/Q reversal"><h2>Exact candidate parameters</h2><pre>{
+  &quot;baseline&quot;: {
+    &quot;duration_us&quot;: 30.0,
+    &quot;cutoff&quot;: 0.001,
+    &quot;power&quot;: 5.0,
+    &quot;transition_us&quot;: 0.016,
+    &quot;drag_beta&quot;: -0.5,
+    &quot;anharmonicity_mhz&quot;: -216.0
+  },
+  &quot;retuned&quot;: {
+    &quot;duration_us&quot;: 31.901278320784403,
+    &quot;cutoff&quot;: 5.571060939955552e-05,
+    &quot;power&quot;: 1.0013692230338123,
+    &quot;transition_us&quot;: 0.016,
+    &quot;drag_beta&quot;: -0.5,
+    &quot;anharmonicity_mhz&quot;: -216.0
+  },
+  &quot;phase&quot;: {
+    &quot;duration_us&quot;: 27.681945163021936,
+    &quot;cutoff&quot;: 0.00012148126644240747,
+    &quot;power&quot;: 1.373018937798303,
+    &quot;transition_us&quot;: 0.016,
+    &quot;drag_beta&quot;: -0.5,
+    &quot;anharmonicity_mhz&quot;: -216.0,
+    &quot;phase_rad&quot;: -1.8543341745279704,
+    &quot;phase_scale_us&quot;: 0.7996939165673144
+  },
+  &quot;local_adiabatic&quot;: {
+    &quot;duration_us&quot;: 28.43677695034196,
+    &quot;cutoff&quot;: 0.001,
+    &quot;power&quot;: 5.0,
+    &quot;transition_us&quot;: 0.016,
+    &quot;drag_beta&quot;: -0.5,
+    &quot;anharmonicity_mhz&quot;: -216.0,
+    &quot;tail_scale_mhz&quot;: 0.352843453410727,
+    &quot;tail_cap_mhz&quot;: 4.0401119135004455,
+    &quot;core_us&quot;: 0.01504920344507306,
+    &quot;edge_power&quot;: 4.7199755253256255,
+    &quot;reference_rabi_mhz&quot;: 50.0
+  }
+}</pre>
+<h2>Bandwidth sensitivity</h2><p>The phase candidate has a root-Lorentzian core σ=1.681 ns. Gaussian convolution of the complete I/Q waveform, followed by renormalization to a 50 MHz actual peak, gives the following illustrative results. These are not measured transfer functions. A 2 ns Gaussian standard deviation corresponds to a 66.3 MHz amplitude −3 dB bandwidth; 4 ns corresponds to 33.1 MHz. A sufficiently narrow hardware passband can erase the contrast margin.</p>
+<table><tr><th>Filter σ (ns)</th><th>FWHM at 50 (kHz)</th><th>Contrast at 50</th></tr><tr><td>0</td><td>94.71</td><td>0.420</td></tr><tr><td>1</td><td>94.74</td><td>0.418</td></tr><tr><td>2</td><td>95.89</td><td>0.410</td></tr><tr><td>4</td><td>107.70</td><td>0.392</td></tr></table><p><a href="bandwidth_check.json">Filter details and 40/50/60 MHz checks</a>. Full hardware transfer-function calibration remains necessary.</p>
+<h2>Reproduction and limits</h2><p>Run scripts/optimize_50mhz_echo.py with --family polynomial or phase --normalization peak, then scripts/report_50mhz_echo.py. The report also uses the nominal selective and phase searches; use --normalization nominal to reproduce those. The random seed is 20261101. The objective penalizes contrast below 0.405, additional minima with prominence above 0.01, and center offsets above 2 kHz. Selection then requires C≥0.4 at all five training amplitudes. The peak local-adiabatic row rescales the best nominal candidate; it is not a separate peak-constrained optimization.</p>
+<p>Focused validation: 32 tests passed and all added Python files pass Ruff. Full pytest is blocked by missing torch; excluding that module gives 217 passes and one unrelated existing Figure 3 plotting failure. Repository-wide lint has 692 existing findings. See <a href="validation_checks.json">validation commands and limitations</a>.</p>
+<p><a href="results.json">Exact metrics, numerical checks, and source hashes</a> · <a href="validated_spectra.npz">Population arrays</a> · <a href="comparison.pdf">Vector figure</a></p>

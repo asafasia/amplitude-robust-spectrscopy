@@ -1,0 +1,100 @@
+{
+  "label": "phase_-0.002",
+  "pulse": {
+    "duration_us": 16.178299069401664,
+    "core_us": 0.016324410942141643,
+    "tail_gain": 0.25821137286930257,
+    "tail_join_us": 2.5602620847803212,
+    "tail_scale_us": 10.579858486411853,
+    "tail_power": 0.0027890425617156053,
+    "edge_width_us": 0.24344295524682155,
+    "transition_us": 0.03677761518153051,
+    "drag_beta": -0.5,
+    "anharmonicity_mhz": -216.0,
+    "phase_rad": -2.890301925464823,
+    "phase_scale_us": 0.22820110102473484,
+    "phase2_rad": 0.0,
+    "phase2_scale_us": 4.0,
+    "rotation_mix": 0.0,
+    "amp_coefficients": [
+      -0.14971141822374157,
+      0.28876971639384763,
+      0.01342426018232623,
+      0.19866305297385445
+    ],
+    "phase_coefficients": [
+      2.2183733039702016,
+      -0.6706607816533459,
+      1.8183860231091895,
+      -0.20577346183226686,
+      0.011303812022317228
+    ],
+    "odd_phase_coefficients": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "peak_scale": 0.8395666669857645,
+  "rows": [
+    {
+      "rabi_mhz": 5.0,
+      "center_hz": 0.0740861143297685,
+      "fwhm_hz": 130771.63500454398,
+      "contrast": 0.2583227430835062,
+      "accepted": true,
+      "satellite_prominence": 1.364623978233892e-05,
+      "final_leakage_max": 1.891057265494792e-06,
+      "population_at_zero": 0.0833485732168052
+    },
+    {
+      "rabi_mhz": 15.0,
+      "center_hz": 24.376602778570614,
+      "fwhm_hz": 133206.01424635982,
+      "contrast": 0.5681142916932854,
+      "accepted": true,
+      "satellite_prominence": 0.0014905109753448054,
+      "final_leakage_max": 1.4420279852056082e-05,
+      "population_at_zero": 0.19644626236004625
+    },
+    {
+      "rabi_mhz": 50.0,
+      "center_hz": -166.09387113026966,
+      "fwhm_hz": 127475.12607702221,
+      "contrast": 0.42019895253685496,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 0.00015554286796236962,
+      "population_at_zero": 0.29697427150570116
+    }
+  ],
+  "changes": [
+    {
+      "rabi_mhz": 5.0,
+      "width_change_khz": -0.11431492380020791,
+      "contrast_change": 0.0006652988863206644
+    },
+    {
+      "rabi_mhz": 15.0,
+      "width_change_khz": -0.1097565220973047,
+      "contrast_change": 0.07349638505571293
+    },
+    {
+      "rabi_mhz": 50.0,
+      "width_change_khz": -25.003541453196334,
+      "contrast_change": 0.04148149312401411
+    }
+  ],
+  "pilot_margin_pass": true,
+  "diagnostics": {
+    "max_trace_error": 3.064215547965432e-14,
+    "min_population": 3.202779438682128e-07,
+    "max_population": 0.9166496813574743,
+    "min_density_eigenvalue": 3.202779434516869e-07,
+    "num_steps": 64728,
+    "min_dt_ns": 0.22937740540262366,
+    "max_dt_ns": 0.2499904311433138
+  },
+  "phase_delta": -0.002,
+  "scale_delta_us": 0.0
+}

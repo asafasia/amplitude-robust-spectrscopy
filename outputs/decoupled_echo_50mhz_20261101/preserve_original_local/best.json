@@ -1,0 +1,145 @@
+{
+  "parameters": [
+    20.989429465840715,
+    -1.8218943469276592,
+    -1.8693878130250847,
+    0.18499192986164506,
+    0.8190712818720995,
+    3.5282611008088542,
+    0.3168289373886812,
+    -0.9494041636809785,
+    -0.636872145070768
+  ],
+  "pulse": {
+    "duration_us": 20.989429465840715,
+    "core_us": 0.015069736308923627,
+    "tail_gain": 0.7992186150965157,
+    "tail_join_us": 1.53105901100314,
+    "tail_scale_us": 6.5928209603323795,
+    "tail_power": 3.5282611008088542,
+    "edge_width_us": 3.325029317028494,
+    "transition_us": 0.016,
+    "drag_beta": -0.5,
+    "anharmonicity_mhz": -216.0,
+    "phase_rad": -0.9494041636809785,
+    "phase_scale_us": 0.23074263878078,
+    "phase2_rad": 0.0,
+    "phase2_scale_us": 4.0
+  },
+  "peak_scale": 0.8915733113826689,
+  "rows": [
+    {
+      "rabi_mhz": 5.0,
+      "center_hz": 15.470550394101211,
+      "fwhm_hz": 130215.7156885318,
+      "contrast": 0.258634143079049,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 1.6490245927267584e-06,
+      "population_at_zero": 0.08173088094503214
+    },
+    {
+      "rabi_mhz": 7.5,
+      "center_hz": 1.8683739387916196,
+      "fwhm_hz": 133042.7677183448,
+      "contrast": 0.4164032450906001,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 4.310189784795102e-06,
+      "population_at_zero": 0.12114670205701893
+    },
+    {
+      "rabi_mhz": 10.0,
+      "center_hz": -3.0026034895179197,
+      "fwhm_hz": 131743.63192408037,
+      "contrast": 0.4964633607439961,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 6.935850864178062e-06,
+      "population_at_zero": 0.1473113359547945
+    },
+    {
+      "rabi_mhz": 15.0,
+      "center_hz": -4.681763730398437,
+      "fwhm_hz": 130233.4265173686,
+      "contrast": 0.5337625874706219,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 1.0793975553006934e-05,
+      "population_at_zero": 0.18550921850149515
+    },
+    {
+      "rabi_mhz": 20.0,
+      "center_hz": 16.67452516853086,
+      "fwhm_hz": 135532.0531820638,
+      "contrast": 0.5284304690120274,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 2.0562091567321783e-05,
+      "population_at_zero": 0.2101153382276238
+    },
+    {
+      "rabi_mhz": 30.0,
+      "center_hz": 38.56896549603089,
+      "fwhm_hz": 134097.06830621988,
+      "contrast": 0.47475912418561417,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 4.3482463611428796e-05,
+      "population_at_zero": 0.2410995176042956
+    },
+    {
+      "rabi_mhz": 40.0,
+      "center_hz": 64.92270693687385,
+      "fwhm_hz": 135021.66191841,
+      "contrast": 0.43553230463580594,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 7.521701458188914e-05,
+      "population_at_zero": 0.2610295929475269
+    },
+    {
+      "rabi_mhz": 50.0,
+      "center_hz": 101.51027283742143,
+      "fwhm_hz": 137756.52145319706,
+      "contrast": 0.4058237048231408,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 0.00011630956706099899,
+      "population_at_zero": 0.2751161580802166
+    },
+    {
+      "rabi_mhz": 60.0,
+      "center_hz": 108.50841689178867,
+      "fwhm_hz": 139950.3723360906,
+      "contrast": 0.3822053955153532,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 0.00016579525379240118,
+      "population_at_zero": 0.28582224922991634
+    }
+  ],
+  "quality": {
+    "feasible": true,
+    "violation": 0.0,
+    "width50_khz": 137.75652145319705,
+    "max_width_khz": 139.9503723360906,
+    "min_contrast": 0.258634143079049,
+    "max_contrast_regression": -0.0010159204592226079,
+    "max_width_regression_khz": -0.6691041544332847,
+    "max_satellite": 0.0,
+    "max_center_khz": 0.10850841689178867,
+    "max_leakage": 0.00016579525379240118
+  },
+  "loss": 138.4146767180651,
+  "diagnostics": {
+    "max_trace_error": 2.5757174171303632e-14,
+    "min_population": 4.952390119530184e-07,
+    "max_population": 0.91826760385319,
+    "min_density_eigenvalue": 4.952390119530179e-07,
+    "num_steps": 42012,
+    "min_dt_ns": 0.25,
+    "max_dt_ns": 0.5
+  },
+  "configuration_sha256": "a10b430e621ad5c00b90d3ea8d50a3ebf266e62b7f61d40c8ee2b213289c11d5"
+}

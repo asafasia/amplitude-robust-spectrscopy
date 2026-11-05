@@ -1,0 +1,350 @@
+{
+  "method": "Differential evolution followed by constrained SLSQP with finite-difference dynamics gradients",
+  "campaigns": [
+    {
+      "name": "de_local",
+      "run": {
+        "stage": "global",
+        "campaign": "de_local",
+        "track": "local",
+        "start": null,
+        "population": 40,
+        "generations": 12,
+        "budget": 520,
+        "iterations": 24,
+        "workers": 2,
+        "seed": 110113,
+        "extra_amplitudes": [],
+        "fine": false
+      },
+      "completion": {
+        "status": "Maximum number of iterations has been exceeded.",
+        "evaluations": 520,
+        "feasible": 3,
+        "best": {
+          "feasible": true,
+          "width50_khz": 128.60095489353714,
+          "contrast50": 0.4211586931531199,
+          "local_contrast50": 0.4272232401160944,
+          "min_contrast_gain": 0.0034505774929294852,
+          "min_width_gain_khz": 0.4924133629104972,
+          "max_violation": 0.0,
+          "loss": 1.2869308487245588
+        }
+      },
+      "sources": {
+        "optimize_flexible_50mhz_echo.py": "f20e334f78dc1e97d3b2ed90d56809c34666075a272f7c930a920eec426fc05a",
+        "decoupled_echo.py": "ec549986a3a3089a7d5f8b68f6628eaee8b771d7da4820adbf2472ce8d20343d",
+        "polynomial_echo.py": "59021291bb6363a59767274c3c3d727843d37319364a60d51d63c9e7193b950d",
+        "notch_constraints.py": "c297d5d311598acf830ab8685754f0c45cb072bf3e752f87224dd8791af9234a",
+        "qutrit_rk4.cpp": "493150abcad473a10ff4128c3b42a5f0ddfd0cdd8fe4c1cf09a936858068bab6",
+        "flexible_echo.py": "f59d9322511710559224dbdd6b20e2e71162a03cf81afa7cd6c51bce3f342b18",
+        "dip_metrics.py": "851f4571da5dc275890f42eaf7393f1818fffe69043f4fff703272dddf9290ca",
+        "hybrid_echo_search.py": "9d6aacb1840b9a346fa72dbd8394b83954714270536c322fa70b8c4601097764"
+      }
+    },
+    {
+      "name": "de_primary",
+      "run": {
+        "stage": "global",
+        "campaign": "de_primary",
+        "track": "primary",
+        "start": null,
+        "population": 48,
+        "generations": 16,
+        "budget": 816,
+        "iterations": 24,
+        "workers": 3,
+        "seed": 110112,
+        "extra_amplitudes": [],
+        "fine": false
+      },
+      "completion": {
+        "status": "Maximum number of iterations has been exceeded.",
+        "evaluations": 816,
+        "feasible": 2,
+        "best": {
+          "feasible": false,
+          "width50_khz": 107.72860988192106,
+          "contrast50": 0.4019711461086689,
+          "local_contrast50": 0.30650711374626727,
+          "min_contrast_gain": 0.0007985609974884844,
+          "min_width_gain_khz": -0.20480220587344888,
+          "max_violation": 0.05144269456655581,
+          "loss": 1.1905766149341344
+        }
+      },
+      "sources": {
+        "optimize_flexible_50mhz_echo.py": "f20e334f78dc1e97d3b2ed90d56809c34666075a272f7c930a920eec426fc05a",
+        "decoupled_echo.py": "ec549986a3a3089a7d5f8b68f6628eaee8b771d7da4820adbf2472ce8d20343d",
+        "polynomial_echo.py": "59021291bb6363a59767274c3c3d727843d37319364a60d51d63c9e7193b950d",
+        "notch_constraints.py": "c297d5d311598acf830ab8685754f0c45cb072bf3e752f87224dd8791af9234a",
+        "qutrit_rk4.cpp": "493150abcad473a10ff4128c3b42a5f0ddfd0cdd8fe4c1cf09a936858068bab6",
+        "flexible_echo.py": "f59d9322511710559224dbdd6b20e2e71162a03cf81afa7cd6c51bce3f342b18",
+        "dip_metrics.py": "851f4571da5dc275890f42eaf7393f1818fffe69043f4fff703272dddf9290ca",
+        "hybrid_echo_search.py": "9d6aacb1840b9a346fa72dbd8394b83954714270536c322fa70b8c4601097764"
+      }
+    },
+    {
+      "name": "slsqp_local",
+      "run": {
+        "stage": "local",
+        "campaign": "slsqp_local",
+        "track": "local",
+        "start": "outputs/hybrid_echo_50mhz_20261101/de_local_start.json",
+        "population": 48,
+        "generations": 15,
+        "budget": 760,
+        "iterations": 24,
+        "workers": 3,
+        "seed": 110112,
+        "extra_amplitudes": [],
+        "fine": false
+      },
+      "completion": {
+        "status": "Iteration limit reached",
+        "evaluations": 696,
+        "feasible": 27,
+        "best": {
+          "feasible": true,
+          "width50_khz": 128.6556071531052,
+          "contrast50": 0.4213838886703169,
+          "local_contrast50": 0.4272158041740522,
+          "min_contrast_gain": 0.0038466583837095114,
+          "min_width_gain_khz": 0.3065549562643639,
+          "max_violation": 0.0,
+          "loss": 1.2875567468059699
+        }
+      },
+      "sources": {
+        "optimize_flexible_50mhz_echo.py": "f20e334f78dc1e97d3b2ed90d56809c34666075a272f7c930a920eec426fc05a",
+        "decoupled_echo.py": "ec549986a3a3089a7d5f8b68f6628eaee8b771d7da4820adbf2472ce8d20343d",
+        "polynomial_echo.py": "59021291bb6363a59767274c3c3d727843d37319364a60d51d63c9e7193b950d",
+        "notch_constraints.py": "c297d5d311598acf830ab8685754f0c45cb072bf3e752f87224dd8791af9234a",
+        "qutrit_rk4.cpp": "493150abcad473a10ff4128c3b42a5f0ddfd0cdd8fe4c1cf09a936858068bab6",
+        "flexible_echo.py": "f59d9322511710559224dbdd6b20e2e71162a03cf81afa7cd6c51bce3f342b18",
+        "dip_metrics.py": "851f4571da5dc275890f42eaf7393f1818fffe69043f4fff703272dddf9290ca",
+        "hybrid_echo_search.py": "9d6aacb1840b9a346fa72dbd8394b83954714270536c322fa70b8c4601097764"
+      }
+    },
+    {
+      "name": "slsqp_monotone",
+      "run": {
+        "stage": "local",
+        "campaign": "slsqp_monotone",
+        "track": "local",
+        "start": "outputs/hybrid_echo_50mhz_20261101/de_local_start.json",
+        "population": 48,
+        "generations": 15,
+        "budget": 690,
+        "iterations": 22,
+        "workers": 2,
+        "seed": 110112,
+        "extra_amplitudes": [],
+        "fine": false,
+        "target_contrast": 0.403,
+        "monotone_local": true,
+        "trust_radius": 0.04
+      },
+      "completion": {
+        "status": "Optimization terminated successfully",
+        "evaluations": 244,
+        "feasible": 136,
+        "best": {
+          "feasible": true,
+          "width50_khz": 118.36809870461917,
+          "contrast50": 0.4085726087994845,
+          "local_contrast50": 0.4149642017297854,
+          "min_contrast_gain": 0.0010258475067060346,
+          "min_width_gain_khz": 0.32628005429427276,
+          "max_violation": 0.0,
+          "loss": 1.1889792159404962
+        }
+      },
+      "sources": {
+        "optimize_flexible_50mhz_echo.py": "f20e334f78dc1e97d3b2ed90d56809c34666075a272f7c930a920eec426fc05a",
+        "decoupled_echo.py": "ec549986a3a3089a7d5f8b68f6628eaee8b771d7da4820adbf2472ce8d20343d",
+        "polynomial_echo.py": "59021291bb6363a59767274c3c3d727843d37319364a60d51d63c9e7193b950d",
+        "notch_constraints.py": "c297d5d311598acf830ab8685754f0c45cb072bf3e752f87224dd8791af9234a",
+        "qutrit_rk4.cpp": "493150abcad473a10ff4128c3b42a5f0ddfd0cdd8fe4c1cf09a936858068bab6",
+        "flexible_echo.py": "f59d9322511710559224dbdd6b20e2e71162a03cf81afa7cd6c51bce3f342b18",
+        "dip_metrics.py": "851f4571da5dc275890f42eaf7393f1818fffe69043f4fff703272dddf9290ca",
+        "hybrid_echo_search.py": "af2948eb408186eb39b965c2cfd8c0b422c05cc32dbb4ccb192540f440e09770"
+      }
+    },
+    {
+      "name": "slsqp_primary",
+      "run": {
+        "stage": "local",
+        "campaign": "slsqp_primary",
+        "track": "primary",
+        "start": "outputs/hybrid_echo_50mhz_20261101/de_primary_start.json",
+        "population": 48,
+        "generations": 15,
+        "budget": 820,
+        "iterations": 26,
+        "workers": 3,
+        "seed": 110112,
+        "extra_amplitudes": [],
+        "fine": false
+      },
+      "completion": {
+        "status": "Iteration limit reached",
+        "evaluations": 744,
+        "feasible": 95,
+        "best": {
+          "feasible": true,
+          "width50_khz": 106.62512422460878,
+          "contrast50": 0.4029945547313695,
+          "local_contrast50": 0.3082943536705039,
+          "min_contrast_gain": 0.000995503263068298,
+          "min_width_gain_khz": 0.4018539793714808,
+          "max_violation": 0.00027226343152497723,
+          "loss": 1.077524633851288
+        }
+      },
+      "sources": {
+        "optimize_flexible_50mhz_echo.py": "f20e334f78dc1e97d3b2ed90d56809c34666075a272f7c930a920eec426fc05a",
+        "decoupled_echo.py": "ec549986a3a3089a7d5f8b68f6628eaee8b771d7da4820adbf2472ce8d20343d",
+        "polynomial_echo.py": "59021291bb6363a59767274c3c3d727843d37319364a60d51d63c9e7193b950d",
+        "notch_constraints.py": "c297d5d311598acf830ab8685754f0c45cb072bf3e752f87224dd8791af9234a",
+        "qutrit_rk4.cpp": "493150abcad473a10ff4128c3b42a5f0ddfd0cdd8fe4c1cf09a936858068bab6",
+        "flexible_echo.py": "f59d9322511710559224dbdd6b20e2e71162a03cf81afa7cd6c51bce3f342b18",
+        "dip_metrics.py": "851f4571da5dc275890f42eaf7393f1818fffe69043f4fff703272dddf9290ca",
+        "hybrid_echo_search.py": "9d6aacb1840b9a346fa72dbd8394b83954714270536c322fa70b8c4601097764"
+      }
+    },
+    {
+      "name": "slsqp_primary_repair",
+      "run": {
+        "stage": "local",
+        "campaign": "slsqp_primary_repair",
+        "track": "primary",
+        "start": "outputs/hybrid_echo_50mhz_20261101/screens/primary_intermediate_input.json",
+        "population": 48,
+        "generations": 15,
+        "budget": 330,
+        "iterations": 10,
+        "workers": 2,
+        "seed": 110112,
+        "extra_amplitudes": [
+          18.0,
+          18.5,
+          19.0,
+          22.0,
+          22.5,
+          23.0,
+          42.0,
+          44.0,
+          46.0,
+          52.0,
+          53.0,
+          54.0
+        ],
+        "fine": false,
+        "target_contrast": null,
+        "monotone_local": false,
+        "trust_radius": 0.008,
+        "satellite_target": 0.009
+      },
+      "completion": {
+        "status": "Optimization terminated successfully",
+        "evaluations": 276,
+        "feasible": 249,
+        "best": {
+          "feasible": true,
+          "width50_khz": 107.11220948129677,
+          "contrast50": 0.403009820847055,
+          "local_contrast50": 0.3097086279774515,
+          "min_contrast_gain": 0.0010011391284526772,
+          "min_width_gain_khz": 0.3925690785290499,
+          "max_violation": 0.0,
+          "loss": 1.080452706016453
+        }
+      },
+      "sources": {
+        "optimize_flexible_50mhz_echo.py": "f20e334f78dc1e97d3b2ed90d56809c34666075a272f7c930a920eec426fc05a",
+        "decoupled_echo.py": "ec549986a3a3089a7d5f8b68f6628eaee8b771d7da4820adbf2472ce8d20343d",
+        "polynomial_echo.py": "59021291bb6363a59767274c3c3d727843d37319364a60d51d63c9e7193b950d",
+        "notch_constraints.py": "c297d5d311598acf830ab8685754f0c45cb072bf3e752f87224dd8791af9234a",
+        "qutrit_rk4.cpp": "493150abcad473a10ff4128c3b42a5f0ddfd0cdd8fe4c1cf09a936858068bab6",
+        "flexible_echo.py": "f59d9322511710559224dbdd6b20e2e71162a03cf81afa7cd6c51bce3f342b18",
+        "dip_metrics.py": "851f4571da5dc275890f42eaf7393f1818fffe69043f4fff703272dddf9290ca",
+        "hybrid_echo_search.py": "ecd7d103031fba306dbd05a3002a6f9af55798856c4245bfddc9ea8a3d525471"
+      }
+    },
+    {
+      "name": "slsqp_wide_phase",
+      "run": {
+        "stage": "local",
+        "campaign": "slsqp_wide_phase",
+        "track": "primary",
+        "start": "outputs/hybrid_echo_50mhz_20261101/wide_phase_start.json",
+        "population": 48,
+        "generations": 15,
+        "budget": 370,
+        "iterations": 12,
+        "workers": 3,
+        "seed": 110112,
+        "extra_amplitudes": [
+          18.0,
+          18.5,
+          19.0,
+          22.0,
+          22.5,
+          23.0,
+          42.0,
+          44.0,
+          46.0,
+          52.0,
+          53.0,
+          54.0
+        ],
+        "fine": false,
+        "target_contrast": null,
+        "monotone_local": false,
+        "trust_radius": 0.06,
+        "satellite_target": 0.009,
+        "wide_phase": true
+      },
+      "completion": {
+        "status": "Iteration limit reached",
+        "evaluations": 359,
+        "feasible": 359,
+        "best": {
+          "feasible": true,
+          "width50_khz": 107.01518492217885,
+          "contrast50": 0.40300496064613434,
+          "local_contrast50": 0.3102919514521456,
+          "min_contrast_gain": 0.001003177017762591,
+          "min_width_gain_khz": 0.39624301640859017,
+          "max_violation": 0.0,
+          "loss": 1.0795709878901498
+        }
+      },
+      "sources": {
+        "optimize_flexible_50mhz_echo.py": "f20e334f78dc1e97d3b2ed90d56809c34666075a272f7c930a920eec426fc05a",
+        "decoupled_echo.py": "ec549986a3a3089a7d5f8b68f6628eaee8b771d7da4820adbf2472ce8d20343d",
+        "polynomial_echo.py": "59021291bb6363a59767274c3c3d727843d37319364a60d51d63c9e7193b950d",
+        "notch_constraints.py": "c297d5d311598acf830ab8685754f0c45cb072bf3e752f87224dd8791af9234a",
+        "qutrit_rk4.cpp": "493150abcad473a10ff4128c3b42a5f0ddfd0cdd8fe4c1cf09a936858068bab6",
+        "flexible_echo.py": "f59d9322511710559224dbdd6b20e2e71162a03cf81afa7cd6c51bce3f342b18",
+        "dip_metrics.py": "851f4571da5dc275890f42eaf7393f1818fffe69043f4fff703272dddf9290ca",
+        "hybrid_echo_search.py": "960975feb6859da6c305e712d1702939f17b564f9e7b7bd0ccc2150bf8e46513"
+      }
+    }
+  ],
+  "total_evaluations": 3655,
+  "scope": "One fixed continuous single-echo I/Q shape per candidate, scaled over 5--60 MHz; completed complex-drive peak normalized at every evaluation.",
+  "selection": "Selected pulses are the best validated candidates retained with numerical constraint margin, not a claim of a globally optimal pulse.",
+  "primary_contrast_definition": "Depth below the linear fitted wings at absolute detuning >=0.4 MHz inside the +-0.5 MHz window.",
+  "local_contrast_definition": "Depth below the lower nearest shoulder with prominence at least 0.001; fallback to maximum on that side in +-0.5 MHz.",
+  "smooth_track": "An additional monotonic-profile surrogate through +-0.4 MHz avoids discontinuous switching of nearby shoulders; actual nearest-shoulder metrics are independently validated.",
+  "observations": [
+    "The population searches did not directly beat the previous narrow candidate. They supplied a feasible seed with more constraint margin for the smoother branch.",
+    "Most narrowing of the smooth branch came during constrained refinement while accepting somewhat less contrast, still above the user threshold.",
+    "This run does not establish that hybrid search outperforms an equally budgeted multistart gradient search.",
+    "The T2 reference is not asserted to be an attainable lower bound for this constrained transient spectroscopy dip."
+  ],
+  "hardware_validation": false
+}

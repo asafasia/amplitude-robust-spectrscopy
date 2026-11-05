@@ -1,0 +1,31 @@
+{
+  "focused_tests": "39 passed",
+  "focused_ruff": "passed",
+  "full_pytest": "collection blocked by missing torch in pre-existing test_mps_simulation.py",
+  "full_lint": "733 existing findings outside changed code",
+  "fresh_model_checks": {
+    "baseline": {
+      "fresh_population_max_difference": 8.125209949305656e-10,
+      "physical_diagnostics": {
+        "levels": 2,
+        "min_eigenvalue": 0.07494882874838166,
+        "min_population": 0.07570428159867448,
+        "max_population": 0.9242957184013255,
+        "num_steps": 30934,
+        "max_dt_ns": 1.0
+      }
+    },
+    "integer_p1": {
+      "fresh_population_max_difference": 6.90370205447266e-10,
+      "physical_diagnostics": {
+        "levels": 2,
+        "min_eigenvalue": 0.07823890602978878,
+        "min_population": 0.08086259995310269,
+        "max_population": 0.9191374000468973,
+        "num_steps": 22786,
+        "max_dt_ns": 0.9999789812027802
+      }
+    }
+  },
+  "snapshot_hashes": "all verified"
+}

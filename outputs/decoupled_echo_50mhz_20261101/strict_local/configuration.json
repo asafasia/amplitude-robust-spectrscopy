@@ -1,0 +1,356 @@
+{
+  "method": "Powell",
+  "normalized_bounds": [
+    [
+      0.0,
+      1.0
+    ],
+    [
+      0.0,
+      1.0
+    ],
+    [
+      0.0,
+      1.0
+    ],
+    [
+      0.0,
+      1.0
+    ],
+    [
+      0.0,
+      1.0
+    ],
+    [
+      0.0,
+      1.0
+    ],
+    [
+      0.0,
+      1.0
+    ],
+    [
+      0.0,
+      1.0
+    ],
+    [
+      0.0,
+      1.0
+    ],
+    [
+      0.0,
+      1.0
+    ],
+    [
+      0.0,
+      1.0
+    ]
+  ],
+  "bounds": [
+    [
+      8.0,
+      44.0
+    ],
+    [
+      -2.7,
+      -1.0
+    ],
+    [
+      -2.7,
+      -1.0
+    ],
+    [
+      -1.7,
+      0.5
+    ],
+    [
+      -0.3,
+      1.5
+    ],
+    [
+      0.0,
+      20.0
+    ],
+    [
+      0.04,
+      0.9
+    ],
+    [
+      -3.0,
+      3.0
+    ],
+    [
+      -0.7,
+      0.8
+    ],
+    [
+      -3.0,
+      3.0
+    ],
+    [
+      -2.0,
+      -0.7
+    ]
+  ],
+  "parameter_names": [
+    "duration_us",
+    "log10_core_us",
+    "log10_normalized_tail_us",
+    "log10_tail_join_us",
+    "log10_tail_scale_us",
+    "tail_power",
+    "edge_fraction",
+    "phase_rad",
+    "log10_phase_scale_us",
+    "phase2_rad",
+    "log10_phase2_scale_us"
+  ],
+  "initial_parameters": [
+    16.09042836100788,
+    -1.606897919130286,
+    -1.6968655648837017,
+    -0.8594494646134264,
+    1.1556430769288462,
+    19.598301315263434,
+    0.0881357557360451,
+    0.4533785712863818,
+    0.34737635703126996,
+    -0.504813829663552,
+    -1.0387254876965164
+  ],
+  "start_path": "/Users/asafsolonnikov/Developer/amplitude-robust-spectroscopy/outputs/decoupled_echo_50mhz_20261101/core_phase/best.json",
+  "start_sha256": "6f8e111105ee122cd4ad033902b4d74671e745d338df18c1dfba6986fcde6aaf",
+  "max_candidate_evaluations": 250,
+  "baseline_evaluations": 1,
+  "workers": 1,
+  "optimizer_options": {
+    "maxfev": 250,
+    "xtol": 0.002,
+    "ftol": 0.0001
+  },
+  "amplitudes_mhz": [
+    5.0,
+    7.5,
+    10.0,
+    15.0,
+    20.0,
+    30.0,
+    40.0,
+    50.0,
+    60.0
+  ],
+  "detuning_mhz": [
+    -0.5,
+    -0.475,
+    -0.45,
+    -0.425,
+    -0.4,
+    -0.375,
+    -0.35,
+    -0.325,
+    -0.3,
+    -0.275,
+    -0.25,
+    -0.225,
+    -0.2,
+    -0.175,
+    -0.15,
+    -0.145,
+    -0.14,
+    -0.135,
+    -0.13,
+    -0.125,
+    -0.12,
+    -0.115,
+    -0.11,
+    -0.105,
+    -0.1,
+    -0.095,
+    -0.09,
+    -0.085,
+    -0.08,
+    -0.075,
+    -0.07,
+    -0.065,
+    -0.06,
+    -0.055,
+    -0.05,
+    -0.045,
+    -0.04,
+    -0.035,
+    -0.03,
+    -0.025,
+    -0.02,
+    -0.015,
+    -0.01,
+    -0.005,
+    0.0,
+    0.005,
+    0.01,
+    0.015,
+    0.02,
+    0.025,
+    0.03,
+    0.035,
+    0.04,
+    0.045,
+    0.05,
+    0.055,
+    0.06,
+    0.065,
+    0.07,
+    0.075,
+    0.08,
+    0.085,
+    0.09,
+    0.095,
+    0.1,
+    0.105,
+    0.11,
+    0.115,
+    0.12,
+    0.125,
+    0.13,
+    0.135,
+    0.14,
+    0.145,
+    0.15,
+    0.175,
+    0.2,
+    0.225,
+    0.25,
+    0.275,
+    0.3,
+    0.325,
+    0.35,
+    0.375,
+    0.4,
+    0.425,
+    0.45,
+    0.475,
+    0.5
+  ],
+  "dt_ns": 0.5,
+  "t1_us": 51.24,
+  "t2_us": 7.31,
+  "baseline": [
+    {
+      "rabi_mhz": 5.0,
+      "center_hz": 4.65106902300386,
+      "fwhm_hz": 130884.81984296507,
+      "contrast": 0.25761822261982636,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 1.479390636429292e-06,
+      "population_at_zero": 0.07570562728308702
+    },
+    {
+      "rabi_mhz": 7.5,
+      "center_hz": 2.2320591494557265,
+      "fwhm_hz": 135700.2361723847,
+      "contrast": 0.4082952796952196,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 3.2890416995464594e-06,
+      "population_at_zero": 0.11115610869560412
+    },
+    {
+      "rabi_mhz": 10.0,
+      "center_hz": 3.2462605012953163,
+      "fwhm_hz": 135583.07793473796,
+      "contrast": 0.4757085213905558,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 4.700045202994817e-06,
+      "population_at_zero": 0.1362666345207037
+    },
+    {
+      "rabi_mhz": 15.0,
+      "center_hz": 2.445572941289597,
+      "fwhm_hz": 133358.49827673688,
+      "contrast": 0.49455553570777777,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 8.649382852263653e-06,
+      "population_at_zero": 0.16899277219759823
+    },
+    {
+      "rabi_mhz": 20.0,
+      "center_hz": 10.141818530689273,
+      "fwhm_hz": 138639.08678741386,
+      "contrast": 0.48377059030077674,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 1.5816759877591648e-05,
+      "population_at_zero": 0.18957464505070407
+    },
+    {
+      "rabi_mhz": 30.0,
+      "center_hz": 33.97479133713481,
+      "fwhm_hz": 143793.25164822538,
+      "contrast": 0.43818659564174445,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 3.5606104573058835e-05,
+      "population_at_zero": 0.2150248607745218
+    },
+    {
+      "rabi_mhz": 40.0,
+      "center_hz": 70.19797918133547,
+      "fwhm_hz": 148569.44047977685,
+      "contrast": 0.4044152057313898,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 6.287243441460606e-05,
+      "population_at_zero": 0.23090747593484265
+    },
+    {
+      "rabi_mhz": 50.0,
+      "center_hz": 103.9673418054428,
+      "fwhm_hz": 152496.6483753386,
+      "contrast": 0.3786485539379333,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 9.719334275265664e-05,
+      "population_at_zero": 0.24217870738655098
+    },
+    {
+      "rabi_mhz": 60.0,
+      "center_hz": 116.20051187079567,
+      "fwhm_hz": 155634.55573753486,
+      "contrast": 0.35802807943689735,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 0.00013841502360799305,
+      "population_at_zero": 0.2507880630915747
+    }
+  ],
+  "baseline_diagnostics": {
+    "max_trace_error": 3.708144902248023e-14,
+    "min_population": 6.56108899520721e-07,
+    "max_population": 0.9242928933262913,
+    "min_density_eigenvalue": 6.561088995207214e-07,
+    "num_steps": 60032,
+    "min_dt_ns": 0.25,
+    "max_dt_ns": 0.5
+  },
+  "constraints": "C>0.4 across 5--60 MHz; no width/contrast regression vs original at all samples; unchanged strict objective and feasibility checks",
+  "contrast_floor_scope": "5--60 MHz",
+  "no_regression_contrast_tolerance": 0.001,
+  "no_regression_width_tolerance_khz": 0.25,
+  "loss": "0.7*width50_khz + 0.3*max_width_khz + strict violation",
+  "versions": {
+    "python": "3.12.0",
+    "numpy": "2.4.0",
+    "scipy": "1.16.3"
+  },
+  "source_sha256": {
+    "scripts/refine_decoupled_50mhz_echo.py": "52eee8d049b34b20f4291fbee85dfabfa26c0ca887e6359c6e617d9c1b5eac8c",
+    "scripts/optimize_decoupled_50mhz_echo.py": "d827dd2b51604a72d12bb5ebf3ebd7b2eecb024b0b579c1e15c34d0a2eb3b9e0",
+    "scripts/optimize_50mhz_echo.py": "b3f153a50ea8f9155424289a172ac95ded96d5234004acfc5a78cf7e7b059bb1",
+    "echospec/simulation/decoupled_echo.py": "ec549986a3a3089a7d5f8b68f6628eaee8b771d7da4820adbf2472ce8d20343d",
+    "echospec/simulation/polynomial_echo.py": "59021291bb6363a59767274c3c3d727843d37319364a60d51d63c9e7193b950d",
+    "echospec/simulation/qutrit_rk4.cpp": "493150abcad473a10ff4128c3b42a5f0ddfd0cdd8fe4c1cf09a936858068bab6",
+    "echospec/analysis/dip_metrics.py": "851f4571da5dc275890f42eaf7393f1818fffe69043f4fff703272dddf9290ca"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "focused_tests": {
+    "command": "/opt/miniconda3/envs/qarakal-dev/bin/python -m pytest -q tests/test_selective_echo.py tests/test_polynomial_echo.py tests/analysis/test_dip_metrics.py",
+    "passed": 32,
+    "note": "Run in two batches: 29 waveform/propagation tests and 3 metric tests."
+  },
+  "full_suite": {
+    "command": "/opt/miniconda3/envs/qarakal-dev/bin/python -m pytest -q",
+    "result": "Collection blocked by missing torch in tests/test_mps_simulation.py"
+  },
+  "suite_excluding_missing_torch": {
+    "command": "/opt/miniconda3/envs/qarakal-dev/bin/python -m pytest -q --ignore=tests/test_mps_simulation.py",
+    "passed": 217,
+    "failed": 1,
+    "subtests_passed": 8,
+    "failure": "tests/test_latest_paper_measurements.py::test_figure3_statistics_exclude_out_of_view_outliers_and_rejected_rows",
+    "scope": "Unrelated existing Figure 3 plotting work; no fix attempted."
+  },
+  "repository_lint": {
+    "command": "make lint",
+    "result": "Fails with 692 existing findings across the repository."
+  },
+  "focused_lint": {
+    "result": "Passes for all added Python files."
+  },
+  "hardware": "No hardware experiments run; transfer functions are illustrative only."
+}

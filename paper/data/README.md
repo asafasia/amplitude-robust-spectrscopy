@@ -59,6 +59,8 @@ The maintained generators below export here:
 
 | Dataset | Kind | Manuscript use | Status | Generator |
 |---|---|---|---|---|
+| `05_current_drag_comparison` | numerical | Supplemental, Figure S5(a–c) | included; current 50 ns midpoint and power-2 window | `scripts/make_current_drag_supplement.py --simulate` |
+| `07_current_edge_comparison` | numerical | Supplemental, Figure S7 | included; 20 us, cutoff 0.005, 50 ns midpoint, power-2 window | `scripts/make_current_edge_supplement.py` |
 | `04_main_ac_stark_correction_maps` | experimental | Letter, Figure 4 | included | `scripts/make_main_ac_stark_correction_maps.py` |
 | `04_main_ac_stark_shifts_square` | experimental and numerical (separate archives) | Letter, Figure 5 | included | `scripts/make_main_ac_stark_shifts.py` |
 | `06_long_pulse_lorentzian_comparison` | experimental | Supplemental | included | `scripts/make_long_pulse_lorentzian_comparison.py` |
@@ -68,6 +70,13 @@ The maintained generators below export here:
 Notebook-only figure workflows are migrated incrementally. Until each one uses
 the shared exporter, its `.npz` cache in `figures/paper/` is a figure-build
 cache, not part of this reviewer-facing package.
+
+Figure S5(d) uses `experimental/03_latest_q1_pulse_improvement`, with the
+same 177 common accepted nonzero amplitudes up to 60 MHz as the Letter.
+Its plotted center variations subtract each curve's arithmetic mean.
+The numerical S5 export contains the beta scan, dense center curves,
+and time/detuning refinement checks for the current pulse shape. The
+experimental beta-optimization scan is deferred until its source is supplied.
 
 Run the currently populated, relatively fast exports with:
 
@@ -185,3 +194,14 @@ normalization, or experimental smoothing is applied. An offset-only residual
 RMSE is recorded for each pair. Step-halving checks cover every selected drive
 at seven representative detunings and are recorded separately from those
 experiment/model residuals. The source maps and main-text figures are unchanged.
+
+### Power-2 cutoff and duration survey
+
+The current Figure 4 and final supplemental figure use
+`outputs/polynomial_duration_cutoff_poly2_log/n100`: five durations, 100 cutoffs,
+100 logarithmically spaced drives from 1 to 100 MHz, and 201 detunings per
+spectrum. Figure 4 selects the exact 20 us row; the supplement includes all
+five rows. Derived arrays and provenance are in
+`figures/paper/04_duration_cutoff_scan*` and
+`figures/paper/supp_extended_cutoff_duration*`. See `paper/README.md` for the
+regeneration commands. The earlier power-5 survey remains historical data.

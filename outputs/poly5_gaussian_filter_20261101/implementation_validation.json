@@ -1,0 +1,8 @@
+{
+  "focused_lint": "scripts/filter_poly5_echo.py passes Ruff",
+  "numerical_convergence": "Sampled waveform and integration dt independently specified and both halved; largest FWHM difference is less than 0.0003 kHz.",
+  "peak_check": "All interpolated complex waveforms normalize to unit magnitude peak; actual peak is 50 MHz.",
+  "full_pytest": "Blocked at collection because torch is not installed",
+  "whole_lint": "733 existing findings elsewhere in repository",
+  "hardware_run": false
+}

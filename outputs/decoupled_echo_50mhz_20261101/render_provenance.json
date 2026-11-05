@@ -1,0 +1,18 @@
+{
+  "generator": "scripts/report_decoupled_50mhz_echo.py",
+  "generator_sha256": "3f1d5db152611f8efbfd022b1a3cdfa01c0d96f496feea20d7f4ca9aa334fdbe",
+  "inputs": {
+    "results.json": "387e3f6efe970fe3e30298d7a6cea631155c597f8cda8c4afe800458472f3996",
+    "validated_spectra.npz": "1d7a0b6a5ee4c68a0a8b5377c8d60fb161e0905e041903bcdfd32f9b74b0ee93",
+    "ablation.json": "98162900e721a3248a2c16aae91fde41fd24688d97638dae59b3dbc22452cd35",
+    "theory_note.md": "227517726e10e109f99e2ee21888546f5ea7603b066f1447e7567e6e064e3e9b",
+    "search_summary.json": "f85c0ac512441835e149e44e9b0cf379d09eb2164c6f399f6f383df31327bd18",
+    "search_tradeoffs.png": "edd659cff71fb93a643df5c59f2e9e24d3b75ebced987395f900fc7a55fdb95a",
+    "implementation_validation.json": "aa5907afef0042df789732d2c4aa563fe6f7fed39c606dae2c2f37d6e8731116"
+  },
+  "interpolation": "none",
+  "population_limits": [
+    0,
+    1
+  ]
+}

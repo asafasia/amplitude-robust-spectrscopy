@@ -1,0 +1,145 @@
+{
+  "parameters": [
+    17.300659199090642,
+    -1.5550619804980588,
+    -1.7068930666547515,
+    -0.7224814006732018,
+    1.106560235556311,
+    16.554751567522707,
+    0.24861206894658539,
+    0.4115799535838802,
+    -0.5242871774169763
+  ],
+  "pulse": {
+    "duration_us": 17.300659199090642,
+    "core_us": 0.02785723574685913,
+    "tail_gain": 0.6783726771424126,
+    "tail_join_us": 0.18946046519670978,
+    "tail_scale_us": 12.780864646633868,
+    "tail_power": 16.554751567522707,
+    "edge_width_us": 2.15057633881285,
+    "transition_us": 0.016,
+    "drag_beta": -0.5,
+    "anharmonicity_mhz": -216.0,
+    "phase_rad": 0.4115799535838802,
+    "phase_scale_us": 0.29902866543454015,
+    "phase2_rad": 0.0,
+    "phase2_scale_us": 4.0
+  },
+  "peak_scale": 0.9617574675593038,
+  "rows": [
+    {
+      "rabi_mhz": 5.0,
+      "center_hz": 1.9195047655176898,
+      "fwhm_hz": 154937.6566035798,
+      "contrast": 0.4191151060578637,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 3.2560372814998327e-06,
+      "population_at_zero": 0.0979236316023135
+    },
+    {
+      "rabi_mhz": 7.5,
+      "center_hz": 6.513446158085374,
+      "fwhm_hz": 144523.04848083528,
+      "contrast": 0.5162614562967895,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 6.010817027406973e-06,
+      "population_at_zero": 0.13555406742782056
+    },
+    {
+      "rabi_mhz": 10.0,
+      "center_hz": 11.540368965638034,
+      "fwhm_hz": 136046.43221701257,
+      "contrast": 0.5385106026688344,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 8.265550207903513e-06,
+      "population_at_zero": 0.15980801092206764
+    },
+    {
+      "rabi_mhz": 15.0,
+      "center_hz": 8.794181746398332,
+      "fwhm_hz": 147090.76544231272,
+      "contrast": 0.5691645204267527,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 1.905445050426052e-05,
+      "population_at_zero": 0.1914044664405015
+    },
+    {
+      "rabi_mhz": 20.0,
+      "center_hz": -13.688999385396839,
+      "fwhm_hz": 151295.77550170437,
+      "contrast": 0.5395911788170225,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 3.240027358363279e-05,
+      "population_at_zero": 0.21031984387418828
+    },
+    {
+      "rabi_mhz": 30.0,
+      "center_hz": 3.781526968441004,
+      "fwhm_hz": 160107.45664419906,
+      "contrast": 0.49208022440900134,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 7.425910788305043e-05,
+      "population_at_zero": 0.2344055300771809
+    },
+    {
+      "rabi_mhz": 40.0,
+      "center_hz": 118.28704432544308,
+      "fwhm_hz": 164987.9239092663,
+      "contrast": 0.456991493690347,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 0.0001230420042461514,
+      "population_at_zero": 0.24932714326110608
+    },
+    {
+      "rabi_mhz": 50.0,
+      "center_hz": -63.81767802422786,
+      "fwhm_hz": 168931.44120917123,
+      "contrast": 0.430258571898895,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 0.00019115988497586805,
+      "population_at_zero": 0.26022739260189637
+    },
+    {
+      "rabi_mhz": 60.0,
+      "center_hz": -299.58162204851686,
+      "fwhm_hz": 173527.94525404603,
+      "contrast": 0.4090739366834941,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 0.0002793919978583043,
+      "population_at_zero": 0.2685298054700973
+    }
+  ],
+  "quality": {
+    "feasible": false,
+    "violation": 186.5799638993594,
+    "width50_khz": 168.93144120917123,
+    "max_width_khz": 173.52794525404605,
+    "min_contrast": 0.4090739366834941,
+    "max_contrast_regression": -0.05104585724659677,
+    "max_width_regression_khz": 24.052836760614724,
+    "max_satellite": 0.0,
+    "max_center_khz": 0.29958162204851685,
+    "max_leakage": 0.0002793919978583043
+  },
+  "loss": 356.89035632199307,
+  "diagnostics": {
+    "max_trace_error": 2.042810365310288e-14,
+    "min_population": 1.6889657095270377e-06,
+    "max_population": 0.9020732098667321,
+    "min_density_eigenvalue": 1.6889657095270102e-06,
+    "num_steps": 34634,
+    "min_dt_ns": 0.25,
+    "max_dt_ns": 0.5
+  },
+  "configuration_sha256": "e1cdc82a37d0077f551dd4730568fcdb7964607c2ec89f0501444c9a0bb1f494"
+}

@@ -1,0 +1,151 @@
+{
+  "method": "bounded least_squares on logarithm of complete peak-normalized |I-iQ|; source phase profile held fixed; positive and negative time samples; no dynamics simulated",
+  "fits": {
+    "baseline": {
+      "pulse": {
+        "duration_us": 30.0,
+        "core_us": 0.014424708839578903,
+        "tail_gain": 1.1378228141256057,
+        "tail_join_us": 1.9999997041840933,
+        "tail_scale_us": 15.050828669897161,
+        "tail_power": 19.99999999997821,
+        "edge_width_us": 10.035282754457914,
+        "transition_us": 0.016,
+        "drag_beta": -0.5,
+        "anharmonicity_mhz": -216.0,
+        "phase_rad": 0,
+        "phase_scale_us": 0.8,
+        "phase2_rad": 0,
+        "phase2_scale_us": 4.0
+      },
+      "source_pulse": {
+        "duration_us": 30.0,
+        "cutoff": 0.001,
+        "power": 5.0,
+        "transition_us": 0.016,
+        "drag_beta": -0.5,
+        "anharmonicity_mhz": -216.0
+      },
+      "source_peak_scale": 0.8905992606201683,
+      "fitted_peak_scale": 0.8838395252212228,
+      "log_rms": 0.10677395974061235,
+      "max_absolute_normalized_drive_error": 0.011720690976124493,
+      "mean_absolute_normalized_drive_error": 0.002357302160993423,
+      "least_squares_success": true,
+      "least_squares_evaluations": 59,
+      "source_envelope": "complete complex-drive magnitude, including DRAG",
+      "time_min_us": -14.7,
+      "time_max_us": 14.7,
+      "num_time_points": 661,
+      "log_floor": 1e-07,
+      "fit_seconds": 0.5365879535675049
+    },
+    "retuned": {
+      "pulse": {
+        "duration_us": 31.901278320784403,
+        "core_us": 0.000888276833191532,
+        "tail_gain": 0.9592787451260394,
+        "tail_join_us": 0.2571594924637561,
+        "tail_scale_us": 24.175549060440456,
+        "tail_power": 19.999999999999993,
+        "edge_width_us": 3.137327190026626,
+        "transition_us": 0.016,
+        "drag_beta": -0.5,
+        "anharmonicity_mhz": -216.0,
+        "phase_rad": 0,
+        "phase_scale_us": 0.8,
+        "phase2_rad": 0,
+        "phase2_scale_us": 4.0
+      },
+      "source_pulse": {
+        "duration_us": 31.901278320784403,
+        "cutoff": 5.571060939955552e-05,
+        "power": 1.0013692230338123,
+        "transition_us": 0.016,
+        "drag_beta": -0.5,
+        "anharmonicity_mhz": -216.0
+      },
+      "source_peak_scale": 0.15806128973397476,
+      "fitted_peak_scale": 0.15802494960641472,
+      "log_rms": 0.10295127271089625,
+      "max_absolute_normalized_drive_error": 0.0002233883013478266,
+      "mean_absolute_normalized_drive_error": 7.78130570535416e-05,
+      "least_squares_success": true,
+      "least_squares_evaluations": 20,
+      "source_envelope": "complete complex-drive magnitude, including DRAG",
+      "time_min_us": -15.631626377184357,
+      "time_max_us": 15.631626377184357,
+      "num_time_points": 661,
+      "log_floor": 1e-07,
+      "fit_seconds": 0.2834739685058594
+    },
+    "phase": {
+      "pulse": {
+        "duration_us": 27.681945163021936,
+        "core_us": 0.0016803477629917967,
+        "tail_gain": 0.956609710203211,
+        "tail_join_us": 0.2465648628662747,
+        "tail_scale_us": 19.912242909786606,
+        "tail_power": 19.999999999999993,
+        "edge_width_us": 3.4253643385009935,
+        "transition_us": 0.016,
+        "drag_beta": -0.5,
+        "anharmonicity_mhz": -216.0,
+        "phase_rad": -1.8543341745279704,
+        "phase_scale_us": 0.7996939165673144,
+        "phase2_rad": 0,
+        "phase2_scale_us": 4.0
+      },
+      "source_pulse": {
+        "duration_us": 27.681945163021936,
+        "cutoff": 0.00012148126644240747,
+        "power": 1.373018937798303,
+        "transition_us": 0.016,
+        "drag_beta": -0.5,
+        "anharmonicity_mhz": -216.0,
+        "phase_rad": -1.8543341745279704,
+        "phase_scale_us": 0.7996939165673144
+      },
+      "source_peak_scale": 0.2747979779830784,
+      "fitted_peak_scale": 0.27469722054424844,
+      "log_rms": 0.07700065851407058,
+      "max_absolute_normalized_drive_error": 0.00023717184942784186,
+      "mean_absolute_normalized_drive_error": 8.483906363067352e-05,
+      "least_squares_success": true,
+      "least_squares_evaluations": 21,
+      "source_envelope": "complete complex-drive magnitude, including DRAG",
+      "time_min_us": -13.564153129880749,
+      "time_max_us": 13.564153129880749,
+      "num_time_points": 661,
+      "log_floor": 1e-07,
+      "fit_seconds": 0.31905484199523926
+    }
+  },
+  "parameter_order": [
+    "core_us",
+    "tail_gain",
+    "tail_join_us",
+    "tail_scale_us",
+    "tail_power",
+    "edge_width_us"
+  ],
+  "lower_bounds": [
+    0.00025,
+    0.03,
+    0.002,
+    0.05,
+    0.03,
+    0.05
+  ],
+  "upper_bounds": "[0.3, 30, 2, 50, 20, duration_us/2]",
+  "parameter_transform": "base-10 logarithm for all six fit variables",
+  "sampling": "positive union of geomspace(1e-5,.1,100), geomspace(.01,.9*half_duration,140), linspace(.1*half_duration,.98*half_duration,90), mirrored about zero, including zero",
+  "weights": "residual weight0.7 for |t|<.01us; 1 otherwise",
+  "sources": {
+    "outputs/single_echo_50mhz_20261101/results.json": "b4aebe24ec7a1e1f427bb13f34665342048315d5e8122cfde118ab5b346b73fc",
+    "echospec/simulation/decoupled_echo.py": "ec549986a3a3089a7d5f8b68f6628eaee8b771d7da4820adbf2472ce8d20343d",
+    "echospec/simulation/polynomial_echo.py": "59021291bb6363a59767274c3c3d727843d37319364a60d51d63c9e7193b950d",
+    "echospec/simulation/selective_echo.py": "dd3527e93b5611f76a1f4abee869c80e12b7333287b1c1d85fb0b23554c3bf93",
+    "scripts/optimize_50mhz_echo.py": "b3f153a50ea8f9155424289a172ac95ded96d5234004acfc5a78cf7e7b059bb1"
+  }
+}

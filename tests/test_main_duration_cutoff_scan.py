@@ -24,7 +24,7 @@ class TestDurationMaps(unittest.TestCase):
         np.testing.assert_array_equal(slices["slice_accepted"], accepted[:, :, 1])
 
     def test_exact_duration_preserves_orientation_and_rejected_cells(self):
-        lengths = np.array([10, 30, 60])
+        lengths = np.array([10, 20, 60])
         width = np.arange(18, dtype=float).reshape(3, 2, 3) + 100_000
         contrast = np.zeros_like(width)
         contrast[1] = [[0.19, 0.2, 0.21], [0.8, 0.5, np.nan]]
@@ -42,7 +42,7 @@ class TestDurationMaps(unittest.TestCase):
 
     def test_missing_or_duplicate_duration_is_rejected(self):
         values = np.ones((2, 2, 3))
-        for lengths in ([10, 60], [30, 30]):
+        for lengths in ([10, 60], [20, 20]):
             with self.subTest(lengths=lengths):
                 with self.assertRaisesRegex(ValueError, "exactly one saved row"):
                     select_duration_maps(lengths, values > 0, values, values)

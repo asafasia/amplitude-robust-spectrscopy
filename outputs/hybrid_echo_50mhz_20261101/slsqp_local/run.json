@@ -1,0 +1,14 @@
+{
+  "stage": "local",
+  "campaign": "slsqp_local",
+  "track": "local",
+  "start": "outputs/hybrid_echo_50mhz_20261101/de_local_start.json",
+  "population": 48,
+  "generations": 15,
+  "budget": 760,
+  "iterations": 24,
+  "workers": 3,
+  "seed": 110112,
+  "extra_amplitudes": [],
+  "fine": false
+}

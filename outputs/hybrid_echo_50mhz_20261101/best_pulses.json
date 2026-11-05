@@ -1,0 +1,175 @@
+{
+  "model": {
+    "t1_us": 51.24,
+    "t2_us": 7.31,
+    "anharmonicity_mhz": -216.0
+  },
+  "waveform_convention": "u = I - i Q; multiply pulse.drive(t_us) by multiplier_for_50mhz. Scale the same waveform linearly for other peaks.",
+  "pulse_class": "echospec.simulation.flexible_echo.FlexibleEchoPulse",
+  "candidates": {
+    "hybrid_narrow": {
+      "pulse": {
+        "duration_us": 16.9184645550316,
+        "core_us": 0.0047289477790322864,
+        "tail_gain": 0.10000000000000432,
+        "tail_join_us": 0.5224208921668826,
+        "tail_scale_us": 7.6810358428374395,
+        "tail_power": 3.739859511584282e-11,
+        "edge_width_us": 0.04229616138810648,
+        "transition_us": 0.01510334701772326,
+        "drag_beta": -0.4944000288006928,
+        "anharmonicity_mhz": -216.0,
+        "phase_rad": -2.420721245605598,
+        "phase_scale_us": 0.4884946455010242,
+        "phase2_rad": -2.3092003251351914,
+        "phase2_scale_us": 3.7079350125448887,
+        "rotation_mix": -0.00532008401400208,
+        "amp_coefficients": [
+          -1.5284935229074128,
+          -1.1763603179745132,
+          0.3289372310729566,
+          0.6222648938892883
+        ],
+        "phase_coefficients": [
+          0.9771460971436694,
+          -3.141339530993458,
+          -0.7208214474091266,
+          2.6983416019920323,
+          0.9584292414428184
+        ],
+        "odd_phase_coefficients": [
+          0.008812550894490734,
+          0.016426533662732723,
+          -0.002867207402713845
+        ]
+      },
+      "actual_peak_mhz": 50.0,
+      "unit_waveform_peak": 0.7465220486185574,
+      "multiplier_for_50mhz": 66.97725819689484,
+      "metrics_50mhz": {
+        "center_hz": -119.51490882567711,
+        "fwhm_hz": 106926.07174873145,
+        "contrast": 0.4029346291153856,
+        "accepted": true,
+        "local_shoulders": {
+          "accepted": true,
+          "contrast": 0.3103029285727088,
+          "fwhm_hz": 88349.97807076709,
+          "center_mhz": 0.0,
+          "left_shoulder_mhz": -0.10375000000000001,
+          "right_shoulder_mhz": 0.10375000000000001
+        },
+        "fixed_offset_depth": {
+          "offset_mhz": 0.2,
+          "center_detuning_mhz": 0.0,
+          "probability_at_center": 0.2981833922096243,
+          "probability_at_negative_offset": 0.6413359653140545,
+          "probability_at_positive_offset": 0.6428731983938405,
+          "conservative_depth": 0.34315257310443015,
+          "mean_offset_depth": 0.34392118964432317
+        }
+      },
+      "constraints": {
+        "user_constraints_pass": true,
+        "quality_guardrails_pass": true,
+        "accepted": true,
+        "contrast_at50_pass": true,
+        "invalid_amplitudes_mhz": [],
+        "linewidth_regression_amplitudes_mhz": [],
+        "contrast_regression_amplitudes_mhz": [],
+        "center_failure_amplitudes_mhz": [],
+        "satellite_failure_amplitudes_mhz": [],
+        "leakage_failure_amplitudes_mhz": [],
+        "minimum_band_contrast": 0.2585424210362058,
+        "worst_width_change_khz": -0.43430213257140715,
+        "worst_contrast_change": 0.000884976839020224,
+        "maximum_final_leakage": 0.0005357046663086017,
+        "critical_narrow_pass": true,
+        "critical_narrow_width_pass": true,
+        "dense_band_narrow_pass": true
+      }
+    },
+    "hybrid_smooth": {
+      "pulse": {
+        "duration_us": 16.794324065509525,
+        "core_us": 0.014364746194592036,
+        "tail_gain": 0.22786650067107458,
+        "tail_join_us": 2.1604545957600307,
+        "tail_scale_us": 10.954811618329536,
+        "tail_power": 3.908474974150027e-13,
+        "edge_width_us": 0.04198581016377381,
+        "transition_us": 0.030331160061040873,
+        "drag_beta": -0.5069522747203227,
+        "anharmonicity_mhz": -216.0,
+        "phase_rad": -3.265269819394818,
+        "phase_scale_us": 0.29418844694013385,
+        "phase2_rad": 0.2692490396161915,
+        "phase2_scale_us": 3.154340175792601,
+        "rotation_mix": -0.0007716438874767473,
+        "amp_coefficients": [
+          -0.31625063555034316,
+          0.12680686582500478,
+          0.15514782818317885,
+          0.02794278261740679
+        ],
+        "phase_coefficients": [
+          2.50739778587862,
+          -0.3181021709381504,
+          1.5203754039221478,
+          0.059843657236457126,
+          -0.30668954425581285
+        ],
+        "odd_phase_coefficients": [
+          -0.010036979517601186,
+          -0.015474236880905323,
+          -0.01587042373711789
+        ]
+      },
+      "actual_peak_mhz": 50.0,
+      "unit_waveform_peak": 0.8536955372255104,
+      "multiplier_for_50mhz": 58.56888998447711,
+      "metrics_50mhz": {
+        "center_hz": -3.7192216576429216,
+        "fwhm_hz": 118321.1295149626,
+        "contrast": 0.40859598420023785,
+        "accepted": true,
+        "local_shoulders": {
+          "accepted": true,
+          "contrast": 0.4149648090211417,
+          "fwhm_hz": 119900.84760785771,
+          "center_mhz": 0.0,
+          "left_shoulder_mhz": -0.5,
+          "right_shoulder_mhz": 0.5
+        },
+        "fixed_offset_depth": {
+          "offset_mhz": 0.2,
+          "center_detuning_mhz": 0.0,
+          "probability_at_center": 0.3029464466387238,
+          "probability_at_negative_offset": 0.6445723441640018,
+          "probability_at_positive_offset": 0.6449327604618496,
+          "conservative_depth": 0.341625897525278,
+          "mean_offset_depth": 0.34180610567420183
+        }
+      },
+      "constraints": {
+        "user_constraints_pass": true,
+        "quality_guardrails_pass": true,
+        "accepted": true,
+        "contrast_at50_pass": true,
+        "invalid_amplitudes_mhz": [],
+        "linewidth_regression_amplitudes_mhz": [],
+        "contrast_regression_amplitudes_mhz": [],
+        "center_failure_amplitudes_mhz": [],
+        "satellite_failure_amplitudes_mhz": [],
+        "leakage_failure_amplitudes_mhz": [],
+        "minimum_band_contrast": 0.2586645935503292,
+        "worst_width_change_khz": -0.34648913195206843,
+        "worst_contrast_change": 0.0009502019151096386,
+        "maximum_final_leakage": 0.00020796276345819658,
+        "extra_local_contrast_pass": true,
+        "critical_smooth_pass": true,
+        "dense_band_smooth_pass": true
+      }
+    }
+  }
+}

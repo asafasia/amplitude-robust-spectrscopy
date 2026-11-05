@@ -1,0 +1,222 @@
+{
+  "coherence_scan": [
+    {
+      "t2_us": 7.6,
+      "t_phi_us": 8.322000000000001,
+      "median_fwhm_khz": 19.966310753977492,
+      "median_depth": 0.01601611418872717,
+      "resolved_fringes": 7
+    },
+    {
+      "t2_us": 10.0,
+      "t_phi_us": 11.288659793814432,
+      "median_fwhm_khz": 19.96924597746777,
+      "median_depth": 0.04091911189500591,
+      "resolved_fringes": 7
+    },
+    {
+      "t2_us": 12.0,
+      "t_phi_us": 13.904761904761905,
+      "median_fwhm_khz": 19.97278761979361,
+      "median_depth": 0.06714062545652033,
+      "resolved_fringes": 7
+    },
+    {
+      "t2_us": 15.0,
+      "t_phi_us": 18.09917355371901,
+      "median_fwhm_khz": 19.97604666556272,
+      "median_depth": 0.11018029293055992,
+      "resolved_fringes": 7
+    },
+    {
+      "t2_us": 16.0,
+      "t_phi_us": 19.575418994413408,
+      "median_fwhm_khz": 19.976815086126344,
+      "median_depth": 0.12470778356789958,
+      "resolved_fringes": 7
+    },
+    {
+      "t2_us": 20.0,
+      "t_phi_us": 25.917159763313606,
+      "median_fwhm_khz": 19.979004571835574,
+      "median_depth": 0.18082612676784282,
+      "resolved_fringes": 7
+    },
+    {
+      "t2_us": 30.0,
+      "t_phi_us": 45.625,
+      "median_fwhm_khz": 19.981647911227387,
+      "median_depth": 0.2967672173913506,
+      "resolved_fringes": 7
+    },
+    {
+      "t2_us": 60.0,
+      "t_phi_us": 190.4347826086957,
+      "median_fwhm_khz": 19.98462346603576,
+      "median_depth": 0.4870472949039465,
+      "resolved_fringes": 7
+    }
+  ],
+  "angle_scan": [
+    {
+      "half_angle_over_pi": 0.4,
+      "cycles": 671,
+      "duration_us": 26.706467661691544,
+      "median_fwhm_khz": 19.932933702939277,
+      "median_depth": 0.0117799440812425,
+      "resolved_fringes": 7
+    },
+    {
+      "half_angle_over_pi": 0.45,
+      "cycles": 608,
+      "duration_us": 27.223880597014926,
+      "median_fwhm_khz": 19.95889860634996,
+      "median_depth": 0.014257931882407981,
+      "resolved_fringes": 7
+    },
+    {
+      "half_angle_over_pi": 0.5,
+      "cycles": 553,
+      "duration_us": 27.512437810945272,
+      "median_fwhm_khz": 20.009040019811803,
+      "median_depth": 0.01620020742567957,
+      "resolved_fringes": 7
+    },
+    {
+      "half_angle_over_pi": 0.55,
+      "cycles": 519,
+      "duration_us": 28.40298507462687,
+      "median_fwhm_khz": 20.05783269376046,
+      "median_depth": 0.018639441081788444,
+      "resolved_fringes": 7
+    },
+    {
+      "half_angle_over_pi": 0.6,
+      "cycles": 464,
+      "duration_us": 27.701492537313428,
+      "median_fwhm_khz": 20.01268421874398,
+      "median_depth": 0.016187205454691267,
+      "resolved_fringes": 7
+    },
+    {
+      "half_angle_over_pi": 0.65,
+      "cycles": 568,
+      "duration_us": 36.7363184079602,
+      "median_fwhm_khz": 20.298827222324217,
+      "median_depth": 0.007625773652997436,
+      "resolved_fringes": 7
+    },
+    {
+      "half_angle_over_pi": 0.7,
+      "cycles": 410,
+      "duration_us": 28.557213930348258,
+      "median_fwhm_khz": 19.93473082585638,
+      "median_depth": 0.014318049228991686,
+      "resolved_fringes": 8
+    },
+    {
+      "half_angle_over_pi": 0.75,
+      "cycles": 435,
+      "duration_us": 32.46268656716418,
+      "median_fwhm_khz": 19.99798530971264,
+      "median_depth": 0.02098431552148225,
+      "resolved_fringes": 8
+    },
+    {
+      "half_angle_over_pi": 0.8,
+      "cycles": 411,
+      "duration_us": 32.71641791044776,
+      "median_fwhm_khz": 19.9823325969558,
+      "median_depth": 0.022005256996078082,
+      "resolved_fringes": 8
+    },
+    {
+      "half_angle_over_pi": 0.85,
+      "cycles": 406,
+      "duration_us": 34.338308457711435,
+      "median_fwhm_khz": 20.049114724268787,
+      "median_depth": 0.021689607257228627,
+      "resolved_fringes": 8
+    },
+    {
+      "half_angle_over_pi": 0.9,
+      "cycles": 398,
+      "duration_us": 35.64179104477611,
+      "median_fwhm_khz": 19.994456071917877,
+      "median_depth": 0.02032000701006842,
+      "resolved_fringes": 7
+    },
+    {
+      "half_angle_over_pi": 0.95,
+      "cycles": 396,
+      "duration_us": 37.43283582089552,
+      "median_fwhm_khz": 19.984778645089378,
+      "median_depth": 0.01835008379902689,
+      "resolved_fringes": 8
+    },
+    {
+      "half_angle_over_pi": 1.0,
+      "cycles": 395,
+      "duration_us": 39.30348258706467,
+      "median_fwhm_khz": 19.966310753977492,
+      "median_depth": 0.01601611418872717,
+      "resolved_fringes": 7
+    },
+    {
+      "half_angle_over_pi": 1.05,
+      "cycles": 396,
+      "duration_us": 41.373134328358205,
+      "median_fwhm_khz": 19.942414734859028,
+      "median_depth": 0.013448401326509513,
+      "resolved_fringes": 8
+    },
+    {
+      "half_angle_over_pi": 1.1,
+      "cycles": 400,
+      "duration_us": 43.78109452736319,
+      "median_fwhm_khz": 20.065219706808747,
+      "median_depth": 0.010728395518992684,
+      "resolved_fringes": 7
+    }
+  ],
+  "best_tested_angle": {
+    "half_angle_over_pi": 0.8,
+    "cycles": 411,
+    "duration_us": 32.71641791044776,
+    "median_fwhm_khz": 19.9823325969558,
+    "median_depth": 0.022005256996078082,
+    "resolved_fringes": 8
+  },
+  "required_model_t2_us": {
+    "0.1": 14.300399022735188,
+    "0.122": 15.813150746929455,
+    "0.2": 21.454844533025295
+  },
+  "validation": {
+    "baseline": {
+      "max_population_change_4_to_5": 0.0029910903683445164,
+      "width_change_4_to_5_khz": 0.0025429559925953527,
+      "depth_change_4_to_5": 1.0092197969657768e-05,
+      "half_grid_step_width_change_khz": 0.0022742725198732217
+    },
+    "T2_15": {
+      "max_population_change_4_to_5": 0.0018945042260855027,
+      "width_change_4_to_5_khz": 0.0005845766503647098,
+      "depth_change_4_to_5": 1.0101946462504063e-05,
+      "half_grid_step_width_change_khz": 0.000328969801302037
+    },
+    "T2_30": {
+      "max_population_change_4_to_5": 0.0010030707603350402,
+      "width_change_4_to_5_khz": 5.5140999450031813e-05,
+      "depth_change_4_to_5": 8.661241619523086e-06,
+      "half_grid_step_width_change_khz": 9.249464117289108e-06
+    },
+    "best_angle": {
+      "max_population_change_4_to_5": 6.63625664276317e-05,
+      "width_change_4_to_5_khz": 9.365926593574159e-05,
+      "depth_change_4_to_5": 8.748166793748346e-08,
+      "half_grid_step_width_change_khz": 3.434161648385725e-06
+    }
+  },
+  "interpretation": "T2 sweep changes the assumed noise; it is not achieved by the angle scan"
+}

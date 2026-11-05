@@ -1,0 +1,47 @@
+{
+  "checks": [
+    {
+      "sigma_ns": 0.5,
+      "unit_peak": 1.0,
+      "drive_magnitude_ratio_at_1us_at_equal_peak": 1.0050355581991257,
+      "postfilter_peak_retention": 0.9949899445100726
+    },
+    {
+      "sigma_ns": 1.0,
+      "unit_peak": 1.0,
+      "drive_magnitude_ratio_at_1us_at_equal_peak": 1.017395873530295,
+      "postfilter_peak_retention": 0.982902646995509
+    },
+    {
+      "sigma_ns": 2.0,
+      "unit_peak": 1.0,
+      "drive_magnitude_ratio_at_1us_at_equal_peak": 1.0534363807314506,
+      "postfilter_peak_retention": 0.9492783872585838
+    },
+    {
+      "sigma_ns": 4.0,
+      "unit_peak": 0.9999999999999999,
+      "drive_magnitude_ratio_at_1us_at_equal_peak": 1.152419850966514,
+      "postfilter_peak_retention": 0.8677545376473602
+    },
+    {
+      "sigma_ns": 8.0,
+      "unit_peak": 1.0,
+      "drive_magnitude_ratio_at_1us_at_equal_peak": 1.4062763704214674,
+      "postfilter_peak_retention": 0.7111477167102963
+    },
+    {
+      "sigma_ns": 16.0,
+      "unit_peak": 1.0,
+      "drive_magnitude_ratio_at_1us_at_equal_peak": 1.9879674163445176,
+      "postfilter_peak_retention": 0.5031677445417905
+    },
+    {
+      "sigma_ns": 32.0,
+      "unit_peak": 1.0,
+      "drive_magnitude_ratio_at_1us_at_equal_peak": 3.213383610936611,
+      "postfilter_peak_retention": 0.3115491466038266
+    }
+  ],
+  "interpretation": "Piecewise-linear complex interpolation has no magnitude maximum above its endpoint samples; the normalized interpolated peak is exactly one."
+}

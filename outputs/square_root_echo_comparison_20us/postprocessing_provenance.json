@@ -1,0 +1,9 @@
+{
+  "source_sha256": {
+    "scripts/compare_square_root_echo.py": "5fab02ac7e8a06f1118d29963aaf72f6736d537a4760aa0a35962a61f20b8879",
+    "echospec/simulation/rotary_echo.py": "aed77dea086e3460de0ce9c3653b5674e2feff752c957babd9a979306c0ec684",
+    "tests/test_rotary_echo.py": "cfaaa409d2674d6e0aec3922c3138877ddaf6b29792c6222b040396c4e4bbeb4"
+  },
+  "response_sha256": "eedefb1df3ffde1c74799d9f065018456f1fe4233b35f2040d36a270a86e0340",
+  "command": "PYTHONPATH=. .venv/bin/python scripts/compare_square_root_echo.py"
+}

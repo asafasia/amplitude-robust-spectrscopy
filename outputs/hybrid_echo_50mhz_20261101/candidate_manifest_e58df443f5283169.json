@@ -1,0 +1,180 @@
+{
+  "candidates": [
+    {
+      "name": "previous_narrow",
+      "label": "Previous narrow pulse",
+      "pulse_type": "flexible",
+      "pulse": {
+        "duration_us": 17.51898666760054,
+        "core_us": 0.004917773775921489,
+        "tail_gain": 0.10000000000000038,
+        "tail_join_us": 0.5489644263285443,
+        "tail_scale_us": 7.874200342393424,
+        "tail_power": 1.9899653435712574e-09,
+        "edge_width_us": 0.2627848000140081,
+        "transition_us": 0.013129003265668482,
+        "drag_beta": -0.5,
+        "anharmonicity_mhz": -216.0,
+        "phase_rad": -2.3040713786751086,
+        "phase_scale_us": 0.46274353220371994,
+        "phase2_rad": 0.0,
+        "phase2_scale_us": 4.0,
+        "rotation_mix": 0.00024409683504345026,
+        "amp_coefficients": [
+          -1.4996404728431896,
+          -1.0987654852818116,
+          0.16333723244105092,
+          0.6503756618534053
+        ],
+        "phase_coefficients": [
+          -0.3987101550271701,
+          -2.839479797847318,
+          -0.6611917424190885,
+          1.8344634616071112,
+          -1.0808473640723364
+        ],
+        "odd_phase_coefficients": [
+          -0.019940322440489044,
+          -0.07449909989912396,
+          -0.021924089155143545
+        ]
+      },
+      "track": "primary",
+      "preferred": false
+    },
+    {
+      "name": "previous_smooth",
+      "label": "Previous smooth pulse",
+      "pulse_type": "flexible",
+      "pulse": {
+        "duration_us": 16.178299069401664,
+        "core_us": 0.016324410942141643,
+        "tail_gain": 0.25821137286930257,
+        "tail_join_us": 2.5602620847803212,
+        "tail_scale_us": 10.579858486411853,
+        "tail_power": 0.0027890425617156053,
+        "edge_width_us": 0.24344295524682155,
+        "transition_us": 0.03677761518153051,
+        "drag_beta": -0.5,
+        "anharmonicity_mhz": -216.0,
+        "phase_rad": -2.890301925464823,
+        "phase_scale_us": 0.22820110102473484,
+        "phase2_rad": 0.0,
+        "phase2_scale_us": 4.0,
+        "rotation_mix": 0.0,
+        "amp_coefficients": [
+          -0.14971141822374157,
+          0.28876971639384763,
+          0.01342426018232623,
+          0.19866305297385445
+        ],
+        "phase_coefficients": [
+          2.2183733039702016,
+          -0.6706607816533459,
+          1.8183860231091895,
+          -0.20577346183226686,
+          0.011303812022317228
+        ],
+        "odd_phase_coefficients": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "track": "local",
+      "preferred": false
+    },
+    {
+      "name": "hybrid_narrow",
+      "label": "Hybrid narrow pulse",
+      "pulse_type": "flexible",
+      "pulse": {
+        "duration_us": 16.9184645550316,
+        "core_us": 0.0047289477790322864,
+        "tail_gain": 0.10000000000000432,
+        "tail_join_us": 0.5224208921668826,
+        "tail_scale_us": 7.6810358428374395,
+        "tail_power": 3.739859511584282e-11,
+        "edge_width_us": 0.04229616138810648,
+        "transition_us": 0.01510334701772326,
+        "drag_beta": -0.4944000288006928,
+        "anharmonicity_mhz": -216.0,
+        "phase_rad": -2.420721245605598,
+        "phase_scale_us": 0.4884946455010242,
+        "phase2_rad": -2.3092003251351914,
+        "phase2_scale_us": 3.7079350125448887,
+        "rotation_mix": -0.00532008401400208,
+        "amp_coefficients": [
+          -1.5284935229074128,
+          -1.1763603179745132,
+          0.3289372310729566,
+          0.6222648938892883
+        ],
+        "phase_coefficients": [
+          0.9771460971436694,
+          -3.141339530993458,
+          -0.7208214474091266,
+          2.6983416019920323,
+          0.9584292414428184
+        ],
+        "odd_phase_coefficients": [
+          0.008812550894490734,
+          0.016426533662732723,
+          -0.002867207402713845
+        ]
+      },
+      "track": "primary",
+      "preferred": true,
+      "search_source": "slsqp_wide_phase",
+      "screen": "screens/narrow_selected.json"
+    },
+    {
+      "name": "hybrid_smooth",
+      "label": "Hybrid smooth pulse",
+      "pulse_type": "flexible",
+      "pulse": {
+        "duration_us": 16.794324065509525,
+        "core_us": 0.014364746194592036,
+        "tail_gain": 0.22786650067107458,
+        "tail_join_us": 2.1604545957600307,
+        "tail_scale_us": 10.954811618329536,
+        "tail_power": 3.908474974150027e-13,
+        "edge_width_us": 0.04198581016377381,
+        "transition_us": 0.030331160061040873,
+        "drag_beta": -0.5069522747203227,
+        "anharmonicity_mhz": -216.0,
+        "phase_rad": -3.265269819394818,
+        "phase_scale_us": 0.29418844694013385,
+        "phase2_rad": 0.2692490396161915,
+        "phase2_scale_us": 3.154340175792601,
+        "rotation_mix": -0.0007716438874767473,
+        "amp_coefficients": [
+          -0.31625063555034316,
+          0.12680686582500478,
+          0.15514782818317885,
+          0.02794278261740679
+        ],
+        "phase_coefficients": [
+          2.50739778587862,
+          -0.3181021709381504,
+          1.5203754039221478,
+          0.059843657236457126,
+          -0.30668954425581285
+        ],
+        "odd_phase_coefficients": [
+          -0.010036979517601186,
+          -0.015474236880905323,
+          -0.01587042373711789
+        ]
+      },
+      "track": "local",
+      "preferred": true,
+      "search_source": "slsqp_monotone",
+      "screen": "screens/monotone_intermediate.json"
+    }
+  ],
+  "constraints": {
+    "no_regression_width_khz_tolerance": 0.0,
+    "no_regression_contrast_tolerance": 0.0
+  }
+}

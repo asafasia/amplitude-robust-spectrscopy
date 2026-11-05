@@ -1,0 +1,57 @@
+<!doctype html><html lang="en"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>20 kHz coherence requirements</title>
+<style>body{font:17px/1.6 system-ui;max-width:1100px;margin:32px auto;padding:0 24px;color:#203044}
+img{width:100%}table{border-collapse:collapse}td,th{padding:8px 24px;border-bottom:1px solid #ddd}</style>
+<h1>Keeping contrast at a 20 kHz fringe width</h1>
+<p>The practical limitation in the present model is dephasing. At fixed 39.30 μs,
+395 π rotary-echo cycles, peak Rabi 10.05 MHz, T1=43.8 μs, and anharmonicity
+−216 MHz, reducing the modeled dephasing increases contrast while retaining
+approximately 20 kHz local fringe widths. All primary calculations use four
+transmon levels and exact segment exponentials.</p>
+<img src="coherence_requirement.png" alt="Contrast improvements require reduced dephasing">
+<table><tr><th>Assumed T2 (μs)</th><th>FWHM (kHz)</th><th>Depth ΔPe</th></tr><tr><td>7.6</td><td>19.97</td><td>0.016</td></tr><tr><td>10</td><td>19.97</td><td>0.041</td></tr><tr><td>12</td><td>19.97</td><td>0.067</td></tr><tr><td>15</td><td>19.98</td><td>0.110</td></tr><tr><td>16</td><td>19.98</td><td>0.125</td></tr><tr><td>20</td><td>19.98</td><td>0.181</td></tr><tr><td>30</td><td>19.98</td><td>0.297</td></tr><tr><td>60</td><td>19.98</td><td>0.487</td></tr></table>
+<p>Depth 0.10 requires model T2≈14.30 μs; preserving the old
+0.122 depth requires T2≈15.81 μs; depth 0.20 requires
+T2≈21.45 μs. These are hypothetical reductions of the
+Markovian dephasing rate, not measured improvements or values achieved by a pulse sequence.</p>
+<p>A separate angle scan holds T2=7.6 μs, T1, and the drive fixed while adjusting
+duration to approximately 20 kHz. Of the tested half-angles from 0.4π to 1.1π,
+the best accepted depth is 0.0220, at half-angle
+0.80π, 411 cycles and
+32.716 μs; its width is 19.982 kHz.
+This is a limited family search, not proof of a globally optimal pulse. It
+does not deliver the contrast of the improved-coherence scenarios.</p>
+<p>Widths are medians over resolved troughs within ±150 kHz, using the average
+of the two adjacent maxima as background. Asymmetric troughs without both
+half-depth crossings are rejected. The full grid spans ±250 kHz in 0.5 kHz steps.
+Selected cases halve the grid step and add a fifth transmon level. Phase flips
+are instantaneous, the drive is perfectly calibrated and noiseless, and no
+hardware bandwidth, drift, readout errors or colored noise spectrum is included.</p>
+<p>The noise model is constant Lindblad relaxation and dephasing. Ramsey T2*,
+spin-echo T2, driven T1ρ and actual rotary-echo fringe-decay times are different
+observables; T1ρ must not simply replace T2 in this model. Measure these decays
+under the intended drive and determine the relevant noise spectrum before
+predicting benefits of a protection sequence. The simulations do not establish
+whether 7.6 μs describes the driven device.</p>
+<p>For a DC detuning signal and noise coupling through the same σz operator,
+ordinary refocusing also removes the desired signal. Useful control must exploit
+a difference in noise/signal spectrum, operator, or independently accessible
+reference. This constraint is discussed in
+<a href="https://www.nature.com/articles/s41467-017-01895-5">the sensing/error-correction literature</a>.
+Rotary echoes reject drive errors, while their detuning response and coherence
+must be assessed together; see
+<a href="https://arxiv.org/abs/1207.5868">Aiello et al.</a>.</p>
+<p>For this device, a concrete diagnostic is a matched-condition set of Ramsey,
+Hahn-echo, spin-locking and rotary-echo contrast-versus-duration scans, with
+interleaved short frequency references to identify slow drift. If drive noise
+dominates, optimize phase/amplitude control and echo angle while measuring the
+retained detuning slope. If resonator photon noise dominates, readout depletion,
+thermalization and filtering are candidate interventions. Identifying and
+suppressing thermal-photon dephasing has been demonstrated by
+<a href="https://arxiv.org/abs/1801.00467">Yan et al.</a>; it has not been
+established as the limiting noise source here. No hardware work was performed.</p>
+<p><a href="summary.json">All results and validation</a> ·
+<a href="coherence_requirements.csv">Coherence sweep CSV</a> ·
+<a href="angle_scan.csv">Angle sweep CSV</a> ·
+<a href="responses.npz">Population arrays</a> · <a href="provenance.json">Provenance</a></p>
+<pre>PYTHONPATH=. .venv/bin/python scripts/scan_rotary_echo_protection.py</pre></html>

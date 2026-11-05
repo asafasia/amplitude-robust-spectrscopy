@@ -45,5 +45,8 @@ paper-data-core:
 	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_long_pulse_lorentzian_comparison.py
 
 paper-data: paper-data-core
+	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_supplemental_spectrum_slices.py
+	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_current_drag_supplement.py --simulate
+	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_current_edge_supplement.py
 	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_simulated_echo_lorentzian_duration_cutoff_comparison.py
 	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_duration_resolution_comparison.py

@@ -5,7 +5,7 @@
     0.0,
     0.8
   ],
-  "colormap": "viridis",
+  "colormap": "magma",
   "colorbar_count": 1,
   "panel_order": [
     "E1_no_drag_no_poly",
@@ -248,18 +248,35 @@
   "fit_method": "Saved Gaussian dip plus linear baseline; saved acceptance masks retained; statistics and curves restricted to 0 < peak Rabi <= 60 MHz",
   "center_rms_definition": "Unweighted standard deviation about the arithmetic mean on common accepted rows",
   "center_errorbars": "One covariance standard error",
+  "center_display_exclusions": {
+    "indices": {
+      "E3_drag_poly": [
+        2
+      ]
+    },
+    "reason": "User-requested omission of the first high green point in panel d",
+    "scope": "Center curve and error bar only; source arrays and statistics unchanged"
+  },
+  "pulse_legend_panels": [
+    "d"
+  ],
   "center_display_ylim_khz": [
     -100,
     100
   ],
+  "contrast_display_ylim": [
+    0,
+    0.5
+  ],
   "fwhm_axes": {
     "left": "FWHM / Gamma_T2_star",
     "right": "FWHM (MHz)",
-    "normalization": "Representative Ramsey: Gamma_T2_star = 1 / (pi * mean_T2_star)",
-    "normalization_hz": 40541.40790412636,
+    "normalization": "Common paper reference: Gamma_T2_star = 1 / (pi * T2_star)",
+    "t2_star_s": 7.6e-06,
+    "normalization_hz": 41882.87976102509,
     "left_ylim": [
       0,
-      12.333069467701177
+      11.938052083641214
     ],
     "right_ylim_mhz": [
       0,
@@ -267,20 +284,20 @@
     ]
   },
   "center_reference": {
-    "calibration": "representative_ramsey",
-    "t2_star_s": 7.851475877121491e-06,
+    "calibration": "common_paper_reference",
+    "t2_star_s": 7.6e-06,
     "definition": "Lines at +/- 1/(2*pi*Ramsey_T2_star), enclosing the FWHM",
     "horizontal_lines_khz": [
-      -20.27070395206318,
-      20.27070395206318
+      -20.941439880512547,
+      20.941439880512547
     ],
     "legend_panel": "d",
     "legend_location": "upper left",
     "inline_annotation": false
   },
   "map_reference_vertical_lines_khz": [
-    -20.27070395206318,
-    20.27070395206318
+    -20.941439880512547,
+    20.941439880512547
   ],
   "representative_ramsey": {
     "method": "Arithmetic mean of accepted Ramsey T2* measurements",

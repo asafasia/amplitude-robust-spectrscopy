@@ -44,7 +44,7 @@ testpaths = ["tests"]
 pythonpath = ["."]
 
 [tool.setuptools.package-data]
-"echospec.simulation" = ["qutrit_rk4.cpp"]
+"echospec.simulation" = ["qutrit_rk4.cpp", "bloch_rk4.cpp"]
 
 [tool.ruff]
 line-length = 88

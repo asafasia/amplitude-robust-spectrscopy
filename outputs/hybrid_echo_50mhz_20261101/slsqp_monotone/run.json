@@ -1,0 +1,17 @@
+{
+  "stage": "local",
+  "campaign": "slsqp_monotone",
+  "track": "local",
+  "start": "outputs/hybrid_echo_50mhz_20261101/de_local_start.json",
+  "population": 48,
+  "generations": 15,
+  "budget": 690,
+  "iterations": 22,
+  "workers": 2,
+  "seed": 110112,
+  "extra_amplitudes": [],
+  "fine": false,
+  "target_contrast": 0.403,
+  "monotone_local": true,
+  "trust_radius": 0.04
+}

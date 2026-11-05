@@ -10,22 +10,33 @@ figures under `figures/paper/`, and Matplotlib styles under `styles/`. Treat
 
 ## Build, Test, and Development Commands
 
-Create and activate a virtual environment, then install development tools:
+Use the existing repository `.venv` for all Python scripts, tests, and package
+installation. Prefer explicit `.venv/bin/python` commands; do not fall back to
+system Python or a globally installed `pytest` when a dependency appears missing.
+Check `.venv/bin/python -m pip show <package>` and the selected interpreter first.
+Install missing dependencies with `.venv/bin/python -m pip install ...`.
+
+If `.venv` does not exist, create it, then install development tools:
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
-make install-dev
+python3 -m venv .venv
+make install-dev PYTHON=.venv/bin/python
 ```
 
-- `python -m pytest` runs the complete test suite, including pytest-style tests.
-- `make test` runs the legacy `unittest` discovery suite.
-- `make lint` checks Python with Ruff.
+- `.venv/bin/python -m pytest` runs the complete test suite, including pytest-style tests.
+- `make test PYTHON=.venv/bin/python` runs the legacy `unittest` discovery suite.
+- `.venv/bin/python -m ruff check .` checks Python with Ruff. For `make lint`,
+  activate `.venv` first so the Makefile resolves its `ruff` executable there.
 - `make paper` builds both `paper/main.pdf` and `paper/supplemental.pdf` with
   `latexmk`; use `make paper-main` for the Letter only.
-- `make paper-data-core` regenerates the core documented figure data. Longer
-  simulations are included in `make paper-data`.
-- `jupyter lab` opens the notebook workflows.
+- `make paper-data-core PYTHON=.venv/bin/python` regenerates the core documented
+  figure data. Longer simulations are included in
+  `make paper-data PYTHON=.venv/bin/python`.
+- `.venv/bin/python -m jupyter lab` opens the notebook workflows; select a kernel
+  using this same environment.
+
+For noninteractive plotting and tests, set `MPLBACKEND=Agg` to avoid requiring
+a desktop graphics backend.
 
 ## Coding Style & Naming Conventions
 
@@ -42,8 +53,8 @@ Add focused tests whenever shared simulation, fitting, pulse, or data-export
 behavior changes. Prefer small deterministic synthetic arrays and NumPy
 assertions; avoid depending on large local measurement files. There is no
 configured coverage threshold, so prioritize meaningful regression cases.
-Run `python -m pytest` and `make lint`; rebuild affected figures or PDFs when
-their sources change.
+Run `.venv/bin/python -m pytest` and `.venv/bin/python -m ruff check .`;
+rebuild affected figures or PDFs when their sources change.
 
 ## Data, Figures, and Provenance
 

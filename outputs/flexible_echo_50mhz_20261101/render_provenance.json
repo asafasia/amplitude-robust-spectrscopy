@@ -1,0 +1,23 @@
+{
+  "generator": "scripts/report_flexible_50mhz_echo.py",
+  "generator_sha256": "60bdf571b0ff59c93b16805f268f26542a3e424674e8432d18c060f40785d3c5",
+  "inputs": {
+    "results.json": "f711a59cd31e25784ca8f65187f131d2c07f3334aaf5c148c934a7f08e4d2ae1",
+    "validated_spectra.npz": "166f10a4ea99a84aa6c85128f50d65d4036bcbcc308797d68dab10d851930e72",
+    "cache_imports.json": "849712416c727f3d0d9ede699b8f664073a35322df26d7544556d0cee2c630ba",
+    "cleaner_ablation/ablation.json": "38721b568c0286bd7a2a74b5976f6853040c56fcb9010b837302ff6e969c0689",
+    "cleaner_ablation/ablation.npz": "003c79eab56dedc2779a7a1321bf38094e79d63463cd93399c194c91c44eac0f",
+    "phase_local_check/phase_local_refinement.npz": "72e716fcefa41ec9aae3faf29b67c898a396aed6d5d925bdf2915423719f094e",
+    "theory_note.md": "26ec5b41152f7ada205973dc58109cbad9319a4b6837fd34203b4ea69a5abe74",
+    "search_summary.json": "7715a2403c650ad18c9fc18673abb73ca59a51a5ff5eb6aa436d95cc3568d928",
+    "implementation_validation.json": "aca90ababed8eb372bdbd84ab07aebc155087e3fbe21729a23dd15ea1b7709a9",
+    "ablation.json": "38721b568c0286bd7a2a74b5976f6853040c56fcb9010b837302ff6e969c0689",
+    "cleaner_local_amplitude_refinement.json": "ab577306bbdcb8f240a61b20130e5db6c5e36fede8f4e7b3ef5c298e75e4304e",
+    "phase_local_refinement.json": "0d52ef99a6fcaf6ead51be7e7e9d89df66c15b152ba99c57f5b76caddf63a7e0"
+  },
+  "interpolation": "none",
+  "population_limits": [
+    0,
+    1
+  ]
+}

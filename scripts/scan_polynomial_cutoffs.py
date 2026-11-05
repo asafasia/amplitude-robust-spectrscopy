@@ -56,6 +56,8 @@ def parser():
     result.add_argument("--amplitude-min-mhz", type=float, default=0.0)
     result.add_argument("--amplitude-max-mhz", type=float, default=100.0)
     result.add_argument("--amplitude-points", type=int, default=100)
+    result.add_argument("--amplitude-spacing", choices=("linear", "log"),
+                        default="linear", help="Log spacing requires a positive minimum")
     result.add_argument("--detuning-span-mhz", type=float, default=0.5,
                         help="Half-span; metrics always use the central +/-0.5 MHz")
     result.add_argument("--detuning-points", type=int, default=201)
@@ -82,6 +84,8 @@ def settings_from_args(args):
         raise ValueError("Require >=2 cutoffs and 0 < cutoff-min < cutoff-max <= 1")
     if args.amplitude_points < 2 or not 0 <= args.amplitude_min_mhz < args.amplitude_max_mhz:
         raise ValueError("Require >=2 amplitudes and 0 <= amplitude-min < amplitude-max")
+    if args.amplitude_spacing == "log" and args.amplitude_min_mhz <= 0:
+        raise ValueError("Logarithmic amplitudes require amplitude-min > 0")
     if args.detuning_span_mhz < 0.5 or args.detuning_points < 21:
         raise ValueError("Require a half-span >=0.5 MHz and >=21 detuning points")
     if args.detuning_points % 2 != 1:
@@ -103,8 +107,10 @@ def settings_from_args(args):
     return dict(
         schema_version=1,
         cutoffs=cutoffs.tolist(), durations_us=args.durations_us,
-        rabi_mhz=np.linspace(args.amplitude_min_mhz, args.amplitude_max_mhz,
-                             args.amplitude_points).tolist(),
+        rabi_mhz=(np.geomspace if args.amplitude_spacing == "log" else np.linspace)(
+            args.amplitude_min_mhz, args.amplitude_max_mhz,
+            args.amplitude_points).tolist(),
+        amplitude_spacing=args.amplitude_spacing,
         detuning_mhz=np.linspace(-args.detuning_span_mhz, args.detuning_span_mhz,
                                  args.detuning_points).tolist(),
         power=args.power, transition_us=args.transition_ns / 1000,
@@ -249,6 +255,7 @@ def plot_results(directory, config, duration, populations, maps):
                                shading="nearest", cmap="viridis", vmin=0, vmax=1)
             ax.set_title(f"cutoff = {cutoffs[index]:.4g}")
             ax.set_xlabel("Detuning (kHz)")
+            ax.set_yscale(config.get("amplitude_spacing", "linear"))
             if k % columns == 0:
                 ax.set_ylabel("Drive scale A (MHz)")
         fig.colorbar(im, ax=list(axes.flat), label="Final excited population $P_e$", shrink=0.86)
@@ -267,9 +274,13 @@ def plot_results(directory, config, duration, populations, maps):
     log_edges = np.r_[log_centers[0] - (log_centers[1] - log_centers[0]) / 2,
                       (log_centers[1:] + log_centers[:-1]) / 2,
                       log_centers[-1] + (log_centers[-1] - log_centers[-2]) / 2]
-    amplitude_edges = np.r_[amplitudes[0] - (amplitudes[1] - amplitudes[0]) / 2,
-                            (amplitudes[1:] + amplitudes[:-1]) / 2,
-                            amplitudes[-1] + (amplitudes[-1] - amplitudes[-2]) / 2]
+    log_amplitudes = config.get("amplitude_spacing") == "log"
+    centers = np.log(amplitudes) if log_amplitudes else amplitudes
+    amplitude_edges = np.r_[centers[0] - (centers[1] - centers[0]) / 2,
+                            (centers[1:] + centers[:-1]) / 2,
+                            centers[-1] + (centers[-1] - centers[-2]) / 2]
+    if log_amplitudes:
+        amplitude_edges = np.exp(amplitude_edges)
     fig, axes = plt.subplots(2, 3, figsize=(14, 8), layout="constrained")
     for ax, (key, scale, label, cmap) in zip(axes.flat, fields, strict=True):
         data = maps[key] * scale
@@ -280,6 +291,7 @@ def plot_results(directory, config, duration, populations, maps):
         im = ax.pcolormesh(amplitude_edges, np.exp(log_edges), np.ma.masked_invalid(data),
                            shading="flat", cmap=color)
         ax.set_yscale("log")
+        ax.set_xscale(config.get("amplitude_spacing", "linear"))
         ax.set_ylim(cutoffs[0], cutoffs[-1])
         ax.set_xlim(amplitudes[0], amplitudes[-1])
         ax.set(xlabel="Drive scale A (MHz)", ylabel="Cutoff", title=label)
@@ -306,6 +318,7 @@ def plot_results(directory, config, duration, populations, maps):
     for ax, label in zip([axes[0, 0], axes[0, 1], axes[1, 0]],
                          ["Dip FWHM (kHz)", "Ideal contrast SNR", "SNR / FWHM (MHz⁻¹)"], strict=True):
         ax.set(xlabel="Drive scale A (MHz)", ylabel=label)
+        ax.set_xscale(config.get("amplitude_spacing", "linear"))
         ax.grid(alpha=0.2)
     axes[1, 1].set(xlabel="Dip FWHM (kHz)", ylabel="Ideal contrast SNR",
                    title="Sampled linewidth / SNR tradeoff")

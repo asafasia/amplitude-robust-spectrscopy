@@ -83,15 +83,16 @@ while keeping the existing Figure 2 exports and figures.
 Use `--figure2-only` to regenerate only Figure 2. Its left block groups the
 broad and narrow root-Lorentzian maps; its right block groups the corresponding
 echo-root-Lorentzian maps, with measurements above reference simulations.
+All paper linewidth markers and normalizations use the shared reference in
+`echospec/figures/coherence.py`. The value is stated once in the main text;
+source calibration and simulation parameters remain in the data provenance.
 
 The current figure assets are `02_latest_q1_spectroscopy` and
 `03_latest_q1_pulse_improvement` under `figures/paper/`. Their provenance
 sidecars retain the source hashes, fit masks, displayed color limits and
 matched-amplitude statistics. The generator also writes
 `latest_results_parameters.tex`, keeping quantitative manuscript claims
-tied to the exported data. Campaign-specific coherence references are
-separate from `coherence_parameters.tex`, which remains the input to the
-retained simulations. Figure 3 uses 20 us, 50 ns midpoint smoothing,
+tied to the exported data. Figure 3 uses 20 us, 50 ns midpoint smoothing,
 polynomial power 2 and acquisition beta 1.2557576. Its amplitude axis is
 the actual complex-envelope peak, unlike the nominal axis of Figure 2.
 Figure 3 displays the 0--60 MHz window (180 acquired amplitude rows), with
@@ -101,8 +102,7 @@ axis and FWHM in MHz on the right axis, displayed from 0 to 0.5 MHz.
 Its reported statistics use the 177 nonzero amplitude rows accepted for all
 three pulses in this window. The full 0--100 MHz acquisition and saved fit
 masks remain unchanged in the portable export. The shared map color scale is
-0--0.8. One representative Ramsey T2* is the arithmetic mean of the accepted
-measurements for each campaign; its linewidth is 1/(pi * mean T2*).
+0--0.8. The reference linewidth is 1/(pi * T2*).
 The Figure 3 maps show vertical half-width markers, and the resonance panel
 uses the same half-width as horizontal markers. Coherence values are displayed
 to one decimal place, with unrounded measurements retained in data provenance.
@@ -133,8 +133,12 @@ array orientation, and saved active-$x180$ calibrations before writing PDF,
 PNG, and SVG assets to `figures/paper/`.
 
 The supplemental spectrum slices (Fig. S2) use five acquired rows from the
-earlier primary-qubit narrow-detuning scans. They target
-3, 10, 20, 30, and 40 MHz; the captions give the actual acquired values.
+current Figure 2 q1 narrow-detuning maps. They target
+3, 5, 10, 15, and 20 MHz within the displayed drive range, using 20 us
+pulses, cutoff 0.005, and an abrupt echo inversion without DRAG or polynomial
+shaping. All 200 acquired detunings are retained; labels give the acquired
+drive values. The calculation uses the Figure 2 campaign relaxation fit
+and the common paper coherence reference.
 The simulator evaluates those exact drives and detunings. Each experiment and
 simulation trace is independently mean-centered, then stacked on a common
 population scale without gain or frequency fitting. Raw populations, display
@@ -204,24 +208,31 @@ source data or center selection changes.
 The lower panel fits Gaussian-dip linewidths from the same stored measured
 spectra, using the source campaign's fitting procedure.
 
-The supplemental DRAG coefficient figure combines a resolved simulation scan,
-waveform quadratures, saved simulated centers, and the available two-setting
-experimental comparison. Reproduce it with:
+Figure S5 combines the current q1 measurements from Figure 3 with new
+three-level simulations at L=20 us, cutoff 0.005, a 50 ns sine midpoint,
+and (where enabled) cutoff subtraction and a power-2 polynomial window.
+Both simulations and measurements use the actual complex-envelope peak
+amplitude. Reproduce it with:
 
 ```bash
-.venv/bin/python scripts/scan_drag_beta_center.py
+PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_current_drag_supplement.py --simulate
 MPLCONFIGDIR=/private/tmp/ars-matplotlib-cache .venv/bin/python scripts/make_supplemental_figures.py --only drag_beta_optimization
 make paper-supplemental
 ```
 
-The scan minimizes RMS central-dip detuning over seven amplitudes for the
-20 us, cutoff 0.005, 16 ns sine-smoothed echo. Its saved arrays and numerical
-convergence checks are under `outputs/drag_beta_center_scan/`; the figure arrays
-and provenance are under `figures/paper/supplemental/drag_beta_optimization*`.
-The lowest sampled coefficient is -0.495, close to the half-derivative value
--0.5. The experimental panel uses the existing 50 us, cutoff 0.00075 cache at
-beta 0 and -0.22 with different midpoint smoothing. It is not an experimental
-beta optimization, and its coefficients are quoted in the acquisition convention.
+Omit `--simulate` to render the saved numerical export. The scan and convergence
+checks are in `paper/data/numerical/05_current_drag_comparison.{npz,json}`;
+plotted arrays and provenance are in
+`figures/paper/supplemental/drag_beta_optimization*`. The numerical objective
+is RMS center about zero over six amplitudes from 10 to 60 MHz. The best sampled
+coefficients are -0.475 (hard cutoff) and -0.5 (polynomial) in the documented
+simulation convention. Step refinement changes the centers by less than 1 Hz.
+The measured panel uses 177 common accepted nonzero rows up to 60 MHz and
+subtracts each curve's mean; its RMS variations are approximately 24, 4, and
+2 kHz. Its fixed acquisition beta is 1.2557575757575759, displayed as 1.25.
+The experimental beta-optimization scan will be supplied separately; it is
+not reconstructed from these three fixed-setting measurements. Earlier
+simulation surveys retain their independently documented parameter sets.
 
 The archived simulated pulse-shaping figure includes resonance-center traces
 of all three saved 2D sweeps. Its arrays remain in use by supplemental
@@ -242,52 +253,63 @@ not an independent sub-kHz convergence check. The NPZ includes the three
 `*_center_hz` arrays and `center_rms_mask`, and the provenance records both
 RMS about zero and the standard deviation about each curve's mean.
 
-Figure 4 now shows the 30 us row of the supplemental full-range cutoff--drive
-survey as two maps: local FWHM normalized to `1/(pi*T2)` and probability
-contrast. Regenerate it with:
+Figure 4 shows the 20 us row of the power-2, logarithmic-drive survey in
+`outputs/polynomial_duration_cutoff_poly2_log/n100`. The final supplementary
+figure contains all five durations (10, 20, 30, 45, and 60 us). Both use 100
+geometric cutoffs from 1e-5 to 1 and 100 geometric nominal drives from 1 to
+100 MHz; zero drive is not sampled. The survey retains a 16 ns sine inversion,
+beta=-0.5, T1=51.24 us, T2=7.31 us, and nominal pre-smoothing normalization.
+Widths are displayed relative to the common 7.6 us T2* reference. Regenerate
+both figures, their arrays and provenance, then rebuild the manuscripts with:
 
 ```bash
+PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_supplemental_extended_cutoff.py
 PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_main_duration_cutoff_scan.py
 make paper
 ```
 
-The generator checks exact equality to the supplemental arrays and the original
-simulation cache. White contours mark `C=0.2`; the band between them has `C>0.2`.
-They are contrast boundaries, not a linewidth threshold. Heatmap cells, masks,
-and color scales match supplemental panels (e,f). Figure 4 displays amplitude
-on the logarithmic vertical axis from 1 to 100 MHz, with cutoff on the horizontal
-axis, omitting zero drive without
-resampling the original linear-amplitude cells. The exported NPZ and CSV
-contain the full 100-by-100 grid at 30 us, replacing the previous duration-slice
-export. Provenance records the contour definition and the quoted linewidth and
-fixed-cutoff summaries.
+To repeat the simulation and representative convergence checks, use
+`.venv/bin/python scripts/repeat_extended_cutoff_poly2.py --workers 6`.
+The original power-5, linearly sampled dataset remains available separately.
+The main-figure generator verifies exact equality to the supplemental 20 us
+row (panels c,d) and the saved simulation arrays. Both figures use geometric
+cell edges, linewidth colors on [0,10], contrast colors on [0,1], and white
+C=0.2 contours. Rejected cells are gray; heatmap samples are not interpolated.
 
-Figure 4 panels (c,d) show cutoff slices for 10, 20, 30, 45, and 60 us at the
-same saved amplitude nearest 50 MHz (49.494949 MHz). Thick solid orange curves
-highlight 30 us and match the orange dashed horizontal lines in maps (a,b).
-All four panels use individual `Cutoff c` x-axis labels; the slice amplitude
-appears in the caption only. Rejected
-slice samples are gaps. Slice axes use the map colorbar units; the FWHM axis
-extends to 15 to include the shorter-duration widths. The contrast slice has
-a dotted `C=0.2` reference. The NPZ and provenance record the selected amplitude,
-column index, durations, and all five slices with acceptance masks; no slice
-interpolation is used.
+Figure 4 panels (c,d) retain cutoff slices for all five pulse lengths at the
+same saved amplitude nearest 50 MHz (49.770236 MHz). Thick solid orange curves
+highlight 20 us and match the orange dashed lines in the maps. Rejected slice
+samples are gaps. The linewidth slice axis extends to 15; dotted lines mark
+the coherence reference and C=0.2. The NPZ, CSV and provenance record the 20 us
+maps, all five slices, masks, selected amplitude and numerical summaries.
+The updated supplemental tables use probability contrast/FWHM, rather than
+ideal SNR/FWHM. Forty-five representative refinement checks change linewidth
+by at most 0.509 kHz (time step) and 0.207 kHz (detuning grid), without changing
+acceptance in those checks.
 
-The supplemental edge-smoothing comparison uses the saved
-`03_pulse_improvement.npz` hard-cutoff and cutoff-subtracted polynomial (p=5)
-pulses, both at beta -0.5. Render it with:
+Figures S6 and S7 use the current 20 us pulse, cutoff 0.005, 50 ns sine
+midpoint transition, and power-2 polynomial correction. S6 shows the analytic
+waveforms; S7 compares hard and corrected envelopes at numerical beta -0.5
+and the same actual complex-envelope peak. Recalculate and render with:
 
 ```bash
-MPLCONFIGDIR=/private/tmp/ars-matplotlib-cache .venv/bin/python scripts/make_supplemental_figures.py --only edge_smoothing_results
+PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_current_edge_supplement.py
+MPLCONFIGDIR=/private/tmp/ars-matplotlib-cache .venv/bin/python scripts/make_supplemental_figures.py --only pulse_modifications edge_smoothing_results
+make paper-supplemental
 ```
 
-The four panels show the 100 MHz spectrum and drive-dependent linewidth,
-contrast, and ideal SNR. SNR assumes 1000 total ideal binary measurements:
-500 at the dip and 250 at each +/-0.45 MHz shoulder. It is not measured SNR.
-Arrays, metrics, source hashes, and high-drive summaries are saved as
-`figures/paper/supplemental/edge_smoothing_results*`. Older edge-ramp reports
-also contain a plain polynomial window without cutoff subtraction; those
-arrays describe a different pulse and are not substituted here.
+The numerical export `paper/data/numerical/07_current_edge_comparison.*`
+contains both three-level grids, an additional no-DRAG control at 100 MHz,
+and independent time/frequency refinement at 10, 50, and 100 MHz.
+S7 shows the 100 MHz spectrum and drive-dependent linewidth, contrast,
+and ideal SNR. SNR assumes 1000 total ideal binary measurements: 500 at the
+dip and 250 at each +/-0.45 MHz shoulder. It is not measured SNR.
+Plotted arrays, metrics and source hashes are under
+`figures/paper/supplemental/edge_smoothing_results*` and
+`s08_pulse_modifications*` (the latter is the historical filename for S6).
+At 100 MHz the updated simulation gives widths of about 530 versus 220 kHz,
+contrast 0.06 versus 0.27, and ideal SNR 2 versus 9. The former claim that
+all high-drive points meet both the 200 kHz and SNR 10 guides no longer applies.
 
 ## Editing conventions
 
@@ -312,8 +334,7 @@ See `data/README.md` for raw-source import and fit provenance.
 The added Supplemental section uses the September 9--10, 2026 q6 campaign
 from `opx1000-codes/data/pulse_length_spectroscopy/overnight_dense_20260909`.
 It includes combined linewidth-versus-Rabi-frequency curves through 25 us
-and a standalone paired-linewidth plot, with a campaign-specific T2* reference
-of 51.996 kHz (not the paper's q1 normalization).
+and a standalone paired-linewidth plot, using the shared paper linewidth reference.
 
 ```bash
 python scripts/make_dense_pulse_length_comparison.py

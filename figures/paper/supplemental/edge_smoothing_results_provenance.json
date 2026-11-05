@@ -1,59 +1,101 @@
 {
+  "model": {
+    "anharmonicity_mhz": -216,
+    "levels": 3,
+    "t1_us": 43.78199877974857,
+    "t2_us": 7.6
+  },
+  "convergence": {
+    "checks": [
+      {
+        "case": "drag",
+        "frequency_contrast_change": 8.046701124586608e-05,
+        "frequency_fwhm_change_hz": 65.97903190707439,
+        "frequency_snr_change": 6.487609032745922e-05,
+        "rabi_mhz": 10.0,
+        "time_fwhm_change_hz": 0.0003935860295314342,
+        "time_max_population_change": 1.6167762570126548e-09
+      },
+      {
+        "case": "drag",
+        "frequency_contrast_change": 3.198441030627386e-05,
+        "frequency_fwhm_change_hz": 82.27773465361679,
+        "frequency_snr_change": 7.294804439794689e-05,
+        "rabi_mhz": 50.0,
+        "time_fwhm_change_hz": 0.5137206551153213,
+        "time_max_population_change": 1.117664421568243e-06
+      },
+      {
+        "case": "drag",
+        "frequency_contrast_change": 1.818522587238025e-05,
+        "frequency_fwhm_change_hz": 112.82683608378284,
+        "frequency_snr_change": 8.132875249500238e-05,
+        "rabi_mhz": 100.0,
+        "time_fwhm_change_hz": 11.995719367288984,
+        "time_max_population_change": 6.493126030893137e-05
+      },
+      {
+        "case": "polynomial",
+        "frequency_contrast_change": 6.996436016870611e-06,
+        "frequency_fwhm_change_hz": 16.156005316763185,
+        "frequency_snr_change": 3.3920535887688175e-05,
+        "rabi_mhz": 10.0,
+        "time_fwhm_change_hz": 8.081115083768964e-06,
+        "time_max_population_change": 1.8451284944376312e-10
+      },
+      {
+        "case": "polynomial",
+        "frequency_contrast_change": 3.755489546897195e-06,
+        "frequency_fwhm_change_hz": 29.039225220418302,
+        "frequency_snr_change": 3.984879936780317e-05,
+        "rabi_mhz": 50.0,
+        "time_fwhm_change_hz": 0.10825171292526647,
+        "time_max_population_change": 1.7975963969574238e-06
+      },
+      {
+        "case": "polynomial",
+        "frequency_contrast_change": 1.7502930160784302e-06,
+        "frequency_fwhm_change_hz": 26.997506157058524,
+        "frequency_snr_change": 0.00031374546228235545,
+        "rabi_mhz": 100.0,
+        "time_fwhm_change_hz": 9.365044215111993,
+        "time_max_population_change": 9.649025205904493e-05
+      }
+    ],
+    "refined_detuning_step_khz": 2.5,
+    "refined_dt_ns": 0.25,
+    "scope": "Representative low, middle and high drive; separate time and detuning refinement"
+  },
+  "normalization": "Each complete complex pulse has unit max|I-iQ|; amplitude is actual peak Rabi frequency",
+  "echo_control_100mhz": {
+    "center_hz": -48800.70183132721,
+    "fwhm_hz": 608252.8522160957,
+    "contrast": 0.05356252271225781,
+    "accepted": true,
+    "contrast_snr": 1.7043291865154644,
+    "shoulder_contrast": 0.05312615884977734,
+    "contrast_per_mhz": 0.0873422272599604,
+    "center_population": 0.3937328088103592,
+    "shoulder_population": 0.44685896766013655
+  },
   "source_configs": {
     "drag": {
       "anharmonicity_mhz": -216.0,
-      "cutoff": 0.001,
+      "cutoff": 0.005,
       "drag_beta": -0.5,
-      "duration_us": 30.0,
-      "echo": true,
-      "echo_transition_shape": "sine",
-      "echo_transition_us": 0.016,
-      "edge_ramp_us": 0.0,
-      "edge_window_kind": "none",
-      "edge_window_power": 3.0,
-      "num_steps_per_half": 30000,
-      "order": 0.5,
-      "stark_kappa_mhz_inv": 0.0,
-      "t1_us": 51.24,
-      "t_phi_us": 7.871480508563624
+      "duration_us": 20.0,
+      "polynomial": false,
+      "power": 2.0,
+      "transition_us": 0.05
     },
     "polynomial": {
       "anharmonicity_mhz": -216.0,
-      "computation_sha256": {
-        "drive": "8c2eb45e85d5b0df096eb6ca3bd0c577bfd682e6843b1bfe1577d85f7a9cff29",
-        "echospec/simulation/edge_window.py": "13653bdeb1ba393dd8d969152143380328a791080f598cfd00bee31cb1dabc2b",
-        "echospec/simulation/qutrit.py": "58891d88564eb9d3b5ed592fa69b52c3fb5cec9e7178471c5039e5b8c07c6b15",
-        "echospec/simulation/qutrit_native.py": "e26a097b8d803b1c2da8f0ad56222fff59456e02a445f33d22629a0f639a6dd9",
-        "echospec/simulation/qutrit_rk4.cpp": "493150abcad473a10ff4128c3b42a5f0ddfd0cdd8fe4c1cf09a936858068bab6",
-        "envelope": "54e0554b68be3436232d8d7d50db1fb691f1555356222297686c0b71de3331dc",
-        "objective": "457352460d393e93b2153532b2bb06634746080f7bf90a1809c14de15017b0b4",
-        "quality": "c4e2c797ca952e3214985a764e8652ea8d5f83d197f373596204622cf302c471",
-        "simulate": "42c020becd97f23c1353ea73b48a491034c4aeab3300d212f5f419eaf73858ba"
-      },
-      "cutoff_core": 0.001,
+      "cutoff": 0.005,
       "drag_beta": -0.5,
-      "dt_ns": 0.5,
-      "duration_us": 30.0,
-      "echo": true,
-      "echo_transition_shape": "sine",
-      "echo_transition_us": 0.016,
-      "family": "polynomial5",
-      "knots_us": [
-        0.05,
-        0.15,
-        0.5,
-        1.5,
-        4.0,
-        9.0,
-        15.0
-      ],
-      "order": 0.5,
-      "outer_ramp_us": 2.0,
-      "parameters": null,
-      "sigma_us": 0.015000007500005626,
-      "stark_kappa_mhz_inv": 0.0,
-      "t1_us": 51.24,
-      "t_phi_us": 7.871480508563624
+      "duration_us": 20.0,
+      "polynomial": true,
+      "power": 2.0,
+      "transition_us": 0.05
     }
   },
   "summaries": {
@@ -61,57 +103,58 @@
       "at_100_mhz": {
         "case": "drag",
         "amplitude_mhz": 100.0,
-        "center_hz": 1008.8435131313319,
-        "fwhm_hz": 506015.6491655306,
-        "contrast": 0.07906447250951154,
+        "center_hz": 2063.9920580199273,
+        "fwhm_hz": 528959.445938962,
+        "contrast": 0.05674974220332013,
         "accepted": true,
-        "contrast_snr": 2.4999331880566515,
-        "shoulder_contrast": 0.07877930762112478,
-        "contrast_per_mhz": 0.15568551634922673,
-        "center_population": 0.446899657744151,
-        "shoulder_population": 0.5256789653652758
+        "contrast_snr": 1.8062332221620032,
+        "shoulder_contrast": 0.05630773591696353,
+        "contrast_per_mhz": 0.10645000547633858,
+        "center_population": 0.39278409564374667,
+        "shoulder_population": 0.4490918315607102
       },
-      "max_fwhm_khz_50_to_100": 506.0156491655306,
-      "min_contrast_50_to_100": 0.07906447250951154,
-      "min_ideal_snr_50_to_100": 2.4999331880566515,
+      "max_fwhm_khz_50_to_100": 572.6010531493315,
+      "min_contrast_50_to_100": 0.05674974220332013,
+      "min_ideal_snr_50_to_100": 1.8062332221620032,
       "passing_200khz_snr10": 0
     },
     "polynomial": {
       "at_100_mhz": {
         "case": "polynomial",
         "amplitude_mhz": 100.0,
-        "center_hz": -659.1417566026637,
-        "fwhm_hz": 161849.78239155462,
-        "contrast": 0.3152047884841248,
+        "center_hz": 199.39174116055827,
+        "fwhm_hz": 215446.22561779275,
+        "contrast": 0.2723677420620233,
         "accepted": true,
-        "contrast_snr": 10.635636905698874,
-        "shoulder_contrast": 0.315233679956336,
-        "contrast_per_mhz": 1.947692948969853,
-        "center_population": 0.267994275447047,
-        "shoulder_population": 0.583227955403383
+        "contrast_snr": 9.027845304453578,
+        "shoulder_contrast": 0.27238936556608495,
+        "contrast_per_mhz": 1.2643032607557063,
+        "center_population": 0.30166413853387475,
+        "shoulder_population": 0.5740535040999597
       },
-      "max_fwhm_khz_50_to_100": 161.8497823915546,
-      "min_contrast_50_to_100": 0.3152047884841248,
-      "min_ideal_snr_50_to_100": 10.635636905698874,
-      "passing_200khz_snr10": 50
+      "max_fwhm_khz_50_to_100": 216.58752510676132,
+      "min_contrast_50_to_100": 0.2723677420620233,
+      "min_ideal_snr_50_to_100": 9.027845304453578,
+      "passing_200khz_snr10": 12
     }
   },
   "high_drive_mhz": [
-    50.505050505050505,
+    50.0,
     100.0
   ],
-  "high_drive_points": 50,
+  "high_drive_points": 51,
   "contrast": "Background-referenced dip depth from dip_metrics, as in the main-paper figure",
   "snr": "Ideal Bernoulli readout, 500 shots at interpolated dip center and 250 at each +/-0.45 MHz shoulder; no assignment error, drift, technical noise or center-search cost",
   "snr_signal": "Mean of two shoulder populations minus center population; distinct from fitted-background contrast C",
   "processing": "Saved populations unchanged; no extra smoothing, fitting, normalization or new dynamics; lines connect samples",
   "source_sha256": {
-    "figures/paper/03_pulse_improvement.npz": "95c36500f58d26fde5ca53d3f2c8c066a95ba7571ea833a98cf7769810a79ba0",
-    "figures/paper/03_pulse_improvement_provenance.json": "b9da6ca8829c1b16482d82ad427acf2420e6679c05f4698fef7a79efb5eeca23",
+    "paper/data/numerical/07_current_edge_comparison.npz": "a52f66f16f31fa54d864f7b251ae1ad482c20b64800db686e34d9842ebbc3205",
+    "paper/data/numerical/07_current_edge_comparison.json": "8ea5dd6334094abb304ee2ac68f6f6845730104253cff31d19f6bdb8649deb7b",
+    "scripts/make_current_edge_supplement.py": "9e3c82f82ea8e18e7af1635e95a83ea16d558af7117018f8865582b5f1ea9e27",
     "echospec/analysis/spectroscopy_quality.py": "1e898a6b550e0c46119f66a268e0397a997de59135406b50a55fe6735c212f44",
     "echospec/analysis/dip_metrics.py": "851f4571da5dc275890f42eaf7393f1818fffe69043f4fff703272dddf9290ca"
   },
-  "generator_sha256": "d0422d05e0ec09bc00b7a5127cd0273bc52db1a7b494103275b9ae828a690ad7",
-  "arrays_sha256": "5ae3f141a7982dbc5a098d7f355e5fde0570ad7f9f1139b8eac3d60bb2206851",
+  "generator_sha256": "9306f66d48a8814ba3c91056cbfba4dd58e0a0e046e13b7ba27d8d530841e5dd",
+  "arrays_sha256": "0d59ab17922329f6b595ee08f539969076821c029f86aa74ba9c1a05977215c7",
   "reproduce": ".venv/bin/python scripts/make_supplemental_figures.py --only edge_smoothing_results"
 }

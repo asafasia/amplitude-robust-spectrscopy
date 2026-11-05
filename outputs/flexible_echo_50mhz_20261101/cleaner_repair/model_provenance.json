@@ -1,0 +1,17 @@
+{
+  "source_sha256": {
+    "echospec/simulation/flexible_echo.py": "f59d9322511710559224dbdd6b20e2e71162a03cf81afa7cd6c51bce3f342b18",
+    "echospec/simulation/decoupled_echo.py": "ec549986a3a3089a7d5f8b68f6628eaee8b771d7da4820adbf2472ce8d20343d",
+    "echospec/simulation/polynomial_echo.py": "59021291bb6363a59767274c3c3d727843d37319364a60d51d63c9e7193b950d",
+    "echospec/simulation/qutrit_rk4.cpp": "493150abcad473a10ff4128c3b42a5f0ddfd0cdd8fe4c1cf09a936858068bab6",
+    "echospec/analysis/dip_metrics.py": "851f4571da5dc275890f42eaf7393f1818fffe69043f4fff703272dddf9290ca",
+    "scripts/optimize_50mhz_echo.py": "b3f153a50ea8f9155424289a172ac95ded96d5234004acfc5a78cf7e7b059bb1",
+    "scripts/optimize_flexible_50mhz_echo.py": "f20e334f78dc1e97d3b2ed90d56809c34666075a272f7c930a920eec426fc05a"
+  },
+  "actual_peak_normalization": true,
+  "dt_ns": 0.25,
+  "detuning_grid": "linspace(-.5,.5,401)",
+  "dense_amplitudes": "arange(5,60.01,.5)",
+  "t1_us": 51.24,
+  "t2_us": 7.31
+}

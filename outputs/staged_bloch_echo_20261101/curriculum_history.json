@@ -1,0 +1,2252 @@
+[
+  {
+    "label": "focus_10_20",
+    "objective_band_mhz": [
+      10.0,
+      20.0
+    ],
+    "seen_up_to_mhz": 20.0,
+    "optimizer_success": false,
+    "optimizer_status": "Iteration limit reached",
+    "evaluations_in_stage": 178,
+    "selected": {
+      "valid": true,
+      "pulse": {
+        "duration_us": 21.659860732079604,
+        "cutoff": 0.0009821787248690478,
+        "power": 1.0000000000000513,
+        "transition_us": 0.028125375399628977,
+        "drag_beta": 0.0,
+        "anharmonicity_mhz": -216.0
+      },
+      "normalized": [
+        0.22032033438838072,
+        0.6035057316025079,
+        3.4214605189729273e-15,
+        0.478772749955717
+      ],
+      "rows": [
+        {
+          "rabi_mhz": 5.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 126431.3143723706,
+          "contrast": 0.25986241969291834,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 6.0,
+          "center_hz": -2.9446526491644203e-11,
+          "fwhm_hz": 128270.25262788044,
+          "contrast": 0.33254231193172984,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 7.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 129746.6624184338,
+          "contrast": 0.41925699094580493,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 9.0,
+          "center_hz": -2.1015779996716522e-11,
+          "fwhm_hz": 129572.43872045679,
+          "contrast": 0.4747071550550305,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 10.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 128766.5543419147,
+          "contrast": 0.4969886127618046,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 12.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 126243.10957210849,
+          "contrast": 0.520638293849214,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 15.0,
+          "center_hz": -3.716640286568871e-11,
+          "fwhm_hz": 125910.8057968164,
+          "contrast": 0.5265683891025636,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 17.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 128272.22485587613,
+          "contrast": 0.5263821026112525,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 20.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 130314.93868652222,
+          "contrast": 0.5181554667885592,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 22.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 130679.10897547136,
+          "contrast": 0.5041033982890528,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 25.0,
+          "center_hz": -4.324599303991008e-11,
+          "fwhm_hz": 131190.611495404,
+          "contrast": 0.4897921393614609,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 27.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 133234.20464854286,
+          "contrast": 0.47850062686642364,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 30.0,
+          "center_hz": -4.77802129674068e-11,
+          "fwhm_hz": 135416.56845143685,
+          "contrast": 0.46840129791968665,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 32.5,
+          "center_hz": -4.960135699691788e-11,
+          "fwhm_hz": 136433.49480498178,
+          "contrast": 0.4582607329404196,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 35.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 137344.8941927592,
+          "contrast": 0.44796533957686613,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 37.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 139152.18471317453,
+          "contrast": 0.4390726468370344,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 40.0,
+          "center_hz": -5.6235785233344375e-11,
+          "fwhm_hz": 141097.35065649185,
+          "contrast": 0.4309662508294503,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 42.5,
+          "center_hz": -5.8055626819012966e-11,
+          "fwhm_hz": 142066.74755805882,
+          "contrast": 0.42347667226764485,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 45.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 142935.3915654286,
+          "contrast": 0.4158466082555128,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 47.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 144588.81080133785,
+          "contrast": 0.4090218937489386,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 50.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 146315.3140710278,
+          "contrast": 0.4025403194700502,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 52.5,
+          "center_hz": -6.639846112592099e-11,
+          "fwhm_hz": 147097.31803584725,
+          "contrast": 0.3966672135353143,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 55.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 147752.08795423046,
+          "contrast": 0.39064350173306617,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 57.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 149135.1500962257,
+          "contrast": 0.38519366996870763,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 60.0,
+          "center_hz": -7.276249606806303e-11,
+          "fwhm_hz": 150713.56843748898,
+          "contrast": 0.37988532474498093,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        }
+      ],
+      "diagnostics": {
+        "levels": 2,
+        "min_eigenvalue": 0.07860407315506612,
+        "min_population": 0.08124506330738712,
+        "max_population": 0.9187549366926129,
+        "num_steps": 11304,
+        "max_dt_ns": 1.9999335119388715
+      },
+      "peak_scale": 0.655798888132515,
+      "key": "382244c923c8f850d6d2478a74dd05a7b83d6fa607a7e8b9b443cd9b30a2cb19",
+      "configuration_sha256": "92d75e34986961feecd083f3756268fbcb4f80be33cb5b6ccdddaa0a7cd1512a"
+    },
+    "quality": {
+      "accepted": true,
+      "user_constraints_pass": true,
+      "width50_khz": 146.31531407102779,
+      "contrast50": 0.4025403194700502,
+      "minimum_width_gain_khz": 4.466572561869256,
+      "minimum_contrast_gain": 0.0022158302799784035,
+      "minimum_contrast_10_to_60": 0.37988532474498093
+    }
+  },
+  {
+    "label": "focus_20_30",
+    "objective_band_mhz": [
+      20.0,
+      30.0
+    ],
+    "seen_up_to_mhz": 30.0,
+    "optimizer_success": false,
+    "optimizer_status": "Iteration limit reached",
+    "evaluations_in_stage": 178,
+    "selected": {
+      "valid": true,
+      "pulse": {
+        "duration_us": 21.675912008247852,
+        "cutoff": 0.0007136054528853847,
+        "power": 1.0000000000000118,
+        "transition_us": 0.03519268903797228,
+        "drag_beta": 0.0,
+        "anharmonicity_mhz": -216.0
+      },
+      "normalized": [
+        0.22057922593948148,
+        0.561478739180522,
+        7.882114616368596e-16,
+        0.5193718157833751
+      ],
+      "rows": [
+        {
+          "rabi_mhz": 5.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 126651.56113305167,
+          "contrast": 0.25921150185352837,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 6.0,
+          "center_hz": -2.955308082743953e-11,
+          "fwhm_hz": 128324.30148101001,
+          "contrast": 0.3312835386662751,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 7.5,
+          "center_hz": -2.381826708396151e-11,
+          "fwhm_hz": 129545.41315537915,
+          "contrast": 0.4171324267117543,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 9.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 129181.6728287023,
+          "contrast": 0.4722258004054773,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 10.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 128320.84359287348,
+          "contrast": 0.4946111110476148,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 12.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 125928.17016146374,
+          "contrast": 0.5193800971196119,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 15.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 125922.49930931762,
+          "contrast": 0.5267938256295388,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 17.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 128418.71290472518,
+          "contrast": 0.5270024030347822,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 20.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 130267.6629837528,
+          "contrast": 0.5183871008074072,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 22.5,
+          "center_hz": -4.141350269200559e-11,
+          "fwhm_hz": 130445.53360557997,
+          "contrast": 0.5039190635655975,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 25.0,
+          "center_hz": -4.3158709247457756e-11,
+          "fwhm_hz": 131036.273379504,
+          "contrast": 0.48976654171231,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 27.5,
+          "center_hz": -4.5435369654195914e-11,
+          "fwhm_hz": 133224.28903191007,
+          "contrast": 0.4786969171458156,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 30.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 135346.0049351436,
+          "contrast": 0.46867651371003055,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 32.5,
+          "center_hz": -4.946022000353328e-11,
+          "fwhm_hz": 136249.4799514507,
+          "contrast": 0.4583595242459078,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 35.0,
+          "center_hz": -5.1367992214454616e-11,
+          "fwhm_hz": 137199.97243920146,
+          "contrast": 0.4480706678807282,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 37.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 139106.8816642203,
+          "contrast": 0.43919139474887425,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 40.0,
+          "center_hz": -5.6113518972579567e-11,
+          "fwhm_hz": 140990.36478463988,
+          "contrast": 0.43117564550317233,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 42.5,
+          "center_hz": -5.788537515316268e-11,
+          "fwhm_hz": 141873.25116204223,
+          "contrast": 0.42359233573128074,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 45.0,
+          "center_hz": -5.973399017023748e-11,
+          "fwhm_hz": 142794.44180516916,
+          "contrast": 0.415990707306769,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 47.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 144539.27969991716,
+          "contrast": 0.4091366999424213,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 50.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 146195.79687212702,
+          "contrast": 0.40272552393600836,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 52.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 146898.07699223584,
+          "contrast": 0.3967841792996504,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 55.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 147624.93529645813,
+          "contrast": 0.39078706734908797,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 57.5,
+          "center_hz": -7.02167367430187e-11,
+          "fwhm_hz": 149096.54180512644,
+          "contrast": 0.38531247853696526,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 60.0,
+          "center_hz": -7.259624563923764e-11,
+          "fwhm_hz": 150580.6818425515,
+          "contrast": 0.3800531604412486,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        }
+      ],
+      "diagnostics": {
+        "levels": 2,
+        "min_eigenvalue": 0.07834224770617482,
+        "min_population": 0.08097504918636761,
+        "max_population": 0.9190249508136323,
+        "num_steps": 11316,
+        "max_dt_ns": 1.9999098755580726
+      },
+      "peak_scale": 0.47808087935431126,
+      "key": "4db683d1833bacf3ccced5720f161fd6c332dae51ef8fe8b6c467bccd4afc2a6",
+      "configuration_sha256": "92d75e34986961feecd083f3756268fbcb4f80be33cb5b6ccdddaa0a7cd1512a"
+    },
+    "quality": {
+      "accepted": true,
+      "user_constraints_pass": true,
+      "width50_khz": 146.195796872127,
+      "contrast50": 0.40272552393600836,
+      "minimum_width_gain_khz": 4.246325801188192,
+      "minimum_contrast_gain": 0.0015649124405884285,
+      "minimum_contrast_10_to_60": 0.3800531604412486
+    }
+  },
+  {
+    "label": "joint_10_30",
+    "objective_band_mhz": [
+      10.0,
+      30.0
+    ],
+    "seen_up_to_mhz": 30.0,
+    "optimizer_success": false,
+    "optimizer_status": "Iteration limit reached",
+    "evaluations_in_stage": 180,
+    "selected": {
+      "valid": true,
+      "pulse": {
+        "duration_us": 21.691341089991468,
+        "cutoff": 0.00037901317017545975,
+        "power": 1.0000000000000102,
+        "transition_us": 0.04295217286285298,
+        "drag_beta": 0.0,
+        "anharmonicity_mhz": -216.0
+      },
+      "normalized": [
+        0.2208280820966366,
+        0.478230825962597,
+        6.87999933232043e-16,
+        0.5554580758127572
+      ],
+      "rows": [
+        {
+          "rabi_mhz": 5.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 126823.44248486093,
+          "contrast": 0.2593435543687235,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 6.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 128356.17170268115,
+          "contrast": 0.3309546917365142,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 7.5,
+          "center_hz": -2.3826126072619934e-11,
+          "fwhm_hz": 129361.86505186054,
+          "contrast": 0.41601947871626443,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 9.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 128842.38962586592,
+          "contrast": 0.47067418826645735,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 10.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 127940.84657307081,
+          "contrast": 0.4930421211449587,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 12.5,
+          "center_hz": -3.734336009509458e-11,
+          "fwhm_hz": 125679.14594910895,
+          "contrast": 0.5185631836791609,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 15.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 125960.70649966117,
+          "contrast": 0.5270391826750651,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 17.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 128537.61152315032,
+          "contrast": 0.5273356467000941,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 20.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 130199.95521050443,
+          "contrast": 0.5182755244101491,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 22.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 130267.91039856667,
+          "contrast": 0.5034973474052844,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 25.0,
+          "center_hz": -4.313202371760495e-11,
+          "fwhm_hz": 130977.3942655213,
+          "contrast": 0.48959218320224557,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 27.5,
+          "center_hz": -4.543431242134823e-11,
+          "fwhm_hz": 133255.6639927506,
+          "contrast": 0.4786383277851762,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 30.0,
+          "center_hz": -4.762580369069253e-11,
+          "fwhm_hz": 135271.0360080225,
+          "contrast": 0.4686355157113147,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 32.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 136126.41368665954,
+          "contrast": 0.45811848462599436,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 35.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 137173.41605867678,
+          "contrast": 0.4479582270848782,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 37.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 139127.9107063576,
+          "contrast": 0.4390595811161778,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 40.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 140875.7366517606,
+          "contrast": 0.43113306306078847,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 42.5,
+          "center_hz": -5.7807602410856103e-11,
+          "fwhm_hz": 141747.72813849634,
+          "contrast": 0.42338647499317034,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 45.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 142804.58197704444,
+          "contrast": 0.41590284049742665,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 47.5,
+          "center_hz": -6.210595908056886e-11,
+          "fwhm_hz": 144579.10807179424,
+          "contrast": 0.408991670498926,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 50.0,
+          "center_hz": -6.434775193431923e-11,
+          "fwhm_hz": 146051.86897621563,
+          "contrast": 0.402681507135354,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 52.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 146753.46003222413,
+          "contrast": 0.3965884819023273,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 55.0,
+          "center_hz": -6.794960936162274e-11,
+          "fwhm_hz": 147662.7197364564,
+          "contrast": 0.3907001619328409,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 57.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 149167.06232125932,
+          "contrast": 0.38515528742389515,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 60.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 150404.38907760894,
+          "contrast": 0.380004972005915,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        }
+      ],
+      "diagnostics": {
+        "levels": 2,
+        "min_eigenvalue": 0.07830507044974105,
+        "min_population": 0.08093587306569555,
+        "max_population": 0.9190641269343045,
+        "num_steps": 11358,
+        "max_dt_ns": 1.9996712236083416
+      },
+      "peak_scale": 0.25413380018012316,
+      "key": "d222b0c96c50e167cc6852c3def8de0ac7ef05291de2475dc0a8803b35294e39",
+      "configuration_sha256": "92d75e34986961feecd083f3756268fbcb4f80be33cb5b6ccdddaa0a7cd1512a"
+    },
+    "quality": {
+      "accepted": true,
+      "user_constraints_pass": true,
+      "width50_khz": 146.05186897621562,
+      "contrast50": 0.402681507135354,
+      "minimum_width_gain_khz": 4.07444444937893,
+      "minimum_contrast_gain": 0.001696964955783531,
+      "minimum_contrast_10_to_60": 0.380004972005915
+    }
+  },
+  {
+    "label": "focus_30_40",
+    "objective_band_mhz": [
+      30.0,
+      40.0
+    ],
+    "seen_up_to_mhz": 40.0,
+    "optimizer_success": false,
+    "optimizer_status": "Iteration limit reached",
+    "evaluations_in_stage": 189,
+    "selected": {
+      "valid": true,
+      "pulse": {
+        "duration_us": 21.69350160724391,
+        "cutoff": 0.0003067302831174365,
+        "power": 1.0000000000000009,
+        "transition_us": 0.04442404756505495,
+        "drag_beta": 0.0,
+        "anharmonicity_mhz": -216.0
+      },
+      "normalized": [
+        0.22086292914909533,
+        0.45039174361692924,
+        5.755718911034044e-17,
+        0.5615603913910391
+      ],
+      "rows": [
+        {
+          "rabi_mhz": 5.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 126826.44974199975,
+          "contrast": 0.2586957931564203,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 6.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 128344.58024240247,
+          "contrast": 0.33020961472393434,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 7.5,
+          "center_hz": -2.386042104305996e-11,
+          "fwhm_hz": 129335.22429771235,
+          "contrast": 0.41527154052369897,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 9.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 128811.78586821623,
+          "contrast": 0.4700546679836253,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 10.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 127912.99862107453,
+          "contrast": 0.4925441196428299,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 12.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 125664.57653208457,
+          "contrast": 0.5183674340649789,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 15.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 125947.22540839388,
+          "contrast": 0.5270162083538716,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 17.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 128513.44640999829,
+          "contrast": 0.5274153469198508,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 20.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 130176.11220836239,
+          "contrast": 0.5184202047529654,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 22.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 130251.29489705406,
+          "contrast": 0.503696961130256,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 25.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 130950.6459328314,
+          "contrast": 0.48979881040811113,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 27.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 133207.70503281476,
+          "contrast": 0.47883280886472535,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 30.0,
+          "center_hz": -4.7574451403738567e-11,
+          "fwhm_hz": 135224.84739882176,
+          "contrast": 0.46883192519562056,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 32.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 136100.04308361994,
+          "contrast": 0.4583295696221061,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 35.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 137144.13332618194,
+          "contrast": 0.4481861028774109,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 37.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 139074.3057532129,
+          "contrast": 0.4392738160921442,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 40.0,
+          "center_hz": -5.595348149910528e-11,
+          "fwhm_hz": 140813.87980895367,
+          "contrast": 0.4313415948219316,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 42.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 141714.29933969647,
+          "contrast": 0.42359087526347095,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 45.0,
+          "center_hz": -5.966339490843062e-11,
+          "fwhm_hz": 142776.6548652488,
+          "contrast": 0.41612177711134135,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 47.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 144522.6007470322,
+          "contrast": 0.40920340911747966,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 50.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 145982.34738863155,
+          "contrast": 0.4028900466177371,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 52.5,
+          "center_hz": -6.600879845870954e-11,
+          "fwhm_hz": 146714.67843194294,
+          "contrast": 0.39678627933986355,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 55.0,
+          "center_hz": -6.78818890085161e-11,
+          "fwhm_hz": 147638.5546482733,
+          "contrast": 0.3909097266841754,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 57.5,
+          "center_hz": -7.018530363150559e-11,
+          "fwhm_hz": 149115.61838945746,
+          "contrast": 0.38535754487856866,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 60.0,
+          "center_hz": -7.234683976604034e-11,
+          "fwhm_hz": 150325.32548941998,
+          "contrast": 0.38020892248392113,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        }
+      ],
+      "diagnostics": {
+        "levels": 2,
+        "min_eigenvalue": 0.07814555752532049,
+        "min_population": 0.08077164254966973,
+        "max_population": 0.9192283574503303,
+        "num_steps": 11378,
+        "max_dt_ns": 1.9995038670984702
+      },
+      "peak_scale": 0.20604376215195078,
+      "key": "dcd5870928de751282d6774ad1ede30c0efc4b7edf487dbbeb76ac20c4f81a9e",
+      "configuration_sha256": "92d75e34986961feecd083f3756268fbcb4f80be33cb5b6ccdddaa0a7cd1512a"
+    },
+    "quality": {
+      "accepted": true,
+      "user_constraints_pass": true,
+      "width50_khz": 145.98234738863155,
+      "contrast50": 0.4028900466177371,
+      "minimum_width_gain_khz": 4.071437192240111,
+      "minimum_contrast_gain": 0.0010492037434803314,
+      "minimum_contrast_10_to_60": 0.38020892248392113
+    }
+  },
+  {
+    "label": "joint_10_40",
+    "objective_band_mhz": [
+      10.0,
+      40.0
+    ],
+    "seen_up_to_mhz": 40.0,
+    "optimizer_success": false,
+    "optimizer_status": "Iteration limit reached",
+    "evaluations_in_stage": 186,
+    "selected": {
+      "valid": true,
+      "pulse": {
+        "duration_us": 21.69970160724391,
+        "cutoff": 0.0003067302831174365,
+        "power": 1.0000000000000009,
+        "transition_us": 0.04442404756505495,
+        "drag_beta": 0.0,
+        "anharmonicity_mhz": -216.0
+      },
+      "normalized": [
+        0.22096292914909532,
+        0.45039174361692924,
+        5.755718911034044e-17,
+        0.5615603913910391
+      ],
+      "rows": [
+        {
+          "rabi_mhz": 5.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 126804.88537545947,
+          "contrast": 0.25868075486175596,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 6.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 128323.44982448654,
+          "contrast": 0.3301881134493857,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 7.5,
+          "center_hz": -2.3852785606405838e-11,
+          "fwhm_hz": 129314.30310826603,
+          "contrast": 0.41523882295487524,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 9.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 128790.71485396537,
+          "contrast": 0.47001112518379007,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 10.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 127891.7949536258,
+          "contrast": 0.4924941992929095,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 12.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 125643.54393162522,
+          "contrast": 0.5183056158630492,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 15.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 125927.32194423917,
+          "contrast": 0.5269477742704926,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 17.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 128494.32156819446,
+          "contrast": 0.527340512786088,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 20.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 130155.01279768208,
+          "contrast": 0.5183409095400522,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 22.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 130230.19242710307,
+          "contrast": 0.5036145991905048,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 25.0,
+          "center_hz": -4.3085574650384994e-11,
+          "fwhm_hz": 130930.68814088068,
+          "contrast": 0.4897161453236562,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 27.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 133188.6199376456,
+          "contrast": 0.47874892061590685,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 30.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 135205.202462001,
+          "contrast": 0.46874708421556666,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 32.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 136080.20997895979,
+          "contrast": 0.4582430455058249,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 35.0,
+          "center_hz": -5.1283294898324916e-11,
+          "fwhm_hz": 137125.28203017198,
+          "contrast": 0.44809955294445203,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 37.5,
+          "center_hz": -5.3684109988486935e-11,
+          "fwhm_hz": 139056.05382665637,
+          "contrast": 0.43918659737655225,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 40.0,
+          "center_hz": -5.594376669720816e-11,
+          "fwhm_hz": 140793.330290985,
+          "contrast": 0.4312542644890107,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 42.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 141693.44592169923,
+          "contrast": 0.42350230239719366,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 45.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 142756.83692180985,
+          "contrast": 0.41603325516616024,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 47.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 144503.39152845982,
+          "contrast": 0.40911421448095653,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 50.0,
+          "center_hz": -6.424310309211471e-11,
+          "fwhm_hz": 145962.03791323575,
+          "contrast": 0.4028010181656154,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 52.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 146693.9561115464,
+          "contrast": 0.3966961913835857,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 55.0,
+          "center_hz": -6.787214464333642e-11,
+          "fwhm_hz": 147618.77659957574,
+          "contrast": 0.3908197831058708,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 57.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 149096.25492505767,
+          "contrast": 0.38526694481752616,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 60.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 150303.20187467217,
+          "contrast": 0.3801185990996561,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        }
+      ],
+      "diagnostics": {
+        "levels": 2,
+        "min_eigenvalue": 0.07816112334903474,
+        "min_population": 0.08078681071814636,
+        "max_population": 0.9192131892818536,
+        "num_steps": 11380,
+        "max_dt_ns": 1.999911641137736
+      },
+      "peak_scale": 0.20609510702998232,
+      "key": "3f600ab3cff9d151f7300289085dcdcbfd09c27f223c83a90fb60408453fcd74",
+      "configuration_sha256": "92d75e34986961feecd083f3756268fbcb4f80be33cb5b6ccdddaa0a7cd1512a"
+    },
+    "quality": {
+      "accepted": true,
+      "user_constraints_pass": true,
+      "width50_khz": 145.96203791323575,
+      "contrast50": 0.4028010181656154,
+      "minimum_width_gain_khz": 4.0930015587803865,
+      "minimum_contrast_gain": 0.0010341654488160157,
+      "minimum_contrast_10_to_60": 0.3801185990996561
+    }
+  },
+  {
+    "label": "focus_40_50",
+    "objective_band_mhz": [
+      40.0,
+      50.0
+    ],
+    "seen_up_to_mhz": 50.0,
+    "optimizer_success": false,
+    "optimizer_status": "Iteration limit reached",
+    "evaluations_in_stage": 189,
+    "selected": {
+      "valid": true,
+      "pulse": {
+        "duration_us": 21.70590160724391,
+        "cutoff": 0.0003067302831174365,
+        "power": 1.0000000000000009,
+        "transition_us": 0.04442404756505495,
+        "drag_beta": 0.0,
+        "anharmonicity_mhz": -216.0
+      },
+      "normalized": [
+        0.2210629291490953,
+        0.45039174361692924,
+        5.755718911034044e-17,
+        0.5615603913910391
+      ],
+      "rows": [
+        {
+          "rabi_mhz": 5.0,
+          "center_hz": -3.717188349409059e-11,
+          "fwhm_hz": 126783.33099307009,
+          "contrast": 0.25866571721924053,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 6.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 128302.32978534303,
+          "contrast": 0.33016661317821544,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 7.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 129293.39263000489,
+          "contrast": 0.4152061074942293,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 9.0,
+          "center_hz": -2.1030506623049552e-11,
+          "fwhm_hz": 128769.65464542345,
+          "contrast": 0.46996758601871247,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 10.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 127870.60209601831,
+          "contrast": 0.4924442836096753,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 12.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 125622.52226394227,
+          "contrast": 0.5182438055879217,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 15.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 125907.42995694271,
+          "contrast": 0.526879350233622,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 17.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 128475.20871109064,
+          "contrast": 0.5272656909485701,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 20.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 130133.92417314618,
+          "contrast": 0.5182616283022043,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 22.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 130209.10165895533,
+          "contrast": 0.5035322532070642,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 25.0,
+          "center_hz": -4.307666357323485e-11,
+          "fwhm_hz": 130910.74276094428,
+          "contrast": 0.4896334970039741,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 27.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 133169.54714662678,
+          "contrast": 0.4786650499539795,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 30.0,
+          "center_hz": -4.7555659404462274e-11,
+          "fwhm_hz": 135185.57016588832,
+          "contrast": 0.46866226111024173,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 32.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 136060.3911121916,
+          "contrast": 0.4581565404580551,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 35.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 137106.44573485482,
+          "contrast": 0.4480130225010268,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 37.5,
+          "center_hz": -5.3675162768110296e-11,
+          "fwhm_hz": 139037.81598614436,
+          "contrast": 0.4390993989968112,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 40.0,
+          "center_hz": -5.593406200010896e-11,
+          "fwhm_hz": 140772.79322691448,
+          "contrast": 0.4311669541061907,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 42.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 141672.60724195873,
+          "contrast": 0.42341375052205976,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 45.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 142737.03476565293,
+          "contrast": 0.41594475430888167,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 47.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 144484.1964186393,
+          "contrast": 0.40902504198910905,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 50.0,
+          "center_hz": -6.423307075089445e-11,
+          "fwhm_hz": 145941.74203028769,
+          "contrast": 0.4027120111689593,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 52.5,
+          "center_hz": -6.598820683878386e-11,
+          "fwhm_hz": 146673.25030554895,
+          "contrast": 0.39660612583321925,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 55.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 147599.01605729797,
+          "contrast": 0.39072986189088366,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 57.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 149076.90655573166,
+          "contrast": 0.3851763682807676,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 60.0,
+          "center_hz": -7.232610091746432e-11,
+          "fwhm_hz": 150281.0909144505,
+          "contrast": 0.3800282983232686,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        }
+      ],
+      "diagnostics": {
+        "levels": 2,
+        "min_eigenvalue": 0.07817668607652178,
+        "min_population": 0.08080197544519163,
+        "max_population": 0.9191980245548084,
+        "num_steps": 11388,
+        "max_dt_ns": 1.9996553822158012
+      },
+      "peak_scale": 0.20614644798787418,
+      "key": "3e24469f51d8b93cc5c3b6f67665c12f826e442e603bcbc0e525ac766077b670",
+      "configuration_sha256": "92d75e34986961feecd083f3756268fbcb4f80be33cb5b6ccdddaa0a7cd1512a"
+    },
+    "quality": {
+      "accepted": true,
+      "user_constraints_pass": true,
+      "width50_khz": 145.94174203028768,
+      "contrast50": 0.4027120111689593,
+      "minimum_width_gain_khz": 4.114555941169769,
+      "minimum_contrast_gain": 0.0010191278063005904,
+      "minimum_contrast_10_to_60": 0.3800282983232686
+    }
+  },
+  {
+    "label": "joint_10_50",
+    "objective_band_mhz": [
+      10.0,
+      50.0
+    ],
+    "seen_up_to_mhz": 50.0,
+    "optimizer_success": false,
+    "optimizer_status": "Iteration limit reached",
+    "evaluations_in_stage": 185,
+    "selected": {
+      "valid": true,
+      "pulse": {
+        "duration_us": 21.71210160724391,
+        "cutoff": 0.0003067302831174365,
+        "power": 1.0000000000000009,
+        "transition_us": 0.04442404756505495,
+        "drag_beta": 0.0,
+        "anharmonicity_mhz": -216.0
+      },
+      "normalized": [
+        0.2211629291490953,
+        0.45039174361692924,
+        5.755718911034044e-17,
+        0.5615603913910391
+      ],
+      "rows": [
+        {
+          "rabi_mhz": 5.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 126761.7865827283,
+          "contrast": 0.25865068023062104,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 6.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 128281.2201127893,
+          "contrast": 0.330145113912523,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 7.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 129272.4928505803,
+          "contrast": 0.4151733941440754,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 9.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 128748.60523012419,
+          "contrast": 0.46992405049051084,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 10.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 127849.42003578118,
+          "contrast": 0.4923943725950998,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 12.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 125601.51151685209,
+          "contrast": 0.5181820032409881,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 15.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 125887.549434745,
+          "contrast": 0.5268109362430757,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 17.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 128456.10782679939,
+          "contrast": 0.5271908814067112,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 20.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 130112.84632431382,
+          "contrast": 0.5181823610365422,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 22.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 130188.022581842,
+          "contrast": 0.5034499231779309,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 25.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 130890.80978226839,
+          "contrast": 0.4895508654444371,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 27.5,
+          "center_hz": -4.5358798232870745e-11,
+          "fwhm_hz": 133150.48664879354,
+          "contrast": 0.47858119687616857,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 30.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 135165.95050012303,
+          "contrast": 0.4685774558733915,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 32.5,
+          "center_hz": -4.932421288908912e-11,
+          "fwhm_hz": 136040.5864721274,
+          "contrast": 0.45807005447570187,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 35.0,
+          "center_hz": -5.12650585876334e-11,
+          "fwhm_hz": 137087.62442784733,
+          "contrast": 0.4479265115397266,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 37.5,
+          "center_hz": -5.366622537279908e-11,
+          "fwhm_hz": 139019.5922186921,
+          "contrast": 0.4390122209496428,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 40.0,
+          "center_hz": -5.592436739957189e-11,
+          "fwhm_hz": 140752.26860831268,
+          "contrast": 0.43107966366451833,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 42.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 141651.78329129357,
+          "contrast": 0.4233252196357107,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 45.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 142717.24838478304,
+          "contrast": 0.41585627452961704,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 47.5,
+          "center_hz": -6.199829929204591e-11,
+          "fwhm_hz": 144465.01540336342,
+          "contrast": 0.4089358916397644,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 50.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 145921.4597314777,
+          "contrast": 0.4026230256157243,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 52.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 146652.56100448177,
+          "contrast": 0.3965160826881755,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 55.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 147579.27300723028,
+          "contrast": 0.3906399630267206,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 57.5,
+          "center_hz": -7.015735238633375e-11,
+          "fwhm_hz": 149057.57326384977,
+          "contrast": 0.38508581526788355,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 60.0,
+          "center_hz": -7.231574909420221e-11,
+          "fwhm_hz": 150258.99260280322,
+          "contrast": 0.37993802013944594,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        }
+      ],
+      "diagnostics": {
+        "levels": 2,
+        "min_eigenvalue": 0.07819224570803374,
+        "min_population": 0.08081713673148089,
+        "max_population": 0.9191828632685191,
+        "num_steps": 11390,
+        "max_dt_ns": 1.9998808245230295
+      },
+      "peak_scale": 0.20619778502594494,
+      "key": "31c284e2290b8120e30f815270fd92650e59ab85b2cf4ebd7dbc0cdde4749b52",
+      "configuration_sha256": "92d75e34986961feecd083f3756268fbcb4f80be33cb5b6ccdddaa0a7cd1512a"
+    },
+    "quality": {
+      "accepted": true,
+      "user_constraints_pass": true,
+      "width50_khz": 145.92145973147768,
+      "contrast50": 0.4026230256157243,
+      "minimum_width_gain_khz": 4.136100351511573,
+      "minimum_contrast_gain": 0.0010040908176811025,
+      "minimum_contrast_10_to_60": 0.37993802013944594
+    }
+  },
+  {
+    "label": "focus_50_60",
+    "objective_band_mhz": [
+      50.0,
+      60.0
+    ],
+    "seen_up_to_mhz": 60.0,
+    "optimizer_success": false,
+    "optimizer_status": "Iteration limit reached",
+    "evaluations_in_stage": 188,
+    "selected": {
+      "valid": true,
+      "pulse": {
+        "duration_us": 21.71830160724391,
+        "cutoff": 0.0003067302831174365,
+        "power": 1.0000000000000009,
+        "transition_us": 0.04442404756505495,
+        "drag_beta": 0.0,
+        "anharmonicity_mhz": -216.0
+      },
+      "normalized": [
+        0.2212629291490953,
+        0.45039174361692924,
+        5.755718911034044e-17,
+        0.5615603913910391
+      ],
+      "rows": [
+        {
+          "rabi_mhz": 5.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 126740.25213236653,
+          "contrast": 0.2586356438976353,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 6.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 128260.120794671,
+          "contrast": 0.3301236156544079,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 7.5,
+          "center_hz": -2.382991640627664e-11,
+          "fwhm_hz": 129251.60375766915,
+          "contrast": 0.41514068290676337,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 9.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 128727.56659564105,
+          "contrast": 0.46988051860137214,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 10.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 127828.24876048043,
+          "contrast": 0.49234446625123907,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 12.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 125580.51167818185,
+          "contrast": 0.5181202088237045,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 15.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 125867.6803659374,
+          "contrast": 0.526742532299312,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 17.5,
+          "center_hz": -3.8281734695277444e-11,
+          "fwhm_hz": 128437.01890356846,
+          "contrast": 0.5271160841613316,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 20.0,
+          "center_hz": -3.983861353767226e-11,
+          "fwhm_hz": 130091.77924056398,
+          "contrast": 0.5181031077426299,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 22.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 130166.95518428611,
+          "contrast": 0.5033676091050676,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 25.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 130870.88919347117,
+          "contrast": 0.4894682506491424,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 27.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 133131.4384326988,
+          "contrast": 0.4784973613966583,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 30.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 135146.3434519884,
+          "contrast": 0.46849266852622173,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 32.5,
+          "center_hz": -4.931473256257435e-11,
+          "fwhm_hz": 136020.79604235422,
+          "contrast": 0.45798358759676205,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 35.0,
+          "center_hz": -5.125595615711266e-11,
+          "fwhm_hz": 137068.8180907344,
+          "contrast": 0.44784002011799917,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 37.5,
+          "center_hz": -5.365729777641137e-11,
+          "fwhm_hz": 139001.3825041146,
+          "contrast": 0.43892506332932013,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 40.0,
+          "center_hz": -5.5914682860402505e-11,
+          "fwhm_hz": 140731.7564100494,
+          "contrast": 0.4309923933006807,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 42.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 141630.97403333324,
+          "contrast": 0.4232367099357146,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 45.0,
+          "center_hz": -5.962563770313818e-11,
+          "fwhm_hz": 142697.47773519126,
+          "contrast": 0.41576781610157143,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 47.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 144445.8484286568,
+          "contrast": 0.408846763816595,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 50.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 145901.1909415299,
+          "contrast": 0.4025340620199908,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 52.5,
+          "center_hz": -6.596766745160339e-11,
+          "fwhm_hz": 146631.88810275483,
+          "contrast": 0.39642606263802366,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 55.0,
+          "center_hz": -6.784299456202137e-11,
+          "fwhm_hz": 147559.54732364469,
+          "contrast": 0.3905500874100406,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 57.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 149038.25489424166,
+          "contrast": 0.3849952869519455,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 60.0,
+          "center_hz": -7.230540857622095e-11,
+          "fwhm_hz": 150236.90671303347,
+          "contrast": 0.3798477660491611,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        }
+      ],
+      "diagnostics": {
+        "levels": 2,
+        "min_eigenvalue": 0.07820780224384194,
+        "min_population": 0.08083229457770835,
+        "max_population": 0.9191677054222916,
+        "num_steps": 11394,
+        "max_dt_ns": 1.9998067472438632
+      },
+      "peak_scale": 0.20624911814451302,
+      "key": "1b4ac629aafa7a9fc54cfa3ca0c357a9e7adab2597f4760deae1874594c25142",
+      "configuration_sha256": "92d75e34986961feecd083f3756268fbcb4f80be33cb5b6ccdddaa0a7cd1512a"
+    },
+    "quality": {
+      "accepted": true,
+      "user_constraints_pass": true,
+      "width50_khz": 145.9011909415299,
+      "contrast50": 0.4025340620199908,
+      "minimum_width_gain_khz": 4.157634801873343,
+      "minimum_contrast_gain": 0.0009890544846953842,
+      "minimum_contrast_10_to_60": 0.3798477660491611
+    }
+  },
+  {
+    "label": "joint_10_60",
+    "objective_band_mhz": [
+      10.0,
+      60.0
+    ],
+    "seen_up_to_mhz": 60.0,
+    "optimizer_success": false,
+    "optimizer_status": "Iteration limit reached",
+    "evaluations_in_stage": 184,
+    "selected": {
+      "valid": true,
+      "pulse": {
+        "duration_us": 21.72450160724391,
+        "cutoff": 0.0003067302831174365,
+        "power": 1.0000000000000009,
+        "transition_us": 0.04442404756505495,
+        "drag_beta": 0.0,
+        "anharmonicity_mhz": -216.0
+      },
+      "normalized": [
+        0.22136292914909528,
+        0.45039174361692924,
+        5.755718911034044e-17,
+        0.5615603913910391
+      ],
+      "rows": [
+        {
+          "rabi_mhz": 5.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 126718.72762994893,
+          "contrast": 0.2586206082220954,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 6.0,
+          "center_hz": -2.958404507414449e-11,
+          "fwhm_hz": 128239.03181886392,
+          "contrast": 0.33010211840605974,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 7.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 129230.72533897839,
+          "contrast": 0.4151079737846659,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 9.0,
+          "center_hz": -2.1011151548078897e-11,
+          "fwhm_hz": 128706.538729558,
+          "contrast": 0.4698369903533934,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 10.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 127807.08825769926,
+          "contrast": 0.49229456458005943,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 12.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 125559.52273584709,
+          "contrast": 0.5180584223374984,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 15.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 125847.82273878023,
+          "contrast": 0.5266741384009764,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 17.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 128417.941929367,
+          "contrast": 0.5270412992090046,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 20.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 130070.72291191795,
+          "contrast": 0.5180238684126739,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 22.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 130145.89945703559,
+          "contrast": 0.5032853109784093,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 25.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 130850.98098517944,
+          "contrast": 0.4893856525958174,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 27.5,
+          "center_hz": -4.534118752600843e-11,
+          "fwhm_hz": 133112.40248848914,
+          "contrast": 0.4784135434784401,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 30.0,
+          "center_hz": -4.7527540653167485e-11,
+          "fwhm_hz": 135126.74901595744,
+          "contrast": 0.46840789900711965,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 32.5,
+          "center_hz": -4.930526243663041e-11,
+          "fwhm_hz": 136001.01982223248,
+          "contrast": 0.45789713973536234,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 35.0,
+          "center_hz": 0.0,
+          "fwhm_hz": 137050.0267233385,
+          "contrast": 0.44775354809824164,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 37.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 138983.18684400956,
+          "contrast": 0.43883792593708515,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 40.0,
+          "center_hz": -5.5905008429050956e-11,
+          "fwhm_hz": 140711.25665720156,
+          "contrast": 0.430905142714229,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 42.5,
+          "center_hz": -5.769873463298256e-11,
+          "fwhm_hz": 141610.179513253,
+          "contrast": 0.42314822101959476,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 45.0,
+          "center_hz": -5.961622883335993e-11,
+          "fwhm_hz": 142677.72286898317,
+          "contrast": 0.4156793784488766,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 47.5,
+          "center_hz": -6.19800929024344e-11,
+          "fwhm_hz": 144426.69555996955,
+          "contrast": 0.4087576577465482,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 50.0,
+          "center_hz": -6.42030391477072e-11,
+          "fwhm_hz": 145880.93578580397,
+          "contrast": 0.40244511931959065,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 52.5,
+          "center_hz": 0.0,
+          "fwhm_hz": 146611.231782498,
+          "contrast": 0.3963360643050896,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 55.0,
+          "center_hz": -6.783330564739452e-11,
+          "fwhm_hz": 147539.83921481992,
+          "contrast": 0.39046023321514395,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 57.5,
+          "center_hz": -7.013877829779409e-11,
+          "fwhm_hz": 149018.9517037671,
+          "contrast": 0.38490478099258174,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        },
+        {
+          "rabi_mhz": 60.0,
+          "center_hz": -7.229508019506253e-11,
+          "fwhm_hz": 150214.8336789965,
+          "contrast": 0.37975753301494664,
+          "accepted": true,
+          "satellite_prominence": 0.0
+        }
+      ],
+      "diagnostics": {
+        "levels": 2,
+        "min_eigenvalue": 0.07822335568418581,
+        "min_population": 0.08084744898453627,
+        "max_population": 0.9191525510154637,
+        "num_steps": 11396,
+        "max_dt_ns": 1.999850044035656
+      },
+      "peak_scale": 0.206300447343897,
+      "key": "3320da4d7ae6bd2004bb97627671610bdb9ece6a76e19b472fec8580534266a0",
+      "configuration_sha256": "92d75e34986961feecd083f3756268fbcb4f80be33cb5b6ccdddaa0a7cd1512a"
+    },
+    "quality": {
+      "accepted": true,
+      "user_constraints_pass": true,
+      "width50_khz": 145.88093578580398,
+      "contrast50": 0.40244511931959065,
+      "minimum_width_gain_khz": 4.179159304290934,
+      "minimum_contrast_gain": 0.0009740188091554858,
+      "minimum_contrast_10_to_60": 0.37975753301494664
+    }
+  }
+]

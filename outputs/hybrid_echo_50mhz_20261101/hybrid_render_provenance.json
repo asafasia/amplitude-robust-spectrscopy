@@ -1,0 +1,19 @@
+{
+  "generator": "scripts/report_hybrid_echo.py",
+  "generator_sha256": "09fb16c19dcb3bed0bdda3e1d3ab969e08686261063f33685613e8c43f0a9101",
+  "base_generator_sha256": "60bdf571b0ff59c93b16805f268f26542a3e424674e8432d18c060f40785d3c5",
+  "inputs": {
+    "results.json": "165d1443386928e9806b36eecb90b221d245a00c6e280da107f33a15c9651c7b",
+    "validated_spectra.npz": "09bd2eec214b3b366a4bff889d1760dd6aa1d81f868b7506bacd6a01392c5c1a",
+    "critical_narrow.json": "57be33edb742de32dd7aa79ed6495d289d50c046d548e99ca657764c13f8a2ff",
+    "critical_narrow_width.json": "ef368094f76ca47226087c59f292b66f3d45572dfff3f0e960f8076bf40bcb1f",
+    "critical_smooth.json": "b5b806dd51453be72606c9a6c5d4d50e49580664296b5bb63a2f0c5fa30f7acc",
+    "dense_band_narrow.json": "86d29458a6c43a74d103c9f5004bb652ec067c46dc3beea81ff4128dbede0a15",
+    "dense_band_smooth.json": "267b10663362b136a51b00dd937c57af0f3fe19ff840656de656f610b7383d34"
+  },
+  "outputs": {
+    "report.html": "75a019de159784629dc59a9a348dde8f7d1a80d575493771b86984fecf5cf356",
+    "maps_preferred.png": "954554e85f261caaff64dae8bf7daf9b4b1ac805868de68da65bde3d9b83e278",
+    "maps_all.png": "9b506fecf25ab36d1df740abc8bce85b0d8039994ae10722ee298aa45af8af17"
+  }
+}

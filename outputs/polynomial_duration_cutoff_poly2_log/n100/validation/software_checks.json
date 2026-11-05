@@ -1,0 +1,16 @@
+{
+  "focused_tests": {
+    "passed": 49,
+    "files": [
+      "tests/test_polynomial_cutoff_scan.py",
+      "tests/test_polynomial_echo.py",
+      "tests/analysis/test_duration_cutoffs.py",
+      "tests/test_extended_cutoff_log_export.py"
+    ]
+  },
+  "changed_files_ruff": "passed",
+  "full_pytest": "Collection blocked by missing optional torch dependency; see full_pytest.log",
+  "repository_lint": "733 findings in current worktree; see repository_lint.log",
+  "legacy_figure_regeneration": "Passed; original grid and robustness table reproduced in temporary output",
+  "initial_checkpoint": "Verified p=2, 16 ns transition, geometric 1\u2013100 MHz grid, shape (3,100,201); max trace error 3.54e-14"
+}

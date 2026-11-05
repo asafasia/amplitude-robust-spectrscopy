@@ -1,0 +1,19 @@
+{
+  "focused_tests": {
+    "command": "/opt/miniconda3/envs/qarakal-dev/bin/python -m pytest -q tests/test_decoupled_echo.py tests/test_selective_echo.py tests/test_polynomial_echo.py tests/analysis/test_dip_metrics.py",
+    "result": "57 passed"
+  },
+  "full_suite": {
+    "command": "/opt/miniconda3/envs/qarakal-dev/bin/python -m pytest -q",
+    "result": "Collection blocked by missing torch in tests/test_mps_simulation.py"
+  },
+  "repository_lint": {
+    "command": "make lint",
+    "result": "692 pre-existing findings; changed task files pass focused Ruff"
+  },
+  "hardware_validation": false,
+  "source_sha256": {
+    "echospec/simulation/decoupled_echo.py": "ec549986a3a3089a7d5f8b68f6628eaee8b771d7da4820adbf2472ce8d20343d",
+    "tests/test_decoupled_echo.py": "da6c801e170fc3f793f8d973b0294e82c91d2afa47695bcaca3d0e05ba8ed27f"
+  }
+}

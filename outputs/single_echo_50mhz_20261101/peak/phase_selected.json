@@ -1,0 +1,86 @@
+{
+  "family": "phase",
+  "parameters": [
+    27.139776238461977,
+    -3.9864730724941975,
+    1.0638363311478405,
+    -1.9310202501805702,
+    -0.08966670791272335
+  ],
+  "pulse": {
+    "duration_us": 27.139776238461977,
+    "cutoff": 0.00010316370419175208,
+    "power": 1.0638363311478405,
+    "transition_us": 0.016,
+    "drag_beta": -0.5,
+    "anharmonicity_mhz": -216.0,
+    "phase_rad": -1.9310202501805702,
+    "phase_scale_us": 0.8134545488651972
+  },
+  "loss": 98.37702592541729,
+  "rows": [
+    {
+      "rabi_mhz": 40.0,
+      "center_hz": 48.73725010127966,
+      "fwhm_hz": 97399.89135960872,
+      "contrast": 0.43646127605175056,
+      "accepted": true,
+      "satellite_prominence": 0.009454198564136096,
+      "final_leakage_max": 0.0013349805203870739,
+      "population_at_zero": 0.21250725140237833
+    },
+    {
+      "rabi_mhz": 45.0,
+      "center_hz": 54.762440149182595,
+      "fwhm_hz": 94141.97512314675,
+      "contrast": 0.4291358265274903,
+      "accepted": true,
+      "satellite_prominence": 0.010632104518110919,
+      "final_leakage_max": 0.001294779177821472,
+      "population_at_zero": 0.22096503877854384
+    },
+    {
+      "rabi_mhz": 50.0,
+      "center_hz": 17.017744315163032,
+      "fwhm_hz": 92444.89157824848,
+      "contrast": 0.41758430228717724,
+      "accepted": true,
+      "satellite_prominence": 0.011129627947005116,
+      "final_leakage_max": 0.0019245499222375726,
+      "population_at_zero": 0.22971966354876053
+    },
+    {
+      "rabi_mhz": 55.0,
+      "center_hz": -117.0700966713941,
+      "fwhm_hz": 92664.16319248026,
+      "contrast": 0.4073515904851039,
+      "accepted": true,
+      "satellite_prominence": 0.00879887007353275,
+      "final_leakage_max": 0.0024191274548251854,
+      "population_at_zero": 0.23852463634866133
+    },
+    {
+      "rabi_mhz": 60.0,
+      "center_hz": -112.87768613473867,
+      "fwhm_hz": 94807.63512612473,
+      "contrast": 0.4008780377586808,
+      "accepted": true,
+      "satellite_prominence": 0.005098935192722864,
+      "final_leakage_max": 0.002703492538835865,
+      "population_at_zero": 0.24652045701054318
+    }
+  ],
+  "diagnostics": {
+    "max_trace_error": 2.708944180085382e-14,
+    "min_population": 0.0003031886691305581,
+    "max_population": 0.7871308144635195,
+    "min_density_eigenvalue": 0.0003031886691305581,
+    "num_steps": 54368,
+    "min_dt_ns": 0.08749499570606349,
+    "max_dt_ns": 0.4999626853773282
+  },
+  "normalization": "peak",
+  "raw_peak_scale": 0.2356854342965777,
+  "evaluations": 875,
+  "optimizer_loss": 98.37702592541729
+}

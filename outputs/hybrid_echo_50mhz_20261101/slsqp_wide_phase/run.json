@@ -1,0 +1,32 @@
+{
+  "stage": "local",
+  "campaign": "slsqp_wide_phase",
+  "track": "primary",
+  "start": "outputs/hybrid_echo_50mhz_20261101/wide_phase_start.json",
+  "population": 48,
+  "generations": 15,
+  "budget": 370,
+  "iterations": 12,
+  "workers": 3,
+  "seed": 110112,
+  "extra_amplitudes": [
+    18.0,
+    18.5,
+    19.0,
+    22.0,
+    22.5,
+    23.0,
+    42.0,
+    44.0,
+    46.0,
+    52.0,
+    53.0,
+    54.0
+  ],
+  "fine": false,
+  "target_contrast": null,
+  "monotone_local": false,
+  "trust_radius": 0.06,
+  "satellite_target": 0.009,
+  "wide_phase": true
+}

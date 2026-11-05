@@ -1,0 +1,16 @@
+{
+  "generator": "scripts/report_flexible_50mhz_echo.py",
+  "generator_sha256": "60bdf571b0ff59c93b16805f268f26542a3e424674e8432d18c060f40785d3c5",
+  "inputs": {
+    "results.json": "165d1443386928e9806b36eecb90b221d245a00c6e280da107f33a15c9651c7b",
+    "validated_spectra.npz": "09bd2eec214b3b366a4bff889d1760dd6aa1d81f868b7506bacd6a01392c5c1a",
+    "cache_imports.json": "2f851b6c3e0947a28a7223c866e2d8f6afd974a02753a3401a0ceef9e7f544c5",
+    "search_summary.json": "67afef6165b12d9f147aa008977098c76795e5cfc5eda900815254b39d7180f8",
+    "implementation_validation.json": "d5db69c17fff941b9a9fc764c05d874f0beabef2c1ab27e3865c651eea848415"
+  },
+  "interpolation": "none",
+  "population_limits": [
+    0,
+    1
+  ]
+}

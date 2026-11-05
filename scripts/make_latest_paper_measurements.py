@@ -23,6 +23,10 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+from echospec.figures.coherence import (  # noqa: E402
+    REFERENCE_FWHM_HZ,
+    REFERENCE_T2_STAR_S,
+)
 from echospec.paper_data import save_paper_dataset  # noqa: E402
 
 GENERATOR = "scripts/make_latest_paper_measurements.py"
@@ -229,6 +233,13 @@ def representative_ramsey(meta):
 
 def plot_fig2(data, meta, with_simulations):
     ramsey = representative_ramsey(meta)
+    reference_half_width_mhz = REFERENCE_FWHM_HZ / 2e6
+    t1_s = float(np.mean([
+        fit["t1"] * 1e-9 for name, fit in meta["calibrations"].items()
+        if name.endswith("_t1") and fit.get("success", False)
+    ]))
+    assert np.isfinite(t1_s) and t1_s > 0
+    square_hwhm_slope = np.sqrt(t1_s / REFERENCE_T2_STAR_S)
     rows = 2 if with_simulations else 1
     fig = plt.figure(figsize=(7.1, 3.35 if rows == 2 else 2.0))
     blocks = fig.add_gridspec(
@@ -303,14 +314,18 @@ def plot_fig2(data, meta, with_simulations):
             if span > 1:
                 ax.axvline(-0.5, color="white", lw=0.5, ls=":")
                 ax.axvline(0.5, color="white", lw=0.5, ls=":")
-            else:
-                width = (
-                    ramsey["fwhm_limit_hz"] / 1e6
-                    if row == 0
-                    else 1 / (np.pi * 7.31)
-                )
+                reference_rabi_mhz = np.array([0, min(20, span / square_hwhm_slope)])
                 for sign in [-1, 1]:
-                    ax.axvline(sign * width / 2, color="white", lw=0.5, ls=(0, (2, 6)))
+                    ax.plot(
+                        sign * square_hwhm_slope * reference_rabi_mhz,
+                        reference_rabi_mhz, color="red", lw=0.4, alpha=0.5,
+                    )
+            else:
+                for sign in [-1, 1]:
+                    ax.axvline(
+                        sign * reference_half_width_mhz,
+                        color="white", lw=0.5, ls=(0, (2, 6)),
+                    )
             # Letter each pulse-type block: experiment above reference simulation.
             letter = (
                 "abcdefgh"[(col // 2) * 4 + row * 2 + col % 2]
@@ -338,6 +353,25 @@ def plot_fig2(data, meta, with_simulations):
             experimental_dataset="paper/data/experimental/02_latest_q1_spectroscopy.npz",
             existing_simulations_retained=with_simulations,
             representative_ramsey=ramsey,
+            square_pulse_broadening_reference=dict(
+                panels=["a", "c", "e", "g"] if with_simulations else ["a", "c"],
+                definition="Strong-drive Bloch HWHM asymptotes: detuning = +/- f_R * sqrt(T1/T2_star)",
+                t1_s=t1_s,
+                t1_source="Mean accepted Figure 2 T1 fits; saved fit t1 is in ns",
+                t2_star_s=REFERENCE_T2_STAR_S,
+                hwhm_slope_mhz_per_mhz=float(square_hwhm_slope),
+                origin=[0, 0],
+                color="red",
+                linewidth_pt=0.4,
+                alpha=0.5,
+            ),
+            narrow_panel_reference=dict(
+                t2_star_s=REFERENCE_T2_STAR_S,
+                source="User-specified common display reference",
+                definition="Lines at +/- 1/(2*pi*T2_star), enclosing the FWHM",
+                vertical_lines_mhz=[-reference_half_width_mhz, reference_half_width_mhz],
+                rows="experiment and reference simulation",
+            ),
             column_order=[name for name, _, _ in columns],
             layout="Root-Lorentzian left, echo-root-Lorentzian right; broad then narrow in each block",
             spacing=dict(between_blocks_wspace=0.18, within_blocks_wspace=0.15),
@@ -360,7 +394,7 @@ def plot_fig3(data, meta):
     maps = [fig.add_subplot(grid[0, col]) for col in range(3)]
     center, contrast, fwhm = [fig.add_subplot(grid[1, col]) for col in range(3)]
     ramsey = representative_ramsey(meta)
-    ramsey_fwhm_hz = ramsey["fwhm_limit_hz"]
+    ramsey_fwhm_hz = REFERENCE_FWHM_HZ
     ramsey_fwhm_mhz = ramsey_fwhm_hz / 1e6
     for i, (name, ax) in enumerate(zip(F3, maps, strict=True)):
         x = series(data, name, "detuning_hz") / 1000
@@ -370,7 +404,7 @@ def plot_fig3(data, meta):
             rabi,
             state,
             shading="auto",
-            cmap="viridis",
+            cmap="magma",
             vmin=COLOR_LIMITS[0],
             vmax=COLOR_LIMITS[1],
             rasterized=True,
@@ -415,15 +449,21 @@ def plot_fig3(data, meta):
     common = np.logical_and.reduce(masks)
     assert common.any(), "No commonly accepted fits in the displayed amplitude range"
     statistics = []
+    center_display_exclusions = {F3[2]: [2]}
     for i, (name, mask) in enumerate(zip(F3, masks, strict=True)):
         rabi = series(data, name, "peak_rabi_mhz")
+        center_mask = mask.copy()
+        center_mask[center_display_exclusions.get(name, [])] = False
         fields = ["center_hz", "fwhm_hz", "contrast"]
         for ax, field, scale in zip(
             [center, fwhm, contrast], fields, [1e-3, 1 / ramsey_fwhm_hz, 1], strict=True
         ):
             ax.plot(
                 rabi,
-                np.where(mask, series(data, name, field) * scale, np.nan),
+                np.where(
+                    center_mask if field == "center_hz" else mask,
+                    series(data, name, field) * scale, np.nan,
+                ),
                 color=COLORS[i],
                 lw=0.65,
                 marker=".",
@@ -431,9 +471,9 @@ def plot_fig3(data, meta):
                 label=LABELS[i],
             )
         center.errorbar(
-            rabi[mask],
-            series(data, name, "center_hz")[mask] / 1000,
-            yerr=series(data, name, "center_error_hz")[mask] / 1000,
+            rabi[center_mask],
+            series(data, name, "center_hz")[center_mask] / 1000,
+            yerr=series(data, name, "center_error_hz")[center_mask] / 1000,
             fmt="none",
             ecolor=COLORS[i],
             elinewidth=0.35,
@@ -471,12 +511,12 @@ def plot_fig3(data, meta):
     ))
     center.legend(
         [ramsey_center_line],
-        [f"Ramsey $T_2^* = {ramsey['t2_star_s'] * 1e6:.1f}$ µs"],
+        [r"$\pm\Gamma_{T_2^*}/2$"],
         loc="upper left", frameon=False, fontsize=5.4, handlelength=1.3,
     )
     fwhm.set(
         ylabel=r"$\mathrm{FWHM}/\Gamma_{T_2^*}$",
-        ylim=(0, 0.5 / ramsey_fwhm_mhz), yticks=[0, 1, 2, 4, 6, 8, 10, 12],
+        yticks=[0, 1, 2, 4, 6, 8, 10], ylim=(0, 0.5 / ramsey_fwhm_mhz),
     )
     fwhm_mhz = fwhm.secondary_yaxis(
         "right",
@@ -487,9 +527,8 @@ def plot_fig3(data, meta):
     )
     fwhm_mhz.set_ylabel("FWHM (MHz)", labelpad=3)
     fwhm_mhz.set_yticks(np.linspace(0, 0.5, 6))
-    contrast.set(ylabel="Contrast", ylim=(0, 0.4), yticks=[0, 0.2, 0.4])
+    contrast.set(ylabel="Contrast", ylim=(0, 0.5), yticks=[0, 0.2, 0.4, 0.5])
     fwhm.axhline(1, color="0.4", ls="--", lw=0.55)
-    contrast.legend(loc="lower left", frameon=False, fontsize=5.7, handlelength=1)
     for letter, ax in zip("def", [center, contrast, fwhm], strict=True):
         ax.set(
             xlim=(0, FIG3_DISPLAY_MAX_RABI_MHZ),
@@ -504,7 +543,7 @@ def plot_fig3(data, meta):
         dict(
             experimental_dataset="paper/data/experimental/03_latest_q1_pulse_improvement.npz",
             color_limits=list(COLOR_LIMITS),
-            colormap="viridis",
+            colormap="magma",
             colorbar_count=1,
             panel_order=[*F3, "resonance_position", "contrast", "fwhm"],
             layout=dict(
@@ -519,18 +558,26 @@ def plot_fig3(data, meta):
             fit_method="Saved Gaussian dip plus linear baseline; saved acceptance masks retained; statistics and curves restricted to 0 < peak Rabi <= 60 MHz",
             center_rms_definition="Unweighted standard deviation about the arithmetic mean on common accepted rows",
             center_errorbars="One covariance standard error",
+            center_display_exclusions=dict(
+                indices=center_display_exclusions,
+                reason="User-requested omission of the first high green point in panel d",
+                scope="Center curve and error bar only; source arrays and statistics unchanged",
+            ),
+            pulse_legend_panels=["d"],
             center_display_ylim_khz=[-100, 100],
+            contrast_display_ylim=[0, 0.5],
             fwhm_axes=dict(
                 left="FWHM / Gamma_T2_star",
                 right="FWHM (MHz)",
-                normalization="Representative Ramsey: Gamma_T2_star = 1 / (pi * mean_T2_star)",
+                normalization="Common paper reference: Gamma_T2_star = 1 / (pi * T2_star)",
+                t2_star_s=REFERENCE_T2_STAR_S,
                 normalization_hz=ramsey_fwhm_hz,
                 left_ylim=[0, 0.5 / ramsey_fwhm_mhz],
                 right_ylim_mhz=[0, 0.5],
             ),
             center_reference=dict(
-                calibration="representative_ramsey",
-                t2_star_s=ramsey["t2_star_s"],
+                calibration="common_paper_reference",
+                t2_star_s=REFERENCE_T2_STAR_S,
                 definition="Lines at +/- 1/(2*pi*Ramsey_T2_star), enclosing the FWHM",
                 horizontal_lines_khz=[-ramsey_half_width_khz, ramsey_half_width_khz],
                 legend_panel="d",
@@ -546,7 +593,10 @@ def plot_fig3(data, meta):
 
 
 def write_parameters(f2, f3, stats):
-    values = {}
+    values = {
+        "PaperTTwoStar": f"{REFERENCE_T2_STAR_S * 1e6:.1f}",
+        "PaperCoherenceFwhm": f"{REFERENCE_FWHM_HZ / 1000:.1f}",
+    }
     for prefix, meta in [
         ("LatestTwo", f2),
         ("LatestThree", f3),
@@ -566,9 +616,9 @@ def write_parameters(f2, f3, stats):
         values[prefix + "Limit"] = f"{c['fwhm_limit_hz'] / 1000:.1f}"
     for label, s in zip(["Echo", "Drag", "Poly"], stats, strict=True):
         values[f"Latest{label}Accepted"] = str(s["accepted"])
-        values[f"Latest{label}Width"] = f"{s['median_fwhm_khz']:.1f}"
-        values[f"Latest{label}Contrast"] = f"{s['median_contrast']:.3f}"
-        values[f"Latest{label}CenterRms"] = f"{s['center_rms_about_mean_khz']:.2f}"
+        values[f"Latest{label}Width"] = f"{round(s['median_fwhm_khz'], -1):.0f}"
+        values[f"Latest{label}Contrast"] = f"{s['median_contrast']:.2f}"
+        values[f"Latest{label}CenterRms"] = f"{s['center_rms_about_mean_khz']:.0f}"
     values["LatestCommonCount"] = str(stats[0]["matched_count"])
     values["LatestThreeDisplayedAmplitudePoints"] = str(stats[0]["displayed_amplitude_points"])
     values["LatestThreeDisplayMaxRabi"] = f"{FIG3_DISPLAY_MAX_RABI_MHZ:g}"
@@ -578,7 +628,7 @@ def write_parameters(f2, f3, stats):
     values["LatestThreeAverages"] = str(parameters["num_shots"])
     values["LatestThreeDriveGHz"] = f"{f3['frequency_reference_hz'] / 1e9:.9f}"
     values["LatestPolyLimitRatio"] = (
-        f"{stats[2]['median_fwhm_khz'] * 1000 / representative_ramsey(f3)['fwhm_limit_hz']:.1f}"
+        f"{stats[2]['median_fwhm_khz'] * 1000 / REFERENCE_FWHM_HZ:.0f}"
     )
     (ROOT / "paper/latest_results_parameters.tex").write_text(
         "% Generated from completed experimental datasets by "

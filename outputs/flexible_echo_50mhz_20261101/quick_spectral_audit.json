@@ -1,0 +1,122 @@
+{
+  "flexible_shape": {
+    "pulse": {
+      "duration_us": 17.34824532416824,
+      "core_us": 0.00667407528634206,
+      "tail_gain": 0.2324713227748424,
+      "tail_join_us": 1.1127329142917477,
+      "tail_scale_us": 8.241362645910417,
+      "tail_power": 1.3270975408659158,
+      "edge_width_us": 0.2602236798625236,
+      "transition_us": 0.01360964987554666,
+      "drag_beta": -0.5,
+      "anharmonicity_mhz": -216.0,
+      "phase_rad": -2.2456983426610533,
+      "phase_scale_us": 0.4167685067783255,
+      "phase2_rad": 0.0,
+      "phase2_scale_us": 4.0,
+      "rotation_mix": 0.0,
+      "amp_coefficients": [
+        -0.8438536301775665,
+        -0.6981361954387901,
+        0.3605578463078074,
+        -0.08180676585073998
+      ],
+      "phase_coefficients": [
+        -0.3373960404448404,
+        0.17669852801165753,
+        -0.3444679819432803,
+        1.4560402094136302,
+        -0.8855536932625099
+      ],
+      "odd_phase_coefficients": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "primary": {
+      "rabi_mhz": 50.0,
+      "center_hz": 322.75656640558384,
+      "fwhm_hz": 109608.34640388825,
+      "contrast": 0.4021433232851877,
+      "accepted": true,
+      "satellite_prominence": 0.008140065588366996,
+      "final_leakage_max": 0.000242958225993837,
+      "population_at_zero": 0.30094546347602774
+    },
+    "local_shoulders": {
+      "accepted": true,
+      "contrast": 0.3030656181323052,
+      "fwhm_hz": 88919.34623264475,
+      "center_mhz": 0.0,
+      "left_shoulder_mhz": -0.10499999999999998,
+      "right_shoulder_mhz": 0.10749999999999993
+    },
+    "wide_satellites": {
+      "max_prominence": 0.008140065588366996,
+      "detuning_mhz": [],
+      "prominence": []
+    }
+  },
+  "rotating_shape": {
+    "pulse": {
+      "duration_us": 17.05748412801453,
+      "core_us": 0.00921924407865783,
+      "tail_gain": 0.21731701374261397,
+      "tail_join_us": 0.9255294809567345,
+      "tail_scale_us": 6.815366212290563,
+      "tail_power": 0.5676724458485857,
+      "edge_width_us": 0.2558622619202913,
+      "transition_us": 0.022034798871705747,
+      "drag_beta": -0.5,
+      "anharmonicity_mhz": -216.0,
+      "phase_rad": -1.9336614866830169,
+      "phase_scale_us": 0.46924060651793803,
+      "phase2_rad": 0.0,
+      "phase2_scale_us": 4.0,
+      "rotation_mix": 0.0029807239347534598,
+      "amp_coefficients": [
+        -0.6136268679052913,
+        -0.7407901397792261,
+        0.3668583530768612,
+        0.207948697535826
+      ],
+      "phase_coefficients": [
+        -2.7867990792486523,
+        -1.0655492948588652,
+        -0.5717798023288818,
+        1.6637037443977443,
+        -1.000379254607339
+      ],
+      "odd_phase_coefficients": [
+        -0.07143349834669488,
+        -0.023840354397755004,
+        -0.029942286088404657
+      ]
+    },
+    "primary": {
+      "rabi_mhz": 50.0,
+      "center_hz": -229.79588604295287,
+      "fwhm_hz": 108274.08855627908,
+      "contrast": 0.4016755158075474,
+      "accepted": true,
+      "satellite_prominence": 0.009852212990052678,
+      "final_leakage_max": 0.00011957482868353738,
+      "population_at_zero": 0.30045119360040834
+    },
+    "local_shoulders": {
+      "accepted": true,
+      "contrast": 0.305605958535262,
+      "fwhm_hz": 88666.53189134132,
+      "center_mhz": 0.0,
+      "left_shoulder_mhz": -0.10499999999999998,
+      "right_shoulder_mhz": 0.10250000000000004
+    },
+    "wide_satellites": {
+      "max_prominence": 0.009852212990052678,
+      "detuning_mhz": [],
+      "prominence": []
+    }
+  }
+}

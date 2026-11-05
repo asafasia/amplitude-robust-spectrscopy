@@ -1,0 +1,537 @@
+<!doctype html><meta charset="utf-8"><title>Staged two-level echo optimization</title>
+<style>body{font:16px system-ui;max-width:1250px;margin:30px auto;padding:0 20px}img{width:100%}td,th{padding:7px;border-bottom:1px solid #ddd}table{border-collapse:collapse}pre{white-space:pre-wrap}</style>
+<h1>Staged gradient optimization: two-level prototype</h1>
+<p>Start with 10–20 MHz, focus on 20–30 MHz, consolidate 10–30 MHz, then repeat through 50–60 MHz. A single waveform is carried forward. Each stage adjusts duration, cutoff, continuous polynomial exponent, and reversal time. Nearby integer orders are checked with the remaining parameters reoptimized.</p>
+<p>SLSQP uses finite-difference gradients with log-scaled cutoff/reversal variables. All stages guard the original linewidth and contrast on 5–60 MHz, including the 5–10 MHz protection band. C₅₀ must exceed 0.4. Earlier bands return to the cumulative objective; their best intermediate values are not frozen. This permits trade-offs above the original baseline.</p>
+<p><b>This is a two-level model, with DRAG beta=0, T₁=51.24 µs and T₂=7.31 µs.</b> The original reference is recomputed in this same model. No multilevel leakage or hardware validation is claimed. The original three-level result is not substituted for this baseline.</p>
+<h2>Preferred candidate: integer_p1</h2><p>50 MHz FWHM: <b>145.783 kHz</b> (original 152.453 kHz). Contrast: <b>0.40237</b> (original 0.37889). This is 3.35 times the conventional T₂ linewidth reference, 43.54 kHz. That reference is not a proven bound for this finite-duration echo.</p>
+<p>Dense 551-point audit passed: <b>True</b>. Smallest linewidth gain: 4.253 kHz. Smallest contrast gain: 0.000959, at 5 MHz. <a href="dense_audit.json">Audit metrics</a>.</p><img src="preferred_maps.png"><img src="waveforms.png"><p>The low-power contrast constraint and the lower order boundary p=1 are tight in this run. Simple parameter retuning gives a modest improvement. This does not establish a global optimum or a limit for more flexible pulse/phase families.</p>
+<img src="maps.png"><img src="comparison.png"><h2>Stage history</h2><img src="stages.png">
+<table><tr><th>Stage</th><th>Length (µs)</th><th>Cutoff</th><th>Exponent</th><th>Reversal (ns)</th><th>FWHM₅₀ (kHz)</th><th>C₅₀</th><th>Training pass</th><th>Solver status</th></tr><tr><td>focus_10_20</td><td>21.660</td><td>0.0009821787</td><td>1.0000</td><td>28.125</td><td>146.315</td><td>0.40254</td><td>True</td><td>Iteration limit reached</td></tr><tr><td>focus_20_30</td><td>21.676</td><td>0.0007136055</td><td>1.0000</td><td>35.193</td><td>146.196</td><td>0.40273</td><td>True</td><td>Iteration limit reached</td></tr><tr><td>joint_10_30</td><td>21.691</td><td>0.0003790132</td><td>1.0000</td><td>42.952</td><td>146.052</td><td>0.40268</td><td>True</td><td>Iteration limit reached</td></tr><tr><td>focus_30_40</td><td>21.694</td><td>0.0003067303</td><td>1.0000</td><td>44.424</td><td>145.982</td><td>0.40289</td><td>True</td><td>Iteration limit reached</td></tr><tr><td>joint_10_40</td><td>21.700</td><td>0.0003067303</td><td>1.0000</td><td>44.424</td><td>145.962</td><td>0.40280</td><td>True</td><td>Iteration limit reached</td></tr><tr><td>focus_40_50</td><td>21.706</td><td>0.0003067303</td><td>1.0000</td><td>44.424</td><td>145.942</td><td>0.40271</td><td>True</td><td>Iteration limit reached</td></tr><tr><td>joint_10_50</td><td>21.712</td><td>0.0003067303</td><td>1.0000</td><td>44.424</td><td>145.921</td><td>0.40262</td><td>True</td><td>Iteration limit reached</td></tr><tr><td>focus_50_60</td><td>21.718</td><td>0.0003067303</td><td>1.0000</td><td>44.424</td><td>145.901</td><td>0.40253</td><td>True</td><td>Iteration limit reached</td></tr><tr><td>joint_10_60</td><td>21.725</td><td>0.0003067303</td><td>1.0000</td><td>44.424</td><td>145.881</td><td>0.40245</td><td>True</td><td>Iteration limit reached</td></tr></table>
+<p>Final maps directly simulate 111 amplitudes and 401 detunings, with finer time/frequency checks at 50 MHz. A grid test is not a continuous-interval proof. The joint-from-start control is not an equal-budget benchmark.</p>
+<p>Solver iteration limits are shown above; a feasible selected candidate is not a convergence certificate. The local shoulder contrast is also reported below, independently of the fixed-window background contrast used for optimization.</p>
+<h2>Run the script</h2><pre>MPLCONFIGDIR=/tmp/echo-mpl .venv/bin/python scripts/staged_echo_descent.py --output outputs/my_staged_run
+# Longer stages:
+.venv/bin/python scripts/staged_echo_descent.py --output outputs/my_longer_run --iterations 80 --joint-iterations 200
+# Optional stronger requirement: contrast ≥0.4 at every optimized amplitude:
+.venv/bin/python scripts/staged_echo_descent.py --output outputs/my_high_contrast_run --band-contrast-floor 0.4</pre>
+<p>Bounds: length 8–70 µs, cutoff 10⁻⁵–0.02, exponent 1–16, reversal 2–500 ns. Polynomial exponent is relaxed to a real number for descent; integer orders receive separate refinements. The fixed pulse is normalized to its actual complex-drive peak at each parameter evaluation. A nominal 50 MHz pulse is scaled from 5 to 60 MHz for the robustness ensemble.</p>
+<p><a href="results.json">Final metrics and failed constraints</a> · <a href="selected.json">Selected parameters</a> · <a href="training_summary.json">Algorithm and evaluation counts</a> · <a href="spectra.npz">Population arrays</a> · <a href="configuration.json">Training settings</a></p>
+<details><summary>Parameters and convergence diagnostics</summary><pre>{
+  &quot;baseline&quot;: {
+    &quot;pulse&quot;: {
+      &quot;duration_us&quot;: 30.0,
+      &quot;cutoff&quot;: 0.001,
+      &quot;power&quot;: 5.0,
+      &quot;transition_us&quot;: 0.016,
+      &quot;drag_beta&quot;: 0.0,
+      &quot;anharmonicity_mhz&quot;: -216.0
+    },
+    &quot;validation&quot;: {
+      &quot;max_timestep_population_change&quot;: 1.0875201850168992e-09,
+      &quot;fine50&quot;: {
+        &quot;rabi_mhz&quot;: 50.0,
+        &quot;center_hz&quot;: -2.929311684767936e-10,
+        &quot;fwhm_hz&quot;: 152453.24032380103,
+        &quot;contrast&quot;: 0.3788862596817145,
+        &quot;accepted&quot;: true,
+        &quot;satellite_prominence&quot;: 0.0
+      },
+      &quot;local50&quot;: {
+        &quot;accepted&quot;: true,
+        &quot;contrast&quot;: 0.38589528408834783,
+        &quot;fwhm_hz&quot;: 154974.4534489127,
+        &quot;center_mhz&quot;: 0.0,
+        &quot;left_shoulder_mhz&quot;: -0.5,
+        &quot;right_shoulder_mhz&quot;: 0.5
+      },
+      &quot;fine_diagnostics&quot;: {
+        &quot;levels&quot;: 2,
+        &quot;min_eigenvalue&quot;: 0.24090143065665787,
+        &quot;min_population&quot;: 0.24212512919447282,
+        &quot;max_population&quot;: 0.7578748708055272,
+        &quot;num_steps&quot;: 61386,
+        &quot;max_dt_ns&quot;: 0.5
+      },
+      &quot;map_diagnostics&quot;: [
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.07494882874812553,
+          &quot;min_population&quot;: 0.07570428159841641,
+          &quot;max_population&quot;: 0.9242957184015836,
+          &quot;num_steps&quot;: 30272,
+          &quot;max_dt_ns&quot;: 1.0
+        },
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.156702532368658,
+          &quot;min_population&quot;: 0.15790748368557578,
+          &quot;max_population&quot;: 0.8420925163144242,
+          &quot;num_steps&quot;: 30272,
+          &quot;max_dt_ns&quot;: 1.0
+        },
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.19144453154046776,
+          &quot;min_population&quot;: 0.19270046354289666,
+          &quot;max_population&quot;: 0.8072995364571034,
+          &quot;num_steps&quot;: 30340,
+          &quot;max_dt_ns&quot;: 1.0
+        },
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.2118955708708355,
+          &quot;min_population&quot;: 0.21315050749477849,
+          &quot;max_population&quot;: 0.7868494925052215,
+          &quot;num_steps&quot;: 30470,
+          &quot;max_dt_ns&quot;: 1.0
+        },
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.225522323950493,
+          &quot;min_population&quot;: 0.22677237143903473,
+          &quot;max_population&quot;: 0.7732276285609653,
+          &quot;num_steps&quot;: 30600,
+          &quot;max_dt_ns&quot;: 1.0
+        },
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.23571374225278452,
+          &quot;min_population&quot;: 0.23694813327146313,
+          &quot;max_population&quot;: 0.7630518667285369,
+          &quot;num_steps&quot;: 30754,
+          &quot;max_dt_ns&quot;: 1.0
+        },
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.24373099383858882,
+          &quot;min_population&quot;: 0.24495590340949847,
+          &quot;max_population&quot;: 0.7550440965905015,
+          &quot;num_steps&quot;: 30934,
+          &quot;max_dt_ns&quot;: 1.0
+        }
+      ]
+    },
+    &quot;constraints&quot;: null
+  },
+  &quot;curriculum&quot;: {
+    &quot;pulse&quot;: {
+      &quot;duration_us&quot;: 21.72450160724391,
+      &quot;cutoff&quot;: 0.0003067302831174365,
+      &quot;power&quot;: 1.0000000000000009,
+      &quot;transition_us&quot;: 0.04442404756505495,
+      &quot;drag_beta&quot;: 0.0,
+      &quot;anharmonicity_mhz&quot;: -216.0
+    },
+    &quot;validation&quot;: {
+      &quot;max_timestep_population_change&quot;: 1.0707076336657906e-09,
+      &quot;fine50&quot;: {
+        &quot;rabi_mhz&quot;: 50.0,
+        &quot;center_hz&quot;: -2.5620993242994307e-10,
+        &quot;fwhm_hz&quot;: 145803.8616136043,
+        &quot;contrast&quot;: 0.40245823758161275,
+        &quot;accepted&quot;: true,
+        &quot;satellite_prominence&quot;: 0.0
+      },
+      &quot;local50&quot;: {
+        &quot;accepted&quot;: true,
+        &quot;contrast&quot;: 0.4102104591677764,
+        &quot;fwhm_hz&quot;: 148297.7201404613,
+        &quot;center_mhz&quot;: 0.0,
+        &quot;left_shoulder_mhz&quot;: -0.5,
+        &quot;right_shoulder_mhz&quot;: 0.5
+      },
+      &quot;fine_diagnostics&quot;: {
+        &quot;levels&quot;: 2,
+        &quot;min_eigenvalue&quot;: 0.26877336145989045,
+        &quot;min_population&quot;: 0.2730790933586363,
+        &quot;max_population&quot;: 0.7269209066413638,
+        &quot;num_steps&quot;: 45150,
+        &quot;max_dt_ns&quot;: 0.49997059338602334
+      },
+      &quot;map_diagnostics&quot;: [
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.07822335568440786,
+          &quot;min_population&quot;: 0.08084744898474894,
+          &quot;max_population&quot;: 0.9191525510152511,
+          &quot;num_steps&quot;: 22218,
+          &quot;max_dt_ns&quot;: 0.9999411867720467
+        },
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.17125844629325004,
+          &quot;min_population&quot;: 0.17575263778804912,
+          &quot;max_population&quot;: 0.8242473622119508,
+          &quot;num_steps&quot;: 22218,
+          &quot;max_dt_ns&quot;: 0.9999411867720467
+        },
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.21199973055231136,
+          &quot;min_population&quot;: 0.21670778485990833,
+          &quot;max_population&quot;: 0.7832922151400916,
+          &quot;num_steps&quot;: 22254,
+          &quot;max_dt_ns&quot;: 0.9999411867720467
+        },
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.23582940187386148,
+          &quot;min_population&quot;: 0.24047153686436495,
+          &quot;max_population&quot;: 0.759528463135635,
+          &quot;num_steps&quot;: 22358,
+          &quot;max_dt_ns&quot;: 0.9999411867720467
+        },
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.2514869572868458,
+          &quot;min_population&quot;: 0.2560246223998498,
+          &quot;max_population&quot;: 0.7439753776001502,
+          &quot;num_steps&quot;: 22480,
+          &quot;max_dt_ns&quot;: 0.9999411867720467
+        },
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.2629771184426518,
+          &quot;min_population&quot;: 0.26737436482950094,
+          &quot;max_population&quot;: 0.7326256351704991,
+          &quot;num_steps&quot;: 22628,
+          &quot;max_dt_ns&quot;: 0.9999411867720467
+        },
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.271887298179903,
+          &quot;min_population&quot;: 0.276163569861144,
+          &quot;max_population&quot;: 0.723836430138856,
+          &quot;num_steps&quot;: 22778,
+          &quot;max_dt_ns&quot;: 0.9999411867720467
+        }
+      ]
+    },
+    &quot;constraints&quot;: {
+      &quot;accepted&quot;: true,
+      &quot;user_pass&quot;: true,
+      &quot;minimum_width_gain_khz&quot;: 4.231371702094883,
+      &quot;width_min_at&quot;: 5.0,
+      &quot;minimum_contrast_gain&quot;: 0.0009745070583864202,
+      &quot;contrast_min_at&quot;: 5.0,
+      &quot;width_regression_amplitudes&quot;: [],
+      &quot;contrast_regression_amplitudes&quot;: []
+    }
+  },
+  &quot;joint&quot;: {
+    &quot;pulse&quot;: {
+      &quot;duration_us&quot;: 21.691887548718242,
+      &quot;cutoff&quot;: 0.000473281170513911,
+      &quot;power&quot;: 1.000000000003735,
+      &quot;transition_us&quot;: 0.0408633392845376,
+      &quot;drag_beta&quot;: 0.0,
+      &quot;anharmonicity_mhz&quot;: -216.0
+    },
+    &quot;validation&quot;: {
+      &quot;max_timestep_population_change&quot;: 1.0246888892950778e-09,
+      &quot;fine50&quot;: {
+        &quot;rabi_mhz&quot;: 50.0,
+        &quot;center_hz&quot;: -2.569104837312523e-10,
+        &quot;fwhm_hz&quot;: 146008.98262890373,
+        &quot;contrast&quot;: 0.40263840956224917,
+        &quot;accepted&quot;: true,
+        &quot;satellite_prominence&quot;: 0.0
+      },
+      &quot;local50&quot;: {
+        &quot;accepted&quot;: true,
+        &quot;contrast&quot;: 0.4103815097143009,
+        &quot;fwhm_hz&quot;: 148500.8545060475,
+        &quot;center_mhz&quot;: 0.0,
+        &quot;left_shoulder_mhz&quot;: -0.5,
+        &quot;right_shoulder_mhz&quot;: 0.5
+      },
+      &quot;fine_diagnostics&quot;: {
+        &quot;levels&quot;: 2,
+        &quot;min_eigenvalue&quot;: 0.26870340486910216,
+        &quot;min_population&quot;: 0.2730057193227555,
+        &quot;max_population&quot;: 0.7269942806772445,
+        &quot;num_steps&quot;: 45002,
+        &quot;max_dt_ns&quot;: 0.4999883854955487
+      },
+      &quot;map_diagnostics&quot;: [
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.07832476936444954,
+          &quot;min_population&quot;: 0.08095582864909212,
+          &quot;max_population&quot;: 0.9190441713509079,
+          &quot;num_steps&quot;: 22130,
+          &quot;max_dt_ns&quot;: 0.9998816619202404
+        },
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.1712879574241945,
+          &quot;min_population&quot;: 0.1757870531792597,
+          &quot;max_population&quot;: 0.8242129468207403,
+          &quot;num_steps&quot;: 22130,
+          &quot;max_dt_ns&quot;: 0.9998816619202404
+        },
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.21196782146808363,
+          &quot;min_population&quot;: 0.2166774238643101,
+          &quot;max_population&quot;: 0.7833225761356899,
+          &quot;num_steps&quot;: 22162,
+          &quot;max_dt_ns&quot;: 0.9998816619202404
+        },
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.23579691016366322,
+          &quot;min_population&quot;: 0.24043999460626642,
+          &quot;max_population&quot;: 0.7595600053937336,
+          &quot;num_steps&quot;: 22264,
+          &quot;max_dt_ns&quot;: 0.9998816619202404
+        },
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.25139926903476073,
+          &quot;min_population&quot;: 0.25593703614319513,
+          &quot;max_population&quot;: 0.7440629638568048,
+          &quot;num_steps&quot;: 22410,
+          &quot;max_dt_ns&quot;: 0.9998816619202404
+        },
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.26290920389102124,
+          &quot;min_population&quot;: 0.2673049916356335,
+          &quot;max_population&quot;: 0.7326950083643665,
+          &quot;num_steps&quot;: 22554,
+          &quot;max_dt_ns&quot;: 0.9998816619202404
+        },
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.2717714197200506,
+          &quot;min_population&quot;: 0.27604870947617904,
+          &quot;max_population&quot;: 0.723951290523821,
+          &quot;num_steps&quot;: 22696,
+          &quot;max_dt_ns&quot;: 0.9998816619202404
+        }
+      ]
+    },
+    &quot;constraints&quot;: {
+      &quot;accepted&quot;: true,
+      &quot;user_pass&quot;: true,
+      &quot;minimum_width_gain_khz&quot;: 4.172744183632443,
+      &quot;width_min_at&quot;: 5.0,
+      &quot;minimum_contrast_gain&quot;: 0.001675364509710564,
+      &quot;contrast_min_at&quot;: 5.0,
+      &quot;width_regression_amplitudes&quot;: [],
+      &quot;contrast_regression_amplitudes&quot;: []
+    }
+  },
+  &quot;integer_p1&quot;: {
+    &quot;pulse&quot;: {
+      &quot;duration_us&quot;: 21.73070160724391,
+      &quot;cutoff&quot;: 0.0003067302831174365,
+      &quot;power&quot;: 1.0,
+      &quot;transition_us&quot;: 0.04442404756505495,
+      &quot;drag_beta&quot;: 0.0,
+      &quot;anharmonicity_mhz&quot;: -216.0
+    },
+    &quot;validation&quot;: {
+      &quot;max_timestep_population_change&quot;: 1.071129962504358e-09,
+      &quot;fine50&quot;: {
+        &quot;rabi_mhz&quot;: 50.0,
+        &quot;center_hz&quot;: -2.561697648777465e-10,
+        &quot;fwhm_hz&quot;: 145783.37253324484,
+        &quot;contrast&quot;: 0.40236931785519786,
+        &quot;accepted&quot;: true,
+        &quot;satellite_prominence&quot;: 0.0
+      },
+      &quot;local50&quot;: {
+        &quot;accepted&quot;: true,
+        &quot;contrast&quot;: 0.41012183727483925,
+        &quot;fwhm_hz&quot;: 148277.86964091266,
+        &quot;center_mhz&quot;: 0.0,
+        &quot;left_shoulder_mhz&quot;: -0.5,
+        &quot;right_shoulder_mhz&quot;: 0.5
+      },
+      &quot;fine_diagnostics&quot;: {
+        &quot;levels&quot;: 2,
+        &quot;min_eigenvalue&quot;: 0.26881056781616075,
+        &quot;min_population&quot;: 0.27311624396296014,
+        &quot;max_population&quot;: 0.7268837560370398,
+        &quot;num_steps&quot;: 45164,
+        &quot;max_dt_ns&quot;: 0.4999894906013901
+      },
+      &quot;map_diagnostics&quot;: [
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.0782389060295578,
+          &quot;min_population&quot;: 0.0808625999528702,
+          &quot;max_population&quot;: 0.9191374000471297,
+          &quot;num_steps&quot;: 22226,
+          &quot;max_dt_ns&quot;: 0.9999789812027802
+        },
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.17128740549616467,
+          &quot;min_population&quot;: 0.1757810546774441,
+          &quot;max_population&quot;: 0.8242189453225559,
+          &quot;num_steps&quot;: 22226,
+          &quot;max_dt_ns&quot;: 0.9999789812027802
+        },
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.21203269697527405,
+          &quot;min_population&quot;: 0.21674037343564878,
+          &quot;max_population&quot;: 0.7832596265643512,
+          &quot;num_steps&quot;: 22262,
+          &quot;max_dt_ns&quot;: 0.9999789812027802
+        },
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.23586436013828949,
+          &quot;min_population&quot;: 0.2405061876677274,
+          &quot;max_population&quot;: 0.7594938123322725,
+          &quot;num_steps&quot;: 22366,
+          &quot;max_dt_ns&quot;: 0.9999789812027802
+        },
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.25152353504021485,
+          &quot;min_population&quot;: 0.25606100353167205,
+          &quot;max_population&quot;: 0.743938996468328,
+          &quot;num_steps&quot;: 22486,
+          &quot;max_dt_ns&quot;: 0.9999789812027802
+        },
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.2630141571904087,
+          &quot;min_population&quot;: 0.26741129555729704,
+          &quot;max_population&quot;: 0.732588704442703,
+          &quot;num_steps&quot;: 22636,
+          &quot;max_dt_ns&quot;: 0.9999789812027802
+        },
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.2719253332685043,
+          &quot;min_population&quot;: 0.2762015403745727,
+          &quot;max_population&quot;: 0.7237984596254273,
+          &quot;num_steps&quot;: 22786,
+          &quot;max_dt_ns&quot;: 0.9999789812027802
+        }
+      ]
+    },
+    &quot;constraints&quot;: {
+      &quot;accepted&quot;: true,
+      &quot;user_pass&quot;: true,
+      &quot;minimum_width_gain_khz&quot;: 4.253392802376577,
+      &quot;width_min_at&quot;: 5.0,
+      &quot;minimum_contrast_gain&quot;: 0.0009594732947433848,
+      &quot;contrast_min_at&quot;: 5.0,
+      &quot;width_regression_amplitudes&quot;: [],
+      &quot;contrast_regression_amplitudes&quot;: []
+    }
+  },
+  &quot;integer_p2&quot;: {
+    &quot;pulse&quot;: {
+      &quot;duration_us&quot;: 23.73927738206252,
+      &quot;cutoff&quot;: 0.0002560433232091052,
+      &quot;power&quot;: 2.0,
+      &quot;transition_us&quot;: 0.0452707041630845,
+      &quot;drag_beta&quot;: 0.0,
+      &quot;anharmonicity_mhz&quot;: -216.0
+    },
+    &quot;validation&quot;: {
+      &quot;max_timestep_population_change&quot;: 9.79779590792873e-10,
+      &quot;fine50&quot;: {
+        &quot;rabi_mhz&quot;: 50.0,
+        &quot;center_hz&quot;: -2.675064330541701e-10,
+        &quot;fwhm_hz&quot;: 149167.46910897508,
+        &quot;contrast&quot;: 0.40292252399192285,
+        &quot;accepted&quot;: true,
+        &quot;satellite_prominence&quot;: 0.0
+      },
+      &quot;local50&quot;: {
+        &quot;accepted&quot;: true,
+        &quot;contrast&quot;: 0.4104054459785236,
+        &quot;fwhm_hz&quot;: 151618.25308836318,
+        &quot;center_mhz&quot;: 0.0,
+        &quot;left_shoulder_mhz&quot;: -0.5,
+        &quot;right_shoulder_mhz&quot;: 0.5
+      },
+      &quot;fine_diagnostics&quot;: {
+        &quot;levels&quot;: 2,
+        &quot;min_eigenvalue&quot;: 0.2569403313629162,
+        &quot;min_population&quot;: 0.2599619145633374,
+        &quot;max_population&quot;: 0.7400380854366626,
+        &quot;num_steps&quot;: 49258,
+        &quot;max_dt_ns&quot;: 0.4999978932076135
+      },
+      &quot;map_diagnostics&quot;: [
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.07577721725354802,
+          &quot;min_population&quot;: 0.07759175615824543,
+          &quot;max_population&quot;: 0.9224082438417546,
+          &quot;num_steps&quot;: 24266,
+          &quot;max_dt_ns&quot;: 0.9999072285170323
+        },
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.1642779703299232,
+          &quot;min_population&quot;: 0.16732751621156228,
+          &quot;max_population&quot;: 0.8326724837884377,
+          &quot;num_steps&quot;: 24266,
+          &quot;max_dt_ns&quot;: 0.9999072285170323
+        },
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.2027199543552627,
+          &quot;min_population&quot;: 0.20591870849600852,
+          &quot;max_population&quot;: 0.7940812915039914,
+          &quot;num_steps&quot;: 24304,
+          &quot;max_dt_ns&quot;: 0.9999072285170323
+        },
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.22532519516504151,
+          &quot;min_population&quot;: 0.2285026789525949,
+          &quot;max_population&quot;: 0.7714973210474051,
+          &quot;num_steps&quot;: 24396,
+          &quot;max_dt_ns&quot;: 0.9999072285170323
+        },
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.24028648636521677,
+          &quot;min_population&quot;: 0.24342176890261508,
+          &quot;max_population&quot;: 0.756578231097385,
+          &quot;num_steps&quot;: 24534,
+          &quot;max_dt_ns&quot;: 0.9999072285170323
+        },
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.2513342210476721,
+          &quot;min_population&quot;: 0.2544016411908241,
+          &quot;max_population&quot;: 0.7455983588091759,
+          &quot;num_steps&quot;: 24684,
+          &quot;max_dt_ns&quot;: 0.9999072285170323
+        },
+        {
+          &quot;levels&quot;: 2,
+          &quot;min_eigenvalue&quot;: 0.2599760927879514,
+          &quot;min_population&quot;: 0.26298687951149513,
+          &quot;max_population&quot;: 0.7370131204885049,
+          &quot;num_steps&quot;: 24826,
+          &quot;max_dt_ns&quot;: 0.9999072285170323
+        }
+      ]
+    },
+    &quot;constraints&quot;: {
+      &quot;accepted&quot;: true,
+      &quot;user_pass&quot;: true,
+      &quot;minimum_width_gain_khz&quot;: 0.615673842378179,
+      &quot;width_min_at&quot;: 5.0,
+      &quot;minimum_contrast_gain&quot;: 0.0010121709580461213,
+      &quot;contrast_min_at&quot;: 5.0,
+      &quot;width_regression_amplitudes&quot;: [],
+      &quot;contrast_regression_amplitudes&quot;: []
+    }
+  }
+}</pre></details>

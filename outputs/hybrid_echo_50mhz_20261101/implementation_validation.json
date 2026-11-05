@@ -1,0 +1,29 @@
+{
+  "focused_tests": {
+    "command": "/opt/miniconda3/envs/qarakal-dev/bin/python -m pytest -q tests/analysis/test_notch_constraints.py tests/test_flexible_echo.py tests/test_time_scaled_echo.py",
+    "passed": 42
+  },
+  "whole_suite": {
+    "command": "/opt/miniconda3/envs/qarakal-dev/bin/python -m pytest -q",
+    "status": "blocked during collection",
+    "reason": "torch is not installed; tests/test_mps_simulation.py imports it"
+  },
+  "whole_lint": {
+    "command": "PATH=/opt/miniconda3/envs/qarakal-dev/bin:$PATH make lint",
+    "status": "733 existing findings in unrelated files"
+  },
+  "hardware_validation": false,
+  "focused_lint": {
+    "status": "passed",
+    "files": [
+      "echospec/analysis/notch_constraints.py",
+      "tests/analysis/test_notch_constraints.py",
+      "scripts/hybrid_echo_search.py",
+      "scripts/report_hybrid_echo.py",
+      "scripts/screen_hybrid_echo.py",
+      "scripts/audit_hybrid_band.py"
+    ]
+  },
+  "overlap_check": "All 111 overlapping amplitudes exactly reproduce both FWHM and contrast in the 551-point sweep; includes the chunked narrow-pulse evaluation.",
+  "dense_audit_source_hashes": "Verified against the final audit generator."
+}

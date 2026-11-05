@@ -1,0 +1,121 @@
+<!doctype html><html lang="en"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Square versus root-Lorentzian echo</title>
+<style>body{max-width:1150px;margin:32px auto;padding:0 24px;font:17px/1.6 system-ui;color:#203043}
+img{width:100%;height:auto}table{border-collapse:collapse;width:100%;font-size:15px}
+td,th{padding:8px;text-align:right;border-bottom:1px solid #ddd}
+th{background:#edf3f8}a{color:#126aa2}code{font-size:14px}details{margin:20px 0}
+.lead{font-size:21px}.note{background:#f2f5f8;padding:16px;border-radius:8px}</style>
+<h1>Square versus root-Lorentzian echo</h1>
+<p class="lead">At matched duration and peak drive, the root-Lorentzian provides
+a pronounced near-resonant dip over a broad drive range where a single square
+echo becomes nearly flat. This supports an advantage for locating the resonance
+without pulse-area tuning. It does not establish universally superior frequency sensitivity.</p>
+<p>Both primary pulses last <b>20 μs</b> and have one abrupt midpoint π phase
+inversion. The root envelope is 1/√(1+(t/τ)²), τ=0.05000063 μs,
+cutoff 0.005, order 1/2. No DRAG, edge window, finite sign-transition time, or
+Stark compensation is applied. The 132 matched peak drives span 0.05–60 MHz.
+The primary grid is ±0.5 MHz with 2.5 kHz spacing.</p>
+<p>The three-level Duffing/Lindblad model uses anharmonicity −216 MHz,
+T1=43.8 μs, and a phenomenological Markovian T2=7.6 μs
+(Tφ=8.3220 μs). These are explicit comparison parameters,
+not a new fit or a measurement. Ideal and dissipative two-level controls are saved too.</p>
+<img src="matched_spectra.png" alt="Six matched-amplitude spectra">
+<table><tr><th>Peak Rabi MHz</th><th>Root FWHM kHz</th><th>Root center kHz</th>
+<th>Root dip depth</th><th>Root max−min Pe</th><th>Square max−min Pe</th></tr>
+<tr><td>1.05</td><td>45.3</td><td>0.11</td><td>0.069</td><td>0.0914</td><td>0.1003</td></tr><tr><td>3.05</td><td>73.5</td><td>-0.29</td><td>0.389</td><td>0.3993</td><td>0.0048</td></tr><tr><td>10.05</td><td>190.9</td><td>-1.38</td><td>0.310</td><td>0.3200</td><td>0.0020</td></tr><tr><td>20.05</td><td>290.9</td><td>-4.45</td><td>0.225</td><td>0.2380</td><td>0.0045</td></tr><tr><td>40.05</td><td>394.3</td><td>-17.12</td><td>0.144</td><td>0.1623</td><td>0.0077</td></tr><tr><td>59.95</td><td>458.2</td><td>-37.73</td><td>0.109</td><td>0.1358</td><td>0.0179</td></tr></table>
+<p>At 3.05 MHz, the root dip is approximately 74 kHz wide and its center is
+within 0.3 kHz of bare f01. The total signal variation in ±500 kHz is 0.399,
+versus 0.0048 for the single square echo (about 83× larger). At 10.05 MHz the
+root dip is about 191 kHz wide and its variation is about 160× larger.
+At 1.05 MHz, both have similar total variation, but the root dip is approximately
+18× narrower than the square dip under the stated finite-window definition.</p>
+<p>The root pulse is not amplitude-independent: its width grows, contrast falls,
+and center moves at large drive. At 59.95 MHz its center displacement is about
+−38 kHz and the finite-window width is about 458 kHz. At small peak drive
+(below roughly 1 MHz here), the root receives too little pulse area and can be
+less useful than the square. The useful operating range depends on cutoff,
+duration, and coherence.</p>
+<p class="note">Widths and dip depths use the repository's finite-window
+definition: raw minimum within ±250 kHz, a linear background fitted outside
+±400 kHz, and nearest half-depth crossings. A plotted “visible” width additionally
+requires depth ≥0.02 and at least six grid intervals. These are not universal
+Lorentzian-fit linewidths. Max−min Pe is a separate, unambiguous signal-variation
+measure over ±500 kHz, not a sensitivity or information gain.</p>
+<img src="comparison_summary.png" alt="Population maps and metrics">
+<p>Both unitary single echoes cancel exactly on resonance. Their difference is
+the response to detuning. For a square echo,
+<code>Pe = 4 Δ² Ω²/(Δ²+Ω²)² · sin⁴[T√(Δ²+Ω²)/4]</code>.
+Its small-detuning response oscillates with pulse area and can vanish.
+The root envelope replaces this strongly oscillating response with a much
+smoother drive dependence. Integer MHz drives at 20 μs happen to be ideal-square
+blind spots. The displayed slices instead use odd half-rotation multiples of π,
+which maximize the square echo's ideal small-detuning curvature. The benefit
+therefore does not come from choosing its coherent blind spots.</p>
+<img src="physics_controls.png" alt="Two-level and analytical curvature controls">
+<p>The extra purple reference is a repeated square rotary echo. It has
+N=max(1, floor(fR T+0.5)) complete cycles, each containing equal positive and
+negative segments. This preserves duration and peak drive but retunes the
+cycle count at every nominal amplitude. At the displayed amplitudes, each
+half-rotation is exactly π. It can provide steeper local fringes and better
+local ideal-readout sensitivity than the root pulse; the root's simpler central
+dip and amplitude range are different advantages. Repeated high-drive curves
+are a three-level illustration, not converged performance predictions.</p>
+<p>The local information metric is max[(dPe/df)²/(Pe(1−Pe))], excluding two
+endpoint samples and probabilities within 10⁻⁴ of 0 or 1. Its inverse square
+root is the plotted kHz × √shots scale. It assumes known amplitude and an
+already located operating point with perfect binary Pe readout. Unknown-amplitude
+nuisance parameters, readout errors, reset overhead, drift, and the cost of
+finding the appropriate fringe are excluded. No experimental sensitivity gain is claimed.</p>
+<img src="timing_control.png" alt="Fixed and retuned repeated echo timing">
+<p>The fixed-201-cycle control holds its timing while amplitude varies; its π
+half-rotation calibration is at 10.05 MHz. This distinguishes waveform robustness
+from a comparator retuned separately for every drive. All maps sample a discrete
+amplitude grid; analytical curvature, rather than that coarse grid, resolves the
+single square echo's rapid pulse-area oscillations.</p>
+<img src="wide_window_control.png" alt="Wide frequency control">
+<p>The ±10 MHz control shows the broad structure and fringes of the square echo
+outside the main near-resonance window. The square response is not globally flat.
+At equal peak drive, the ratio of integrated Ω² is
+<b>0.007829</b>: the root uses 0.783% of the square's
+drive-energy proxy. Matching peak amplitude therefore does not match energy,
+RMS drive, or pulse area. An additional equal-energy square control, with peak
+amplitude multiplied by 0.088482, is saved in
+<a href="equal_energy_control.npz">equal_energy_control.npz</a>.</p>
+<details open><summary>Numerical verification and limits</summary>
+<p>Exact matrix exponentials propagate all square segments. The unitary square
+formula agrees to 3.7e-13 in Pe.
+Halving the root RK4 step from 0.5 to 0.25 ns changes any tested population by at
+most 2.4e-05. Halving the detuning
+spacing changes tested root widths by at most 165 Hz and local Fisher information
+by 0.57%. A separate segment-exponential root calculation resolves the envelope
+in asinh(t/τ); its final four-level refinement changes populations by
+3.7e-05.</p>
+<p>At tested detunings −500, −100, 0, 100, and 500 kHz, adding a fourth level
+changes root Pe by at most 3.0×10⁻⁵ up to 20.05 MHz and 0.00111 at 59.95 MHz.
+The square reference has stronger high-drive truncation effects: the single
+square 3→4-level change reaches 0.0129, and the repeated echo reaches 0.116;
+its 4→5-level change can still reach 0.0324. The central comparison through
+20 MHz is much more reliable for the single square than high-drive repeated
+reference predictions. Abrupt phase inversions and Markovian noise are model
+assumptions; hardware bandwidth and colored noise have not been simulated.</p>
+<p>The independent native square check differs from the exact exponential by
+0.0021 at its worst tested point. Exact exponentials, not native RK4, supply
+every square result. An initial uniform-envelope four-level root check was
+under-resolved; the converged transformed-grid check above supersedes it.
+See <a href="validation.json">initial validation</a> and
+<a href="additional_validation.json">converged level checks</a> for all values.</p>
+</details>
+<p><a href="metrics.csv">All metrics CSV</a> · <a href="responses.npz">Response arrays</a> ·
+<a href="configuration.json">Simulation configuration and original source hashes</a> ·
+<a href="postprocessing_provenance.json">Postprocessing source and array hashes</a></p>
+<p>Software checks for this change: 30 focused tests passed using the simulation
+virtual environment; Ruff passed on all three added source/test files. Full-suite
+collection was blocked by missing optional torch. With that test module excluded,
+204 tests passed and one unrelated Figure 3 statistics test failed. Repository-wide
+lint reported 692 issues outside the added files. See
+<a href="software_validation.json">software validation details</a>.</p>
+<p>Reproduce from the repository root:</p>
+<pre>PYTHONPATH=. .venv/bin/python scripts/compare_square_root_echo.py</pre>
+<p>Use <code>--reuse</code> to regenerate plots and this report from saved main responses.</p>
+</html>

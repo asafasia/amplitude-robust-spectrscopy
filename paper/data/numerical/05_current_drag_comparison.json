@@ -1,0 +1,261 @@
+{
+  "arrays": {
+    "beta": {
+      "dtype": "float64",
+      "shape": [
+        17
+      ]
+    },
+    "curve_drag_centers_hz": {
+      "dtype": "float64",
+      "shape": [
+        180
+      ]
+    },
+    "curve_drag_populations": {
+      "dtype": "float64",
+      "shape": [
+        3,
+        180,
+        121
+      ]
+    },
+    "curve_echo_centers_hz": {
+      "dtype": "float64",
+      "shape": [
+        180
+      ]
+    },
+    "curve_echo_populations": {
+      "dtype": "float64",
+      "shape": [
+        3,
+        180,
+        121
+      ]
+    },
+    "curve_poly_centers_hz": {
+      "dtype": "float64",
+      "shape": [
+        180
+      ]
+    },
+    "curve_poly_populations": {
+      "dtype": "float64",
+      "shape": [
+        3,
+        180,
+        121
+      ]
+    },
+    "curve_rabi_mhz": {
+      "dtype": "float64",
+      "shape": [
+        180
+      ]
+    },
+    "detuning_mhz": {
+      "dtype": "float64",
+      "shape": [
+        121
+      ]
+    },
+    "hard_centers_hz": {
+      "dtype": "float64",
+      "shape": [
+        17,
+        6
+      ]
+    },
+    "hard_populations": {
+      "dtype": "float64",
+      "shape": [
+        17,
+        3,
+        6,
+        121
+      ]
+    },
+    "hard_rms_hz": {
+      "dtype": "float64",
+      "shape": [
+        17
+      ]
+    },
+    "polynomial_centers_hz": {
+      "dtype": "float64",
+      "shape": [
+        17,
+        6
+      ]
+    },
+    "polynomial_populations": {
+      "dtype": "float64",
+      "shape": [
+        17,
+        3,
+        6,
+        121
+      ]
+    },
+    "polynomial_rms_hz": {
+      "dtype": "float64",
+      "shape": [
+        17
+      ]
+    },
+    "scan_rabi_mhz": {
+      "dtype": "float64",
+      "shape": [
+        6
+      ]
+    }
+  },
+  "category": "numerical",
+  "data_file": "05_current_drag_comparison.npz",
+  "dataset": "05_current_drag_comparison",
+  "provenance": {
+    "amplitude": "Actual complex-envelope peak; each pulse divided by max|I-iQ|",
+    "best_sampled": {
+      "hard": {
+        "beta": -0.475,
+        "rms_hz": 365.72114783613347
+      },
+      "polynomial": {
+        "beta": -0.5,
+        "rms_hz": 31.97873643469763
+      }
+    },
+    "convergence": {
+      "checks": [
+        {
+          "beta": -0.5,
+          "diagnostics": {
+            "max_dt_ns": 0.25,
+            "max_population": 0.627260671113374,
+            "max_trace_error": 3.708144902248023e-14,
+            "min_density_eigenvalue": 1.2032287507991489e-05,
+            "min_dt_ns": 0.24999999999999997,
+            "min_population": 1.2044630399540749e-05,
+            "num_steps": 80000
+          },
+          "max_center_change_hz": 0.12325678447882638,
+          "max_population_change": 3.277408051061137e-06,
+          "rms_hz": 439.8855821777346,
+          "shape": "hard"
+        },
+        {
+          "beta": -0.475,
+          "diagnostics": {
+            "max_dt_ns": 0.25,
+            "max_population": 0.6272606059864391,
+            "max_trace_error": 3.197442310920451e-14,
+            "min_density_eigenvalue": 1.2032783311723764e-05,
+            "min_dt_ns": 0.24999999999999997,
+            "min_population": 1.2045129089453285e-05,
+            "num_steps": 80000
+          },
+          "max_center_change_hz": 0.15771401800946094,
+          "max_population_change": 3.2780959683398336e-06,
+          "rms_hz": 365.7013276516029,
+          "shape": "hard"
+        },
+        {
+          "beta": -0.45,
+          "diagnostics": {
+            "max_dt_ns": 0.25,
+            "max_population": 0.6272604259232388,
+            "max_trace_error": 4.596323321948148e-14,
+            "min_density_eigenvalue": 1.2033286903716908e-05,
+            "min_dt_ns": 0.24999999999999997,
+            "min_population": 1.2045635583227774e-05,
+            "num_steps": 80000
+          },
+          "max_center_change_hz": 0.2903897229916055,
+          "max_population_change": 3.2802541694021414e-06,
+          "rms_hz": 661.9924025207642,
+          "shape": "hard"
+        },
+        {
+          "beta": -0.525,
+          "diagnostics": {
+            "max_dt_ns": 0.25,
+            "max_population": 0.787903946655124,
+            "max_trace_error": 3.3306690738754696e-14,
+            "min_density_eigenvalue": 1.2647548291115588e-05,
+            "min_dt_ns": 0.24999999999999997,
+            "min_population": 1.2647557073227487e-05,
+            "num_steps": 80000
+          },
+          "max_center_change_hz": 0.020107915858034175,
+          "max_population_change": 5.151920758339479e-06,
+          "rms_hz": 314.94884720301985,
+          "shape": "polynomial"
+        },
+        {
+          "beta": -0.5,
+          "diagnostics": {
+            "max_dt_ns": 0.25,
+            "max_population": 0.7879048025224651,
+            "max_trace_error": 3.930189507173054e-14,
+            "min_density_eigenvalue": 1.2647836284938114e-05,
+            "min_dt_ns": 0.24999999999999997,
+            "min_population": 1.2647846022211042e-05,
+            "num_steps": 80000
+          },
+          "max_center_change_hz": 0.0033481029204587287,
+          "max_population_change": 5.1523011420639975e-06,
+          "rms_hz": 31.97714196409018,
+          "shape": "polynomial"
+        },
+        {
+          "beta": -0.475,
+          "diagnostics": {
+            "max_dt_ns": 0.25,
+            "max_population": 0.787904159840718,
+            "max_trace_error": 3.241851231905457e-14,
+            "min_density_eigenvalue": 1.2648142305289795e-05,
+            "min_dt_ns": 0.24999999999999997,
+            "min_population": 1.2648153047332554e-05,
+            "num_steps": 80000
+          },
+          "max_center_change_hz": 0.025171895893095098,
+          "max_population_change": 5.152431119426204e-06,
+          "rms_hz": 258.6062544958064,
+          "shape": "polynomial"
+        }
+      ],
+      "detuning_step_khz": 1,
+      "dt_ns": 0.25
+    },
+    "detuning_step_khz": 2,
+    "drive": "I-iQ; Q=-beta*dI/dt/abs(alpha); alpha is angular frequency",
+    "dt_ns": 0.5,
+    "experimental_beta_optimization": "Not supplied; selected acquisition beta is not inferred from this simulation",
+    "extraction": "Three-point parabolic interpolation of direct Pe minimum",
+    "generator": "scripts/make_current_drag_supplement.py",
+    "model": {
+      "anharmonicity_mhz": -216,
+      "levels": 3,
+      "t1_us": 43.78199877974857,
+      "t2_us": 7.6
+    },
+    "objective": "RMS central minimum about zero over six peak Rabi amplitudes 10-60 MHz",
+    "pulse": {
+      "cutoff": 0.005,
+      "duration_us": 20,
+      "polynomial_power": 2,
+      "transition_ns": 50
+    },
+    "reproduction": "PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_current_drag_supplement.py --simulate",
+    "source_sha256": {
+      "echospec/simulation/polynomial_echo.py": "59021291bb6363a59767274c3c3d727843d37319364a60d51d63c9e7193b950d",
+      "echospec/simulation/qutrit_rk4.cpp": "493150abcad473a10ff4128c3b42a5f0ddfd0cdd8fe4c1cf09a936858068bab6",
+      "paper/data/experimental/03_latest_q1_pulse_improvement.json": "335762126efbf05a597741ad51661c67550cafa02f2a340286f5b6f8929298fb",
+      "paper/data/experimental/03_latest_q1_pulse_improvement.npz": "fc07b1530c75220864fdb4981458780c23d79e7fa4598a1773122ce27520a61d",
+      "scripts/make_current_drag_supplement.py": "fa1819d2a34ea633c90cde791fd6f260263b4d6f074dd9740c08b1a0f403c536",
+      "scripts/scan_drag_beta_center.py": "0396c7513794345eef59388d35160215c2573d48366d00bee56273a5eacfb6ab"
+    }
+  },
+  "schema_version": 1
+}

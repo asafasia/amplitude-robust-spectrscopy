@@ -1,0 +1,345 @@
+{
+  "cases": {
+    "baseline": {
+      "physical": {
+        "t1_us": 51.24,
+        "t2_us": 7.31,
+        "metrics": {
+          "center_hz": 104.00859407350883,
+          "fwhm_hz": 152461.6870399733,
+          "contrast": 0.37872127626815855,
+          "accepted": true
+        },
+        "local_shoulders": {
+          "accepted": true,
+          "contrast": 0.3855292165494085,
+          "fwhm_hz": 154911.66423691766,
+          "center_mhz": 0.0,
+          "left_shoulder_mhz": -0.5,
+          "right_shoulder_mhz": 0.5
+        },
+        "population_at_zero": 0.2421783443171298,
+        "diagnostics": {
+          "imported_dt_ns": 0.125
+        }
+      },
+      "no_pure_dephasing": {
+        "t1_us": 51.24,
+        "t2_us": 102.48,
+        "metrics": {
+          "center_hz": 110.62231669913925,
+          "fwhm_hz": 106199.9748015311,
+          "contrast": 0.7046452616674592,
+          "accepted": true
+        },
+        "local_shoulders": {
+          "accepted": true,
+          "contrast": 0.7130335824484169,
+          "fwhm_hz": 107109.5827932462,
+          "center_mhz": 0.0,
+          "left_shoulder_mhz": -0.18,
+          "right_shoulder_mhz": 0.1825
+        },
+        "population_at_zero": 0.054948199494187236,
+        "diagnostics": {
+          "max_trace_error": 7.505107646466058e-14,
+          "min_population": 6.781378040413184e-07,
+          "max_population": 0.9450511220694002,
+          "min_density_eigenvalue": 7.708285478016445e-08,
+          "num_steps": 240128,
+          "min_dt_ns": 0.0625,
+          "max_dt_ns": 0.125,
+          "requested_dt_ns": 0.125
+        }
+      },
+      "negligible_dissipation": {
+        "t1_us": 1000000000.0,
+        "t2_us": 1000000000.0,
+        "metrics": {
+          "center_hz": 110.85284927533577,
+          "fwhm_hz": 108800.47210766283,
+          "contrast": 0.9998662889663392,
+          "accepted": true
+        },
+        "local_shoulders": {
+          "accepted": true,
+          "contrast": 0.9999288816151982,
+          "fwhm_hz": 108805.44129324488,
+          "center_mhz": 0.0,
+          "left_shoulder_mhz": -0.37124999999999997,
+          "right_shoulder_mhz": 0.34125000000000005
+        },
+        "population_at_zero": 2.914567245839062e-06,
+        "diagnostics": {
+          "max_trace_error": 2.3936408410918375e-13,
+          "min_population": 1.16417707592672e-06,
+          "max_population": 0.9999959206952754,
+          "min_density_eigenvalue": -3.2123790509710576e-08,
+          "num_steps": 480256,
+          "min_dt_ns": 0.03125,
+          "max_dt_ns": 0.0625,
+          "requested_dt_ns": 0.0625
+        }
+      }
+    },
+    "cleaner_smooth": {
+      "physical": {
+        "t1_us": 51.24,
+        "t2_us": 7.31,
+        "metrics": {
+          "center_hz": -166.15592221945056,
+          "fwhm_hz": 127456.97862022153,
+          "contrast": 0.42021018028748885,
+          "accepted": true
+        },
+        "local_shoulders": {
+          "accepted": true,
+          "contrast": 0.42596966073269266,
+          "fwhm_hz": 128934.85251033754,
+          "center_mhz": 0.0,
+          "left_shoulder_mhz": -0.5,
+          "right_shoulder_mhz": 0.5
+        },
+        "population_at_zero": 0.2969742451557938,
+        "diagnostics": {
+          "imported_dt_ns": 0.125
+        }
+      },
+      "no_pure_dephasing": {
+        "t1_us": 51.24,
+        "t2_us": 102.48,
+        "metrics": {
+          "center_hz": -172.22909854304763,
+          "fwhm_hz": 89501.09718893473,
+          "contrast": 0.7980264553916003,
+          "accepted": true
+        },
+        "local_shoulders": {
+          "accepted": true,
+          "contrast": 0.8231369152425201,
+          "fwhm_hz": 91384.31711186787,
+          "center_mhz": 0.0,
+          "left_shoulder_mhz": -0.10499999999999998,
+          "right_shoulder_mhz": 0.10375000000000001
+        },
+        "population_at_zero": 0.0665009456640629,
+        "diagnostics": {
+          "max_trace_error": 3.47499806707674e-14,
+          "min_population": 5.964806576459605e-08,
+          "max_population": 0.9334989876774288,
+          "min_density_eigenvalue": 5.928837960469491e-08,
+          "num_steps": 129440,
+          "min_dt_ns": 0.12143509697785959,
+          "max_dt_ns": 0.12499921145463927,
+          "requested_dt_ns": 0.125
+        }
+      },
+      "negligible_dissipation": {
+        "t1_us": 1000000000.0,
+        "t2_us": 1000000000.0,
+        "metrics": {
+          "center_hz": -174.21476995922416,
+          "fwhm_hz": 92132.86135834381,
+          "contrast": 0.9953581942726679,
+          "accepted": true
+        },
+        "local_shoulders": {
+          "accepted": true,
+          "contrast": 0.9981055583740448,
+          "fwhm_hz": 92305.23320148076,
+          "center_mhz": 0.0,
+          "left_shoulder_mhz": -0.10625000000000001,
+          "right_shoulder_mhz": 0.10625000000000007
+        },
+        "population_at_zero": 1.617363805708294e-05,
+        "diagnostics": {
+          "max_trace_error": 5.906386491005833e-14,
+          "min_population": 3.5108066883092137e-10,
+          "max_population": 0.9999838256514278,
+          "min_density_eigenvalue": -1.991622472603608e-10,
+          "num_steps": 258868,
+          "min_dt_ns": 0.060717548488929796,
+          "max_dt_ns": 0.062499605727319635,
+          "requested_dt_ns": 0.0625
+        }
+      }
+    },
+    "flexible_phase": {
+      "physical": {
+        "t1_us": 51.24,
+        "t2_us": 7.31,
+        "metrics": {
+          "center_hz": 396.2259187228092,
+          "fwhm_hz": 107659.48249860427,
+          "contrast": 0.4019096806333042,
+          "accepted": true
+        },
+        "local_shoulders": {
+          "accepted": true,
+          "contrast": 0.306557676859682,
+          "fwhm_hz": 88199.56152989272,
+          "center_mhz": 0.0,
+          "left_shoulder_mhz": -0.10249999999999998,
+          "right_shoulder_mhz": 0.10625000000000007
+        },
+        "population_at_zero": 0.2993207534397066,
+        "diagnostics": {
+          "imported_dt_ns": 0.125
+        }
+      },
+      "no_pure_dephasing": {
+        "t1_us": 51.24,
+        "t2_us": 102.48,
+        "metrics": {
+          "center_hz": 189.41219991285118,
+          "fwhm_hz": 76595.43538531507,
+          "contrast": 0.7873889727058848,
+          "accepted": true
+        },
+        "local_shoulders": {
+          "accepted": true,
+          "contrast": 0.811793685635187,
+          "fwhm_hz": 78167.45044876436,
+          "center_mhz": 0.0,
+          "left_shoulder_mhz": -0.08749999999999997,
+          "right_shoulder_mhz": 0.08750000000000002
+        },
+        "population_at_zero": 0.06421232437577824,
+        "diagnostics": {
+          "max_trace_error": 4.218847493575595e-14,
+          "min_population": 2.4568836871531772e-05,
+          "max_population": 0.9357569675073445,
+          "min_density_eigenvalue": 1.0009460132331278e-05,
+          "num_steps": 140314,
+          "min_dt_ns": 0.04990084414887128,
+          "max_dt_ns": 0.1249980861784715,
+          "requested_dt_ns": 0.125
+        }
+      },
+      "negligible_dissipation": {
+        "t1_us": 1000000000.0,
+        "t2_us": 1000000000.0,
+        "metrics": {
+          "center_hz": 189.61903533434386,
+          "fwhm_hz": 78624.55065154844,
+          "contrast": 0.9924096089511741,
+          "accepted": true
+        },
+        "local_shoulders": {
+          "accepted": true,
+          "contrast": 0.9994595809478752,
+          "fwhm_hz": 78998.81449964285,
+          "center_mhz": 0.0,
+          "left_shoulder_mhz": -0.08875,
+          "right_shoulder_mhz": 0.08875
+        },
+        "population_at_zero": 5.2560257211832763e-05,
+        "diagnostics": {
+          "max_trace_error": 6.217248937900877e-14,
+          "min_population": 1.0741524617549954e-05,
+          "max_population": 0.9999277570763946,
+          "min_density_eigenvalue": -3.979778738743049e-07,
+          "num_steps": 280618,
+          "min_dt_ns": 0.02533427472173465,
+          "max_dt_ns": 0.06249907347957908,
+          "requested_dt_ns": 0.0625
+        }
+      }
+    }
+  },
+  "pulse_records": {
+    "baseline": {
+      "duration_us": 30.0,
+      "cutoff": 0.001,
+      "power": 5.0,
+      "transition_us": 0.016,
+      "drag_beta": -0.5,
+      "anharmonicity_mhz": -216.0
+    },
+    "cleaner_smooth": {
+      "duration_us": 16.178299069401664,
+      "core_us": 0.016324410942141643,
+      "tail_gain": 0.25821137286930257,
+      "tail_join_us": 2.5602620847803212,
+      "tail_scale_us": 10.579858486411853,
+      "tail_power": 0.0027890425617156053,
+      "edge_width_us": 0.24344295524682155,
+      "transition_us": 0.03677761518153051,
+      "drag_beta": -0.5,
+      "anharmonicity_mhz": -216.0,
+      "phase_rad": -2.890301925464823,
+      "phase_scale_us": 0.22820110102473484,
+      "phase2_rad": 0.0,
+      "phase2_scale_us": 4.0,
+      "rotation_mix": 0.0,
+      "amp_coefficients": [
+        -0.14971141822374157,
+        0.28876971639384763,
+        0.01342426018232623,
+        0.19866305297385445
+      ],
+      "phase_coefficients": [
+        2.2183733039702016,
+        -0.6706607816533459,
+        1.8183860231091895,
+        -0.20577346183226686,
+        0.011303812022317228
+      ],
+      "odd_phase_coefficients": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "flexible_phase": {
+      "duration_us": 17.51898666760054,
+      "core_us": 0.004917773775921489,
+      "tail_gain": 0.10000000000000038,
+      "tail_join_us": 0.5489644263285443,
+      "tail_scale_us": 7.874200342393424,
+      "tail_power": 1.9899653435712574e-09,
+      "edge_width_us": 0.2627848000140081,
+      "transition_us": 0.013129003265668482,
+      "drag_beta": -0.5,
+      "anharmonicity_mhz": -216.0,
+      "phase_rad": -2.3040713786751086,
+      "phase_scale_us": 0.46274353220371994,
+      "phase2_rad": 0.0,
+      "phase2_scale_us": 4.0,
+      "rotation_mix": 0.00024409683504345026,
+      "amp_coefficients": [
+        -1.4996404728431896,
+        -1.0987654852818116,
+        0.16333723244105092,
+        0.6503756618534053
+      ],
+      "phase_coefficients": [
+        -0.3987101550271701,
+        -2.839479797847318,
+        -0.6611917424190885,
+        1.8344634616071112,
+        -1.0808473640723364
+      ],
+      "odd_phase_coefficients": [
+        -0.019940322440489044,
+        -0.07449909989912396,
+        -0.021924089155143545
+      ]
+    }
+  },
+  "actual_peak_mhz": 50,
+  "dt_ns": {
+    "physical": 0.125,
+    "no_pure_dephasing": 0.125,
+    "negligible_dissipation": 0.0625
+  },
+  "note": "Frozen pulses; no reoptimization. Widths are not additive. Removing pure dephasing retains T1 and sets T2=2*T1. Negligible dissipation uses finite 1e9 us lifetimes.",
+  "source_sha256": {
+    "scripts/diagnose_flexible_echo_linewidth.py": "4f14d5fba73bd54c2a7bc23516619bfc4f947ea27bcfa920dd3025d22e9d846d",
+    "outputs/flexible_echo_50mhz_20261101/results.json": "f711a59cd31e25784ca8f65187f131d2c07f3334aaf5c148c934a7f08e4d2ae1",
+    "outputs/flexible_echo_50mhz_20261101/validated_spectra.npz": "166f10a4ea99a84aa6c85128f50d65d4036bcbcc308797d68dab10d851930e72",
+    "echospec/simulation/flexible_echo.py": "f59d9322511710559224dbdd6b20e2e71162a03cf81afa7cd6c51bce3f342b18",
+    "echospec/simulation/polynomial_echo.py": "59021291bb6363a59767274c3c3d727843d37319364a60d51d63c9e7193b950d",
+    "echospec/simulation/qutrit_rk4.cpp": "493150abcad473a10ff4128c3b42a5f0ddfd0cdd8fe4c1cf09a936858068bab6"
+  }
+}

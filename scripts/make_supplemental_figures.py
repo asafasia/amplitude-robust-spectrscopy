@@ -28,6 +28,10 @@ from matplotlib.transforms import Bbox
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
+from echospec.figures.coherence import (  # noqa: E402
+    REFERENCE_FWHM_HZ,
+    REFERENCE_T2_STAR_S,
+)
 from echospec.figures.supplemental import (  # noqa: E402
     FIGURE_WIDTH,
     STYLE_PATH,
@@ -167,6 +171,12 @@ def duration_metrics() -> None:
 
     source_path("scripts/make_duration_resolution_comparison.py")
     data = load("figures/paper/03_echo_duration_resolution_comparison.npz")
+    width_scale = float(data["t2_limit_fwhm_mhz"]) / (REFERENCE_FWHM_HZ / 1e6)
+    for key in data:
+        if "fwhm_t2_units" in key:
+            data[key] = data[key] * width_scale
+        elif "product" in key or "resolution" in key:
+            data[key] = data[key] / width_scale
     collections = []
     for prefix in ("clean", "measured"):
         collections.append(
@@ -217,10 +227,7 @@ def spectrum_slices() -> None:
 def dense_linewidths() -> None:
     exp = load("paper/data/experimental/12_dense_pulse_length.npz")
     sim = load("paper/data/numerical/12_dense_pulse_length.npz")
-    meta = json.loads(
-        source_path("paper/data/experimental/12_dense_pulse_length.json").read_text()
-    )["provenance"]
-    reference = meta["coherence_reference_khz"]
+    reference = REFERENCE_FWHM_HZ / 1000
     np.testing.assert_array_equal(exp["rabi_frequency_mhz"], sim["rabi_frequency_mhz"])
     indices = np.flatnonzero(exp["pulse_length_us"] <= 25)
     fmt = FuncFormatter(lambda value, _: f"{value:g}")
@@ -284,7 +291,7 @@ def dense_linewidths() -> None:
     right.yaxis.set_minor_formatter(NullFormatter())
     ax.axhline(reference, color=".4", ls=":")
     ax.annotate(
-        rf"$\Gamma_{{T_2^*}}={reference:.1f}$ kHz",
+        r"$\Gamma_{T_2^*}$",
         xy=(0.98, reference),
         xycoords=ax.get_yaxis_transform(),
         xytext=(0, 5),
@@ -447,7 +454,7 @@ def phase_optimization() -> None:
             ax.axvline(0, color="white", lw=0.7, ls="--")
             for bound in (-0.5, 0.5):
                 ax.axvline(
-                    bound * float(d["t2_limit_fwhm_mhz"]),
+                    bound * REFERENCE_FWHM_HZ / 1e6,
                     color="white",
                     lw=0.65,
                     ls=":",
@@ -554,107 +561,20 @@ def midpoint_smoothing_leakage() -> None:
 
 
 def drag_beta_optimization() -> None:
-    import csv
+    from scripts.make_current_drag_supplement import render
 
-    from echospec.simulation.qutrit import sine_echo_sign
-
-    scan = load("outputs/drag_beta_center_scan/scan.npz")
-    scan_meta = json.loads(source_path("outputs/drag_beta_center_scan/provenance.json").read_text())
-    experiment = load("paper/data/experimental/04_main_ac_stark_correction_maps.npz")
-    source_path("paper/data/experimental/04_main_ac_stark_correction_maps.json")
-    source_path("echospec/simulation/qutrit.py")
-    source_path("scripts/scan_drag_beta_center.py")
-    csv_path = source_path("outputs/sine_echo_negative_beta_comparison/direct_resonance_metrics.csv")
-    source_path("outputs/sine_echo_negative_beta_comparison/provenance.json")
-    with csv_path.open() as handle:
-        records = list(csv.DictReader(handle))
-    time = np.linspace(-0.1, 0.1, 4001)
-    sigma = 10 / np.sqrt(0.005**-2 - 1)
-    g = (1 + (time / sigma)**2)**-0.5
-    dg = -time / sigma**2 * (1 + (time / sigma)**2)**-1.5
-    sign, dsign = np.array([sine_echo_sign(t, 0.016) for t in time]).T
-    i = g * sign
-    q = 0.5 * (dg * sign + g * dsign) / (2 * np.pi * 216)
-    displayed = dict(
-        time_us=time, i_over_omega0=i, q_over_omega0=q,
-        scan_beta=scan["beta"], scan_rabi_mhz=scan["rabi_mhz"],
-        scan_centers_hz=scan["centers_hz"], scan_rms_center_hz=scan["rms_center_hz"],
-    )
-    apply_supplemental_style()
-    fig, axes = plt.subplots(2, 2, figsize=(FIGURE_WIDTH, 5.25), layout="constrained")
-    wave, objective, simulated, measured = axes.flat
-    wave.plot(time * 1000, i, color=COLORS[0], label=r"$I/\Omega_0$")
-    q_axis = wave.twinx()
-    q_axis.plot(time * 1000, q, color=COLORS[1], label=r"$Q/\Omega_0$")
-    wave.set(xlim=(-80, 80), ylim=(-1.1, 1.1), title=r"(a)  Adding Q at $\beta=-0.5$",
-             xlabel="Time from midpoint (ns)", ylabel=r"$I/\Omega_0$")
-    q_axis.set(ylim=(-0.08, 0.08), ylabel=r"$Q/\Omega_0$")
-    q_axis.tick_params(axis="y", colors=COLORS[1])
-    q_axis.yaxis.label.set_color(COLORS[1])
-    wave.yaxis.label.set_color(COLORS[0])
-    wave.tick_params(axis="y", colors=COLORS[0])
-    wave.axhline(0, color="0.6", lw=0.5)
-    best_beta = scan_meta["best_sampled_beta"]
-    objective.plot(scan["beta"], scan["rms_center_hz"] / 1000,
-                   color=COLORS[0], marker="o", ms=2.7)
-    objective.axvline(-0.5, color="0.5", lw=0.7, ls=":")
-    objective.scatter([best_beta], [scan_meta["best_rms_center_hz"] / 1000],
-                      marker="*", s=65, color=COLORS[1], zorder=5)
-    objective.set(title="(b)  Simulated beta scan", xlabel=r"DRAG coefficient $\beta$",
-                  ylabel="RMS center about zero (kHz)", yscale="log", xlim=(-1.03, 0.03))
-    objective.text(0.5, 0.95, rf"Best sampled $\beta={best_beta:g}$",
-                   transform=objective.transAxes, fontsize=8, ha="center", va="top")
-    for beta, color, style in zip((0, -0.5, -1), COLORS[:3], ("-", "--", "-."), strict=True):
-        selected = [row for row in records if float(row["beta"]) == beta
-                    and row["accepted"] == "True" and float(row["rabi_mhz"]) >= 10]
-        amp = np.array([float(row["rabi_mhz"]) for row in selected])
-        center = np.array([float(row["center_hz"]) for row in selected])
-        simulated.plot(amp, center / 1000, color=color, ls=style, label=rf"$\beta={beta:g}$")
-        displayed[f"simulation_beta{beta:g}_rabi_mhz"] = amp
-        displayed[f"simulation_beta{beta:g}_centers_hz"] = center
-    simulated.set(title="(c)  Simulated center versus drive",
-                  xlabel=r"Peak Rabi frequency $\Omega_0/(2\pi)$ (MHz)",
-                  ylabel="Dip center (kHz)", xlim=(10, 43))
-    simulated.axhline(0, color="0.6", lw=0.5)
-    simulated.legend(fontsize=7.5, loc="upper left")
-    for index, prefix in enumerate(("plain", "drag")):
-        mask = experiment[f"{prefix}_display_center_mask"]
-        amp = experiment["rabi_mhz"][mask]
-        center = experiment[f"{prefix}_display_centers_mhz"][mask] * 1000
-        beta = experiment["drag_beta"][index]
-        transition = experiment["applied_echo_transition_ns"][index]
-        measured.plot(amp, center, ls="none", marker="o", ms=2.2,
-                      color=COLORS[index], label=rf"$\beta={beta:g}$, $T={transition:g}$ ns")
-        displayed[f"experiment_{prefix}_rabi_mhz"] = amp
-        displayed[f"experiment_{prefix}_center_variation_khz"] = center
-    measured.set(title="(d)  Experiment: selected settings",
-                 xlabel=r"Calibrated Rabi frequency $\Omega_{\rm cal}/(2\pi)$ (MHz)",
-                 ylabel="Center minus run mean (kHz)", xlim=(10, 60))
-    measured.axhline(0, color="0.6", lw=0.5)
-    measured.legend(fontsize=7.5, loc="lower left")
-    for ax in (*axes.flat, q_axis):
-        ax.minorticks_off()
-    stem = "drag_beta_optimization"
-    save(fig, stem)
-    arrays = OUT / f"{stem}.npz"
-    np.savez_compressed(arrays, **displayed)
-    OUTPUTS.append(str(arrays.relative_to(ROOT)))
-    provenance = dict(
-        simulated_scan=scan_meta,
-        experiment=dict(duration_us=50, cutoff=0.00075, beta=[0, -0.22],
-                        transition_ns=[0, 16], shots=2000,
-                        processing="Saved accepted Gaussian centers, run mean subtracted over 10-60 MHz; no extra smoothing",
-                        limitation="Two selected settings with different midpoint smoothing; not an experimental beta scan"),
-        sources={key: value for key, value in SOURCES.items() if any(
-            part in key for part in ("drag_beta", "negative_beta", "ac_stark_correction", "qutrit.py")
-        )},
-        generator_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
-        arrays_sha256=hashlib.sha256(arrays.read_bytes()).hexdigest(),
-        reproduce=".venv/bin/python scripts/make_supplemental_figures.py --only drag_beta_optimization",
-    )
-    sidecar = OUT / f"{stem}_provenance.json"
-    sidecar.write_text(json.dumps(provenance, indent=2) + "\n")
-    OUTPUTS.append(str(sidecar.relative_to(ROOT)))
+    for relative in (
+        "paper/data/numerical/05_current_drag_comparison.npz",
+        "paper/data/numerical/05_current_drag_comparison.json",
+        "paper/data/experimental/03_latest_q1_pulse_improvement.npz",
+        "paper/data/experimental/03_latest_q1_pulse_improvement.json",
+        "scripts/make_current_drag_supplement.py",
+        "echospec/simulation/polynomial_echo.py",
+    ):
+        source_path(relative)
+    render()
+    OUTPUTS.extend(str(path.relative_to(ROOT))
+                   for path in OUT.glob("drag_beta_optimization*"))
 
 
 def edge_smoothing_results() -> None:
@@ -662,18 +582,18 @@ def edge_smoothing_results() -> None:
 
     from echospec.analysis.spectroscopy_quality import spectroscopy_quality
 
-    data = load("figures/paper/03_pulse_improvement.npz")
-    metadata = json.loads(source_path("figures/paper/03_pulse_improvement_provenance.json").read_text())
+    data = load("paper/data/numerical/07_current_edge_comparison.npz")
+    metadata = json.loads(source_path(
+        "paper/data/numerical/07_current_edge_comparison.json"
+    ).read_text())["provenance"]
+    source_path("scripts/make_current_edge_supplement.py")
     source_path("echospec/analysis/spectroscopy_quality.py")
     source_path("echospec/analysis/dip_metrics.py")
-    # The manuscript pulse includes endpoint subtraction and a p=5 window.
-    # Older plain-window edge-ramp reports describe a different pulse.
-    assert metadata["source_configs"]["polynomial"]["family"] == "polynomial5"
     for key in ("drag", "polynomial"):
         cfg = metadata["source_configs"][key]
-        assert cfg["drag_beta"] == -0.5 and cfg["duration_us"] == 30
-        assert cfg["echo_transition_us"] == 0.016
-        assert cfg.get("cutoff", cfg.get("cutoff_core")) == 0.001
+        assert cfg["drag_beta"] == -0.5 and cfg["duration_us"] == 20
+        assert cfg["transition_us"] == 0.05 and cfg["cutoff"] == 0.005
+        assert cfg["power"] == 2
     amp, detuning = data["rabi_mhz"], data["detuning_mhz"]
     high = amp >= 50
     metrics, rows, summaries = {}, [], {}
@@ -704,7 +624,7 @@ def edge_smoothing_results() -> None:
     fig.subplots_adjust(left=0.085, right=0.985, bottom=0.105, top=0.89,
                         wspace=0.28, hspace=0.50)
     spectrum, width, contrast, snr = axes.flat
-    labels = ("Hard cutoff + DRAG", "Polynomial ($p=5$) + DRAG")
+    labels = ("Hard cutoff + DRAG", "Polynomial ($p=2$) + DRAG")
     for key, color, style, label in zip(
         ("drag", "polynomial"), ("#586579", "#176eaa"), ("-", "--"), labels,
         strict=True,
@@ -716,17 +636,20 @@ def edge_smoothing_results() -> None:
             ax.plot(amp, values, color=color, ls=style, label=label)
     spectrum.set(title="(a)  Spectrum at 100 MHz drive",
                  xlabel=r"Detuning $\Delta/(2\pi)$ (MHz)", ylabel=r"Final $P_e$",
-                 xlim=(-0.5, 0.5), ylim=(0.24, 0.62))
+                 xlim=(-0.5, 0.5), ylim=(0, 0.8))
     width.set(title="(b)  Resistance to power broadening", ylabel="FWHM (kHz)",
-              ylim=(0, 550))
+              ylim=(0, 50 * np.ceil(max(np.nanmax(metrics[k]["fwhm_hz"]) for k in metrics) / 5e4 * 1.1)))
     width.axhline(200, color="0.5", ls=":", lw=0.7)
     width.text(3, 210, "200 kHz guide", color="0.4", fontsize=7)
-    contrast.set(title="(c)  Dip visibility", ylabel="Contrast C", ylim=(0, 0.55))
+    contrast.set(title="(c)  Dip visibility", ylabel="Contrast C",
+                 ylim=(0, np.ceil(max(np.nanmax(metrics[k]["contrast"])
+                                     for k in metrics) * 11) / 10))
     snr.set(title="(d)  Ideal shot-noise SNR", ylabel="SNR (1000 total shots)",
-            ylim=(0, 19))
+            ylim=(0, 5 * np.ceil(max(np.nanmax(metrics[k]["contrast_snr"])
+                                         for k in metrics) * 1.1 / 5)))
     snr.axhline(10, color="0.5", ls=":", lw=0.7)
     for ax in (width, contrast, snr):
-        ax.set(xlim=(0, 100), xlabel=r"Peak Rabi frequency $\Omega_0/(2\pi)$ (MHz)")
+        ax.set(xlim=(0, 100), xlabel=r"Peak Rabi frequency $\Omega_{\rm pk}/(2\pi)$ (MHz)")
     handles, labels = spectrum.get_legend_handles_labels()
     fig.legend(handles, labels, loc="upper center", ncol=2, bbox_to_anchor=(0.5, 1.0))
     stem = "edge_smoothing_results"
@@ -740,6 +663,10 @@ def edge_smoothing_results() -> None:
         writer.writerows(rows)
     OUTPUTS.extend([str(arrays.relative_to(ROOT)), str(metrics_path.relative_to(ROOT))])
     provenance = dict(
+        model=metadata["model"],
+        convergence=metadata["convergence"],
+        normalization=metadata["normalization"],
+        echo_control_100mhz=spectroscopy_quality(detuning, data["echo_control_100mhz"][1]),
         source_configs={k: metadata["source_configs"][k] for k in ("drag", "polynomial")},
         summaries=summaries,
         high_drive_mhz=[float(amp[high][0]), float(amp[-1])], high_drive_points=int(high.sum()),
@@ -748,7 +675,7 @@ def edge_smoothing_results() -> None:
         snr_signal="Mean of two shoulder populations minus center population; distinct from fitted-background contrast C",
         processing="Saved populations unchanged; no extra smoothing, fitting, normalization or new dynamics; lines connect samples",
         source_sha256={k: v for k, v in SOURCES.items() if any(s in k for s in
-                      ("03_pulse_improvement", "spectroscopy_quality.py", "dip_metrics.py"))},
+                      ("07_current_edge_comparison", "make_current_edge_supplement.py", "spectroscopy_quality.py", "dip_metrics.py"))},
         generator_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         arrays_sha256=hashlib.sha256(arrays.read_bytes()).hexdigest(),
         reproduce=".venv/bin/python scripts/make_supplemental_figures.py --only edge_smoothing_results",
@@ -759,14 +686,16 @@ def edge_smoothing_results() -> None:
 
 
 def pulse_modifications() -> None:
-    from echospec.simulation.polynomial_echo import PolynomialEchoPulse
+    from scripts.make_current_drag_supplement import CurrentPulse
 
     source_path("echospec/simulation/polynomial_echo.py")
-    model = PolynomialEchoPulse()
-    full = np.unique(np.r_[np.linspace(-16, 16, 16001),
-                           np.linspace(-0.08, 0.08, 1601)])
-    left = np.linspace(-15.5, -10, 2201)
-    center = np.linspace(-0.04, 0.04, 3201)
+    source_path("scripts/make_current_drag_supplement.py")
+    model = CurrentPulse(polynomial=True)
+    hard_model = CurrentPulse(polynomial=False)
+    full = np.unique(np.r_[np.linspace(-11, 11, 16001),
+                           np.linspace(-0.1, 0.1, 2001)])
+    left = np.linspace(-10.5, -7, 2201)
+    center = np.linspace(-0.1, 0.1, 4001)
     data = {}
     for key, time in (("full", full), ("left", left), ("center", center)):
         hard = np.where(np.abs(time) < model.duration_us / 2,
@@ -780,14 +709,15 @@ def pulse_modifications() -> None:
     dsign = np.where(inside, -np.pi / model.transition_us
                      * np.cos(np.pi * center / model.transition_us), 0.0)
     coefficient = -model.drag_beta / (2 * np.pi * abs(model.anharmonicity_mhz))
-    data["center_i_over_omega0"] = data["center_envelopes"] * sign
-    data["center_q_envelope_over_omega0"] = coefficient * dg * sign
-    data["center_q_midpoint_over_omega0"] = coefficient * g * dsign
-    data["center_q_over_omega0"] = -model.drive(center).imag
+    data["center_i_over_peak"] = np.array([hard_model.drive(center).real,
+                                             model.drive(center).real])
+    data["center_q_envelope_over_peak"] = coefficient * dg * sign / model.peak
+    data["center_q_midpoint_over_peak"] = coefficient * g * dsign / model.peak
+    data["center_q_over_peak"] = -model.drive(center).imag
     np.testing.assert_allclose(
-        data["center_q_over_omega0"],
-        data["center_q_envelope_over_omega0"]
-        + data["center_q_midpoint_over_omega0"], atol=1e-16,
+        data["center_q_over_peak"],
+        data["center_q_envelope_over_peak"]
+        + data["center_q_midpoint_over_peak"], atol=1e-16,
     )
     path = OUT / "s08_pulse_modifications.npz"
     np.savez_compressed(path, **data)
@@ -796,7 +726,7 @@ def pulse_modifications() -> None:
     fig, axes = plt.subplots(2, 2, figsize=(FIGURE_WIDTH, 4.9), layout="constrained")
     overview, edge, pulse, quadrature = axes.flat
     colors = ["#586579", "#176eaa"]
-    labels = ["Hard cutoff", "Polynomial ($p=5$)"]
+    labels = ["Hard cutoff", "Polynomial ($p=2$)"]
 
     def curves(ax, x, values):
         for y, color, label, style in zip(
@@ -816,41 +746,43 @@ def pulse_modifications() -> None:
         if key == "full":
             ax.set(ylim=(-1e-9, 1.5), yticks=[0, 1e-6, 1e-4, 1e-2, 1])
         else:
-            ax.set(ylim=(-2e-10, 0.002), yticks=[0, 1e-8, 1e-6, 1e-4, 1e-3])
-            ax.axvline(-15, color="#9c3549", lw=0.6, ls=":")
+            ax.set(ylim=(-2e-10, 0.012), yticks=[0, 1e-8, 1e-6, 1e-4, 1e-2])
+            ax.axvline(-10, color="#9c3549", lw=0.6, ls=":")
         ax.minorticks_off()
     overview.legend(loc="lower center", fontsize=7.5)
     time = 1000 * center
-    curves(pulse, time, data["center_i_over_omega0"])
+    curves(pulse, time, data["center_i_over_peak"])
     abrupt = np.where(time < 0, 1, -1) * data["center_envelopes"][0]
     pulse.plot(time, abrupt, color="black", ls=":", label="Abrupt inversion")
     pulse.set(title="(c)  In-phase waveform", xlabel="Time from midpoint (ns)",
-              ylabel=r"$I(t)/\Omega_0$", xlim=(-40, 40), ylim=(-1.12, 1.12))
+              ylabel=r"$I(t)/\Omega_{\rm pk}$", xlim=(-100, 100), ylim=(-1.12, 1.12))
     pulse.legend(handles=[pulse.lines[-1]], loc="upper right", fontsize=7.5)
-    quadrature.plot(time, data["center_q_over_omega0"], color=colors[1],
+    quadrature.plot(time, data["center_q_over_peak"], color=colors[1],
                     label="Total Q", lw=1.4)
-    quadrature.plot(time, data["center_q_envelope_over_omega0"], color="#d47823",
+    quadrature.plot(time, data["center_q_envelope_over_peak"], color="#d47823",
                     ls="--", label=r"Envelope term: $g_p' s_T$")
-    quadrature.plot(time, data["center_q_midpoint_over_omega0"], color="#70439b",
+    quadrature.plot(time, data["center_q_midpoint_over_peak"], color="#70439b",
                     ls=":", label=r"Midpoint term: $g_p s_T'$")
     quadrature.set(title="(d)  DRAG quadrature (polynomial)",
-                   xlabel="Time from midpoint (ns)", ylabel=r"$Q(t)/\Omega_0$",
-                   xlim=(-40, 40), ylim=(-0.08, 0.06))
+                   xlabel="Time from midpoint (ns)", ylabel=r"$Q(t)/\Omega_{\rm pk}$",
+                   xlim=(-100, 100), ylim=(-0.035, 0.025))
     quadrature.legend(loc="upper center", fontsize=7)
     for ax in (pulse, quadrature):
         ax.axhline(0, color="gray", lw=0.6)
-        for boundary in (-8, 8):
+        for boundary in (-25, 25):
             ax.axvline(boundary, color="#70439b", lw=0.6, ls=":")
     save(fig, "s08_pulse_modifications")
     metadata = {
-        "parameters": vars(model),
-        "convention": "I-iQ; Q/Omega0=-beta*(g_prime*s+g*s_prime)/(2*pi*abs(alpha_MHz))",
+        "parameters": {name: getattr(model, name) for name in model.__dataclass_fields__},
+        "complex_peak_normalization": {"hard": hard_model.peak, "polynomial": model.peak},
+        "convention": "I-iQ; Q=-beta*dI/dt/(2*pi*abs(alpha_MHz)); both I and Q divided by the same complex-envelope peak",
         "families": labels,
-        "normalization": "Unsigned g(0)=1; no area or signed-peak rescaling",
+        "normalization": "Unsigned envelopes in (a,b) have g(0)=1; I and Q in (c,d) are normalized by each complex-envelope peak, as in S5 and S7",
         "quadrature_panel": "Polynomial pulse; total and its two derivative contributions",
         "reproduce": ".venv/bin/python scripts/make_supplemental_figures.py --only pulse_modifications",
         "source_sha256": {
-            key: SOURCES[key] for key in ("echospec/simulation/polynomial_echo.py",)
+            key: SOURCES[key] for key in ("echospec/simulation/polynomial_echo.py",
+                                        "scripts/make_current_drag_supplement.py")
         },
         "generator_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         "arrays_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
@@ -883,6 +815,7 @@ def main() -> None:
         render()
     source_path(str(STYLE_PATH.relative_to(ROOT)))
     source_path("echospec/figures/supplemental.py")
+    source_path("echospec/figures/coherence.py")
     source_path("scripts/make_supplemental_figures.py")
     # No source numerical arrays, masks, or fitted metrics may change during rendering.
     for relative, digest in SOURCES.items():
@@ -902,6 +835,9 @@ def main() -> None:
     provenance = {
         "reproduction": "make paper-figures-supplemental PYTHON=.venv/bin/python",
         "style_reference": "Extended cutoff-duration map",
+        "reference_t2_star_s": REFERENCE_T2_STAR_S,
+        "reference_linewidth_hz": REFERENCE_FWHM_HZ,
+        "duration_metrics_normalization": "Saved widths rescaled by saved reference / common reference; resolution and contrast-weighted resolution use the reciprocal factor.",
         "style": str(STYLE_PATH.relative_to(ROOT)),
         "canvas_width_inches": FIGURE_WIDTH,
         "source_sha256": {**prior_sources, **SOURCES},

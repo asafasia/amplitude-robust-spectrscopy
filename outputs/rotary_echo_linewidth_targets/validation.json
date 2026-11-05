@@ -1,0 +1,38 @@
+{
+  "baseline": {
+    "detuning_step_refinement_median_width_change_khz": 0.0011480387406521686,
+    "three_to_four_max_pe_change": 0.0016723128206859728,
+    "four_to_five_max_pe_change": 0.0004339396195006673,
+    "4_level_median_width_khz": 39.21785759377525,
+    "4_level_median_depth": 0.12195403035822483,
+    "5_level_median_width_khz": 39.21618193362232,
+    "5_level_median_depth": 0.12194476473745694
+  },
+  "target_30": {
+    "detuning_step_refinement_median_width_change_khz": 6.211933570199335e-06,
+    "three_to_four_max_pe_change": 0.0020696332970678855,
+    "four_to_five_max_pe_change": 0.0006226150973883127,
+    "4_level_median_width_khz": 29.968562180942577,
+    "4_level_median_depth": 0.06373349761035674,
+    "5_level_median_width_khz": 29.965968656474512,
+    "5_level_median_depth": 0.06372054815318573
+  },
+  "target_20": {
+    "detuning_step_refinement_median_width_change_khz": 0.002528378344656801,
+    "three_to_four_max_pe_change": 0.003063989868002548,
+    "four_to_five_max_pe_change": 0.0010266797299237629,
+    "4_level_median_width_khz": 19.966310753977847,
+    "4_level_median_depth": 0.016016114188727504,
+    "5_level_median_width_khz": 19.963767797983785,
+    "5_level_median_depth": 0.01600602199075868
+  },
+  "shorter_half_angle": {
+    "detuning_step_refinement_median_width_change_khz": 0.000324687285957026,
+    "three_to_four_max_pe_change": 0.004491771697067826,
+    "four_to_five_max_pe_change": 1.0447684403058766e-05,
+    "4_level_median_width_khz": 27.536207107680454,
+    "4_level_median_depth": 0.04115285598695556,
+    "5_level_median_width_khz": 27.536107234620133,
+    "5_level_median_depth": 0.04115202189710712
+  }
+}

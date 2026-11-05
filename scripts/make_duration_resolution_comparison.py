@@ -439,9 +439,9 @@ def _build_figure(
         lw=0.65,
     )
     axes[2].axhline(Q_THRESHOLD, color="0.35", ls="--", lw=0.65)
-    axes[0].set_ylabel(r"FWHM $\Gamma_f/\Gamma_{f,T_2}$")
+    axes[0].set_ylabel(r"FWHM $\Gamma_f/\Gamma_{T_2^*}$")
     axes[1].set_ylabel(r"Fitted contrast $A$")
-    axes[2].set_ylabel(r"$Q=A\,\Gamma_{f,T_2}/\Gamma_f$")
+    axes[2].set_ylabel(r"$Q=A\,\Gamma_{T_2^*}/\Gamma_f$")
     axes[2].set_xlabel(r"$\Omega_0/2\pi$ (MHz)")
     rabi_ticks = (1e-3, 1e-2, 1e-1, 1.0, 10.0, 100.0)
     rabi_tick_labels = ("0.001", "0.01", "0.1", "1", "10", "100")

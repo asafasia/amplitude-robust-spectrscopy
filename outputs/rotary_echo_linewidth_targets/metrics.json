@@ -1,0 +1,62 @@
+[
+  {
+    "case": "baseline",
+    "label": "20 \u03bcs \u00b7 \u03c0",
+    "duration_us": 20.0,
+    "cycles": 201,
+    "half_rotation_over_pi": 1.0,
+    "ideal_two_level_width_khz": 39.269908169872416,
+    "median_fwhm_khz": 39.22431844946645,
+    "min_fwhm_khz": 39.10724963304191,
+    "max_fwhm_khz": 39.274621277137875,
+    "median_fringe_depth": 0.12198300469975581,
+    "local_sigma_khz_sqrt_shots": 101.21090643830121,
+    "frequency_noise_hz_sqrt_seconds": 452.62893372082516,
+    "local_equal_time_precision_ratio_to_baseline": 1.0
+  },
+  {
+    "case": "target_30",
+    "label": "26.17 \u03bcs \u00b7 \u03c0",
+    "duration_us": 26.16915422885572,
+    "cycles": 263,
+    "half_rotation_over_pi": 1.0,
+    "ideal_two_level_width_khz": 30.01236327811542,
+    "median_fwhm_khz": 29.975195877711872,
+    "min_fwhm_khz": 29.838145828490536,
+    "max_fwhm_khz": 30.012596620297106,
+    "median_fringe_depth": 0.0637448045518863,
+    "local_sigma_khz_sqrt_shots": 148.76481675617154,
+    "frequency_noise_hz_sqrt_seconds": 761.0182557601871,
+    "local_equal_time_precision_ratio_to_baseline": 1.6813292281256857
+  },
+  {
+    "case": "target_20",
+    "label": "39.30 \u03bcs \u00b7 \u03c0",
+    "duration_us": 39.30348258706467,
+    "cycles": 395,
+    "half_rotation_over_pi": 0.9999999999999999,
+    "ideal_two_level_width_khz": 19.982915296567988,
+    "median_fwhm_khz": 19.965843777116252,
+    "min_fwhm_khz": 19.898915643720592,
+    "max_fwhm_khz": 19.987125163649186,
+    "median_fringe_depth": 0.016014460276488063,
+    "local_sigma_khz_sqrt_shots": 395.09524061241694,
+    "frequency_noise_hz_sqrt_seconds": 2476.9504283460406,
+    "local_equal_time_precision_ratio_to_baseline": 5.472364322767282
+  },
+  {
+    "case": "shorter_half_angle",
+    "label": "20 \u03bcs \u00b7 \u03c0/2",
+    "duration_us": 20.0,
+    "cycles": 402,
+    "half_rotation_over_pi": 0.5,
+    "ideal_two_level_width_khz": 27.768018363489787,
+    "median_fwhm_khz": 27.500755501791467,
+    "min_fwhm_khz": 27.36345938163115,
+    "max_fwhm_khz": 27.54291846931664,
+    "median_fringe_depth": 0.04113563462081041,
+    "local_sigma_khz_sqrt_shots": 193.08335378439412,
+    "frequency_noise_hz_sqrt_seconds": 863.495008771093,
+    "local_equal_time_precision_ratio_to_baseline": 1.9077326799962901
+  }
+]

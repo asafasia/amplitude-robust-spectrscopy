@@ -1,0 +1,37 @@
+{
+  "dissipative2_square_trace_error": 6.048495038157853e-13,
+  "dissipative2_square_min_eigenvalue": 0.015984397404902883,
+  "dissipative2_repeated_trace_error": 6.358247262028272e-13,
+  "dissipative2_repeated_min_eigenvalue": 0.015984397404902883,
+  "dissipative3_square_trace_error": 1.7755796832830129e-12,
+  "dissipative3_square_min_eigenvalue": 1.6992989605408907e-09,
+  "dissipative3_repeated_trace_error": 2.4376056728669937e-12,
+  "dissipative3_repeated_min_eigenvalue": 1.6992989605408907e-09,
+  "ideal2_square_trace_error": 5.186961971048731e-13,
+  "ideal2_square_min_eigenvalue": -3.7064203068418477e-13,
+  "ideal2_repeated_trace_error": 6.569189636707051e-13,
+  "ideal2_repeated_min_eigenvalue": -4.636835576472112e-13,
+  "square_unitary_max_analytic_error": 3.7064244512772073e-13,
+  "root_half_step_max_population_error": 2.4170970948186876e-05,
+  "square_native_vs_exact_max_population_error": 0.0020676187682989178,
+  "half_detuning_step": {
+    "square": {
+      "max_relative_fisher_change": 0.009790029215358952,
+      "max_width_change_hz": 225.68339162960183
+    },
+    "root": {
+      "max_relative_fisher_change": 0.005614152061496993,
+      "max_width_change_hz": 164.9664186866139
+    },
+    "repeated": {
+      "max_relative_fisher_change": 0.010822192903400469,
+      "max_width_change_hz": 114.80042451680856
+    }
+  },
+  "four_level_envelope_refinement_max_population_change": 0.014675406817234275,
+  "root_four_vs_three_max_Pe_change": 0.001106588921127638,
+  "root_max_final_P3_four_level": 0.0006645786698292351,
+  "square_four_vs_three_max_Pe_change": 0.012926477245892687,
+  "repeated_four_vs_three_max_Pe_change": 0.11620655647375788,
+  "elapsed_seconds": 76.47559575003106
+}

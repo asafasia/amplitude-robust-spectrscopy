@@ -24,6 +24,22 @@ def test_duration_list_keeps_same_cutoff_and_drag():
     assert len(config["cutoffs"]) == 10
 
 
+def test_log_amplitudes_preserve_span_and_requested_polynomial():
+    config = settings_from_args(parser().parse_args([
+        "--amplitude-spacing", "log", "--amplitude-min-mhz", "1",
+        "--amplitude-max-mhz", "100", "--amplitude-points", "100", "--power", "2",
+    ]))
+    np.testing.assert_allclose(config["rabi_mhz"], np.geomspace(1, 100, 100))
+    assert config["amplitude_spacing"] == "log"
+    assert config["power"] == 2
+    assert config["transition_us"] == .016
+
+
+def test_default_amplitudes_remain_linear_and_include_zero():
+    config = settings_from_args(parser().parse_args([]))
+    np.testing.assert_allclose(config["rabi_mhz"], np.linspace(0, 100, 100))
+
+
 def test_cache_refuses_mismatched_physics_and_incomplete_metrics_run(tmp_path):
     path = tmp_path / "case.npz"
     config = settings_from_args(parser().parse_args([]))
@@ -40,6 +56,7 @@ def test_cache_refuses_mismatched_physics_and_incomplete_metrics_run(tmp_path):
     ["--detuning-points", "100"], ["--detuning-span-mhz", ".1"],
     ["--durations-us", "30", "30"], ["--durations-us", "nan"],
     ["--t2-us", "200"], ["--dt-ns", "1"], ["--shots", "1001"],
+    ["--amplitude-spacing", "log"],
 ])
 def test_invalid_scan_configuration_fails_before_writes(arguments):
     with pytest.raises(ValueError):

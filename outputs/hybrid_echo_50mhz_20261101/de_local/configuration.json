@@ -1,0 +1,367 @@
+{
+  "amplitudes_mhz": [
+    5.0,
+    7.5,
+    10.0,
+    15.0,
+    17.0,
+    20.0,
+    25.0,
+    35.0,
+    50.0,
+    60.0
+  ],
+  "detuning_mhz": [
+    -0.5,
+    -0.475,
+    -0.45,
+    -0.425,
+    -0.4,
+    -0.375,
+    -0.35,
+    -0.325,
+    -0.3,
+    -0.275,
+    -0.25,
+    -0.225,
+    -0.2,
+    -0.195,
+    -0.19,
+    -0.185,
+    -0.18,
+    -0.175,
+    -0.17,
+    -0.165,
+    -0.16,
+    -0.155,
+    -0.15,
+    -0.145,
+    -0.14,
+    -0.135,
+    -0.13,
+    -0.125,
+    -0.12,
+    -0.115,
+    -0.11,
+    -0.105,
+    -0.1,
+    -0.095,
+    -0.09,
+    -0.085,
+    -0.08,
+    -0.075,
+    -0.07,
+    -0.065,
+    -0.06,
+    -0.055,
+    -0.05,
+    -0.045,
+    -0.04,
+    -0.035,
+    -0.03,
+    -0.025,
+    -0.02,
+    -0.015,
+    -0.01,
+    -0.005,
+    0.0,
+    0.005,
+    0.01,
+    0.015,
+    0.02,
+    0.025,
+    0.03,
+    0.035,
+    0.04,
+    0.045,
+    0.05,
+    0.055,
+    0.06,
+    0.065,
+    0.07,
+    0.075,
+    0.08,
+    0.085,
+    0.09,
+    0.095,
+    0.1,
+    0.105,
+    0.11,
+    0.115,
+    0.12,
+    0.125,
+    0.13,
+    0.135,
+    0.14,
+    0.145,
+    0.15,
+    0.155,
+    0.16,
+    0.165,
+    0.17,
+    0.175,
+    0.18,
+    0.185,
+    0.19,
+    0.195,
+    0.2,
+    0.225,
+    0.25,
+    0.275,
+    0.3,
+    0.325,
+    0.35,
+    0.375,
+    0.4,
+    0.425,
+    0.45,
+    0.475,
+    0.5
+  ],
+  "dt_ns": 0.5,
+  "t1_us": 51.24,
+  "t2_us": 7.31,
+  "baseline": [
+    {
+      "rabi_mhz": 5.0,
+      "center_hz": 4.651071578702557,
+      "fwhm_hz": 130884.81984675054,
+      "contrast": 0.25761822265012374,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 1.479317303979151e-06,
+      "population_at_zero": 0.07570562724248799
+    },
+    {
+      "rabi_mhz": 7.5,
+      "center_hz": 2.232087922822608,
+      "fwhm_hz": 135700.23617146563,
+      "contrast": 0.40829527974152063,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 3.288940169388415e-06,
+      "population_at_zero": 0.11115610864329943
+    },
+    {
+      "rabi_mhz": 10.0,
+      "center_hz": 3.246260335008732,
+      "fwhm_hz": 135583.07791676937,
+      "contrast": 0.4757085214265594,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 4.699857437065387e-06,
+      "population_at_zero": 0.1362666344984068
+    },
+    {
+      "rabi_mhz": 15.0,
+      "center_hz": 2.445565850482193,
+      "fwhm_hz": 133358.49827257884,
+      "contrast": 0.4945555365983266,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 8.648784775139985e-06,
+      "population_at_zero": 0.1689927715043072
+    },
+    {
+      "rabi_mhz": 17.0,
+      "center_hz": -1.1378692394849137,
+      "fwhm_hz": 135612.54468511752,
+      "contrast": 0.493334939862693,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 1.417386618259065e-05,
+      "population_at_zero": 0.1782395004433293
+    },
+    {
+      "rabi_mhz": 20.0,
+      "center_hz": 10.141844520877193,
+      "fwhm_hz": 138639.08665544284,
+      "contrast": 0.4837705925736193,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 1.5816222585522458e-05,
+      "population_at_zero": 0.1895746430956596
+    },
+    {
+      "rabi_mhz": 25.0,
+      "center_hz": -10.396571982897822,
+      "fwhm_hz": 139691.4997908556,
+      "contrast": 0.45790578854558206,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 2.3787039426549195e-05,
+      "population_at_zero": 0.20408710320754353
+    },
+    {
+      "rabi_mhz": 35.0,
+      "center_hz": -39.605219473341066,
+      "fwhm_hz": 145377.69032902172,
+      "contrast": 0.41973472292127545,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 4.6149113593470366e-05,
+      "population_at_zero": 0.22376411527932216
+    },
+    {
+      "rabi_mhz": 50.0,
+      "center_hz": 103.97032188310449,
+      "fwhm_hz": 152496.60408156496,
+      "contrast": 0.37864890715238875,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 9.719319042775926e-05,
+      "population_at_zero": 0.24217835521473716
+    },
+    {
+      "rabi_mhz": 60.0,
+      "center_hz": 116.20993214352788,
+      "fwhm_hz": 155634.4243491963,
+      "contrast": 0.3580290716496887,
+      "accepted": true,
+      "satellite_prominence": 0.0,
+      "final_leakage_max": 0.00013841548744275228,
+      "population_at_zero": 0.2507870717448281
+    }
+  ],
+  "bounds": [
+    [
+      9.0,
+      35.0
+    ],
+    [
+      -2.6989,
+      -0.7
+    ],
+    [
+      -1.0,
+      0.7
+    ],
+    [
+      -1.7,
+      0.7
+    ],
+    [
+      -0.3,
+      1.5
+    ],
+    [
+      0.0,
+      20.0
+    ],
+    [
+      0.005,
+      0.95
+    ],
+    [
+      -4.0,
+      4.0
+    ],
+    [
+      -1.7,
+      0.9
+    ],
+    [
+      -2.4,
+      -0.3
+    ],
+    [
+      -2.0,
+      2.0
+    ],
+    [
+      -2.0,
+      2.0
+    ],
+    [
+      -2.0,
+      2.0
+    ],
+    [
+      -2.0,
+      2.0
+    ],
+    [
+      -4.0,
+      4.0
+    ],
+    [
+      -4.0,
+      4.0
+    ],
+    [
+      -4.0,
+      4.0
+    ],
+    [
+      -4.0,
+      4.0
+    ],
+    [
+      -4.0,
+      4.0
+    ],
+    [
+      -1.0,
+      1.0
+    ],
+    [
+      -3.0,
+      3.0
+    ],
+    [
+      -3.0,
+      3.0
+    ],
+    [
+      -3.0,
+      3.0
+    ],
+    [
+      -3.0,
+      3.0
+    ],
+    [
+      -1.7,
+      1.0
+    ],
+    [
+      -0.65,
+      -0.35
+    ]
+  ],
+  "parameter_names": [
+    "duration_us",
+    "log10_core_us",
+    "log10_tail_gain",
+    "log10_tail_join_us",
+    "log10_tail_scale_us",
+    "tail_power",
+    "edge_fraction",
+    "phase_rad",
+    "log10_phase_scale_us",
+    "log10_transition_us",
+    "amp_coefficient_0",
+    "amp_coefficient_1",
+    "amp_coefficient_2",
+    "amp_coefficient_3",
+    "phase_coefficient_0",
+    "phase_coefficient_1",
+    "phase_coefficient_2",
+    "phase_coefficient_3",
+    "phase_coefficient_4",
+    "rotation_mix",
+    "odd_phase_coefficient_0",
+    "odd_phase_coefficient_1",
+    "odd_phase_coefficient_2",
+    "phase2_rad",
+    "log10_phase2_scale_us",
+    "drag_beta"
+  ],
+  "model_sources": {
+    "echospec/simulation/flexible_echo.py": "f59d9322511710559224dbdd6b20e2e71162a03cf81afa7cd6c51bce3f342b18",
+    "echospec/simulation/decoupled_echo.py": "ec549986a3a3089a7d5f8b68f6628eaee8b771d7da4820adbf2472ce8d20343d",
+    "echospec/simulation/polynomial_echo.py": "59021291bb6363a59767274c3c3d727843d37319364a60d51d63c9e7193b950d",
+    "echospec/simulation/qutrit_rk4.cpp": "493150abcad473a10ff4128c3b42a5f0ddfd0cdd8fe4c1cf09a936858068bab6"
+  },
+  "baseline_source_sha256": "166f10a4ea99a84aa6c85128f50d65d4036bcbcc308797d68dab10d851930e72"
+}

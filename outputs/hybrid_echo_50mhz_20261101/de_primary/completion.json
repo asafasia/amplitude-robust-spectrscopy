@@ -1,0 +1,15 @@
+{
+  "status": "Maximum number of iterations has been exceeded.",
+  "evaluations": 816,
+  "feasible": 2,
+  "best": {
+    "feasible": false,
+    "width50_khz": 107.72860988192106,
+    "contrast50": 0.4019711461086689,
+    "local_contrast50": 0.30650711374626727,
+    "min_contrast_gain": 0.0007985609974884844,
+    "min_width_gain_khz": -0.20480220587344888,
+    "max_violation": 0.05144269456655581,
+    "loss": 1.1905766149341344
+  }
+}

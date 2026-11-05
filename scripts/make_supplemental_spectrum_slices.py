@@ -15,38 +15,73 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.lines import Line2D
 
+from echospec.figures.coherence import REFERENCE_T2_STAR_S
 from echospec.figures.supplemental import FIGURE_WIDTH, apply_supplemental_style
 from echospec.simulation.qutrit import simulate_qutrit_map
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "figures/paper/supplemental"
 STEM = "s02_spectrum_slices"
-MAP_STEM = "figures/paper/02_central_spectroscopy_experiment_simulation_variant"
-TARGETS_MHZ = np.array([3.0, 10.0, 20.0, 30.0, 40.0])
+MAP_STEM = "paper/data/experimental/02_latest_q1_spectroscopy"
+MAPS = {"root": "A3_narrow_no_echo", "echo": "A4_narrow_echo"}
+TARGETS_MHZ = np.array([3.0, 5.0, 10.0, 15.0, 20.0])
 PROTOCOLS = ("root", "echo")
 COLORS = ("#0072B2", "#009E73", "#D55E00", "#CC79A7", "#7D5BA6")
 STACK_SPACING = 0.55
 
 
+def select_rows(drives, targets):
+    """Select distinct measured rows within the available amplitude domain."""
+    drives, targets = np.asarray(drives), np.asarray(targets)
+    if (drives.ndim != 1 or targets.ndim != 1 or not drives.size
+            or not np.isfinite(drives).all() or not np.isfinite(targets).all()
+            or np.any(np.diff(drives) <= 0)):
+        raise ValueError("Require finite targets and a strictly increasing drive axis")
+    if np.any(targets < drives[0] - 1e-10) or np.any(targets > drives[-1] + 1e-10):
+        raise ValueError("Requested slice is outside the measured amplitude range")
+    indices = np.abs(drives[:, None] - targets).argmin(axis=0)
+    if np.unique(indices).size != targets.size:
+        raise ValueError("Distinct measured amplitudes are required")
+    return indices
+
+
 def prepare_data() -> tuple[dict, dict]:
     """Select actual acquired rows without drive interpolation or fit selection."""
     map_path = ROOT / f"{MAP_STEM}.npz"
-    meta_path = ROOT / f"{MAP_STEM}_provenance.json"
-    source_meta = json.loads(meta_path.read_text())
-    settings = source_meta["simulation_settings"]
+    meta_path = ROOT / f"{MAP_STEM}.json"
+    source_meta = json.loads(meta_path.read_text())["provenance"]
+    pulse = source_meta["maps"][MAPS["root"]]["parameters"]
+    t1_us = np.mean([
+        fit["t1"] / 1000 for name, fit in source_meta["calibrations"].items()
+        if name.endswith("_t1") and fit.get("success", False)
+    ])
+    t2_us = REFERENCE_T2_STAR_S * 1e6
+    settings = dict(
+        duration_us=pulse["lorentzian_length_in_ns"] / 1000,
+        cutoff=pulse["cutoff"], order=0.5, t1_us=float(t1_us),
+        t_phi_us=float(1 / (1 / t2_us - 1 / (2 * t1_us))),
+        anharmonicity_mhz=-216.0, echo_transition_us=0.0, drag_beta=0.0,
+        edge_window_kind="none", num_steps_per_half=20000,
+        integration_backend="native",
+    )
     arrays = {"target_rabi_mhz": TARGETS_MHZ}
     checks = {}
     selections = {}
     with np.load(map_path, allow_pickle=False) as maps:
         for protocol in PROTOCOLS:
-            prefix = f"narrow_{protocol}_experiment"
-            drives = maps[f"{prefix}_rabi_mhz"]
-            indices = np.abs(drives[:, None] - TARGETS_MHZ).argmin(axis=0)
-            if np.unique(indices).size != 5:
-                raise ValueError("Five distinct measured amplitudes are required")
-            x = maps[f"{prefix}_detuning_mhz"]
+            name = MAPS[protocol]
+            acquired = source_meta["maps"][name]["parameters"]
+            assert acquired["lorentzian_length_in_ns"] / 1000 == settings["duration_us"]
+            assert acquired["cutoff"] == settings["cutoff"]
+            assert acquired["echo"] == (protocol == "echo")
+            assert acquired["echo_transition_time_ns"] == 0
+            assert acquired["drag_beta"] == 0 and acquired["edge_smoothing"] == "none"
+            prefix = name.lower()
+            drives = maps[f"{prefix}_nominal_rabi_mhz"]
+            indices = select_rows(drives, TARGETS_MHZ)
+            x = maps[f"{prefix}_detuning_hz"] / 1e6
             selected = drives[indices]
-            experiment = maps[f"{prefix}_population"][indices].copy()
+            experiment = maps[f"{prefix}_state"][indices].copy()
             print(f"Simulating {protocol}: {selected} MHz", flush=True)
             result = simulate_qutrit_map(
                 **settings, echo=protocol == "echo", detuning_mhz=x,
@@ -54,7 +89,9 @@ def prepare_data() -> tuple[dict, dict]:
             )
             # Every displayed amplitude, sampled detunings: numerical accuracy,
             # independently of the experiment/model agreement.
-            check_indices = np.array([0, 125, 225, 250, 275, 375, 500])
+            check_indices = np.abs(x[:, None] - np.array(
+                [-0.5, -0.25, -0.05, 0, 0.05, 0.25, 0.5]
+            )).argmin(axis=0)
             fine = simulate_qutrit_map(
                 **dict(settings, num_steps_per_half=2 * settings["num_steps_per_half"]),
                 echo=protocol == "echo", detuning_mhz=x[check_indices],
@@ -86,7 +123,10 @@ def prepare_data() -> tuple[dict, dict]:
             })
             checks[protocol] = error
             selections[protocol] = {
-                "source_run": source_meta["experimental_inputs"][f"narrow_{protocol}"],
+                "source_run": source_meta["maps"][name]["source_raw"],
+                "pulse_parameters": acquired,
+                "measured_detuning_points": int(x.size),
+                "convergence_detuning_mhz": x[check_indices].tolist(),
                 "amplitude_indices": indices.tolist(),
                 "actual_rabi_mhz": selected.tolist(),
                 "removed_experiment_means": exp_means.tolist(),
@@ -95,7 +135,8 @@ def prepare_data() -> tuple[dict, dict]:
                     (exp_centered - sim_centered) ** 2, axis=1
                 )).tolist(),
             }
-    paths = [map_path, meta_path, Path(__file__)]
+    paths = [map_path, meta_path, Path(__file__),
+             ROOT / "echospec/figures/coherence.py"]
     paths += [ROOT / "echospec/simulation" / name for name in
               ("qutrit.py", "qutrit_native.py", "qutrit_rk4.cpp")]
     metadata = {
@@ -104,12 +145,15 @@ def prepare_data() -> tuple[dict, dict]:
             str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
             for p in paths
         },
-        "selection": "Nearest acquired rows to 3, 10, 20, 30, 40 MHz; no fit-based selection",
+        "selection": "Nearest acquired rows to 3, 5, 10, 15, 20 MHz in current Fig. 2 narrow maps; no fit-based selection",
         "simulation_settings": settings,
-        "simulation_grid": "Exact measured drives and all 501 measured detunings",
+        "reference_t2_star_us": t2_us,
+        "source_session": source_meta["source_session"],
+        "amplitude_convention": "Nominal Rabi frequency, identical to main-text Fig. 2",
+        "simulation_grid": "Exact measured drives and all 200 measured detunings",
         "selections": selections,
         "display": {
-            "formula": "y = raw - mean(raw over all 501 detunings) + j * 0.55",
+            "formula": "y = raw - mean(raw over all measured detunings) + j * 0.55",
             "applies_to": "Experiment and simulation independently; j=0..4",
             "gain": 1.0, "frequency_shift_mhz": 0.0,
             "experimental_smoothing": "None; every measured point is displayed",
@@ -145,7 +189,7 @@ def build_figure(data: dict) -> plt.Figure:
             # Labels share a fixed position between neighboring baselines.
             ax.text(
                 -0.47, data[f"{protocol}_display_offsets"][j] + 0.25,
-                rf"${data[f'{protocol}_rabi_mhz'][j]:.2f}$ MHz",
+                rf"${data[f'{protocol}_rabi_mhz'][j]:.1f}$ MHz",
                 fontsize=8, color=color, va="bottom",
             )
         ax.axvline(0, color="0.65", ls=":", lw=0.7, zorder=0)
