@@ -14,6 +14,10 @@
 \input{coherence_parameters}
 \input{latest_results_parameters}
 
+% Keep figure dependencies inside the editor's paper/ project root.
+% Refresh these copies with `make paper-supplemental-assets`.
+\graphicspath{{figures/generated/}}
+
 \begin{document}
 
 \title{\texorpdfstring{Supplemental Material for\\
@@ -31,13 +35,12 @@
 This Supplemental Material provides the experimental setup and qubit coherence
 characterization; a precise definition of the finite echo-root-Lorentzian
 pulse and its resonant cancellation mechanism; the Bloch-equation coherence
-limit; pulse-cutoff and adiabaticity analyses; the numerical model and
-numerical protocol comparisons; and a dense pulse-length campaign with
-matched three-level linewidth comparisons.
+limit; pulse-cutoff and adiabaticity analyses; the numerical model; and
+spectral comparisons illustrating the resolution--contrast tradeoff.
 The closing two sections examine pulse modifications---the midpoint phase
 inversion, DRAG quadrature, and cutoff-edge smoothing---and then extend the
 cutoff--duration study of the polynomial-corrected DRAG echo to the full
-cutoff range, including the linewidth--contrast tradeoff and numerical checks.
+cutoff range, including the linewidth--contrast tradeoff across pulse durations.
 
 \renewcommand{\thesection}{S\arabic{section}}
 \renewcommand{\thesubsection}{S\arabic{section}.\arabic{subsection}}
@@ -52,7 +55,6 @@ cutoff range, including the linewidth--contrast tradeoff and numerical checks.
 \input{appendices/D_adiabatic_basis}
 \input{appendices/G_numerical_model}
 \input{appendices/M_spectrum_slices}
-\input{appendices/L_dense_pulse_length}
 % \input{appendices/H_data_analysis}
 % \input{appendices/J_simulated_duration_cutoff_comparison}
 \input{appendices/O_pulse_modifications}

@@ -12,7 +12,6 @@ import hashlib
 import json
 import sys
 from pathlib import Path
-from types import SimpleNamespace
 
 import matplotlib
 
@@ -167,61 +166,32 @@ def schematic() -> None:
 
 
 def duration_metrics() -> None:
-    from scripts.make_duration_resolution_comparison import _build_figure
+    from scripts.make_supplemental_duration_resolution import render
 
-    source_path("scripts/make_duration_resolution_comparison.py")
-    data = load("figures/paper/03_echo_duration_resolution_comparison.npz")
-    width_scale = float(data["t2_limit_fwhm_mhz"]) / (REFERENCE_FWHM_HZ / 1e6)
-    for key in data:
-        if "fwhm_t2_units" in key:
-            data[key] = data[key] * width_scale
-        elif "product" in key or "resolution" in key:
-            data[key] = data[key] / width_scale
-    collections = []
-    for prefix in ("clean", "measured"):
-        collections.append(
-            {
-                float(length): {
-                    name: data[f"{prefix}_{name}_{int(length)}us"]
-                    for name in ("fwhm_t2_units", "contrast", "product")
-                }
-                for length in data["durations_us"]
-            }
-        )
-    measurements = {
-        float(length): SimpleNamespace(
-            rabi_mhz=data[f"measured_rabi_mhz_{int(length)}us"]
-        )
-        for length in data["durations_us"]
-    }
-    fig = _build_figure(
-        *collections,
-        measurements,
-        data["constant_fwhm_t2_units"],
-        data["constant_contrast"],
-        data["constant_product"],
-    )
-    normalize_existing(fig)
-    fig.set_size_inches(FIGURE_WIDTH, 5.5)
-    for index, ax in enumerate(fig.axes):
-        for text in list(ax.texts):
-            if text.get_text() in ("(a)", "(b)", "(c)"):
-                text.remove()
-        ax.set_title(f"({chr(97 + index)})", loc="left")
-        legend = ax.get_legend()
-        if legend is not None:
-            legend.set_loc("upper left")
-            legend.set_frame_on(False)
-    save(fig, "s03_duration_resolution")
+    source_path("scripts/make_supplemental_duration_resolution.py")
+    source_path("figures/paper/03_echo_duration_resolution_comparison.npz")
+    render()
+    OUTPUTS.extend(str(path.relative_to(ROOT))
+                   for path in OUT.glob("s03_duration_resolution*"))
 
 
 def spectrum_slices() -> None:
-    from scripts.make_supplemental_spectrum_slices import build_figure
+    from scripts.make_supplemental_spectrum_slices import (
+        MAP_STEM,
+        build_figure,
+        rendering_metadata,
+    )
 
     source_path("scripts/make_supplemental_spectrum_slices.py")
-    source_path("figures/paper/supplemental/s02_spectrum_slices_provenance.json")
     data = load("figures/paper/supplemental/s02_spectrum_slices.npz")
-    save(build_figure(data), "s02_spectrum_slices")
+    maps = load(f"{MAP_STEM}.npz")
+    save(build_figure(data, maps), "s02_spectrum_slices")
+    sidecar = OUT / "s02_spectrum_slices_provenance.json"
+    metadata = json.loads(sidecar.read_text())
+    metadata["rendering"] = rendering_metadata()
+    sidecar.write_text(json.dumps(metadata, indent=2) + "\n")
+    source_path(str(sidecar.relative_to(ROOT)))
+    OUTPUTS.append(str(sidecar.relative_to(ROOT)))
 
 
 def dense_linewidths() -> None:
@@ -694,10 +664,9 @@ def pulse_modifications() -> None:
     hard_model = CurrentPulse(polynomial=False)
     full = np.unique(np.r_[np.linspace(-11, 11, 16001),
                            np.linspace(-0.1, 0.1, 2001)])
-    left = np.linspace(-10.5, -7, 2201)
     center = np.linspace(-0.1, 0.1, 4001)
     data = {}
-    for key, time in (("full", full), ("left", left), ("center", center)):
+    for key, time in (("full", full), ("center", center)):
         hard = np.where(np.abs(time) < model.duration_us / 2,
                         (1 + (time / model.sigma_us)**2)**-0.5, 0.0)
         data[f"{key}_time_us"] = time
@@ -723,8 +692,8 @@ def pulse_modifications() -> None:
     np.savez_compressed(path, **data)
     OUTPUTS.append(str(path.relative_to(ROOT)))
     apply_supplemental_style()
-    fig, axes = plt.subplots(2, 2, figsize=(FIGURE_WIDTH, 4.9), layout="constrained")
-    overview, edge, pulse, quadrature = axes.flat
+    fig, axes = plt.subplots(1, 3, figsize=(FIGURE_WIDTH, 2.7), layout="constrained")
+    overview, pulse, quadrature = axes
     colors = ["#586579", "#176eaa"]
     labels = ["Hard cutoff", "Polynomial ($p=2$)"]
 
@@ -734,39 +703,33 @@ def pulse_modifications() -> None:
         ):
             ax.plot(x, y, color=color, label=label, ls=style)
 
-    for ax, key, title, limit in zip(
-        (overview, edge), ("full", "left"),
-        ("(a)  Full envelope", "(b)  Turn-on edge"), (1e-8, 1e-9), strict=True,
-    ):
-        time = data[f"{key}_time_us"]
-        curves(ax, time, data[f"{key}_envelopes"])
-        ax.set_yscale("symlog", linthresh=limit)
-        ax.set(xlim=(time[0], time[-1]), title=title,
-               xlabel="Time from midpoint (µs)", ylabel=r"Envelope $g(t)$")
-        if key == "full":
-            ax.set(ylim=(-1e-9, 1.5), yticks=[0, 1e-6, 1e-4, 1e-2, 1])
-        else:
-            ax.set(ylim=(-2e-10, 0.012), yticks=[0, 1e-8, 1e-6, 1e-4, 1e-2])
-            ax.axvline(-10, color="#9c3549", lw=0.6, ls=":")
-        ax.minorticks_off()
+    curves(overview, full, data["full_envelopes"])
+    overview.set_yscale("symlog", linthresh=1e-8)
+    overview.set(xlim=(full[0], full[-1]), title="(a)  Full envelope",
+                 xlabel="Time from midpoint (µs)", ylabel=r"Envelope $g(t)$",
+                 ylim=(-1e-9, 1.5), yticks=[0, 1e-6, 1e-4, 1e-2, 1])
+    overview.minorticks_off()
     overview.legend(loc="lower center", fontsize=7.5)
     time = 1000 * center
     curves(pulse, time, data["center_i_over_peak"])
     abrupt = np.where(time < 0, 1, -1) * data["center_envelopes"][0]
     pulse.plot(time, abrupt, color="black", ls=":", label="Abrupt inversion")
-    pulse.set(title="(c)  In-phase waveform", xlabel="Time from midpoint (ns)",
-              ylabel=r"$I(t)/\Omega_{\rm pk}$", xlim=(-100, 100), ylim=(-1.12, 1.12))
-    pulse.legend(handles=[pulse.lines[-1]], loc="upper right", fontsize=7.5)
+    pulse.set(title="(b)  In-phase waveform", xlabel="Time from midpoint (ns)",
+              ylabel=r"$I(t)/\Omega_{\rm pk}$", xlim=(-100, 100), ylim=(-1.25, 1.3),
+              yticks=[-1, -0.5, 0, 0.5, 1])
+    pulse.legend(handles=[pulse.lines[-1]], loc="upper right", fontsize=7.5,
+                 frameon=True, facecolor="white", edgecolor="none", framealpha=1)
     quadrature.plot(time, data["center_q_over_peak"], color=colors[1],
                     label="Total Q", lw=1.4)
     quadrature.plot(time, data["center_q_envelope_over_peak"], color="#d47823",
                     ls="--", label=r"Envelope term: $g_p' s_T$")
     quadrature.plot(time, data["center_q_midpoint_over_peak"], color="#70439b",
                     ls=":", label=r"Midpoint term: $g_p s_T'$")
-    quadrature.set(title="(d)  DRAG quadrature (polynomial)",
+    quadrature.set(title="(c)  DRAG quadrature",
                    xlabel="Time from midpoint (ns)", ylabel=r"$Q(t)/\Omega_{\rm pk}$",
                    xlim=(-100, 100), ylim=(-0.035, 0.025))
-    quadrature.legend(loc="upper center", fontsize=7)
+    quadrature.legend(loc="upper center", fontsize=7, frameon=True,
+                      facecolor="white", edgecolor="none", framealpha=1)
     for ax in (pulse, quadrature):
         ax.axhline(0, color="gray", lw=0.6)
         for boundary in (-25, 25):
@@ -777,7 +740,12 @@ def pulse_modifications() -> None:
         "complex_peak_normalization": {"hard": hard_model.peak, "polynomial": model.peak},
         "convention": "I-iQ; Q=-beta*dI/dt/(2*pi*abs(alpha_MHz)); both I and Q divided by the same complex-envelope peak",
         "families": labels,
-        "normalization": "Unsigned envelopes in (a,b) have g(0)=1; I and Q in (c,d) are normalized by each complex-envelope peak, as in S5 and S7",
+        "normalization": "Unsigned envelopes in (a) have g(0)=1; I and Q in (b,c) are normalized by each complex-envelope peak, as in the DRAG and cutoff-smoothing comparisons",
+        "panels": {
+            "a": "Full unsigned hard-cutoff and polynomial envelopes",
+            "b": "Signed in-phase waveforms near the midpoint with abrupt reference",
+            "c": "Polynomial DRAG quadrature and its two derivative contributions",
+        },
         "quadrature_panel": "Polynomial pulse; total and its two derivative contributions",
         "reproduce": ".venv/bin/python scripts/make_supplemental_figures.py --only pulse_modifications",
         "source_sha256": {

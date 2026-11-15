@@ -1,0 +1,87 @@
+{
+  "status": "Current supplemental Figure S3",
+  "source": "figures/paper/03_echo_duration_resolution_comparison.npz",
+  "source_sha256": "83a1cb12b8f9b3dcbeaa3d1c294e496e22124363dfe595d87ffc06f43be24a75",
+  "generator_sha256": "f71321151dceb9c1dba2c94fc4dfdbf06c0a7d91dafec8e868207af39f03b421",
+  "style_sha256": "31153017bfd084632a10987f65956cbefd1971fa92fe4ad5d38e4f0879bef28f",
+  "arrays_sha256": "3243b448ee725ded424448a70698e6b9fed30f20ed55ab987dedf0115f90095a",
+  "reference_fwhm_hz": 41882.87976102509,
+  "source_width_rescaling": 1.0386105312767855,
+  "axes": {
+    "left_khz": [
+      1,
+      100
+    ],
+    "right_mhz": [
+      0.1,
+      20
+    ],
+    "logarithmic": true,
+    "shared_y_limits_by_row": [
+      [
+        0,
+        7.2
+      ],
+      [
+        0,
+        0.82
+      ],
+      [
+        0,
+        0.24
+      ]
+    ]
+  },
+  "labels": {
+    "metrics": [
+      "$\\mathrm{FWHM}/\\Gamma_{T_2^*}$",
+      "Contrast",
+      "$Q=C\\,\\Gamma_{T_2^*}/\\mathrm{FWHM}$"
+    ],
+    "contrast_symbol": "C",
+    "drive": "\\Omega_0/(2\\pi)"
+  },
+  "q_threshold": 0.1,
+  "presentation": "Compact publication layout; no titles or interval footer; small in-panel legends; connected translucent measurement markers with thinner lines than simulations",
+  "simulated_q_intervals_mhz": {
+    "constant": [
+      [
+        0.004597605604489612,
+        0.0368168138727158
+      ]
+    ],
+    "5us": [
+      [
+        6.746515067135835,
+        26.587161102810292
+      ]
+    ],
+    "10us": [
+      [
+        2.49789860077052,
+        17.25966538841157
+      ]
+    ],
+    "15us": [
+      [
+        1.6022097148853065,
+        9.935331220935597
+      ]
+    ],
+    "20us": [
+      [
+        1.2434226306849117,
+        5.52787585651707
+      ]
+    ],
+    "30us": [
+      [
+        1.0961282844740692,
+        1.2958258444981434
+      ]
+    ]
+  },
+  "interval_method": "Crossings linearly interpolated in log-amplitude, matching plotted segments",
+  "processing": "Saved fitted metrics rescaled to the common linewidth reference; thin lines connect adjacent accepted measurements, leaving gaps at invalid samples; no new fitting, smoothing, or measurement subsampling",
+  "reproduce": "PYTHONPATH=. MPLBACKEND=Agg MPLCONFIGDIR=/private/tmp/ars-mpl-cache .venv/bin/python scripts/make_supplemental_figures.py --only duration_metrics"
+}

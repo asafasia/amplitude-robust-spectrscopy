@@ -233,5 +233,24 @@
     "root": 3.476364335286419e-08,
     "echo": 4.144784580994987e-06
   },
-  "numerical_check": "All five amplitudes at seven detunings; not physical-model validation"
+  "numerical_check": "All five amplitudes at seven detunings; not physical-model validation",
+  "rendering": {
+    "source_sha256": {
+      "paper/data/experimental/02_latest_q1_spectroscopy.npz": "2abe7f2a5ef0892008b3219f3f4550085945b2ecb55d29ee55844ebbed6cf270",
+      "scripts/make_supplemental_spectrum_slices.py": "d4320988ec475514ce7e4b2790aec2a8947aa3f5ef917668d3a8a7fd47b38cbb",
+      "styles/supplemental.mplstyle": "31153017bfd084632a10987f65956cbefd1971fa92fe4ad5d38e4f0879bef28f"
+    },
+    "layout": "Measured maps above the corresponding stacked spectra",
+    "maps": "Full acquired maps; population colors matched to main-text Fig. 2",
+    "map_colormap": "magma",
+    "map_color_limits": [
+      0.0,
+      0.8
+    ],
+    "slice_guides": "Exact acquired drive values, matching blue traces and labels",
+    "experiment": "Blue connected points; no interpolation or smoothing",
+    "simulation": "Dashed charcoal curves; archived simulation unchanged",
+    "scale_bar": "Capped vertical bar spanning a population difference of 0.2",
+    "accent_color": "#0072B2"
+  }
 }

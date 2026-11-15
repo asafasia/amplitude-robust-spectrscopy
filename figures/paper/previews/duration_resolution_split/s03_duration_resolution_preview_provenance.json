@@ -1,0 +1,77 @@
+{
+  "status": "Preview only; not included in the manuscript",
+  "source": "figures/paper/03_echo_duration_resolution_comparison.npz",
+  "source_sha256": "83a1cb12b8f9b3dcbeaa3d1c294e496e22124363dfe595d87ffc06f43be24a75",
+  "generator_sha256": "1869ba26f06f1a96109a6a6ab65a69f3a7cc0a2ea3a1aaf21a88b528abbcd7e6",
+  "style_sha256": "31153017bfd084632a10987f65956cbefd1971fa92fe4ad5d38e4f0879bef28f",
+  "reference_fwhm_hz": 41882.87976102509,
+  "source_width_rescaling": 1.0386105312767855,
+  "axes": {
+    "left_khz": [
+      1,
+      100
+    ],
+    "right_mhz": [
+      0.1,
+      30
+    ],
+    "logarithmic": true,
+    "shared_y_limits_by_row": [
+      [
+        0,
+        7.2
+      ],
+      [
+        0,
+        0.82
+      ],
+      [
+        0,
+        0.24
+      ]
+    ]
+  },
+  "q_threshold": 0.1,
+  "presentation": "Compact publication preview; no titles or interval footer; small in-panel legends; thin lines and small translucent measurement markers",
+  "simulated_q_intervals_mhz": {
+    "constant": [
+      [
+        0.004597605604489612,
+        0.0368168138727158
+      ]
+    ],
+    "5us": [
+      [
+        6.746515067135835,
+        26.587161102810292
+      ]
+    ],
+    "10us": [
+      [
+        2.49789860077052,
+        17.25966538841157
+      ]
+    ],
+    "15us": [
+      [
+        1.6022097148853065,
+        9.935331220935597
+      ]
+    ],
+    "20us": [
+      [
+        1.2434226306849117,
+        5.52787585651707
+      ]
+    ],
+    "30us": [
+      [
+        1.0961282844740692,
+        1.2958258444981434
+      ]
+    ]
+  },
+  "interval_method": "Crossings linearly interpolated in log-amplitude, matching plotted segments",
+  "processing": "Saved fitted metrics only; common linewidth reference as in current S3; no new fitting, smoothing, or measurement subsampling",
+  "reproduce": "PYTHONPATH=. MPLBACKEND=Agg MPLCONFIGDIR=/private/tmp/ars-mpl-cache .venv/bin/python scripts/preview_supplemental_duration_resolution.py"
+}

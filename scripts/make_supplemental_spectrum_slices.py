@@ -13,6 +13,7 @@ from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
+from matplotlib import patheffects
 from matplotlib.lines import Line2D
 
 from echospec.figures.coherence import REFERENCE_T2_STAR_S
@@ -26,7 +27,10 @@ MAP_STEM = "paper/data/experimental/02_latest_q1_spectroscopy"
 MAPS = {"root": "A3_narrow_no_echo", "echo": "A4_narrow_echo"}
 TARGETS_MHZ = np.array([3.0, 5.0, 10.0, 15.0, 20.0])
 PROTOCOLS = ("root", "echo")
-COLORS = ("#0072B2", "#009E73", "#D55E00", "#CC79A7", "#7D5BA6")
+SLICE_COLOR = "#0072B2"
+# Match the population colors in main-text Fig. 2.
+MAP_COLORMAP = "magma"
+MAP_COLOR_LIMITS = (0.0, 0.8)
 STACK_SPACING = 0.55
 
 
@@ -165,47 +169,126 @@ def prepare_data() -> tuple[dict, dict]:
     return arrays, metadata
 
 
-def build_figure(data: dict) -> plt.Figure:
-    """Two stacked-spectrum panels with one common vertical population scale."""
+def measurement_map_context(data: dict, maps: dict) -> dict:
+    """Require the overview maps to contain the exact archived experimental cuts."""
+    context = {}
+    for protocol in PROTOCOLS:
+        prefix = MAPS[protocol].lower()
+        detuning = maps[f"{prefix}_detuning_hz"] / 1e6
+        drives = maps[f"{prefix}_nominal_rabi_mhz"]
+        population = maps[f"{prefix}_state"]
+        indices = data[f"{protocol}_amplitude_indices"]
+        if population.shape != (drives.size, detuning.size):
+            raise ValueError(f"{protocol}: map must have drive-by-detuning axes")
+        if not (
+            np.array_equal(detuning, data[f"{protocol}_detuning_mhz"])
+            and np.array_equal(drives[indices], data[f"{protocol}_rabi_mhz"])
+            and np.array_equal(population[indices], data[f"{protocol}_experiment_raw"])
+        ):
+            raise ValueError(f"{protocol}: overview map does not match archived slices")
+        context[protocol] = (detuning, drives, population)
+    return context
+
+
+def rendering_metadata() -> dict:
+    """Describe the current presentation separately from the simulated arrays."""
+    paths = [ROOT / f"{MAP_STEM}.npz", Path(__file__),
+             ROOT / "styles/supplemental.mplstyle"]
+    return {
+        "source_sha256": {
+            str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
+            for p in paths
+        },
+        "layout": "Measured maps above the corresponding stacked spectra",
+        "maps": "Full acquired maps; population colors matched to main-text Fig. 2",
+        "map_colormap": MAP_COLORMAP,
+        "map_color_limits": list(MAP_COLOR_LIMITS),
+        "slice_guides": "Exact acquired drive values, matching blue traces and labels",
+        "experiment": "Blue connected points; no interpolation or smoothing",
+        "simulation": "Dashed charcoal curves; archived simulation unchanged",
+        "scale_bar": "Capped vertical bar spanning a population difference of 0.2",
+        "accent_color": SLICE_COLOR,
+    }
+
+
+def build_figure(data: dict, maps: dict) -> plt.Figure:
+    """Measured map context above connected spectra on one population scale."""
+    context = measurement_map_context(data, maps)
     apply_supplemental_style()
-    fig, axes = plt.subplots(
-        1, 2, figsize=(FIGURE_WIDTH, 5.0), sharex=True, sharey=True,
-        layout="constrained",
+    fig = plt.figure(figsize=(FIGURE_WIDTH, 6.1), layout="constrained")
+    grid = fig.add_gridspec(
+        2, 3, width_ratios=(1, 1, 0.035), height_ratios=(1.35, 4.1),
+        hspace=0.035, wspace=0.045,
     )
-    for ax, protocol, title in zip(
-        axes, PROTOCOLS, ("(a)  Root-Lorentzian", "(b)  Echo-root-Lorentzian"),
-        strict=True,
-    ):
+    axes = []
+    map_axes = []
+    for column, (protocol, title) in enumerate(zip(
+        PROTOCOLS, ("Root-Lorentzian", "Echo-root-Lorentzian"), strict=True,
+    )):
+        map_ax = fig.add_subplot(
+            grid[0, column], sharey=map_axes[0] if map_axes else None,
+        )
+        ax = fig.add_subplot(
+            grid[1, column], sharex=map_ax, sharey=axes[0] if axes else None,
+        )
+        axes.append(ax)
+        map_axes.append(map_ax)
+        map_x, map_drives, population = context[protocol]
+        mesh = map_ax.pcolormesh(
+            map_x, map_drives, population, shading="nearest", cmap=MAP_COLORMAP,
+            vmin=MAP_COLOR_LIMITS[0], vmax=MAP_COLOR_LIMITS[1], rasterized=True,
+        )
+        map_ax.set(
+            title=f"({chr(97 + column)})  {title}",
+            ylim=(0, 20.7), yticks=data[f"{protocol}_rabi_mhz"],
+            yticklabels=[f"{drive:.1f}" for drive in data[f"{protocol}_rabi_mhz"]],
+        )
+        map_ax.tick_params(axis="x", labelbottom=False)
+        map_ax.tick_params(axis="y", labelsize=7, labelcolor=SLICE_COLOR)
+        for drive in data[f"{protocol}_rabi_mhz"]:
+            guide = map_ax.axhline(drive, color=SLICE_COLOR, ls="--", lw=0.8)
+            guide.set_path_effects([
+                patheffects.Stroke(linewidth=1.5, foreground="white"),
+                patheffects.Normal(),
+            ])
         x = data[f"{protocol}_detuning_mhz"]
-        for j, color in enumerate(COLORS):
-            ax.scatter(
-                x, data[f"{protocol}_experiment_display"][j], s=3.0,
-                color=color, alpha=0.7, linewidths=0, zorder=2,
+        for j in range(len(data[f"{protocol}_rabi_mhz"])):
+            ax.plot(
+                x, data[f"{protocol}_experiment_display"][j],
+                color=SLICE_COLOR, lw=0.7, marker="o", ms=1.45,
+                markeredgewidth=0, zorder=2,
             )
             ax.plot(
                 x, data[f"{protocol}_simulation_display"][j],
-                color="0.15", lw=1.0, zorder=3,
+                color="0.2", lw=1.0, ls="--", zorder=3,
             )
-            # Labels share a fixed position between neighboring baselines.
             ax.text(
                 -0.47, data[f"{protocol}_display_offsets"][j] + 0.25,
                 rf"${data[f'{protocol}_rabi_mhz'][j]:.1f}$ MHz",
-                fontsize=8, color=color, va="bottom",
+                fontsize=8, color=SLICE_COLOR, va="bottom",
             )
-        ax.axvline(0, color="0.65", ls=":", lw=0.7, zorder=0)
+        ax.axvline(0, color="0.75", ls=":", lw=0.6, zorder=0)
         ax.set(
-            title=title, xlabel=r"Detuning $\Delta/(2\pi)$ (MHz)",
+            title=f"({chr(99 + column)})",
+            xlabel=r"Detuning $\Delta/(2\pi)$ (MHz)",
             xlim=(-0.5, 0.5), ylim=(-0.45, 2.7), yticks=[],
             xticks=[-0.4, -0.2, 0, 0.2, 0.4],
         )
-        # A shared 0.2-population scale bar retains the contrast comparison.
-        ax.plot([0.43, 0.43], [-0.27, -0.07], color="0.2", lw=1.3)
-        ax.text(0.40, -0.17, "0.2", va="center", ha="right", fontsize=8)
+        ax.errorbar(
+            0.43, -0.25, yerr=0.1, fmt="none", ecolor="0.2",
+            elinewidth=0.9, capsize=3, capthick=0.9,
+        )
+        ax.text(0.39, -0.25, r"$\Delta P=0.2$", va="center", ha="right", fontsize=7)
+    map_axes[0].set_ylabel(r"$\Omega_0/(2\pi)$ (MHz)")
+    colorbar = fig.colorbar(
+        mesh, cax=fig.add_subplot(grid[0, 2]), ticks=np.linspace(*MAP_COLOR_LIMITS, 5),
+    )
+    colorbar.ax.set_title(r"$P_e$", fontsize=8, pad=6)
     axes[0].set_ylabel("Relative population (vertically offset)")
     fig.legend(
         handles=[
-            Line2D([], [], color="0.15", lw=1.0, label="Simulation"),
-            Line2D([], [], color="0.35", marker="o", ls="none", markersize=3,
+            Line2D([], [], color="0.2", lw=1.0, ls="--", label="Simulation"),
+            Line2D([], [], color=SLICE_COLOR, marker="o", lw=0.7, markersize=2.5,
                    label="Experiment"),
         ], loc="outside upper center", ncol=2,
     )
@@ -216,8 +299,10 @@ def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     arrays, metadata = prepare_data()
     np.savez_compressed(OUT / f"{STEM}.npz", **arrays)
+    metadata["rendering"] = rendering_metadata()
     (OUT / f"{STEM}_provenance.json").write_text(json.dumps(metadata, indent=2) + "\n")
-    figure = build_figure(arrays)
+    with np.load(ROOT / f"{MAP_STEM}.npz", allow_pickle=False) as maps:
+        figure = build_figure(arrays, maps)
     for extension in ("pdf", "png", "svg"):
         figure.savefig(OUT / f"{STEM}.{extension}", dpi=300)
     plt.close(figure)

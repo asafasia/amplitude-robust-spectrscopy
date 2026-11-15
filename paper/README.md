@@ -54,6 +54,22 @@ the PDFs:
 make paper-clean
 ```
 
+### Supplemental editor preview
+
+The supplemental document uses copies of its eight figure PDFs under
+`paper/figures/generated/`, so the built-in editor can compile with `paper/`
+as its project root. The original exports, numerical arrays, and provenance
+remain under `figures/paper/`; the copies contain identical PDF bytes.
+After regenerating a supplemental figure, refresh the local copies before
+using the editor preview:
+
+```bash
+make paper-supplemental-assets
+```
+
+`make paper-supplemental` also refreshes these copies before compiling.
+Keep the copies with the manuscript sources when sharing the `paper/` folder.
+
 ## Reviewer data package
 
 ### Updated Figure 2 and Figure 3 measurements (31 October-1 November 2026)
@@ -143,7 +159,13 @@ The simulator evaluates those exact drives and detunings. Each experiment and
 simulation trace is independently mean-centered, then stacked on a common
 population scale without gain or frequency fitting. Raw populations, display
 arrays, selection indices, and alignment metadata are retained alongside the
-figure. Rebuild its data and rendering with:
+figure. Small measured maps above the spectra identify the selected rows
+with blue dashed guides and matching drive labels. All experimental slices
+use blue connected points, simulations use dashed dark curves, and capped
+bars show a population difference of 0.2. The maps use the main figure's
+`magma` colormap and population scale from 0 to 0.8. Rendering checks that the map rows exactly
+match the archived slices and records its sources separately in the S2
+provenance sidecar. Rebuild its data and rendering with:
 
 ```bash
 PYTHONPATH=. MPLBACKEND=Agg python scripts/make_supplemental_spectrum_slices.py
@@ -152,8 +174,18 @@ PYTHONPATH=. MPLBACKEND=Agg python scripts/make_supplemental_spectrum_slices.py
 To render just the reordered Figs. S2 and S3 from the saved arrays:
 
 ```bash
-PYTHONPATH=. MPLBACKEND=Agg python scripts/make_supplemental_figures.py --only spectrum_slices duration_metrics
+PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_supplemental_figures.py --only spectrum_slices duration_metrics
 ```
+
+Figure S3 uses a compact two-column layout: the constant-drive Bloch
+reference spans 1--100 kHz on the left, and the echo simulations and
+measurements span 0.1--20 MHz on the right. Both amplitude axes are
+logarithmic, with shared vertical scales within each row. The renderer is
+`scripts/make_supplemental_duration_resolution.py`; it uses the saved
+`03_echo_duration_resolution_comparison.npz` metrics and writes the displayed
+arrays and provenance alongside `figures/paper/supplemental/s03_duration_resolution.*`.
+No new fits or simulations are needed. The optional preview script uses the
+same renderer and writes only to `figures/paper/previews/`.
 
 The earlier three-amplitude q6 slice CSV and its display alignment remain
 historical artifacts; they are not the source of the current Fig. S2.
@@ -208,7 +240,7 @@ source data or center selection changes.
 The lower panel fits Gaussian-dip linewidths from the same stored measured
 spectra, using the source campaign's fitting procedure.
 
-Figure S5 combines the current q1 measurements from Figure 3 with new
+Figure S6 combines the current q1 measurements from Figure 3 with new
 three-level simulations at L=20 us, cutoff 0.005, a 50 ns sine midpoint,
 and (where enabled) cutoff subtraction and a power-2 polynomial window.
 Both simulations and measurements use the actual complex-envelope peak
@@ -272,9 +304,13 @@ To repeat the simulation and representative convergence checks, use
 `.venv/bin/python scripts/repeat_extended_cutoff_poly2.py --workers 6`.
 The original power-5, linearly sampled dataset remains available separately.
 The main-figure generator verifies exact equality to the supplemental 20 us
-row (panels c,d) and the saved simulation arrays. Both figures use geometric
+row and the saved simulation arrays. Both figures use geometric
 cell edges, linewidth colors on [0,10], contrast colors on [0,1], and white
 C=0.2 contours. Rejected cells are gray; heatmap samples are not interpolated.
+Figure S8 additionally shows a third column for
+`Q = C * Gamma_T2star / FWHM`, on a common 0--0.2 scale. Red Q=0.10 contours
+outline regions with Q>0.10 in all three columns; the exported arrays include
+Q and its threshold mask, with rejected dips excluded.
 
 Figure 4 panels (c,d) retain cutoff slices for all five pulse lengths at the
 same saved amplitude nearest 50 MHz (49.770236 MHz). Thick solid orange curves
@@ -287,10 +323,12 @@ ideal SNR/FWHM. Forty-five representative refinement checks change linewidth
 by at most 0.509 kHz (time step) and 0.207 kHz (detuning grid), without changing
 acceptance in those checks.
 
-Figures S6 and S7 use the current 20 us pulse, cutoff 0.005, 50 ns sine
-midpoint transition, and power-2 polynomial correction. S6 shows the analytic
-waveforms; S7 compares hard and corrected envelopes at numerical beta -0.5
-and the same actual complex-envelope peak. Recalculate and render with:
+Figures S5 and S7 use the current 20 us pulse, cutoff 0.005, 50 ns sine
+midpoint transition, and power-2 polynomial correction. S5 shows the analytic
+envelope, in-phase waveform, and DRAG quadrature in three panels, before
+the three DRAG-results panels in S6. S7 compares hard and corrected envelopes
+at numerical beta -0.5 and the same actual complex-envelope peak.
+Recalculate and render with:
 
 ```bash
 PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_current_edge_supplement.py
@@ -306,7 +344,7 @@ and ideal SNR. SNR assumes 1000 total ideal binary measurements: 500 at the
 dip and 250 at each +/-0.45 MHz shoulder. It is not measured SNR.
 Plotted arrays, metrics and source hashes are under
 `figures/paper/supplemental/edge_smoothing_results*` and
-`s08_pulse_modifications*` (the latter is the historical filename for S6).
+`s08_pulse_modifications*` (the latter is the historical filename for S5).
 At 100 MHz the updated simulation gives widths of about 530 versus 220 kHz,
 contrast 0.06 versus 0.27, and ideal SNR 2 versus 9. The former claim that
 all high-drive points meet both the 200 kHz and SNR 10 guides no longer applies.

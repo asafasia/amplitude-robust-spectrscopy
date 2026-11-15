@@ -28,7 +28,7 @@ downconversion and demodulation.
 
 \begin{figure*}[!tp]
     \centering
-    \includegraphics[width=\textwidth]{../figures/paper/supplemental/s01_measurement_chain.pdf}
+    \includegraphics[width=\textwidth]{supplemental/s01_measurement_chain.pdf}
     \caption{Schematic of the experimental setup for qubit control and readout.
 A control computer submits QUA programs and receives data over Ethernet.  The
 OPX1000 MW-FEM directly generates the qubit-drive and resonator-readout RF
@@ -55,7 +55,7 @@ their fitted parameters are retained in the source datasets.
     \begin{ruledtabular}
         \begin{tabular}{lcl}
             Parameter & Value & Determination \\
-            % Coherence: latest pulse-shaping campaign and shared linewidth reference.
+            % Measured coherence values and shared linewidth reference.
             $f_{01}$ & $4.267~\mathrm{GHz}$ & Qubit spectroscopy \\
             $f_{02}/2$ & $4.159~\mathrm{GHz}$ & Two-photon spectroscopy \\
             $f_{12}$ & $4.051~\mathrm{GHz}$ & $2(f_{02}/2)-f_{01}$ \\
@@ -67,19 +67,17 @@ their fitted parameters are retained in the source datasets.
     \end{ruledtabular}
 \end{table}
 
-\subsection{Completed q1 repeat campaigns}
+\subsection{Spectroscopy measurements}
 
-The updated main-text Fig.~2 uses four individually completed maps from the
-31 October 2026 q1 campaign: ordinary and echo pulses in broad and narrow
+Main-text Fig.~2 uses four q1 maps: ordinary and echo pulses in broad and narrow
 detuning domains. All use two-state discrimination without readout mitigation.
-The later Figure-3 portion of that campaign was interrupted; only the four
-complete Figure-2 maps enter the paper. The verified drive reference was
+The drive reference is
 $4.263203245~\mathrm{GHz}$.
 
-Main-text Fig.~3 uses the complete, matched three-pulse set acquired on
-31 October--1 November 2026 over $0$--$100~\mathrm{MHz}$ peak drive.
+Main-text Fig.~3 compares echo, DRAG, and polynomial-corrected DRAG pulses
+over $0$--$100~\mathrm{MHz}$ peak drive.
 The displayed Figure~3 window is $0$--$\LatestThreeDisplayMaxRabi~\mathrm{MHz}$.
-Its verified drive reference was
+Its drive reference is
 $\LatestThreeDriveGHz~\mathrm{GHz}$.
 For Fig.~3, each amplitude row is fit independently to a Gaussian dip plus
 a linear background. The saved acceptance criteria require contrast

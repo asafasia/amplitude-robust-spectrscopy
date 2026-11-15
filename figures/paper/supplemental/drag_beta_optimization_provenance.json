@@ -1,4 +1,13 @@
 {
+  "panels": {
+    "a": "Numerical RMS resonance-center offset versus DRAG coefficient",
+    "b": "Simulated resonance centers versus peak drive",
+    "c": "Measured resonance centers minus each curve's mean versus peak drive"
+  },
+  "center_panels_ylim_khz": [
+    -100,
+    100
+  ],
   "simulated_scan": {
     "amplitude": "Actual complex-envelope peak; each pulse divided by max|I-iQ|",
     "best_sampled": {
@@ -176,7 +185,7 @@
     "optimization_scan": "Deferred by user; not present in this figure"
   },
   "source_sha256": {
-    "scripts/make_current_drag_supplement.py": "fa1819d2a34ea633c90cde791fd6f260263b4d6f074dd9740c08b1a0f403c536",
+    "scripts/make_current_drag_supplement.py": "b824f45cd839d4548cfa3f0e382a1de96cace3c2da7bf2d9d8cf0310cdadcd66",
     "scripts/scan_drag_beta_center.py": "0396c7513794345eef59388d35160215c2573d48366d00bee56273a5eacfb6ab",
     "echospec/simulation/polynomial_echo.py": "59021291bb6363a59767274c3c3d727843d37319364a60d51d63c9e7193b950d",
     "echospec/simulation/qutrit_rk4.cpp": "493150abcad473a10ff4128c3b42a5f0ddfd0cdd8fe4c1cf09a936858068bab6",

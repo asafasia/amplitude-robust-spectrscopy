@@ -1,4 +1,4 @@
-"""Figure S5 with current q1 measurements and pulse-matched numerical controls.
+"""DRAG results with q1 measurements and pulse-matched numerical controls.
 
 Run with --simulate once to regenerate the numerical dataset; rendering alone
 uses its portable export. No hardware access or experimental refitting.
@@ -175,20 +175,8 @@ def render():
     meta = json.loads((NUMERICAL / f"{STEM}.json").read_text())["provenance"]
     data, exp_meta = load_export("03_latest_q1_pulse_improvement")
     apply_supplemental_style()
-    fig, axes = plt.subplots(2, 2, figsize=(FIGURE_WIDTH, 5.3), layout="constrained")
-    wave, objective, simulated, measured = axes.flat
-    pulse = CurrentPulse(polynomial=True, drag_beta=-0.5)
-    time = np.linspace(-0.1, 0.1, 4001)
-    drive = pulse.drive(time)
-    wave.plot(time * 1000, drive.real, color=COLORS[0], label=r"$I/\Omega_{\rm pk}$")
-    quadrature = wave.twinx()
-    quadrature.plot(time * 1000, -drive.imag, color=COLORS[1])
-    wave.set(xlim=(-100, 100), ylim=(-1.1, 1.1), xlabel="Time from midpoint (ns)",
-             ylabel=r"$I/\Omega_{\rm pk}$", title="(a)  Polynomial pulse with DRAG")
-    quadrature.set(ylabel=r"$Q/\Omega_{\rm pk}$", ylim=(-0.035, 0.035))
-    quadrature.tick_params(axis="y", colors=COLORS[1])
-    for bound in [-25, 25]:
-        wave.axvline(bound, ls=":", color="0.6", lw=0.6)
+    fig, axes = plt.subplots(1, 3, figsize=(FIGURE_WIDTH, 2.7), layout="constrained")
+    objective, simulated, measured = axes
     for key, color, label in [("hard", COLORS[1], "DRAG only"),
                                ("polynomial", COLORS[2], "+ polynomial")]:
         objective.plot(sim["beta"], sim[f"{key}_rms_hz"] / 1000,
@@ -197,11 +185,11 @@ def render():
         objective.scatter(best["beta"], best["rms_hz"] / 1000,
                           marker="*", s=65, color=color, zorder=4)
     objective.axvline(-0.5, color="0.5", ls=":", lw=0.7)
-    objective.set(yscale="log", xlabel=r"Simulated DRAG coefficient $\beta$",
-                  ylabel="RMS center about zero (kHz)", title="(b)  Numerical beta scan")
-    objective.legend(fontsize=7)
-    displayed = dict(time_us=time, i_over_peak=drive.real, q_over_peak=-drive.imag,
-                     **sim)
+    objective.set(yscale="log", xlabel=r"DRAG coefficient $\beta$",
+                  ylabel="RMS center offset (kHz)", title="(a)  Numerical beta scan")
+    objective.legend(fontsize=7, loc="lower right", bbox_to_anchor=(1.02, 0.1),
+                     handlelength=0.8, handletextpad=0.4, borderpad=0.2)
+    displayed = dict(sim)
     common = np.logical_and.reduce([
         series(data, name, "accepted") & (series(data, name, "peak_rabi_mhz") > 0)
         & (series(data, name, "peak_rabi_mhz") <= 60) for name in F3
@@ -222,10 +210,11 @@ def render():
         displayed[f"experiment_{key}_center_error_khz"] = series(data, name, "center_error_hz")[common] / 1000
         statistics.append(dict(pulse=name, points=int(common.sum()),
                                rms_khz=float(np.std(centers))))
-    simulated.set(title="(c)  Simulated center versus drive", ylabel="Dip center (kHz)")
-    measured.set(title="(d)  Current experiment", ylabel="Center minus mean (kHz)", ylim=(-100, 100))
+    simulated.set(title="(b)  Simulated centers", ylabel="Dip center (kHz)")
+    measured.set(title="(c)  Measured centers", ylabel="Center minus mean (kHz)")
     for ax in [simulated, measured]:
-        ax.set(xlabel=r"$\Omega_{\rm pk}/(2\pi)$ (MHz)", xlim=(0, 60))
+        ax.set(xlabel=r"$\Omega_{\rm pk}/(2\pi)$ (MHz)", xlim=(0, 60),
+               ylim=(-100, 100))
         ax.axhline(0, color="0.6", lw=0.5)
         ax.legend(fontsize=7, loc="lower left")
     OUT.mkdir(parents=True, exist_ok=True)
@@ -234,6 +223,12 @@ def render():
     plt.close(fig)
     np.savez_compressed(OUT / "drag_beta_optimization.npz", **displayed)
     provenance = dict(
+        panels={
+            "a": "Numerical RMS resonance-center offset versus DRAG coefficient",
+            "b": "Simulated resonance centers versus peak drive",
+            "c": "Measured resonance centers minus each curve's mean versus peak drive",
+        },
+        center_panels_ylim_khz=[-100, 100],
         simulated_scan=meta,
         experiment=dict(source_session=exp_meta["source_session"],
                         source_dataset="paper/data/experimental/03_latest_q1_pulse_improvement.npz",

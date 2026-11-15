@@ -442,14 +442,15 @@
     "outputs/polynomial_duration_cutoff_poly2_log/n100/simulations/L60us/scan.npz": "0fdc3871b859c38e7af67d3f6f59c69e08913b9cd70b4d67cbee88b85f64fa5e"
   },
   "generator": "scripts/make_supplemental_extended_cutoff.py",
-  "generator_sha256": "6526ebdc048d099fda79ddce03968c473a9d90697f93d1d5a67d25355e58eec8",
-  "reproduction": "PYTHONPATH=. MPLBACKEND=Agg python scripts/make_supplemental_extended_cutoff.py --input-dir outputs/polynomial_duration_cutoff_poly2_log/n100 --output-dir figures/paper --stem supp_extended_cutoff_duration",
-  "change_from_report": "Five duration rows; same samples, masks, and cell boundaries. Match main Figure 4 axis orientation and colormaps: logarithmic cutoff on x, logarithmic positive drive on y, normalized linewidth in magma on [0, 10], and probability contrast in viridis on [0, 1]. Widths above 10 saturate at the lightest color.",
+  "generator_sha256": "a3e33e78403c8dc14d99e40b4d3de331c4a70cfa8f65b01c8e3411ae1131ea8b",
+  "arrays_sha256": "8e00a1e4c0fd5f3bcc9f39eadfc0c88dd0f8a076629b93d7606a9ac25ba3c8af",
+  "reproduction": "PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_supplemental_extended_cutoff.py --input-dir outputs/polynomial_duration_cutoff_poly2_log/n100 --output-dir figures/paper --stem supp_extended_cutoff_duration",
+  "change_from_report": "Five duration rows; same samples, masks, and cell boundaries. Match main Figure 4 axis orientation and first two colormaps: logarithmic cutoff on x, logarithmic positive drive on y, normalized linewidth in magma on [0, 10], and probability contrast in viridis on [0, 1]. Add contrast-weighted resolution Q in cividis on [0, 0.2]. Widths above 10 saturate at the lightest color.",
   "contrast_definition": "Dip depth in excited-state probability relative to the fitted linear background at the dip.",
   "contrast_outline": {
     "threshold": 0.2,
     "rule": "accepted and contrast > threshold",
-    "geometry": "Linearly interpolated C=0.2 isoline between accepted samples, with rejected grid cells masked; identical in both columns. Heatmap values are not smoothed.",
+    "geometry": "Linearly interpolated C=0.2 isoline between accepted samples, with rejected grid cells masked; identical in all three columns. Heatmap values are not smoothed.",
     "color": "white",
     "linewidth_pt": 0.6,
     "halo": false,
@@ -461,11 +462,36 @@
       1298
     ]
   },
+  "quality_outline": {
+    "definition": "Q = contrast * reference_linewidth_hz / fwhm_hz",
+    "threshold": 0.1,
+    "rule": "accepted and Q > threshold",
+    "geometry": "Linearly interpolated Q=0.10 isoline between accepted samples, outlining higher-quality regions; rejected cells remain masked; identical in all three columns",
+    "color": "#d62728",
+    "linewidth_pt": 0.8,
+    "halo_color": "white",
+    "halo_linewidth_pt": 1.25,
+    "cells_per_duration": [
+      1343,
+      2100,
+      1921,
+      1370,
+      802
+    ]
+  },
   "array_order": "duration, cutoff, nominal drive",
   "map_axes": {
     "x": "cutoff",
     "y": "nominal drive",
     "display": "Transposed arrays"
+  },
+  "labels": {
+    "linewidth": "$\\mathrm{FWHM}/\\Gamma_{T_2^*}$",
+    "contrast": "Contrast",
+    "contrast_symbol": "C",
+    "quality": "$Q=C\\,\\Gamma_{T_2^*}/\\mathrm{FWHM}$",
+    "drive": "$\\Omega_0/(2\\pi)$ (MHz)",
+    "cutoff": "Cutoff $c$"
   },
   "amplitude_display": {
     "scale": "log",
@@ -492,6 +518,12 @@
       "vmin": 0,
       "vmax": 1,
       "colormap": "viridis"
+    },
+    "quality": {
+      "factor": 1,
+      "vmin": 0,
+      "vmax": 0.2,
+      "colormap": "cividis"
     }
   },
   "accepted_traces_per_duration": [

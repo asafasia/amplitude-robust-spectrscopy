@@ -1,81 +1,28 @@
 \section{Dense Pulse-Length Dependence}
 \label{sec:dense-pulse-length}
 
-\subsection{Acquisition}
+Measurements on the second qubit vary the pulse duration from
+$L=1$ to $40~\mu\mathrm{s}$ at fixed cutoff $c=0.005$.
+The echo has an abrupt midpoint phase jump, without DRAG or AC-Stark
+compensation. Increasing $L$ stretches the entire envelope, including its
+core. Linewidths are extracted from the background-subtracted half-height
+crossings, retaining only features resolved above the measurement noise.
 
-A separate campaign on the second qubit tests the dependence on the
-pulse duration $L$ at fixed relative cutoff $c=0.005$. Each duration
-$L=1,2,5,10,15,20,25,30,35,$ and $40~\mu\mathrm{s}$ was acquired once,
-using uniformly spaced detunings over $[-1,1]~\mathrm{MHz}$ and
-logarithmically spaced nominal amplitudes from $0.01$ to $0.70~\mathrm{V}$,
-with the waveform template duration equal to
-$L$, with no duration stretching. The echo has an abrupt midpoint sign
-reversal; the derivative quadrature is disabled ($\beta=0$), and no
-AC-Stark compensation is applied (effective $\kappa=0$). The finite envelope
-therefore changes its time scale together with $L$, rather than varying the
-truncation time of a fixed-width pulse.
+Longer pulses produce narrower features but progressively lose measurable
+contrast. At $L=25~\mu\mathrm{s}$, only 32 of 400 experimental traces yield
+accepted widths; none do so at $L=30$, 35, or $40~\mu\mathrm{s}$.
+This loss of accepted widths indicates that the spectral feature is no
+longer reliably resolved, rather than that its linewidth vanishes.
+The long-duration results therefore represent only a small surviving
+subset of drive amplitudes.
 
-The saved square-$\pi$ calibration is $t_\pi=40~\mathrm{ns}$ at
-$A_\pi=0.203776~\mathrm{V}$. We express the drive axis as the inferred
-nominal peak Rabi frequency,
-\begin{equation}
-    f_R=\frac{\Omega_0}{2\pi}
-       =\frac{A/A_\pi}{2t_\pi},
-    \label{eq:dense-rabi-conversion}
-\end{equation}
-which gives $0.613$--$42.939~\mathrm{MHz}$ for this sweep. This conversion
-uses the envelope scale, rather than its slightly smaller sampled maximum.
-\subsection{Linewidth extraction and matched simulation}
-
-For this campaign, linewidths are extracted with a direct half-height
-estimator. Each frequency trace is smoothed with a nine-point, second-order
-Savitzky--Golay filter. A linear baseline is fitted to the outer 10\% at each scan edge;
-the strongest absolute residual feature is selected, and its nearest
-half-height crossings are linearly interpolated. Experimental widths are
-accepted only when both crossings lie inside the scan, the estimated
-contrast-to-noise ratio is at least five, and the width lies between three
-frequency bins ($15.038~\mathrm{kHz}$) and 80\% of the scan
-($1600~\mathrm{kHz}$). The smoothing window spans approximately
-$40~\mathrm{kHz}$ and can affect narrow features. These selection rules do
-not provide calibrated linewidth uncertainties.
-
-The matched calculation uses the three-level Lindblad model of
-Sec.~\ref{sec:numerical-model}, with this campaign's saved coherence and
-pulse parameters and $\alpha/(2\pi)=-237.95~\mathrm{MHz}$. It begins in
-$\lvert0\rangle$, holds each waveform sample for $1~\mathrm{ns}$, and
-includes relaxation rates $\Gamma_{10}=1/T_1$ and $\Gamma_{21}=2/T_1$.
-Pure dephasing is Markovian, with rate $1/T_2^*-1/(2T_1)$. The simulated
-observable is $P_1+P_2$, assuming both excited levels are assigned
-the excited binary outcome. No parameters are fitted to the measured maps.
-The calculation omits readout errors, reset errors, drift, quasi-static
-noise and analog waveform distortion. The simulated linewidth uses the
-same half-height geometry, with contrast at least $0.001$ in place of the
-experimental noise criterion. A reduced-grid comparison at every duration
-between $1$ and $0.5~\mathrm{ns}$ integration steps changes populations by
-less than $5.8\times10^{-4}$; this numerical check does not validate the
-physical model.
-
-\subsection{Duration trends and experiment--simulation agreement}
-
-We compare experimental and simulated widths at the same
-acquired amplitude index and duration for $L=1,2,5,10,15,20,$ and
-$25~\mu\mathrm{s}$, using the intersection of the two acceptance masks. There are 1278 pairs in total, with counts of
-110, 135, 213, 260, 265, 263 and 32 for the seven increasing durations.
-At $2~\mu\mathrm{s}$ the paired linewidth RMS difference is
-$34.2~\mathrm{kHz}$; it increases to $302.5~\mathrm{kHz}$ at
-$20~\mu\mathrm{s}$. For most long-duration pairs, the simulation predicts broader
-features than the experiment.
-Pairing accepted widths does not by itself establish that the strongest
-feature selected in each trace has the same physical origin.
-
-Only 32 of 400 experimental traces pass the selection at
-$25~\mu\mathrm{s}$, and none do so at $30$, $35$ or $40~\mu\mathrm{s}$.
-These missing widths mean that the feature is not reliably resolved by
-this estimator, rather than that its linewidth vanishes. The surviving
-sets therefore differ across durations; the longer-duration comparison
-is conditional on the small accepted subset. Because the maps were
-acquired sequentially over approximately 8.6 hours without repeated
-campaigns, drift and pulse-length effects are not independently separated.
-The data support a duration-dependent narrowing and loss of measurable
-contrast, but do not establish an optimal duration or a universal
-coherence-limited plateau.
+A matched three-level calculation generally predicts broader features than
+the experiment at long durations. Comparing accepted widths at the same
+drive and duration, the RMS difference increases from
+$34.2~\mathrm{kHz}$ at $L=2~\mu\mathrm{s}$ to $302.5~\mathrm{kHz}$ at
+$L=20~\mu\mathrm{s}$. These results reinforce the resolution--contrast
+tradeoff in Fig.~\ref{fig:duration-resolution-comparison}: the narrowest
+line is not necessarily the most useful operating point.
+The changing accepted subset and unresolved contribution of drift prevent
+identification of a unique optimal duration or a universal
+coherence-limited linewidth plateau.

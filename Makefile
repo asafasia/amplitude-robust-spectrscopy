@@ -1,7 +1,19 @@
 .PHONY: install install-dev test lint paper paper-main paper-supplemental \
-	paper-clean paper-data paper-data-core paper-figures-supplemental
+	paper-clean paper-data paper-data-core paper-figures-supplemental \
+	paper-supplemental-assets
 
 PYTHON ?= python
+
+SUPPLEMENTAL_FIGURES := \
+	supplemental/s01_measurement_chain.pdf \
+	supplemental/s02_spectrum_slices.pdf \
+	supplemental/s03_duration_resolution.pdf \
+	supplemental/midpoint_smoothing_leakage.pdf \
+	supplemental/drag_beta_optimization.pdf \
+	supplemental/s08_pulse_modifications.pdf \
+	supplemental/edge_smoothing_results.pdf \
+	supp_extended_cutoff_duration.pdf
+SUPPLEMENTAL_LOCAL_FIGURES := $(addprefix paper/figures/generated/,$(SUPPLEMENTAL_FIGURES))
 
 install:
 	$(PYTHON) -m pip install -e .
@@ -20,8 +32,14 @@ paper: paper-main paper-supplemental
 paper-main:
 	latexmk -pdf -interaction=nonstopmode -halt-on-error -cd paper/main.tex
 
-paper-supplemental:
+paper-supplemental: paper-supplemental-assets
 	latexmk -pdf -interaction=nonstopmode -halt-on-error -cd paper/supplemental.tex
+
+paper-supplemental-assets: $(SUPPLEMENTAL_LOCAL_FIGURES)
+
+paper/figures/generated/%.pdf: figures/paper/%.pdf
+	@mkdir -p "$(@D)"
+	cp "$<" "$@"
 
 paper-figures-supplemental:
 	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_supplemental_figures.py

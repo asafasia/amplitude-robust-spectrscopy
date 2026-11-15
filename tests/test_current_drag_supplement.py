@@ -1,4 +1,4 @@
-"""Check the pulse normalization and derivatives used in the new S5 scan."""
+"""Check the pulse normalization and derivatives used in the DRAG scan."""
 
 import unittest
 

@@ -20,6 +20,8 @@ def test_log_survey_export_preserves_grid_and_handles_no_robust_cutoff(
     style = tmp_path / "style.mplstyle"
     style.write_text("")
     monkeypatch.setattr(figure, "STYLE_PATH", style)
+    # With a 75 kHz reference and 150 kHz FWHM, Q is half the contrast.
+    monkeypatch.setattr(figure, "REFERENCE_FWHM_HZ", 75000.)
     source = tmp_path / "study"
     source.mkdir()
     output = tmp_path / "figures"
@@ -55,11 +57,19 @@ def test_log_survey_export_preserves_grid_and_handles_no_robust_cutoff(
         np.testing.assert_array_equal(exported["accepted"], accepted)
         np.testing.assert_array_equal(exported["fwhm_hz"], widths)
         np.testing.assert_array_equal(exported["contrast"][0], contrast)
+        np.testing.assert_allclose(exported["quality"][0, 0], .05)
+        np.testing.assert_allclose(exported["quality"][0, -1], .20)
+        assert not exported["quality_above_threshold"][0, 0].any()
+        assert exported["quality_above_threshold"][0, -1].all()
+        assert np.isnan(exported["quality"][-1, :, -1]).all()
+        assert not exported["quality_above_threshold"][-1, :, -1].any()
     provenance = json.loads((output / "log_test_provenance.json").read_text())
     assert provenance["configuration"] == config
     assert provenance["amplitude_display"]["sampling"] == "logarithmic"
     assert provenance["amplitude_display"]["positive_sample_count"] == 100
     assert provenance["amplitude_display"]["cell_edges"] == "Geometric midpoints"
+    assert provenance["quality_outline"]["threshold"] == .10
+    assert provenance["color_scales"]["quality"]["vmax"] == .2
     summary = json.loads((output / "log_test_summary.json").read_text())
     assert summary["results"][-1]["cutoff"] is None
     assert (output / "log_test.pdf").stat().st_size > 0

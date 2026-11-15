@@ -17,13 +17,18 @@
     "Hard cutoff",
     "Polynomial ($p=2$)"
   ],
-  "normalization": "Unsigned envelopes in (a,b) have g(0)=1; I and Q in (c,d) are normalized by each complex-envelope peak, as in S5 and S7",
+  "normalization": "Unsigned envelopes in (a) have g(0)=1; I and Q in (b,c) are normalized by each complex-envelope peak, as in the DRAG and cutoff-smoothing comparisons",
+  "panels": {
+    "a": "Full unsigned hard-cutoff and polynomial envelopes",
+    "b": "Signed in-phase waveforms near the midpoint with abrupt reference",
+    "c": "Polynomial DRAG quadrature and its two derivative contributions"
+  },
   "quadrature_panel": "Polynomial pulse; total and its two derivative contributions",
   "reproduce": ".venv/bin/python scripts/make_supplemental_figures.py --only pulse_modifications",
   "source_sha256": {
     "echospec/simulation/polynomial_echo.py": "59021291bb6363a59767274c3c3d727843d37319364a60d51d63c9e7193b950d",
-    "scripts/make_current_drag_supplement.py": "fa1819d2a34ea633c90cde791fd6f260263b4d6f074dd9740c08b1a0f403c536"
+    "scripts/make_current_drag_supplement.py": "5a5f0f0f598e00e11ac23cef308b91a2257e8bf2cff08960e455d97b956da5ec"
   },
-  "generator_sha256": "9306f66d48a8814ba3c91056cbfba4dd58e0a0e046e13b7ba27d8d530841e5dd",
-  "arrays_sha256": "6cb0f178da8440252bd7b9b387507c454886a116e71960d58d084dc77d7d8117"
+  "generator_sha256": "589cbed2dcf9a75a6038dc1fb34f362e134f8dd9fc689c41f7180645c07ddf5b",
+  "arrays_sha256": "ad93d9961ecb067afc326ca2ef4b770c31b73ac8a51ee6e971b69104cda1bca5"
 }

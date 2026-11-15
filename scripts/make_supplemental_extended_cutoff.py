@@ -1,6 +1,6 @@
-"""Show full-range linewidth and probability contrast for a supplemental page.
+"""Show linewidth, contrast, and contrast-weighted resolution for the supplement.
 
-Run with: MPLBACKEND=Agg python scripts/make_supplemental_extended_cutoff.py
+Run with: PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_supplemental_extended_cutoff.py
 Uses archived metrics and masks without rerunning or interpolating simulations.
 """
 
@@ -11,6 +11,7 @@ import hashlib
 import json
 from pathlib import Path
 
+import matplotlib.patheffects as pe
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.ticker import LogLocator, NullFormatter
@@ -23,6 +24,8 @@ SOURCE = ROOT / "outputs/polynomial_duration_cutoff_poly2_log/n100"
 OUT = ROOT / "figures/paper"
 STEM = "supp_extended_cutoff_duration"
 CONTRAST_THRESHOLD = 0.2
+QUALITY_THRESHOLD = 0.10
+QUALITY_COLOR = "#d62728"
 
 
 def main(argv=None):
@@ -78,6 +81,13 @@ def main(argv=None):
     np.testing.assert_allclose(amps, expected)
     assert accepted.shape == (5, 100, 100)
     reference_hz = REFERENCE_FWHM_HZ
+    assert (data["fwhm_hz"][accepted] > 0).all()
+    quality = np.full(accepted.shape, np.nan)
+    np.divide(data["contrast"] * reference_hz, data["fwhm_hz"],
+              out=quality, where=accepted)
+    data["quality"] = quality
+    data["quality_above_threshold"] = accepted & (quality > QUALITY_THRESHOLD)
+    data["quality_threshold"] = np.array(QUALITY_THRESHOLD)
     # Preserve the original cell edges while matching the main Figure 4 display.
     logc = np.log(cutoffs)
     c_edges = np.exp(np.r_[logc[0] - (logc[1] - logc[0]) / 2,
@@ -95,13 +105,15 @@ def main(argv=None):
     data["contrast_above_threshold"] = accepted & (data["contrast"] > CONTRAST_THRESHOLD)
     data["contrast_threshold"] = np.array(CONTRAST_THRESHOLD)
     apply_supplemental_style()
-    fig, axes = plt.subplots(5, 2, figsize=(7.2, 7.6), sharex=True, sharey=True,
+    fig, axes = plt.subplots(5, 3, figsize=(7.2, 7.6), sharex=True, sharey=True,
                              layout="constrained")
     scales = {}
     for col, (key, factor, lower, upper, cmap, label, ticks) in enumerate([
         ("fwhm_hz", 1 / reference_hz, 0, 10, "magma",
-         r"FWHM/$\Gamma_{T_2^*}$", [0, 2, 4, 6, 8, 10]),
+         r"$\mathrm{FWHM}/\Gamma_{T_2^*}$", [0, 2, 4, 6, 8, 10]),
         ("contrast", 1, 0, 1, "viridis", "Contrast", [0, 0.5, 1]),
+        ("quality", 1, 0, 0.2, "cividis",
+         r"$Q=C\,\Gamma_{T_2^*}/\mathrm{FWHM}$", [0, 0.1, 0.2]),
     ]):
         values = data[key]
         assert values.shape == accepted.shape
@@ -122,20 +134,31 @@ def main(argv=None):
                 levels=[CONTRAST_THRESHOLD], colors=["white"], linewidths=0.6,
                 corner_mask=False, zorder=3,
             )
+            quality_contour = ax.contour(
+                cutoffs, amps[positive],
+                np.ma.masked_invalid(quality[row])[:, positive].T,
+                levels=[QUALITY_THRESHOLD], colors=[QUALITY_COLOR], linewidths=0.8,
+                corner_mask=False, zorder=4,
+            )
+            quality_contour.set_path_effects([
+                pe.withStroke(linewidth=1.25, foreground="white"),
+            ])
             ax.set(xscale="log", yscale="log", xlim=(1e-5, 1), ylim=(1, 100),
                    xticks=[1e-5, 1e-3, 1e-1, 1], yticks=[1, 10, 100])
             ax.minorticks_off()
             ax.yaxis.set_minor_locator(LogLocator(base=10, subs=np.arange(2, 10)))
             ax.yaxis.set_minor_formatter(NullFormatter())
             ax.tick_params(direction="in", top=True, right=True, length=2, pad=2,
-                           labelleft=True)
+                           labelleft=col == 0)
             ax.tick_params(axis="y", which="major", length=3)
             ax.tick_params(axis="y", which="minor", direction="in", right=True,
                            length=1.5, width=0.5)
-            ax.set_title(f"({chr(97 + 2 * row + col)})  "
-                         + rf"$L={length:g}\,\mu\mathrm{{s}}$", loc="left", fontsize=9)
+            title = f"({chr(97 + 3 * row + col)})"
             if col == 0:
-                ax.set_ylabel(r"$\Omega_0/2\pi$ (MHz)")
+                title += rf"  $L={length:g}\,\mu\mathrm{{s}}$"
+            ax.set_title(title, loc="left", fontsize=9)
+            if col == 0:
+                ax.set_ylabel(r"$\Omega_0/(2\pi)$ (MHz)")
             if row == 4:
                 ax.set_xlabel("Cutoff $c$")
         bar = fig.colorbar(artist, ax=list(axes[:, col]), location="top",
@@ -145,7 +168,8 @@ def main(argv=None):
     for ext in ("pdf", "png"):
         fig.savefig(output_dir / f"{stem}.{ext}", dpi=300)
     plt.close(fig)
-    np.savez_compressed(output_dir / f"{stem}.npz", **data)
+    arrays_path = output_dir / f"{stem}.npz"
+    np.savez_compressed(arrays_path, **data)
     provenance = {
         "style": str(STYLE_PATH.relative_to(ROOT)),
         "style_sha256": hashlib.sha256(STYLE_PATH.read_bytes()).hexdigest(),
@@ -154,23 +178,39 @@ def main(argv=None):
         "source_sha256": hashes,
         "generator": str(Path(__file__).resolve().relative_to(ROOT)),
         "generator_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
-        "reproduction": ("PYTHONPATH=. MPLBACKEND=Agg python "
+        "arrays_sha256": hashlib.sha256(arrays_path.read_bytes()).hexdigest(),
+        "reproduction": ("PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python "
                          "scripts/make_supplemental_extended_cutoff.py "
                          f"--input-dir {source_dir.relative_to(ROOT)} "
                          f"--output-dir {output_dir.relative_to(ROOT)} --stem {stem}"),
-        "change_from_report": "Five duration rows; same samples, masks, and cell boundaries. Match main Figure 4 axis orientation and colormaps: logarithmic cutoff on x, logarithmic positive drive on y, normalized linewidth in magma on [0, 10], and probability contrast in viridis on [0, 1]. Widths above 10 saturate at the lightest color.",
+        "change_from_report": "Five duration rows; same samples, masks, and cell boundaries. Match main Figure 4 axis orientation and first two colormaps: logarithmic cutoff on x, logarithmic positive drive on y, normalized linewidth in magma on [0, 10], and probability contrast in viridis on [0, 1]. Add contrast-weighted resolution Q in cividis on [0, 0.2]. Widths above 10 saturate at the lightest color.",
         "contrast_definition": "Dip depth in excited-state probability relative to the fitted linear background at the dip.",
         "contrast_outline": {
             "threshold": CONTRAST_THRESHOLD,
             "rule": "accepted and contrast > threshold",
-            "geometry": "Linearly interpolated C=0.2 isoline between accepted samples, with rejected grid cells masked; identical in both columns. Heatmap values are not smoothed.",
+            "geometry": "Linearly interpolated C=0.2 isoline between accepted samples, with rejected grid cells masked; identical in all three columns. Heatmap values are not smoothed.",
             "color": "white",
             "linewidth_pt": 0.6,
             "halo": False,
             "cells_per_duration": data["contrast_above_threshold"].sum(axis=(1, 2)).tolist(),
         },
+        "quality_outline": {
+            "definition": "Q = contrast * reference_linewidth_hz / fwhm_hz",
+            "threshold": QUALITY_THRESHOLD,
+            "rule": "accepted and Q > threshold",
+            "geometry": "Linearly interpolated Q=0.10 isoline between accepted samples, outlining higher-quality regions; rejected cells remain masked; identical in all three columns",
+            "color": QUALITY_COLOR,
+            "linewidth_pt": 0.8,
+            "halo_color": "white",
+            "halo_linewidth_pt": 1.25,
+            "cells_per_duration": data["quality_above_threshold"].sum(axis=(1, 2)).tolist(),
+        },
         "array_order": "duration, cutoff, nominal drive",
         "map_axes": {"x": "cutoff", "y": "nominal drive", "display": "Transposed arrays"},
+        "labels": {"linewidth": r"$\mathrm{FWHM}/\Gamma_{T_2^*}$",
+                   "contrast": "Contrast", "contrast_symbol": "C",
+                   "quality": r"$Q=C\,\Gamma_{T_2^*}/\mathrm{FWHM}$",
+                   "drive": r"$\Omega_0/(2\pi)$ (MHz)", "cutoff": "Cutoff $c$"},
         "amplitude_display": {
             "scale": "log", "limits_mhz": [1, 100],
             "positive_sample_count": int(positive.sum()),
