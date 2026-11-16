@@ -54,20 +54,20 @@ the PDFs:
 make paper-clean
 ```
 
-### Supplemental editor preview
+### Editor previews
 
-The supplemental document uses copies of its eight figure PDFs under
+Both documents use copies of their figure PDFs under
 `paper/figures/generated/`, so the built-in editor can compile with `paper/`
 as its project root. The original exports, numerical arrays, and provenance
 remain under `figures/paper/`; the copies contain identical PDF bytes.
-After regenerating a supplemental figure, refresh the local copies before
+After regenerating a figure, refresh the local copies before
 using the editor preview:
 
 ```bash
-make paper-supplemental-assets
+make paper-main-assets paper-supplemental-assets
 ```
 
-`make paper-supplemental` also refreshes these copies before compiling.
+`make paper-main` and `make paper-supplemental` also refresh their copies before compiling.
 Keep the copies with the manuscript sources when sharing the `paper/` folder.
 
 ## Reviewer data package
@@ -113,8 +113,9 @@ polynomial power 2 and acquisition beta 1.2557576. Its amplitude axis is
 the actual complex-envelope peak, unlike the nominal axis of Figure 2.
 Figure 3 displays the 0--60 MHz window (180 acquired amplitude rows), with
 the three maps above the resonance-position, contrast and linewidth graphs.
-The last panel shows FWHM divided by the representative Ramsey linewidth on the left
-axis and FWHM in MHz on the right axis, displayed from 0 to 0.5 MHz.
+The last panel shows only FWHM/Gamma_T2star, on a 0--12 scale, using
+the common 7.6 us reference. The generated manuscript parameters include
+normalized median linewidths calculated from the unrounded saved fit widths.
 Its reported statistics use the 177 nonzero amplitude rows accepted for all
 three pulses in this window. The full 0--100 MHz acquisition and saved fit
 masks remain unchanged in the portable export. The shared map color scale is
@@ -240,6 +241,27 @@ source data or center selection changes.
 The lower panel fits Gaussian-dip linewidths from the same stored measured
 spectra, using the source campaign's fitting procedure.
 
+Figure S4 uses the zero-DRAG midpoint-smoothing comparison recomputed through
+50 MHz. The 20 us pulse, cutoff 0.005, coherence parameters, and 0/4/8/16 ns
+sine transitions match the original comparison. The drive is the nominal
+envelope scale, without peak renormalization. Reproduce the calculation and
+figure with:
+
+```bash
+PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_midpoint_leakage_50mhz.py
+MPLBACKEND=Agg .venv/bin/python scripts/make_supplemental_figures.py --only midpoint_smoothing_leakage
+make paper
+```
+
+The portable export is `paper/data/numerical/08_midpoint_smoothing_50mhz.{npz,json}`.
+It stores all three final populations on 26 drives from 0 to 50 MHz and 201
+detunings within +/-0.5 MHz. The 50 MHz slice is checked using a time step of
+0.0625 ns instead of 0.125 ns and 401 detunings. The quoted leakage at 50 MHz
+is the maximum final population in the second excited state over detuning;
+the separate whole-grid maximum is also retained in the provenance. Neither
+quantity is a maximum transient population or a measured leakage probability.
+The original 42.72 MHz comparison remains in `outputs/sine_echo_transition_comparison/`.
+
 Figure S6 combines the current q1 measurements from Figure 3 with new
 three-level simulations at L=20 us, cutoff 0.005, a 50 ns sine midpoint,
 and (where enabled) cutoff subtraction and a power-2 polynomial window.
@@ -257,8 +279,14 @@ checks are in `paper/data/numerical/05_current_drag_comparison.{npz,json}`;
 plotted arrays and provenance are in
 `figures/paper/supplemental/drag_beta_optimization*`. The numerical objective
 is RMS center about zero over six amplitudes from 10 to 60 MHz. The best sampled
-coefficients are -0.475 (hard cutoff) and -0.5 (polynomial) in the documented
-simulation convention. Step refinement changes the centers by less than 1 Hz.
+coefficients are +0.475 (hard cutoff) and +0.5 (polynomial) in the manuscript
+convention `Q=-beta*dI/dt/alpha`, with signed `alpha=omega12-omega01<0`.
+The archived polynomial backend and numerical source exports retain
+`Q=-beta_source*dI/dt/abs(alpha)`; figure rendering converts
+`beta=-beta_source` without changing sample order, waveforms, or populations.
+The figure NPZ and provenance use the manuscript beta convention; the source
+NPZ and JSON retain their original convention. Step refinement changes the
+centers by less than 1 Hz.
 The measured panel uses 177 common accepted nonzero rows up to 60 MHz and
 subtracts each curve's mean; its RMS variations are approximately 24, 4, and
 2 kHz. Its fixed acquisition beta is 1.2557575757575759, displayed as 1.25.
@@ -286,48 +314,74 @@ not an independent sub-kHz convergence check. The NPZ includes the three
 RMS about zero and the standard deviation about each curve's mean.
 
 Figure 4 shows the 20 us row of the power-2, logarithmic-drive survey in
-`outputs/polynomial_duration_cutoff_poly2_log/n100`. The final supplementary
-figure contains all five durations (10, 20, 30, 45, and 60 us). Both use 100
+`outputs/polynomial_duration_cutoff_poly2_log_40_50/n100`. The supplementary
+figure contains all five durations (10, 20, 30, 40, and 50 us). Both use 100
 geometric cutoffs from 1e-5 to 1 and 100 geometric nominal drives from 1 to
 100 MHz; zero drive is not sampled. The survey retains a 16 ns sine inversion,
-beta=-0.5, T1=51.24 us, T2=7.31 us, and nominal pre-smoothing normalization.
-Widths are displayed relative to the common 7.6 us T2* reference. Regenerate
-both figures, their arrays and provenance, then rebuild the manuscripts with:
+beta=+0.5 in the manuscript convention (archived beta_source=-0.5),
+T1=51.24 us, T2=7.31 us, and nominal pre-smoothing normalization.
+Widths are displayed relative to the common 7.6 us T2* reference. Both figures
+use the central Gaussian width and depth from a local fit with a quadratic
+background, a smooth curvature-scaled window, and soft-L1 residual loss.
+Each spectrum is fitted independently. These results are stored in
+`robust_fits/metrics.npz` and `robust_fits/provenance.json`; original populations
+and direct half-depth metrics are preserved. Regenerate the fit exports,
+both figures, and their provenance, then rebuild the manuscripts with:
 
 ```bash
+PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/refit_cutoff_survey.py --workers 6
 PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_supplemental_extended_cutoff.py
 PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_main_duration_cutoff_scan.py
 make paper
 ```
 
-To repeat the simulation and representative convergence checks, use
-`.venv/bin/python scripts/repeat_extended_cutoff_poly2.py --workers 6`.
-The original power-5, linearly sampled dataset remains available separately.
+To repeat or resume the new simulations and representative convergence checks, use
+`.venv/bin/python scripts/extend_cutoff_duration_40_50.py --workers 6`.
+This integrates 40 and 50 us with the original model and numerical settings;
+the 10, 20, and 30 us rows and their refinement checkpoints are copied with
+checksum verification from `outputs/polynomial_duration_cutoff_poly2_log/n100`.
+The original 45/60 us results and power-5, linearly sampled dataset remain
+available separately.
 The main-figure generator verifies exact equality to the supplemental 20 us
-row and the saved simulation arrays. Both figures use geometric
+row and the common fitted arrays, with source hashes checked against the
+original simulation spectra. Both figures use geometric
 cell edges, linewidth colors on [0,10], contrast colors on [0,1], and white
-C=0.2 contours. Rejected cells are gray; heatmap samples are not interpolated.
+C=0.2 guides. Only the white contour field is smoothed, with a mask-normalized
+Gaussian of sigma 1.5 cutoff samples and 3 amplitude samples on the logarithmic
+grid (`echospec/figures/cutoff_contours.py`). Rejected cells are masked again.
+Heatmaps, fit values, threshold masks, numerical summaries, and slice curves
+are unchanged. The HTML fit explorer can toggle the original boundary.
+The original acceptance mask is retained and additional fit-quality checks
+can reject a cell. Use `--direct-metrics` with the supplemental generator
+to render the archived crossing-based widths for a diagnostic comparison.
 Figure S8 additionally shows a third column for
 `Q = C * Gamma_T2star / FWHM`, on a common 0--0.2 scale. Red Q=0.10 contours
 outline regions with Q>0.10 in all three columns; the exported arrays include
 Q and its threshold mask, with rejected dips excluded.
 
-Figure 4 panels (c,d) retain cutoff slices for all five pulse lengths at the
+Figure 4 panels (c,d) show cutoff slices for 10, 20, 30, 40, and 50 us at the
 same saved amplitude nearest 50 MHz (49.770236 MHz). Thick solid orange curves
 highlight 20 us and match the orange dashed lines in the maps. Rejected slice
 samples are gaps. The linewidth slice axis extends to 15; dotted lines mark
 the coherence reference and C=0.2. The NPZ, CSV and provenance record the 20 us
 maps, all five slices, masks, selected amplitude and numerical summaries.
-The updated supplemental tables use probability contrast/FWHM, rather than
-ideal SNR/FWHM. Forty-five representative refinement checks change linewidth
-by at most 0.509 kHz (time step) and 0.207 kHz (detuning grid), without changing
-acceptance in those checks.
+All five displayed slices are checked against the corresponding Fig. S8 arrays.
+The supplemental text summarizes fixed-cutoff selections using probability
+fitted contrast/FWHM; the full numerical results remain in the summary JSON.
+Forty-five representative traces are checked with half the time step and twice
+the detuning resolution. Their linewidth changes and acceptance comparisons
+are recorded in `robust_fits/provenance.json`, alongside six finer spectra
+around the former 50 us crossing switch. The latter also vary the fitting
+window factor from 1.2 to 1.8; widths change by less than 4% in those cases.
+These sampled checks do not bound errors over the full grid. The original
+crossing-based convergence results remain in `validation/convergence.json`.
 
 Figures S5 and S7 use the current 20 us pulse, cutoff 0.005, 50 ns sine
 midpoint transition, and power-2 polynomial correction. S5 shows the analytic
 envelope, in-phase waveform, and DRAG quadrature in three panels, before
 the three DRAG-results panels in S6. S7 compares hard and corrected envelopes
-at numerical beta -0.5 and the same actual complex-envelope peak.
+at beta=+0.5 in the manuscript convention (archived beta_source=-0.5)
+and the same actual complex-envelope peak.
 Recalculate and render with:
 
 ```bash
@@ -339,15 +393,63 @@ make paper-supplemental
 The numerical export `paper/data/numerical/07_current_edge_comparison.*`
 contains both three-level grids, an additional no-DRAG control at 100 MHz,
 and independent time/frequency refinement at 10, 50, and 100 MHz.
-S7 shows the 100 MHz spectrum and drive-dependent linewidth, contrast,
-and ideal SNR. SNR assumes 1000 total ideal binary measurements: 500 at the
-dip and 250 at each +/-0.45 MHz shoulder. It is not measured SNR.
+S7 shows three panels in one row: the 100 MHz spectrum, drive-dependent
+FWHM/Gamma_T2star, and contrast. The linewidth reference is 1/(pi*T2star)
+with T2star=7.6 us, matching S3 and S8; the dashed guide marks unity.
+Both raw linewidths in Hz and normalized linewidths are exported.
+The numerical exports retain the auxiliary SNR
+diagnostics, which are no longer plotted or discussed in the supplement.
 Plotted arrays, metrics and source hashes are under
 `figures/paper/supplemental/edge_smoothing_results*` and
 `s08_pulse_modifications*` (the latter is the historical filename for S5).
-At 100 MHz the updated simulation gives widths of about 530 versus 220 kHz,
-contrast 0.06 versus 0.27, and ideal SNR 2 versus 9. The former claim that
-all high-drive points meet both the 200 kHz and SNR 10 guides no longer applies.
+At 100 MHz the updated simulation gives FWHM/Gamma_T2star of about 12.6 versus 5.1
+and contrast 0.06 versus 0.27.
+
+## Single square-echo comparison
+
+Section S10 and Figure S9 distinguish resonant cancellation from a useful
+spectroscopic response. The exact two-level derivation is in
+`appendices/P_square_echo_comparison.tex`. The figure reuses the saved
+three-level simulations in `outputs/square_root_echo_comparison_20us`, with
+20 us duration, cutoff 0.005 for the root-Lorentzian, one abrupt inversion,
+and no DRAG, polynomial shaping, or frequency correction. The comparison
+matches duration and peak drive; pulse area and integrated energy differ.
+
+```bash
+PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_supplemental_square_echo.py
+make paper PYTHON=.venv/bin/python
+```
+
+The generator uses `paper/data/numerical/09_square_echo_comparison.*` once
+available. Pass `--refresh-source` to reimport the existing simulation
+archives and check their recorded response checksum; this never launches a
+simulation. The export preserves the original population samples, source
+indices and hashes, validation records, and central-window population
+variation. The two maps use the same population color scale, with exact
+saved slices at 3.05 and 10.05 MHz and a wider +/-10 MHz view. Curves are
+neither refitted nor normalized. Repeated rotary echoes are outside this
+single-inversion comparison, and no sensitivity advantage is inferred.
+
+## Ramsey Fourier-line reference
+
+Section S11, Table S2, and Figure S10 use an ideal exponentially decaying
+Ramsey cosine with the common T2*=7.6 us reference. Regenerate them with:
+
+```bash
+PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_supplemental_ramsey_fft.py
+make paper PYTHON=.venv/bin/python
+```
+
+The generator saves `paper/data/numerical/10_ramsey_fft_linewidth.*`, the figure,
+and `paper/ramsey_linewidth_table.tex` together. It distinguishes the real,
+power, and magnitude spectra, using exact finite-record half-height crossings
+for linewidths and actual sampled cosine FFTs for the plotted 20/40 us traces.
+The FFT uses 10 ns spacing, a rectangular window, and 2^18 padded points.
+Padding supplies a dense frequency grid but no additional information.
+The separate experimental marker is the existing Figure 3 corrected-echo
+median; its source hash and statistic are recorded in the figure sidecar,
+without mixing experimental values into the numerical dataset. This is a
+linewidth reference, not an equal-acquisition-time sensitivity comparison.
 
 ## Editing conventions
 

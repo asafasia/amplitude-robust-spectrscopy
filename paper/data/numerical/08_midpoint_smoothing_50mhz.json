@@ -1,0 +1,156 @@
+{
+  "arrays": {
+    "detuning_mhz": {
+      "dtype": "float64",
+      "shape": [
+        201
+      ]
+    },
+    "populations": {
+      "dtype": "float64",
+      "shape": [
+        4,
+        3,
+        26,
+        201
+      ]
+    },
+    "rabi_mhz": {
+      "dtype": "float64",
+      "shape": [
+        26
+      ]
+    },
+    "refined_50mhz_populations": {
+      "dtype": "float64",
+      "shape": [
+        4,
+        3,
+        1,
+        401
+      ]
+    },
+    "refined_detuning_mhz": {
+      "dtype": "float64",
+      "shape": [
+        401
+      ]
+    },
+    "transition_ns": {
+      "dtype": "int64",
+      "shape": [
+        4
+      ]
+    }
+  },
+  "category": "numerical",
+  "data_file": "08_midpoint_smoothing_50mhz.npz",
+  "dataset": "08_midpoint_smoothing_50mhz",
+  "provenance": {
+    "convention": "I=L*s without peak renormalization; beta=0, Q=0",
+    "convergence": {
+      "checks": [
+        {
+          "detuning_refinement_change_in_max_pf": 0.0,
+          "max_abs_final_pf_change": 2.288387285664939e-06,
+          "max_abs_population_change": 2.2900362341982117e-06,
+          "refined_max_final_pf_at_50mhz": 0.04439116151224219,
+          "transition_ns": 0
+        },
+        {
+          "detuning_refinement_change_in_max_pf": 1.091790093834047e-06,
+          "max_abs_final_pf_change": 1.1122578820769655e-06,
+          "max_abs_population_change": 1.1122578820769655e-06,
+          "refined_max_final_pf_at_50mhz": 0.010208249224022196,
+          "transition_ns": 4
+        },
+        {
+          "detuning_refinement_change_in_max_pf": 1.3043007243912844e-08,
+          "max_abs_final_pf_change": 1.9637188173194774e-07,
+          "max_abs_population_change": 1.9637188173194774e-07,
+          "refined_max_final_pf_at_50mhz": 0.0006626374466438042,
+          "transition_ns": 8
+        },
+        {
+          "detuning_refinement_change_in_max_pf": 0.0,
+          "max_abs_final_pf_change": 1.937386479798067e-08,
+          "max_abs_population_change": 1.975391017428052e-08,
+          "refined_max_final_pf_at_50mhz": 0.00034794861518143487,
+          "transition_ns": 16
+        }
+      ],
+      "detuning_step_mhz": [
+        0.005,
+        0.0025
+      ],
+      "dt_ns": [
+        0.125,
+        0.0625
+      ],
+      "rabi_mhz": 50.0
+    },
+    "dt_ns": 0.125,
+    "grid_note": "26 drives from 0 to 50 MHz; 201 detunings from -0.5 to 0.5 MHz",
+    "highest_drive_mhz": 50.0,
+    "integration_backend": "native",
+    "metrics": [
+      {
+        "highest_drive_maximum_detuning_mhz": 0.245,
+        "max_final_pf": 0.04439183349691909,
+        "max_final_pf_at_highest_drive": 0.04439183349691909,
+        "transition_ns": 0
+      },
+      {
+        "highest_drive_maximum_detuning_mhz": 0.235,
+        "max_final_pf": 0.010206997911710121,
+        "max_final_pf_at_highest_drive": 0.010206997911710121,
+        "transition_ns": 4
+      },
+      {
+        "highest_drive_maximum_detuning_mhz": 0.0,
+        "max_final_pf": 0.00066261649696098,
+        "max_final_pf_at_highest_drive": 0.00066261649696098,
+        "transition_ns": 8
+      },
+      {
+        "highest_drive_maximum_detuning_mhz": -0.08499999999999996,
+        "max_final_pf": 0.00034795029438029095,
+        "max_final_pf_at_highest_drive": 0.00034795029438029095,
+        "transition_ns": 16
+      }
+    ],
+    "observable": "Final Pf; not maximum transient leakage",
+    "parameters": {
+      "anharmonicity_mhz": -216.0,
+      "cutoff": 0.005,
+      "drag_beta": 0.0,
+      "duration_us": 20.0,
+      "echo": true,
+      "echo_transition_shape": "sine",
+      "order": 0.5,
+      "stark_kappa_mhz_inv": 0.0,
+      "t1_us": 51.24,
+      "t_phi_us": 7.871480508563624
+    },
+    "population_order": [
+      "ground",
+      "excited",
+      "second_excited"
+    ],
+    "reproduce": "PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_midpoint_leakage_50mhz.py",
+    "source_sha256": {
+      "echospec/simulation/qutrit.py": "58891d88564eb9d3b5ed592fa69b52c3fb5cec9e7178471c5039e5b8c07c6b15",
+      "echospec/simulation/qutrit_native.py": "e26a097b8d803b1c2da8f0ad56222fff59456e02a445f33d22629a0f639a6dd9",
+      "echospec/simulation/qutrit_rk4.cpp": "493150abcad473a10ff4128c3b42a5f0ddfd0cdd8fe4c1cf09a936858068bab6",
+      "scripts/make_midpoint_leakage_50mhz.py": "b072393668bbfa496d4c20cc1795767dfa801122ef8ee6343dae69855bf226e3",
+      "scripts/make_sine_echo_transition_comparison.py": "f6e5df396ddd7da969887095b03c9d8a6473de42872723d5ed8ae39fd286a806"
+    },
+    "transition_ns": [
+      0,
+      4,
+      8,
+      16
+    ]
+  },
+  "schema_version": 1
+}

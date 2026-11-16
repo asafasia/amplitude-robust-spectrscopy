@@ -41,6 +41,7 @@
       "displayed_amplitude_points": 180,
       "matched_count": 177,
       "median_fwhm_khz": 294.2196573751703,
+      "median_fwhm_normalized": 7.024819187551712,
       "median_contrast": 0.11720193224811346,
       "center_mean_khz": -5.669972016154295,
       "center_rms_about_mean_khz": 23.87368081132036
@@ -51,6 +52,7 @@
       "displayed_amplitude_points": 180,
       "matched_count": 177,
       "median_fwhm_khz": 329.1898728720453,
+      "median_fwhm_normalized": 7.859771695507414,
       "median_contrast": 0.1716063694555923,
       "center_mean_khz": -3.751086118470036,
       "center_rms_about_mean_khz": 3.730208491262545
@@ -61,6 +63,7 @@
       "displayed_amplitude_points": 180,
       "matched_count": 177,
       "median_fwhm_khz": 163.58476715506305,
+      "median_fwhm_normalized": 3.9057669407749263,
       "median_contrast": 0.33274076779619893,
       "center_mean_khz": 1.161736882850575,
       "center_rms_about_mean_khz": 1.7124706560923053
@@ -270,17 +273,13 @@
   ],
   "fwhm_axes": {
     "left": "FWHM / Gamma_T2_star",
-    "right": "FWHM (MHz)",
+    "right": null,
     "normalization": "Common paper reference: Gamma_T2_star = 1 / (pi * T2_star)",
     "t2_star_s": 7.6e-06,
     "normalization_hz": 41882.87976102509,
     "left_ylim": [
       0,
-      11.938052083641214
-    ],
-    "right_ylim_mhz": [
-      0,
-      0.5
+      12
     ]
   },
   "center_reference": {

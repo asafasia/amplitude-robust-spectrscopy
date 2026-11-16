@@ -98,6 +98,13 @@
       "transition_us": 0.05
     }
   },
+  "drag_beta_convention": {
+    "paper_definition": "I-iQ; Q=-beta*dI/dt/alpha; alpha=omega12-omega01<0 in angular-frequency units",
+    "paper_beta": 0.5,
+    "source_definition": "I-iQ; Q=-beta_source*dI/dt/abs(alpha)",
+    "source_beta": -0.5,
+    "conversion": "beta=-beta_source; waveform and populations unchanged"
+  },
   "summaries": {
     "drag": {
       "at_100_mhz": {
@@ -144,17 +151,34 @@
   ],
   "high_drive_points": 51,
   "contrast": "Background-referenced dip depth from dip_metrics, as in the main-paper figure",
+  "linewidth_normalization": {
+    "definition": "FWHM / Gamma_T2star, where Gamma_T2star = 1/(pi*T2star)",
+    "reference_t2_star_s": 7.6e-06,
+    "reference_linewidth_hz": 41882.87976102509,
+    "label": "$\\mathrm{FWHM}/\\Gamma_{T_2^*}$",
+    "guide": 1.0,
+    "guide_linestyle": "--",
+    "raw_fwhm_hz": "Retained unchanged in the numerical exports"
+  },
+  "layout": "Three panels in one row with a shared legend",
+  "panels": {
+    "a": "Excited-state population versus detuning at 100 MHz peak drive",
+    "b": "Dip FWHM / Gamma_T2star versus peak drive, with a unity guide",
+    "c": "Background-referenced dip contrast C versus peak drive"
+  },
+  "auxiliary_metrics": "SNR and shoulder-contrast diagnostics are retained in the numerical exports but are not plotted",
   "snr": "Ideal Bernoulli readout, 500 shots at interpolated dip center and 250 at each +/-0.45 MHz shoulder; no assignment error, drift, technical noise or center-search cost",
   "snr_signal": "Mean of two shoulder populations minus center population; distinct from fitted-background contrast C",
   "processing": "Saved populations unchanged; no extra smoothing, fitting, normalization or new dynamics; lines connect samples",
   "source_sha256": {
+    "echospec/figures/drag_convention.py": "0c4d002d67bb2857da47fbf65b0167559451bb688ffdf30d427018a09c3cf1e6",
     "paper/data/numerical/07_current_edge_comparison.npz": "a52f66f16f31fa54d864f7b251ae1ad482c20b64800db686e34d9842ebbc3205",
     "paper/data/numerical/07_current_edge_comparison.json": "8ea5dd6334094abb304ee2ac68f6f6845730104253cff31d19f6bdb8649deb7b",
     "scripts/make_current_edge_supplement.py": "9e3c82f82ea8e18e7af1635e95a83ea16d558af7117018f8865582b5f1ea9e27",
     "echospec/analysis/spectroscopy_quality.py": "1e898a6b550e0c46119f66a268e0397a997de59135406b50a55fe6735c212f44",
     "echospec/analysis/dip_metrics.py": "851f4571da5dc275890f42eaf7393f1818fffe69043f4fff703272dddf9290ca"
   },
-  "generator_sha256": "9306f66d48a8814ba3c91056cbfba4dd58e0a0e046e13b7ba27d8d530841e5dd",
-  "arrays_sha256": "0d59ab17922329f6b595ee08f539969076821c029f86aa74ba9c1a05977215c7",
+  "generator_sha256": "dc9a63e8ab2a85c07785086e18c2869c4ae979ac08426e451f3fb5bdea387ad3",
+  "arrays_sha256": "f61a80bb79287b2d0a4fa8a2d29a2f886435c7a36d6470d5ae43d8fcab94366f",
   "reproduce": ".venv/bin/python scripts/make_supplemental_figures.py --only edge_smoothing_results"
 }

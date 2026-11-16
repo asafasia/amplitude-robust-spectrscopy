@@ -1,0 +1,368 @@
+{
+  "amplitude_mhz": 49.770235643321115,
+  "duration_us": 50,
+  "original_indices": [
+    46,
+    47
+  ],
+  "reference_linewidth_hz": 41882.87976102509,
+  "original": [
+    {
+      "cutoff": 0.00210490414451202,
+      "fwhm_normalized": 7.573794470157427,
+      "contrast": 0.06141198623965183,
+      "crossings_mhz": [
+        -0.15857744852694625,
+        0.158634874601374
+      ]
+    },
+    {
+      "cutoff": 0.002364489412645407,
+      "fwhm_normalized": 3.311765968385168,
+      "contrast": 0.05175716052267143,
+      "crossings_mhz": [
+        -0.16248377027058913,
+        -0.09425092679249968,
+        -0.06910298897804949,
+        0.06960330687248133,
+        0.09343817925836795,
+        0.16260477066255455
+      ]
+    }
+  ],
+  "local_scan": [
+    {
+      "cutoff": 0.00210490414451202,
+      "fwhm_normalized": 7.576442569883191,
+      "center_hz": 1.23625477142729,
+      "contrast": 0.061414263386529944,
+      "crossing_count": 2,
+      "crossings_mhz": [
+        -0.15863328499838755,
+        0.1586899481723421
+      ],
+      "outer_width_normalized": 7.576442569883191
+    },
+    {
+      "cutoff": 0.002125401963431136,
+      "fwhm_normalized": 7.594830853065749,
+      "center_hz": -63.72227564792079,
+      "contrast": 0.060587550105923205,
+      "crossing_count": 2,
+      "crossings_mhz": [
+        -0.15903655583413467,
+        0.1590568315901417
+      ],
+      "outer_width_normalized": 7.594830853065749
+    },
+    {
+      "cutoff": 0.002146099392665777,
+      "fwhm_normalized": 7.62040618154822,
+      "center_hz": -84.41554095896906,
+      "contrast": 0.059748421627436266,
+      "crossing_count": 2,
+      "crossings_mhz": [
+        -0.15957366794440705,
+        0.15959088788754944
+      ],
+      "outer_width_normalized": 7.62040618154822
+    },
+    {
+      "cutoff": 0.0021669983760460804,
+      "fwhm_normalized": 7.644847155487737,
+      "center_hz": -48.83139827081384,
+      "contrast": 0.05891572459976607,
+      "crossing_count": 2,
+      "crossings_mhz": [
+        -0.16006952895688648,
+        0.16011868524782114
+      ],
+      "outer_width_normalized": 7.644847155487737
+    },
+    {
+      "cutoff": 0.002188100876331436,
+      "fwhm_normalized": 7.652902867235526,
+      "center_hz": 25.672098771093882,
+      "contrast": 0.05812148314964377,
+      "crossing_count": 2,
+      "crossings_mhz": [
+        -0.16021210831972504,
+        0.16031350229150468
+      ],
+      "outer_width_normalized": 7.652902867235526
+    },
+    {
+      "cutoff": 0.002209408875394832,
+      "fwhm_normalized": 7.651445034533899,
+      "center_hz": 99.69260400885857,
+      "contrast": 0.057346446049367505,
+      "crossing_count": 2,
+      "crossings_mhz": [
+        -0.1601586851022331,
+        0.1603058672772427
+      ],
+      "outer_width_normalized": 7.651445034533899
+    },
+    {
+      "cutoff": 0.0022309243744089834,
+      "fwhm_normalized": 7.662170935735611,
+      "center_hz": 132.32971254223588,
+      "contrast": 0.056543547320292764,
+      "crossing_count": 2,
+      "crossings_mhz": [
+        -0.16037755008153184,
+        0.16053623392830388
+      ],
+      "outer_width_normalized": 7.662170935735611
+    },
+    {
+      "cutoff": 0.002252649394034271,
+      "fwhm_normalized": 7.686965160332718,
+      "center_hz": 104.1288356266558,
+      "contrast": 0.05571531190605089,
+      "crossing_count": 2,
+      "crossings_mhz": [
+        -0.16091304954082797,
+        0.16103918799657618
+      ],
+      "outer_width_normalized": 7.686965160332718
+    },
+    {
+      "cutoff": 0.002274585974608526,
+      "fwhm_normalized": 7.706932821549776,
+      "center_hz": 29.67295015155815,
+      "contrast": 0.05490460962177873,
+      "crossing_count": 2,
+      "crossings_mhz": [
+        -0.1613601767413501,
+        0.16142836394991703
+      ],
+      "outer_width_normalized": 7.706932821549776
+    },
+    {
+      "cutoff": 0.002296736176338636,
+      "fwhm_normalized": 5.71470613824326,
+      "center_hz": -48.58765836266614,
+      "contrast": 0.054115789977254525,
+      "crossing_count": 4,
+      "crossings_mhz": [
+        -0.16165701276784009,
+        0.0776913372897944,
+        0.08187655949250046,
+        0.16167675293165232
+      ],
+      "outer_width_normalized": 7.71995067064077
+    },
+    {
+      "cutoff": 0.002319102079494042,
+      "fwhm_normalized": 3.5555433406294856,
+      "center_hz": -84.69058990724113,
+      "contrast": 0.053317377508794395,
+      "crossing_count": 6,
+      "crossings_mhz": [
+        -0.16210408558462824,
+        -0.08483813197635243,
+        -0.0757581582176923,
+        0.07315823600300592,
+        0.08727570272524056,
+        0.16211550009309245
+      ],
+      "outer_width_normalized": 7.741100600714408
+    },
+    {
+      "cutoff": 0.002341685784602112,
+      "fwhm_normalized": 3.419610635801976,
+      "center_hz": -56.307022365641636,
+      "contrast": 0.052518375007446993,
+      "crossing_count": 6,
+      "crossings_mhz": [
+        -0.16256925623518334,
+        -0.08973220318652293,
+        -0.07193418467527486,
+        0.07128895641354188,
+        0.09017642274564429,
+        0.16262087369704642
+      ],
+      "outer_width_normalized": 7.764273416434024
+    },
+    {
+      "cutoff": 0.002364489412645407,
+      "fwhm_normalized": 3.3035427488519584,
+      "center_hz": 21.4111578532892,
+      "contrast": 0.05175833336519864,
+      "crossing_count": 6,
+      "crossings_mhz": [
+        -0.16256562188753992,
+        -0.0942604824206635,
+        -0.0688661313835529,
+        0.06949575235201999,
+        0.09347089297632646,
+        0.16268570640606025
+      ],
+      "outer_width_normalized": 7.765734594884972
+    },
+    {
+      "cutoff": 0.0026560877829466868,
+      "fwhm_normalized": 2.6393914628291966,
+      "center_hz": -36.36656510368178,
+      "contrast": 0.042789501733068114,
+      "crossing_count": 6,
+      "crossings_mhz": [
+        -0.16222066554862727,
+        -0.1285367697205984,
+        -0.05548843898008226,
+        0.0550568762998691,
+        0.12898384643456975,
+        0.16221801208929287
+      ],
+      "outer_width_normalized": 7.746331663178345
+    }
+  ],
+  "refinements": [
+    {
+      "cutoff": 0.00210490414451202,
+      "max_population_time_change": 1.014913136865303e-08,
+      "time_width_change_normalized": 3.947898842907586e-06,
+      "frequency_width_change_normalized": 0.0001718574876688783,
+      "finer_fwhm_normalized": 7.576610479472017,
+      "crossing_count": 2
+    },
+    {
+      "cutoff": 0.0022309243744089834,
+      "max_population_time_change": 1.0579563947121784e-08,
+      "time_width_change_normalized": 4.959086302754957e-06,
+      "frequency_width_change_normalized": 0.00019248577364348285,
+      "finer_fwhm_normalized": 7.662358462422953,
+      "crossing_count": 2
+    },
+    {
+      "cutoff": 0.002296736176338636,
+      "max_population_time_change": 1.1001983046821096e-08,
+      "time_width_change_normalized": 1.2486548835262819e-05,
+      "frequency_width_change_normalized": 0.0007613342011472392,
+      "finer_fwhm_normalized": 5.713932317493278,
+      "crossing_count": 4
+    },
+    {
+      "cutoff": 0.002319102079494042,
+      "max_population_time_change": 1.1001862032511411e-08,
+      "time_width_change_normalized": 7.104742043113004e-06,
+      "frequency_width_change_normalized": 0.000464590363659338,
+      "finer_fwhm_normalized": 3.555071645523783,
+      "crossing_count": 6
+    },
+    {
+      "cutoff": 0.002364489412645407,
+      "max_population_time_change": 1.1343810890629413e-08,
+      "time_width_change_normalized": 2.8034867605496513e-06,
+      "frequency_width_change_normalized": 0.00044640930901800204,
+      "finer_fwhm_normalized": 3.30309353605618,
+      "crossing_count": 6
+    },
+    {
+      "cutoff": 0.0026560877829466868,
+      "max_population_time_change": 1.2580392338978896e-08,
+      "time_width_change_normalized": 6.798306752535434e-07,
+      "frequency_width_change_normalized": 0.00020140305002812995,
+      "finer_fwhm_normalized": 2.639189379948493,
+      "crossing_count": 6
+    }
+  ],
+  "background_checks": [
+    {
+      "cutoff": 0.00210490414451202,
+      "edge_band_mhz": [
+        0.4,
+        0.5
+      ],
+      "contrast": 0.06141427353007267,
+      "crossings_mhz": [
+        -0.1586332025450305,
+        0.15868986527633316
+      ],
+      "fwhm_normalized": 7.576438621984506
+    },
+    {
+      "cutoff": 0.00210490414451202,
+      "edge_band_mhz": [
+        0.6,
+        0.8
+      ],
+      "contrast": 0.08636651870199635,
+      "crossings_mhz": [
+        -0.28918645771522844,
+        0.28946395171681577
+      ],
+      "fwhm_normalized": 13.815917452040111
+    },
+    {
+      "cutoff": 0.00210490414451202,
+      "edge_band_mhz": [
+        1.0,
+        1.5
+      ],
+      "contrast": 0.12425948610508886,
+      "crossings_mhz": [
+        -0.4557033974810691,
+        0.4567255500434294
+      ],
+      "fwhm_normalized": 21.785248596338796
+    },
+    {
+      "cutoff": 0.002364489412645407,
+      "edge_band_mhz": [
+        0.4,
+        0.5
+      ],
+      "contrast": 0.051758344703064785,
+      "crossings_mhz": [
+        -0.16256548464912263,
+        -0.09426063008953736,
+        -0.0688660744299006,
+        0.06949569188757725,
+        0.09347104157418831,
+        0.162685569571199
+      ],
+      "fwhm_normalized": 3.3035399453652903
+    },
+    {
+      "cutoff": 0.002364489412645407,
+      "edge_band_mhz": [
+        0.6,
+        0.8
+      ],
+      "contrast": 0.0751112133013559,
+      "crossings_mhz": [
+        -0.3095589222143794,
+        0.3098258531300307
+      ],
+      "fwhm_normalized": 14.788495415751962
+    },
+    {
+      "cutoff": 0.002364489412645407,
+      "edge_band_mhz": [
+        1.0,
+        1.5
+      ],
+      "contrast": 0.11226923894539731,
+      "crossings_mhz": [
+        -0.49305860584051453,
+        0.4941277741350965
+      ],
+      "fwhm_normalized": 23.57016484082014
+    }
+  ],
+  "source_dataset": "outputs/polynomial_duration_cutoff_poly2_log_40_50/n100",
+  "source_sha256": {
+    "scripts/scan_polynomial_cutoffs.py": "b1781183d61754802e2eccaede9187f461abc3f5036794afef36c8e643951cec",
+    "echospec/simulation/polynomial_echo.py": "59021291bb6363a59767274c3c3d727843d37319364a60d51d63c9e7193b950d",
+    "echospec/simulation/qutrit_native.py": "e26a097b8d803b1c2da8f0ad56222fff59456e02a445f33d22629a0f639a6dd9",
+    "echospec/simulation/qutrit_rk4.cpp": "493150abcad473a10ff4128c3b42a5f0ddfd0cdd8fe4c1cf09a936858068bab6",
+    "echospec/analysis/cutoff_metrics.py": "ac615bc4b8726e520b1eb457a9ce9535976bbe6fcb7acd8b631978f2c528b74c",
+    "echospec/analysis/spectroscopy_quality.py": "1e898a6b550e0c46119f66a268e0397a997de59135406b50a55fe6735c212f44",
+    "echospec/analysis/dip_metrics.py": "851f4571da5dc275890f42eaf7393f1818fffe69043f4fff703272dddf9290ca"
+  },
+  "original_scan_sha256": "3da47b0ac498fe91354ad098f90b68e22f62740495736ebd2f23b67b215dd095",
+  "generator_sha256": "aa5a85778a2a99b75f09aa202c3c95128bfeb166b71dfab9ff2fb606cf43fbe4",
+  "interpretation": "Nearest background-relative half-depth crossings change from the outer trough to the central dip when internal shoulders cross half depth. No parametric line-shape fit is used. The outermost half-depth span is shown to diagnose the crossing switch, not as a replacement manuscript metric."
+}

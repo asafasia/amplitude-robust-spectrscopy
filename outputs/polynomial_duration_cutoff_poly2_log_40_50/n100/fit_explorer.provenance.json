@@ -1,0 +1,56 @@
+{
+  "source_sha256": {
+    "outputs/polynomial_duration_cutoff_poly2_log_40_50/n100/baseline_copy/L10us/scan.npz": "7a89423b4d6fb0f845f865c7d065e115f7a951b857bfa0fcd8a5e767beeea3fe",
+    "outputs/polynomial_duration_cutoff_poly2_log_40_50/n100/baseline_copy/L20us/scan.npz": "2d6d8aa6e1e817613b228d7431537966a0ba568d1f49980f90a947e102fcb8de",
+    "outputs/polynomial_duration_cutoff_poly2_log_40_50/n100/baseline_copy/L30us/scan.npz": "cf1bfd0d081716aa2df59028106ec5e12ca0423f19d257992d04281be0b4a42a",
+    "outputs/polynomial_duration_cutoff_poly2_log_40_50/n100/simulations/L40us/scan.npz": "62f55a7cfb9a399f845411e88dd5d02dd97cef502b8f98a82d8ce8ee1f00ea13",
+    "outputs/polynomial_duration_cutoff_poly2_log_40_50/n100/simulations/L50us/scan.npz": "3da47b0ac498fe91354ad098f90b68e22f62740495736ebd2f23b67b215dd095",
+    "outputs/polynomial_duration_cutoff_poly2_log_40_50/n100/robust_fits/metrics.npz": "dc43bbbd8e55f3547119a55a73663dc7b6c4d81b65ecc14af2400633963e85da",
+    "outputs/polynomial_duration_cutoff_poly2_log_40_50/n100/robust_fits/provenance.json": "6e7f8538270f0b22372cdf55b8c1fcc735af96d5e3509aaf3a25ba8c55038348",
+    "scripts/report_cutoff_fits.py": "272af1b7e72c6af0ef6fbfbadf837743371047a90f3b6a12130e41be40596dd4",
+    "scripts/templates/cutoff_fit_report.html": "c5b1bb26a374b86f8d27ae3918e550169adce384ced1a1b43bc08f80dd1fef02",
+    "outputs/polynomial_duration_cutoff_poly2_log_40_50/n100/dataset_manifest.json": "3c249f774f95401cbdbd38b276c626ad2e93c017bad387b1ec3c7c3803e98023",
+    "echospec/analysis/cutoff_fit_exports.py": "f77395c003e3f8c100d17ab59f8e764dfed3462503cd58436db86bd9566eabac",
+    "echospec/analysis/robust_dip_fit.py": "43190c795325a5a904b333d1ffd303fca938786451bdac0909abc5169715195a",
+    "echospec/figures/coherence.py": "23366fede8a34300fafaca825da685fa1236c7f4ff154ddf1e712a0f54fc489f",
+    "echospec/figures/cutoff_contours.py": "1d54379ea3e8e9afe560d0ba382c6ab77c148bca2aaeb252ef0ce974adcf9858"
+  },
+  "html_sha256": "f7153cf11fa9b5347d5d98ca3d8e20cf0ef988f8c0ad41bd00011254dd04d7ec",
+  "plotly_sha256": "6d21266ce1bd7d9e5ab4e115989c70c20de0382fd973a8f26ab58619eba4d603",
+  "durations_us": [
+    10.0,
+    20.0,
+    30.0,
+    40.0,
+    50.0
+  ],
+  "spectra": 50000,
+  "samples_per_spectrum": 201,
+  "reference_linewidth_hz": 41882.87976102509,
+  "population_display_precision": "float32; original float64 spectra unchanged",
+  "maximum_display_population_error": 2.9802307177639875e-08,
+  "fit_parameters_precision": "float64",
+  "fit_definition": "FWHM and contrast of the locally fitted Gaussian component above a quadratic background, with a smooth curvature-scaled window and soft-L1 residual loss. Original rejected cells remain rejected. Additional fit, physicality, sampling and identifiability checks apply.",
+  "default_indices": {
+    "li": 1,
+    "ci": 85,
+    "ai": 53
+  },
+  "contour_smoothing": {
+    "method": "Mask-normalized Gaussian smoothing of the contour field only",
+    "sigma_samples": [
+      1.5,
+      3.0
+    ],
+    "axis_order": [
+      "cutoff",
+      "amplitude"
+    ],
+    "grid": "Logarithmic for the current manuscript survey",
+    "edge_mode": "nearest",
+    "rejected_cells": "Excluded from the average and masked again after smoothing",
+    "interpretation": "Smoothed C=0.2 guides; not exact boundaries of individual cells",
+    "unchanged": "Heatmaps, spectra, fits, metric arrays, threshold masks, and summaries"
+  },
+  "note": "All saved spectra included. Rejected candidates are labeled and excluded from reported metrics. No new simulations, fitting, or metric interpolation. Only the displayed white boundary is smoothed; the original can be toggled."
+}

@@ -1,4 +1,35 @@
-Here, we propose a spectroscopic method for probing the qubit transition frequency using an echo-root-Lorentzian drive pulse. Previous theoretical work showed that Lorentzian pulses exhibit power narrowing, complementary to the conventional power broadening observed for square (constant-amplitude) pulses, as a consequence of their adiabatic properties~\cite{boradjiev_power_2013}. Power narrowing with powers-of-Lorentzian pulses was subsequently demonstrated experimentally on IBM Quantum, including the cutoff broadening introduced by truncating the pulse wings~\cite{mihov_defying_2024}. In this work, we extend this framework to longer pulse durations approaching the $T_1$ timescale and introduce a $\pi$-phase jump at the pulse peak. The resulting echo property effectively cancels the net pulse area while preserving the adiabatic properties of the drive. This phase inversion reverses the coherent phase accumulation at resonance, suppressing on-resonant excitation while maintaining an off-resonant spectral response across the frequency domain, and thus making resonance distinguishable.
+Here, we propose a spectroscopic method for probing the qubit transition
+frequency using an echo-root-Lorentzian drive pulse. Previous theoretical
+work showed that Lorentzian pulses exhibit power narrowing, complementary
+to the conventional power broadening observed for square (constant-amplitude)
+pulses, as a consequence of their adiabatic
+properties~\cite{boradjiev_power_2013}. Power narrowing with
+powers-of-Lorentzian pulses was subsequently demonstrated experimentally on
+IBM Quantum, including the cutoff broadening introduced by truncating the
+pulse wings~\cite{mihov_defying_2024}. In this work, we extend this framework
+to longer pulse durations approaching the $T_1$ timescale and introduce a
+$\pi$-phase jump at the pulse peak. This midpoint phase reversal implements
+a rotary echo, used for spin refocusing~\cite{solomon_rotary_echo_1959},
+magnetometry~\cite{aiello_composite_pulse_2013}, and superconducting-qubit
+control~\cite{gustavsson_rotary_echo_2012}. The resulting echo cancels the
+signed pulse area while retaining the smoothly shaped envelope on either
+side of the inversion. It reverses coherent evolution at resonance,
+suppressing on-resonant excitation while maintaining an off-resonant spectral
+response. Unlike the repeated constant-amplitude cycles used in rotary-echo
+magnetometry, our single root-Lorentzian echo thus produces a
+resonance-centered dip for frequency-swept population spectroscopy, allowing
+us to track its position, linewidth, and contrast across drive amplitudes.
+
+Resonant cancellation alone does not ensure a useful spectroscopic feature.
+A single phase-inverted square pulse also cancels the ideal resonant evolution,
+but its unitary near-resonant excitation is suppressed at strong drive and depends
+sensitively on pulse area. Simulations at equal duration and peak drive,
+including relaxation and dephasing, show a nearly flat response of the single
+square echo over the central spectroscopy window, whereas the root-Lorentzian
+echo retains a pronounced depletion feature
+(Supplemental Material~\cite{SupplementalMaterial}). The shaped envelope
+provides the off-resonant excitation needed to resolve the resonant cancellation
+over a broad drive range without retuning the pulse duration or cutoff.
 
 We define the echo-root-Lorentzian drive from the order-$n$ generalized
 Lorentzian envelope as

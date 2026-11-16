@@ -86,6 +86,8 @@ def test_processed_map_cannot_replace_different_raw_values(campaign):
 
 
 def test_figure3_statistics_exclude_out_of_view_outliers_and_rejected_rows(monkeypatch):
+    # A campaign-specific linewidth must not replace the common paper reference.
+    reference_hz = 1 / (np.pi * 7.6e-6)
     data = {}
     for name in paper.F3:
         prefix = name.lower()
@@ -105,16 +107,28 @@ def test_figure3_statistics_exclude_out_of_view_outliers_and_rejected_rows(monke
     def capture(fig, stem, metadata):
         saved.update(metadata)
         for ax in fig.axes[:3]:
+            assert ax.get_xlabel() == r"$\Delta/(2\pi)$ (kHz)"
             np.testing.assert_allclose(
-                [line.get_xdata()[0] for line in ax.lines], [-20, 20]
+                [line.get_xdata()[0] for line in ax.lines],
+                np.array([-1, 1]) * reference_hz / 2000,
             )
+        center = fig.axes[3]
+        assert center.get_ylabel() == r"$\Delta_{\mathrm{res}}/(2\pi)$ (kHz)"
+        assert center.get_xlabel() == r"$\Omega_{\mathrm{pk}}/(2\pi)$ (MHz)"
+        np.testing.assert_allclose(
+            center.lines[0].get_ydata(), [np.nan, 1, 2, 3, np.nan], equal_nan=True
+        )
         fwhm = fig.axes[5]
         np.testing.assert_allclose(
-            fwhm.lines[0].get_ydata(), [np.nan, 2.5, 5, 7.5, np.nan], equal_nan=True
+            fwhm.lines[0].get_ydata(),
+            np.array([np.nan, 100000, 200000, 300000, np.nan]) / reference_hz,
+            equal_nan=True,
         )
         fig.canvas.draw()
-        np.testing.assert_allclose(fwhm.get_ylim(), [0, 12.5])
-        np.testing.assert_allclose(fwhm.child_axes[0].get_ylim(), [0, 0.5])
+        np.testing.assert_allclose(fwhm.get_ylim(), [0, 12])
+        assert not fwhm.child_axes
+        assert fwhm.get_ylabel() == r"$\mathrm{FWHM}/\Gamma_{T_2^*}$"
+        assert metadata["fwhm_axes"]["normalization_hz"] == pytest.approx(reference_hz)
         assert len(fwhm.lines) == 4
         paper.plt.close(fig)
 
@@ -127,6 +141,7 @@ def test_figure3_statistics_exclude_out_of_view_outliers_and_rejected_rows(monke
         assert result["matched_count"] == 2
         assert result["displayed_amplitude_points"] == 4
         assert result["median_fwhm_khz"] == 200
+        assert result["median_fwhm_normalized"] == pytest.approx(200000 / reference_hz)
         assert result["median_contrast"] == pytest.approx(0.2)
         assert result["center_mean_khz"] == 2
         assert result["center_rms_about_mean_khz"] == 1

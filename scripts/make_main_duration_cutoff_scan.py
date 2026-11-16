@@ -1,8 +1,7 @@
 """PRL Figure 4: 20 us cutoff-versus-drive maps from the supplemental survey.
 
-Uses the original float64 metrics and acceptance masks, without recomputing,
-optimizing, or interpolating simulation samples. The full scan remains in its
-checkpoint archive.
+Uses verified local Gaussian-fit metrics from the original float64 spectra.
+The simulated populations and direct half-depth metrics remain archived.
 """
 
 from __future__ import annotations
@@ -18,11 +17,17 @@ import numpy as np
 from matplotlib.lines import Line2D
 from matplotlib.ticker import LogLocator, NullFormatter
 
+from echospec.analysis.cutoff_fit_exports import load_cutoff_fits
 from echospec.figures import FigureVariant, apply_figure_style, save_figure
 from echospec.figures.coherence import REFERENCE_FWHM_HZ, REFERENCE_T2_STAR_S
+from echospec.figures.cutoff_contours import (
+    CONTOUR_SMOOTHING,
+    smooth_contrast_for_contour,
+)
+from echospec.figures.drag_convention import polynomial_beta_provenance
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "outputs/polynomial_duration_cutoff_poly2_log/n100"
+SOURCE = ROOT / "outputs/polynomial_duration_cutoff_poly2_log_40_50/n100"
 OUT = ROOT / "figures/paper"
 STEM = "04_duration_cutoff_scan"
 CONTRAST_THRESHOLD = 0.2
@@ -72,9 +77,11 @@ def main():
         accepted, width = (data[k].copy() for k in ("accepted", "fwhm_hz"))
         config = json.loads(str(data["configuration"]))
         assert data["pending_durations_us"].size == 0
+    manifest = json.loads((SOURCE / "dataset_manifest.json").read_text())
     contrasts = []
     for k, length in enumerate(lengths):
-        folder = "simulations"
+        folder = (manifest["baseline_copy"] if length in manifest["reused_durations_us"]
+                  else manifest["new_runs"])
         name = f"{folder}/L{length:g}us/scan.npz"
         digest = hashlib.sha256((SOURCE / name).read_bytes()).hexdigest()
         assert digest == checksums[name], f"Source checksum changed: {name}"
@@ -86,13 +93,17 @@ def main():
             np.testing.assert_array_equal(data["fwhm_hz"], width[k])
             contrasts.append(data["contrast"].copy())
     contrast = np.stack(contrasts)
-    manifest = json.loads((SOURCE / "dataset_manifest.json").read_text())
+    fitted, fit_metadata, fit_hashes = load_cutoff_fits(
+        SOURCE, lengths, cutoffs, amps, accepted,
+    )
+    accepted, width, contrast = (fitted[key] for key in ("accepted", "fwhm_hz", "contrast"))
+    hashes.update(fit_hashes)
     convergence = json.loads((SOURCE / "validation/convergence.json").read_text())
     assert config == manifest["common_configuration"]
     assert config["power"] == 2 and config["amplitude_spacing"] == "log"
     assert convergence["complete"]
     np.testing.assert_allclose(amps, np.geomspace(1, 100, 100))
-    np.testing.assert_array_equal(lengths, [10, 20, 30, 45, 60])
+    np.testing.assert_array_equal(lengths, [10, 20, 30, 40, 50])
     assert accepted.shape == width.shape == contrast.shape == (5, 100, 100)
     assert np.isfinite(width[accepted]).all() and (width[accepted] > 0).all()
     assert np.isfinite(contrast[accepted]).all()
@@ -104,13 +115,17 @@ def main():
         supplement.read_bytes()
     ).hexdigest()
     with np.load(supplement, allow_pickle=False) as saved:
+        np.testing.assert_array_equal(saved["durations_us"], lengths)
         index = int(np.flatnonzero(saved["durations_us"] == 20)[0])
         for key in ("cutoffs", "rabi_mhz"):
             np.testing.assert_array_equal(saved[key], cutoffs if key == "cutoffs" else amps)
         for key in data:
             np.testing.assert_array_equal(data[key], saved[key][index])
+        for key, values in slices.items():
+            np.testing.assert_array_equal(values, saved[key.removeprefix("slice_")][:, :, slice_index])
         assert float(saved["contrast_threshold"]) == CONTRAST_THRESHOLD
     accepted = data["accepted"]
+    contour_field = smooth_contrast_for_contour(data["contrast"], accepted)
     drive_mask = amps >= 10
     eligible = accepted[:, drive_mask].all(axis=1)
     score = np.min(data["contrast"][:, drive_mask]
@@ -141,6 +156,8 @@ def main():
         "pdf.fonttype": 42, "svg.fonttype": "none", "savefig.bbox": None,
     })
     slice_amplitude = float(amps[slice_index])
+    displayed_rows = np.arange(len(lengths))
+    displayed_lengths = lengths[displayed_rows]
     fig_width, fig_height = 3.38, 3.48
     fig = plt.figure(figsize=(fig_width, fig_height))
     reference_hz = REFERENCE_FWHM_HZ
@@ -159,7 +176,7 @@ def main():
     scales = {}
     for col, (key, factor, maximum, cmap, label, ticks) in enumerate([
         ("fwhm_hz", 1 / reference_hz, 10, "magma",
-         r"FWHM/$\Gamma_{T_2^*}$", [0, 5, 10]),
+         r"$\mathrm{FWHM}/\Gamma_{T_2^*}$", [0, 5, 10]),
         ("contrast", 1, 1, "viridis", "Contrast", [0, 0.5, 1]),
     ]):
         left = 0.42 + 1.54 * col
@@ -174,7 +191,7 @@ def main():
                              vmin=minimum, vmax=maximum, rasterized=True)
         ax.contour(
             cutoffs, amps[positive],
-            np.ma.masked_where(~accepted, data["contrast"])[:, positive].T,
+            contour_field[:, positive].T,
             levels=[CONTRAST_THRESHOLD], colors=["white"], linewidths=0.6,
             corner_mask=False, zorder=3,
         )
@@ -195,7 +212,7 @@ def main():
         ax.tick_params(axis="y", which="minor", direction="in", right=True,
                        length=1.5, width=0.5)
         if col == 0:
-            ax.set_ylabel(r"$\Omega_0/2\pi$ (MHz)", labelpad=2)
+            ax.set_ylabel(r"$\Omega_0/(2\pi)$ (MHz)", labelpad=2)
         ax.text(0.08, 0.94, f"({chr(97 + col)})", transform=ax.transAxes,
                 va="top", color="white",
                 path_effects=[pe.withStroke(linewidth=0.65, foreground="0.2")])
@@ -210,7 +227,8 @@ def main():
         slice_height = 0.86
         slice_ax = fig.add_axes([left / fig_width, 0.42 / fig_height,
                                  1.24 / fig_width, slice_height / fig_height])
-        for row, length in enumerate(lengths):
+        for row in displayed_rows:
+            length = lengths[row]
             highlighted = length == 20
             slice_values = np.ma.masked_where(
                 ~slices["slice_accepted"][row], slices[f"slice_{key}"][row] * factor
@@ -233,28 +251,30 @@ def main():
                       transform=slice_ax.transAxes)
         if key == "fwhm_hz":
             slice_ax.axhline(1, color="0.5", ls=":", lw=0.65)
-            slice_ax.text(0.7, 1.6, r"$\Gamma_{T_2^*}$", ha="right",
-                          color="0.35", fontsize=6)
         if key == "contrast":
             slice_ax.axhline(CONTRAST_THRESHOLD, color="0.5", ls=":", lw=0.65)
     handles = [Line2D([], [], color=COLORS[row], ls=LINESTYLES[row],
-                      lw=1.5 if length == 20 else 0.75,
-                      alpha=1.0 if length == 20 else 0.8)
-               for row, length in enumerate(lengths)]
+                      lw=1.5 if lengths[row] == 20 else 0.75,
+                      alpha=1.0 if lengths[row] == 20 else 0.8)
+               for row in displayed_rows]
     legend = fig.legend(
-        handles, [rf"${length:g}\,\mu$s" for length in lengths],
-        loc="lower center", bbox_to_anchor=(0.55, 0), ncol=5, frameon=False,
+        handles, [rf"${length:g}\,\mu$s" for length in displayed_lengths],
+        loc="lower center", bbox_to_anchor=(0.55, 0),
+        ncol=len(displayed_lengths), frameon=False,
         fontsize=5.5, handlelength=1.4, columnspacing=0.65, handletextpad=0.35,
     )
-    legend.get_texts()[int(np.flatnonzero(lengths == 20)[0])].set_weight("bold")
+    legend.get_texts()[int(np.flatnonzero(displayed_lengths == 20)[0])].set_weight("bold")
     paths = save_figure(fig, STEM, variant=FigureVariant.PAPER,
                         formats=("pdf", "png", "svg"), dpi=350)
     plt.close(fig)
+    svg_path = OUT / f"{STEM}.svg"
+    svg_path.write_text("".join(line.rstrip() + "\n"
+                               for line in svg_path.read_text().splitlines()))
     with (OUT / f"{STEM}_metrics.csv").open("w") as handle:
         writer = csv.DictWriter(handle, fieldnames=[
             "duration_us", "cutoff", "amplitude_mhz", "accepted",
             "fwhm_khz", "contrast", "contrast_above_threshold",
-        ])
+        ], lineterminator="\n")
         writer.writeheader()
         for ci, cutoff in enumerate(cutoffs):
             for ai, amp in enumerate(amps):
@@ -276,18 +296,25 @@ def main():
         included_in_manuscript=True, source_sha256=hashes,
         generator_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         source_configuration=config, figure_size_inches=[fig_width, fig_height],
-        selection="Exact 20 us row (panels c/d) of the supplemental full-range survey",
+        drag_beta_convention=polynomial_beta_provenance(config["drag_beta"]),
+        drag_convention_helper_sha256=hashlib.sha256(
+            Path(polynomial_beta_provenance.__code__.co_filename).read_bytes()
+        ).hexdigest(),
+        metric_method=fit_metadata["definition"], fitted_metric_provenance=fit_metadata,
+        selection="Exact 20 us row of the supplemental full-range survey",
         array_order="cutoff, nominal drive", reference_linewidth_hz=reference_hz,
         reference_t2_star_s=REFERENCE_T2_STAR_S,
         map_axes=dict(x="cutoff", y="nominal drive", display="Transposed arrays"),
         color_scales=scales, contrast_threshold=CONTRAST_THRESHOLD,
+        linewidth_label=r"$\mathrm{FWHM}/\Gamma_{T_2^*}$",
         cutoff_slices=dict(
             panels=["c", "d"], amplitude_index=slice_index,
             amplitude_mhz=slice_amplitude, requested_amplitude_mhz=50,
             selection="Nearest saved amplitude to 50 MHz; no interpolation",
-            durations_us=lengths.tolist(),
-            values="Same amplitude column for all five durations; rejected samples "
-                   "are gaps. The 20 us slices exactly match the displayed maps.",
+            durations_us=displayed_lengths.tolist(),
+            exported_durations_us=lengths.tolist(),
+            values="Same amplitude column for all five displayed durations; rejected "
+                   "samples are gaps. The 20 us slices exactly match the displayed maps.",
             highlighted_duration_us=20,
             highlight_style="Thick solid orange, drawn above thinner comparison curves",
             fwhm_axis_limits_normalized=[0, 15],
@@ -303,17 +330,22 @@ def main():
             zero_drive="Not sampled: logarithmic grid starts at 1 MHz",
             sampling="logarithmic", cell_edges="Geometric midpoints; no resampling",
         ),
-        white_contours="C=0.2, linearly interpolated between accepted samples with "
-                       "corner_mask=False; the band between the curves has C>0.2. "
-                       "These are contrast boundaries, not a linewidth threshold.",
+        white_contours="Smoothed C=0.2 guides with corner_mask=False; heatmaps, "
+                       "quantitative threshold masks, and slice curves are unchanged.",
+        contour_smoothing=CONTOUR_SMOOTHING,
+        contour_helper_sha256=hashlib.sha256(
+            Path(smooth_contrast_for_contour.__code__.co_filename).read_bytes()
+        ).hexdigest(),
         metric_mask="Rejected and unresolved dips are gray, not zero; local FWHM "
                     "does not certify a unique resonance.",
-        contrast="Dip depth in excitation probability relative to a fitted linear "
-                 "background at the dip; dimensionless and independent of shot count",
-        validation="Exact equality to supplemental row and original 20 us scan; "
-                   "source SHA-256 checksums verified; no smoothing or recomputation",
+        contrast="Gaussian dip depth relative to the fitted local quadratic "
+                 "background; dimensionless and independent of shot count",
+        validation="Exact equality to supplemental maps and all five duration slices; "
+                   "fit source SHA-256 checksums verified against the original spectra; "
+                   "no simulation or metric interpolation; display-only contour smoothing",
         summaries=summaries,
-        representative_convergence={
+        representative_convergence=fit_metadata["validation"],
+        archived_direct_metric_convergence={
             "scope": convergence["scope"],
             "maximum_changes": {key: value for key, value in
                                 convergence["maximum_changes"].items()

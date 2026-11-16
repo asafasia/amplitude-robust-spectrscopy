@@ -1,15 +1,15 @@
 {
   "parameters": {
-    "duration_us": 20.0,
-    "t1_us": 51.24,
-    "t_phi_us": 7.871480508563624,
     "anharmonicity_mhz": -216.0,
     "cutoff": 0.005,
-    "order": 0.5,
+    "drag_beta": 0.0,
+    "duration_us": 20.0,
     "echo": true,
     "echo_transition_shape": "sine",
-    "drag_beta": 0.0,
-    "stark_kappa_mhz_inv": 0.0
+    "order": 0.5,
+    "stark_kappa_mhz_inv": 0.0,
+    "t1_us": 51.24,
+    "t_phi_us": 7.871480508563624
   },
   "transition_ns": [
     0,
@@ -17,12 +17,47 @@
     8,
     16
   ],
-  "dt_ns": 0.5,
-  "convergence_max_abs_population_error": {
-    "0": 1.358726709355107e-05,
-    "4": 1.8943553888650655e-05,
-    "8": 6.944074252168697e-06,
-    "16": 1.4767072263430648e-06
+  "dt_ns": 0.125,
+  "convergence": {
+    "checks": [
+      {
+        "detuning_refinement_change_in_max_pf": 0.0,
+        "max_abs_final_pf_change": 2.288387285664939e-06,
+        "max_abs_population_change": 2.2900362341982117e-06,
+        "refined_max_final_pf_at_50mhz": 0.04439116151224219,
+        "transition_ns": 0
+      },
+      {
+        "detuning_refinement_change_in_max_pf": 1.091790093834047e-06,
+        "max_abs_final_pf_change": 1.1122578820769655e-06,
+        "max_abs_population_change": 1.1122578820769655e-06,
+        "refined_max_final_pf_at_50mhz": 0.010208249224022196,
+        "transition_ns": 4
+      },
+      {
+        "detuning_refinement_change_in_max_pf": 1.3043007243912844e-08,
+        "max_abs_final_pf_change": 1.9637188173194774e-07,
+        "max_abs_population_change": 1.9637188173194774e-07,
+        "refined_max_final_pf_at_50mhz": 0.0006626374466438042,
+        "transition_ns": 8
+      },
+      {
+        "detuning_refinement_change_in_max_pf": 0.0,
+        "max_abs_final_pf_change": 1.937386479798067e-08,
+        "max_abs_population_change": 1.975391017428052e-08,
+        "refined_max_final_pf_at_50mhz": 0.00034794861518143487,
+        "transition_ns": 16
+      }
+    ],
+    "detuning_step_mhz": [
+      0.005,
+      0.0025
+    ],
+    "dt_ns": [
+      0.125,
+      0.0625
+    ],
+    "rabi_mhz": 50.0
   },
   "observable": "Final Pf; not maximum transient leakage",
   "panels": {
@@ -30,20 +65,24 @@
     "b": "Maximum over 201 detunings at each saved drive; zero-drive Pf=0 omitted on log axis"
   },
   "max_final_pf": [
-    0.031944308551598584,
-    0.007230838937766372,
-    0.000464670526803922,
-    0.0002546676489652022
+    0.04439183349691909,
+    0.010206997911710121,
+    0.00066261649696098,
+    0.00034795029438029095
+  ],
+  "highest_drive_mhz": 50.0,
+  "max_final_pf_at_highest_drive": [
+    0.04439183349691909,
+    0.010206997911710121,
+    0.00066261649696098,
+    0.00034795029438029095
   ],
   "processing": "No fitting, smoothing, rescaling, or new dynamics; lines connect saved samples",
   "source_sha256": {
-    "outputs/sine_echo_transition_comparison/provenance.json": "9390c3cf15429088c3c7fe58791e84e6cba47444f13d9d18b3d67190dcd352b3",
-    "outputs/sine_echo_transition_comparison/T0ns.npz": "a189d0ccf98ae9bd9ab0ec627ad170d2544e8e50b6bd4a3141c6b219559ff1d6",
-    "outputs/sine_echo_transition_comparison/T4ns.npz": "85510819d1e293a562025a1125191bcacd3a0c8cee150f26773c7f21c5db3dba",
-    "outputs/sine_echo_transition_comparison/T8ns.npz": "cd0a7c7ad1e51b8774b1f8096a1b5d9decfbb8dd2576afdc036c8e8b14dd529d",
-    "outputs/sine_echo_transition_comparison/T16ns.npz": "cf5101f3c36bc8829192d2e02cdea8fcd8b36e7c35acf9e9cca0118bb5895a71"
+    "paper/data/numerical/08_midpoint_smoothing_50mhz.json": "89ff2bf7ec9243e28050e90f20507bcfa2140ef45b134fe46c9fb64427e0c2dc",
+    "paper/data/numerical/08_midpoint_smoothing_50mhz.npz": "c69a515ddbbd9f49a023e77994865a8303e2d5c558c09fcecaf864b4b3d20283"
   },
-  "generator_sha256": "d0422d05e0ec09bc00b7a5127cd0273bc52db1a7b494103275b9ae828a690ad7",
-  "arrays_sha256": "d73a15dc7bbecc214f471146fc0ef5ddaa456413cbb10a5ae776692fe23df2af",
+  "generator_sha256": "eb4270df96ba1c922bd35100105be201e4b648b3f2079a226c8b9f3a9f94cb8c",
+  "arrays_sha256": "d9ab8867098e39916665500cb21518189a145a3d4579068dc94a2657a33dca07",
   "reproduce": ".venv/bin/python scripts/make_supplemental_figures.py --only midpoint_smoothing_leakage"
 }

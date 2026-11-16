@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cutoff spectra · fit explorer</title>
+<style>
+:root{color-scheme:light;--ink:#1e293b;--muted:#64748b;--border:#dce2e9;--blue:#0072b2;--orange:#d55e00}
+*{box-sizing:border-box}body{margin:0;background:#f5f6f8;color:var(--ink);font:14px/1.5 system-ui,-apple-system,sans-serif}
+main{max-width:1480px;margin:auto;padding:26px 30px 36px}header{display:flex;align-items:start;justify-content:space-between;gap:16px;margin-bottom:22px}
+h1{font-size:27px;font-weight:650;letter-spacing:-.6px;margin:3px 0 6px}h2{font-size:16px;font-weight:650;margin:0}p{margin:5px 0}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted)}
+.muted,.caption{color:var(--muted)}.caption{font-size:12px}.tag{padding:5px 10px;border:1px solid var(--border);border-radius:5px;background:white;white-space:nowrap;font-size:12px}
+.controls,.card,.metrics{background:white;border:1px solid var(--border);border-radius:7px}.controls{padding:18px 20px;display:grid;grid-template-columns:.8fr 1.1fr 1.1fr;gap:28px}
+label.control{display:block;font-weight:600;font-size:12px}select,input[type=number]{font:inherit;color:var(--ink);border:1px solid #bfc8d3;background:white;border-radius:4px;padding:7px 10px;max-width:100%}
+select{width:100%;margin-top:8px}input[type=number]{width:155px;margin-left:auto;font-weight:500}.control-head{display:flex;align-items:center;gap:10px}input[type=range]{width:100%;accent-color:var(--blue);margin:15px 0 0;cursor:pointer}.ends{display:flex;justify-content:space-between;color:var(--muted);font-size:11px}.actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:12px 0 18px}
+button{font:inherit;font-size:12px;cursor:pointer;border:1px solid #c8d1db;border-radius:4px;background:white;color:var(--ink);padding:7px 11px}button:hover{background:#edf4fa;border-color:#8aabc3}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--blue);outline-offset:2px}.actions .caption{margin-left:auto}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);margin-bottom:18px}.metric{padding:14px 20px;border-right:1px solid var(--border)}.metric:last-child{border:0}.metric-label{font-size:12px;color:var(--muted)}.metric-value{font-size:24px;font-weight:600;line-height:1.4;font-variant-numeric:tabular-nums}.metric-note{font-size:11px;color:var(--muted)}
+.workspace{display:grid;grid-template-columns:minmax(320px,.85fr) minmax(400px,1.4fr);gap:18px;align-items:start}.card{padding:16px 16px 12px;min-width:0}.card-head{display:flex;justify-content:space-between;gap:10px;align-items:center}.toggles{display:flex;gap:12px;align-items:center;font-size:12px}.toggles label{white-space:nowrap}.toggles input{accent-color:var(--blue)}
+#map{height:390px}#spectrum{height:330px}#residual{height:160px}#cutoffTrace{height:220px}.status{margin:12px 0 0;padding:9px 11px;border-radius:4px;background:#eef5f8;font-size:12px}.status.rejected{background:#fff3e7;color:#92400e}.subhead{margin:20px 0 0;padding-top:14px;border-top:1px solid var(--border)}
+.selection{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;margin-top:5px}.legend{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:11px;margin-top:7px}.key{display:inline-block;width:20px;border-top:2px solid;vertical-align:middle;margin-right:5px}.key.dash{border-top-style:dashed}.loading{padding:25px;background:white;border:1px solid var(--border);margin:20px 0}.loading[hidden]{display:none}
+details{margin-top:18px;background:white;border:1px solid var(--border);border-radius:6px;padding:12px 16px;font-size:13px}summary{cursor:pointer;font-weight:600}.methods{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding-top:10px}.methods p{margin:8px 0}.error{color:#9c2c16}footer{margin-top:18px;color:var(--muted);font-size:11px}
+@media(max-width:850px){main{padding:18px 12px}.controls{grid-template-columns:1fr;gap:15px}.workspace{grid-template-columns:1fr}.metrics{grid-template-columns:1fr 1fr}.metric:nth-child(2){border:0}.metric:nth-child(-n+2){border-bottom:1px solid var(--border)}header{display:block}.tag{display:inline-block;margin-top:9px}.methods{grid-template-columns:1fr}.actions .caption{margin-left:0}.card-head{align-items:start;flex-wrap:wrap}#map{height:360px}}
+</style>
+<script>/*__PLOTLY_JS__*/</script>
+</head>
+<body>
+<main>
+<header><div><div class="eyebrow">Fig. 4 / Fig. S8 · simulation review</div><h1>Spectrum &amp; fit explorer</h1><p class="muted">Select a pulse length, drive amplitude, and cutoff to inspect the central dip.</p></div><span class="tag">50,000 spectra · offline report</span></header>
+<div class="controls">
+<div><label class="control" for="duration">Pulse length L (µs)</label><select id="duration" aria-label="Pulse length"></select><p class="caption" style="margin-top:12px">Five saved durations, with the current manuscript fits.</p></div>
+<div><div class="control-head"><label class="control" for="amplitudeInput">Drive Ω₀/(2π) (MHz)</label><input id="amplitudeInput" type="number" min="1" max="100" step="any" aria-label="Drive amplitude in MHz"></div><input id="amplitude" type="range" min="0" max="99" step="1" aria-label="Amplitude sample"><div class="ends"><span>1 MHz</span><span>100 MHz · log spacing</span></div></div>
+<div><div class="control-head"><label class="control" for="cutoffInput">Cutoff c</label><input id="cutoffInput" type="number" min="0.00001" max="1" step="any" aria-label="Cutoff value"></div><input id="cutoff" type="range" min="0" max="99" step="1" aria-label="Cutoff sample"><div class="ends"><span>10⁻⁵</span><span>1 · log spacing</span></div></div>
+</div>
+<div class="actions"><button id="boundaryPreset">20 µs · wavy boundary</button><button id="beforePreset">50 µs · before old drop</button><button id="afterPreset">50 µs · after old drop</button><button id="download">Download selected slice</button><span class="caption">Values snap to simulated points; spectra are not interpolated.</span></div>
+<div id="loading" class="loading" role="status">Loading saved spectra…</div>
+<div id="report" hidden>
+<div class="metrics">
+<div class="metric"><div class="metric-label">FWHM / Γ<sub>T₂*</sub></div><div class="metric-value" id="widthValue">—</div><div class="metric-note">Central Gaussian component</div></div>
+<div class="metric"><div class="metric-label">Contrast C</div><div class="metric-value" id="contrastValue">—</div><div class="metric-note" id="contrastNote">Contrast threshold: C = 0.2</div></div>
+<div class="metric"><div class="metric-label">Quality Q</div><div class="metric-value" id="qualityValue">—</div><div class="metric-note">C Γ<sub>T₂*</sub> / FWHM</div></div>
+<div class="metric"><div class="metric-label">Center Δ<sub>min</sub>/(2π) (Hz)</div><div class="metric-value" id="centerValue">—</div><div class="metric-note" id="rmsValue">Local fit residual</div></div>
+</div>
+<div class="workspace">
+<section class="card"><div class="card-head"><h2>Contrast map</h2><label class="toggles"><input id="originalBoundary" type="checkbox"> Original boundary</label></div><p class="caption" id="boundaryNote">White line: smoothed C = 0.2 guide. Click the map to select a spectrum.</p><div id="map" aria-label="Contrast map with selected point"></div><p class="caption">Gray cells are excluded from the manuscript metrics. The orange cross marks your selection. Smoothing affects only the white line.</p><div class="subhead"><h2>Contrast along the selected amplitude</h2><p class="caption">Move the cutoff slider to follow this trace.</p></div><div id="cutoffTrace" aria-label="Contrast versus cutoff at selected amplitude"></div></section>
+<section class="card"><div class="card-head"><h2>Spectrum and local fit</h2><div class="toggles"><label><input id="zoom" type="checkbox"> Zoom to fit</label><label><input id="fullY" type="checkbox"> Pₑ: 0–1</label></div></div><div class="selection" id="selectionText"></div><div class="legend"><span><i class="key" style="color:#6b7280"></i>Simulated samples</span><span><i class="key" style="color:#0072b2"></i>Gaussian + background</span><span><i class="key dash" style="color:#d55e00"></i>Local background</span></div><div id="spectrum" aria-label="Simulated spectrum and Gaussian fit"></div><p class="caption">Blue shading shows the central fitting window; faint shading shows its tapered margins. The fit and background are displayed within that local region.</p><div id="fitStatus" class="status" role="status"></div><div class="subhead"><h2>Residual: simulation − fit</h2><p class="caption">Displayed within the central window; read the scale when comparing cases.</p></div><div id="residual" aria-label="Fit residual in excitation probability"></div></section>
+</div>
+<details><summary>Fit definition and selected-trace details</summary><div class="methods"><div><p>Every spectrum was fit independently to a Gaussian dip plus a quadratic background. A smoothly tapered, curvature-scaled window and a robust residual loss reduce the influence of weak shoulders. No smoothing across amplitude or cutoff is applied.</p><p>The reported width and contrast describe the central Gaussian component. Rejected fits are excluded from the map and metric cards; when available, their candidate curves are shown in red for diagnosis.</p><p id="referenceText"></p></div><div><p id="traceDetails"></p><p id="modelText"></p><p>The report selects saved simulations and fits; changing a control does not run a new simulation or optimize a new fit. Original spectra remain unchanged. Embedded population display copies use float32; fit parameters retain float64 precision.</p></div></div></details>
+<footer>Self-contained report · no network connection required · inspect spectra and residuals before interpreting contour wiggles.</footer>
+</div>
+<noscript>This report requires JavaScript to show the interactive spectra.</noscript>
+</main>
+<script id="studyData" type="application/json">__STUDY_DATA__</script>
+<script>
+"use strict";
+(() => {
+const source = document.getElementById('studyData').textContent;
+if (source.trim().startsWith('__')) return;
+const D = JSON.parse(source), $ = id => document.getElementById(id);
+const nc = D.cutoffs.length, na = D.amps.length, nd = D.detuning.length;
+const state = {...D.default}, cache = new Map();
+const colors = {sample:'#6b7280',fit:'#0072b2',background:'#d55e00',rejected:'#b43e2c'};
+const config = {responsive:true,displaylogo:false,scrollZoom:false,modeBarButtonsToRemove:['select2d','lasso2d','autoScale2d'],toImageButtonOptions:{format:'png',scale:2}};
+const fmt = (v,n=3) => Number.isFinite(v) ? v.toFixed(n) : '—';
+const nearest = (values,v) => values.reduce((best,x,i) => Math.abs(Math.log(x/v)) < Math.abs(Math.log(values[best]/v)) ? i : best,0);
+const reasons = {
+ accepted:'Accepted fit', original_rejected:'Excluded: the original extraction did not identify a resolved, valid dip. No new fit was attempted.',
+ no_resolved_dip:'Excluded: no resolved central dip.', invalid_fitted_contrast:'Rejected: fitted contrast outside the allowed range.',
+ fit_boundary_or_failure:'Rejected: optimizer failed or a fit parameter reached a bound.',
+ unphysical_local_fit:'Rejected: unphysical local population or background.',
+ undersampled_fit:'Rejected: fitted width spans fewer than six detuning intervals.',
+ half_width_outside_window:'Rejected: the half-width extends beyond the local fitting window.',
+ poor_local_fit:'Rejected: residuals are too large relative to dip depth.',
+ unidentified_width:'Rejected: the width is poorly constrained.'
+};
+let token=0, renderedMap=-1, current=null;
+function layout(xlabel,ylabel,extra={}) {
+ return {font:{family:'system-ui, sans-serif',size:11,color:'#334155'},margin:{l:60,r:18,t:20,b:48},
+ paper_bgcolor:'white',plot_bgcolor:'white',showlegend:false,hovermode:'closest',
+ xaxis:{title:{text:xlabel,standoff:9},zeroline:false,gridcolor:'#edf0f4'},
+ yaxis:{title:{text:ylabel,standoff:8},zeroline:false,gridcolor:'#edf0f4'},...extra};
+}
+function trace(x,y,name,color,dash='solid') {
+ return {type:'scatter',mode:'lines',x,y,name,connectgaps:false,line:{color,width:1.8,dash},
+ hovertemplate:'%{x:.5g}<br>%{y:.6g}<extra>'+name+'</extra>'};
+}
+async function unpack(li) {
+ if(cache.has(li))return cache.get(li);
+ const promise=(async()=>{
+  const c=D.cases[li], bytes=Uint8Array.from(atob(c.payload),s=>s.charCodeAt(0));
+  const stream=new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
+  const buffer=await new Response(stream).arrayBuffer();
+  if(buffer.byteLength!==c.byte_length)throw new Error('Incomplete embedded spectrum data');
+  const arrays={};
+  for(const [key,spec] of Object.entries(c.layout)){
+   const ctor=spec.dtype==='<f4'?Float32Array:spec.dtype==='<f8'?Float64Array:Uint8Array;
+   arrays[key]=new ctor(buffer,spec.offset,spec.count);
+  }
+  return arrays;
+ })();cache.set(li,promise);return promise;
+}
+function fitAt(arrays,index,x) {
+ const p=arrays.parameters.subarray(index*6,index*6+6);
+ if(!Array.from(p).every(Number.isFinite)||!(arrays.radius_mhz[index]>0))return null;
+ const v=(x-arrays.reference_mhz[index])/arrays.radius_mhz[index];
+ const background=arrays.y_offset[index]+arrays.y_scale[index]*(p[3]+p[4]*v+p[5]*v*v);
+ const y=background-arrays.y_scale[index]*p[0]*Math.exp(-4*Math.log(2)*((v-p[1])/p[2])**2);
+ return {y,background};
+}
+function setInputs(){
+ $('duration').value=String(state.li);$('amplitude').value=String(state.ai);$('cutoff').value=String(state.ci);
+ $('amplitudeInput').value=D.amps[state.ai].toPrecision(8);$('cutoffInput').value=D.cutoffs[state.ci].toPrecision(8);
+}
+async function select(selection){Object.assign(state,selection);setInputs();await render();}
+async function drawMap(a,li,ci,ai){
+ const original=$('originalBoundary').checked, mapKey=`${li}-${original}`;
+ if(renderedMap===mapKey){await Plotly.restyle('map',{x:[[D.cutoffs[ci]]],y:[[D.amps[ai]]]},[2]);return;}
+ const z=D.amps.map((_,j)=>D.cutoffs.map((_,i)=>a.accepted[i*na+j]?a.contrast[i*na+j]:null));
+ const paths=original?D.cases[li].original_boundary:D.cases[li].boundary;
+ const bx=[],by=[];for(const path of paths){for(const [x,y] of path){bx.push(x);by.push(y);}bx.push(null);by.push(null);}
+ $('boundaryNote').textContent=original?'White line: original C = 0.2 contour. Click the map to select a spectrum.':'White line: smoothed C = 0.2 guide. Click the map to select a spectrum.';
+ const l=layout('Cutoff c','Ω₀/(2π) (MHz)',{plot_bgcolor:'#e2e7e9',margin:{l:60,r:14,t:38,b:50}});
+ l.xaxis={...l.xaxis,type:'log',range:[-5,0],tickvals:[1e-5,1e-3,.1,1],ticktext:['10⁻⁵','10⁻³','10⁻¹','1'],gridcolor:'transparent'};
+ l.yaxis={...l.yaxis,type:'log',range:[0,2],tickvals:[1,10,100],ticktext:['1','10','100'],gridcolor:'transparent'};
+ const heat={type:'heatmap',x:D.cutoffs,y:D.amps,z,zmin:0,zmax:1,zsmooth:false,colorscale:'Viridis',hoverongaps:false,
+ colorbar:{orientation:'h',x:.5,xanchor:'center',y:1.10,len:1,thickness:8,tickvals:[0,.2,.5,1],tickfont:{size:10}},
+ hovertemplate:'c = %{x:.5g}<br>Ω₀/(2π) = %{y:.4g} MHz<br>C = %{z:.5f}<extra></extra>'};
+ const boundary=trace(bx,by,'C = 0.2','white');boundary.line.width=1.2;boundary.hoverinfo='skip';delete boundary.hovertemplate;
+ const point={type:'scatter',mode:'markers',x:[D.cutoffs[ci]],y:[D.amps[ai]],marker:{color:'#f97316',size:13,symbol:'cross',line:{color:'white',width:1}},hoverinfo:'skip'};
+ await Plotly.react('map',[heat,boundary,point],l,config);renderedMap=mapKey;
+}
+async function render(){
+ const own=++token,{li,ci,ai}=state;$('loading').hidden=false;$('loading').textContent='Loading saved spectra…';
+ try{
+  const a=await unpack(li);if(own!==token)return;
+  const index=ci*na+ai, ok=Boolean(a.accepted[index]), status=D.statuses[a.status[index]];
+  const x=D.detuning.map(v=>v*1000), y=Array.from(a.population.subarray(index*nd,(index+1)*nd));
+  const validFit=fitAt(a,index,0)!==null, color=ok?colors.fit:colors.rejected;
+  const center=a.reference_mhz[index], radius=a.radius_mhz[index];
+  const low=validFit?Math.max(D.detuning[0],center-radius):D.detuning[0];
+  const high=validFit?Math.min(D.detuning[nd-1],center+radius):D.detuning[nd-1];
+  const displayLow=validFit?Math.max(D.detuning[0],center-1.25*radius):low;
+  const displayHigh=validFit?Math.min(D.detuning[nd-1],center+1.25*radius):high;
+  const xf=validFit?Array.from({length:601},(_,i)=>displayLow+(displayHigh-displayLow)*i/600):[];
+  const model=xf.map(v=>fitAt(a,index,v));
+  const l=layout('Detuning Δ/(2π) (kHz)','Excited population Pₑ');
+  l.xaxis.range=$('zoom').checked&&validFit?[displayLow*1000,displayHigh*1000]:[x[0],x[nd-1]];
+  if($('fullY').checked)l.yaxis.range=[0,1];
+  l.shapes=validFit?[{type:'rect',xref:'x',yref:'paper',x0:displayLow*1000,x1:displayHigh*1000,y0:0,y1:1,line:{width:0},fillcolor:'#0072b208',layer:'below'},
+   {type:'rect',xref:'x',yref:'paper',x0:low*1000,x1:high*1000,y0:0,y1:1,line:{width:0},fillcolor:'#0072b20c',layer:'below'}]:[];
+  const raw=trace(x,y,'Simulated Pₑ',colors.sample);raw.mode='lines+markers';raw.line.width=1.1;raw.marker={size:3,color:colors.sample};
+  const data=[raw];
+  if(validFit){data.push(trace(xf.map(v=>v*1000),model.map(v=>v.y),ok?'Gaussian + background':'Rejected fit candidate',color));data.push(trace(xf.map(v=>v*1000),model.map(v=>v.background),'Local background',colors.background,'dot'));}
+  const rx=[],ry=[];
+  if(validFit)D.detuning.forEach((v,j)=>{if(v>=low&&v<=high){rx.push(v*1000);ry.push(y[j]-fitAt(a,index,v).y);}});
+  const rl=layout('Detuning Δ/(2π) (kHz)','ΔPₑ',{margin:{l:60,r:18,t:10,b:45}});rl.xaxis.range=l.xaxis.range;
+  rl.yaxis.exponentformat='power';rl.shapes=[{type:'line',xref:'paper',x0:0,x1:1,y0:0,y1:0,line:{color:'#94a3b8',width:1,dash:'dot'}}];
+  if(!validFit)rl.annotations=[{xref:'paper',yref:'paper',x:.5,y:.5,text:'No fit available for this spectrum',showarrow:false,font:{color:'#64748b'}}];
+  const contrast=D.cutoffs.map((_,j)=>a.accepted[j*na+ai]?a.contrast[j*na+ai]:null);
+  const cl=layout('Cutoff c','Contrast C',{margin:{l:55,r:14,t:12,b:45}});
+  cl.xaxis={...cl.xaxis,type:'log',range:[-5,0],tickvals:[1e-5,1e-3,.1,1],ticktext:['10⁻⁵','10⁻³','10⁻¹','1']};
+  cl.yaxis.range=[0,Math.max(.25,...contrast.filter(Number.isFinite))*1.08];
+  cl.shapes=[{type:'line',xref:'paper',x0:0,x1:1,y0:.2,y1:.2,line:{color:'#64748b',width:1,dash:'dot'}},
+   {type:'line',x0:D.cutoffs[ci],x1:D.cutoffs[ci],yref:'paper',y0:0,y1:1,line:{color:'#d55e00',width:1,dash:'dash'}}];
+  const ct=trace(D.cutoffs,contrast,'Fitted contrast',colors.fit);ct.mode='lines+markers';ct.marker={size:3};
+  $('report').hidden=false;
+  await Promise.all([drawMap(a,li,ci,ai),Plotly.react('spectrum',data,l,config),Plotly.react('residual',[trace(rx,ry,'Simulation − fit',color)],rl,config),Plotly.react('cutoffTrace',[ct],cl,config)]);
+  if(own!==token)return;
+  const width=a.fwhm_hz[index]/D.reference_hz, c=a.contrast[index];
+  $('widthValue').textContent=ok?fmt(width):'—';$('contrastValue').textContent=ok?fmt(c,4):'—';
+  $('qualityValue').textContent=ok?fmt(c/width,4):'—';$('centerValue').textContent=ok?fmt(a.center_hz[index],1):'—';
+  $('contrastNote').textContent=ok?(c>=.2?'Above C = 0.2':'Below C = 0.2'):'Excluded from reported metrics';
+  $('rmsValue').textContent=validFit?`Local RMS / C: ${fmt(100*a.relative_rms[index],2)}%`:'No fitted residual';
+  $('selectionText').textContent=`L = ${D.durations[li]} µs  ·  Ω₀/(2π) = ${D.amps[ai].toFixed(6)} MHz  ·  c = ${D.cutoffs[ci].toPrecision(7)}`;
+  $('fitStatus').className=ok?'status':'status rejected';
+  $('fitStatus').textContent=ok?`Accepted independent fit · central window ±${fmt(radius*1000,1)} kHz · Gaussian depth ${fmt(c,5)}`:(reasons[status]||status)+(validFit?' Red curve: rejected candidate, for diagnosis only.':'');
+  $('traceDetails').textContent=`Selected sample: cutoff ${ci+1}/${nc}, amplitude ${ai+1}/${na}. Original crossing-rule width: ${fmt(a.direct_fwhm_hz[index]/D.reference_hz)} ΓT₂*. Original background-relative contrast: ${fmt(a.direct_contrast[index],4)}. These use the previous extraction definition and are not the current manuscript metrics.`;
+  current={a,index,x,y,li,ci,ai,ok,status};window.fitExplorer.current=current;window.reportReady=true;
+  $('loading').hidden=true;document.documentElement.dataset.ready='true';
+ }catch(error){$('loading').textContent='Unable to load this report: '+error.message;$('loading').classList.add('error');window.reportError=error.message;throw error;}
+}
+D.durations.forEach((v,i)=>$('duration').add(new Option(`${v} µs`,i)));
+$('amplitude').max=na-1;$('cutoff').max=nc-1;
+$('duration').addEventListener('change',()=>select({li:+$('duration').value}));
+$('amplitude').addEventListener('input',()=>select({ai:+$('amplitude').value}));
+$('cutoff').addEventListener('input',()=>select({ci:+$('cutoff').value}));
+for(const [id,values,key] of [['amplitudeInput',D.amps,'ai'],['cutoffInput',D.cutoffs,'ci']]){
+ let timer;
+ const commit=()=>{clearTimeout(timer);const v=+$(id).value;if(v>0&&Number.isFinite(v))select({[key]:nearest(values,v)});else setInputs();};
+ $(id).addEventListener('change',commit);
+ $(id).addEventListener('input',()=>{clearTimeout(timer);timer=setTimeout(commit,500);});
+ $(id).addEventListener('keydown',event=>{if(event.key==='Enter')commit();});
+}
+for(const id of ['zoom','fullY','originalBoundary'])$(id).addEventListener('change',render);
+$('boundaryPreset').addEventListener('click',()=>select(D.default));
+$('beforePreset').addEventListener('click',()=>select({li:D.durations.indexOf(50),ai:nearest(D.amps,50),ci:nearest(D.cutoffs,.00210490414451202)}));
+$('afterPreset').addEventListener('click',()=>select({li:D.durations.indexOf(50),ai:nearest(D.amps,50),ci:nearest(D.cutoffs,.002364489412645407)}));
+$('download').addEventListener('click',()=>{
+ if(!current)return;
+ const {a,index,li,ci,ai,ok,status}=current;
+ const rows=['duration_us,amplitude_mhz,cutoff,detuning_khz,population,fit_population,local_background,residual,in_central_window,accepted,status'];
+ D.detuning.forEach((x,j)=>{const fit=fitAt(a,index,x),inside=fit&&Math.abs(x-a.reference_mhz[index])<=a.radius_mhz[index];rows.push([D.durations[li],D.amps[ai],D.cutoffs[ci],x*1000,current.y[j],inside?fit.y:'',inside?fit.background:'',inside?current.y[j]-fit.y:'',Boolean(inside),ok,status].join(','));});
+ const url=URL.createObjectURL(new Blob([rows.join('\n')+'\n'],{type:'text/csv'})),link=document.createElement('a');link.href=url;link.download=`spectrum_L${D.durations[li]}us_c${ci}_amp${ai}.csv`;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+});
+$('referenceText').textContent=`Linewidth normalization: ΓT₂* = 1/(πT₂*) = ${(D.reference_hz/1000).toFixed(3)} kHz, using the manuscript reference T₂* = ${D.reference_t2_us.toFixed(1)} µs. Detuning, amplitude, and center remain in frequency units.`;
+$('modelText').textContent=`Three-level model: p = ${D.model.power}, β = ${D.model.beta}, midpoint transition ${D.model.transition_ns} ns, T₁ = ${D.model.t1_us} µs, model T₂ = ${D.model.t2_us} µs.`;
+window.fitExplorer={state,select,unpack,fitAt,data:D,current:null};
+setInputs();window.fitExplorer.ready=render().then(()=>{
+ $('map').on('plotly_click',event=>{const p=event.points[0];if(p&&p.x>0&&p.y>0)select({ci:nearest(D.cutoffs,p.x),ai:nearest(D.amps,p.y)});});
+ $('cutoffTrace').on('plotly_click',event=>{const p=event.points[0];if(p&&p.x>0)select({ci:nearest(D.cutoffs,p.x)});});
+});
+})();
+</script>
+</body>
+</html>

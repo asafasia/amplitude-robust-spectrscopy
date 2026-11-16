@@ -1,8 +1,15 @@
 .PHONY: install install-dev test lint paper paper-main paper-supplemental \
 	paper-clean paper-data paper-data-core paper-figures-supplemental \
-	paper-supplemental-assets
+	paper-main-assets paper-supplemental-assets
 
 PYTHON ?= python
+
+MAIN_FIGURES := \
+	01_pulse_mechanism.pdf \
+	02_latest_q1_spectroscopy.pdf \
+	03_latest_q1_pulse_improvement.pdf \
+	04_duration_cutoff_scan.pdf
+MAIN_LOCAL_FIGURES := $(addprefix paper/figures/generated/,$(MAIN_FIGURES))
 
 SUPPLEMENTAL_FIGURES := \
 	supplemental/s01_measurement_chain.pdf \
@@ -12,6 +19,8 @@ SUPPLEMENTAL_FIGURES := \
 	supplemental/drag_beta_optimization.pdf \
 	supplemental/s08_pulse_modifications.pdf \
 	supplemental/edge_smoothing_results.pdf \
+	supplemental/square_echo_comparison.pdf \
+	supplemental/ramsey_fft_linewidth.pdf \
 	supp_extended_cutoff_duration.pdf
 SUPPLEMENTAL_LOCAL_FIGURES := $(addprefix paper/figures/generated/,$(SUPPLEMENTAL_FIGURES))
 
@@ -29,13 +38,15 @@ lint:
 
 paper: paper-main paper-supplemental
 
-paper-main:
+paper-main: paper-main-assets
 	latexmk -pdf -interaction=nonstopmode -halt-on-error -cd paper/main.tex
 
 paper-supplemental: paper-supplemental-assets
 	latexmk -pdf -interaction=nonstopmode -halt-on-error -cd paper/supplemental.tex
 
 paper-supplemental-assets: $(SUPPLEMENTAL_LOCAL_FIGURES)
+
+paper-main-assets: $(MAIN_LOCAL_FIGURES)
 
 paper/figures/generated/%.pdf: figures/paper/%.pdf
 	@mkdir -p "$(@D)"
@@ -44,6 +55,8 @@ paper/figures/generated/%.pdf: figures/paper/%.pdf
 paper-figures-supplemental:
 	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_supplemental_figures.py
 	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_supplemental_extended_cutoff.py
+	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_supplemental_square_echo.py
+	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_supplemental_ramsey_fft.py
 
 paper-clean:
 	latexmk -c -cd paper/main.tex
@@ -54,6 +67,8 @@ paper-clean:
 	$(RM) paper/supplementalNotes.bib
 
 paper-data-core:
+	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_supplemental_ramsey_fft.py
+	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_supplemental_square_echo.py
 	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_latest_paper_measurements.py
 	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_main_ac_stark_correction_maps.py
 	PYTHONPATH=. MPLBACKEND=Agg $(PYTHON) scripts/make_main_ac_stark_shifts.py

@@ -59,6 +59,8 @@ The maintained generators below export here:
 
 | Dataset | Kind | Manuscript use | Status | Generator |
 |---|---|---|---|---|
+| `09_square_echo_comparison` | numerical | Supplemental, Figure S9 | included; saved single-inversion spectra, no new simulation | `scripts/make_supplemental_square_echo.py` |
+| `10_ramsey_fft_linewidth` | numerical | Supplemental, Figure S10 and Table S2 | included; exponential Ramsey model, finite-delay FFT and linewidth conventions | `scripts/make_supplemental_ramsey_fft.py` |
 | `05_current_drag_comparison` | numerical | Supplemental, Figure S5(a–c) | included; current 50 ns midpoint and power-2 window | `scripts/make_current_drag_supplement.py --simulate` |
 | `07_current_edge_comparison` | numerical | Supplemental, Figure S7 | included; 20 us, cutoff 0.005, 50 ns midpoint, power-2 window | `scripts/make_current_edge_supplement.py` |
 | `04_main_ac_stark_correction_maps` | experimental | Letter, Figure 4 | included | `scripts/make_main_ac_stark_correction_maps.py` |

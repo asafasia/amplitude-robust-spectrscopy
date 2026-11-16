@@ -4,15 +4,22 @@
     "cutoff": 0.005,
     "power": 2.0,
     "transition_us": 0.05,
-    "drag_beta": -0.5,
+    "drag_beta": 0.5,
     "anharmonicity_mhz": -216.0,
     "polynomial": true
+  },
+  "drag_beta_convention": {
+    "paper_definition": "I-iQ; Q=-beta*dI/dt/alpha; alpha=omega12-omega01<0 in angular-frequency units",
+    "paper_beta": 0.5,
+    "source_definition": "I-iQ; Q=-beta_source*dI/dt/abs(alpha)",
+    "source_beta": -0.5,
+    "conversion": "beta=-beta_source; waveform and populations unchanged"
   },
   "complex_peak_normalization": {
     "hard": 0.901341357767828,
     "polynomial": 0.9008726471259061
   },
-  "convention": "I-iQ; Q=-beta*dI/dt/(2*pi*abs(alpha_MHz)); both I and Q divided by the same complex-envelope peak",
+  "convention": "I-iQ; Q=-beta*dI/dt/alpha; alpha=omega12-omega01<0 in angular-frequency units",
   "families": [
     "Hard cutoff",
     "Polynomial ($p=2$)"
@@ -27,8 +34,9 @@
   "reproduce": ".venv/bin/python scripts/make_supplemental_figures.py --only pulse_modifications",
   "source_sha256": {
     "echospec/simulation/polynomial_echo.py": "59021291bb6363a59767274c3c3d727843d37319364a60d51d63c9e7193b950d",
-    "scripts/make_current_drag_supplement.py": "5a5f0f0f598e00e11ac23cef308b91a2257e8bf2cff08960e455d97b956da5ec"
+    "scripts/make_current_drag_supplement.py": "9126888ef0b3cbb7ace4cf57b320d0bcc764cab3c92cc795338ba35a9062ff3a",
+    "echospec/figures/drag_convention.py": "0c4d002d67bb2857da47fbf65b0167559451bb688ffdf30d427018a09c3cf1e6"
   },
-  "generator_sha256": "589cbed2dcf9a75a6038dc1fb34f362e134f8dd9fc689c41f7180645c07ddf5b",
+  "generator_sha256": "dc9a63e8ab2a85c07785086e18c2869c4ae979ac08426e451f3fb5bdea387ad3",
   "arrays_sha256": "ad93d9961ecb067afc326ca2ef4b770c31b73ac8a51ee6e971b69104cda1bca5"
 }

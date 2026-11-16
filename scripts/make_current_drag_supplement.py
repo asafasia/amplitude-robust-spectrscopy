@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+from copy import deepcopy
 from dataclasses import dataclass
 from functools import cached_property
 from pathlib import Path
@@ -18,6 +19,11 @@ import numpy as np
 from scipy.optimize import minimize_scalar
 
 from echospec.figures.coherence import REFERENCE_T2_STAR_S
+from echospec.figures.drag_convention import (
+    PAPER_DRAG_CONVENTION,
+    SOURCE_DRAG_CONVENTION,
+    polynomial_beta_to_paper,
+)
 from echospec.figures.supplemental import FIGURE_WIDTH, apply_supplemental_style
 from echospec.paper_data import save_paper_dataset
 from echospec.simulation.polynomial_echo import (
@@ -82,6 +88,7 @@ def source_hashes():
     names = [
         "scripts/make_current_drag_supplement.py",
         "scripts/scan_drag_beta_center.py",
+        "echospec/figures/drag_convention.py",
         "echospec/simulation/polynomial_echo.py",
         "echospec/simulation/qutrit_rk4.cpp",
         "paper/data/experimental/03_latest_q1_pulse_improvement.npz",
@@ -169,10 +176,28 @@ def simulate_dataset():
     return arrays, provenance
 
 
+def paper_scan_view(simulation, metadata):
+    """Relabel the legacy scan without changing populations or sample order."""
+    displayed = dict(simulation)
+    displayed["beta"] = polynomial_beta_to_paper(simulation["beta"])
+    provenance = deepcopy(metadata)
+    for result in provenance["best_sampled"].values():
+        result["beta"] = float(polynomial_beta_to_paper(result["beta"]))
+    for check in provenance["convergence"]["checks"]:
+        check["beta"] = float(polynomial_beta_to_paper(check["beta"]))
+    provenance["drive"] = PAPER_DRAG_CONVENTION
+    provenance["source_beta_convention"] = SOURCE_DRAG_CONVENTION
+    provenance["beta_conversion"] = (
+        "beta=-beta_source; sample order, waveforms and populations unchanged"
+    )
+    return displayed, provenance
+
+
 def render():
     with np.load(NUMERICAL / f"{STEM}.npz") as saved:
         sim = {key: saved[key].copy() for key in saved.files}
     meta = json.loads((NUMERICAL / f"{STEM}.json").read_text())["provenance"]
+    sim, meta = paper_scan_view(sim, meta)
     data, exp_meta = load_export("03_latest_q1_pulse_improvement")
     apply_supplemental_style()
     fig, axes = plt.subplots(1, 3, figsize=(FIGURE_WIDTH, 2.7), layout="constrained")
@@ -184,7 +209,7 @@ def render():
         best = meta["best_sampled"][key]
         objective.scatter(best["beta"], best["rms_hz"] / 1000,
                           marker="*", s=65, color=color, zorder=4)
-    objective.axvline(-0.5, color="0.5", ls=":", lw=0.7)
+    objective.axvline(0.5, color="0.5", ls=":", lw=0.7)
     objective.set(yscale="log", xlabel=r"DRAG coefficient $\beta$",
                   ylabel="RMS center offset (kHz)", title="(a)  Numerical beta scan")
     objective.legend(fontsize=7, loc="lower right", bbox_to_anchor=(1.02, 0.1),
@@ -234,6 +259,7 @@ def render():
                         source_dataset="paper/data/experimental/03_latest_q1_pulse_improvement.npz",
                         duration_us=20, cutoff=0.005, transition_ns=50, polynomial_power=2,
                         acquisition_beta=[0, 1.2557575757575759, 1.2557575757575759],
+                        beta_convention=PAPER_DRAG_CONVENTION,
                         shots=5000, statistics=statistics,
                         processing="Saved Gaussian centers on common accepted nonzero rows up to 60 MHz; one mean subtracted per pulse; no smoothing",
                         optimization_scan="Deferred by user; not present in this figure"),

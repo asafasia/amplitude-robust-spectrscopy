@@ -1,0 +1,20 @@
+{
+  "numerical_dataset_sha256": {
+    "10_ramsey_fft_linewidth.npz": "569137b8aaa7201429fffa52f1e08b1a9e30b746fc760cb2134ddd38c5d55994",
+    "10_ramsey_fft_linewidth.json": "42179d374f09bcc667cff422f14f9b717120c50f38a20d1433176359f9b916dc"
+  },
+  "experimental_reference_source": "figures/paper/03_latest_q1_pulse_improvement_provenance.json",
+  "experimental_reference_sha256": "8c4ac83fa39a043446a21a206115cab5ddb04e7d45e892db570001482512a96c",
+  "experimental_reference_statistic": {
+    "name": "E3_drag_poly",
+    "accepted": 178,
+    "displayed_amplitude_points": 180,
+    "matched_count": 177,
+    "median_fwhm_khz": 163.58476715506305,
+    "median_fwhm_normalized": 3.9057669407749263,
+    "median_contrast": 0.33274076779619893,
+    "center_mean_khz": 1.161736882850575,
+    "center_rms_about_mean_khz": 1.7124706560923053
+  },
+  "comparison_scope": "Common T2 reference and 20 us duration; not equal total acquisition time"
+}

@@ -1,0 +1,43 @@
+{
+  "generator": "scripts/plot_fig4_linewidth_crossings.py",
+  "generator_sha256": "9ff99530b554062aa6899d4f2b3c70eeff0723419d38361f51888a5ef4502b54",
+  "source_sha256": {
+    "outputs/fig4_50us_linewidth_diagnostic/fine_00.npz": "8ade6983be2f55b7b1ddbcf3403c55cafff822340c82bed685b649ef8d4eac32",
+    "outputs/fig4_50us_linewidth_diagnostic/fine_12.npz": "0f4eced22aaf50f19b501ea780172f6de115156ff90f0f2be1ecd8b705641e85",
+    "scripts/diagnose_fig4_50us_linewidth.py": "aa5a85778a2a99b75f09aa202c3c95128bfeb166b71dfab9ff2fb606cf43fbe4"
+  },
+  "reference_linewidth_hz": 41882.87976102509,
+  "cases": [
+    {
+      "case": "fine_00",
+      "cutoff": 0.00210490414451202,
+      "normalized_width": 7.576610479472017,
+      "crossings_mhz": [
+        -0.1586369161880249,
+        0.1586933495198243
+      ],
+      "selected_pair_mhz": [
+        -0.1586369161880249,
+        0.1586933495198243
+      ]
+    },
+    {
+      "case": "fine_12",
+      "cutoff": 0.002364489412645407,
+      "normalized_width": 3.30309353605618,
+      "crossings_mhz": [
+        -0.16256969952064795,
+        -0.094259214754886,
+        -0.06886260798212615,
+        0.06948046142793403,
+        0.09347075478960054,
+        0.1626890565263509
+      ],
+      "selected_pair_mhz": [
+        -0.06886260798212615,
+        0.06948046142793403
+      ]
+    }
+  ],
+  "note": "Actual cached spectra. No simulation, smoothing, or curve edits. Top row shows excitation probability; bottom row subtracts each spectrum's own half-depth level and magnifies the vertical scale."
+}

@@ -2,18 +2,20 @@
   "generator": "scripts/make_main_duration_cutoff_scan.py",
   "included_in_manuscript": true,
   "source_sha256": {
-    "outputs/polynomial_duration_cutoff_poly2_log/n100/comparison_metrics.npz": "790279985f85e7d2c3d7d8c8bf3628b1aec3170d2df76a642534c2f37e7de43b",
-    "outputs/polynomial_duration_cutoff_poly2_log/n100/comparison_summary.json": "86602685137fa3f5ba5588c676dd0e65df378b3fff0d6810b87932ba92e492a7",
-    "outputs/polynomial_duration_cutoff_poly2_log/n100/dataset_manifest.json": "0cf1868ec772400fa970479f39579139e764ec8cb99d16451a5909a1af99ef4f",
-    "outputs/polynomial_duration_cutoff_poly2_log/n100/validation/convergence.json": "98e0c04a0a54f3d2f279df4acfd879cda97ad838b944d90c81f82539ff2f5395",
-    "outputs/polynomial_duration_cutoff_poly2_log/n100/simulations/L10us/scan.npz": "7a89423b4d6fb0f845f865c7d065e115f7a951b857bfa0fcd8a5e767beeea3fe",
-    "outputs/polynomial_duration_cutoff_poly2_log/n100/simulations/L20us/scan.npz": "2d6d8aa6e1e817613b228d7431537966a0ba568d1f49980f90a947e102fcb8de",
-    "outputs/polynomial_duration_cutoff_poly2_log/n100/simulations/L30us/scan.npz": "cf1bfd0d081716aa2df59028106ec5e12ca0423f19d257992d04281be0b4a42a",
-    "outputs/polynomial_duration_cutoff_poly2_log/n100/simulations/L45us/scan.npz": "e8321ffe85278bf31c82e2bff65d54ffd9d91c9fc8fa79db2443f30615ea1276",
-    "outputs/polynomial_duration_cutoff_poly2_log/n100/simulations/L60us/scan.npz": "0fdc3871b859c38e7af67d3f6f59c69e08913b9cd70b4d67cbee88b85f64fa5e",
-    "figures/paper/supp_extended_cutoff_duration.npz": "9ea5ecc0c7fe0a31838e351c41f8d58b227d99a0c2c4c253621a6e1d8e3f474b"
+    "outputs/polynomial_duration_cutoff_poly2_log_40_50/n100/comparison_metrics.npz": "b4a96ee18c296055db0a0672dee2951c1b02d6a8e39f6e95d2fdb98aa57253d9",
+    "outputs/polynomial_duration_cutoff_poly2_log_40_50/n100/comparison_summary.json": "51a37abcf28443fe327bed17386350d880bd83b8473bcbe56755e3bf3c693137",
+    "outputs/polynomial_duration_cutoff_poly2_log_40_50/n100/dataset_manifest.json": "3c249f774f95401cbdbd38b276c626ad2e93c017bad387b1ec3c7c3803e98023",
+    "outputs/polynomial_duration_cutoff_poly2_log_40_50/n100/validation/convergence.json": "a121059103db19f90b064c837fde7be62d67bfb5a04952efb03c0fe1009327bf",
+    "outputs/polynomial_duration_cutoff_poly2_log_40_50/n100/baseline_copy/L10us/scan.npz": "7a89423b4d6fb0f845f865c7d065e115f7a951b857bfa0fcd8a5e767beeea3fe",
+    "outputs/polynomial_duration_cutoff_poly2_log_40_50/n100/baseline_copy/L20us/scan.npz": "2d6d8aa6e1e817613b228d7431537966a0ba568d1f49980f90a947e102fcb8de",
+    "outputs/polynomial_duration_cutoff_poly2_log_40_50/n100/baseline_copy/L30us/scan.npz": "cf1bfd0d081716aa2df59028106ec5e12ca0423f19d257992d04281be0b4a42a",
+    "outputs/polynomial_duration_cutoff_poly2_log_40_50/n100/simulations/L40us/scan.npz": "62f55a7cfb9a399f845411e88dd5d02dd97cef502b8f98a82d8ce8ee1f00ea13",
+    "outputs/polynomial_duration_cutoff_poly2_log_40_50/n100/simulations/L50us/scan.npz": "3da47b0ac498fe91354ad098f90b68e22f62740495736ebd2f23b67b215dd095",
+    "outputs/polynomial_duration_cutoff_poly2_log_40_50/n100/robust_fits/metrics.npz": "dc43bbbd8e55f3547119a55a73663dc7b6c4d81b65ecc14af2400633963e85da",
+    "outputs/polynomial_duration_cutoff_poly2_log_40_50/n100/robust_fits/provenance.json": "6e7f8538270f0b22372cdf55b8c1fcc735af96d5e3509aaf3a25ba8c55038348",
+    "figures/paper/supp_extended_cutoff_duration.npz": "703d5c77e56d194c5b7c7e90c4a2828621b6a888d3a68841bc1cca188084f0d6"
   },
-  "generator_sha256": "17082211667304819b5de3c384a5166486ea5ca302d8e2324f81ff3e694d01e0",
+  "generator_sha256": "96142446adef40359e9343c8e60782377a672ce3a4b5901d68b854885c5d9b9a",
   "source_configuration": {
     "amplitude_convention": "Scale A before echo smoothing; no peak/area renormalization",
     "amplitude_spacing": "log",
@@ -449,7 +451,621 @@
     3.38,
     3.48
   ],
-  "selection": "Exact 20 us row (panels c/d) of the supplemental full-range survey",
+  "drag_beta_convention": {
+    "paper_definition": "I-iQ; Q=-beta*dI/dt/alpha; alpha=omega12-omega01<0 in angular-frequency units",
+    "paper_beta": 0.5,
+    "source_definition": "I-iQ; Q=-beta_source*dI/dt/abs(alpha)",
+    "source_beta": -0.5,
+    "conversion": "beta=-beta_source; waveform and populations unchanged"
+  },
+  "drag_convention_helper_sha256": "0c4d002d67bb2857da47fbf65b0167559451bb688ffdf30d427018a09c3cf1e6",
+  "metric_method": "FWHM and contrast of the locally fitted Gaussian component above a quadratic background, with a smooth curvature-scaled window and soft-L1 residual loss. Original rejected cells remain rejected. Additional fit, physicality, sampling and identifiability checks apply.",
+  "fitted_metric_provenance": {
+    "complete": true,
+    "source_sha256": {
+      "scripts/refit_cutoff_survey.py": "028902c547017a863d27ed8285f8f220ea39048ab207203dc406b52ba1c21383",
+      "echospec/analysis/robust_dip_fit.py": "43190c795325a5a904b333d1ffd303fca938786451bdac0909abc5169715195a",
+      "echospec/analysis/dip_metrics.py": "851f4571da5dc275890f42eaf7393f1818fffe69043f4fff703272dddf9290ca",
+      "outputs/polynomial_duration_cutoff_poly2_log_40_50/n100/baseline_copy/L10us/scan.npz": "7a89423b4d6fb0f845f865c7d065e115f7a951b857bfa0fcd8a5e767beeea3fe",
+      "outputs/polynomial_duration_cutoff_poly2_log_40_50/n100/baseline_copy/L20us/scan.npz": "2d6d8aa6e1e817613b228d7431537966a0ba568d1f49980f90a947e102fcb8de",
+      "outputs/polynomial_duration_cutoff_poly2_log_40_50/n100/baseline_copy/L30us/scan.npz": "cf1bfd0d081716aa2df59028106ec5e12ca0423f19d257992d04281be0b4a42a",
+      "outputs/polynomial_duration_cutoff_poly2_log_40_50/n100/simulations/L40us/scan.npz": "62f55a7cfb9a399f845411e88dd5d02dd97cef502b8f98a82d8ce8ee1f00ea13",
+      "outputs/polynomial_duration_cutoff_poly2_log_40_50/n100/simulations/L50us/scan.npz": "3da47b0ac498fe91354ad098f90b68e22f62740495736ebd2f23b67b215dd095"
+    },
+    "settings": {
+      "model": "Gaussian dip plus quadratic background",
+      "loss": "soft_l1",
+      "f_scale": 0.03,
+      "window_factor": 1.5,
+      "minimum_radius_mhz": 0.12,
+      "maximum_radius_mhz": 0.5,
+      "curvature_offsets_mhz": [
+        -0.01,
+        -0.005,
+        0.0,
+        0.005,
+        0.01
+      ],
+      "minimum_contrast": 0.001,
+      "minimum_width_intervals": 6,
+      "maximum_relative_rms": 0.1,
+      "maximum_relative_width_error": 0.25
+    },
+    "durations_us": [
+      10.0,
+      20.0,
+      30.0,
+      40.0,
+      50.0
+    ],
+    "accepted_counts": [
+      8032,
+      8555,
+      8752,
+      8860,
+      5705
+    ],
+    "statuses": {
+      "original_rejected": 9548,
+      "invalid_fitted_contrast": 445,
+      "accepted": 39904,
+      "half_width_outside_window": 15,
+      "fit_boundary_or_failure": 78,
+      "unphysical_local_fit": 10
+    },
+    "arrays_sha256": "dc43bbbd8e55f3547119a55a73663dc7b6c4d81b65ecc14af2400633963e85da",
+    "validation": {
+      "representative_checks": [
+        {
+          "duration_us": 10.0,
+          "cutoff": 1e-05,
+          "amplitude_mhz": 9.770099572992255,
+          "coarse_accepted": false,
+          "time_accepted": false,
+          "refined_accepted": false
+        },
+        {
+          "duration_us": 10.0,
+          "cutoff": 1e-05,
+          "amplitude_mhz": 49.770235643321115,
+          "coarse_accepted": false,
+          "time_accepted": false,
+          "refined_accepted": false
+        },
+        {
+          "duration_us": 10.0,
+          "cutoff": 1e-05,
+          "amplitude_mhz": 100.0,
+          "coarse_accepted": true,
+          "time_accepted": true,
+          "refined_accepted": true,
+          "time_width_change_normalized": 1.04740179991771e-11,
+          "frequency_width_change_normalized": 2.086806929955736e-06
+        },
+        {
+          "duration_us": 10.0,
+          "cutoff": 0.001047615752789665,
+          "amplitude_mhz": 9.770099572992255,
+          "coarse_accepted": true,
+          "time_accepted": true,
+          "refined_accepted": true,
+          "time_width_change_normalized": 6.807799000725672e-12,
+          "frequency_width_change_normalized": 2.367184602356344e-06
+        },
+        {
+          "duration_us": 10.0,
+          "cutoff": 0.001047615752789665,
+          "amplitude_mhz": 49.770235643321115,
+          "coarse_accepted": true,
+          "time_accepted": true,
+          "refined_accepted": true,
+          "time_width_change_normalized": 1.2174325038647309e-08,
+          "frequency_width_change_normalized": 6.806362990830096e-07
+        },
+        {
+          "duration_us": 10.0,
+          "cutoff": 0.001047615752789665,
+          "amplitude_mhz": 100.0,
+          "coarse_accepted": true,
+          "time_accepted": true,
+          "refined_accepted": true,
+          "time_width_change_normalized": 7.790595156416122e-09,
+          "frequency_width_change_normalized": 1.3113406223957204e-05
+        },
+        {
+          "duration_us": 10.0,
+          "cutoff": 1.0,
+          "amplitude_mhz": 9.770099572992255,
+          "coarse_accepted": true,
+          "time_accepted": true,
+          "refined_accepted": true,
+          "time_width_change_normalized": 2.5844631699733923e-07,
+          "frequency_width_change_normalized": 0.001202693661296691
+        },
+        {
+          "duration_us": 10.0,
+          "cutoff": 1.0,
+          "amplitude_mhz": 49.770235643321115,
+          "coarse_accepted": false,
+          "time_accepted": false,
+          "refined_accepted": false
+        },
+        {
+          "duration_us": 10.0,
+          "cutoff": 1.0,
+          "amplitude_mhz": 100.0,
+          "coarse_accepted": false,
+          "time_accepted": false,
+          "refined_accepted": false
+        },
+        {
+          "duration_us": 20.0,
+          "cutoff": 1e-05,
+          "amplitude_mhz": 9.770099572992255,
+          "coarse_accepted": false,
+          "time_accepted": false,
+          "refined_accepted": false
+        },
+        {
+          "duration_us": 20.0,
+          "cutoff": 1e-05,
+          "amplitude_mhz": 49.770235643321115,
+          "coarse_accepted": true,
+          "time_accepted": true,
+          "refined_accepted": true,
+          "time_width_change_normalized": 1.6092519460886545e-11,
+          "frequency_width_change_normalized": 5.232409677128308e-07
+        },
+        {
+          "duration_us": 20.0,
+          "cutoff": 1e-05,
+          "amplitude_mhz": 100.0,
+          "coarse_accepted": true,
+          "time_accepted": true,
+          "refined_accepted": true,
+          "time_width_change_normalized": 6.149776620023704e-11,
+          "frequency_width_change_normalized": 4.105460243366638e-07
+        },
+        {
+          "duration_us": 20.0,
+          "cutoff": 0.001047615752789665,
+          "amplitude_mhz": 9.770099572992255,
+          "coarse_accepted": true,
+          "time_accepted": true,
+          "refined_accepted": true,
+          "time_width_change_normalized": 4.151944373720107e-13,
+          "frequency_width_change_normalized": 2.4556884600332623e-06
+        },
+        {
+          "duration_us": 20.0,
+          "cutoff": 0.001047615752789665,
+          "amplitude_mhz": 49.770235643321115,
+          "coarse_accepted": true,
+          "time_accepted": true,
+          "refined_accepted": true,
+          "time_width_change_normalized": 1.7802654969180503e-09,
+          "frequency_width_change_normalized": 1.2165521108481424e-05
+        },
+        {
+          "duration_us": 20.0,
+          "cutoff": 0.001047615752789665,
+          "amplitude_mhz": 100.0,
+          "coarse_accepted": true,
+          "time_accepted": true,
+          "refined_accepted": true,
+          "time_width_change_normalized": 8.991497849005007e-08,
+          "frequency_width_change_normalized": 6.692336851813201e-05
+        },
+        {
+          "duration_us": 20.0,
+          "cutoff": 1.0,
+          "amplitude_mhz": 9.770099572992255,
+          "coarse_accepted": true,
+          "time_accepted": true,
+          "refined_accepted": true,
+          "time_width_change_normalized": 1.7728031152227565e-09,
+          "frequency_width_change_normalized": 0.00019281926441004903
+        },
+        {
+          "duration_us": 20.0,
+          "cutoff": 1.0,
+          "amplitude_mhz": 49.770235643321115,
+          "coarse_accepted": true,
+          "time_accepted": true,
+          "refined_accepted": true,
+          "time_width_change_normalized": 9.878871185353156e-06,
+          "frequency_width_change_normalized": 0.0007207657276321239
+        },
+        {
+          "duration_us": 20.0,
+          "cutoff": 1.0,
+          "amplitude_mhz": 100.0,
+          "coarse_accepted": true,
+          "time_accepted": true,
+          "refined_accepted": true,
+          "time_width_change_normalized": 0.009289067108733964,
+          "frequency_width_change_normalized": 0.01020939456264829
+        },
+        {
+          "duration_us": 30.0,
+          "cutoff": 1e-05,
+          "amplitude_mhz": 9.770099572992255,
+          "coarse_accepted": false,
+          "time_accepted": false,
+          "refined_accepted": false
+        },
+        {
+          "duration_us": 30.0,
+          "cutoff": 1e-05,
+          "amplitude_mhz": 49.770235643321115,
+          "coarse_accepted": true,
+          "time_accepted": true,
+          "refined_accepted": true,
+          "time_width_change_normalized": 2.8689067014796375e-11,
+          "frequency_width_change_normalized": 1.240894109614783e-06
+        },
+        {
+          "duration_us": 30.0,
+          "cutoff": 1e-05,
+          "amplitude_mhz": 100.0,
+          "coarse_accepted": true,
+          "time_accepted": true,
+          "refined_accepted": true,
+          "time_width_change_normalized": 1.0848283645986414e-10,
+          "frequency_width_change_normalized": 1.91732056988968e-06
+        },
+        {
+          "duration_us": 30.0,
+          "cutoff": 0.001047615752789665,
+          "amplitude_mhz": 9.770099572992255,
+          "coarse_accepted": true,
+          "time_accepted": true,
+          "refined_accepted": true,
+          "time_width_change_normalized": 3.27916744762932e-12,
+          "frequency_width_change_normalized": 2.9476621273123833e-06
+        },
+        {
+          "duration_us": 30.0,
+          "cutoff": 0.001047615752789665,
+          "amplitude_mhz": 49.770235643321115,
+          "coarse_accepted": true,
+          "time_accepted": true,
+          "refined_accepted": true,
+          "time_width_change_normalized": 3.5482061467424624e-09,
+          "frequency_width_change_normalized": 1.7093983558990015e-05
+        },
+        {
+          "duration_us": 30.0,
+          "cutoff": 0.001047615752789665,
+          "amplitude_mhz": 100.0,
+          "coarse_accepted": true,
+          "time_accepted": true,
+          "refined_accepted": true,
+          "time_width_change_normalized": 2.093295756090533e-07,
+          "frequency_width_change_normalized": 6.31382287120899e-05
+        },
+        {
+          "duration_us": 30.0,
+          "cutoff": 1.0,
+          "amplitude_mhz": 9.770099572992255,
+          "coarse_accepted": true,
+          "time_accepted": true,
+          "refined_accepted": true,
+          "time_width_change_normalized": 9.4052706884189e-09,
+          "frequency_width_change_normalized": 0.00019079305094099586
+        },
+        {
+          "duration_us": 30.0,
+          "cutoff": 1.0,
+          "amplitude_mhz": 49.770235643321115,
+          "coarse_accepted": true,
+          "time_accepted": true,
+          "refined_accepted": true,
+          "time_width_change_normalized": 3.234927888145408e-05,
+          "frequency_width_change_normalized": 0.00015257640291309435
+        },
+        {
+          "duration_us": 30.0,
+          "cutoff": 1.0,
+          "amplitude_mhz": 100.0,
+          "coarse_accepted": true,
+          "time_accepted": true,
+          "refined_accepted": true,
+          "time_width_change_normalized": 0.00540587848205452,
+          "frequency_width_change_normalized": 0.007147833081707322
+        },
+        {
+          "duration_us": 40.0,
+          "cutoff": 1e-05,
+          "amplitude_mhz": 9.770099572992255,
+          "coarse_accepted": false,
+          "time_accepted": false,
+          "refined_accepted": false
+        },
+        {
+          "duration_us": 40.0,
+          "cutoff": 1e-05,
+          "amplitude_mhz": 49.770235643321115,
+          "coarse_accepted": true,
+          "time_accepted": true,
+          "refined_accepted": true,
+          "time_width_change_normalized": 1.0124247086957517e-10,
+          "frequency_width_change_normalized": 3.1677082604862173e-06
+        },
+        {
+          "duration_us": 40.0,
+          "cutoff": 1e-05,
+          "amplitude_mhz": 100.0,
+          "coarse_accepted": true,
+          "time_accepted": true,
+          "refined_accepted": true,
+          "time_width_change_normalized": 3.738441983971529e-10,
+          "frequency_width_change_normalized": 5.403507302572892e-06
+        },
+        {
+          "duration_us": 40.0,
+          "cutoff": 0.001047615752789665,
+          "amplitude_mhz": 9.770099572992255,
+          "coarse_accepted": true,
+          "time_accepted": true,
+          "refined_accepted": true,
+          "time_width_change_normalized": 2.941452809030496e-12,
+          "frequency_width_change_normalized": 6.49531924768398e-07
+        },
+        {
+          "duration_us": 40.0,
+          "cutoff": 0.001047615752789665,
+          "amplitude_mhz": 49.770235643321115,
+          "coarse_accepted": true,
+          "time_accepted": true,
+          "refined_accepted": true,
+          "time_width_change_normalized": 8.6620417230921e-09,
+          "frequency_width_change_normalized": 3.242078723361369e-06
+        },
+        {
+          "duration_us": 40.0,
+          "cutoff": 0.001047615752789665,
+          "amplitude_mhz": 100.0,
+          "coarse_accepted": true,
+          "time_accepted": true,
+          "refined_accepted": true,
+          "time_width_change_normalized": 1.4435861274080538e-07,
+          "frequency_width_change_normalized": 6.581393961628283e-05
+        },
+        {
+          "duration_us": 40.0,
+          "cutoff": 1.0,
+          "amplitude_mhz": 9.770099572992255,
+          "coarse_accepted": true,
+          "time_accepted": true,
+          "refined_accepted": true,
+          "time_width_change_normalized": 1.1307549148809484e-08,
+          "frequency_width_change_normalized": 0.0001408243781196673
+        },
+        {
+          "duration_us": 40.0,
+          "cutoff": 1.0,
+          "amplitude_mhz": 49.770235643321115,
+          "coarse_accepted": true,
+          "time_accepted": true,
+          "refined_accepted": true,
+          "time_width_change_normalized": 4.613679289063549e-06,
+          "frequency_width_change_normalized": 0.0016734049295802752
+        },
+        {
+          "duration_us": 40.0,
+          "cutoff": 1.0,
+          "amplitude_mhz": 100.0,
+          "coarse_accepted": true,
+          "time_accepted": true,
+          "refined_accepted": true,
+          "time_width_change_normalized": 0.0039342743391932245,
+          "frequency_width_change_normalized": 0.0014517277887721523
+        },
+        {
+          "duration_us": 50.0,
+          "cutoff": 1e-05,
+          "amplitude_mhz": 9.770099572992255,
+          "coarse_accepted": false,
+          "time_accepted": false,
+          "refined_accepted": false
+        },
+        {
+          "duration_us": 50.0,
+          "cutoff": 1e-05,
+          "amplitude_mhz": 49.770235643321115,
+          "coarse_accepted": true,
+          "time_accepted": true,
+          "refined_accepted": true,
+          "time_width_change_normalized": 1.5578147406654416e-10,
+          "frequency_width_change_normalized": 7.495078639424157e-08
+        },
+        {
+          "duration_us": 50.0,
+          "cutoff": 1e-05,
+          "amplitude_mhz": 100.0,
+          "coarse_accepted": true,
+          "time_accepted": true,
+          "refined_accepted": true,
+          "time_width_change_normalized": 5.463182260612711e-10,
+          "frequency_width_change_normalized": 2.099428704306729e-07
+        },
+        {
+          "duration_us": 50.0,
+          "cutoff": 0.001047615752789665,
+          "amplitude_mhz": 9.770099572992255,
+          "coarse_accepted": true,
+          "time_accepted": true,
+          "refined_accepted": true,
+          "time_width_change_normalized": 4.100522803233866e-12,
+          "frequency_width_change_normalized": 1.058650408481122e-06
+        },
+        {
+          "duration_us": 50.0,
+          "cutoff": 0.001047615752789665,
+          "amplitude_mhz": 49.770235643321115,
+          "coarse_accepted": true,
+          "time_accepted": true,
+          "refined_accepted": true,
+          "time_width_change_normalized": 5.690177571878562e-09,
+          "frequency_width_change_normalized": 1.7032276336750807e-05
+        },
+        {
+          "duration_us": 50.0,
+          "cutoff": 0.001047615752789665,
+          "amplitude_mhz": 100.0,
+          "coarse_accepted": true,
+          "time_accepted": true,
+          "refined_accepted": true,
+          "time_width_change_normalized": 1.375241234955239e-06,
+          "frequency_width_change_normalized": 0.00018593890057650337
+        },
+        {
+          "duration_us": 50.0,
+          "cutoff": 1.0,
+          "amplitude_mhz": 9.770099572992255,
+          "coarse_accepted": false,
+          "time_accepted": false,
+          "refined_accepted": false
+        },
+        {
+          "duration_us": 50.0,
+          "cutoff": 1.0,
+          "amplitude_mhz": 49.770235643321115,
+          "coarse_accepted": false,
+          "time_accepted": false,
+          "refined_accepted": false
+        },
+        {
+          "duration_us": 50.0,
+          "cutoff": 1.0,
+          "amplitude_mhz": 100.0,
+          "coarse_accepted": false,
+          "time_accepted": false,
+          "refined_accepted": false
+        }
+      ],
+      "local_jump_checks": [
+        {
+          "cutoff": 0.00210490414451202,
+          "accepted": true,
+          "normalized_width": 1.5182571397093856,
+          "contrast": 0.029783998879562543,
+          "relative_rms": 0.010283624409871883,
+          "window_factor_range": [
+            1.2,
+            1.8
+          ],
+          "window_check_widths_normalized": [
+            1.5571026404340125,
+            1.477243251366765
+          ],
+          "window_check_accepted": [
+            true,
+            true
+          ]
+        },
+        {
+          "cutoff": 0.0022309243744089834,
+          "accepted": true,
+          "normalized_width": 1.527808870825277,
+          "contrast": 0.028625133371778258,
+          "relative_rms": 0.010832403327970959,
+          "window_factor_range": [
+            1.2,
+            1.8
+          ],
+          "window_check_widths_normalized": [
+            1.567549308642248,
+            1.4819186345746207
+          ],
+          "window_check_accepted": [
+            true,
+            true
+          ]
+        },
+        {
+          "cutoff": 0.002296736176338636,
+          "accepted": true,
+          "normalized_width": 1.5302793050329777,
+          "contrast": 0.028059632430538734,
+          "relative_rms": 0.011032217477932661,
+          "window_factor_range": [
+            1.2,
+            1.8
+          ],
+          "window_check_widths_normalized": [
+            1.569544441457346,
+            1.4820737090684584
+          ],
+          "window_check_accepted": [
+            true,
+            true
+          ]
+        },
+        {
+          "cutoff": 0.002319102079494042,
+          "accepted": true,
+          "normalized_width": 1.532081890703454,
+          "contrast": 0.027821820842790345,
+          "relative_rms": 0.011044287081065862,
+          "window_factor_range": [
+            1.2,
+            1.8
+          ],
+          "window_check_widths_normalized": [
+            1.5712411654130112,
+            1.4833178933497073
+          ],
+          "window_check_accepted": [
+            true,
+            true
+          ]
+        },
+        {
+          "cutoff": 0.002364489412645407,
+          "accepted": true,
+          "normalized_width": 1.5374722598720596,
+          "contrast": 0.027428961112756185,
+          "relative_rms": 0.01110067095103022,
+          "window_factor_range": [
+            1.2,
+            1.8
+          ],
+          "window_check_widths_normalized": [
+            1.5766615999301001,
+            1.4873013057572793
+          ],
+          "window_check_accepted": [
+            true,
+            true
+          ]
+        },
+        {
+          "cutoff": 0.0026560877829466868,
+          "accepted": true,
+          "normalized_width": 1.5614140394850213,
+          "contrast": 0.025671673785846085,
+          "relative_rms": 0.011039844725890837,
+          "window_factor_range": [
+            1.2,
+            1.8
+          ],
+          "window_check_widths_normalized": [
+            1.59407032182085,
+            1.5034313536579618
+          ],
+          "window_check_accepted": [
+            true,
+            true
+          ]
+        }
+      ],
+      "scope": "Saved time/frequency refinements at three cutoffs and three drives for every duration, plus six refined spectra around the 50 us jump. Window sensitivity is a model-dependence check, not numerical convergence."
+    },
+    "definition": "FWHM and contrast of the locally fitted Gaussian component above a quadratic background, with a smooth curvature-scaled window and soft-L1 residual loss. Original rejected cells remain rejected. Additional fit, physicality, sampling and identifiability checks apply."
+  },
+  "selection": "Exact 20 us row of the supplemental full-range survey",
   "array_order": "cutoff, nominal drive",
   "reference_linewidth_hz": 41882.87976102509,
   "reference_t2_star_s": 7.6e-06,
@@ -473,6 +1089,7 @@
     }
   },
   "contrast_threshold": 0.2,
+  "linewidth_label": "$\\mathrm{FWHM}/\\Gamma_{T_2^*}$",
   "cutoff_slices": {
     "panels": [
       "c",
@@ -486,10 +1103,17 @@
       10.0,
       20.0,
       30.0,
-      45.0,
-      60.0
+      40.0,
+      50.0
     ],
-    "values": "Same amplitude column for all five durations; rejected samples are gaps. The 20 us slices exactly match the displayed maps.",
+    "exported_durations_us": [
+      10.0,
+      20.0,
+      30.0,
+      40.0,
+      50.0
+    ],
+    "values": "Same amplitude column for all five displayed durations; rejected samples are gaps. The 20 us slices exactly match the displayed maps.",
     "highlighted_duration_us": 20,
     "highlight_style": "Thick solid orange, drawn above thinner comparison curves",
     "fwhm_axis_limits_normalized": [
@@ -515,16 +1139,33 @@
     "sampling": "logarithmic",
     "cell_edges": "Geometric midpoints; no resampling"
   },
-  "white_contours": "C=0.2, linearly interpolated between accepted samples with corner_mask=False; the band between the curves has C>0.2. These are contrast boundaries, not a linewidth threshold.",
+  "white_contours": "Smoothed C=0.2 guides with corner_mask=False; heatmaps, quantitative threshold masks, and slice curves are unchanged.",
+  "contour_smoothing": {
+    "method": "Mask-normalized Gaussian smoothing of the contour field only",
+    "sigma_samples": [
+      1.5,
+      3.0
+    ],
+    "axis_order": [
+      "cutoff",
+      "amplitude"
+    ],
+    "grid": "Logarithmic for the current manuscript survey",
+    "edge_mode": "nearest",
+    "rejected_cells": "Excluded from the average and masked again after smoothing",
+    "interpretation": "Smoothed C=0.2 guides; not exact boundaries of individual cells",
+    "unchanged": "Heatmaps, spectra, fits, metric arrays, threshold masks, and summaries"
+  },
+  "contour_helper_sha256": "1d54379ea3e8e9afe560d0ba382c6ab77c148bca2aaeb252ef0ce974adcf9858",
   "metric_mask": "Rejected and unresolved dips are gray, not zero; local FWHM does not certify a unique resonance.",
-  "contrast": "Dip depth in excitation probability relative to a fitted linear background at the dip; dimensionless and independent of shot count",
-  "validation": "Exact equality to supplemental row and original 20 us scan; source SHA-256 checksums verified; no smoothing or recomputation",
+  "contrast": "Gaussian dip depth relative to the fitted local quadratic background; dimensionless and independent of shot count",
+  "validation": "Exact equality to supplemental maps and all five duration slices; fit source SHA-256 checksums verified against the original spectra; no simulation or metric interpolation; display-only contour smoothing",
   "summaries": {
     "above_threshold": {
-      "sample_count": 4993,
+      "sample_count": 4659,
       "fwhm_khz_range": [
-        125.22019076865377,
-        305.2241778606169
+        119.96581829115115,
+        353.329075669928
       ]
     },
     "fixed_cutoff_example": {
@@ -533,18 +1174,567 @@
         10.235310218990262,
         100.0
       ],
-      "minimum_contrast": 0.39117115639664757,
-      "maximum_fwhm_khz": 170.17563492661964
+      "minimum_contrast": 0.2961660778714484,
+      "maximum_fwhm_khz": 146.65733103826523
     }
   },
   "representative_convergence": {
+    "representative_checks": [
+      {
+        "duration_us": 10.0,
+        "cutoff": 1e-05,
+        "amplitude_mhz": 9.770099572992255,
+        "coarse_accepted": false,
+        "time_accepted": false,
+        "refined_accepted": false
+      },
+      {
+        "duration_us": 10.0,
+        "cutoff": 1e-05,
+        "amplitude_mhz": 49.770235643321115,
+        "coarse_accepted": false,
+        "time_accepted": false,
+        "refined_accepted": false
+      },
+      {
+        "duration_us": 10.0,
+        "cutoff": 1e-05,
+        "amplitude_mhz": 100.0,
+        "coarse_accepted": true,
+        "time_accepted": true,
+        "refined_accepted": true,
+        "time_width_change_normalized": 1.04740179991771e-11,
+        "frequency_width_change_normalized": 2.086806929955736e-06
+      },
+      {
+        "duration_us": 10.0,
+        "cutoff": 0.001047615752789665,
+        "amplitude_mhz": 9.770099572992255,
+        "coarse_accepted": true,
+        "time_accepted": true,
+        "refined_accepted": true,
+        "time_width_change_normalized": 6.807799000725672e-12,
+        "frequency_width_change_normalized": 2.367184602356344e-06
+      },
+      {
+        "duration_us": 10.0,
+        "cutoff": 0.001047615752789665,
+        "amplitude_mhz": 49.770235643321115,
+        "coarse_accepted": true,
+        "time_accepted": true,
+        "refined_accepted": true,
+        "time_width_change_normalized": 1.2174325038647309e-08,
+        "frequency_width_change_normalized": 6.806362990830096e-07
+      },
+      {
+        "duration_us": 10.0,
+        "cutoff": 0.001047615752789665,
+        "amplitude_mhz": 100.0,
+        "coarse_accepted": true,
+        "time_accepted": true,
+        "refined_accepted": true,
+        "time_width_change_normalized": 7.790595156416122e-09,
+        "frequency_width_change_normalized": 1.3113406223957204e-05
+      },
+      {
+        "duration_us": 10.0,
+        "cutoff": 1.0,
+        "amplitude_mhz": 9.770099572992255,
+        "coarse_accepted": true,
+        "time_accepted": true,
+        "refined_accepted": true,
+        "time_width_change_normalized": 2.5844631699733923e-07,
+        "frequency_width_change_normalized": 0.001202693661296691
+      },
+      {
+        "duration_us": 10.0,
+        "cutoff": 1.0,
+        "amplitude_mhz": 49.770235643321115,
+        "coarse_accepted": false,
+        "time_accepted": false,
+        "refined_accepted": false
+      },
+      {
+        "duration_us": 10.0,
+        "cutoff": 1.0,
+        "amplitude_mhz": 100.0,
+        "coarse_accepted": false,
+        "time_accepted": false,
+        "refined_accepted": false
+      },
+      {
+        "duration_us": 20.0,
+        "cutoff": 1e-05,
+        "amplitude_mhz": 9.770099572992255,
+        "coarse_accepted": false,
+        "time_accepted": false,
+        "refined_accepted": false
+      },
+      {
+        "duration_us": 20.0,
+        "cutoff": 1e-05,
+        "amplitude_mhz": 49.770235643321115,
+        "coarse_accepted": true,
+        "time_accepted": true,
+        "refined_accepted": true,
+        "time_width_change_normalized": 1.6092519460886545e-11,
+        "frequency_width_change_normalized": 5.232409677128308e-07
+      },
+      {
+        "duration_us": 20.0,
+        "cutoff": 1e-05,
+        "amplitude_mhz": 100.0,
+        "coarse_accepted": true,
+        "time_accepted": true,
+        "refined_accepted": true,
+        "time_width_change_normalized": 6.149776620023704e-11,
+        "frequency_width_change_normalized": 4.105460243366638e-07
+      },
+      {
+        "duration_us": 20.0,
+        "cutoff": 0.001047615752789665,
+        "amplitude_mhz": 9.770099572992255,
+        "coarse_accepted": true,
+        "time_accepted": true,
+        "refined_accepted": true,
+        "time_width_change_normalized": 4.151944373720107e-13,
+        "frequency_width_change_normalized": 2.4556884600332623e-06
+      },
+      {
+        "duration_us": 20.0,
+        "cutoff": 0.001047615752789665,
+        "amplitude_mhz": 49.770235643321115,
+        "coarse_accepted": true,
+        "time_accepted": true,
+        "refined_accepted": true,
+        "time_width_change_normalized": 1.7802654969180503e-09,
+        "frequency_width_change_normalized": 1.2165521108481424e-05
+      },
+      {
+        "duration_us": 20.0,
+        "cutoff": 0.001047615752789665,
+        "amplitude_mhz": 100.0,
+        "coarse_accepted": true,
+        "time_accepted": true,
+        "refined_accepted": true,
+        "time_width_change_normalized": 8.991497849005007e-08,
+        "frequency_width_change_normalized": 6.692336851813201e-05
+      },
+      {
+        "duration_us": 20.0,
+        "cutoff": 1.0,
+        "amplitude_mhz": 9.770099572992255,
+        "coarse_accepted": true,
+        "time_accepted": true,
+        "refined_accepted": true,
+        "time_width_change_normalized": 1.7728031152227565e-09,
+        "frequency_width_change_normalized": 0.00019281926441004903
+      },
+      {
+        "duration_us": 20.0,
+        "cutoff": 1.0,
+        "amplitude_mhz": 49.770235643321115,
+        "coarse_accepted": true,
+        "time_accepted": true,
+        "refined_accepted": true,
+        "time_width_change_normalized": 9.878871185353156e-06,
+        "frequency_width_change_normalized": 0.0007207657276321239
+      },
+      {
+        "duration_us": 20.0,
+        "cutoff": 1.0,
+        "amplitude_mhz": 100.0,
+        "coarse_accepted": true,
+        "time_accepted": true,
+        "refined_accepted": true,
+        "time_width_change_normalized": 0.009289067108733964,
+        "frequency_width_change_normalized": 0.01020939456264829
+      },
+      {
+        "duration_us": 30.0,
+        "cutoff": 1e-05,
+        "amplitude_mhz": 9.770099572992255,
+        "coarse_accepted": false,
+        "time_accepted": false,
+        "refined_accepted": false
+      },
+      {
+        "duration_us": 30.0,
+        "cutoff": 1e-05,
+        "amplitude_mhz": 49.770235643321115,
+        "coarse_accepted": true,
+        "time_accepted": true,
+        "refined_accepted": true,
+        "time_width_change_normalized": 2.8689067014796375e-11,
+        "frequency_width_change_normalized": 1.240894109614783e-06
+      },
+      {
+        "duration_us": 30.0,
+        "cutoff": 1e-05,
+        "amplitude_mhz": 100.0,
+        "coarse_accepted": true,
+        "time_accepted": true,
+        "refined_accepted": true,
+        "time_width_change_normalized": 1.0848283645986414e-10,
+        "frequency_width_change_normalized": 1.91732056988968e-06
+      },
+      {
+        "duration_us": 30.0,
+        "cutoff": 0.001047615752789665,
+        "amplitude_mhz": 9.770099572992255,
+        "coarse_accepted": true,
+        "time_accepted": true,
+        "refined_accepted": true,
+        "time_width_change_normalized": 3.27916744762932e-12,
+        "frequency_width_change_normalized": 2.9476621273123833e-06
+      },
+      {
+        "duration_us": 30.0,
+        "cutoff": 0.001047615752789665,
+        "amplitude_mhz": 49.770235643321115,
+        "coarse_accepted": true,
+        "time_accepted": true,
+        "refined_accepted": true,
+        "time_width_change_normalized": 3.5482061467424624e-09,
+        "frequency_width_change_normalized": 1.7093983558990015e-05
+      },
+      {
+        "duration_us": 30.0,
+        "cutoff": 0.001047615752789665,
+        "amplitude_mhz": 100.0,
+        "coarse_accepted": true,
+        "time_accepted": true,
+        "refined_accepted": true,
+        "time_width_change_normalized": 2.093295756090533e-07,
+        "frequency_width_change_normalized": 6.31382287120899e-05
+      },
+      {
+        "duration_us": 30.0,
+        "cutoff": 1.0,
+        "amplitude_mhz": 9.770099572992255,
+        "coarse_accepted": true,
+        "time_accepted": true,
+        "refined_accepted": true,
+        "time_width_change_normalized": 9.4052706884189e-09,
+        "frequency_width_change_normalized": 0.00019079305094099586
+      },
+      {
+        "duration_us": 30.0,
+        "cutoff": 1.0,
+        "amplitude_mhz": 49.770235643321115,
+        "coarse_accepted": true,
+        "time_accepted": true,
+        "refined_accepted": true,
+        "time_width_change_normalized": 3.234927888145408e-05,
+        "frequency_width_change_normalized": 0.00015257640291309435
+      },
+      {
+        "duration_us": 30.0,
+        "cutoff": 1.0,
+        "amplitude_mhz": 100.0,
+        "coarse_accepted": true,
+        "time_accepted": true,
+        "refined_accepted": true,
+        "time_width_change_normalized": 0.00540587848205452,
+        "frequency_width_change_normalized": 0.007147833081707322
+      },
+      {
+        "duration_us": 40.0,
+        "cutoff": 1e-05,
+        "amplitude_mhz": 9.770099572992255,
+        "coarse_accepted": false,
+        "time_accepted": false,
+        "refined_accepted": false
+      },
+      {
+        "duration_us": 40.0,
+        "cutoff": 1e-05,
+        "amplitude_mhz": 49.770235643321115,
+        "coarse_accepted": true,
+        "time_accepted": true,
+        "refined_accepted": true,
+        "time_width_change_normalized": 1.0124247086957517e-10,
+        "frequency_width_change_normalized": 3.1677082604862173e-06
+      },
+      {
+        "duration_us": 40.0,
+        "cutoff": 1e-05,
+        "amplitude_mhz": 100.0,
+        "coarse_accepted": true,
+        "time_accepted": true,
+        "refined_accepted": true,
+        "time_width_change_normalized": 3.738441983971529e-10,
+        "frequency_width_change_normalized": 5.403507302572892e-06
+      },
+      {
+        "duration_us": 40.0,
+        "cutoff": 0.001047615752789665,
+        "amplitude_mhz": 9.770099572992255,
+        "coarse_accepted": true,
+        "time_accepted": true,
+        "refined_accepted": true,
+        "time_width_change_normalized": 2.941452809030496e-12,
+        "frequency_width_change_normalized": 6.49531924768398e-07
+      },
+      {
+        "duration_us": 40.0,
+        "cutoff": 0.001047615752789665,
+        "amplitude_mhz": 49.770235643321115,
+        "coarse_accepted": true,
+        "time_accepted": true,
+        "refined_accepted": true,
+        "time_width_change_normalized": 8.6620417230921e-09,
+        "frequency_width_change_normalized": 3.242078723361369e-06
+      },
+      {
+        "duration_us": 40.0,
+        "cutoff": 0.001047615752789665,
+        "amplitude_mhz": 100.0,
+        "coarse_accepted": true,
+        "time_accepted": true,
+        "refined_accepted": true,
+        "time_width_change_normalized": 1.4435861274080538e-07,
+        "frequency_width_change_normalized": 6.581393961628283e-05
+      },
+      {
+        "duration_us": 40.0,
+        "cutoff": 1.0,
+        "amplitude_mhz": 9.770099572992255,
+        "coarse_accepted": true,
+        "time_accepted": true,
+        "refined_accepted": true,
+        "time_width_change_normalized": 1.1307549148809484e-08,
+        "frequency_width_change_normalized": 0.0001408243781196673
+      },
+      {
+        "duration_us": 40.0,
+        "cutoff": 1.0,
+        "amplitude_mhz": 49.770235643321115,
+        "coarse_accepted": true,
+        "time_accepted": true,
+        "refined_accepted": true,
+        "time_width_change_normalized": 4.613679289063549e-06,
+        "frequency_width_change_normalized": 0.0016734049295802752
+      },
+      {
+        "duration_us": 40.0,
+        "cutoff": 1.0,
+        "amplitude_mhz": 100.0,
+        "coarse_accepted": true,
+        "time_accepted": true,
+        "refined_accepted": true,
+        "time_width_change_normalized": 0.0039342743391932245,
+        "frequency_width_change_normalized": 0.0014517277887721523
+      },
+      {
+        "duration_us": 50.0,
+        "cutoff": 1e-05,
+        "amplitude_mhz": 9.770099572992255,
+        "coarse_accepted": false,
+        "time_accepted": false,
+        "refined_accepted": false
+      },
+      {
+        "duration_us": 50.0,
+        "cutoff": 1e-05,
+        "amplitude_mhz": 49.770235643321115,
+        "coarse_accepted": true,
+        "time_accepted": true,
+        "refined_accepted": true,
+        "time_width_change_normalized": 1.5578147406654416e-10,
+        "frequency_width_change_normalized": 7.495078639424157e-08
+      },
+      {
+        "duration_us": 50.0,
+        "cutoff": 1e-05,
+        "amplitude_mhz": 100.0,
+        "coarse_accepted": true,
+        "time_accepted": true,
+        "refined_accepted": true,
+        "time_width_change_normalized": 5.463182260612711e-10,
+        "frequency_width_change_normalized": 2.099428704306729e-07
+      },
+      {
+        "duration_us": 50.0,
+        "cutoff": 0.001047615752789665,
+        "amplitude_mhz": 9.770099572992255,
+        "coarse_accepted": true,
+        "time_accepted": true,
+        "refined_accepted": true,
+        "time_width_change_normalized": 4.100522803233866e-12,
+        "frequency_width_change_normalized": 1.058650408481122e-06
+      },
+      {
+        "duration_us": 50.0,
+        "cutoff": 0.001047615752789665,
+        "amplitude_mhz": 49.770235643321115,
+        "coarse_accepted": true,
+        "time_accepted": true,
+        "refined_accepted": true,
+        "time_width_change_normalized": 5.690177571878562e-09,
+        "frequency_width_change_normalized": 1.7032276336750807e-05
+      },
+      {
+        "duration_us": 50.0,
+        "cutoff": 0.001047615752789665,
+        "amplitude_mhz": 100.0,
+        "coarse_accepted": true,
+        "time_accepted": true,
+        "refined_accepted": true,
+        "time_width_change_normalized": 1.375241234955239e-06,
+        "frequency_width_change_normalized": 0.00018593890057650337
+      },
+      {
+        "duration_us": 50.0,
+        "cutoff": 1.0,
+        "amplitude_mhz": 9.770099572992255,
+        "coarse_accepted": false,
+        "time_accepted": false,
+        "refined_accepted": false
+      },
+      {
+        "duration_us": 50.0,
+        "cutoff": 1.0,
+        "amplitude_mhz": 49.770235643321115,
+        "coarse_accepted": false,
+        "time_accepted": false,
+        "refined_accepted": false
+      },
+      {
+        "duration_us": 50.0,
+        "cutoff": 1.0,
+        "amplitude_mhz": 100.0,
+        "coarse_accepted": false,
+        "time_accepted": false,
+        "refined_accepted": false
+      }
+    ],
+    "local_jump_checks": [
+      {
+        "cutoff": 0.00210490414451202,
+        "accepted": true,
+        "normalized_width": 1.5182571397093856,
+        "contrast": 0.029783998879562543,
+        "relative_rms": 0.010283624409871883,
+        "window_factor_range": [
+          1.2,
+          1.8
+        ],
+        "window_check_widths_normalized": [
+          1.5571026404340125,
+          1.477243251366765
+        ],
+        "window_check_accepted": [
+          true,
+          true
+        ]
+      },
+      {
+        "cutoff": 0.0022309243744089834,
+        "accepted": true,
+        "normalized_width": 1.527808870825277,
+        "contrast": 0.028625133371778258,
+        "relative_rms": 0.010832403327970959,
+        "window_factor_range": [
+          1.2,
+          1.8
+        ],
+        "window_check_widths_normalized": [
+          1.567549308642248,
+          1.4819186345746207
+        ],
+        "window_check_accepted": [
+          true,
+          true
+        ]
+      },
+      {
+        "cutoff": 0.002296736176338636,
+        "accepted": true,
+        "normalized_width": 1.5302793050329777,
+        "contrast": 0.028059632430538734,
+        "relative_rms": 0.011032217477932661,
+        "window_factor_range": [
+          1.2,
+          1.8
+        ],
+        "window_check_widths_normalized": [
+          1.569544441457346,
+          1.4820737090684584
+        ],
+        "window_check_accepted": [
+          true,
+          true
+        ]
+      },
+      {
+        "cutoff": 0.002319102079494042,
+        "accepted": true,
+        "normalized_width": 1.532081890703454,
+        "contrast": 0.027821820842790345,
+        "relative_rms": 0.011044287081065862,
+        "window_factor_range": [
+          1.2,
+          1.8
+        ],
+        "window_check_widths_normalized": [
+          1.5712411654130112,
+          1.4833178933497073
+        ],
+        "window_check_accepted": [
+          true,
+          true
+        ]
+      },
+      {
+        "cutoff": 0.002364489412645407,
+        "accepted": true,
+        "normalized_width": 1.5374722598720596,
+        "contrast": 0.027428961112756185,
+        "relative_rms": 0.01110067095103022,
+        "window_factor_range": [
+          1.2,
+          1.8
+        ],
+        "window_check_widths_normalized": [
+          1.5766615999301001,
+          1.4873013057572793
+        ],
+        "window_check_accepted": [
+          true,
+          true
+        ]
+      },
+      {
+        "cutoff": 0.0026560877829466868,
+        "accepted": true,
+        "normalized_width": 1.5614140394850213,
+        "contrast": 0.025671673785846085,
+        "relative_rms": 0.011039844725890837,
+        "window_factor_range": [
+          1.2,
+          1.8
+        ],
+        "window_check_widths_normalized": [
+          1.59407032182085,
+          1.5034313536579618
+        ],
+        "window_check_accepted": [
+          true,
+          true
+        ]
+      }
+    ],
+    "scope": "Saved time/frequency refinements at three cutoffs and three drives for every duration, plus six refined spectra around the 50 us jump. Window sensitivity is a model-dependence check, not numerical convergence."
+  },
+  "archived_direct_metric_convergence": {
     "scope": "Three cutoffs (endpoints and nearest 0.001), three amplitudes (nearest 10, 50, 100 MHz), all lengths. Halve time step and double detuning intervals. This is a representative check, not a full-grid accuracy bound.",
     "maximum_changes": {
       "max_population_time_step_change": 0.00016196719243211088,
-      "time_fwhm_hz_absolute_change": 508.065002788906,
-      "time_fwhm_hz_relative_change": 0.001605839907814488,
-      "frequency_fwhm_hz_absolute_change": 206.98330717952922,
-      "frequency_fwhm_hz_relative_change": 0.0025859951696647343
+      "time_fwhm_hz_absolute_change": 103.82300231198315,
+      "time_fwhm_hz_relative_change": 0.00026382698551885575,
+      "frequency_fwhm_hz_absolute_change": 118.7910505329055,
+      "frequency_fwhm_hz_relative_change": 0.0011470090234017016
     },
     "time_status_changes": 0,
     "frequency_status_changes": 0

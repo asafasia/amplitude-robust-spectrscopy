@@ -31,6 +31,11 @@ from echospec.figures.coherence import (  # noqa: E402
     REFERENCE_FWHM_HZ,
     REFERENCE_T2_STAR_S,
 )
+from echospec.figures.drag_convention import (  # noqa: E402
+    PAPER_DRAG_CONVENTION,
+    polynomial_beta_provenance,
+    polynomial_beta_to_paper,
+)
 from echospec.figures.supplemental import (  # noqa: E402
     FIGURE_WIDTH,
     STYLE_PATH,
@@ -452,17 +457,14 @@ def phase_optimization() -> None:
 
 def midpoint_smoothing_leakage() -> None:
     """Plot saved final leakage, without rerunning dynamics or fitting."""
-    directory = "outputs/sine_echo_transition_comparison"
-    metadata_path = source_path(f"{directory}/provenance.json")
-    metadata = json.loads(metadata_path.read_text())
-    widths = np.array([0, 4, 8, 16])
-    cases = [load(f"{directory}/T{width}ns.npz") for width in widths]
-    detuning = cases[0]["narrow_detuning_mhz"]
-    rabi = cases[0]["narrow_rabi_mhz"]
-    for case in cases:
-        np.testing.assert_array_equal(case["narrow_detuning_mhz"], detuning)
-        np.testing.assert_array_equal(case["narrow_rabi_mhz"], rabi)
-    pf = np.stack([case["narrow_populations"][2] for case in cases])
+    source_stem = "paper/data/numerical/08_midpoint_smoothing_50mhz"
+    metadata_path = source_path(f"{source_stem}.json")
+    metadata = json.loads(metadata_path.read_text())["provenance"]
+    data = load(f"{source_stem}.npz")
+    widths = data["transition_ns"]
+    detuning = data["detuning_mhz"]
+    rabi = data["rabi_mhz"]
+    pf = data["populations"][:, 2]
     maximum = pf.max(axis=2)
     np.testing.assert_allclose(
         maximum.max(axis=1), [m["max_final_pf"] for m in metadata["metrics"]],
@@ -488,14 +490,14 @@ def midpoint_smoothing_leakage() -> None:
         axes[1].plot(rabi[positive], maximum[j, positive], color=color, ls=style,
                      marker="o", ms=2.5, label=label)
     axes[0].set(
-        title=f"(a)  Final leakage at {rabi[-1]:.2f} MHz drive",
+        title=f"(a)  Final leakage at {rabi[-1]:g} MHz drive",
         xlabel=r"Detuning $\Delta/(2\pi)$ (MHz)", ylabel=r"Final $P_f$",
-        xlim=(detuning[0], detuning[-1]), ylim=(1e-4, 5e-2), yscale="log",
+        xlim=(detuning[0], detuning[-1]), ylim=(1e-4, 1e-1), yscale="log",
     )
     axes[1].set(
         title="(b)  Maximum over detuning",
         xlabel=r"Peak Rabi frequency $\Omega_0/(2\pi)$ (MHz)",
-        ylabel=r"$\max_{\Delta} P_f$", xlim=(0, 44), ylim=(3e-7, 5e-2),
+        ylabel=r"$\max_{\Delta} P_f$", xlim=(0, rabi[-1]), ylim=(3e-7, 1e-1),
         yscale="log",
     )
     for ax in axes:
@@ -508,18 +510,18 @@ def midpoint_smoothing_leakage() -> None:
         "parameters": metadata["parameters"],
         "transition_ns": widths.tolist(),
         "dt_ns": metadata["dt_ns"],
-        "convergence_max_abs_population_error": metadata[
-            "convergence_max_abs_population_error"
-        ],
+        "convergence": metadata["convergence"],
         "observable": "Final Pf; not maximum transient leakage",
         "panels": {
             "a": "All 201 detunings at the highest saved drive amplitude",
             "b": "Maximum over 201 detunings at each saved drive; zero-drive Pf=0 omitted on log axis",
         },
         "max_final_pf": maximum.max(axis=1).tolist(),
+        "highest_drive_mhz": float(rabi[-1]),
+        "max_final_pf_at_highest_drive": maximum[:, -1].tolist(),
         "processing": "No fitting, smoothing, rescaling, or new dynamics; lines connect saved samples",
         "source_sha256": {
-            k: v for k, v in SOURCES.items() if k.startswith(directory + "/")
+            k: v for k, v in SOURCES.items() if k.startswith(source_stem)
         },
         "generator_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         "arrays_sha256": hashlib.sha256(arrays_path.read_bytes()).hexdigest(),
@@ -539,6 +541,7 @@ def drag_beta_optimization() -> None:
         "paper/data/experimental/03_latest_q1_pulse_improvement.npz",
         "paper/data/experimental/03_latest_q1_pulse_improvement.json",
         "scripts/make_current_drag_supplement.py",
+        "echospec/figures/drag_convention.py",
         "echospec/simulation/polynomial_echo.py",
     ):
         source_path(relative)
@@ -552,6 +555,7 @@ def edge_smoothing_results() -> None:
 
     from echospec.analysis.spectroscopy_quality import spectroscopy_quality
 
+    source_path("echospec/figures/drag_convention.py")
     data = load("paper/data/numerical/07_current_edge_comparison.npz")
     metadata = json.loads(source_path(
         "paper/data/numerical/07_current_edge_comparison.json"
@@ -567,7 +571,9 @@ def edge_smoothing_results() -> None:
     amp, detuning = data["rabi_mhz"], data["detuning_mhz"]
     high = amp >= 50
     metrics, rows, summaries = {}, [], {}
-    displayed = dict(rabi_mhz=amp, detuning_mhz=detuning)
+    displayed = dict(rabi_mhz=amp, detuning_mhz=detuning,
+                     reference_t2_star_s=REFERENCE_T2_STAR_S,
+                     reference_linewidth_hz=REFERENCE_FWHM_HZ)
     for key in ("drag", "polynomial"):
         local = [dict(case=key, amplitude_mhz=float(a),
                       **spectroscopy_quality(detuning, population, shots=1000))
@@ -578,6 +584,7 @@ def edge_smoothing_results() -> None:
                          "contrast_snr", "shoulder_contrast")}
         assert metrics[key]["accepted"][high].all()
         assert np.isfinite(metrics[key]["contrast_snr"][high]).all()
+        metrics[key]["fwhm_normalized"] = metrics[key]["fwhm_hz"] / REFERENCE_FWHM_HZ
         for name, values in metrics[key].items():
             displayed[f"{key}_{name}"] = values
         displayed[f"{key}_pe_100mhz"] = data[key][1, -1]
@@ -590,38 +597,35 @@ def edge_smoothing_results() -> None:
                                            & (metrics[key]["contrast_snr"] >= 10))),
         )
     apply_supplemental_style()
-    fig, axes = plt.subplots(2, 2, figsize=(FIGURE_WIDTH, 5.15))
-    fig.subplots_adjust(left=0.085, right=0.985, bottom=0.105, top=0.89,
-                        wspace=0.28, hspace=0.50)
-    spectrum, width, contrast, snr = axes.flat
+    fig, axes = plt.subplots(1, 3, figsize=(FIGURE_WIDTH, 2.55))
+    fig.subplots_adjust(left=0.07, right=0.985, bottom=0.24, top=0.79,
+                        wspace=0.40)
+    spectrum, width, contrast = axes
     labels = ("Hard cutoff + DRAG", "Polynomial ($p=2$) + DRAG")
     for key, color, style, label in zip(
         ("drag", "polynomial"), ("#586579", "#176eaa"), ("-", "--"), labels,
         strict=True,
     ):
         spectrum.plot(detuning, data[key][1, -1], color=color, ls=style, label=label)
-        for ax, metric, scale in ((width, "fwhm_hz", 1e-3),
-                                  (contrast, "contrast", 1), (snr, "contrast_snr", 1)):
+        for ax, metric, scale in ((width, "fwhm_normalized", 1),
+                                  (contrast, "contrast", 1)):
             values = np.where(metrics[key]["accepted"], metrics[key][metric]*scale, np.nan)
             ax.plot(amp, values, color=color, ls=style, label=label)
-    spectrum.set(title="(a)  Spectrum at 100 MHz drive",
-                 xlabel=r"Detuning $\Delta/(2\pi)$ (MHz)", ylabel=r"Final $P_e$",
+    spectrum.set(title="(a)  100 MHz drive",
+                 xlabel=r"$\Delta/(2\pi)$ (MHz)", ylabel=r"$P_e$",
                  xlim=(-0.5, 0.5), ylim=(0, 0.8))
-    width.set(title="(b)  Resistance to power broadening", ylabel="FWHM (kHz)",
-              ylim=(0, 50 * np.ceil(max(np.nanmax(metrics[k]["fwhm_hz"]) for k in metrics) / 5e4 * 1.1)))
-    width.axhline(200, color="0.5", ls=":", lw=0.7)
-    width.text(3, 210, "200 kHz guide", color="0.4", fontsize=7)
-    contrast.set(title="(c)  Dip visibility", ylabel="Contrast C",
+    width.set(title="(b)", ylabel=r"$\mathrm{FWHM}/\Gamma_{T_2^*}$",
+              ylim=(0, np.ceil(max(np.nanmax(metrics[k]["fwhm_normalized"])
+                                  for k in metrics) * 1.1)))
+    width.axhline(1, color="0.5", ls="--", lw=0.7)
+    contrast.set(title="(c)", ylabel="Contrast",
                  ylim=(0, np.ceil(max(np.nanmax(metrics[k]["contrast"])
                                      for k in metrics) * 11) / 10))
-    snr.set(title="(d)  Ideal shot-noise SNR", ylabel="SNR (1000 total shots)",
-            ylim=(0, 5 * np.ceil(max(np.nanmax(metrics[k]["contrast_snr"])
-                                         for k in metrics) * 1.1 / 5)))
-    snr.axhline(10, color="0.5", ls=":", lw=0.7)
-    for ax in (width, contrast, snr):
-        ax.set(xlim=(0, 100), xlabel=r"Peak Rabi frequency $\Omega_{\rm pk}/(2\pi)$ (MHz)")
+    for ax in (width, contrast):
+        ax.set(xlim=(0, 100), xlabel=r"$\Omega_{\mathrm{pk}}/(2\pi)$ (MHz)")
     handles, labels = spectrum.get_legend_handles_labels()
-    fig.legend(handles, labels, loc="upper center", ncol=2, bbox_to_anchor=(0.5, 1.0))
+    fig.legend(handles, labels, loc="upper center", ncol=2,
+               bbox_to_anchor=(0.5, 1.0), fontsize=7.5)
     stem = "edge_smoothing_results"
     save(fig, stem)
     arrays = OUT / f"{stem}.npz"
@@ -638,14 +642,33 @@ def edge_smoothing_results() -> None:
         normalization=metadata["normalization"],
         echo_control_100mhz=spectroscopy_quality(detuning, data["echo_control_100mhz"][1]),
         source_configs={k: metadata["source_configs"][k] for k in ("drag", "polynomial")},
+        drag_beta_convention=polynomial_beta_provenance(
+            metadata["source_configs"]["polynomial"]["drag_beta"]
+        ),
         summaries=summaries,
         high_drive_mhz=[float(amp[high][0]), float(amp[-1])], high_drive_points=int(high.sum()),
         contrast="Background-referenced dip depth from dip_metrics, as in the main-paper figure",
+        linewidth_normalization={
+            "definition": "FWHM / Gamma_T2star, where Gamma_T2star = 1/(pi*T2star)",
+            "reference_t2_star_s": REFERENCE_T2_STAR_S,
+            "reference_linewidth_hz": REFERENCE_FWHM_HZ,
+            "label": r"$\mathrm{FWHM}/\Gamma_{T_2^*}$",
+            "guide": 1.0,
+            "guide_linestyle": "--",
+            "raw_fwhm_hz": "Retained unchanged in the numerical exports",
+        },
+        layout="Three panels in one row with a shared legend",
+        panels={
+            "a": "Excited-state population versus detuning at 100 MHz peak drive",
+            "b": "Dip FWHM / Gamma_T2star versus peak drive, with a unity guide",
+            "c": "Background-referenced dip contrast C versus peak drive",
+        },
+        auxiliary_metrics="SNR and shoulder-contrast diagnostics are retained in the numerical exports but are not plotted",
         snr="Ideal Bernoulli readout, 500 shots at interpolated dip center and 250 at each +/-0.45 MHz shoulder; no assignment error, drift, technical noise or center-search cost",
         snr_signal="Mean of two shoulder populations minus center population; distinct from fitted-background contrast C",
         processing="Saved populations unchanged; no extra smoothing, fitting, normalization or new dynamics; lines connect samples",
         source_sha256={k: v for k, v in SOURCES.items() if any(s in k for s in
-                      ("07_current_edge_comparison", "make_current_edge_supplement.py", "spectroscopy_quality.py", "dip_metrics.py"))},
+                      ("07_current_edge_comparison", "make_current_edge_supplement.py", "spectroscopy_quality.py", "dip_metrics.py", "drag_convention.py"))},
         generator_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         arrays_sha256=hashlib.sha256(arrays.read_bytes()).hexdigest(),
         reproduce=".venv/bin/python scripts/make_supplemental_figures.py --only edge_smoothing_results",
@@ -660,6 +683,7 @@ def pulse_modifications() -> None:
 
     source_path("echospec/simulation/polynomial_echo.py")
     source_path("scripts/make_current_drag_supplement.py")
+    source_path("echospec/figures/drag_convention.py")
     model = CurrentPulse(polynomial=True)
     hard_model = CurrentPulse(polynomial=False)
     full = np.unique(np.r_[np.linspace(-11, 11, 16001),
@@ -736,9 +760,13 @@ def pulse_modifications() -> None:
             ax.axvline(boundary, color="#70439b", lw=0.6, ls=":")
     save(fig, "s08_pulse_modifications")
     metadata = {
-        "parameters": {name: getattr(model, name) for name in model.__dataclass_fields__},
+        "parameters": {
+            **{name: getattr(model, name) for name in model.__dataclass_fields__},
+            "drag_beta": float(polynomial_beta_to_paper(model.drag_beta)),
+        },
+        "drag_beta_convention": polynomial_beta_provenance(model.drag_beta),
         "complex_peak_normalization": {"hard": hard_model.peak, "polynomial": model.peak},
-        "convention": "I-iQ; Q=-beta*dI/dt/(2*pi*abs(alpha_MHz)); both I and Q divided by the same complex-envelope peak",
+        "convention": PAPER_DRAG_CONVENTION,
         "families": labels,
         "normalization": "Unsigned envelopes in (a) have g(0)=1; I and Q in (b,c) are normalized by each complex-envelope peak, as in the DRAG and cutoff-smoothing comparisons",
         "panels": {
@@ -750,7 +778,8 @@ def pulse_modifications() -> None:
         "reproduce": ".venv/bin/python scripts/make_supplemental_figures.py --only pulse_modifications",
         "source_sha256": {
             key: SOURCES[key] for key in ("echospec/simulation/polynomial_echo.py",
-                                        "scripts/make_current_drag_supplement.py")
+                                        "scripts/make_current_drag_supplement.py",
+                                        "echospec/figures/drag_convention.py")
         },
         "generator_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         "arrays_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
@@ -784,6 +813,7 @@ def main() -> None:
     source_path(str(STYLE_PATH.relative_to(ROOT)))
     source_path("echospec/figures/supplemental.py")
     source_path("echospec/figures/coherence.py")
+    source_path("echospec/figures/drag_convention.py")
     source_path("scripts/make_supplemental_figures.py")
     # No source numerical arrays, masks, or fitted metrics may change during rendering.
     for relative, digest in SOURCES.items():

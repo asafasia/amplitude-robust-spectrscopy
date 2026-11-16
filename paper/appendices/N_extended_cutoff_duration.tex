@@ -1,17 +1,17 @@
-% Source: outputs/polynomial_duration_cutoff_poly2_log/n100/
+% Source: outputs/polynomial_duration_cutoff_poly2_log_40_50/n100/
 % Settings: simulations/configuration.json.
-% Numerical results: metrics_all.csv and comparison_summary.json in that directory.
-% Convergence evidence: validation/convergence.json (45 representative traces).
-% Contrast values use saved scan.npz contrast, checked against metrics_all.csv.
+% Fitted metrics: robust_fits/metrics.npz and robust_fits/provenance.json.
+% Fit convergence: 45 representative traces plus six near the 50 us crossing switch.
+% Original populations and direct half-depth metrics remain in the source scans.
 % Maximin contrast/FWHM: figures/paper/supp_extended_cutoff_duration_summary.json.
 \section{Extended Cutoff and Pulse-Duration Range}
 \label{sec:extended-cutoff-duration}
 
 Figure~\ref{fig:extended-cutoff-duration} extends the $L=20~\mu\mathrm{s}$
-maps in main-text Fig.~4 to $L=10$, 20, 30, 45, and $60~\mu\mathrm{s}$,
+maps in main-text Fig.~4 to $L=10$, 20, 30, 40, and $50~\mu\mathrm{s}$,
 over $10^{-5}\leq c\leq1$ and $1\leq\Omega_0/(2\pi)\leq100~\mathrm{MHz}$.
 These three-level simulations use the polynomial-corrected DRAG pulse
-of Sec.~\ref{sec:pulse-modifications}, with $p=2$, $\beta=-0.5$, and a
+of Sec.~\ref{sec:pulse-modifications}, with $p=2$, $\beta=0.5$, and a
 $16~\mathrm{ns}$ midpoint transition. Here $\Omega_0$ is the unsigned
 midpoint scale, before smoothing and DRAG.
 
@@ -24,15 +24,17 @@ At $c=1$, the envelope has the smooth limit
     \label{eq:extended-cutoff-one-limit}
 \end{equation}
 
-We compare the local dip FWHM $\Gamma_f$ and background-relative contrast
+We compare the normalized Gaussian-fit width of the central dip
+$\mathrm{FWHM}/\Gamma_{T_2^*}$ and background-relative contrast
 \begin{equation}
-    C=P_{\mathrm{bg}}(\delta_*)-P_e(\delta_*),
+    C=P_{\mathrm{bg}}(\delta_*)-P_e^{\mathrm{fit}}(\delta_*),
     \qquad \delta=\Delta/(2\pi),
     \label{eq:extended-cutoff-contrast}
 \end{equation}
-where $\delta_*$ is the dip center. Contrast is an excitation-probability
+where $\delta_*$ is the fitted dip center and $P_{\mathrm{bg}}$ is the local
+quadratic background (Sec.~\ref{sec:numerical-model}). Contrast is an excitation-probability
 difference, not a signal-to-noise ratio. Unresolved or invalid dips are
-excluded; an accepted local width does not imply a unique resonance.
+excluded; an accepted central-dip fit does not imply a unique resonance.
 The third column shows $Q=C\Gamma_{T_2^*}/\mathrm{FWHM}$, as in
 Fig.~\ref{fig:duration-resolution-comparison}; red contours outline
 regions with $Q>0.10$.
@@ -41,65 +43,48 @@ regions with $Q>0.10$.
     \centering
     \includegraphics[width=\textwidth]{supp_extended_cutoff_duration.pdf}
     \caption{Cutoff--duration survey for the polynomial-corrected DRAG
-    echo. Rows show $L=10$, 20, 30, 45, and $60~\mu\mathrm{s}$.
-    Left: $\mathrm{FWHM}/\Gamma_{T_2^*}$, with
-    $\Gamma_{T_2^*}=1/(\pi T_2^*)$ and $T_2^*=7.6~\mu\mathrm{s}$;
+    echo. Rows show $L=10$, 20, 30, 40, and $50~\mu\mathrm{s}$.
+    Left: Gaussian-fit $\mathrm{FWHM}/\Gamma_{T_2^*}$, with
+    $\Gamma_{T_2^*}=1/(\pi T_2^*)$ and $T_2^*=\PaperTTwoStar~\mu\mathrm{s}$;
     darker colors indicate narrower lines and values above 10 saturate.
-    Middle: probability contrast $C$. Right: contrast-weighted resolution
+    Middle: fitted probability contrast $C$. Width and contrast describe the
+    central Gaussian dip relative to a local quadratic background.
+    Right: contrast-weighted resolution
     $Q=C\Gamma_{T_2^*}/\mathrm{FWHM}$. In all three columns, white contours
-    mark $C=0.2$ and red contours outline regions with $Q>0.10$.
+    are smoothed guides to $C=0.2$, while red contours outline regions with $Q>0.10$.
+    Heatmaps and numerical values are unsmoothed.
     Both cutoff and nominal-drive axes are logarithmic; color scales
-    are shared across rows. Gray cells indicate rejected dips.}
+    are shared across rows. Gray cells indicate rejected fits.}
     \label{fig:extended-cutoff-duration}
 \end{figure*}
 
 At $L=20~\mu\mathrm{s}$ and approximately $50~\mathrm{MHz}$ drive,
-$c=10^{-5}$ gives a FWHM of about $141~\mathrm{kHz}$ but negligible
-contrast ($C=0.0014$). Near $c=10^{-3}$, the width remains comparable
-at $155~\mathrm{kHz}$ while contrast rises to $0.51$.
+$c=10^{-5}$ gives $\mathrm{FWHM}/\Gamma_{T_2^*}\simeq2.86$ but negligible
+contrast ($C=0.0011$). Near $c=10^{-3}$, the width remains comparable
+at $3.18$ while contrast rises to $0.40$.
 Larger cutoffs broaden the feature and reduce visibility, reaching
-$523~\mathrm{kHz}$ and $C=0.11$ at $c=1$ despite the smooth endpoints.
+a normalized width of $14.9$ and $C=0.14$ at $c=1$ despite the smooth endpoints.
 
 Duration changes this balance. At the same drive and
 $c=1.048\times10^{-3}$, increasing $L$ from 10 to $30~\mu\mathrm{s}$
-reduces FWHM from 246.6 to $134.4~\mathrm{kHz}$ while contrast falls from
-0.705 to 0.337. At 45 and $60~\mu\mathrm{s}$, the widths rise to
-166.3 and $445.9~\mathrm{kHz}$, while contrast falls to 0.171 and 0.070,
-respectively. Longer pulses therefore do not guarantee better resolution:
-the useful duration balances narrowing against contrast loss from
+reduces $\mathrm{FWHM}/\Gamma_{T_2^*}$ from 5.57 to 2.36 while contrast falls from
+0.644 to 0.223. At 40 and $50~\mu\mathrm{s}$, the widths decrease further to
+1.90 and 1.53, while contrast falls to 0.115 and 0.052,
+respectively. Narrowing the central feature therefore comes at the cost of
+visibility: the useful duration balances resolution against contrast loss from
 relaxation and dephasing.
 
-Table~\ref{tab:extended-cutoff-robustness} selects one cutoff per duration
-by maximizing the minimum $C/\Gamma_f$ over the sampled
+We select one cutoff per duration
+by maximizing the minimum $Q$ over the sampled
 10.235--$100~\mathrm{MHz}$ drive range, requiring an accepted dip at
 every drive. This tests amplitude robustness without retuning the cutoff.
 
-\begin{table}[!tp]
-    \caption{Fixed-cutoff selections maximizing the worst sampled
-    contrast/FWHM over 10.235--$100~\mathrm{MHz}$.
-    Width and contrast extrema may occur at different drives.}
-    \label{tab:extended-cutoff-robustness}
-    \begin{ruledtabular}
-    \setlength{\tabcolsep}{4pt}
-    \begin{tabular}{@{}ccccc@{}}
-        \shortstack{$L$\\($\mu$s)} & Cutoff $c$
-        & \shortstack{Max. FWHM\\(kHz)} & Min. $C$
-        & \shortstack{Min. $C/\Gamma_f$\\(MHz$^{-1}$)} \\
-        10 & $2.364\times10^{-3}$ & 294.4 & 0.517 & 2.051 \\
-        20 & $1.048\times10^{-3}$ & 170.2 & 0.391 & 2.490 \\
-        30 & $5.857\times10^{-4}$ & 136.6 & 0.267 & 2.343 \\
-        45 & $3.275\times10^{-4}$ & 143.1 & 0.162 & 1.594 \\
-        60 & $1.831\times10^{-4}$ & 181.7 & 0.077 & 0.959
-    \end{tabular}
-    \end{ruledtabular}
-\end{table}
-
 The selected cutoff decreases with duration. Among the five durations,
-$20~\mu\mathrm{s}$ gives the best worst-case contrast/FWHM, keeping
-$C\geq0.391$ and FWHM $\leq170.2~\mathrm{kHz}$ throughout the sampled
-drive range. The $30~\mu\mathrm{s}$ pulse lowers the maximum width to
-$136.6~\mathrm{kHz}$ at the cost of minimum contrast $0.267$; longer
+$20~\mu\mathrm{s}$ gives the best worst-case $Q$, with minimum contrast
+$0.296$ and maximum $\mathrm{FWHM}/\Gamma_{T_2^*}\simeq3.50$ over the sampled
+drive range. The $30~\mu\mathrm{s}$ pulse lowers the maximum normalized width to
+$2.39$ at the cost of minimum contrast $0.187$; longer
 pulses lose further visibility. These sampled numerical results identify
-a linewidth--contrast compromise; $C/\Gamma_f$ is a tradeoff score,
+a linewidth--contrast compromise; $Q$ is a tradeoff score,
 not a frequency-estimation uncertainty.
 

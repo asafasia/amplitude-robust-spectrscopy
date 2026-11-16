@@ -1,0 +1,18 @@
+{
+  "spectra_checked": 50000,
+  "fit_arrays_match_sources": true,
+  "display_max_error": 2.98e-08,
+  "browser_controls_checked": [
+    "all five durations",
+    "amplitude input",
+    "cutoff input",
+    "before/after presets",
+    "zoom",
+    "map click",
+    "rejected spectrum",
+    "CSV download"
+  ],
+  "csv_samples_checked": 201,
+  "csv_fit_absolute_tolerance": 1e-14,
+  "no_new_ruff_findings": true
+}

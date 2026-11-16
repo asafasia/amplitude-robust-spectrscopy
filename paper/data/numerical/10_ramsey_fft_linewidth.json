@@ -1,0 +1,116 @@
+{
+  "arrays": {
+    "cosine_fft": {
+      "dtype": "complex128",
+      "shape": [
+        2,
+        786
+      ]
+    },
+    "duration_us": {
+      "dtype": "float64",
+      "shape": [
+        441
+      ]
+    },
+    "fft_duration_us": {
+      "dtype": "float64",
+      "shape": [
+        2
+      ]
+    },
+    "fft_frequency_mhz": {
+      "dtype": "float64",
+      "shape": [
+        786
+      ]
+    },
+    "fwhm_mhz": {
+      "dtype": "float64",
+      "shape": [
+        3,
+        441
+      ]
+    },
+    "line_offset_mhz": {
+      "dtype": "float64",
+      "shape": [
+        1601
+      ]
+    },
+    "normalized_20us_spectra": {
+      "dtype": "float64",
+      "shape": [
+        3,
+        1601
+      ]
+    },
+    "ramsey_trace": {
+      "dtype": "float64",
+      "shape": [
+        4000
+      ]
+    },
+    "reference_fwhm_mhz": {
+      "dtype": "float64",
+      "shape": []
+    },
+    "t2_us": {
+      "dtype": "float64",
+      "shape": []
+    },
+    "table_duration_us": {
+      "dtype": "float64",
+      "shape": [
+        6
+      ]
+    },
+    "table_fwhm_mhz": {
+      "dtype": "float64",
+      "shape": [
+        3,
+        6
+      ]
+    },
+    "time_us": {
+      "dtype": "float64",
+      "shape": [
+        4000
+      ]
+    }
+  },
+  "category": "numerical",
+  "data_file": "10_ramsey_fft_linewidth.npz",
+  "dataset": "10_ramsey_fft_linewidth",
+  "provenance": {
+    "amplitude": 1.0,
+    "baseline": 0.0,
+    "dt_us": 0.01,
+    "fft_relative_integral_error": [
+      0.0015198502834040334,
+      0.001329573462906201
+    ],
+    "fringe_mhz": 1.0,
+    "linewidth": "First half-height crossings of exact isolated finite-duration line",
+    "nfft": 262144,
+    "noise": "none",
+    "normalization": "Each displayed spectrum normalized to its own central peak",
+    "padding_note": "Zero padding interpolates the transform, not new information",
+    "phase_rad": 0.0,
+    "reproduce": "PYTHONPATH=. MPLBACKEND=Agg .venv/bin/python scripts/make_supplemental_ramsey_fft.py",
+    "sampling": "t = j*dt, j=0,...,N-1; T=N*dt; rectangular window",
+    "scope": "Supplemental S11 / Fig. S10: ideal exponential Ramsey reference",
+    "source_sha256": {
+      "echospec/analysis/ramsey_linewidth.py": "55373b3190677fe05a8132562125a7281b5a4ae4b327ed90c9f9fac7daac0207",
+      "echospec/figures/coherence.py": "23366fede8a34300fafaca825da685fa1236c7f4ff154ddf1e712a0f54fc489f",
+      "scripts/make_supplemental_ramsey_fft.py": "afda9ca88dc7dd8ff59d700d80ee65d9e0a9ae9e13ff769b70041844063b3fc7"
+    },
+    "spectrum_kind_order": [
+      "absorption",
+      "power",
+      "magnitude"
+    ],
+    "t2_us": 7.6
+  },
+  "schema_version": 1
+}

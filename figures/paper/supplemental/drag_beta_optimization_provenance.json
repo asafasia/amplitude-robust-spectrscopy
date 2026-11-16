@@ -12,18 +12,18 @@
     "amplitude": "Actual complex-envelope peak; each pulse divided by max|I-iQ|",
     "best_sampled": {
       "hard": {
-        "beta": -0.475,
+        "beta": 0.475,
         "rms_hz": 365.72114783613347
       },
       "polynomial": {
-        "beta": -0.5,
+        "beta": 0.5,
         "rms_hz": 31.97873643469763
       }
     },
     "convergence": {
       "checks": [
         {
-          "beta": -0.5,
+          "beta": 0.5,
           "diagnostics": {
             "max_dt_ns": 0.25,
             "max_population": 0.627260671113374,
@@ -39,7 +39,7 @@
           "shape": "hard"
         },
         {
-          "beta": -0.475,
+          "beta": 0.475,
           "diagnostics": {
             "max_dt_ns": 0.25,
             "max_population": 0.6272606059864391,
@@ -55,7 +55,7 @@
           "shape": "hard"
         },
         {
-          "beta": -0.45,
+          "beta": 0.45,
           "diagnostics": {
             "max_dt_ns": 0.25,
             "max_population": 0.6272604259232388,
@@ -71,7 +71,7 @@
           "shape": "hard"
         },
         {
-          "beta": -0.525,
+          "beta": 0.525,
           "diagnostics": {
             "max_dt_ns": 0.25,
             "max_population": 0.787903946655124,
@@ -87,7 +87,7 @@
           "shape": "polynomial"
         },
         {
-          "beta": -0.5,
+          "beta": 0.5,
           "diagnostics": {
             "max_dt_ns": 0.25,
             "max_population": 0.7879048025224651,
@@ -103,7 +103,7 @@
           "shape": "polynomial"
         },
         {
-          "beta": -0.475,
+          "beta": 0.475,
           "diagnostics": {
             "max_dt_ns": 0.25,
             "max_population": 0.787904159840718,
@@ -123,7 +123,7 @@
       "dt_ns": 0.25
     },
     "detuning_step_khz": 2,
-    "drive": "I-iQ; Q=-beta*dI/dt/abs(alpha); alpha is angular frequency",
+    "drive": "I-iQ; Q=-beta*dI/dt/alpha; alpha=omega12-omega01<0 in angular-frequency units",
     "dt_ns": 0.5,
     "experimental_beta_optimization": "Not supplied; selected acquisition beta is not inferred from this simulation",
     "extraction": "Three-point parabolic interpolation of direct Pe minimum",
@@ -149,7 +149,9 @@
       "paper/data/experimental/03_latest_q1_pulse_improvement.npz": "fc07b1530c75220864fdb4981458780c23d79e7fa4598a1773122ce27520a61d",
       "scripts/make_current_drag_supplement.py": "fa1819d2a34ea633c90cde791fd6f260263b4d6f074dd9740c08b1a0f403c536",
       "scripts/scan_drag_beta_center.py": "0396c7513794345eef59388d35160215c2573d48366d00bee56273a5eacfb6ab"
-    }
+    },
+    "source_beta_convention": "I-iQ; Q=-beta_source*dI/dt/abs(alpha)",
+    "beta_conversion": "beta=-beta_source; sample order, waveforms and populations unchanged"
   },
   "experiment": {
     "source_session": "20261031_191600_figure3_50ns_poly2_avg5000_amp300/maps",
@@ -163,6 +165,7 @@
       1.2557575757575759,
       1.2557575757575759
     ],
+    "beta_convention": "I-iQ; Q=-beta*dI/dt/alpha; alpha=omega12-omega01<0 in angular-frequency units",
     "shots": 5000,
     "statistics": [
       {
@@ -185,8 +188,9 @@
     "optimization_scan": "Deferred by user; not present in this figure"
   },
   "source_sha256": {
-    "scripts/make_current_drag_supplement.py": "b824f45cd839d4548cfa3f0e382a1de96cace3c2da7bf2d9d8cf0310cdadcd66",
+    "scripts/make_current_drag_supplement.py": "9126888ef0b3cbb7ace4cf57b320d0bcc764cab3c92cc795338ba35a9062ff3a",
     "scripts/scan_drag_beta_center.py": "0396c7513794345eef59388d35160215c2573d48366d00bee56273a5eacfb6ab",
+    "echospec/figures/drag_convention.py": "0c4d002d67bb2857da47fbf65b0167559451bb688ffdf30d427018a09c3cf1e6",
     "echospec/simulation/polynomial_echo.py": "59021291bb6363a59767274c3c3d727843d37319364a60d51d63c9e7193b950d",
     "echospec/simulation/qutrit_rk4.cpp": "493150abcad473a10ff4128c3b42a5f0ddfd0cdd8fe4c1cf09a936858068bab6",
     "paper/data/experimental/03_latest_q1_pulse_improvement.npz": "fc07b1530c75220864fdb4981458780c23d79e7fa4598a1773122ce27520a61d",

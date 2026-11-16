@@ -40,9 +40,6 @@ downconversion and demodulation.}
     \label{fig:diagram}
 \end{figure*}
 
-\subsection{Qubit parameters}
-\label{subsec:coherence-characterization}
-
 Table~\ref{tab:device-parameters} summarizes the primary qubit parameters.
 Energy relaxation, Ramsey, and Hahn-echo measurements characterize the device;
 their fitted parameters are retained in the source datasets.
@@ -66,29 +63,4 @@ their fitted parameters are retained in the source datasets.
         \end{tabular}
     \end{ruledtabular}
 \end{table}
-
-\subsection{Spectroscopy measurements}
-
-Main-text Fig.~2 uses four q1 maps: ordinary and echo pulses in broad and narrow
-detuning domains. All use two-state discrimination without readout mitigation.
-The drive reference is
-$4.263203245~\mathrm{GHz}$.
-
-Main-text Fig.~3 compares echo, DRAG, and polynomial-corrected DRAG pulses
-over $0$--$100~\mathrm{MHz}$ peak drive.
-The displayed Figure~3 window is $0$--$\LatestThreeDisplayMaxRabi~\mathrm{MHz}$.
-Its drive reference is
-$\LatestThreeDriveGHz~\mathrm{GHz}$.
-For Fig.~3, each amplitude row is fit independently to a Gaussian dip plus
-a linear background. The saved acceptance criteria require contrast
-$C\geq0.02$, $R^2\geq0.2$, FWHM spanning at least two detuning intervals,
-both half-depth locations inside the measured window, and a finite positive
-center standard error smaller than half the FWHM. The detuning interval is
-$5.025~\mathrm{kHz}$. No additional smoothing or recentering is applied.
-The fit masks remain unchanged in the paper export, and the quoted
-three-way statistics use the same accepted nonzero
-amplitudes within the displayed window. The full measured arrays and original
-acceptance masks are retained in the data export.
-These covariance errors and across-amplitude statistics do not
-constitute a repeatability or absolute-frequency-accuracy measurement.
 

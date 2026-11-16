@@ -1,0 +1,24 @@
+{
+  "dataset_sha256": {
+    "09_square_echo_comparison.npz": "673551682ae22f7abc3896d06f39c5e1232c27ec12a757fb19956c1fd6a7f181",
+    "09_square_echo_comparison.json": "26b8aff7fa9f757e1468c1368db0304dd0491563a987e6f37dc3317d5e1b9f9e"
+  },
+  "generator_sha256": "3498c67d8c6a41673edd14d75bb2112d23abbd78a609a6ff7f13885214a86039",
+  "color_limits": [
+    0,
+    0.8
+  ],
+  "map_sampling": "Original amplitude/detuning coordinates; nearest cells",
+  "slice_metrics": [
+    {
+      "amplitude_mhz": 3.05,
+      "root_variation": 0.39930945378719657,
+      "square_variation": 0.004806638589786472
+    },
+    {
+      "amplitude_mhz": 10.05,
+      "root_variation": 0.3200190075810471,
+      "square_variation": 0.001985422737990461
+    }
+  ]
+}

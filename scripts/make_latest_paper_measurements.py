@@ -395,7 +395,6 @@ def plot_fig3(data, meta):
     center, contrast, fwhm = [fig.add_subplot(grid[1, col]) for col in range(3)]
     ramsey = representative_ramsey(meta)
     ramsey_fwhm_hz = REFERENCE_FWHM_HZ
-    ramsey_fwhm_mhz = ramsey_fwhm_hz / 1e6
     for i, (name, ax) in enumerate(zip(F3, maps, strict=True)):
         x = series(data, name, "detuning_hz") / 1000
         rabi, state = series(data, name, "peak_rabi_mhz"), series(data, name, "state")
@@ -491,6 +490,9 @@ def plot_fig3(data, meta):
                 median_fwhm_khz=float(
                     np.median(series(data, name, "fwhm_hz")[common]) / 1000
                 ),
+                median_fwhm_normalized=float(
+                    np.median(series(data, name, "fwhm_hz")[common]) / ramsey_fwhm_hz
+                ),
                 median_contrast=float(
                     np.median(series(data, name, "contrast")[common])
                 ),
@@ -516,17 +518,8 @@ def plot_fig3(data, meta):
     )
     fwhm.set(
         ylabel=r"$\mathrm{FWHM}/\Gamma_{T_2^*}$",
-        yticks=[0, 1, 2, 4, 6, 8, 10], ylim=(0, 0.5 / ramsey_fwhm_mhz),
+        yticks=[0, 1, 2, 4, 6, 8, 10, 12], ylim=(0, 12),
     )
-    fwhm_mhz = fwhm.secondary_yaxis(
-        "right",
-        functions=(
-            lambda normalized: normalized * ramsey_fwhm_mhz,
-            lambda mhz: mhz / ramsey_fwhm_mhz,
-        ),
-    )
-    fwhm_mhz.set_ylabel("FWHM (MHz)", labelpad=3)
-    fwhm_mhz.set_yticks(np.linspace(0, 0.5, 6))
     contrast.set(ylabel="Contrast", ylim=(0, 0.5), yticks=[0, 0.2, 0.4, 0.5])
     fwhm.axhline(1, color="0.4", ls="--", lw=0.55)
     for letter, ax in zip("def", [center, contrast, fwhm], strict=True):
@@ -568,12 +561,11 @@ def plot_fig3(data, meta):
             contrast_display_ylim=[0, 0.5],
             fwhm_axes=dict(
                 left="FWHM / Gamma_T2_star",
-                right="FWHM (MHz)",
+                right=None,
                 normalization="Common paper reference: Gamma_T2_star = 1 / (pi * T2_star)",
                 t2_star_s=REFERENCE_T2_STAR_S,
                 normalization_hz=ramsey_fwhm_hz,
-                left_ylim=[0, 0.5 / ramsey_fwhm_mhz],
-                right_ylim_mhz=[0, 0.5],
+                left_ylim=[0, 12],
             ),
             center_reference=dict(
                 calibration="common_paper_reference",
@@ -617,6 +609,7 @@ def write_parameters(f2, f3, stats):
     for label, s in zip(["Echo", "Drag", "Poly"], stats, strict=True):
         values[f"Latest{label}Accepted"] = str(s["accepted"])
         values[f"Latest{label}Width"] = f"{round(s['median_fwhm_khz'], -1):.0f}"
+        values[f"Latest{label}WidthNormalized"] = f"{s['median_fwhm_normalized']:.1f}"
         values[f"Latest{label}Contrast"] = f"{s['median_contrast']:.2f}"
         values[f"Latest{label}CenterRms"] = f"{s['center_rms_about_mean_khz']:.0f}"
     values["LatestCommonCount"] = str(stats[0]["matched_count"])

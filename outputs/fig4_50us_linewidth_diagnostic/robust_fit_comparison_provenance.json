@@ -1,0 +1,83 @@
+{
+  "generator": "scripts/plot_robust_cutoff_fit_check.py",
+  "source_sha256": {
+    "outputs/fig4_50us_linewidth_diagnostic/local_00.npz": "dfc193d76839d564d5d18e0c4075aefeb3f059d3fe771b46061b56383d0754bd",
+    "outputs/fig4_50us_linewidth_diagnostic/local_01.npz": "240996e85bc7ffcf3ce0c4c476b7d23a3447b448cf085025a06ed9df79f230a4",
+    "outputs/fig4_50us_linewidth_diagnostic/local_02.npz": "22bdd754899d2c10311363b1273b572e8e74b8991c3394cf846a1cd9a87051e8",
+    "outputs/fig4_50us_linewidth_diagnostic/local_03.npz": "77360e9f70e901019551f46bcbb30d352188a86d5dfbe0e2b2d941b1361c22d6",
+    "outputs/fig4_50us_linewidth_diagnostic/local_04.npz": "c5159f49a698796aac93aff943dabafbfd004ebf114a9a71fc057c42a412be12",
+    "outputs/fig4_50us_linewidth_diagnostic/local_05.npz": "7def8dad01fad80cce99ab54c87a9a4552a6c725759e40c3e603964256bc7607",
+    "outputs/fig4_50us_linewidth_diagnostic/local_06.npz": "d6b97eb214c514357217635935e067735fe772c717bf371d6fd65296465a8e2c",
+    "outputs/fig4_50us_linewidth_diagnostic/local_07.npz": "c5a3ae6257f7ddde7cd7c864588213b975151c99d97b64101af71d41b790b2c3",
+    "outputs/fig4_50us_linewidth_diagnostic/local_08.npz": "5d5c2b95e55ccc4a48ab062627a5eda47bfe858276074672ee88b5a22d9b4639",
+    "outputs/fig4_50us_linewidth_diagnostic/local_09.npz": "a7b91fbddb16e3ae21b0182e723947d50100f9a225a662b2fa6ba7af5dead68d",
+    "outputs/fig4_50us_linewidth_diagnostic/local_10.npz": "511279255642d8553b2b6b0bfa4333ff9eda2f530299155adfe6c66ce4dc40fc",
+    "outputs/fig4_50us_linewidth_diagnostic/local_11.npz": "b9ada2ffe9b6c4a5b3390fbaa0006d75a9e83398ee8e3b08fa581bd0ba1df4b5",
+    "outputs/fig4_50us_linewidth_diagnostic/local_12.npz": "e3fe961fdc11603d321bccc96f4bf893200ec3ed01edb29632b7d2ff7e0ebb64",
+    "outputs/fig4_50us_linewidth_diagnostic/local_13.npz": "5ee6ddf54a9d873a56718fc0fa69de180702d0f5f0079525de0fd8d4a157b9d3",
+    "outputs/fig4_50us_linewidth_diagnostic/fine_00.npz": "8ade6983be2f55b7b1ddbcf3403c55cafff822340c82bed685b649ef8d4eac32",
+    "outputs/fig4_50us_linewidth_diagnostic/fine_12.npz": "0f4eced22aaf50f19b501ea780172f6de115156ff90f0f2be1ecd8b705641e85",
+    "outputs/fig4_50us_linewidth_diagnostic/local_scan.csv": "cb3860fe0aae69b87a2fb50fb0a1cf38a1871fbf5f3045750c685efbfa70a8c5",
+    "scripts/plot_robust_cutoff_fit_check.py": "327805fcd0c22cb6c0e465d267087f6d07365a6ddf5bdc59d616104d1d5e49dc",
+    "echospec/analysis/robust_dip_fit.py": "43190c795325a5a904b333d1ffd303fca938786451bdac0909abc5169715195a",
+    "echospec/analysis/dip_metrics.py": "851f4571da5dc275890f42eaf7393f1818fffe69043f4fff703272dddf9290ca"
+  },
+  "reference_linewidth_hz": 41882.87976102509,
+  "cases": [
+    {
+      "case": "fine_00",
+      "cutoff": 0.00210490414451202,
+      "fit": {
+        "accepted": true,
+        "status": "accepted",
+        "center_hz": -31.745853642376975,
+        "fwhm_hz": 63588.98122876607,
+        "contrast": 0.029783998879562543,
+        "relative_rms": 0.010283624409871883,
+        "relative_width_error": 0.002295779314153082,
+        "radius_mhz": 0.14436806624519039,
+        "reference_mhz": 1.2423180670174332e-06,
+        "y_offset": 0.36330789948145176,
+        "y_scale": 0.03653921616609124,
+        "parameters": [
+          0.8151241872342734,
+          -0.00022850047498293902,
+          0.440464313768451,
+          0.8083768182409449,
+          -0.0014923960392767403,
+          0.0005487260913809172
+        ],
+        "seed_width_mhz": 0.09624537749679359,
+        "nfev": 13
+      }
+    },
+    {
+      "case": "fine_12",
+      "cutoff": 0.002364489412645407,
+      "fit": {
+        "accepted": true,
+        "status": "accepted",
+        "center_hz": 20.927079382540455,
+        "fwhm_hz": 64393.765796133,
+        "contrast": 0.027428961112756185,
+        "relative_rms": 0.01110067095103022,
+        "relative_width_error": 0.002544728283451899,
+        "radius_mhz": 0.14052392377708015,
+        "reference_mhz": 2.140090296803987e-05,
+        "y_offset": 0.36742259659110377,
+        "y_scale": 0.029592132999482212,
+        "parameters": [
+          0.9269004405068104,
+          -3.3718357185290642e-06,
+          0.45824059039430126,
+          0.918936904157962,
+          -0.002921905827634244,
+          -0.07868149498529789
+        ],
+        "seed_width_mhz": 0.09368261585138676,
+        "nfev": 12
+      }
+    }
+  ],
+  "note": "Fits are independent. No smoothing across cutoffs. Widths and depths refer to the Gaussian central component."
+}
